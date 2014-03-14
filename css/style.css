@@ -102,7 +102,7 @@
 
 		a:hover
 		{
-			color: #E27689;
+			color: #43b5b9; 
 			border-bottom-color: rgba(255,255,255,0);
 		}
 
@@ -148,6 +148,7 @@
 		section,
 		article
 		{
+      
 			margin-bottom: 3em;
 		}
 		
@@ -207,8 +208,8 @@
 			.image.featured
 			{
 				display: block;
-				width: 100%;
-				margin: 0 0 2em 0;
+					margin: 0 auto;
+					width: 20%;
 			}
 			
 			.image.left
@@ -463,8 +464,10 @@
 	
 		.item
 		{
-			box-shadow: 0 0.05em 0.15em 0 rgba(0,0,0,0.05);
-			margin-bottom: 40px;
+      display: block;
+      margin: 0 auto;
+
+
 		}
 		
 			.item header
@@ -1054,7 +1057,7 @@
 
 							#nav ul li a.active span:before
 							{
-								color: #E27689;
+								color: #43b5b9;
 							}
 
 /*********************************************************************************/
