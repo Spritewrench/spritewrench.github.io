@@ -1107,11 +1107,13 @@
 			text-align: center;
 			background-image: url('images/overlay.png');
 		}
-	
+	  #main > section.logoBox{
+      background-image:url('images/wild-sea.png');
+    }
 		#main > section.one
 		{
 			background: #fff;
-			padding-top: 0;
+			padding-top:50px;
 		}
 	
 			#main > section.one .image.featured
