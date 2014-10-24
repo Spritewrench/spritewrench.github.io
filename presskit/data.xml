@@ -2,13 +2,13 @@
 <!-- example file containing base tags -->
 
 <game>	
-	<title>Company Name</title>
+	<title>Spritewrench</title>
 	<founding-date>September 1, 2010</founding-date>
-	<website>http://www.website.com</website>
-	<based-in>Cityville, Metropolisland</based-in>
+	<website>http://www.spritewrench.com</website>
+	<based-in>Kingston, Jamaica</based-in>
 	
-	<press-contact>press-contact@company.com</press-contact>
-	<phone>+00 (1) 22 33 44 55 66</phone>
+	<press-contact>ghenry@spritewrench.com</press-contact>
+	<phone>+(1876) </phone>
 	<address>
 		<line>Address Line 1</line>
 		<line>Address Line 2</line>
@@ -17,12 +17,12 @@
 
 	<socials>
 		<social>
-			<name>twitter.com/MyCompanyName</name>
-			<link>twitter.com/MyCompanyName</link>
+			<name>twitter.com/spritewrench</name>
+			<link>twitter.com/spritewrench</link>
 		</social>
 		<social>
-			<name>facebook.com/MyCompanyName</name>
-			<link>facebook.com/MyCompanyName</link>
+			<name>facebook.com/spritewrench</name>
+			<link>facebook.com/spritewrench</link>
 		</social>
 		<social>
 			<name>Skype</name>
