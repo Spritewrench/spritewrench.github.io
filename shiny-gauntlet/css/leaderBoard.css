@@ -197,9 +197,31 @@ body{
 #title{
   text-align: center;
 }
+#desc{
+  text-align: center;
+  padding-top: 550px;
+  z-index: 3;
+}
 table{
   text-align: center;
 }
 .social{
   padding: 25px;
 }
+.logo{
+		position: absolute;
+   
+   left: 50%;
+   margin-top: -60px; /* Half the height */
+   margin-left: -220px; /* Half the width */  
+		z-index: 2;
+}
+.flicker{
+		position: absolute;
+
+   left: 50%;
+   margin-top: -55px; /* Half the height */
+   margin-left: -392px; /* Half the width */  
+		z-index: 1;
+}
+
