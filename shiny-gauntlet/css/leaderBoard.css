@@ -1,7 +1,9 @@
 a:link {
     text-decoration: none;
 }
-
+body{
+  background: #000;
+}
 .example-base {
   font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   color: #333; }
@@ -64,7 +66,7 @@ a:link {
     font-weight: normal;
     outline: none; }
   .example-chat .example-chat-toolbar {
-    background-color: #FFF;
+    background-color: #000;
     padding: 10px;
     position: relative;
     border-bottom: 1px solid #CCC; }
@@ -80,12 +82,12 @@ a:link {
     .example-chat .example-chat-toolbar input {
       -webkit-box-shadow: none;
       box-shadow: none;
-      border: 1px solid #FFF;
+      border: 1px solid #000;
       padding-left: 100px;
       color: #999; }
       .example-chat .example-chat-toolbar input:active, .example-chat .example-chat-toolbar input:focus {
         color: #1d9dff;
-        border: 1px solid #FFF; }
+        border: 1px solid #000; }
   .example-chat ul {
     list-style: none;
     margin: 0px;
@@ -197,4 +199,7 @@ a:link {
 }
 table{
   text-align: center;
+}
+.social{
+  padding: 25px;
 }
