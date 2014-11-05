@@ -199,7 +199,7 @@ body{
 }
 #desc{
   text-align: center;
-  padding-top: 550px;
+  padding-top: 200px;
   z-index: 3;
 }
 table{
@@ -212,7 +212,7 @@ table{
 		position: absolute;
    
    left: 50%;
-   margin-top: -60px; /* Half the height */
+   margin-top: 10px; /* Half the height */
    margin-left: -220px; /* Half the width */  
 		z-index: 2;
 }
