@@ -39,7 +39,8 @@
   <br/>
   <br/>   
 
-    
+  Be sure to share the game!
+  <br/>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
@@ -54,6 +55,30 @@
  <iframe class="btn" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="117" src="http://platform.tumblr.com/v1/follow_button.html?button_type=2&tumblelog=gauntletgame&color_scheme=dark"></iframe>  
   
   <br/>
+  <br/>  
+  Feel free to subscribe to recieve updates in your email
+  <br/>
+<!-- Begin MailChimp Signup Form -->
+  
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form  action="//spritewrench.us9.list-manage.com/subscribe/post?u=09d1bdd04e1856dd6189da1fa&amp;id=08901a123e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	
+	<input  value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;"><input type="text" name="b_09d1bdd04e1856dd6189da1fa_08901a123e" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe " name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup-->  
+  <br/>
   <br/>
   &copy; Copyright 2014 Glen Henry
   </div>
@@ -65,94 +90,6 @@
 
   </footer>
 </div>
-<script>
 
-
-  var playerCount= 0;
-  var name = "";
-  // Create our Firebase reference
-  var scoreListRef = new Firebase("https://shiny-gauntlet-lb.firebaseio.com/");
-
-  // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
-  var htmlForPath = {};
-
-  // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
-  function handleScoreAdded(scoreSnapshot, prevScoreName) {
-    var newScoreRow = $("<tr/>");
-    newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name)));
-    newScoreRow.append($("<td/>").text(scoreSnapshot.val().score));
-
-    // Store a reference to the table row so we can get it again later.
-    htmlForPath[scoreSnapshot.name()] = newScoreRow;
-
-    // Insert the new score in the appropriate place in the table.
-    if (prevScoreName === null) {
-      $("#leaderboardTable").append(newScoreRow);
-    }
-    else {
-      var lowerScoreRow = htmlForPath[prevScoreName];
-      lowerScoreRow.before(newScoreRow);
-    }
-    Firebase.goOffline();
-    
-    //Firebase.goOffline();
-  }
-
-  // Helper function to handle a score object being removed; just removes the corresponding table row.
-  function handleScoreRemoved(scoreSnapshot) {
-    var removedScoreRow = htmlForPath[scoreSnapshot.name()];
-    removedScoreRow.remove();
-    delete htmlForPath[scoreSnapshot.name()];
-  }
-
-  // Create a view to only receive callbacks for the last LEADERBOARD_SIZE scores
-  var scoreListView = scoreListRef;
-
-  // Add a callback to handle when a new score is added.
-  scoreListView.on('child_added', function (newScoreSnapshot, prevScoreName) {
-    handleScoreAdded(newScoreSnapshot, prevScoreName);
-  });
-
-  // Add a callback to handle when a score is removed
-  scoreListView.on('child_removed', function (oldScoreSnapshot) {
-    handleScoreRemoved(oldScoreSnapshot);
-  });
-
-  // Add a callback to handle when a score changes or moves positions.
-  var changedCallback = function (scoreSnapshot, prevScoreName) {
-    handleScoreRemoved(scoreSnapshot);
-    handleScoreAdded(scoreSnapshot, prevScoreName);
-  };
-  scoreListView.on('child_moved', changedCallback);
-  scoreListView.on('child_changed', changedCallback);
-
-  // When the user presses enter on scoreInput, add the score, and update the highest score.
-  $("#nameInput").keypress(function (e) {
-    if (e.keyCode == 13) {
-      var newScore = 9;//Number(localStorage.getItem("floorNum"));
-      name = $("#nameInput").val();
-      $("#nameInput").val("");
-
-      if (name.length === 0){
-        alert("please enter a name");
-        return;
-      }
-      
-      if (htmlForPath[name] != undefined){
-        alert("name already taken");
-        return;  
-      }
-      
-      
-      
-      var userScoreRef = scoreListRef.child(name);
-      playerCount = 0;
-
-      // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-      userScoreRef.setWithPriority({ name:name, score:newScore }, newScore);
-    }
-  });
-  
-</script>
 </body>
 </html>
