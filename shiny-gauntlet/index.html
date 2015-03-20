@@ -1,98 +1,48 @@
 <html>
+
 <head>
-  <script src="https://cdn.firebase.com/js/client/1.1.1/firebase.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/leaderBoard.css">
-  <a href="https://plus.google.com/102350874201507901283" rel="publisher"></a>
+  <script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+  
 </head>
 
 <body>
+  <img id="logo" src="logo.png" onclick='selectGuild;'>
+  <p>Total Number Dead:</p>
+  <div id="deaths"></div>  
+  <p>Are you Brave Enough?</p>
+<iframe src="//itch.io/embed/10344?linkback=true" width="552" height="167" frameborder="0"></iframe>  
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1421586094773114&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<img class="logo" src="images/titleScreen1.png"></img>
-<br/>
-<br/>
-<br/>
-<div class="example-base example-leaderboard l-demo-container">
-  <div id="title">
-    
-
-  </div>
-  <div id="desc">
-  
-  <h4>Play as Patch, the flickering spirit, in this action rogue-lite adventure. Explore the ever changing Gauntlet. Use different weapons, and collect shiny things to survive as many floors as you can!</h4>
-
-<iframe src="//player.vimeo.com/video/109659363" width="552" height="375" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
-
-  <br/>  
-  <br/>    
-  <iframe src="//itch.io/embed/10344" width="552" height="167" frameborder="0"></iframe> 
-  <br/>
-  
- <br/>
- 
-  <br/>
-  <br/>   
-
-  Be sure to share the game!
-  <br/>
-<!-- Place this tag in your head or just before your close body tag. -->
-
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<!-- Place this tag where you want the +1 button to render. -->
-<div class="g-plusone" data-size="medium" data-href="https://plus.google.com/102350874201507901283"></div>
-  
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="spritewrench.com/shiny-gauntlet" data-text="Explore the ever changing Gauntlet! http://bit.ly/1zbXBo5" data-hashtags="ShinyGauntlet">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
- 
-<div class="fb-like" data-href="https://www.facebook.com/pages/Shiny-Gauntlet/578531745596759" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
- &nbsp; &nbsp; &nbsp; 
- <iframe class="btn" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="117" src="http://platform.tumblr.com/v1/follow_button.html?button_type=2&tumblelog=gauntletgame&color_scheme=dark"></iframe>  
-  
-  <br/>
-  <br/>  
-  Feel free to subscribe to recieve updates in your email
-  <br/>
-<!-- Begin MailChimp Signup Form -->
-  
-<style type="text/css">
-	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-</style>
-<div id="mc_embed_signup">
-<form  action="//spritewrench.us9.list-manage.com/subscribe/post?u=09d1bdd04e1856dd6189da1fa&amp;id=08901a123e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <div id="mc_embed_signup_scroll">
-	
-	<input  value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;"><input type="text" name="b_09d1bdd04e1856dd6189da1fa_08901a123e" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Subscribe " name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-    </div>
-</form>
-</div>
-
-<!--End mc_embed_signup-->  
   <br/>
   <br/>
-  &copy; Copyright 2014 Glen Henry
-  </div>
-   
-  <footer>
-
-    <br/>
-    <br/>
-
-  </footer>
-</div>
-
+  <a href="https://twitter.com/shinygauntlet" class="fa fa-twitter solo"><span>Facebook</span></a>
+  <a href="https://www.facebook.com/glen.henry.5" class="fa fa-facebook solo"><span>Facebook</span></a>
+  <a href="http://gauntletgame.tumblr.com/" class="fa fa-tumblr solo"><span>Facebook</span></a>
+  <a href="https://plus.google.com/102350874201507901283/posts" class="fa fa-google-plus solo"><span>Facebook</span></a>
 </body>
+<script>
+  var lb = new Firebase("https://shiny-gauntlet-lb.firebaseio.com/");
+  var deathCount = 0;
+  lb.on('value', function (snapshot) {
+
+    var db = snapshot.val();
+
+    for (player in snapshot.val()) {
+      if(db[player].status == 'DEAD'){
+        deathCount++;
+        
+        
+      }
+
+    }
+
+
+  }, function (errorObject) {
+    alert('The read failed: ' + errorObject.code);
+  });  
+  document.getElementById('deaths').innerHTML = deathCount;
+</script>
+
 </html>
