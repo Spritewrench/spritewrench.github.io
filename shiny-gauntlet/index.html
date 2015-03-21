@@ -30,9 +30,10 @@
     var db = snapshot.val();
 
     for (player in snapshot.val()) {
+      
       if(db[player].status == 'DEAD'){
         deathCount++;
-        
+        document.getElementById('deaths').innerHTML = deathCount;
         
       }
 
@@ -42,7 +43,7 @@
   }, function (errorObject) {
     alert('The read failed: ' + errorObject.code);
   });  
-  document.getElementById('deaths').innerHTML = deathCount;
+  
 </script>
 
 </html>
