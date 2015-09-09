@@ -5,16 +5,19 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-  
+
 </head>
 
 <body>
-  <img id="logo" src="logo.png" onclick='selectGuild;'>
-  <p>Total Number Dead:</p>
-  <div id="deaths"></div>  
-  <p>Are you Brave Enough?</p>
-<iframe src="//itch.io/embed/10344?linkback=true" width="552" height="167" frameborder="0"></iframe>  
-
+  <img id="logo" src="logo.png" onclick=''/>
+  <br/>
+  <img id="player" src="images/player1.png" onclick='change();' onmouseover="style='cursor: pointer;''"/>
+  <br/>
+Chase the Wily Cultist.
+<br/>
+Reclaim your stolen Shiny Shard.
+<br/>
+And make your way out of the ever changing Gauntlet.
   <br/>
   <br/>
   <a href="https://twitter.com/shinygauntlet" class="fa fa-twitter solo"><span>Facebook</span></a>
@@ -23,27 +26,12 @@
   <a href="https://plus.google.com/102350874201507901283/posts" class="fa fa-google-plus solo"><span>Facebook</span></a>
 </body>
 <script>
-  var lb = new Firebase("https://shiny-gauntlet-lb.firebaseio.com/");
-  var deathCount = 0;
-  lb.on('value', function (snapshot) {
+change();
+  function change(){
+    var random = Math.floor((Math.random() *5)+1);
+    document.getElementById("player").src="images/player"+random+".png";
+  }
 
-    var db = snapshot.val();
-
-    for (player in snapshot.val()) {
-      
-      if(db[player].status == 'DEAD'){
-        deathCount++;
-        document.getElementById('deaths').innerHTML = deathCount;
-        
-      }
-
-    }
-
-
-  }, function (errorObject) {
-    alert('The read failed: ' + errorObject.code);
-  });  
-  
 </script>
 
 </html>
