@@ -29,14 +29,14 @@
 	{
 		position: relative;
 		min-height: 10em;
-		overflow: hidden;
+
 	}
 	
 		.image.featured img
 		{
 			position: relative;
-			height: 10em;
-			width: auto;
+			
+			width: 100px;
 			/*
 				Stuff below is automatically calculated using JS. It sucks, but there
 				doesn't appear to be a way to center the <img> inside its parent with

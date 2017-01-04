@@ -1,0 +1,140 @@
+<html>
+    <head>
+      <title>Smith & Benson: Products</title>
+      <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+      <link rel="manifest" href="images/favicon/manifest.json">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+      <meta name="theme-color" content="#ffffff"> 
+              
+        <link rel="stylesheet" href="css/flexboxgrid.min.css" type="text/css" >
+        <link rel="stylesheet" href="css/main.css" type="text/css" >
+        <link rel="stylesheet" href="css/product.css" type="text/css" >
+
+         <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" > 
+         <link rel="stylesheet" href="css/productresponsive.css" type="text/css" > 
+    </head>
+    <body>
+    <body>
+       <!--HEADER -->
+        <div class="row end-xs header1">
+        <div class='social'>
+           Follow us on:
+          <a href=""><img src="images/social/Facebook.png"> </a>
+          <a href=""><img src="images/social/Twitter.png"> </a>
+          <a href=""><img src="images/social/Instagram.png"> </a>
+        </div>  
+        </div>
+        <div id="" class="row center-xs header2">
+            <div class="col-xs-12">
+               <a href="index.html"> <img src="images/logo.png"/> </a>
+            </div>
+        </div>
+        <div class="row center-xs header3">
+            <div class="col-xs-12">
+               
+                <a href="index.html" class='header3-items '>HOME</a>
+                <div class="dropdown">
+                  <button class="dropbtn specPage" onclick='window.location = "productMain.html"'>PRODUCTS <span class="productsArrow">&#x25BC;</span></button>
+                  <div id="dropdown-content" class="dropdown-content">
+
+                  </div>
+                  <script type="text/javascript" src="js/productData.js"></script>
+                  <script type="text/javascript" src="js/products.js"></script>
+                </div>    
+                <a href="signup.html" class='header3-items'>REGISTER NOW</a>
+                <a href="contact.html" class='header3-items '>CONTACT US</a>
+                <a href="aboutus.html" class='header3-items'>ABOUT US</a>                
+            </div>
+        </div> 
+        <!--BODY-->
+        <div class="row center-xs stock">
+           <div class="col-xs-12 productIntro">
+             <div>
+               <span class="productIntro1">VICUNA</span>
+               <br/>
+               <span class="productIntro2">- WOOL SUIT AND BLAZER -</span>
+               <br/>
+               <br/>
+               <br/>
+               <span class="productIntro3">Lorem ipsum dolor sit amet</span>
+               <br/>
+               <br/>
+               <br/>
+               <button class="productIntro-btn" onclick=""> MORE INFO</button>               
+             </div>
+
+          </div>
+
+
+
+            </div>                      
+        </div>        
+        
+        <!--FOOTER-->   
+        <div class="row center-xs footer">
+            <div class="col-xs-12">
+                <a href="">Privacy & Cookies</a>
+                |
+                <a href="">Terms & Conditions</a>
+                |
+                <a href="">Accessibility</a>
+                |
+                <a href="">Store Directory</a>
+
+                <img class='cards' src='images/payments.png'>
+                <img class='footerlogo' src='images/footerLogo.png'>
+                
+            </div>
+            <div class="copyright">
+                Copyrights 	&copy; 2015 All Rights Reserved
+            </div>            
+         
+        </div>                       
+    </body>
+ 
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script>
+
+     
+        $(document).ready(function() {
+          $('.popup-with-form').magnificPopup({
+            type: 'inline',
+            preloader: false,
+            
+
+            // When elemened is focused, some mobile browsers in some cases zoom in
+            // It looks not nice, so we disable it:
+            callbacks: {
+              beforeOpen: function() {
+                if($(window).width() < 700) {
+                  this.st.focus = false;
+                } else {
+                  this.st.focus = false;
+                }
+              }
+            }
+          });
+        });      
+    </script>    
+    <script>
+        
+        function getProduct(product){
+            window.location = "product.html#"+product.innerHTML;
+            location.reload();
+        }
+    </script>
+</html>
