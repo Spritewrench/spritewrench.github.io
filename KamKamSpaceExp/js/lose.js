@@ -23,7 +23,6 @@
       var random = Math.floor((Math.random()*5)+1);
       var text =""
       var text2 =""
-      var random = 2;
       switch(random){
         case 1:
           text ='"Kam Kam, what you doing?"'
@@ -35,7 +34,7 @@
           break;
         case 3:
           text ='"Kam Kam!"'
-          text2 ='"Come and do your homework"'          
+          text2 ='"Come and do \n your homework"'          
           break;
         case 4:
           text ='"Young lady ..."'
