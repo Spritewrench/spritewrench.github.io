@@ -52,7 +52,7 @@
     update: function () {
       if (this.ready===false && this.cache.isSoundDecoded('KamKamScoreOutro(8Bit)') ) {
         this.ready=true;
-        document.getElementById("-game"").focus();
+        document.getElementById("-game").focus();
         this.game.state.start('menu');
         
       }
