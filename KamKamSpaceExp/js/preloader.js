@@ -14,7 +14,7 @@
       this.asset = this.add.sprite(160, 240, 'preloader');
       this.asset.anchor.setTo(0.5, 0.5);
 
-      //this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
+      this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
       this.load.setPreloadSprite(this.asset);
       this.load.image('player', 'assets/player.png');
       this.load.spritesheet('ship', 'assets/KamKam-spaceship.png',32,39);
@@ -50,10 +50,13 @@
     },
 
     update: function () {
-      if (this.ready===false && this.cache.isSoundDecoded('KamKamScoreOutro(8Bit)') ) {
-        this.ready=true;
+      if (this.ready===true && this.cache.isSoundDecoded('KamKamScoreOutro(8Bit)') ) {
+        
         document.getElementById("-game").focus();
         this.game.state.start('menu');
+        
+      }
+      else{
         
       }
     },
