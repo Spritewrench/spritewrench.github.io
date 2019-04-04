@@ -52,7 +52,9 @@
     update: function () {
       if (this.ready===false && this.cache.isSoundDecoded('KamKamGameMusic') ) {
         this.ready=true;
+        document.getElementById("-game"").focus();
         this.game.state.start('menu');
+        
       }
     },
 
