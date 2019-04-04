@@ -41,7 +41,7 @@
           text2 ='"I said lights out!"'          
           break;
         case 5:
-          text ='"Picknet!"'
+          text ='"Pickney!"'
           text2 ='"Tap I nize"'          
           break;
       }

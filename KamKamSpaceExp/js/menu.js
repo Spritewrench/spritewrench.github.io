@@ -29,10 +29,7 @@
       
       this.music = this.add.audio('KamKamScoreOutro(8Bit)',1,true);
       this.music.play();
-      if(!this.isPlaying){
-        this.music.play(); 
-        this.isPlaying = true;
-      }
+
 
       
               
