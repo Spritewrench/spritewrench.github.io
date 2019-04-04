@@ -15,8 +15,7 @@
         , y = this.game.height / 2;
 
       this.bg = this.add.sprite(0, 0, 'bg');
-      
-      if(typeof parseInt(localStorage.getItem("score")) == 'undefined' || typeof parseInt(localStorage.getItem("score")) == 'null'){
+      if(localStorage.getItem("score") === null){
         localStorage.setItem("score",0)
       }      
       var text = 
@@ -29,7 +28,7 @@
       this.input.onDown.add(this.onDown, this);
       
       this.music = this.add.audio('KamKamScoreOutro(8Bit)',1,true);
-      
+      this.music.play();
       if(!this.isPlaying){
         this.music.play(); 
         this.isPlaying = true;
