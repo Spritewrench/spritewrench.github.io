@@ -42,7 +42,7 @@
           break;
         case 5:
           text ='"Pickney!"'
-          text2 ='"Tap I nize"'          
+          text2 ='"Tap di nize"'          
           break;
       }
       this.startTxt = this.add.bitmapText(x, y-100, text, {font: '18px minecraftia', align: 'center'});

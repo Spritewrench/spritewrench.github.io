@@ -43,6 +43,8 @@
       this.load.audio('shieldDown', ['assets/62362__fons__zap-1.ogg']); 
       this.load.audio('shieldUp', ['assets/220173__gameaudio__spacey-1up-power-up.ogg']); 
       
+      
+      this.load.onFileComplete.add(this.fileComplete, this);
       this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
       this.load.setPreloadSprite(this.asset);      
     },
@@ -52,15 +54,11 @@
     },
 
     update: function () {
-      console.log(this.ready)
-      if (this.ready===true ) {
-        
-        this.game.state.start('menu');
-        
-      }
-      else{
-        
-      }
+
+    },
+
+    fileComplete: function (progress, cacheKey, success, totalLoaded, totalFiles) {
+      //console.log("File Complete: " + progress + "% - " + totalLoaded + " out of " + totalFiles);
     },
 
     onLoadComplete: function () {

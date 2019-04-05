@@ -27,8 +27,8 @@
 
       this.input.onDown.add(this.onDown, this);
       
-      this.music = this.add.audio('KamKamScoreOutro(8Bit)',1,true);
-      this.music.play();
+      //this.music = this.add.audio('KamKamScoreOutro(8Bit)',1,true);
+      //this.music.play();
 
 
       
@@ -41,11 +41,11 @@
          this.startTxt.alpha = 1;
       }
         
-       if(!this.music.isPlaying){    this.music.play();  }
+       //if(!this.music.isPlaying){    this.music.play();  }
     },
 
     onDown: function () {
-      this.music.stop();
+      //this.music.stop();
     
       this.game.state.start('game');
     }
