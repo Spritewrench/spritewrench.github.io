@@ -81,7 +81,7 @@
       //this.game.state.start('menu');
         var x = this.game.width / 2
         , y = this.game.height / 2;        
-        this.startTxt = this.add.bitmapText(x, y+170, 'CLICK TO START', {font: '24px minecraftia', align: 'center'});
+        this.startTxt = this.add.bitmapText(x, y+170, 'minecraftia', 'CLICK TO START', 24);
         this.startTxt.anchor.setTo(0.5, 0.5);       
     }
   };

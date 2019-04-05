@@ -45,13 +45,15 @@
           text2 ='"Tap di nize"'          
           break;
       }
-      this.startTxt = this.add.bitmapText(x, y-100, text, {font: '18px minecraftia', align: 'center'});
+      this.startTxt = this.add.bitmapText(x, 150, 'minecraftia', text, 18); 
+      this.startTxt.align = 'center';
       this.startTxt.anchor.setTo(0.5, 0.5);
       this.startTxt.alpha = 0;
-      this.startTxt2 = this.add.bitmapText(x, y-50, text2, {font: '18px minecraftia', align: 'center'});
+      this.startTxt2 = this.add.bitmapText(x, 190, 'minecraftia', text2, 18);
+      this.startTxt2.align = 'center';
       this.startTxt2.anchor.setTo(0.5, 0.5);      
       this.startTxt2.alpha =0
-      this.startTxt3 = this.add.bitmapText(x, y-200, 'CLICK TO CONTINUE', {font: '24px minecraftia', align: 'center'});
+      this.startTxt3 = this.add.bitmapText(x, 50, 'minecraftia', 'CLICK TO CONTINUE', 24);
       this.startTxt3.anchor.setTo(0.5, 0.5);      
       this.startTxt3.alpha =0      
       
