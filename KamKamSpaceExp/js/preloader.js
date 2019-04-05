@@ -11,6 +11,7 @@
   Preloader.prototype = {
 
     preload: function () {
+      
       this.asset = this.add.sprite(160, 240, 'preloader');
       this.asset.anchor.setTo(0.5, 0.5);
 
@@ -46,7 +47,8 @@
       
       this.load.onFileComplete.add(this.fileComplete, this);
       this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
-      this.load.setPreloadSprite(this.asset);      
+      this.load.setPreloadSprite(this.asset);  
+      this.input.onDown.add(this.onDown, this);
     },
 
     create: function () {
@@ -54,6 +56,19 @@
     },
 
     update: function () {
+      if(this.ready){
+        
+      }
+    },
+
+    onDown: function () {
+      if(this.ready){
+        this.music = this.add.audio('KamKamScoreOutro(8Bit)',1,true);
+        this.music.play();
+        this.music.stop();
+        this.game.state.start('menu');         
+      }
+      //this.music.stop();
 
     },
 
@@ -62,7 +77,12 @@
     },
 
     onLoadComplete: function () {
-      this.game.state.start('menu');
+      this.ready = true;
+      //this.game.state.start('menu');
+        var x = this.game.width / 2
+        , y = this.game.height / 2;        
+        this.startTxt = this.add.bitmapText(x, y+170, 'CLICK TO START', {font: '24px minecraftia', align: 'center'});
+        this.startTxt.anchor.setTo(0.5, 0.5);       
     }
   };
 
