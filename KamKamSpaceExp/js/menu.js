@@ -19,10 +19,10 @@
         localStorage.setItem("score",0)
       }      
       var text = 
-      this.startTxt = this.add.bitmapText(x, y+170, 'CLICK TO START', {font: '24px minecraftia', align: 'center'});
+      this.startTxt = this.add.bitmapText(x, 400, 'minecraftia', 'CLICK TO START', 24); 
       this.startTxt.anchor.setTo(0.5, 0.5);
       
-      this.startTxt2 = this.add.bitmapText(x, this.startTxt.y+50, 'HIGH SCORE: '+parseInt(localStorage.getItem("score")), {font: '18px minecraftia', align: 'center'});
+      this.startTxt2 = this.add.bitmapText(x, 430, 'minecraftia', 'HIGH SCORE: '+parseInt(localStorage.getItem("score")), 18); 
       this.startTxt2.anchor.setTo(0.5, 0.5);      
 
       this.input.onDown.add(this.onDown, this);
