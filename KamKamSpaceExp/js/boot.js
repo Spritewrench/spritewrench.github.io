@@ -11,19 +11,23 @@
 
     create: function () {
       this.game.input.maxPointers = 1;
-      // this.game.stage.disableVisibilityChange = true;
+      // this.game.disableVisibilityChange = true;
 
       if (this.game.device.desktop) {
-        this.game.stage.scale.pageAlignHorizontally = true;
+        this.game.scale.pageAlignHorizontally = true;
       } else {
-        this.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
-        this.game.stage.scale.minWidth =  320;
-        this.game.stage.scale.minHeight = 480;
-        this.game.stage.scale.maxWidth = 320;
-        this.game.stage.scale.maxHeight = 480;
-        this.game.stage.scale.forceLandscape = true;
-        this.game.stage.scale.pageAlignHorizontally = true;
-        this.game.stage.scale.setScreenSize(true);
+        Phaser.ScaleManager.prototype.setScreenSize = Phaser.ScaleManager.prototype.updateLayout;
+        this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
+        //this.game.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
+        this.game.scale.minWidth =  320;
+        this.game.scale.minHeight = 480;
+        this.game.scale.maxWidth = 320;
+        this.game.scale.maxHeight = 480;
+        this.game.scale.forceLandscape = true;
+        this.game.scale.pageAlignHorizontally = true;
+        
+        this.game.scale.setScreenSize(true);
+        
       }
       this.game.state.start('preloader');
     }
