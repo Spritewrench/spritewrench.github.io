@@ -50,7 +50,7 @@
     },
 
     update: function () {
-      if (this.ready===true && this.cache.isSoundDecoded('KamKamScoreOutro(8Bit)') ) {
+      if (this.ready===true ) {
         
         document.getElementById("-game").focus();
         this.game.state.start('menu');
