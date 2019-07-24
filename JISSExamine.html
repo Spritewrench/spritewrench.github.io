@@ -24,6 +24,7 @@ function loadDoc() {
       var linkText = document.createTextNode("Patient Entry ID: "+updatedID);
       a.appendChild(linkText);
       a.href = "http://10.48.28.189/system-reports/violence-related-injury/"+updatedID+"/detail/";
+      a.target = "_blank"	
       document.body.appendChild(a);
       document.body.appendChild(b);
     }
