@@ -1,0 +1,62 @@
+backgrounds:
+  uni_outside: assets/backgrounds/uni_outside.png
+  uni_inside: assets/backgrounds/uni_inside.png
+  dorm_Room: assets/backgrounds/dorm_Room.png
+
+
+characters:
+  domini:
+    displayName: Domini
+    speechColour: "#ca90cf"
+    looks:
+      normal: assets/characters/Domini_base.png
+      happy: assets/characters/Domini_happy.png
+      sad: assets/characters/Domini_sad.png
+      angry: assets/characters/Domini_angry.png
+      embarrassed: assets/characters/Domini_embarrassed.png
+      happynervous: assets/characters/Domini_embarrassed_happy.png
+cgs:
+  lead_1: assets/cg/lead_1.png
+  lead_2: assets/cg/lead_2.png
+  lead_3: assets/cg/lead_3.png
+  kiss_1: assets/cg/kiss_1.png
+  kiss_2: assets/cg/kiss_2.png
+  kiss_3: assets/cg/kiss_3.png
+  kiss_4: assets/cg/kiss_4.png
+  grope_1: assets/cg/grope_1.png
+  grope_2: assets/cg/grope_1.png  
+  bj_1: assets/cg/bj_1.png  
+  bj_2: assets/cg/bj_2.png  
+  bj_3: assets/cg/bj_3.png  
+  bj_4: assets/cg/bj_4.png  
+  bj_5: assets/cg/bj_5.png  
+  bj_6: assets/cg/bj_6.png  
+  bj_7: assets/cg/bj_7.png  
+  bj_8: assets/cg/bj_8.png  
+  bj_9: assets/cg/bj_9.png  
+  sex_1: assets/cg/sex_1.png  
+  sex_2: assets/cg/sex_2.png  
+  sex_3: assets/cg/sex_3.png  
+  sex_4: assets/cg/sex_4.png  
+  sex_5: assets/cg/sex_5.png  
+  sex_6: assets/cg/sex_6.png  
+  sex_7: assets/cg/sex_7.png  
+  sex_8: assets/cg/sex_8.png  
+  sex_9: assets/cg/sex_9.png  
+  sex_10: assets/cg/sex_10.png  
+  sex_11: assets/cg/sex_11.png  
+
+  
+music:
+
+  deathBGM: assets/audio/Loyalty_Freak_Music_-_07_-_Monarch_of_the_street.ogg
+
+
+
+sfx:
+  turnPage: assets/audio/page-turn.ogg
+  secretsound: assets/audio/secretsound.ogg    
+  radio_click: assets/audio/b2/67620__qubodup__radio-click-1.ogg
+  radio_static: assets/audio/b2/347039__caculo__fm-radio-static.ogg
+  car_Start: assets/audio/b2/50896__rutgermuller__car-ignition-key-engine-starting-running-3.ogg
+

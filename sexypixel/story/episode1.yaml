@@ -1,0 +1,168 @@
+
+start:
+  - effect SHOWTITLE: 
+    title: Day 1 
+  - show uni_outside: WITH FADE
+  - text: I'm' finally made it. 
+  - show uni_inside: WITH FADE
+  - text: I'm attuning S**F*rd University
+  - show dorm_Room: WITH FADE
+  - text: ... And somehow I've managed to get yourself banned from the first week of classes ...
+  - text: Due to my useless uncle screwing up the my tuition payment. 
+  - text: Idiot ...
+  - show domini: AT CENTER WITH MOVE
+  - domini says: Dude, are you stressing offer classes again?
+  - domini says: You're the only person I know who is sad that they can't go to class ...
+  - text: That's easy for you to say ... you know how much I sacrificed to get here ...
+  - show domini: sad
+  - domini says: I know man ... just chill though. I came by to keep you company.
+  - show domini: happy
+  - domini says: I know! Let's watch a movie!
+  - show lead_1:  WITH CUT
+  - text: .
+  - hide lead_1: WITH CUT
+  - show lead_2: WITH CUT
+  - text: .
+  - hide lead_2: WITH CUT
+  - show lead_3: WITH CUT
+  - text: .
+  - hide lead_3: WITH CUT
+  - domini says: Hey ...
+  - show domini: embarrassed
+  - domini says: You know you can touch it ... 
+  - show domini: happynervous
+  - domini says: That is if you're interested
+  - domini says: Think of it as stress relief!
+  - scene: s0_jobCircle
+  
+  
+
+s0_jobCircle:
+  - show domini: happynervous AT LEFT
+  - choice:
+    - Let's make out:
+      - show kiss_1: WITH CUT
+      - text: ...
+      - hide kiss_1: WITH CUT 
+    - Let me grope you:
+      - show grope_1: WITH CUT
+      - text: .    
+      - hide grope_1: WITH CUT 
+    - Give me a blowjob:
+      - show bj_1: WITH CUT
+      - text: . 
+      - hide bj_1: WITH CUT 
+    - Let's have sex:
+      - show sex_2: WITH CUT 
+      - text: Are you sure?  
+      
+      - hide sex_2: WITH CUT 
+      - show sex_3: WITH CUT 
+      - domini says: Yes ... just be GENTLE ...
+      - hide sex_3: WITH CUT 
+      - show sex_4: WITH CUT
+      - text: so .. warm!
+      - domini says: Unf!
+      - domini says: Slow ... down ... a bit ...
+      - domini says: FWAH!!!!
+      - hide sex_4: WITH CUT 
+      - show sex_11: WITH CUT
+      - domini says: So this is sex ...
+      - domini says: I never knew it would feel ... so 
+      - domini says: Tasty ... 
+      - hide sex_11: WITH CUT 
+  - scene: s0_jobCircle
+  
+home: 
+  - call homeScreen:       
+  
+end:
+  - effect ROLLINGCREDITS:
+    endGame: true
+    text:
+      - RenJS developed by
+      - lunafromthemoon
+      - null
+      - Inspired by Ren'Py
+      - Powered by PhaserJS
+      - null
+      - null      
+      - written by
+      - Glen Henry
+      - null
+      - edited by
+      - Glen Henry
+      - null
+      - background art and cgs by
+      - Glen Henry
+      - null
+      - Vectorpocket   
+      - null
+      - Sergey Kandakov  
+      - null
+      - 0melapics        
+      - null      
+      - music by
+      - Revolution Void
+      - "'Effects of Elevation'"
+      - "'Someone Elses Memories'"   
+      - null  
+      - Loyalty Freak Music
+      - "'Chillin with a drink at the club'"
+      - "'Dirty shoes blues'"
+      - "'Monarch of the street'"
+      - "'Walking Shoes'"
+      - "'Traveling in your mind'"
+      - "'Talk to me'"
+      - null
+      - Art of Escapism 
+      - "'Dont Feel (So Low)'"     
+      - null
+      - null      
+      - Thanks for playing
+      - Grimm and Tonic 
+      - null
+      - More to come soon
+      - null
+  - call homeScreen:  
+
+   
+
+      
+      
+
+
+
+      
+
+
+
+
+      
+      
+
+
+
+
+      
+
+
+
+      
+
+
+
+
+      
+
+
+
+
+      
+
+
+
+      
+
+
+

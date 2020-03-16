@@ -19,7 +19,7 @@
         localStorage.setItem("score",0)
       }      
       var text = 
-      this.startTxt = this.add.bitmapText(x, 400, 'minecraftia', 'CLICK TO START', 24); 
+      this.startTxt = this.add.bitmapText(x, 400, 'minecraftia', 'TAP TO START', 24); 
       this.startTxt.anchor.setTo(0.5, 0.5);
       
       this.startTxt2 = this.add.bitmapText(x, 430, 'minecraftia', 'HIGH SCORE: '+parseInt(localStorage.getItem("score")), 18); 
