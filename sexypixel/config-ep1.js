@@ -12,11 +12,11 @@ var globalConfig = {
   },
   logChoices: true,
   fonts: "assets/gui/fonts.css",
-  guiConfig: "Story/GUI-ep1.yaml",
-  storySetup: "Story/Setup-ep1.yaml",
+  guiConfig: "story/GUI-ep1.yaml",
+  storySetup: "story/Setup-ep1.yaml",
   //as many story text files as you want
   storyText: [
-        "Story/episode1.yaml"
+        "story/episode1.yaml"
     ],
 }
 
