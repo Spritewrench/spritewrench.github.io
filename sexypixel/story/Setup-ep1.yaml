@@ -56,7 +56,5 @@ music:
 sfx:
   turnPage: assets/audio/page-turn.ogg
   secretsound: assets/audio/secretsound.ogg    
-  radio_click: assets/audio/b2/67620__qubodup__radio-click-1.ogg
-  radio_static: assets/audio/b2/347039__caculo__fm-radio-static.ogg
-  car_Start: assets/audio/b2/50896__rutgermuller__car-ignition-key-engine-starting-running-3.ogg
+
 
