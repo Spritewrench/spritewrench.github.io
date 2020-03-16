@@ -1,0 +1,59 @@
+Export Settings
+WIN - NWJS 0.37.1
+MAC - NWJS 0.21.6
+--------------------------------------------------------------------------
+Feedback
+> Typos
+> Text Speed
+--------------------------------------------------------------------------
+Audio Compression
+  2250 at 0 OGG format
+Image Compression 
+  PNGoo.0.1.1 then WebPconv
+--------------------------------------------------------------------------
+0.1.4.4 
+[*]  Continued Grammar fixing (tell me if I missed anything ...)
+[*]  Added some more drink hints (to be expanded on further ...)
+[*]  Shortened dialogue sequence with Wolfgang Konrad
+[*]  Removed debug code that enabled Usha being completely skipped 
+[*]  Fixed bug with loading saves 
+[*]  MAC build live!
+--------------------------------------------------------------------------
+0.1.4.5 
+[*]  Continued Grammar fixing (tell me if I missed anything ...)
+[*]  Removed debug code and updated story path blockage
+--------------------------------------------------------------------------
+0.1.5.0 
+[*]  More Typos & grammar fixes
+[*]  Implemented new branching routes in place of circular flag check system.
+[*]  Updated Grimoire 
+[*]  Increased text speed
+[*]  Further compressed Images and Audio files
+[*]  Reduced number of audio files loaded on start (removed one track).  Should address crash on load issues.
+--------------------------------------------------------------------------
+0.1.6.0 
+[*]  More Typos & grammar fixes
+[*]  Episode 2!
+--------------------------------------------------------------------------
+0.2.0.0
+[*]  Fix sound bug
+[*]  Fix text speed bug
+[*]  Corrected version number
+--------------------------------------------------------------------------
+0.2.0.1 - Current
+[*]  Fix Typos in Episode 2
+[*]  Differentiated the 'Summon' button in the grimoire more
+[*]  Added Bad End Warnings! (see the floating skull in the top left corner)
+[*]  Address visible Scroll bar on Title Screen
+--------------------------------------------------------------------------
+0.3.0.0 - Upcoming
+[*]  Reduced Difficulty
+[*]  Reduced start screen volume
+[*]  Episode 3!
+[*]  Achievement (without steam overlay)
+
+
+
+
+Steam deploy!
+run_app_build C:\Users\ghenry\Downloads\utilities\Steam\steamworks_sdk_141\sdk\tools\ContentBuilder\scripts\app_build_942020.vdf

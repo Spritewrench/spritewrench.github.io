@@ -1,0 +1,38 @@
+    - if ({SOUL} == 2):
+      - show soul2: AT 716,64 WITH CUT 
+    - if ({SOUL} == 3):
+      - show soul3: AT 716,64 WITH CUT 
+    - if ({SOUL} == 4):
+      - show soul4: AT 716,64 WITH CUT 
+    - if ({SOUL} == 5):
+      - show soul5: AT 716,64 WITH CUT 
+    - if ({SOUL} == 6):
+      - show soul6: AT 716,64 WITH CUT
+    - if ({SOUL} == 7):
+      - show soul7: AT 716,64 WITH CUT 
+    - if ({SOUL} == 8):
+      - show soul8: AT 716,64 WITH CUT 
+    - if ({SOUL} == 9):
+      - show soul9: AT 716,64 WITH CUT 
+    - if ({SOUL} == 10):
+      - show soul10: AT 716,64 WITH CUT 
+    - if ({SOUL} == 11):
+      - show soul11: AT 716,64 WITH CUT
+    - if ({SOUL} == 12):
+      - show soul12: AT 716,64 WITH CUT 
+    - if ({SOUL} == 13):
+      - show soul13: AT 716,64 WITH CUT 
+    - if ({SOUL} == 14):
+      - show soul14: AT 716,64 WITH CUT 
+    - if ({SOUL} == 15):
+      - show soul15: AT 716,64 WITH CUT 
+    - if ({SOUL} == 16):
+      - show soul16: AT 716,64 WITH CUT
+    - if ({SOUL} == 17):
+      - show soul17: AT 716,64 WITH CUT 
+    - if ({SOUL} == 18):
+      - show soul18: AT 716,64 WITH CUT 
+    - if ({SOUL} == 19):
+      - show soul19: AT 716,64 WITH CUT 
+    - if ({SOUL} == 20):
+      - show soul20: AT 716,64 WITH CUT 

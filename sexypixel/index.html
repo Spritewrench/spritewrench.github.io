@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title> Grimm & Tonic</title>
+		<style>
+			@font-face {
+			  font-family: 'OpenSans-Bold';
+			  src: url('assets/gui/OpenSans-Bold.ttf');
+			  src: url('assets/gui/OpenSans-Bold.ttf').format('truetype');            
+			  font-weight: normal;
+			  font-style: normal;
+			}
+            @font-face {
+			  font-family: 'KOMIKAH_';
+			  src: url('assets/gui/KOMIKAH_.ttf');
+			  src: url('assets/gui/KOMIKAH_.ttf').format('truetype');
+			  font-weight: normal;
+			  font-style: normal;
+			}
+			@font-face {
+			  font-family: 'LondrinaSolid-Black';
+			  src: url('assets/gui/LondrinaSolid-Black.ttf');
+			  src: url('assets/gui/LondrinaSolid-Black.ttf').format('truetype');
+			  font-weight: normal;
+			  font-style: normal;
+			}    
+      html, body, div, canvas {
+          margin: 0;
+          padding: 0;
+          background: black;
+          margin-top: -10px;      
+      }            
+		</style>
+        <script>
+            function forceRefresh() {
+                //console.log("1")
+                var canvas = document.getElementById("forceRefreshCanvas");
+                var ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                window.requestAnimationFrame(forceRefresh);
+            }
+        </script> 		
+		<script type="text/javascript" src="libs/phaser.min.js"></script>
+		<script type="text/javascript" src="config-ep1.js"></script>  
+		<script type="text/javascript" src="RenJS/RenJSBootstrap.js"></script>
+		      <link rel="stylesheet" href="assets/css/main.css" />
+          <link rel="stylesheet" href="css/fa.css"/>    
+         <link rel="stylesheet" href="css/sweetalert2.css"/>
+        <script type="text/javascript" src="libs/control.js"></script>
+        <script type="text/javascript" src="libs/steam.js"></script>        
+        <script src="libs/sweetalert2.all.min.js"></script> 
+		<!-- <script type="text/javascript" src="libs/underscore-min.js"></script>
+		// <script type="text/javascript" src="libs/esprima.js"></script>
+		// <script type="text/javascript" src="libs/js-yaml.min.js"></script>
+
+				
+		// <script type="text/javascript" src="RenJS/SimpleGUI.js"></script>
+		// <script type="text/javascript" src="RenJS/AudioManager.js"></script>
+		// <script type="text/javascript" src="RenJS/BackgroundManager.js"></script>
+		// <script type="text/javascript" src="RenJS/CGSManager.js"></script>
+		// <script type="text/javascript" src="RenJS/CharactersManager.js"></script>
+		// <script type="text/javascript" src="RenJS/LogicManager.js"></script>
+		// <script type="text/javascript" src="RenJS/TextManager.js"></script>
+		// <script type="text/javascript" src="RenJS/TweenManager.js"></script>
+		// <script type="text/javascript" src="RenJS/RenJS.js"></script>
+		// <script type="text/javascript" src="RenJS/Effects.js"></script>
+		// <script type="text/javascript" src="RenJS/Ambient.js"></script>
+		// <script type="text/javascript" src="RenJS/Transitions.js"></script>
+		// <script type="text/javascript" src="RenJS/CustomContent.js"></script> -->
+             
+                
+	</head>
+
+	<!--<body bgcolor="#000000">-->
+	<body class="is-preload" onload="forceRefresh();" >
+<canvas id="forceRefreshCanvas" width="1" height="1"></canvas>	
+		<div id="RenJS"> </div>
+	</body>
+
+</html>

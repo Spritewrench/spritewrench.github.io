@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'audimat-mono';
+  src: url('audimat-mono.ttf');
+  src: url('audimat-mono.ttf').format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url('OpenSans-Bold.ttf');
+  src: url('OpenSans-Bold.ttf').format('truetype');            
+  font-weight: normal;
+  font-style: normal;
+}
+      @font-face {
+  font-family: 'KOMIKAH_';
+  src: url('KOMIKAH_.ttf');
+  src: url('KOMIKAH_.ttf').format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'LondrinaSolid-Black';
+  src: url('LondrinaSolid-Black.ttf');
+  src: url('LondrinaSolid-Black.ttf').format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} 
