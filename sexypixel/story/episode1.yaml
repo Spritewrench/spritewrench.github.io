@@ -2,52 +2,102 @@
 start:
   - effect SHOWTITLE: 
     title: Day 1 
+  - var braVisible: 1 
+  - var pantyVisible: 1 
+  - var bottomVisible: 1 
+  - var topVisible: 1 
   - show uni_outside: WITH FADE
-  - text: I'm' finally made it. 
+  - text: I've finally made it. 
   - show uni_inside: WITH FADE
-  - text: I'm attuning S**F*rd University
+  - text: I'm attending S**F*rd University, the most prestigious University in the country!
   - show dorm_Room: WITH FADE
   - text: ... And somehow I've managed to get yourself banned from the first week of classes ...
-  - text: Due to my useless uncle screwing up the my tuition payment. 
-  - text: Idiot ...
-  - show domini: AT CENTER WITH MOVE
-  - domini says: Dude, are you stressing offer classes again?
+  - text: Due to my USELESS, IDIOTIC uncle screwing up the my tuition payment. 
+  - text: ... I'm going to be so behind everyone else.
+  - show domini: AT CENTER WITH CUT
+  - show bra: bra_1 AT CENTER WITH CUT
+  - show panty: panty_1 AT CENTER WITH CUT  
+  - show bottom: bottom_1 AT CENTER WITH CUT
+  - show top: top_1 AT CENTER WITH CUT  
+  - domini says: Dude, are you STILL stressing over classes?
   - domini says: You're the only person I know who is sad that they can't go to class ...
-  - text: That's easy for you to say ... you know how much I sacrificed to get here ...
+  - text: That's easy for you to say ... you KNOW how much I sacrificed to get here ...
   - show domini: sad
   - domini says: I know man ... just chill though. I came by to keep you company.
+  - domini says: You only got to wait a week until they sort everything out any way ...
   - show domini: happy
-  - domini says: I know! Let's watch a movie!
+  - domini says: I know!
+  - domini says: Let's watch a movie!
+  - text: TCH! ... Fine.
   - show lead_1:  WITH CUT
-  - text: .
+  - text: "(This is Domini Suarez. She's been my friend since forever ...)"
+  - text: "(She followed me all the way through Kindergarten, Primary School AND High School!)"
+  - text: "(And ... Yes... I know she's incredibly HOT ...)"  
   - hide lead_1: WITH CUT
   - show lead_2: WITH CUT
-  - text: .
+  - domini says: So how about another one?  
+  - text: "(Man... sometimes I can't help but stare)"
+  - text: "(I just want to bury my face in those warm ... )"  
+  - text: "(Firm ... )" 
   - hide lead_2: WITH CUT
   - show lead_3: WITH CUT
-  - text: .
   - hide lead_3: WITH CUT
-  - domini says: Hey ...
-  - show domini: embarrassed
-  - domini says: You know you can touch it ... 
-  - show domini: happynervous
-  - domini says: That is if you're interested
-  - domini says: Think of it as stress relief!
+  - show lead_4: WITH CUT
+  - domini says: ...
+  - hide lead_4: WITH CUT
+  - domini says: Hey!
+  - text: "(CRAP! Did she see me staring?)"
+  - text: Uhh ... Yeah?
+  - text: "(Smooth, real smooth ...)"
+  - show domini: happy
+  - domini says: You know we've known each a REALLY long time ...
+  - text: For ages, really ...
+  - show domini: 
+  - domini says: And I don't think there's anyone else I trust more ...
+  - text: ... You're weirding me out a bit, Dom ...
+  - text: "(Where is she going with this?)"  
+  - show blush: blush_1 AT CENTER WITH CUT  
+  - domini says: Also my brothers are hundreds of miles away from us ...
+  - text: Thank God! I hate those jerks.
+  - text: "(And they hate me too ... for some strange reason)"  
+  - domini says: So ... IF you wanted to EXPERIMENT ... you know ... with STUFF ... I wouldn't be against it. 
+  - domini says: That is if you want to ...
+  - domini says: ... We can call is "Stress Relief".
+  - text: Wait ... what!?
   - scene: s0_jobCircle
   
   
 
 s0_jobCircle:
-  - show domini: happynervous AT LEFT
+  - show domini: AT LEFT WITH CUT
+  - if ({braVisible} == 1): 
+    - show bra: bra_1 AT LEFT WITH CUT
+  - show panty: panty_1 AT LEFT WITH CUT  
+  - show bottom: bottom_1 AT LEFT WITH CUT
+  - if ({topVisible} == 1):
+    - show top: top_1 AT LEFT WITH CUT 
+  - show blush: blush_1 AT LEFT WITH CUT  
   - choice:
     - Let's make out:
       - show kiss_1: WITH CUT
       - text: ...
       - hide kiss_1: WITH CUT 
     - Let me grope you:
-      - show grope_1: WITH CUT
-      - text: .    
-      - hide grope_1: WITH CUT 
+      - if ({topVisible} == 1):
+        - show grope_1: WITH CUT
+        
+      - else:
+        - show grope_2: WITH CUT      
+        
+      - text: .
+      
+      - if ({topVisible} == 1):
+        - var topVisible: 0
+        - hide grope_1: WITH CUT 
+      - else:
+        - var braVisible: 0
+        - hide grope_2: WITH CUT
+        
     - Give me a blowjob:
       - show bj_1: WITH CUT
       - text: . 

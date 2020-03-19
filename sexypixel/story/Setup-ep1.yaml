@@ -13,18 +13,56 @@ characters:
       happy: assets/characters/Domini_happy.png
       sad: assets/characters/Domini_sad.png
       angry: assets/characters/Domini_angry.png
-      embarrassed: assets/characters/Domini_embarrassed.png
-      happynervous: assets/characters/Domini_embarrassed_happy.png
+    
+  bra:
+    displayName: bra
+    speechColour: "#ca90cf"
+    looks:
+      bra_1: assets/characters/bra_1.png
+      bra_2: assets/characters/bra_2.png
+      bra_3: assets/characters/bra_3.png
+      bra_4: assets/characters/bra_4.png     
+      
+  panty:  
+    displayName: panty
+    speechColour: "#ca90cf"
+    looks:
+      panty_1: assets/characters/panty_1.png
+      panty_2: assets/characters/panty_2.png
+      panty_3: assets/characters/panty_3.png    
+
+  bottom:
+    displayName: bottom
+    speechColour: "#ca90cf"
+    looks:
+      bottom_1: assets/characters/bottom_1.png
+      bottom_3: assets/characters/bottom_3.png 
+
+  top:
+    displayName: top
+    speechColour: "#ca90cf"
+    looks:
+      top_1: assets/characters/top_1.png
+      top_2: assets/characters/top_2.png
+      top_3: assets/characters/top_3.png     
+      
+  blush:  
+    displayName: blush
+    speechColour: "#ca90cf"
+    looks:
+      blush_1: assets/characters/blush_1.png    
+
 cgs:
   lead_1: assets/cg/lead_1.png
   lead_2: assets/cg/lead_2.png
   lead_3: assets/cg/lead_3.png
+  lead_4: assets/cg/lead_4.png  
   kiss_1: assets/cg/kiss_1.png
   kiss_2: assets/cg/kiss_2.png
   kiss_3: assets/cg/kiss_3.png
   kiss_4: assets/cg/kiss_4.png
   grope_1: assets/cg/grope_1.png
-  grope_2: assets/cg/grope_1.png  
+  grope_2: assets/cg/grope_2.png  
   bj_1: assets/cg/bj_1.png  
   bj_2: assets/cg/bj_2.png  
   bj_3: assets/cg/bj_3.png  
@@ -56,5 +94,4 @@ music:
 sfx:
   turnPage: assets/audio/page-turn.ogg
   secretsound: assets/audio/secretsound.ogg    
-
 
