@@ -13,8 +13,10 @@ characters:
       happy: assets/characters/Domini_happy.png
       sad: assets/characters/Domini_sad.png
       angry: assets/characters/Domini_angry.png
+      furious: assets/characters/Domini_furious.png
       unsure: assets/characters/Domini_umm.png
       puckerup: assets/characters/Domini_puckerup.png
+      flustered: assets/characters/Domini_flustered.png
       sultry: assets/characters/Domini_sultry.png
       sultry_2: assets/characters/Domini_sultry_2.png
       sultry_3: assets/characters/Domini_sultry_3.png
@@ -38,7 +40,8 @@ characters:
     looks:
       panty_1: assets/characters/panty_1.png
       panty_2: assets/characters/panty_2.png
-      panty_3: assets/characters/panty_3.png    
+      panty_3: assets/characters/panty_3.png
+      panty_4: assets/characters/panty_4.png
 
   bottom:
     displayName: bottom
@@ -58,6 +61,13 @@ characters:
       top_2: assets/characters/top_2.png
       top_3: assets/characters/top_3.png 
       top_4: assets/characters/top_4.png 
+  
+  nipples:  
+    displayName: nipples
+    speechColour: "#ca90cf"
+    looks:
+      nipples: assets/characters/nipples_1.png  
+ 
       
   blush:  
     displayName: blush
