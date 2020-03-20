@@ -13,6 +13,15 @@ characters:
       happy: assets/characters/Domini_happy.png
       sad: assets/characters/Domini_sad.png
       angry: assets/characters/Domini_angry.png
+      unsure: assets/characters/Domini_umm.png
+      puckerup: assets/characters/Domini_puckerup.png
+      sultry: assets/characters/Domini_sultry.png
+      sultry_2: assets/characters/Domini_sultry_2.png
+      sultry_3: assets/characters/Domini_sultry_3.png
+      lookingdown_surprised: assets/characters/Domini_lookingdown_surprised.png
+      lookingdown_uncomfortable: assets/characters/Domini_lookingdown_uncomfortable.png
+      climax: assets/characters/Domini_climax.png
+      post_climax: assets/characters/Domini_post_climax.png
     
   bra:
     displayName: bra
@@ -36,6 +45,7 @@ characters:
     speechColour: "#ca90cf"
     looks:
       bottom_1: assets/characters/bottom_1.png
+      bottom_2: assets/characters/bottom_2.png
       bottom_3: assets/characters/bottom_3.png 
 
   top:
@@ -43,6 +53,8 @@ characters:
     speechColour: "#ca90cf"
     looks:
       top_1: assets/characters/top_1.png
+      top_1_1: assets/characters/top_1_1.png
+      top_1_2: assets/characters/top_1_2.png
       top_2: assets/characters/top_2.png
       top_3: assets/characters/top_3.png     
       
@@ -50,13 +62,20 @@ characters:
     displayName: blush
     speechColour: "#ca90cf"
     looks:
-      blush_1: assets/characters/blush_1.png    
+      blush_1: assets/characters/blush_1.png  
+      blush_2: assets/characters/blush_2.png  
+      blush_3: assets/characters/blush_3.png  
 
 cgs:
+  title: assets/gui/titles.png
   lead_1: assets/cg/lead_1.png
   lead_2: assets/cg/lead_2.png
+  lead_2_1: assets/cg/lead_2_1.png
+  lead_2_2: assets/cg/lead_2_2.png
   lead_3: assets/cg/lead_3.png
-  lead_4: assets/cg/lead_4.png  
+  lead_4: assets/cg/lead_4.png
+  lead_5: assets/cg/lead_5.png
+  lead_6: assets/cg/lead_6.png
   kiss_1: assets/cg/kiss_1.png
   kiss_2: assets/cg/kiss_2.png
   kiss_3: assets/cg/kiss_3.png
@@ -85,8 +104,8 @@ cgs:
   sex_11: assets/cg/sex_11.png  
 
   
+  
 music:
-
   deathBGM: assets/audio/Loyalty_Freak_Music_-_07_-_Monarch_of_the_street.ogg
 
 
