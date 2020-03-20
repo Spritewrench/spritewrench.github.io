@@ -28,11 +28,11 @@ start:
   - show uni_inside: WITH FADE
   - text: I'm attending S**F*rd University, the most prestigious University in the country!
   - show dorm_Room: WITH FADE
-  - text: ... And somehow I've managed to get yourself banned from the first MONTH of classes ...
-  - text: Due to my USELESS, IDIOTIC uncle screwing up the my tuition payment. 
-  - text: ... I'm going to be so behind everyone else.
+  - text: ... And somehow I've managed to get myself banned from the first MONTH of classes ...
+  - text: Due to my USELESS, IDIOTIC uncle screwing up my tuition payment. 
+  - text: ... I'm going to be behind everyone else.
   - text: '[KNOCK! KNOCK!]'
-  - domini says: Yo! I'm respecting your privacy by knocking but asserting my authority as your BEST FRIEND and coming in anyway ...'
+  - domini says: Yo! I'm respecting your privacy by knocking but asserting my authority as your BEST FRIEND and coming in anyway ...
   - show domini: AT CENTER WITH CUT
   - show bra: bra_1 AT CENTER WITH CUT
   - show panty: panty_1 AT CENTER WITH CUT  
@@ -45,7 +45,7 @@ start:
   - domini says: I know man ... just chill though. 
   - show domini:
   - domini says: I came by to keep you company.
-  - domini says: You only got to wait a bit until they sort everything out any way ...
+  - domini says: You only got to wait a bit until they sort things out anyway ...
   - domini says: Maybe check with the Admin Office on Friday?
   - show domini: happy
   - domini says: With that out of the way ..
@@ -54,7 +54,7 @@ start:
   - text: TCH! ... Fine.
   - show lead_1:  WITH CUT
   - text: "(This is Domini Suarez. She's been my friend since forever ...)"
-  - text: "(She followed me all the way through Kindergarten, Primary School AND High School!)"
+  - text: "(She followed me all the way daycare through to highschool!)"
   - text: "(And ... Yes... I know she's incredibly HOT ...)"  
   - hide lead_1: WITH CUT
   - show lead_2: WITH CUT
@@ -97,7 +97,7 @@ start:
   - domini says: So ... IF you wanted to EXPERIMENT ... you know ... with STUFF ... 
   - domini says: I wouldn't be against it if it was with you ...
   - domini says: That is if you want to ...
-  - domini says: ... We can call is "Stress Relief".
+  - domini says: ... We can call it "Stress Relief".
   - text: Wait ... what!?
   - text: What does 'STUFF' mean?
   - show domini: unsure
@@ -229,7 +229,6 @@ s2:
           - show domini: sad
           - domini says: You know I meant what I said yesterday ...
           - domini says: I do TRUST you ... 
-          - domini says: And I am INTERESTED ... in STUFF ... with you.
           - domini says: And I am INTERESTED ... in STUFF ... with you.
           - domini says: It's just that between my Father ... and my Brothers I've never really had a chance to explore myself y'know?
           - domini says: So I'm nervous and kinda skittish ...
@@ -398,6 +397,10 @@ Training:
       
   - if ({domStamina} <= 0):      
     - var domStamina: 3
+    - show domini: sad
+    - domini says: I'm getting a little tired ...
+    - show domini: sultry
+    - domini says: But before I go ... do you have some "Homework" for me to do?    
     - scene: Homework
     
   - choice:
@@ -607,8 +610,7 @@ Homework:
   - if ({topVisible} == 6): 
     - show top: top_4 AT LEFT WITH CUT  
     
-  - domini says: I'm getting a little tired ...
-  - domini says: But before I go ... do you have some "Homework" for me to do?
+
   - choice:
     - You should watch more porn:
     - You should touch yourself more:
