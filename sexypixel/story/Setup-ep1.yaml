@@ -6,7 +6,7 @@ backgrounds:
 
 characters:
   domini:
-    displayName: Domini
+    displayName: Domani
     speechColour: "#ca90cf"
     looks:
       normal: assets/characters/Domini_base.png
@@ -56,7 +56,8 @@ characters:
       top_1_1: assets/characters/top_1_1.png
       top_1_2: assets/characters/top_1_2.png
       top_2: assets/characters/top_2.png
-      top_3: assets/characters/top_3.png     
+      top_3: assets/characters/top_3.png 
+      top_4: assets/characters/top_4.png 
       
   blush:  
     displayName: blush

@@ -14,13 +14,14 @@ start:
   - var domFirstKiss: 0
   - var domStamina: 3
   - var domStaminaMax: 3
+  - var domMastCount: "Math.floor(Math.random()*3)+10" 
   
   - var prevbra: 0 
   - var prevpanty: 0 
   - var prevtop: 0 
   - var prevbottom: 0 
   
-  
+  - var day: 2
   - var yourArousal: 0 
   
   - show uni_outside: WITH FADE
@@ -335,6 +336,7 @@ Training:
   - else:
     - if ({domArousal} <= 10 && {domArousal} >= 5):  
       - show domini: sultry
+      - show blush: blush_1 AT LEFT WITH CUT 
       - domini says: Phew! Kinda warm in here, right?
     - if ({domArousal} > 10):  
       - show blush: blush_1 AT LEFT WITH CUT 
@@ -425,7 +427,7 @@ Training:
         - var domArousal: "{domArousal}+1" 
         - var prevtop: "{topVisible}"
         - var topVisible: 0
-        - hide top: WITH CUT
+        - hide top: WITH FADE
       - if ({topVisible} == 0 && {domKink} <= 1):
         - show domini:
         - domini says: I hope this is enough. 
@@ -438,16 +440,16 @@ Training:
         - var domArousal: "{domArousal}+1" 
         - var prevbottom: "{bottomVisible}"
         - var bottomVisible: 0   
-        - hide bottom: WITH CUT
+        - hide bottom: WITH FADE
       - if ({bottomVisible} == 0 && {domKink} <= 2):
         - show domini: sultry
-        - domini says: I have to leave a little to the imagination now don't I, Master?         
+        - domini says: I have to leave a little to the imagination now don't I?         
         
       - if ({braVisible} > 0 && {domKink} >= 3):
         - var domArousal: "{domArousal}+1" 
         - var prevbra: "{braVisible}"
         - var braVisible: 0 
-        - hide bra: WITH CUT
+        - hide bra: WITH FADE
       - if ({braVisible} == 0 && {domKink} <= 3):
         - domini says: What do you think of these puppies?       
         
@@ -455,7 +457,7 @@ Training:
         - var domArousal: "{domArousal}+1" 
         - var pantybottom: "{pantyVisible}"
         - var pantyVisible: 0
-        - hide panty: WITH CUT
+        - hide panty: WITH FADE
       - if ({pantyVisible} == 0 && {domKink} <= 4):
         - show domini: sultry
         - domini says: Clothes are overrated aren't they, Master?     
@@ -613,7 +615,102 @@ Homework:
 
   - choice:
     - You should watch more porn:
+      
+      - if ({domKink} == 1):
+        - show domini: sad
+        - domini says: Uhh ... Sure, why not? ... I'm not really into that type of stuff though ...
+        - show domini:        
+      - if ({domKink} >= 2):
+        - show domini: sultry
+        - var rand: "Math.floor(Math.random()*4)"  
+        - if ({rand} == 0):        
+          - show domini: sultry
+          - domini says: You know ... I found some really RAUNCHY stuff the other day ...
+          - show domini:  
+        - if ({rand} == 1):        
+          - show domini: sultry
+          - domini says: Okay. Is it weird that I've been into lesbian stuff lately?
+          - show domini:  
+        - if ({rand} == 2):        
+          - show domini: sultry_2
+          - domini says: I had a series that I wanted to ... uhhh ... polish off.
+          - show domini:  
+        - if ({rand} == 3):        
+          - show domini: sultry
+          - domini says: You always have the best ideas, Master. 
+          - show domini:  
+      - var domKink: "{domKink}+1"
+        
     - You should touch yourself more:
+      - var domArousal: "{domArousal}+(10*{domKink})"
+      - if ({domKink} == 1):
+        - show domini: sad
+        - domini says: Eww ...
+        - show domini: angry
+        - text: Trust me. It'll help while we explore during "Stress Relief" ...
+        - show domini:
+        - domini says: Fine! I TRUST you and your perverted little mind ...
+      - if ({domKink} >= 2):
+        - show domini: sultry
+        - var rand: "Math.floor(Math.random()*4)"  
+        - if ({rand} == 0):        
+          - show domini: sultry
+          - domini says: Is it even homework if you ... have ... so ... much FUN doing it?
+          - show domini:  
+        - if ({rand} == 1):        
+          - show domini: sultry_3
+          - domini says: Last time I came "{domMastCount}" times. Wonder if I can break my previous record?
+          - var domMastCount: "Math.floor(Math.random()*3)+10+{domMastCount}"  
+          - show domini:  
+        - if ({rand} == 2):        
+          - show domini: happy
+          - domini says: Yay! I had a series that I wanted to ... uhhh ... polish off.
+          - show domini:  
+        - if ({rand} == 3):        
+          - show domini: sad
+          - domini says: It's a pity you can't help me with my "Homework" ...
+          - text: It's important that you do the work yourself, Domani.
+          - show domini: sultry
+          - domini says: Maybe I'll send you some pictures so you can ... "review" my work?'
+          - text: That can be arranged ...
+          - show domini:   
+  - scene: NextDay
+  
+NextDay:
+  - var day: "{day}+1"
+  - if ({day} == 1):
+    - effect SHOWTITLE: 
+      title: Monday
+  - if ({day} == 2):
+    - effect SHOWTITLE: 
+      title: Tuesday  
+  - if ({day} == 3):
+    - effect SHOWTITLE: 
+      title: Wednesday 
+  - if ({day} == 4):
+    - effect SHOWTITLE: 
+      title: Thursday
+  - if ({day} == 5):
+    - effect SHOWTITLE: 
+      title: Friday  
+  - if ({day} == 6):
+    - effect SHOWTITLE: 
+      title: Saturday 
+  - if ({day} == 7):
+    - effect SHOWTITLE: 
+      title: Sunday 
+    - var day: 1
+  - var braVisible: "Math.floor(Math.random()*2)+1"
+  - var pantyVisible: "Math.floor(Math.random()*3)+1"
+  - var bottomVisible: "Math.floor(Math.random()*3)+1" 
+  - var topVisible: "Math.floor(Math.random()*7)+1" 
+  - var topVisible: 6
+  
+
+  - if ({topVisible} == 6):
+    - var braVisible: 0
+  - scene: Training
+
 
 home: 
   - call homeScreen:       
