@@ -823,7 +823,7 @@ Homework:
           - domini says: I'd like that ... when I'm ready of course. 
           - text: Whenever, you're ready. I'll be waiting. 
           - show domini: happy
-          - domini says:I know I can count on you ...
+          - domini says: I know I can count on you ...
       - if ({domKink} == 2):
           - show domini: sultry_2
           - domini says: Okay. Is it weird that I've been into lesbian stuff lately? 
