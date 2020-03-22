@@ -313,58 +313,16 @@ Training:
 
   - if ({pantyVisible} == 0): 
     - hide panty: WITH CUT  
-  - if ({pantyVisible} == 1 && {panty1} < 1): 
-    - show panty: panty_1 AT LEFT WITH CUT
-  - else:
-    - hide panty: WITH CUT
-    
-  - if ({pantyVisible} == 2 && {panty2} < 1): 
-    - show panty: panty_2 AT LEFT WITH CUT
-  - else:
-    - hide panty: WITH CUT   
-    
-  - if ({pantyVisible} == 3 && {panty3} < 1): 
-    - show panty: panty_3 AT LEFT WITH CUT
-  - else:
-    - hide panty: WITH CUT    
-    
-  - if ({pantyVisible} == 4 && {panty4} < 1): 
+  - if ({pantyVisible} == 1): 
+    - show panty: panty_1 AT LEFT WITH CUT 
+  - if ({pantyVisible} == 2 ): 
+    - show panty: panty_2 AT LEFT WITH CUT 
+  - if ({pantyVisible} == 3): 
+    - show panty: panty_3 AT LEFT WITH CUT 
+  - if ({pantyVisible} == 4 ): 
     - show panty: panty_4 AT LEFT WITH CUT
-  - else:
-    - hide panty: WITH CUT    
   
-  
-  - if ({domKink} == 1):
-    - show domini: 
-    - domini says: Soooo that was ... educational ...
-    - show blush: blush_1 AT LEFT WITH FADE
-    - domini says: It's was so RAW ...
-    - text: Still willing to explore more?
-    - domini says: ... Of course ...
-  - if ({domKink} == 2):
-    - show domini: 
-    - domini says: ....
-    - show blush: blush_1 AT LEFT WITH FADE
-    - text: So how was it?
-    - domini says: ... I've never had an orgasm before ...
-    - domini says: ... I was wrong ... masturbation is not gross at all
-    - domini says: ... it's awesome.
-    - domini says: ... Train me more. 
-    - text: Sure thing.
-  - if ({domKink} == 3):
-    - show domini: sultry
-    - domini says: What a rush!
-    - show blush: blush_1 AT LEFT WITH FADE
-    - text: I'm glad you enjoyed it ...
-    - domini says: I'm ready for more ... 
-    - domini says: Challenge me, Babe. 
-  - if ({domKink} == 4 && {domPantyCount} >= 4):
-    - show domini: sultry_2
-    - domini says: You officially ... have all my panties, Babe. 
-    - show blush: blush_1 AT LEFT WITH FADE
-    - text: Awesome. What do I win? 
-    - domini says: Well ... how about me?
-    - text: I can work with that ...
+
   
   - if ({bottomVisible} == 0): 
     - hide bottom: WITH CUT    
@@ -391,14 +349,15 @@ Training:
     - show top: top_3 AT LEFT WITH CUT  
   - if ({topVisible} == 6): 
     - show top: top_4 AT LEFT WITH CUT     
+    
 
   
   - if ({nipplesVisible} > 0):
     - show nipples: nipples AT LEFT WITH CUT
   - else:
     - hide nipples: WITH CUT
-       
       
+
   - if ({domKink} >= 6): 
     - var prevtop: "{topVisible}"
     - var topVisible: 0 
@@ -417,16 +376,39 @@ Training:
     - domini says: Ready and reporting for duty, Master.
     - var domKink: 10
     
-  - if ({domStamina} > 0):    
-    - if ({rand} == 0):   
-      - domini says: I'm down for more if you are ...    
-    - if ({rand} == 1):  
-      - domini says: Phew! ...
-      - domini says: So what's next?
-    - if ({rand} == 2):  
-      - domini says: What do you want to do next?
-    - if ({rand} == 3):  
-      - domini says: I still wanna do ... more.  
+  - if ({domStamina} > 0 && {quip} > 0):    
+    - var quip: 1
+    - if ({domKink} == 1):
+      - show domini: 
+      - domini says: Soooo that was ... educational ...
+      - show blush: blush_1 AT LEFT WITH FADE
+      - domini says: Who knew porn was so RAW ...
+      - text: Still willing to explore more?
+      - domini says: ... Of course ...
+    - if ({domKink} == 2):
+      - show domini: 
+      - domini says: ....
+      - show blush: blush_1 AT LEFT WITH FADE
+      - text: So how was it?
+      - domini says: ... I've never had an orgasm before ...
+      - domini says: ... I was wrong ... masturbation is not gross at all
+      - domini says: ... it's awesome.
+      - domini says: ... Train me more. 
+      - text: Sure thing.
+    - if ({domKink} == 3):
+      - show domini: sultry
+      - domini says: What a rush!
+      - show blush: blush_1 AT LEFT WITH FADE
+      - text: I'm glad you enjoyed it ...
+      - domini says: I'm ready for more ... 
+      - domini says: Challenge me, Babe. 
+    - if ({domKink} == 4 && {domPantyCount} >= 4):
+      - show domini: sultry_2
+      - domini says: You officially ... have all my panties, Babe. 
+      - show blush: blush_1 AT LEFT WITH FADE
+      - text: Awesome. What do I win? 
+      - domini says: Well ... how about me?
+      - text: I can work with that ...  
 
   - if ({domStamina} <= 0):      
     - show domini: sad
@@ -531,7 +513,7 @@ Training:
           - show domini: sultry
           - domini says: Clothes are overrated aren't they, Master?     
 
-        - if ({topVisible} == 0 && {bottomVisible} == 0 && {braVisible} == 0 && {pantyVisible} == 0 && {domKink} > 4):
+        - if ({topVisible} == 0 && {bottomVisible} == 0 && {braVisible} == 0 && {pantyVisible} == 0 && {domKink} >= 4):
           - show domini: sultry
           - domini says: All out of clothes now, Master. What do you want to do next? 
         
@@ -748,23 +730,15 @@ Homework:
     
   - if ({pantyVisible} == 1 && {panty1} < 1): 
     - show panty: panty_1 AT LEFT WITH CUT
-  - else:
-    - hide panty: WITH CUT
     
   - if ({pantyVisible} == 2 && {panty2} < 1): 
     - show panty: panty_2 AT LEFT WITH CUT
-  - else:
-    - hide panty: WITH CUT   
     
   - if ({pantyVisible} == 3 && {panty3} < 1): 
-    - show panty: panty_3 AT LEFT WITH CUT
-  - else:
-    - hide panty: WITH CUT    
+    - show panty: panty_3 AT LEFT WITH CUT  
     
   - if ({pantyVisible} == 4 && {panty4} < 1): 
     - show panty: panty_4 AT LEFT WITH CUT
-  - else:
-    - hide panty: WITH CUT    
   
 
     
@@ -857,6 +831,7 @@ Homework:
         - domini says: ... I'll give it a try ...
         - text: Then by all means don't let me hold you up ...
         - var domKink: "{domKink}+1"
+        - scene: NextDay
       - if ({domKink} == 2):
         - show domini: 
         - show blush: blush_1 AT LEFT WITH CUT 
@@ -883,6 +858,7 @@ Homework:
         - text: That's part of the excitement! Just be smart about it. Sit some secluded and slide your hand ...
         - domini says: Fine! I TRUST you and your perverted little mind ...
         - var domKink: "{domKink}+1"
+        - scene: NextDay
       - if ({domKink} == 3):
         - show domini: 
         - show blush: blush_1 AT LEFT WITH CUT 
@@ -907,10 +883,17 @@ Homework:
         - text: To make you more aware of your body ... to put more in touch with your sexuality.
         - domini says: ... okay.      
         - var domKink: "{domKink}+1"
-      - if ({domKink} >= 4 && {domPantyCount} < 4):
+        - scene: NextDay
+      - if ({domKink} == 4 && {domPantyCount} < 4):
         - show domini: 
         - domini says: Sure 
         - text: That was easy ...
+        - text: Take it off ... slowly
+        - domini says: Anything for you Master ...  
+        - if ({bottomVisible} > 0):
+          - var prevbottom: "{bottomVisible}"
+          - var bottomVisible: 0
+          - hide bottom: WITH FADE         
         - if ({pantyVisible} > 0):
           - var prevpanty: "{pantyVisible}"
           - if ({pantyVisible} == 1): 
@@ -923,21 +906,23 @@ Homework:
             - var panty4: 1      
           - var pantyVisible: 0
           - hide panty: WITH FADE
-        - var bottomVisible: 0
-        - domini says: Anything for you Master ...       
+        - domini says: Here you go! 
+        - domini says: Like what you see? 
+        - text: Very much so ... yes.
         - var domPantyCount: "{domPantyCount}+1"
-      - if ({domKink} >= 4 && {domPantyCount} >= 4):
+      - if ({domKink} > 4 && {domPantyCount} >= 4):
         - show domini: 
         - domini says: All out of underwear I'm afraid ...
         - text: Oh? Show me ...
+        - if ({bottomVisible} > 0):
+          - var prevbottom: "{bottomVisible}"
+          - var bottomVisible: 0
+          - hide bottom: WITH FADE          
         - if ({pantyVisible} > 0):
           - var prevpanty: "{pantyVisible}"
           - var pantyVisible: 0
           - hide panty: WITH CUT              
-        - if ({bottomVisible} > 0):
-          - var prevbottom: "{bottomVisible}"
-          - var bottomVisible: 0
-          - hide bottom: WITH FADE               
+             
         - domini says: Take a good look Master ...      
       
       
@@ -949,6 +934,7 @@ Homework:
   
 NextDay:
   - var nipplesVisible: 0
+  - var quip: 0
   - var day: "{day}+1"
   - if ({day} == 1):
     - effect SHOWTITLE: 
@@ -975,7 +961,17 @@ NextDay:
   - var braVisible: "Math.floor(Math.random()*2)+1"
   - var pantyVisible: "Math.floor(Math.random()*3)+1"
   - var bottomVisible: "Math.floor(Math.random()*3)+1" 
-  - var topVisible: "Math.floor(Math.random()*5)+1"   
+  - var topVisible: "Math.floor(Math.random()*5)+1"  
+  
+  - if ({panty1} >= 1):
+    - var pantyVisible: 2
+  - if ({panty2} >= 1):
+    - var pantyVisible: 3  
+  - if ({panty3} >= 1):
+    - var pantyVisible: 4
+  - if ({panty4} >= 1):
+    - var pantyVisible: 0  
+    - var domPantyCount: 4
 
   - if ({topVisible} == 6):
     - var braVisible: 0
