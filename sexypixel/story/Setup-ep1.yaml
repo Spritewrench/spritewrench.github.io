@@ -79,6 +79,7 @@ characters:
 
 cgs:
   title: assets/gui/titles.png
+  alt_title: assets/gui/menu-2.png
   lead_1: assets/cg/lead_1.png
   lead_2: assets/cg/lead_2.png
   lead_2_1: assets/cg/lead_2_1.png

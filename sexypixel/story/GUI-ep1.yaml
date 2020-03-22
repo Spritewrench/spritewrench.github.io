@@ -95,49 +95,49 @@ menus:
     buttons: 
       start: 
         position:
-          x: 650
+          x: 50
           y: 924
         sprite: startButton
       load:  
         position:
-          x: 850
+          x: 250
           y: 924
         sprite: loadButton
       settings:
         position:
-          x: 1050
+          x: 450
           y: 924
         sprite: settingsButton
   settings:
     buttons:
       return: 
         position:
-          x: 112
-          y: 500
+          x: 50
+          y: 924
         sprite: returnButton
       load:
         position:
-          x: 528
-          y: 500
+          x: 250
+          y: 924
         sprite: loadButton
     sliders:
       textSpeed: 
         position:
           x: 436
-          y: 235
+          y: 735
         sprite: sliderFull
       autoSpeed:
         position:
           x: 436
-          y: 364
+          y: 864
         sprite: sliderFull
       bgmv:
         position:
           x: 147
-          y: 235
+          y: 735
         sprite: sliderFull
       sfxv:
         position:
           x: 147
-          y: 364
+          y: 864
         sprite: sliderFull

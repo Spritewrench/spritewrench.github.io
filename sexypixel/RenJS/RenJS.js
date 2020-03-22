@@ -87,8 +87,9 @@ var RenJS = {
         if(isNaN(RenJS.logicManager.vars.SOUL)){
           RenJS.logicManager.vars.SOUL = 0;
         }
-        localStorage.setItem("SOUL",RenJS.logicManager.vars.SOUL);
-        localStorage.setItem("RenJSDATA"+globalConfig.episode+slot,data);
+        //localStorage.setItem("SOUL",RenJS.logicManager.vars.SOUL);
+        //localStorage.setItem("RenJSDATA"+globalConfig.episode+slot,data);
+        localStorage.setItem("RenJSDATA",data);
     },
 
     load: function(slot){
@@ -96,19 +97,21 @@ var RenJS = {
             slot = 0;
         }
         console.log("LOADING slot "+slot);
-        var data = localStorage.getItem("RenJSDATA"+globalConfig.episode+slot);
+        //var data = localStorage.getItem("RenJSDATA"+globalConfig.episode+slot);
+        var data = localStorage.getItem("RenJSDATA");
+        console.log(data);
         if (!data){
             this.start();    
             return;
         } 
         console.log(data);
         data = JSON.parse(data);
-        console.log(data);
-        console.log(data.episode)
-        console.log(data.episode == null)
-        if(data.episode != globalConfig.episode || data.episode == null){
-            this.start();
-            return;           
+        //console.log(data);
+        //console.log(data.episode)
+        //console.log(data.episode == null)
+        if(false){
+            //this.start();
+            //return;           
         }
         else{
           this.setBlackOverlay();
@@ -146,13 +149,13 @@ var RenJS = {
           }
           RenJS.control.execStack = data.stack;
           RenJS.storyManager.currentScene = actions;
-          RenJS.logicManager.vars.SOUL = parseInt(localStorage.getItem("SOUL"));
-          if(isNaN(RenJS.logicManager.vars.SOUL)){
-            RenJS.logicManager.vars.SOUL = 0;
-          }          
+          //RenJS.logicManager.vars.SOUL = parseInt(localStorage.getItem("SOUL"));
+          //if(isNaN(RenJS.logicManager.vars.SOUL)){
+          //  RenJS.logicManager.vars.SOUL = 0;
+          //}          
           var counter = parseInt(RenJS.logicManager.vars.SOUL);
           console.log(counter)
-          this.soulCount = game.add.image(716,64,"soul0");
+          /*this.soulCount = game.add.image(716,64,"soul0");
           if (counter == 1)
             this.soulCount.loadTexture("soul1");    
           if (counter == 2)
@@ -193,7 +196,7 @@ var RenJS = {
             this.soulCount.loadTexture("soul19");
           if (counter >= 20)
             this.soulCount.loadTexture("soul20");   
-            
+          */  
           RenJS.control.paused = false;
           this.removeBlackOverlay();
           RenJS.gui.showHUD();
