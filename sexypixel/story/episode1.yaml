@@ -2,7 +2,10 @@
 start:
   - effect SHOWTITLE: 
     title: Monday
+  - var piercingsVisible: 0
+  - var accessoryVisible: 0
   - var braVisible: 1 
+  - var pubesVisible: 1
   - var pantyVisible: 1 
   - var bottomVisible: 1 
   - var topVisible: 1 
@@ -204,6 +207,9 @@ s2:
       - domini says: I didn't mean to lead you on ...
       - domini says: Apparently, I have some hang ups around ... STUFF
       - domini says: How can I make it up to you?
+      
+
+      
       - choice:
         - All is forgiven:
           - show domini:
@@ -298,57 +304,852 @@ s2:
 
 Training:
   - show dorm_Room: WITH CUT
-  - show domini: AT LEFT WITH CUT
   
-  - if ({braVisible} == 0): 
-    - hide bra: WITH CUT    
-  - if ({braVisible} == 1): 
-    - show bra: bra_1 AT LEFT WITH CUT
-  - if ({braVisible} == 2): 
-    - show bra: bra_2 AT LEFT WITH CUT
-  - if ({braVisible} == 3): 
-    - show bra: bra_3 AT LEFT WITH CUT
-  - if ({braVisible} == 4): 
-    - show bra: bra_4 AT LEFT WITH CUT
+  
+  - if ({domStamina} > 0 && {quip} <= 0):    
+    - var quip: 1
+    - if ({domKink} == 1):
+      - text: '[KNOCK! KNOCK! KNOCK!]'
+      - text: That must be Dom ...
+      - text: She's actually a bit early ...
+      - choice:
+        - Let her in:        
+          - show domini: AT LEFT WITH CUT
+          - if ({piercingsVisible} == 0): 
+            - hide piercings: WITH CUT    
+          - if ({piercingsVisible} == 1): 
+            - show piercings: piercings_1 AT LEFT WITH CUT
+          - if ({piercingsVisible} == 2): 
+            - show piercings: piercings_2 AT LEFT WITH CUT   
 
-  - if ({pantyVisible} == 0): 
-    - hide panty: WITH CUT  
-  - if ({pantyVisible} == 1): 
-    - show panty: panty_1 AT LEFT WITH CUT 
-  - if ({pantyVisible} == 2 ): 
-    - show panty: panty_2 AT LEFT WITH CUT 
-  - if ({pantyVisible} == 3): 
-    - show panty: panty_3 AT LEFT WITH CUT 
-  - if ({pantyVisible} == 4 ): 
-    - show panty: panty_4 AT LEFT WITH CUT
-  
+          - if ({accessoryVisible} == 0): 
+            - hide accessory: WITH CUT    
+          - if ({accessoryVisible} == 1): 
+            - show accessorys: ballgag AT LEFT WITH CUT  
+
+          - if ({braVisible} == 0): 
+            - hide bra: WITH CUT    
+          - if ({braVisible} == 1): 
+            - show bra: bra_1 AT LEFT WITH CUT
+          - if ({braVisible} == 2): 
+            - show bra: bra_2 AT LEFT WITH CUT
+          - if ({braVisible} == 3): 
+            - show bra: bra_3 AT LEFT WITH CUT
+          - if ({braVisible} == 4): 
+            - show bra: bra_4 AT LEFT WITH CUT
+
+
+          - if ({pubesVisible} == 0): 
+            - hide pubes: WITH CUT    
+          - if ({pubesVisible} == 1): 
+            - show pubes: pubes_1 AT LEFT WITH CUT
+          - if ({pubesVisible} == 2): 
+            - show pubes: pubes_2 AT LEFT WITH CUT   
+          - if ({pubesVisible} == 3): 
+            - show pubes: pubes_3 AT LEFT WITH CUT               
+
+          - if ({pantyVisible} == 0 || {domPantyCount} >= 4): 
+            - hide panty: WITH CUT  
+          - if ({pantyVisible} == 1): 
+            - show panty: panty_1 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 2 ): 
+            - show panty: panty_2 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 3): 
+            - show panty: panty_3 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 4 ): 
+            - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+          - if ({bottomVisible} == 0): 
+            - hide bottom: WITH CUT    
+          - if ({bottomVisible} == 1): 
+            - show bottom: bottom_1 AT LEFT WITH CUT
+          - if ({bottomVisible} == 2): 
+            - show bottom: bottom_2 AT LEFT WITH CUT
+          - if ({bottomVisible} == 3): 
+            - show bottom: bottom_3 AT LEFT WITH CUT
+          - if ({bottomVisible} == 4): 
+            - show bottom: bottom_4 AT LEFT WITH CUT    
+
+          - if ({topVisible} == 0): 
+            - hide top: WITH CUT    
+          - if ({topVisible} == 1): 
+            - show top: top_1 AT LEFT WITH CUT
+          - if ({topVisible} == 2): 
+            - show top: top_1_1 AT LEFT WITH CUT
+          - if ({topVisible} == 3): 
+            - show top: top_1_2 AT LEFT WITH CUT
+          - if ({topVisible} == 4): 
+            - show top: top_2 AT LEFT WITH CUT  
+          - if ({topVisible} == 5): 
+            - show top: top_3 AT LEFT WITH CUT  
+          - if ({topVisible} == 6): 
+            - show top: top_4 AT LEFT WITH CUT             
+          - domini says: Hi ... I should be calling you 'Master' during these sessions shouldn't I?
+          - text: You can if you want to ...
+          - domini says: That won't do ... I need you to be assertive ... otherwise this wont work ... me
+          - text: Alright pet, You are REQUIRED to address me as MASTER for all of sessions going forward ...
+          - show domini: lookingdown_surprised
+          - domini says: ... or else ... what?
+          - show blush: blush_1 AT LEFT WITH FADE
+          - text: I will have to find a way to punish you wouldn't I?
+          - show domini:
+          - domini says: I'll be good ... Master
+          - text: Great.  So how was the 'Homework'?
+          - domini says: Soooo that was ... educational ...
+          - domini says: Who knew porn was so RAW ...
+          - text: Still willing to explore more?
+          - domini says: ... Of course ...
+          - domini says: Ready when you are ... Master. 
+    - if ({domKink} == 2):
+      - text: '[KNOCK! KNOCK! KNOCK!]'
+      - text: Wow. She's prompt ...
+      - choice:
+        - Let her in:        
+          - show domini: AT LEFT WITH CUT
+          - if ({piercingsVisible} == 0): 
+            - hide piercings: WITH CUT    
+          - if ({piercingsVisible} == 1): 
+            - show piercings: piercings_1 AT LEFT WITH CUT
+          - if ({piercingsVisible} == 2): 
+            - show piercings: piercings_2 AT LEFT WITH CUT   
+
+          - if ({accessoryVisible} == 0): 
+            - hide accessory: WITH CUT    
+          - if ({accessoryVisible} == 1): 
+            - show accessorys: ballgag AT LEFT WITH CUT  
+
+          - if ({braVisible} == 0): 
+            - hide bra: WITH CUT    
+          - if ({braVisible} == 1): 
+            - show bra: bra_1 AT LEFT WITH CUT
+          - if ({braVisible} == 2): 
+            - show bra: bra_2 AT LEFT WITH CUT
+          - if ({braVisible} == 3): 
+            - show bra: bra_3 AT LEFT WITH CUT
+          - if ({braVisible} == 4): 
+            - show bra: bra_4 AT LEFT WITH CUT
+
+
+          - if ({pubesVisible} == 0): 
+            - hide pubes: WITH CUT    
+          - if ({pubesVisible} == 1): 
+            - show pubes: pubes_1 AT LEFT WITH CUT
+          - if ({pubesVisible} == 2): 
+            - show pubes: pubes_2 AT LEFT WITH CUT  
+          - if ({pubesVisible} == 3): 
+            - show pubes: pubes_3 AT LEFT WITH CUT               
+
+          - if ({pantyVisible} == 0 || {domPantyCount} >= 4): 
+            - hide panty: WITH CUT  
+          - if ({pantyVisible} == 1): 
+            - show panty: panty_1 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 2 ): 
+            - show panty: panty_2 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 3): 
+            - show panty: panty_3 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 4 ): 
+            - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+          - if ({bottomVisible} == 0): 
+            - hide bottom: WITH CUT    
+          - if ({bottomVisible} == 1): 
+            - show bottom: bottom_1 AT LEFT WITH CUT
+          - if ({bottomVisible} == 2): 
+            - show bottom: bottom_2 AT LEFT WITH CUT
+          - if ({bottomVisible} == 3): 
+            - show bottom: bottom_3 AT LEFT WITH CUT
+          - if ({bottomVisible} == 4): 
+            - show bottom: bottom_4 AT LEFT WITH CUT    
+
+          - if ({topVisible} == 0): 
+            - hide top: WITH CUT    
+          - if ({topVisible} == 1): 
+            - show top: top_1 AT LEFT WITH CUT
+          - if ({topVisible} == 2): 
+            - show top: top_1_1 AT LEFT WITH CUT
+          - if ({topVisible} == 3): 
+            - show top: top_1_2 AT LEFT WITH CUT
+          - if ({topVisible} == 4): 
+            - show top: top_2 AT LEFT WITH CUT  
+          - if ({topVisible} == 5): 
+            - show top: top_3 AT LEFT WITH CUT  
+          - if ({topVisible} == 6): 
+            - show top: top_4 AT LEFT WITH CUT           
+          - domini says: Hey ...
+          - text: And the 'Homework'?
+          - show domini: lookingdown_uncomfortable
+          - show blush: blush_1 AT LEFT WITH FADE
+          - domini says: "* Nods *"
+          - text: So how was it?
+          - domini says: ... I've never had an orgasm before ...
+          - domini says: ... I was wrong ... masturbation is not gross at all
+          - show domini: happy
+          - domini says: ... it's awesome.
+          - show domini: sultry
+          - domini says: ... Train me more. 
+          - text: Sure thing.
+    - if ({domKink} == 3):
+      - text: '[KNOCK! KNOCK! KNOCK!]'
+      - text: My ... she's becoming eager.
+      - choice:
+        - Let her in:        
+          - show domini: AT LEFT WITH CUT
+          - if ({piercingsVisible} == 0): 
+            - hide piercings: WITH CUT    
+          - if ({piercingsVisible} == 1): 
+            - show piercings: piercings_1 AT LEFT WITH CUT
+          - if ({piercingsVisible} == 2): 
+            - show piercings: piercings_2 AT LEFT WITH CUT   
+
+          - if ({accessoryVisible} == 0): 
+            - hide accessory: WITH CUT    
+          - if ({accessoryVisible} == 1): 
+            - show accessorys: ballgag AT LEFT WITH CUT  
+
+          - if ({braVisible} == 0): 
+            - hide bra: WITH CUT    
+          - if ({braVisible} == 1): 
+            - show bra: bra_1 AT LEFT WITH CUT
+          - if ({braVisible} == 2): 
+            - show bra: bra_2 AT LEFT WITH CUT
+          - if ({braVisible} == 3): 
+            - show bra: bra_3 AT LEFT WITH CUT
+          - if ({braVisible} == 4): 
+            - show bra: bra_4 AT LEFT WITH CUT
+
+
+          - if ({pubesVisible} == 0): 
+            - hide pubes: WITH CUT    
+          - if ({pubesVisible} == 1): 
+            - show pubes: pubes_1 AT LEFT WITH CUT
+          - if ({pubesVisible} == 2): 
+            - show pubes: pubes_2 AT LEFT WITH CUT 
+          - if ({pubesVisible} == 3): 
+            - show pubes: pubes_3 AT LEFT WITH CUT              
+
+          - if ({pantyVisible} == 0 || {domPantyCount} >= 4): 
+            - hide panty: WITH CUT  
+          - if ({pantyVisible} == 1): 
+            - show panty: panty_1 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 2 ): 
+            - show panty: panty_2 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 3): 
+            - show panty: panty_3 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 4 ): 
+            - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+          - if ({bottomVisible} == 0): 
+            - hide bottom: WITH CUT    
+          - if ({bottomVisible} == 1): 
+            - show bottom: bottom_1 AT LEFT WITH CUT
+          - if ({bottomVisible} == 2): 
+            - show bottom: bottom_2 AT LEFT WITH CUT
+          - if ({bottomVisible} == 3): 
+            - show bottom: bottom_3 AT LEFT WITH CUT
+          - if ({bottomVisible} == 4): 
+            - show bottom: bottom_4 AT LEFT WITH CUT    
+
+          - if ({topVisible} == 0): 
+            - hide top: WITH CUT    
+          - if ({topVisible} == 1): 
+            - show top: top_1 AT LEFT WITH CUT
+          - if ({topVisible} == 2): 
+            - show top: top_1_1 AT LEFT WITH CUT
+          - if ({topVisible} == 3): 
+            - show top: top_1_2 AT LEFT WITH CUT
+          - if ({topVisible} == 4): 
+            - show top: top_2 AT LEFT WITH CUT  
+          - if ({topVisible} == 5): 
+            - show top: top_3 AT LEFT WITH CUT  
+          - if ({topVisible} == 6): 
+            - show top: top_4 AT LEFT WITH CUT           
+          - domini says: Hey ...
+          - text: Enjoyed the'Homework'?
+          - show domini: sultry
+          - domini says: What a rush!
+          - show blush: blush_1 AT LEFT WITH FADE
+          - text: I'm glad you enjoyed it ...
+          - domini says: I'm ready for more ... 
+          - domini says: Challenge me, Babe. 
+    - if ({domKink} == 4 && {domPantyCount} < 4):
+      - text: '[KNOCK! KNOCK! KNOCK!]'
+      - text: Right on time!
+      - choice:
+        - Let her in:        
+          - show domini: happy AT LEFT WITH CUT
+          - if ({piercingsVisible} == 0): 
+            - hide piercings: WITH CUT    
+          - if ({piercingsVisible} == 1): 
+            - show piercings: piercings_1 AT LEFT WITH CUT
+          - if ({piercingsVisible} == 2): 
+            - show piercings: piercings_2 AT LEFT WITH CUT   
+
+          - if ({accessoryVisible} == 0): 
+            - hide accessory: WITH CUT    
+          - if ({accessoryVisible} == 1): 
+            - show accessorys: ballgag AT LEFT WITH CUT  
+
+          - if ({braVisible} == 0): 
+            - hide bra: WITH CUT    
+          - if ({braVisible} == 1): 
+            - show bra: bra_1 AT LEFT WITH CUT
+          - if ({braVisible} == 2): 
+            - show bra: bra_2 AT LEFT WITH CUT
+          - if ({braVisible} == 3): 
+            - show bra: bra_3 AT LEFT WITH CUT
+          - if ({braVisible} == 4): 
+            - show bra: bra_4 AT LEFT WITH CUT
+
+
+          - if ({pubesVisible} == 0): 
+            - hide pubes: WITH CUT    
+          - if ({pubesVisible} == 1): 
+            - show pubes: pubes_1 AT LEFT WITH CUT
+          - if ({pubesVisible} == 2): 
+            - show pubes: pubes_2 AT LEFT WITH CUT   
+          - if ({pubesVisible} == 3): 
+            - show pubes: pubes_3 AT LEFT WITH CUT              
+
+          - if ({pantyVisible} == 0 && {domPantyCount} < 4): 
+            - hide panty: WITH CUT  
+          - if ({pantyVisible} == 1): 
+            - show panty: panty_1 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 2 ): 
+            - show panty: panty_2 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 3): 
+            - show panty: panty_3 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 4 ): 
+            - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+          - if ({bottomVisible} == 0): 
+            - hide bottom: WITH CUT    
+          - if ({bottomVisible} == 1): 
+            - show bottom: bottom_1 AT LEFT WITH CUT
+          - if ({bottomVisible} == 2): 
+            - show bottom: bottom_2 AT LEFT WITH CUT
+          - if ({bottomVisible} == 3): 
+            - show bottom: bottom_3 AT LEFT WITH CUT
+          - if ({bottomVisible} == 4): 
+            - show bottom: bottom_4 AT LEFT WITH CUT    
+
+          - if ({topVisible} == 0): 
+            - hide top: WITH CUT    
+          - if ({topVisible} == 1): 
+            - show top: top_1 AT LEFT WITH CUT
+          - if ({topVisible} == 2): 
+            - show top: top_1_1 AT LEFT WITH CUT
+          - if ({topVisible} == 3): 
+            - show top: top_1_2 AT LEFT WITH CUT
+          - if ({topVisible} == 4): 
+            - show top: top_2 AT LEFT WITH CUT  
+          - if ({topVisible} == 5): 
+            - show top: top_3 AT LEFT WITH CUT  
+          - if ({topVisible} == 6): 
+            - show top: top_4 AT LEFT WITH CUT           
+          - domini says: Hey ...
+          - show domini: sultry
+          - var pantyCount: "4-{domPantyCount}"
+          - domini says: "Just so you know ... you now have '{domPantyCount}' of my panties." 
+          - show blush: blush_1 AT LEFT WITH FADE
+          - domini says: Betcha can't guess which one I have on ...
+          - text: Well ... there one sure fire way to find out ...
+          - domini says: Bring it on ... Master.
+    - if ({domKink} == 4 && {domPantyCount} >= 4):
+      - text: '[KNOCK! KNOCK! KNOCK!]'
+      - text: Right on time!
+      - choice:
+        - Let her in:        
+          - show domini: happy AT LEFT WITH CUT
+          - if ({piercingsVisible} == 0): 
+            - hide piercings: WITH CUT    
+          - if ({piercingsVisible} == 1): 
+            - show piercings: piercings_1 AT LEFT WITH CUT
+          - if ({piercingsVisible} == 2): 
+            - show piercings: piercings_2 AT LEFT WITH CUT   
+
+          - if ({accessoryVisible} == 0): 
+            - hide accessory: WITH CUT    
+          - if ({accessoryVisible} == 1): 
+            - show accessorys: ballgag AT LEFT WITH CUT  
+
+          - if ({braVisible} == 0): 
+            - hide bra: WITH CUT    
+          - if ({braVisible} == 1): 
+            - show bra: bra_1 AT LEFT WITH CUT
+          - if ({braVisible} == 2): 
+            - show bra: bra_2 AT LEFT WITH CUT
+          - if ({braVisible} == 3): 
+            - show bra: bra_3 AT LEFT WITH CUT
+          - if ({braVisible} == 4): 
+            - show bra: bra_4 AT LEFT WITH CUT
+
+
+          - if ({pubesVisible} == 0): 
+            - hide pubes: WITH CUT    
+          - if ({pubesVisible} == 1): 
+            - show pubes: pubes_1 AT LEFT WITH CUT
+          - if ({pubesVisible} == 2): 
+            - show pubes: pubes_2 AT LEFT WITH CUT   
+          - if ({pubesVisible} == 3): 
+            - show pubes: pubes_3 AT LEFT WITH CUT              
+
+          - if ({pantyVisible} == 0 || {domPantyCount} >= 4): 
+            - hide panty: WITH CUT  
+          - if ({pantyVisible} == 1): 
+            - show panty: panty_1 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 2 ): 
+            - show panty: panty_2 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 3): 
+            - show panty: panty_3 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 4 ): 
+            - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+          - if ({bottomVisible} == 0): 
+            - hide bottom: WITH CUT    
+          - if ({bottomVisible} == 1): 
+            - show bottom: bottom_1 AT LEFT WITH CUT
+          - if ({bottomVisible} == 2): 
+            - show bottom: bottom_2 AT LEFT WITH CUT
+          - if ({bottomVisible} == 3): 
+            - show bottom: bottom_3 AT LEFT WITH CUT
+          - if ({bottomVisible} == 4): 
+            - show bottom: bottom_4 AT LEFT WITH CUT    
+
+          - if ({topVisible} == 0): 
+            - hide top: WITH CUT    
+          - if ({topVisible} == 1): 
+            - show top: top_1 AT LEFT WITH CUT
+          - if ({topVisible} == 2): 
+            - show top: top_1_1 AT LEFT WITH CUT
+          - if ({topVisible} == 3): 
+            - show top: top_1_2 AT LEFT WITH CUT
+          - if ({topVisible} == 4): 
+            - show top: top_2 AT LEFT WITH CUT  
+          - if ({topVisible} == 5): 
+            - show top: top_3 AT LEFT WITH CUT  
+          - if ({topVisible} == 6): 
+            - show top: top_4 AT LEFT WITH CUT           
+          - domini says: HI!
+          - text: So did you complete your 'Homework'?
+          - show domini: sultry_2
+          - domini says: You officially ... have all my panties, Babe. 
+          - show blush: blush_1 AT LEFT WITH FADE
+          - text: Awesome. What do I win? 
+          - domini says: Well ... how about me?
+          - text: I can work with that ...  
+          - var domKinkHolder: 1
+    - if ({domKink} == 5):
+      - text: '[KNOCK! KNOCK! KNOCK!]'
+      - text: Right on time!
+      - choice:
+        - Let her in:        
+          - show domini: happy AT LEFT WITH CUT
+          - if ({piercingsVisible} == 0): 
+            - hide piercings: WITH CUT    
+          - if ({piercingsVisible} == 1): 
+            - show piercings: piercings_1 AT LEFT WITH CUT
+          - if ({piercingsVisible} == 2): 
+            - show piercings: piercings_2 AT LEFT WITH CUT   
+
+          - if ({accessoryVisible} == 0): 
+            - hide accessory: WITH CUT    
+          - if ({accessoryVisible} == 1): 
+            - show accessorys: ballgag AT LEFT WITH CUT  
+
+          - if ({braVisible} == 0): 
+            - hide bra: WITH CUT    
+          - if ({braVisible} == 1): 
+            - show bra: bra_1 AT LEFT WITH CUT
+          - if ({braVisible} == 2): 
+            - show bra: bra_2 AT LEFT WITH CUT
+          - if ({braVisible} == 3): 
+            - show bra: bra_3 AT LEFT WITH CUT
+          - if ({braVisible} == 4): 
+            - show bra: bra_4 AT LEFT WITH CUT
+
+
+          - if ({pubesVisible} == 0): 
+            - hide pubes: WITH CUT    
+          - if ({pubesVisible} == 1): 
+            - show pubes: pubes_1 AT LEFT WITH CUT
+          - if ({pubesVisible} == 2): 
+            - show pubes: pubes_2 AT LEFT WITH CUT 
+          - if ({pubesVisible} == 3): 
+            - show pubes: pubes_3 AT LEFT WITH CUT             
+
+          - if ({pantyVisible} == 0 || {domPantyCount} >= 4): 
+            - hide panty: WITH CUT  
+          - if ({pantyVisible} == 1): 
+            - show panty: panty_1 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 2 ): 
+            - show panty: panty_2 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 3): 
+            - show panty: panty_3 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 4 ): 
+            - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+          - if ({bottomVisible} == 0): 
+            - hide bottom: WITH CUT    
+          - if ({bottomVisible} == 1): 
+            - show bottom: bottom_1 AT LEFT WITH CUT
+          - if ({bottomVisible} == 2): 
+            - show bottom: bottom_2 AT LEFT WITH CUT
+          - if ({bottomVisible} == 3): 
+            - show bottom: bottom_3 AT LEFT WITH CUT
+          - if ({bottomVisible} == 4): 
+            - show bottom: bottom_4 AT LEFT WITH CUT    
+
+          - if ({topVisible} == 0): 
+            - hide top: WITH CUT    
+          - if ({topVisible} == 1): 
+            - show top: top_1 AT LEFT WITH CUT
+          - if ({topVisible} == 2): 
+            - show top: top_1_1 AT LEFT WITH CUT
+          - if ({topVisible} == 3): 
+            - show top: top_1_2 AT LEFT WITH CUT
+          - if ({topVisible} == 4): 
+            - show top: top_2 AT LEFT WITH CUT  
+          - if ({topVisible} == 5): 
+            - show top: top_3 AT LEFT WITH CUT  
+          - if ({topVisible} == 6): 
+            - show top: top_4 AT LEFT WITH CUT           
+          - domini says: I have a surprise for you, Master!
+          - domini says: Which do you prefer ... a Heart, Land Strip or completely ... Bare
+          - var ran: "Math.floor(Math.random()*2)" 
+          - choice:
+            - Bare: 
+              - var ran: 0
+            - Heart: 
+              - var ran: 1
+            - Landing Strip: 
+              - var ran: 2              
+          - if ({ran} == 0):
+            - var pubesVisible: 0
+            - hide pubes: WITH CUT 
+          - if ({ran} == 1):
+            - var pubesVisible: 2
+            - show pubes: pubes_2 WITH CUT    
+          - if ({ran} == 2):
+            - var pubesVisible: 3
+            - show pubes: pubes_3 WITH CUT                
+          - if ({bottomVisible} > 0):
+            - var prevbottom: "{bottomVisible}"
+            - var bottomVisible: 0
+            - hide bottom: WITH FADE         
+          - if ({pantyVisible} > 0):
+            - var prevpanty: "{pantyVisible}"
+            - if ({pantyVisible} == 1): 
+              - var panty1: 1
+            - if ({pantyVisible} == 2): 
+              - var panty2: 1
+            - if ({pantyVisible} == 3): 
+              - var panty3: 1
+            - if ({pantyVisible} == 4): 
+              - var panty4: 1      
+            - var pantyVisible: 0
+            - hide panty: WITH FADE          
+          - text: So I see you did some extra 'Homework' by yourself ...
+          - show domini: sultry
+          - domini says: Yep! ... Do you like? Master?
+          - show blush: blush_1 AT LEFT WITH FADE
+          - text: Such initiative should be rewarded ...
+          - domini says: So what do I get, Master?
+          - var domKinkHolder: 1
+    - if ({domKink} == 6):
+      - text: '[KNOCK! KNOCK! KNOCK!]'
+      - text: On time ... as usual!
+      - choice:
+        - Let her in:        
+          - show domini: happy AT LEFT WITH CUT
+          - if ({piercingsVisible} == 0): 
+            - hide piercings: WITH CUT    
+          - if ({piercingsVisible} == 1): 
+            - show piercings: piercings_1 AT LEFT WITH CUT
+          - if ({piercingsVisible} == 2): 
+            - show piercings: piercings_2 AT LEFT WITH CUT   
+
+          - if ({accessoryVisible} == 0): 
+            - hide accessory: WITH CUT    
+          - if ({accessoryVisible} == 1): 
+            - show accessorys: ballgag AT LEFT WITH CUT  
+
+          - if ({braVisible} == 0): 
+            - hide bra: WITH CUT    
+          - if ({braVisible} == 1): 
+            - show bra: bra_1 AT LEFT WITH CUT
+          - if ({braVisible} == 2): 
+            - show bra: bra_2 AT LEFT WITH CUT
+          - if ({braVisible} == 3): 
+            - show bra: bra_3 AT LEFT WITH CUT
+          - if ({braVisible} == 4): 
+            - show bra: bra_4 AT LEFT WITH CUT
+
+
+          - if ({pubesVisible} == 0): 
+            - hide pubes: WITH CUT    
+          - if ({pubesVisible} == 1): 
+            - show pubes: pubes_1 AT LEFT WITH CUT
+          - if ({pubesVisible} == 2): 
+            - show pubes: pubes_2 AT LEFT WITH CUT 
+          - if ({pubesVisible} == 3): 
+            - show pubes: pubes_3 AT LEFT WITH CUT             
+
+          - if ({pantyVisible} == 0 || {domPantyCount} >= 4): 
+            - hide panty: WITH CUT  
+          - if ({pantyVisible} == 1): 
+            - show panty: panty_1 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 2 ): 
+            - show panty: panty_2 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 3): 
+            - show panty: panty_3 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 4 ): 
+            - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+          - if ({bottomVisible} == 0): 
+            - hide bottom: WITH CUT    
+          - if ({bottomVisible} == 1): 
+            - show bottom: bottom_1 AT LEFT WITH CUT
+          - if ({bottomVisible} == 2): 
+            - show bottom: bottom_2 AT LEFT WITH CUT
+          - if ({bottomVisible} == 3): 
+            - show bottom: bottom_3 AT LEFT WITH CUT
+          - if ({bottomVisible} == 4): 
+            - show bottom: bottom_4 AT LEFT WITH CUT    
+
+          - if ({topVisible} == 0): 
+            - hide top: WITH CUT    
+          - if ({topVisible} == 1): 
+            - show top: top_1 AT LEFT WITH CUT
+          - if ({topVisible} == 2): 
+            - show top: top_1_1 AT LEFT WITH CUT
+          - if ({topVisible} == 3): 
+            - show top: top_1_2 AT LEFT WITH CUT
+          - if ({topVisible} == 4): 
+            - show top: top_2 AT LEFT WITH CUT  
+          - if ({topVisible} == 5): 
+            - show top: top_3 AT LEFT WITH CUT  
+          - if ({topVisible} == 6): 
+            - show top: top_4 AT LEFT WITH CUT           
+          - domini says: I have another surprise for you, Master!
+          - text: Again?
+          - domini says: Which do you prefer ... Hoops or Bars
+          - var ran: "Math.floor(Math.random()*2)" 
+          - choice:
+            - Hoops: 
+              - var ran: 0
+            - Bars: 
+              - var ran: 1
+          - if ({ran} == 0):
+            - var piercingsVisible: 1
+            - show piercings: piercings_1 AT LEFT WITH CUT  
+          - if ({ran} == 1):
+            - var piercingsVisible: 2
+            - show piercings: piercings_2 AT LEFT WITH CUT             
+          - if ({topVisible} > 0):
+            - var prevtop: "{topVisible}"
+            - var topVisible: 0
+            - hide top: WITH FADE         
+          - if ({braVisible} > 0):
+            - var bratop: "{braVisible}"
+            - var braVisible: 0
+            - hide bra: WITH FADE          
+          - show domini: sultry
+          - domini says: Ta-da! ... What do you think, Master?
+          - show blush: blush_1 AT LEFT WITH FADE
+          - text: Lovely! I guess you want another reward?
+          - domini says: You know me so well master, Master?
+          - var domKinkHolder: 1 
+    - if ({domKink} >= 7):
+      - text: '[KNOCK! KNOCK! KNOCK!]'
+      - text: Like clockwork!
+      - choice:
+        - Let her in:        
+          - show domini: happy AT LEFT WITH CUT
+          - if ({piercingsVisible} == 0): 
+            - hide piercings: WITH CUT    
+          - if ({piercingsVisible} == 1): 
+            - show piercings: piercings_1 AT LEFT WITH CUT
+          - if ({piercingsVisible} == 2): 
+            - show piercings: piercings_2 AT LEFT WITH CUT   
+
+          - if ({accessoryVisible} == 0): 
+            - hide accessory: WITH CUT    
+          - if ({accessoryVisible} == 1): 
+            - show accessorys: ballgag AT LEFT WITH CUT  
+
+          - if ({braVisible} == 0): 
+            - hide bra: WITH CUT    
+          - if ({braVisible} == 1): 
+            - show bra: bra_1 AT LEFT WITH CUT
+          - if ({braVisible} == 2): 
+            - show bra: bra_2 AT LEFT WITH CUT
+          - if ({braVisible} == 3): 
+            - show bra: bra_3 AT LEFT WITH CUT
+          - if ({braVisible} == 4): 
+            - show bra: bra_4 AT LEFT WITH CUT
+
+
+          - if ({pubesVisible} == 0): 
+            - hide pubes: WITH CUT    
+          - if ({pubesVisible} == 1): 
+            - show pubes: pubes_1 AT LEFT WITH CUT
+          - if ({pubesVisible} == 2): 
+            - show pubes: pubes_2 AT LEFT WITH CUT 
+          - if ({pubesVisible} == 3): 
+            - show pubes: pubes_3 AT LEFT WITH CUT             
+
+          - if ({pantyVisible} == 0 || {domPantyCount} >= 4): 
+            - hide panty: WITH CUT  
+          - if ({pantyVisible} == 1): 
+            - show panty: panty_1 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 2 ): 
+            - show panty: panty_2 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 3): 
+            - show panty: panty_3 AT LEFT WITH CUT 
+          - if ({pantyVisible} == 4 ): 
+            - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+          - if ({bottomVisible} == 0): 
+            - hide bottom: WITH CUT    
+          - if ({bottomVisible} == 1): 
+            - show bottom: bottom_1 AT LEFT WITH CUT
+          - if ({bottomVisible} == 2): 
+            - show bottom: bottom_2 AT LEFT WITH CUT
+          - if ({bottomVisible} == 3): 
+            - show bottom: bottom_3 AT LEFT WITH CUT
+          - if ({bottomVisible} == 4): 
+            - show bottom: bottom_4 AT LEFT WITH CUT    
+
+          - if ({topVisible} == 0): 
+            - hide top: WITH CUT    
+          - if ({topVisible} == 1): 
+            - show top: top_1 AT LEFT WITH CUT
+          - if ({topVisible} == 2): 
+            - show top: top_1_1 AT LEFT WITH CUT
+          - if ({topVisible} == 3): 
+            - show top: top_1_2 AT LEFT WITH CUT
+          - if ({topVisible} == 4): 
+            - show top: top_2 AT LEFT WITH CUT  
+          - if ({topVisible} == 5): 
+            - show top: top_3 AT LEFT WITH CUT  
+          - if ({topVisible} == 6): 
+            - show top: top_4 AT LEFT WITH CUT           
+
+          - if ({topVisible} > 0):
+            - var prevtop: "{topVisible}"
+            - var topVisible: 0
+            - hide top: WITH FADE 
+          - if ({bottomVisible} > 0):
+            - var prevbottom: "{bottomVisible}"
+            - var bottomVisible: 0
+            - hide bottom: WITH FADE 
+          - if ({braVisible} > 0):
+            - var prevbra: "{braVisible}"
+            - var braVisible: 0
+            - hide bra: WITH FADE              
+          
+          - show domini: sultry_2
+          - show blush: blush_1 AT LEFT WITH CUT 
+          - domini says: Your delightful, little Fucktoy is ready and reporting for duty, Master!
+          - show blush: blush_1 AT LEFT WITH FADE
+          - domini says: How do you want me?
+          - text: [YOU GOT AN ERECTION!]
+          - show domini: lookingdown_surprised
+          - domini says: Ah! 
+          - show domini: sultry_2
+          - domini says: You always give me the best gifts, Master. 
+          - var domKinkHolder: 1           
+  - else:
+    - show domini: AT LEFT WITH CUT
+    - if ({piercingsVisible} == 0): 
+      - hide piercings: WITH CUT    
+    - if ({piercingsVisible} == 1): 
+      - show piercings: piercings_1 AT LEFT WITH CUT
+    - if ({piercingsVisible} == 2): 
+      - show piercings: piercings_2 AT LEFT WITH CUT   
+
+    - if ({accessoryVisible} == 0): 
+      - hide accessory: WITH CUT    
+    - if ({accessoryVisible} == 1): 
+      - show accessorys: ballgag AT LEFT WITH CUT  
+
+    - if ({braVisible} == 0): 
+      - hide bra: WITH CUT    
+    - if ({braVisible} == 1): 
+      - show bra: bra_1 AT LEFT WITH CUT
+    - if ({braVisible} == 2): 
+      - show bra: bra_2 AT LEFT WITH CUT
+    - if ({braVisible} == 3): 
+      - show bra: bra_3 AT LEFT WITH CUT
+    - if ({braVisible} == 4): 
+      - show bra: bra_4 AT LEFT WITH CUT
+
+
+    - if ({pubesVisible} == 0): 
+      - hide pubes: WITH CUT    
+    - if ({pubesVisible} == 1): 
+      - show pubes: pubes_1 AT LEFT WITH CUT
+    - if ({pubesVisible} == 2): 
+      - show pubes: pubes_2 AT LEFT WITH CUT 
+    - if ({pubesVisible} == 3): 
+      - show pubes: pubes_3 AT LEFT WITH CUT       
+
+    - if ({pantyVisible} == 0 || {domPantyCount} >= 4): 
+      - hide panty: WITH CUT  
+    - if ({pantyVisible} == 1): 
+      - show panty: panty_1 AT LEFT WITH CUT 
+    - if ({pantyVisible} == 2 ): 
+      - show panty: panty_2 AT LEFT WITH CUT 
+    - if ({pantyVisible} == 3): 
+      - show panty: panty_3 AT LEFT WITH CUT 
+    - if ({pantyVisible} == 4 ): 
+      - show panty: panty_4 AT LEFT WITH CUT
+
+
+
+    - if ({bottomVisible} == 0): 
+      - hide bottom: WITH CUT    
+    - if ({bottomVisible} == 1): 
+      - show bottom: bottom_1 AT LEFT WITH CUT
+    - if ({bottomVisible} == 2): 
+      - show bottom: bottom_2 AT LEFT WITH CUT
+    - if ({bottomVisible} == 3): 
+      - show bottom: bottom_3 AT LEFT WITH CUT
+    - if ({bottomVisible} == 4): 
+      - show bottom: bottom_4 AT LEFT WITH CUT    
+
+    - if ({topVisible} == 0): 
+      - hide top: WITH CUT    
+    - if ({topVisible} == 1): 
+      - show top: top_1 AT LEFT WITH CUT
+    - if ({topVisible} == 2): 
+      - show top: top_1_1 AT LEFT WITH CUT
+    - if ({topVisible} == 3): 
+      - show top: top_1_2 AT LEFT WITH CUT
+    - if ({topVisible} == 4): 
+      - show top: top_2 AT LEFT WITH CUT  
+    - if ({topVisible} == 5): 
+      - show top: top_3 AT LEFT WITH CUT  
+    - if ({topVisible} == 6): 
+      - show top: top_4 AT LEFT WITH CUT     
 
   
-  - if ({bottomVisible} == 0): 
-    - hide bottom: WITH CUT    
-  - if ({bottomVisible} == 1): 
-    - show bottom: bottom_1 AT LEFT WITH CUT
-  - if ({bottomVisible} == 2): 
-    - show bottom: bottom_2 AT LEFT WITH CUT
-  - if ({bottomVisible} == 3): 
-    - show bottom: bottom_3 AT LEFT WITH CUT
-  - if ({bottomVisible} == 4): 
-    - show bottom: bottom_4 AT LEFT WITH CUT    
-    
-  - if ({topVisible} == 0): 
-    - hide top: WITH CUT    
-  - if ({topVisible} == 1): 
-    - show top: top_1 AT LEFT WITH CUT
-  - if ({topVisible} == 2): 
-    - show top: top_1_1 AT LEFT WITH CUT
-  - if ({topVisible} == 3): 
-    - show top: top_1_2 AT LEFT WITH CUT
-  - if ({topVisible} == 4): 
-    - show top: top_2 AT LEFT WITH CUT  
-  - if ({topVisible} == 5): 
-    - show top: top_3 AT LEFT WITH CUT  
-  - if ({topVisible} == 6): 
-    - show top: top_4 AT LEFT WITH CUT     
     
 
   
@@ -356,65 +1157,38 @@ Training:
     - show nipples: nipples AT LEFT WITH CUT
   - else:
     - hide nipples: WITH CUT
-      
+  
+  - if ({domKink} >= 10): 
 
-  - if ({domKink} >= 6): 
-    - var prevtop: "{topVisible}"
-    - var topVisible: 0 
-    - hide top: WITH FADE    
-    - var prevbottom: "{bottomVisible}"
-    - var bottomVisible: 0
-    - hide panty: WITH FADE  
-    - var prevbra: "{braVisible}"
-    - var braVisible: 0 
-    - hide bra: WITH FADE    
-    - var prevpanty: "{pantyVisible}"
-    - var pantyVisible: 0
-    - hide panty: WITH FADE  
-    - show domini: sultry
-    - show blush: blush_1 AT LEFT WITH CUT 
-    - domini says: Ready and reporting for duty, Master.
     - var domKink: 10
-    
-  - if ({domStamina} > 0 && {quip} > 0):    
-    - var quip: 1
-    - if ({domKink} == 1):
-      - show domini: 
-      - domini says: Soooo that was ... educational ...
-      - show blush: blush_1 AT LEFT WITH FADE
-      - domini says: Who knew porn was so RAW ...
-      - text: Still willing to explore more?
-      - domini says: ... Of course ...
-    - if ({domKink} == 2):
-      - show domini: 
-      - domini says: ....
-      - show blush: blush_1 AT LEFT WITH FADE
-      - text: So how was it?
-      - domini says: ... I've never had an orgasm before ...
-      - domini says: ... I was wrong ... masturbation is not gross at all
-      - domini says: ... it's awesome.
-      - domini says: ... Train me more. 
-      - text: Sure thing.
-    - if ({domKink} == 3):
-      - show domini: sultry
-      - domini says: What a rush!
-      - show blush: blush_1 AT LEFT WITH FADE
-      - text: I'm glad you enjoyed it ...
-      - domini says: I'm ready for more ... 
-      - domini says: Challenge me, Babe. 
-    - if ({domKink} == 4 && {domPantyCount} >= 4):
-      - show domini: sultry_2
-      - domini says: You officially ... have all my panties, Babe. 
-      - show blush: blush_1 AT LEFT WITH FADE
-      - text: Awesome. What do I win? 
-      - domini says: Well ... how about me?
-      - text: I can work with that ...  
+  
+  - if ({domKink} == 1):
+    - show kink_1: WITH CUT
+  - if ({domKink} == 2):
+    - show kink_2: WITH CUT
+  - if ({domKink} == 3):
+    - show kink_3: WITH CUT
+  - if ({domKink} == 4 && {domPantyCount} <= 0):
+    - show kink_4: WITH CUT 
+  - if ({domKink} == 4 && {domPantyCount} >= 1):
+    - show kink_4_1: WITH CUT
+  - if ({domKink} == 4 && {domPantyCount} >= 2):
+    - show kink_4_2: WITH CUT
+  - if ({domKink} == 4 && {domPantyCount} >= 3):
+    - show kink_4_3: WITH CUT
+  - if ({domKink} == 4 && {domPantyCount} >= 4):
+    - show kink_4_4: WITH CUT 
+  - if ({domKink} >= 5 ):
+    - show kink_5: WITH CUT     
+      
 
   - if ({domStamina} <= 0):      
     - show domini: sad
     - domini says: I'm getting a little tired ...
     - show domini: sultry
-    - domini says: But before I go ... do you have some "Homework" for me to do?    
+    - domini says: But before I go ... do you have some "Homework" for me to do?   
+    - show domini: lookingdown_surprised
+    - domini says: Oop! let me neaten up a bit ...
     - scene: Homework
     
   - choice:
@@ -434,8 +1208,9 @@ Training:
         - var rand: "Math.floor(Math.random()*2)"  
         - if ({rand} == 0):           
           - domini says: It's not fair ....
+          - domini says: Why does your tongue taste so good?           
         - if ({rand} == 1): 
-          - domini says: Why does your tongue taste so good? 
+          - domini says: More! ...
         - hide kiss_2: WITH CUT  
       - if ({domKink} >= 3):
         - show kiss_3: WITH CUT
@@ -515,7 +1290,8 @@ Training:
 
         - if ({topVisible} == 0 && {bottomVisible} == 0 && {braVisible} == 0 && {pantyVisible} == 0 && {domKink} >= 4):
           - show domini: sultry
-          - domini says: All out of clothes now, Master. What do you want to do next? 
+          - domini says: So ... I'm naked. What do you want to do next? 
+          
         
     - Let me grope you:
       - if ({domKink} < 2):
@@ -527,21 +1303,12 @@ Training:
           - var domStamina: "{domStamina}-1"  
         - if ({domKink} == 2):
           - show domini: sultry
-          - show blush: blush_1 AT LEFT WITH CUT    
-          - domini says: Okay ... I'm ready ... 
-          - text: "* GROPES *"
-          - show domini: flustered
-          - text: God ... I love your boobs ...
-          - domini says: Ahn! ... Do my breasts really ... feel that good?
-          - text: They sure do! They're so big, ... soft, and incredibly sexy!'
-          - text: "* GROPES *"
-          - domini says: You're  ... so rough
-        - if ({domKink} == 3 ):  
+          - show blush: blush_1 AT LEFT WITH CUT 
           - if ({topVisible } > 0):  
             - text: Take off your top ...
             - show domini: sad
             - show blush: blush_1 AT LEFT WITH CUT     
-            - domini says: .... Do I have to?
+            - domini says: .... Really??
             - text: Yes. Your Master demands it ...
             - show domini: angry
             - domini says: "( ... you're taking this role way too seriously)"
@@ -549,17 +1316,54 @@ Training:
             - domini says: ... okay ... Master.
             - var prevtop: "{topVisible}"
             - var topVisible: 0
-            - hide top: WITH FADE
+            - hide top: WITH FADE    
+          - if ({braVisible} > 0):  
+            - show domini: sad
+            - text: Don't forget the bra!... 
+            - domini says: ... okay
+            - show blush: blush_1 AT LEFT WITH CUT     
+            - var prevbra: "{braVisible}"
+            - var braVisible: 0
+            - hide bra: WITH FADE             
+          - domini says: Okay ... I'm ready ... 
+          - show grope_1: WITH CUT
+          - show domini: flustered
+          - text: God ... I love your boobs ...
+          - domini says: Ahn! ... Do my breasts really ... feel that good?
+          - text: They sure do! They're so big, ... soft, and incredibly sexy!
+          - domini says: You're  ... so rough
+          - hide grope_1: WITH CUT 
+          
+        - if ({domKink} == 3 ):  
+          - if ({topVisible} > 0):  
+            - show domini: sultry_2
+            - domini says: Again? ...
+            - show blush: blush_1 AT LEFT WITH CUT     
+            - var prevtop: "{topVisible}"
+            - var topVisible: 0
+            - hide top: WITH FADE   
+          - if ({braVisible} > 0):  
+            - show domini: sad
+            - text: Take off the bra as well... 
+            - domini says: ... okay
+            - show blush: blush_1 AT LEFT WITH CUT     
+            - var prevbra: "{braVisible}"
+            - var braVisible: 0
+            - hide bra: WITH FADE   
           - show domini: sultry
           - show blush: blush_1 AT LEFT WITH CUT    
-          - domini says: Ready when you are ... Master.          
-          - text: "* GROPES *"
-          - show domini: flustered
+          - domini says: Ready when you are ... Master.   
+          - show grope_1: WITH CUT
+          - text: God ... I love your boobs ...
+          - domini says: Ahn! ... Do my breasts really ... feel that good?
+          - text: They sure do! They're so big, ... soft, and incredibly sexy!
+          - domini says: You're  ... so rough ... but I love it ...
+          - hide grope_1: WITH CUT           
+          - show grope_2: WITH CUT
+          - domini says: Ahhhn!
           - text: I'll never get tired of these ...
           - domini says: Hmmm ... your hands are so warm.
-          - text: "* GROPES *"
-          - domini says: Nnn!  
-        
+          - hide grope_2: WITH CUT           
         - if ({domKink} >= 4):
           - show domini: sultry_2
           - show blush: blush_2 AT LEFT WITH CUT  
@@ -570,32 +1374,32 @@ Training:
             - var prevtop: "{topVisible}"
             - var topVisible: 0
             - hide top: WITH FADE   
-          - if ({bottomVisible } > 0):  
-            - text: Take off your pants ...
-            - show domini: sultry_2
-            - domini says: Of course ... Master 
-            - var prevbottom: "{bottomVisible}"
-            - var bottomVisible: 0   
-            - hide bottom: WITH FADE  
           - if ({braVisible} > 0):  
-            - show domini: sad
-            - text: Take off the bra ... 
-            - domini says: ... okay
             - show blush: blush_1 AT LEFT WITH CUT     
             - var prevbra: "{braVisible}"
             - var braVisible: 0
             - hide bra: WITH FADE              
           - var rand: "Math.floor(Math.random()*2)"  
           - if ({rand} == 0):   
-            - domini says: Hmm ... drafty 
+            - domini says: ...
           - if ({rand} == 1):     
-            - domini says: Hmm ... I could get used to this ...
-          - if ({domKink} < 8):
-            - show grope_1: WITH CUT
-            - domini says: Ahhhn!
-            - text: Your tits are perfect! 
-            - domini says: Hnnn!
-            - hide grope_1: WITH CUT   
+            - domini says: I'm starting to get used to this ...
+          - show grope_1: WITH CUT
+          - text: God ... I love your boobs ...
+          - domini says: Squeeze them more!
+          - text: You like it when I squeeze them do you?
+          - domini says: I love it ... when you abuse my breasts!
+          - hide grope_1: WITH CUT           
+          - show grope_2: WITH CUT
+          - domini says: Ahhhn!
+          - text: You love it when I run my hands all over them?
+          - domini says: Hmmm ... your hands are so warm.
+          - hide grope_2: WITH CUT               
+          - show grope_3: WITH CUT
+          - domini says: Ahhhn!
+          - text: Your tits are perfect! 
+          - domini says: Hnnn! ... Of course they are.
+          - hide grope_3: WITH CUT   
         - var nipplesVisible: 1 
         
         
@@ -605,19 +1409,23 @@ Training:
         - show blush: blush_1 AT LEFT WITH CUT 
         - domini says: Yeah ... No, I'm not sticking THAT into my mouth. 
       - else:    
-        - if ({domKink} == 3):
+        - if ({domKink} >= 3):
           - var domStamina: "{domStamina}-1" 
           - show bj_1: WITH CUT
           - text: . 
           - hide bj_1: WITH CUT          
-        - if ({domKink} == 4):
-          - show bj_2: WITH CUT
+        - if ({domKink} >= 4 && {domPantyCount} <= 0):
+          - show bj_4: WITH CUT
           - text: . 
-          - hide bj_2: WITH CUT        
-        - if ({domKink} == 5):
-          - show bj_3: WITH CUT
+          - hide bj_4: WITH CUT          
+        - if ({domKink} >= 4 && {domPantyCount} >= 4):
+          - show bj_5: WITH CUT
           - text: . 
-          - hide bj_3: WITH CUT 
+          - hide bj_5: WITH CUT        
+        - if ({domKink} >= 5):
+          - show bj_6: WITH CUT
+          - text: . 
+          - hide bj_6: WITH CUT           
         
         
     - Let's have sex:
@@ -626,7 +1434,27 @@ Training:
         - show blush: blush_1 AT LEFT WITH CUT 
         - domini says: Nope!
       - else:    
-        - if ({domKink} == 4):
+        - if ({topVisible} > 0 ):
+
+          - var prevtop: "{topVisible}"
+          - var topVisible: 0
+          - hide top: WITH FADE
+        - if ({bottomVisible} > 0 ):
+          - var prevbottom: "{bottomVisible}"
+          - var bottomVisible: 0   
+          - hide bottom: WITH FADE    
+        - if ({braVisible} > 0 ):
+          - var prevbra: "{braVisible}"
+          - var braVisible: 0 
+          - hide bra: WITH FADE
+        - if ({pantyVisible} > 0 ):
+          - var prevpanty: "{pantyVisible}"
+          - var pantyVisible: 0
+          - hide panty: WITH FADE
+        - show domini: sultry
+        - show blush: blush_1 AT LEFT WITH CUT           
+        - domini says: Ready ... 
+        - if ({domKink} == 4 && {domPantyCount} <= 0):
           - var domStamina: "{domStamina}-1" 
           - show sex_2: WITH CUT 
           - text: Are you sure?  
@@ -643,24 +1471,38 @@ Training:
           - domini says: I never knew it would feel ... so 
           - domini says: Tasty ...           
           - hide sex_4: WITH CUT 
-        - if ({domKink} == 5):  
+        - if ({domKink} >= 4 && {domPantyCount} >= 1):  
           - show sex_1: WITH CUT 
           - domini says: Hurry! Stick your dick in ..  
           - hide sex_1: WITH CUT 
+          - show sex_2: WITH CUT 
+          - text: Are you sure?  
+          - hide sex_2: WITH CUT 
+          - show sex_3: WITH CUT 
+          - domini says: Yes
+          - hide sex_3: WITH CUT           
           - show sex_5: WITH CUT 
-          - domini says: 
-          - hide sex_5: WITH CUT 
-          - show sex_6: WITH CUT
-          - text: so .. warm!
-          - domini says: Ah! Ah! Ah!
-          - domini says: Fuck me ... Fuck me HARDER!
-          - domini says: I love your dick!
-          - hide sex_6: WITH CUT 
-          - show sex_7: WITH CUT
-          - domini says: So this is sex ...
-          - domini says: I never knew it would feel ... so 
-          - domini says: Tasty ... 
-          - hide sex_7: WITH CUT         
+          - domini says: .
+          - hide sex_5: WITH CUT    
+        - if ({domKink} >= 4 && {domPantyCount} >= 2):            
+          - show sex_6: WITH CUT 
+          - domini says: .
+          - hide sex_6: WITH CUT    
+        - if ({domKink} >= 4 && {domPantyCount} >= 3):         
+          - show sex_7: WITH CUT 
+          - domini says: .
+          - hide sex_7: WITH CUT
+        - if ({domKink} >= 4 && {domPantyCount} >= 4):         
+          - show sex_8: WITH CUT 
+          - domini says: .
+          - hide sex_8: WITH CUT 
+        - if ({domKink} >= 5 ):          
+          - show sex_10: WITH CUT 
+          - domini says: .
+          - hide sex_10: WITH CUT  
+          - show sex_10: WITH CUT 
+          - domini says: .
+          - hide sex_10: WITH CUT            
       - Let's call it a day:
         - show domini: sad
         - show blush: blush_1 AT LEFT WITH CUT 
@@ -671,51 +1513,75 @@ Homework:
   - show dorm_Room: WITH CUT
   - show domini: AT LEFT WITH CUT
   - var domStamina: 1
+  
   - if ({braVisible} == 0):  
     - var braVisible: "{prevbra}"
     - if ({braVisible} == 1): 
-      - show bra: bra_1 AT LEFT WITH FADE
+      - show bra: bra_1 AT LEFT WITH CUT
     - if ({braVisible} == 2): 
-      - show bra: bra_2 AT LEFT WITH FADE
+      - show bra: bra_2 AT LEFT WITH CUT
     - if ({braVisible} == 3): 
-      - show bra: bra_3 AT LEFT WITH FADE
+      - show bra: bra_3 AT LEFT WITH CUT
     - if ({braVisible} == 4): 
-      - show bra: bra_4 AT LEFT WITH FADE    
+      - show bra: bra_4 AT LEFT WITH CUT    
   - if ({pantyVisible} == 0): 
     - var pantyVisible: "{prevpanty}" 
-    - if ({pantyVisible} == 1 && {panty1} < 1): 
-      - show panty: panty_1 AT LEFT WITH FADE
-    - if ({pantyVisible} == 2 && {panty2} < 1): 
-      - show panty: panty_2 AT LEFT WITH FADE
-    - if ({pantyVisible} == 3 && {panty3} < 1): 
-      - show panty: panty_3 AT LEFT WITH FADE
-    - if ({pantyVisible} == 4 && {panty4} < 1): 
-      - show panty: panty_4 AT LEFT WITH FADE    
+    - if ({pantyVisible} == 1): 
+      - show panty: panty_1 AT LEFT WITH CUT
+    - if ({pantyVisible} == 2): 
+      - show panty: panty_2 AT LEFT WITH CUT
+    - if ({pantyVisible} == 3): 
+      - show panty: panty_3 AT LEFT WITH CUT
+    - if ({pantyVisible} == 4): 
+      - show panty: panty_4 AT LEFT WITH CUT    
   - if ({bottomVisible} == 0): 
     - var bottomVisible: "{prevbottom}"   
     - if ({bottomVisible} == 1): 
-      - show bottom: bottom_1 AT LEFT WITH FADE
+      - show bottom: bottom_1 AT LEFT WITH CUT
     - if ({bottomVisible} == 2): 
-      - show bottom: bottom_2 AT LEFT WITH FADE
+      - show bottom: bottom_2 AT LEFT WITH CUT
     - if ({bottomVisible} == 3): 
-      - show bottom: bottom_3 AT LEFT WITH FADE
+      - show bottom: bottom_3 AT LEFT WITH CUT
     - if ({bottomVisible} == 4): 
-      - show bottom: bottom_4 AT LEFT WITH FADE      
+      - show bottom: bottom_4 AT LEFT WITH CUT     
+      
+      
   - if ({topVisible} == 0): 
     - var topVisible: "{prevtop}"  
   - if ({topVisible} == 1): 
-    - show top: top_1 AT LEFT WITH FADE
+    - show top: top_1 AT LEFT WITH CUT
     - if ({topVisible} == 2): 
-      - show top: top_1_1 AT LEFT WITH FADE
+      - show top: top_1_1 AT LEFT WITH CUT
     - if ({topVisible} == 3): 
-      - show top: top_1_2 AT LEFT WITH FADE
+      - show top: top_1_2 AT LEFT WITH CUT
     - if ({topVisible} == 4): 
-      - show top: top_2 AT LEFT WITH FADE  
+      - show top: top_2 AT LEFT WITH CUT  
     - if ({topVisible} == 5): 
-      - show top: top_3 AT LEFT WITH FADE  
+      - show top: top_3 AT LEFT WITH CUT  
     - if ({topVisible} == 6): 
-      - show top: top_4 AT LEFT WITH FADE     
-
+      - show top: top_4 AT LEFT WITH CUT   
+  
+  - if ({piercingsVisible} == 0): 
+    - hide piercings: WITH CUT    
+  - if ({piercingsVisible} == 1): 
+    - show piercings: piercings_1 AT LEFT WITH CUT
+  - if ({piercingsVisible} == 2): 
+    - show piercings: piercings_2 AT LEFT WITH CUT   
+    
+  - if ({accessoryVisible} == 0): 
+    - hide accessory: WITH CUT    
+  - if ({accessoryVisible} == 1): 
+    - show accessorys: ballgag AT LEFT WITH CUT
+    
+  - if ({pubesVisible} == 0): 
+    - hide pubes: WITH CUT    
+  - if ({pubesVisible} == 1): 
+    - show pubes: pubes_1 AT LEFT WITH CUT
+  - if ({pubesVisible} == 2): 
+    - show pubes: pubes_2 AT LEFT WITH CUT   
+  - if ({pubesVisible} == 3): 
+    - show pubes: pubes_3 AT LEFT WITH CUT     
+    
   
   - if ({braVisible} == 1): 
     - show bra: bra_1 AT LEFT WITH CUT
@@ -727,17 +1593,19 @@ Homework:
     - show bra: bra_4 AT LEFT WITH CUT
 
 
+  - if ({pantyVisible} == 0 || && {domPantyCount} >= 4): 
+    - hide panty: WITH CUT
     
-  - if ({pantyVisible} == 1 && {panty1} < 1): 
+  - if ({pantyVisible} == 1): 
     - show panty: panty_1 AT LEFT WITH CUT
     
-  - if ({pantyVisible} == 2 && {panty2} < 1): 
+  - if ({pantyVisible} == 2): 
     - show panty: panty_2 AT LEFT WITH CUT
     
-  - if ({pantyVisible} == 3 && {panty3} < 1): 
+  - if ({pantyVisible} == 3): 
     - show panty: panty_3 AT LEFT WITH CUT  
     
-  - if ({pantyVisible} == 4 && {panty4} < 1): 
+  - if ({pantyVisible} == 4): 
     - show panty: panty_4 AT LEFT WITH CUT
   
 
@@ -766,6 +1634,8 @@ Homework:
   - if ({topVisible} == 6): 
     - show top: top_4 AT LEFT WITH CUT  
     
+  - domini says: So yeah ... "Homework"? 
+    
   - choice:
     - Watch porn: 
       - if ({domKink} <= 0):
@@ -784,6 +1654,7 @@ Homework:
         - show domini: 
         - domini says: ... Okay. I'll try it out.   
         - var domKink: "{domKink}+1"
+        - scene: NextDay
       - if ({domKink} == 1):
           - show domini: sultry
           - domini says: You know ... I found some really RAUNCHY stuff the other day ...  
@@ -798,6 +1669,7 @@ Homework:
           - text: Whenever, you're ready. I'll be waiting. 
           - show domini: happy
           - domini says: I know I can count on you ...
+          - scene: Homework
       - if ({domKink} == 2):
           - show domini: sultry_2
           - domini says: Okay. Is it weird that I've been into lesbian stuff lately? 
@@ -806,13 +1678,14 @@ Homework:
           - text: Is that some thing you'd want to explore?
           - show domini: 
           - domini says: I'll let you know ...'
-          
+          - scene: Homework
       - if ({domKink} == 3):
           - show domini: sultry_2
           - domini says: Perfect! I had a series that I wanted to ... uhhh ... polish off.    
           - text: Then by all means don't let me hold you up ...
           - show domini: sultry
           - domini says: You're the best ... master
+          - scene: Homework
       - if ({domKink} == 4):
           - show domini: sultry_2
           - domini says: I kinda already do that every night, Babe.  Do you have another idea ... to keep me occupied?       
@@ -824,10 +1697,11 @@ Homework:
         - text: "(Gross? Who knew she was such a prude?)"
         - scene: Homework
       - if ({domKink} == 1):
-        - show domini: 
+        - show domini: sad
         - show blush: blush_1 AT LEFT WITH CUT 
         - domini says: ...
-        - text: Trust me. You'll enjoy the experience and you won't go blind ...        
+        - text: Trust me. You'll enjoy the experience and you won't go blind ...  
+        - show domini: lookingdown_uncomfortable
         - domini says: ... I'll give it a try ...
         - text: Then by all means don't let me hold you up ...
         - var domKink: "{domKink}+1"
@@ -837,20 +1711,21 @@ Homework:
         - show blush: blush_1 AT LEFT WITH CUT 
         - domini says: ... I'll give it a try ...
         - text: Then by all means don't let me hold you up ...
-        - var domKink: "{domKink}+1"      
+        - scene: Homework    
       - if ({domKink} == 3):
           - show domini: sultry
-          - domini says: Is it even homework if you ... have ... so ... much FUN doing it?      
+          - domini says: Is it even homework if you ... have ... so ... much FUN doing it?  
+          - scene: Homework
       - if ({domKink} == 4):
           - show domini: sultry_2
           - domini says: Last time I came "{domMastCount}" times. Wonder if I can break my previous record?
-          - var domMastCount: "Math.floor(Math.random()*3)+10+{domMastCount}"        
+          - var domMastCount: "Math.floor(Math.random()*3)+10+{domMastCount}"   
+          - scene: Homework
     - Masturbate in public: 
       - if ({domKink} < 2):
         - show domini: furious
         - domini says: Are you mad?! What if I get caught?
-        - scene: Homework
-        - scene: Homework      
+        - scene: Homework  
       - if ({domKink} == 2):
         - show domini: 
         - show blush: blush_1 AT LEFT WITH CUT 
@@ -866,12 +1741,14 @@ Homework:
         - text: I like how perverted your mind's becoming ...
         - show domini: sultry
         - domini says: Well that's all thanks to you, Master!
+        - scene: Homework
       - if ({domKink} == 4):
         - show domini: sad
         - domini says: It's a pity you can't help me with my "Homework" ...
         - text: It's important that you do the work yourself, Domani.
         - show domini: sultry
         - domini says: Maybe I'll send you some pictures so you can ... "review" my work?'  
+        - scene: Homework
     - Give me your panties:
       - if ({domKink} < 3):
         - show domini: angry
@@ -881,8 +1758,26 @@ Homework:
         - show domini: angry
         - domini says: But why?
         - text: To make you more aware of your body ... to put more in touch with your sexuality.
-        - domini says: ... okay.      
+        - domini says: ... okay.  
+        - if ({bottomVisible} > 0):
+          - var prevbottom: "{bottomVisible}"
+          - var bottomVisible: 0
+          - hide bottom: WITH FADE         
+        - if ({pantyVisible} > 0):
+          - var prevpanty: "{pantyVisible}"
+          - if ({pantyVisible} == 1): 
+            - var panty1: 1
+          - if ({pantyVisible} == 2): 
+            - var panty2: 1
+          - if ({pantyVisible} == 3): 
+            - var panty3: 1
+          - if ({pantyVisible} == 4): 
+            - var panty4: 1      
+          - var pantyVisible: 0
+          - hide panty: WITH FADE
+        - domini says: ... Here.         
         - var domKink: "{domKink}+1"
+        - var domPantyCount: "{domPantyCount}+1"
         - scene: NextDay
       - if ({domKink} == 4 && {domPantyCount} < 4):
         - show domini: 
@@ -910,7 +1805,8 @@ Homework:
         - domini says: Like what you see? 
         - text: Very much so ... yes.
         - var domPantyCount: "{domPantyCount}+1"
-      - if ({domKink} > 4 && {domPantyCount} >= 4):
+        - scene: NextDay
+      - if ({domKink} >= 4 && {domPantyCount} >= 4):
         - show domini: 
         - domini says: All out of underwear I'm afraid ...
         - text: Oh? Show me ...
@@ -919,12 +1815,23 @@ Homework:
           - var bottomVisible: 0
           - hide bottom: WITH FADE          
         - if ({pantyVisible} > 0):
-          - var prevpanty: "{pantyVisible}"
+          - var prevpanty: 0
           - var pantyVisible: 0
           - hide panty: WITH CUT              
              
-        - domini says: Take a good look Master ...      
-      
+        - domini says: Take a good look Master ... 
+        - scene: Homework
+    - Self Study:        
+      - if ({domKink} < 4):
+        - show domini: sad
+        - text: I dunno come up with something naughty and just do it?
+        - domini says: But I need instruction .... Master .........
+        - scene: Homework
+      - if ({domKink} >= 4 && {domPantyCount} >= 4):
+        - show domini: sultry   
+        - text: So I can do ANYTHING I want?
+        - text: Yes. As long as it's naughty ... come back and tell me about it. 
+        - text: So many possibilities ...
       
       
  
@@ -971,10 +1878,15 @@ NextDay:
     - var pantyVisible: 4
   - if ({panty4} >= 1):
     - var pantyVisible: 0  
+    - var prevpanty: "{pantyVisible}"
     - var domPantyCount: 4
 
   - if ({topVisible} == 6):
     - var braVisible: 0
+    
+  - if ({domKinkHolder} > 0):
+    - var domKinkHolder: 0
+    - var domKink: "{domKink}+1"
   - scene: Training
 
 
