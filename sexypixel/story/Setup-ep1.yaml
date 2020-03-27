@@ -25,20 +25,6 @@ characters:
       climax: assets/characters/Domini_climax.png
       post_climax: assets/characters/Domini_post_climax.png
     
-  piercings:  
-    displayName: pubes
-    speechColour: "#ca90cf"
-    looks:
-      piercings_1: assets/characters/piercings_1.png
-      piercings_2: assets/characters/piercings_2.png
-      
-  accessory:  
-    displayName: pubes
-    speechColour: "#ca90cf"
-    looks:
-      ballgag: assets/characters/ballgag.png  
-
-
   bra:
     displayName: bra
     speechColour: "#ca90cf"
@@ -47,16 +33,6 @@ characters:
       bra_2: assets/characters/bra_2.png
       bra_3: assets/characters/bra_3.png
       bra_4: assets/characters/bra_4.png     
-      
-  
-  pubes:  
-    displayName: pubes
-    speechColour: "#ca90cf"
-    looks:
-      pubes_1: assets/characters/pubes_1.png
-      pubes_2: assets/characters/pubes_2.png
-      pubes_3: assets/characters/pubes_3.png
-
       
   panty:  
     displayName: panty
@@ -118,7 +94,6 @@ cgs:
   kiss_4: assets/cg/kiss_4.png
   grope_1: assets/cg/grope_1.png
   grope_2: assets/cg/grope_2.png  
-  grope_3: assets/cg/grope_3.png  
   bj_1: assets/cg/bj_1.png  
   bj_2: assets/cg/bj_2.png  
   bj_3: assets/cg/bj_3.png  
@@ -139,18 +114,6 @@ cgs:
   sex_9: assets/cg/sex_9.png  
   sex_10: assets/cg/sex_10.png  
   sex_11: assets/cg/sex_11.png  
-  
-  kink_1: assets/gui/kink_1.png  
-  kink_2: assets/gui/kink_2.png 
-  kink_3: assets/gui/kink_3.png 
-  kink_4: assets/gui/kink_4.png 
-  kink_4_1: assets/gui/kink_4_1.png  
-  kink_4_2: assets/gui/kink_4_2.png 
-  kink_4_3: assets/gui/kink_4_3.png 
-  kink_4_4: assets/gui/kink_4_4.png
-  kink_5: assets/gui/kink_5.png  
-  kink_5_1: assets/gui/kink_5_1.png 
-  kink_6: assets/gui/kink_6.png 
 
   
   

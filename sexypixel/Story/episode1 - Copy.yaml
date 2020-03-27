@@ -1,0 +1,807 @@
+
+start:
+  - effect SHOWTITLE: 
+    title: Monday
+  - var braVisible: 1 
+  - var pantyVisible: 1 
+  - var bottomVisible: 1 
+  - var topVisible: 1 
+  - var domKinkThresh: 24
+  - var domKink: 1
+  - var domKinkHolder: 0
+  - var domArousal: 1 
+  - var domOrgasmCount: 0 
+  - var domFirstKiss: 0
+  - var domStamina: 3
+  - var domStaminaMax: 3
+  - var domMastCount: "Math.floor(Math.random()*3)+10" 
+  
+  - var prevbra: 0 
+  - var prevpanty: 0 
+  - var prevtop: 0 
+  - var prevbottom: 0 
+  
+  - var day: 2
+  - var yourArousal: 0 
+  
+  - show uni_outside: WITH FADE
+  - text: I've finally made it. 
+  - show uni_inside: WITH FADE
+  - text: I'm attending S**F*rd University, the most prestigious University in the country!
+  - show dorm_Room: WITH FADE
+  - text: ... And somehow I've managed to get myself banned from the first MONTH of classes ...
+  - text: Due to my USELESS, IDIOTIC uncle screwing up my tuition payment. 
+  - text: ... I'm going to be behind everyone else.
+  - text: '[KNOCK! KNOCK!]'
+  - domini says: Yo! I'm respecting your privacy by knocking but asserting my authority as your BEST FRIEND and coming in anyway ...
+  - show domini: AT CENTER WITH CUT
+  - show bra: bra_1 AT CENTER WITH CUT
+  - show panty: panty_1 AT CENTER WITH CUT  
+  - show bottom: bottom_2 AT CENTER WITH CUT
+  - show top: top_1 AT CENTER WITH CUT  
+  - domini says: Dude, are you STILL stressing over classes?
+  - domini says: You're the only person I know who is sad that they can't go to class ...
+  - text: That's easy for you to say ... you KNOW how much I sacrificed to get here ...
+  - show domini: sad
+  - domini says: I know man ... just chill though. 
+  - show domini:
+  - domini says: I came by to keep you company.
+  - domini says: You only got to wait a bit until they sort things out anyway ...
+  - domini says: Maybe check with the Admin Office on Friday?
+  - show domini: happy
+  - domini says: With that out of the way ..
+  - domini says: Let's watch a movie! I got ArmyCraft! 
+  - domini says: I love those BEEFY Orcs ...
+  - text: TCH! ... Fine.
+  - show lead_1:  WITH CUT
+  - text: "(This is Domini Suarez. She's been my friend since forever ...)"
+  - text: "(She followed me all the way daycare through to highschool!)"
+  - text: "(And ... Yes... I know she's incredibly HOT ...)"  
+  - hide lead_1: WITH CUT
+  - show lead_2: WITH CUT
+  - domini says: Welp! That was fun wasn't it?  
+  - domini says: How about another one?  
+  - text: "(Man... sometimes I can't help but stare)"
+  - domini says: Any preferences?  
+  - text: "(I just want to bury my face in that warm ... )"  
+  - domini says: What do you think about 'Bad Dudes 3'?  
+  - text: "(Firm ... )" 
+  - domini says: Hello? Dude?
+  - hide lead_2: WITH CUT
+  - show lead_3: WITH CUT
+  - domini says: ???
+  - hide lead_3: WITH CUT
+  - show lead_4: WITH CUT
+  - domini says: ...!
+  - hide lead_4: WITH CUT
+  - show lead_5: WITH CUT
+  - domini says: ...
+  - hide lead_5: WITH CUT  
+  - show lead_6: WITH CUT 
+  - domini says: HEY!
+  - hide lead_6: WITH CUT  
+  - text: "(CRAP! Did she see me staring?)"
+  - text: Uhh ... Yeah?
+  - text: "(Smooth, real smooth ...)"
+  - show domini: happy
+  - domini says: You know we've known each a REALLY long time ...
+  - text: For ages, really ...
+  - show domini: unsure
+  - domini says: And I don't think there's anyone else I trust more ...
+  - show domini: 
+  - text: ... You're weirding me out a bit, Dom ...
+  - text: "(Where is she going with this?)" 
+  - show blush: blush_1 AT CENTER WITH FADE  
+  - domini says: Also my brothers are hundreds of miles away from us ...
+  - text: Thank God! I hate those jerks.
+  - text: "(And they hate me too ... for some strange reason)"  
+  - domini says: So ... IF you wanted to EXPERIMENT ... you know ... with STUFF ... 
+  - domini says: I wouldn't be against it if it was with you ...
+  - domini says: That is if you want to ...
+  - domini says: ... We can call it "Stress Relief".
+  - text: Wait ... what!?
+  - text: What does 'STUFF' mean?
+  - show domini: unsure
+  - domini says: Anything you want ...   
+  - domini says: Like I said ... I trust you.
+  - scene: s1
+  
+  
+
+s1:
+  - show domini: AT CENTER WITH CUT
+  - show bra: bra_1 AT CENTER WITH CUT
+  - show panty: panty_1 AT CENTER WITH CUT  
+  - show bottom: bottom_2 AT CENTER WITH CUT
+  - show top: top_1 AT CENTER WITH CUT 
+  - show blush: blush_1 AT CENTER WITH CUT  
+  - text: So I can say things like ...
+  - choice:
+    - Let's make out:
+      - domini says: ... And I'll say ... sure.
+      - show domini: puckerup
+      - text: '(This is ACTUALLY happening!!!)'
+      - text: '[YOU ... GOT AN ERECTION]'
+      - show domini: lookingdown_surprised
+      - domini says: ...!
+      - text: ...
+      - domini says: ......
+      - show domini: lookingdown_uncomfortable
+      - domini says: Woah! That's ... That's a LARGE bulge ...
+      - domini says: ...
+      - domini says: ....
+      - domini says: ......
+      - show domini:
+      - domini says: And Damn would you look at the time ...
+      - show domini: happy
+      - domini says: Uhh ... It's getting late ... Gotta run ... See you later!
+      - hide domini: WITH CUT
+      - hide bra: WITH CUT
+      - hide panty: WITH CUT
+      - hide bottom: WITH CUT
+      - hide top: WITH CUT
+      - hide blush: WITH CUT     
+      - text: ...
+      - text: What just happened ... ?
+      - text: '[YOU ... STILL GOT AN ERECTION]'
+      - text: SIGH ... What do I do with THIS now?
+      - choice:
+        - Masturbate:
+          - scene: s2
+        - Go to Sleep:
+          - scene: s2
+
+s2:
+
+  - effect SHOWTITLE: 
+    title: Tuesday
+  - show dorm_Room: WITH FADE
+  - text: "* SIGH *"
+  - text: Access to an almost limitless supply of educational resources ... but I'm still banned from the library ...
+  - text: How am I supposed to LEARN anything?
+  - text: '[KNOCK! KNOCK! KNOCK!]'
+  - domini says: Hey ... Can I come in?
+  - text: "(What does SHE want?)"
+  - choice:
+    - Let her in:  
+      - var braVisible: 1 
+      - var pantyVisible: 1 
+      - var bottomVisible: 1 
+      - var topVisible: 2     
+      - show domini: sad AT CENTER WITH CUT
+      - show bra: bra_1 AT CENTER WITH CUT
+      - show panty: panty_1 AT CENTER WITH CUT  
+      - show bottom: bottom_1 AT CENTER WITH CUT
+      - show top: top_1_1 AT CENTER WITH CUT  
+      - domini says: Hi.
+      - domini says: So look about yesterday ...
+      - domini says: I didn't mean to lead you on ...
+      - domini says: Apparently, I have some hang ups around ... STUFF
+      - domini says: How can I make it up to you?
+      - choice:
+        - All is forgiven:
+          - show domini:
+          - domini says: Really!?
+          - text: "(... And thus I walk myself back to the friendzone)"
+          - show domini: sad
+          - domini says: You know I meant what I said yesterday ...
+          - domini says: I do TRUST you ... 
+          - domini says: And I am INTERESTED ... in STUFF ... with you.
+          - domini says: And I am INTERESTED ... in STUFF ... with you.
+          - domini says: It's just that between my Father ... and my Brothers I've never really had a chance to explore myself y'know?
+          - domini says: So I'm nervous and kinda skittish ...
+          - text: We can go as slow as you need ...
+          - text: "(I still can't believe this is happening ...)"
+          - show domini: happy
+          - domini says: Yay!
+          - show domini:
+          - domini says: And you're okay with TRAINING me to get over my ... anxiousness?
+          - choice:
+            - Sure!:
+              - show domini: sultry
+              - domini says: Okay, I guess that officially makes you "Master" ...
+              - show blush: blush_1 AT CENTER WITH CUT
+              - text: "* GULP! *"
+              - text: '[YOU ... GOT AN ERECTION]'
+              - show domini: lookingdown_surprised
+              - domini says: ... uh!
+              - show domini:
+              - domini says: I won't run this time ... I promise
+              - hide dorm_Room: WITH CUT
+              - scene: Training
+            - Train?:
+              - show domini: happy
+              - domini says: I know you're into that kinda stuff ... I found your porn stash years ago ... remember? 
+              - show domini: sultry
+              - domini says: So ... what do you say, "Master" ...?
+              - show blush: blush_1 AT CENTER WITH CUT
+              - text: "* GULP! *"
+              - text: '[YOU ... GOT AN ERECTION]'
+              - show domini: lookingdown_surprised
+              - domini says: ... uh!
+              - show domini:
+              - domini says: I won't run this time ... I promise
+              - hide dorm_Room: WITH CUT
+              - scene: Training
+        - Show me your tits!:
+          - domini says: What? NO!
+          - text: Relax! I was just joking!
+          - text: "(... It wasn't a joke)"
+          - show domini: sad
+          - domini says: You know I meant what I said yesterday ...
+          - domini says: I do TRUST you ... 
+          - domini says: And I am INTERESTED ... in STUFF ... with you.
+          - domini says: It's just that between my Father ... and my Brothers I've never really had a chance to explore myself y'know?
+          - domini says: So I'm nervous and kinda skittish ...
+          - text: We can go as slow as you need ...
+          - text: "(I still can't believe this is happening ...)"
+          - show domini: happy
+          - domini says: Yay!
+          - show domini:
+          - domini says: And you're okay with TRAINING me to get over my ... anxiousness?
+          - choice:
+            - Sure!:
+              - show domini: sultry
+              - domini says: Okay, I guess that officially makes you "Master" ...
+              - show blush: blush_1 AT CENTER WITH CUT
+              - text: "* GULP! *"
+              - text: '[YOU ... GOT AN ERECTION]'
+              - show domini: lookingdown_surprised
+              - domini says: ... uh!
+              - show domini:
+              - domini says: I won't run this time ... I promise
+              - hide dorm_Room: WITH CUT
+              - scene: Training
+            - Train?:
+              - show domini: happy
+              - domini says: I know you're into that kinda stuff ... I found your porn stash years ago ... remember? 
+              - show domini: sultry
+              - domini says: So ... what do you say, "Master" ...?
+              - show blush: blush_1 AT CENTER WITH CUT
+              - text: "* GULP! *"
+              - text: '[YOU ... GOT AN ERECTION]'
+              - show domini: lookingdown_surprised
+              - domini says: ... uh!
+              - show domini:
+              - domini says: I won't run this time ... I promise
+              - hide dorm_Room: WITH CUT
+              - scene: Training        
+
+
+Training:
+  - show dorm_Room: WITH CUT
+  - show domini: AT LEFT WITH CUT
+  
+  - if ({braVisible} == 0): 
+    - hide bra: WITH CUT    
+  - if ({braVisible} == 1): 
+    - show bra: bra_1 AT LEFT WITH CUT
+  - if ({braVisible} == 2): 
+    - show bra: bra_2 AT LEFT WITH CUT
+  - if ({braVisible} == 3): 
+    - show bra: bra_3 AT LEFT WITH CUT
+  - if ({braVisible} == 4): 
+    - show bra: bra_4 AT LEFT WITH CUT
+
+  - if ({pantyVisible} == 0): 
+    - hide panty: WITH CUT  
+  - if ({pantyVisible} == 1): 
+    - show panty: panty_1 AT LEFT WITH CUT
+  - if ({pantyVisible} == 2): 
+    - show panty: panty_2 AT LEFT WITH CUT
+  - if ({pantyVisible} == 3): 
+    - show panty: panty_3 AT LEFT WITH CUT
+  - if ({pantyVisible} == 4): 
+    - show panty: panty_4 AT LEFT WITH CUT
+  
+  - if ({bottomVisible} == 0): 
+    - hide bottom: WITH CUT    
+  - if ({bottomVisible} == 1): 
+    - show bottom: bottom_1 AT LEFT WITH CUT
+  - if ({bottomVisible} == 2): 
+    - show bottom: bottom_2 AT LEFT WITH CUT
+  - if ({bottomVisible} == 3): 
+    - show bottom: bottom_3 AT LEFT WITH CUT
+  - if ({bottomVisible} == 4): 
+    - show bottom: bottom_4 AT LEFT WITH CUT    
+    
+  - if ({topVisible} == 0): 
+    - hide top: WITH CUT    
+  - if ({topVisible} == 1): 
+    - show top: top_1 AT LEFT WITH CUT
+  - if ({topVisible} == 2): 
+    - show top: top_1_1 AT LEFT WITH CUT
+  - if ({topVisible} == 3): 
+    - show top: top_1_2 AT LEFT WITH CUT
+  - if ({topVisible} == 4): 
+    - show top: top_2 AT LEFT WITH CUT  
+  - if ({topVisible} == 5): 
+    - show top: top_3 AT LEFT WITH CUT  
+  - if ({topVisible} == 6): 
+    - show top: top_4 AT LEFT WITH CUT     
+
+      
+
+    
+  - if ({domFirstKiss} == 0 && {domArousal} >= 100):
+    - show domini: post_climax
+    - show blush: blush_1 AT LEFT WITH CUT 
+    - domini says: That ... was intense! 
+    - show domini: sultry_3
+    - domini says: Who knew that ... haaah ... you were so good at ... this? 
+    - show domini:      
+    - text: "(I sure didn't ...)"
+    - var domArousal: 1
+    - var domFirstKiss: 1    
+  - else:
+    - if ({domArousal} <= 10 && {domArousal} >= 5):  
+      - show domini: sultry
+      - show blush: blush_1 AT LEFT WITH CUT 
+      - domini says: Phew! Kinda warm in here, right?
+    - if ({domArousal} > 10):  
+      - show blush: blush_1 AT LEFT WITH CUT 
+      - show domini: sultry_2  
+      - domini says: hah ....
+    - if ({domArousal} > 25):  
+      - show blush: blush_2 AT LEFT WITH CUT 
+      - show domini: sultry_3 
+    - if ({domArousal} > 50):  
+      - show blush: blush_3 AT LEFT WITH CUT 
+      - show domini: sultry_3 
+      - domini says: Why am I so sensitive .... EVERYWHERE?
+    - if ({domArousal} > 95):  
+      - domini says: I’m dripping wet ... Master.      
+    - if ({domArousal} >= 100): 
+      - show blush: blush_3 AT LEFT WITH CUT 
+      - show domini: sultry_3
+      - domini says: Guh!!!
+      - show domini: climax
+      - var rand: "Math.floor(Math.random()*3)"  
+      - if ({rand} == 0):
+        - domini says: OooOoooOooOoooOooOoooOooOoooOooOoooHhhhhHhhhhHhhhhHhhhh!!!
+        - domini says: Myyyyyyyyyyyyyyyyyyy GaaaAAAAawwwwwd!!!      
+      - if ({rand} == 1):
+        - domini says: OOoooooooh-my-fucking-god!!!!!!!!     
+      - if ({rand} == 2):
+        - domini says: Holy shit, I’m cummmmmmmmmmmmmmmmmmmmmiiiiiing!!!!
+      - show domini: post_climax
+      - if ({domOrgasmCount} == 0): 
+        - domini says: Was ... that an orgasm?
+        - domini says: That was ... is that SUPPOSED to happen?
+        - domini says: ... can you ... can you do it again?
+      - else:
+        - var rand: "Math.floor(Math.random()*2)"  
+        - if ({rand} == 0): 
+          - if ({domKink} > 5): 
+            - domini says: FWUAH!!!
+            - domini says: I'm seeing stars ... Am I supposed to see stars?
+            - domini says: If you keep this up you'll ruin me, Master ...  
+          - if ({domKink > 5 && {domKink} <= 10): 
+            - domini says: haaaaaaaaaaaah .....
+          - if ({domKink > 10): 
+            - show domini: sultry_2 
+            - domini says: That was delicious, Master ...
+            - domini says: If I have your cock ... I don't need anything else ...'       
+        - if ({rand} == 1): 
+          - if ({domKink} > 5): 
+            - domini says: hah ... hah ....
+            - domini says: I think ... I think I love your cock ... 
+          - if ({domKink > 5 && {domKink} <= 10): 
+            - domini says: AaaaaAAAaaaaaaaayeeeeeeeeeEEEEEE!!!
+            - domini says: ... I just wanna be ... your sex slut.
+          - if ({domKink > 10): 
+            - show domini: sultry_3 
+            - domini says: Again ... I need to feel this again, Master ...           
+      - var domKink: "{domKink}+3"
+      - var domOrgasmCount: "{domOrgasmCount}+1" 
+      - var domArousal: 1  
+      - scene: Training
+      
+  - if ({domStamina} <= 0):      
+    - var domStamina: 3
+    - show domini: sad
+    - domini says: I'm getting a little tired ...
+    - show domini: sultry
+    - domini says: But before I go ... do you have some "Homework" for me to do?    
+    - scene: Homework
+    
+  - choice:
+    - Strip for me:
+      - var domStamina: "{domStamina}-1"
+      
+      - if ({domKink} == 1 && {topVisible} > 0):
+        - show domini: unsure
+        - domini says: Um ... right away .. Uhh ... Master.
+        - domini says: "(Man, that feels weird to say out loud ...)"
+      - if ({domKink} == 2 && {bottomVisible} > 0):
+        - show domini: happy
+        - domini says: Sure thing, Master.      
+      - if ({domKink} == 3 && {braisible} > 0):
+        - show domini: 
+        - domini says: What Master wants. Master gets... 
+      - if ({domKink} >= 4 && {pantyVisible} > 0):
+        - show domini: sultry
+        - domini says: Of course!        
+      
+      - if ({topVisible} > 0 && {domKink} >= 1):
+        - var domArousal: "{domArousal}+1" 
+        - var prevtop: "{topVisible}"
+        - var topVisible: 0
+        - hide top: WITH FADE
+      - if ({topVisible} == 0 && {domKink} <= 1):
+        - show domini:
+        - domini says: I hope this is enough. 
+        - domini says: I don't think I'm ready to show more ... 
+        - show domini: sultry
+        - domini says: ... Yet
+        
+        
+      - if ({bottomVisible} > 0 && {domKink} >= 2):
+        - var domArousal: "{domArousal}+1" 
+        - var prevbottom: "{bottomVisible}"
+        - var bottomVisible: 0   
+        - hide bottom: WITH FADE
+      - if ({bottomVisible} == 0 && {domKink} <= 2):
+        - show domini: sultry
+        - domini says: I have to leave a little to the imagination now don't I?         
+        
+      - if ({braVisible} > 0 && {domKink} >= 3):
+        - var domArousal: "{domArousal}+1" 
+        - var prevbra: "{braVisible}"
+        - var braVisible: 0 
+        - hide bra: WITH FADE
+      - if ({braVisible} == 0 && {domKink} <= 3):
+        - domini says: What do you think of these puppies?       
+        
+      - if ({pantyVisible} > 0 && {domKink} >= 4):
+        - var domArousal: "{domArousal}+1" 
+        - var pantybottom: "{pantyVisible}"
+        - var pantyVisible: 0
+        - hide panty: WITH FADE
+      - if ({pantyVisible} == 0 && {domKink} <= 4):
+        - show domini: sultry
+        - domini says: Clothes are overrated aren't they, Master?     
+
+      - if ({topVisible} == 0 && {bottomVisible} == 0 && {braVisible} == 0 && {pantyVisible} == 0 && {domKink} > 4):
+        - show domini: sultry
+        - domini says: All out of clothes now, Master. What do you want to do next? 
+        
+    - Let's make out:
+      - var domStamina: "{domStamina}-1"
+      - if ({domFirstKiss} == 0):
+        - show domini: unsure
+        - domini says: ... Are you sure? 
+        - show domini:
+        - domini says: Okay, here we go ... 
+        - show domini: puckerup    
+        - domini says: Our first kiss. 
+        - var domArousal: 100
+        - show kiss_1: WITH CUT
+        - domini says: Mmmwah!
+        - hide kiss_1: WITH CUT
+        - show kiss_2: WITH CUT
+        - domini says: Mmpf!
+        - hide kiss_2: WITH CUT
+        - show kiss_3: WITH CUT        
+        - domini says: Haaaaah! 
+        - hide kiss_3: WITH CUT
+      - else:  
+        - if ({domKink} >= 1):
+          - var domArousal: "{domArousal}+2"
+          - show kiss_1: WITH CUT
+          - var rand: "Math.floor(Math.random()*2)"  
+          - if ({rand} == 0):           
+            - domini says: Mwaaah!
+          - if ({rand} == 1): 
+            - domini says: Umpff!
+          - hide kiss_1: WITH CUT
+        - if ({domKink} >= 2):
+          - var domArousal: "{domArousal}+2"
+          - show kiss_2: WITH CUT
+          - var rand: "Math.floor(Math.random()*2)"  
+          - if ({rand} == 0):           
+            - domini says: It's not fair ....
+          - if ({rand} == 1): 
+            - domini says: Why does your tongue taste so good? 
+          - hide kiss_2: WITH CUT  
+        - if ({domKink} >= 3):
+          - var domArousal: "{domArousal}+2"
+          - show kiss_3: WITH CUT
+          - domini says: Haaaaah!
+          - var rand: "Math.floor(Math.random()*3)"  
+          - if ({rand} == 0):           
+            - domini says: This feels so amazing ... I never want to stop.
+          - if ({rand} == 1): 
+            - domini says: I want to feel those lips all over me.   
+          - if ({rand} == 2): 
+            - domini says: Fwaaah! ... I'm addicted ... to your lips!                
+          - domini says: More!
+          - hide kiss_3: WITH CUT         
+      
+    - Let me grope you:
+      - var domStamina: "{domStamina}-1"
+      - var domArousal: "{domArousal}+1" 
+      - show grope_1: WITH CUT
+      - domini says: ... 
+      - hide grope_1: WITH CUT 
+        
+    - Give me a blowjob:
+      - var domStamina: "{domStamina}-1"
+      - show bj_1: WITH CUT
+      - text: . 
+      - hide bj_1: WITH CUT 
+    - Let's have sex:
+      - var domStamina: "{domStamina}-1"
+      - show sex_2: WITH CUT 
+      - text: Are you sure?  
+      
+      - hide sex_2: WITH CUT 
+      - show sex_3: WITH CUT 
+      - domini says: Yes ... just be GENTLE ...
+      - hide sex_3: WITH CUT 
+      - show sex_4: WITH CUT
+      - text: so .. warm!
+      - domini says: Unf!
+      - domini says: Slow ... down ... a bit ...
+      - domini says: FWAH!!!!
+      - hide sex_4: WITH CUT 
+      - show sex_11: WITH CUT
+      - domini says: So this is sex ...
+      - domini says: I never knew it would feel ... so 
+      - domini says: Tasty ... 
+      - hide sex_11: WITH CUT 
+  - scene: Training
+
+Homework:
+  - show dorm_Room: WITH CUT
+  - show domini: AT LEFT WITH CUT
+  
+  - if ({braVisible} == 0):  
+    - var braVisible: "{prevbra}"
+  - if ({pantyVisible} == 0): 
+    - var pantyVisible: "{prevpanty}" 
+  - if ({bottomVisible} == 0): 
+    - var bottomVisible: "{prevbottom}"    
+  - if ({topVisible} == 0): 
+    - var topVisible: "{prevtop}"    
+
+  
+  - if ({braVisible} == 1): 
+    - show bra: bra_1 AT LEFT WITH CUT
+  - if ({braVisible} == 2): 
+    - show bra: bra_2 AT LEFT WITH CUT
+  - if ({braVisible} == 3): 
+    - show bra: bra_3 AT LEFT WITH CUT
+  - if ({braVisible} == 4): 
+    - show bra: bra_4 AT LEFT WITH CUT
+
+
+    
+  - if ({pantyVisible} == 1): 
+    - show panty: panty_1 AT LEFT WITH CUT
+  - if ({pantyVisible} == 2): 
+    - show panty: panty_2 AT LEFT WITH CUT
+  - if ({pantyVisible} == 3): 
+    - show panty: panty_3 AT LEFT WITH CUT
+  - if ({pantyVisible} == 4): 
+    - show panty: panty_4 AT LEFT WITH CUT
+  
+
+    
+  - if ({bottomVisible} == 1): 
+    - show bottom: bottom_1 AT LEFT WITH CUT
+  - if ({bottomVisible} == 2): 
+    - show bottom: bottom_2 AT LEFT WITH CUT
+  - if ({bottomVisible} == 3): 
+    - show bottom: bottom_3 AT LEFT WITH CUT
+  - if ({bottomVisible} == 4): 
+    - show bottom: bottom_4 AT LEFT WITH CUT    
+    
+
+       
+  - if ({topVisible} == 1): 
+    - show top: top_1 AT LEFT WITH CUT
+  - if ({topVisible} == 2): 
+    - show top: top_1_1 AT LEFT WITH CUT
+  - if ({topVisible} == 3): 
+    - show top: top_1_2 AT LEFT WITH CUT
+  - if ({topVisible} == 4): 
+    - show top: top_2 AT LEFT WITH CUT  
+  - if ({topVisible} == 5): 
+    - show top: top_3 AT LEFT WITH CUT  
+  - if ({topVisible} == 6): 
+    - show top: top_4 AT LEFT WITH CUT  
+    
+
+  - choice:
+    - You should watch more porn:
+      
+      - if ({domKink} == 1):
+        - show domini: sad
+        - domini says: Uhh ... Sure, why not? ... I'm not really into that type of stuff though ...
+        - show domini:        
+      - if ({domKink} >= 2):
+        - show domini: sultry
+        - var rand: "Math.floor(Math.random()*4)"  
+        - if ({rand} == 0):        
+          - show domini: sultry
+          - domini says: You know ... I found some really RAUNCHY stuff the other day ...
+          - show domini:  
+        - if ({rand} == 1):        
+          - show domini: sultry
+          - domini says: Okay. Is it weird that I've been into lesbian stuff lately?
+          - show domini:  
+        - if ({rand} == 2):        
+          - show domini: sultry_2
+          - domini says: I had a series that I wanted to ... uhhh ... polish off.
+          - show domini:  
+        - if ({rand} == 3):        
+          - show domini: sultry
+          - domini says: You always have the best ideas, Master. 
+          - show domini:  
+      - var domKink: "{domKink}+1"
+        
+    - You should touch yourself more:
+      - var domArousal: "{domArousal}+(10*{domKink})"
+      - if ({domKink} == 1):
+        - show domini: sad
+        - domini says: Eww ...
+        - show domini: angry
+        - text: Trust me. It'll help while we explore during "Stress Relief" ...
+        - show domini:
+        - domini says: Fine! I TRUST you and your perverted little mind ...
+      - if ({domKink} >= 2):
+        - show domini: sultry
+        - var rand: "Math.floor(Math.random()*4)"  
+        - if ({rand} == 0):        
+          - show domini: sultry
+          - domini says: Is it even homework if you ... have ... so ... much FUN doing it?
+          - show domini:  
+        - if ({rand} == 1):        
+          - show domini: sultry_3
+          - domini says: Last time I came "{domMastCount}" times. Wonder if I can break my previous record?
+          - var domMastCount: "Math.floor(Math.random()*3)+10+{domMastCount}"  
+          - show domini:  
+        - if ({rand} == 2):        
+          - show domini: happy
+          - domini says: Yay! I had a series that I wanted to ... uhhh ... polish off.
+          - show domini:  
+        - if ({rand} == 3):        
+          - show domini: sad
+          - domini says: It's a pity you can't help me with my "Homework" ...
+          - text: It's important that you do the work yourself, Domani.
+          - show domini: sultry
+          - domini says: Maybe I'll send you some pictures so you can ... "review" my work?'
+          - text: That can be arranged ...
+          - show domini:   
+  - scene: NextDay
+  
+NextDay:
+  - var day: "{day}+1"
+  - if ({day} == 1):
+    - effect SHOWTITLE: 
+      title: Monday
+  - if ({day} == 2):
+    - effect SHOWTITLE: 
+      title: Tuesday  
+  - if ({day} == 3):
+    - effect SHOWTITLE: 
+      title: Wednesday 
+  - if ({day} == 4):
+    - effect SHOWTITLE: 
+      title: Thursday
+  - if ({day} == 5):
+    - effect SHOWTITLE: 
+      title: Friday  
+  - if ({day} == 6):
+    - effect SHOWTITLE: 
+      title: Saturday 
+  - if ({day} == 7):
+    - effect SHOWTITLE: 
+      title: Sunday 
+    - var day: 1
+  - var braVisible: "Math.floor(Math.random()*2)+1"
+  - var pantyVisible: "Math.floor(Math.random()*3)+1"
+  - var bottomVisible: "Math.floor(Math.random()*3)+1" 
+  - var topVisible: "Math.floor(Math.random()*7)+1" 
+  - var topVisible: 6
+  
+
+  - if ({topVisible} == 6):
+    - var braVisible: 0
+  - scene: Training
+
+
+home: 
+  - call homeScreen:       
+  
+end:
+  - effect ROLLINGCREDITS:
+    endGame: true
+    text:
+      - RenJS developed by
+      - lunafromthemoon
+      - null
+      - Inspired by Ren'Py
+      - Powered by PhaserJS
+      - null
+      - null      
+      - written by
+      - Glen Henry
+      - null
+      - edited by
+      - Glen Henry
+      - null
+      - background art and cgs by
+      - Glen Henry
+      - null
+      - Vectorpocket   
+      - null
+      - Sergey Kandakov  
+      - null
+      - 0melapics        
+      - null      
+      - music by
+      - Revolution Void
+      - "'Effects of Elevation'"
+      - "'Someone Elses Memories'"   
+      - null  
+      - Loyalty Freak Music
+      - "'Chillin with a drink at the club'"
+      - "'Dirty shoes blues'"
+      - "'Monarch of the street'"
+      - "'Walking Shoes'"
+      - "'Traveling in your mind'"
+      - "'Talk to me'"
+      - null
+      - Art of Escapism 
+      - "'Dont Feel (So Low)'"     
+      - null
+      - null      
+      - Thanks for playing
+      - Grimm and Tonic 
+      - null
+      - More to come soon
+      - null
+  - call homeScreen:  
+
+   
+
+      
+      
+
+
+
+      
+
+
+
+
+      
+      
+
+
+
+
+      
+
+
+
+      
+
+
+
+
+      
+
+
+
+
+      
+
+
+
+      
+
+
+
