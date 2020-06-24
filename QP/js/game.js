@@ -103,7 +103,8 @@
             this.monNum = 1;
             var ranRoom = 1
             this.room = []
-            this.party = localStorage.getItem("party");
+            this.party = "10-11-12";
+            
             this.party = this.party.split("-");
 
          
