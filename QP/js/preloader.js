@@ -29,6 +29,11 @@
             this.load.image('stam-used', 'assets/stam-used.png');
           
             this.load.image('armor', 'assets/ArmorIcon.png');
+          
+          
+            this.load.image('attackIcon1', 'assets/attackIcon1.png');
+            this.load.image('attackIcon2', 'assets/attackIcon2.png');
+            this.load.image('attackWarn', 'assets/attackIconWarn.png');
             
             
             this.load.image('logo', 'assets/logo.png');
