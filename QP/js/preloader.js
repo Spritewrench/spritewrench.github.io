@@ -35,6 +35,8 @@
             this.load.image('attackIcon2', 'assets/attackIcon2.png');
             this.load.image('attackWarn', 'assets/attackIconWarn.png');
             
+            this.load.image('emptyBot', 'assets/emptyBot.png');
+          
             
             this.load.image('logo', 'assets/logo.png');
             this.load.image('logo2', 'assets/logo2.png');
@@ -173,6 +175,10 @@
             this.game.load.audio('campFire', ['sound/campFire.ogg']);
             
             this.game.load.audio('eating', ['sound/eating.ogg']);
+          
+            this.game.load.audio('raiseShield', ['sound/zapsplat_warfare_sword_hit_another_then_scrape_release.wav']);
+          
+            
             
             
             

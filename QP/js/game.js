@@ -35,7 +35,7 @@
                 this.attackSound[i] = this.add.audio('attack'+i); 
                 this.spellSound[i] = this.add.audio('spell'+i); 
             }
-            
+            this.shieldSound = this.add.audio("raiseShield"); 
             this.knifeSound = [];
             for(var i = 1; i <= 2;i++){
                 this.knifeSound[i] = this.add.audio('knife'+i); 
@@ -43,20 +43,7 @@
             }     
           
           
-            this.hunter = new Object; 
-            this.hunter.gender = 0;
-            this.hunter.name = "you";
-            this.hunter.hp = 3;
-            this.hunter.attack = 3;
-            this.hunter.defence = 3;
-            this.hunter.dex = 1;
-            this.hunter.dodge = 1;
-            this.hunter.intel = 1;
-            this.hunter.armor = 5; 
-            this.hunter.speed = 4;          
-            this.hunter.stamina = 10;  
-            
-            this.hunter.isBlocking = false;  
+
           
             this.dialougeTimer = 100;
           
@@ -211,13 +198,7 @@
               dist+=250;
             }
             
-            this.armorUI =  this.add.sprite(this.game.width-250, this.game.height-550, 'armor');
-            this.armorUI.width = 250;                
-            this.armorUI.height = 250; 
-            var style = { font: '40pt Muli', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 290 };
-            this.armorStat = this.add.text(this.armorUI.x+(this.armorUI.width/2)+35, this.armorUI.y+(this.armorUI.height/2)+10, "", style);    
-            this.armorStat.anchor.setTo(0.5, 0.5);
-            this.armorStat.text =this.hunter.armor+"/"+this.hero[2].maxArmour;
+
             
           
             this.staminaUI =  this.add.sprite(-25, this.game.height-200, 'staminaUI');
@@ -262,9 +243,29 @@
            
             
             
+            this.hunter = new Object; 
+            this.hunter.gender = 0;
+            this.hunter.name = "you";
+            this.hunter.hp = 3;
+            this.hunter.attack = 3;
+            this.hunter.defence = 3;
+            this.hunter.dex = 1;
+            this.hunter.dodge = 1;
+            this.hunter.intel = 1;
+            this.hunter.armor = this.hero[2].maxArmour; 
+            this.hunter.speed = 4;          
+            this.hunter.stamina = 10; 
+            this.hunter.combo = 1;
+            
+            this.hunter.isBlocking = false;            
           
-          
-
+            this.armorUI =  this.add.sprite(this.game.width-250, this.game.height-550, 'armor');
+            this.armorUI.width = 250;                
+            this.armorUI.height = 250; 
+            var style = { font: '40pt Muli', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 290 };
+            this.armorStat = this.add.text(this.armorUI.x+(this.armorUI.width/2)+35, this.armorUI.y+(this.armorUI.height/2)+10, "", style);    
+            this.armorStat.anchor.setTo(0.5, 0.5);
+            this.armorStat.text =this.hunter.armor+"/"+this.hero[2].maxArmour;
 
             
             this.actionsStat = this.add.bitmapText(x+115, 10, 'minecraftia', '',16);
@@ -539,6 +540,17 @@
 
                 //console.log(i +" "+this.hero[i].exp)
                 this.hero[i].stamina += this.hero[i].speed;
+                
+                if(this.hunter.combo > 1 ){
+                  this.hero[0].tint = 0xff0000;
+                  this.hero[0].comboTimer--; 
+                  if(this.hero[0].comboTimer < 0){
+                    this.hero[0].comboTimer = 0;
+                    this.hunter.combo = 1;
+                    this.hero[0].tint = 0xFFFFFF;
+                  }
+                }
+              
                 if(this.hero[i].role == 2 && this.hunter.armor <= 0){
                   this.hero[i].stamina = 0;
                 }
@@ -1031,6 +1043,8 @@
                                 
                 unit.stamina = 0;
                 unit.actionTimer = 0;
+                var ran = Math.floor(Math.random() * 4)-1;
+                unit.mp = 2 + ran
                 var length = this.actionStats.text.length                   
                 
                 switch(unit.monID){
@@ -1358,6 +1372,9 @@
                     this.hero[unit].speed = 2;
                     this.hero[unit].ability = "Taunt: \nLose "+this.hero[unit].cost+" HP and gain "+50*this.hero[unit].intel*this.hero[unit].level+" threat";
                     this.hero[unit].cost = 1;
+                    this.hero[unit].comboLimit = 2;
+                    this.hero[unit].comboTimer = 0;
+                    this.hero[unit].comboDuration = 400;
                     break;
                 case 11:
                     this.hero[unit].name = "Adam, The Second Blood"
@@ -1385,8 +1402,8 @@
                     this.hero[unit].intel = 1;
                     this.hero[unit].speed = 1;
                     this.hero[unit].ability = "Quicken: \nLose "+this.hero[unit].cost+" HP and gains "+(this.hero[unit].intel*this.hero[unit].level)+" DEX";  
-                    this.hero[unit].maxArmour = 5;
-                    this.hero[unit].cost = 11;
+                    this.hero[unit].maxArmour = 10;
+                    this.hero[unit].cost = 0;
                     break;                    
                 case 20:     
                     this.hero[unit].name = "Zion, The Holy One"
@@ -1623,28 +1640,23 @@
         , onClick: function (unit, pointer) {
           console.log(unit.role)
           console.log(unit.cost)
+          
           if(((this.hunter.stamina-unit.cost)  >= 0 || unit.role == 2) && unit.stamina >= 100){
             
             if( unit.role == 2){
               //this.hunter.stamina -= unit.cost;
             }
             else{
-              this.hunter.stamina -= unit.cost;
+              //this.hunter.stamina -= unit.cost;
             }
             
               
             if(true ){
-                var ran = Math.floor(Math.random() * 4)+1;
-                if(unit.role != 3){
-                    if(!this.attackSound[ran].isPlaying){
-                        this.attackSound[ran].play();
-                    }                    
-                }
-                else{
-                    if(!this.spellSound[ran].isPlaying){
-                        this.spellSound[ran].play();
-                    }                    
-                }
+              
+                
+                
+
+
 
                 
                 unit.width =unit.tarSize+25;
@@ -1663,10 +1675,14 @@
                 ////console.log("Monster hit by "+this.monster.hitBy );   
                 switch(unit.role){
                   case 1:
+                    var ran = Math.floor(Math.random() * 4)+1;
+                    if(!this.attackSound[ran].isPlaying){
+                        this.attackSound[ran].play();
+                    }                     
                     var dodge = Math.floor(Math.random() * (this.monster.dodge));
                     //hero get a bonus to hit
                     var hit = unit.level+Math.floor(Math.random() * (unit.dex))+3;
-                    var attack = unit.attack;
+                    var attack = unit.attack*this.hunter.combo;
                     var damage = Math.round((attack*attack) / (attack + this.monster.defence));
                     //damage cant be reduced lower than 1
                     if(damage <= 0){
@@ -1683,10 +1699,10 @@
                         this.bloodSplatter[ran].width = 100
                         this.bloodSplatter[ran].height = 100
 
-                        var ran3 = Math.floor(Math.random() * 50)-25;
+                        var ran3 = Math.floor(Math.random() * 100)-50;
                         this.bloodSplatter[ran].x = this.monster.x+ran3
 
-                        var ran3 = Math.floor(Math.random() * 50)-25;
+                        var ran3 = Math.floor(Math.random() * 100)-50;
                         this.bloodSplatter[ran].y = this.monster.y+ran3                    
 
                         //critical hit
@@ -1724,15 +1740,15 @@
                             if(this.damageUI[i].alpha <= 0.01){
 
                                 this.damageUI[i].tint = 0xFFFFFF;
-                                this.damageUI[i].fontSize = 32;
+                                this.damageUI[i].fontSize = 120;
                                 if(crit == 1){
-                                    this.damageUI[i].fontSize = 48;
+                                    this.damageUI[i].fontSize = 200;
                                     this.damageUI[i].text  = "CRIT!\n"+damage;
                                 }   
                                 else{
                                   this.damageUI[i].text  = damage;  
                                 }
-
+                              
                                 this.damageUI[i].x = this.bloodSplatter[ran].x;
                                 this.damageUI[i].y = this.bloodSplatter[ran].y;
                                 this.damageUI[i].alpha = 1;
@@ -1767,8 +1783,25 @@
                 
                     unit.y -= 100;
                     unit.stamina = 0;
+                    this.hunter.stamina -= unit.cost*this.hunter.combo;
+                    if(this.hunter.combo >= 1){
+                      this.hero[0].comboTimer = this.hero[0].comboDuration;
+                    }
+                    if( this.hero[0].comboTimer > 0){
+                      this.hunter.combo++;
+                      if(this.hunter.combo > this.hero[0].comboLimit){
+                        this.hunter.combo = 3;
+
+                      }                      
+                    }
+                    
+                    
+
                     break;
                   case 2:
+                      if(!this.shieldSound.isPlaying){
+                          this.shieldSound.play();
+                      }                    
                       if(!this.hunter.isBlocking){
                         this.hunter.isBlocking  = true;
                       }
@@ -1783,15 +1816,19 @@
                       if(this.hunter.armor > this.hero[2].maxArmour){
                         //this.hunter.armor = this.hero[2].maxArmour;
                       }
-                    
+                      this.hunter.combo = 1;
                     break;
                   case 3:
-                      this.hunter.hp++;
+                      unit.loadTexture("emptyBot");
+                      this.hunter.hp = 3;
                       if(this.hunter.hp > 3){
                         this.hunter.hp = 3
                       }
-                    unit.y -= 100;
-                    unit.stamina = 0;
+                      unit.y -= 100;
+                      unit.stamina = 0;
+                      unit.cost = 100;
+                      this.hunter.combo = 1;
+                      this.hunter.stamina -= unit.cost;
                     break;
                     
                 }
