@@ -37,13 +37,7 @@
         this.gold = 0;
         //localStorage.setItem("score", 100)
         this.score = parseInt(localStorage.getItem("score"));
-        
-            this.Coin = this.add.sprite(x-80, y-145, 'locked');
-            this.coinX = this.Coin.x
-            this.Coin.loadTexture('coin');
-            this.Coin.frame = 0;
-            this.Coin.animations.add('spin', [0, 1, 2,3,4,5,6,7], 13, true);
-            this.Coin.animations.play('spin');  
+         
         this.playOnce = 0;
       this.input.onDown.add(this.onDown, this);
         
@@ -70,7 +64,7 @@
             localStorage.setItem("win",0)
         }   
         else{
-            this.titleTxt.text ='Your Party Has Met Its End! \n Score: '+this.score+"\n Gold: "+this.gold;
+            this.titleTxt.text ='You Died!';
         }
         
         if(this.score <= 0){
@@ -85,86 +79,8 @@
             this.gold+=speed;
         }
         var goldString = " Gold: "+this.gold;
-        this.Coin.x = this.coinX-goldString.length-32;
         
-        if (localStorage.getItem("highScore") === null || localStorage.getItem("scoreID") === null) {
-            localStorage.setItem("highScore",localStorage.getItem("score"));
-            this.hScoreTxt.text = "---New High Score: "+localStorage.getItem("score")+"!---"
-                if(navigator.onLine) { // true|false
-                    this.hScoreTxt.text +="\nleaderboard updated"
-                }              
-                if(this.playOnce == 0){
-                    this.levelUpSound.play()
-                    this.playOnce = 1;
-                }
-                if(this.updateLeader <= 0){
-                    this.updateLeader = 1;            
-                var gameName = "questlike"
-                var userName = localStorage.getItem("userID")
-                var gameScore = localStorage.getItem("score"),  
-                result;
-                App42.initialize("1e98e2472f6607e0a71281b8598bbd5e47f895b2cb6bac63eed63b8476c379c9","a538f724c09b10b26091b5b8f47b8fa28037a1c5f501fed2a89099a0c9a8be15");  
-                    var scoreBoardService  = new App42ScoreBoard();     
-                    
-                    scoreBoardService.saveUserScore(gameName,userName,gameScore,{   
-                        success: function(object)  
-                        {
-                            var game = JSON.parse(object);            
-                            result = game.app42.response.games.game;
-                            //console.log("gameName is : " + result.name)          
-                            var scoreList = result.scores.score;          
-                            //console.log("userName is : " + scoreList.userName)          
-                            //console.log("scoreId is : " + scoreList.scoreId)          
-                            //console.log("value is : " + scoreList.value)   
-                            localStorage.setItem("scoreID",scoreList.scoreId)
-                        },
-                        error: function(error) {  
-                            
-                        }    
-                    });   
-                }
 
-        }          
-        else{
-            if(parseInt(localStorage.getItem("highScore")) <= parseInt(localStorage.getItem("score"))  ){
-                localStorage.setItem("highScore",localStorage.getItem("score"));
-                this.hScoreTxt.text = "---New High Score: "+localStorage.getItem("score")+"!---"
-                if(navigator.onLine) { // true|false
-                    this.hScoreTxt.text +="\nleaderboard updated"
-                }                  
-                if(this.playOnce == 0){
-                    this.levelUpSound.play()
-                    this.playOnce = 1;
-                }
-                if(this.updateLeader <= 0){
-                    this.updateLeader = 1;
-                var gameName = "questlike"
-                var userName = localStorage.getItem("userID")
-                var gameScore = localStorage.getItem("score")  
-                var scoreId = localStorage.getItem("scoreID"),    
-                result;
-                App42.initialize("1e98e2472f6607e0a71281b8598bbd5e47f895b2cb6bac63eed63b8476c379c9","a538f724c09b10b26091b5b8f47b8fa28037a1c5f501fed2a89099a0c9a8be15");  
-                    var scoreBoardService  = new App42ScoreBoard();     
-                    
-                    scoreBoardService.editScoreValueById(scoreId,gameScore,{   
-                        success: function(object)  
-                        {
-                            var game = JSON.parse(object);            
-                            result = game.app42.response.games.game;
-                            //console.log("gameName is : " + result.name)          
-                            var scoreList = result.scores.score;          
-                            //console.log("userName is : " + scoreList.userName)          
-                            //console.log("scoreId is : " + scoreList.scoreId)          
-                            //console.log("value is : " + scoreList.value)              
-                        },
-                        error: function(error) {  
-                            
-                        }    
-                    }); 
-                }
-                
-            }
-        }
     },
 
     onDown: function () {

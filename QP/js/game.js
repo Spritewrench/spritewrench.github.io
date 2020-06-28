@@ -240,7 +240,8 @@
             this.monsterstamUIFlash.height = 20; 
             this.monsterstamUIFlash.alpha = 0;
             
-           
+       
+          
             
             
             this.hunter = new Object; 
@@ -255,7 +256,6 @@
             this.hunter.armor = this.hero[2].maxArmour; 
             this.hunter.speed = 4;          
             this.hunter.stamina = 10; 
-            this.hunter.combo = 1;
             
             this.hunter.isBlocking = false;            
           
@@ -323,7 +323,18 @@
             this.monsterhpUI.width = 100;
             this.monsterhpUI.height = 20;
             this.monsterhpUI.tint = 0xb43939               
+            
+            this.monsterstamUIGood = this.add.sprite(this.monster.x-100, this.monster.y+this.monster.height/2, 'bg7');
+            this.monsterstamUIGood.width = 0;
+            this.monsterstamUIGood.height = 20;  
+            this.monsterstamUIBad = this.add.sprite(this.monster.x-100, this.monster.y+this.monster.height/2, 'bg7');
+            this.monsterstamUIBad.width = 0;
+            this.monsterstamUIBad.height = 20;    
+          
+            this.monsterstamArrow = this.add.sprite(this.monster.x-this.monster.width/2, this.monster.y+(this.monster.height/2)-100, 'stamArrow');
+          
             this.setMonster(10,1)
+            
             
             this.monster.target = Math.floor(Math.random() * 3);
        
@@ -481,7 +492,7 @@
                   
                    if(this.hunter.isBlocking ){
                      
-                     this.hunter.stamina -= this.hero[1].cost;
+                     //this.hunter.stamina -= this.hero[1].cost;
                    }
                    else{
                      this.hunter.stamina += 1;
@@ -540,16 +551,7 @@
 
                 //console.log(i +" "+this.hero[i].exp)
                 this.hero[i].stamina += this.hero[i].speed;
-                
-                if(this.hunter.combo > 1 ){
-                  this.hero[0].tint = 0xff0000;
-                  this.hero[0].comboTimer--; 
-                  if(this.hero[0].comboTimer < 0){
-                    this.hero[0].comboTimer = 0;
-                    this.hunter.combo = 1;
-                    this.hero[0].tint = 0xFFFFFF;
-                  }
-                }
+
               
                 if(this.hero[i].role == 2 && this.hunter.armor <= 0){
                   this.hero[i].stamina = 0;
@@ -667,28 +669,10 @@
 
             
             //lose the game
-            if(heroDown >= 3  && this.loseDown == 0){
-                this.loseDown = 1;
-                this.monster.stamina = 0;
-                this.monsterstamUIFlash.alpha = 0;
-                this.battleMusic.fadeOut(1000)
-                this.menuClicked = true;
-                localStorage.setItem("win",0)
-                var loss = this.score/2
-                this.score = this.score/2;
-                if(loss > 0 ){
-                    for(var i = 0; i < 100; i++){
-                            this.damageUI[i].tint = 0xFFFFFF;
-                            this.damageUI[i].fontSize = 32;
-                            this.damageUI[i].text  = "-"+loss;  
-                            
-                            this.damageUI[i].x = this.scoreStats.x;
-                            this.damageUI[i].y = this.scoreStats.y;
-                            this.damageUI[i].alpha = 1;
-                            i = 100;  
-                    }       
-                }
-
+            if(this.hunter.hp <= 0){
+                console.log("LOSE");
+                //localStorage.setItem('state','lose')
+                this.game.state.start('lose');
             }
 
             
@@ -744,24 +728,42 @@
                 }   
                 this.monsterstamUI.y = this.monster.y+(this.monster.height/2)-120
                 this.monsterhpUI.y = this.monster.y+(this.monster.height/2)-150
+                this.monsterstamUIGood.y = this.monster.y+(this.monster.height/2)-120
+                this.monsterstamUIBad.tint = 0xff0000;
+                this.monsterstamUIBad.y = this.monster.y+(this.monster.height/2)-120
                 
                 this.monsterstamUI.x = this.monster.x-this.monster.width/2
-                this.monsterhpUI.x = this.monster.x-this.monster.width/2             
+                this.monsterhpUI.x = this.monster.x-this.monster.width/2   
+                
+                this.monsterstamUIGood.width = this.monster.goodWidth
+                this.monsterstamUIBad.width = this.monster.badWidth                
+                
+                this.monsterstamUIGood.x = this.monster.x-(this.monster.width/2)
+                this.monsterstamUIBad.x = this.monsterstamUIGood.width+100
+                
+                this.monsterstamUIGood.width = this.monster.goodWidth
+                this.monsterstamUIBad.width = this.monster.badWidth
                 
                 this.monsterstamUI.width = (this.monster.stamina/100)*this.monster.tarSize;
+                this.monsterstamArrow.y = this.monster.y+(this.monster.height/2)-90;
+                this.monsterstamArrow.x = this.monsterstamUI.width+90;
+              
+                
+                
                 
                 var hpUI = (this.monster.hp/this.monster.maxhp)*this.monster.tarSize;
                 this.monsterhpUI.width += (hpUI - this.monsterhpUI.width) * 0.05;
                 
                 if(this.monsterstamUI.width > this.monster.tarSize){
-                   this.monsterstamUI.width = this.monster.tarSize;
+                  this.monsterstamUI.width = this.monster.tarSize;
+                  this.monsterstamArrow.x = this.monster.tarSize+90;    
 
                 }
                 //mon stam full flash
                 if(this.monsterstamUIFlash.alpha > 0){
                     this.monsterstamUIFlash.alpha += ( 0- this.monsterstamUIFlash.alpha) * 0.1; 
-                    this.monsterstamUIFlash.width+=2;
-                    this.monsterstamUIFlash.height+=2;
+                    this.monsterstamUIFlash.width+=4;
+                    this.monsterstamUIFlash.height+=4;
 
                 }
 
@@ -1037,7 +1039,7 @@
                 //this.monster.target = this.selectTarget();
             }
             else{
-                this.badAbility.play();
+                //this.badAbility.play();
                 this.monster.width =this.monster.tarSize+10;
                 this.monster.height =this.monster.tarSize+10;    
                                 
@@ -1055,7 +1057,7 @@
                         this.actionStats.text = "ACID SPIT!";
                         this.attackIcon.loadTexture("attackIcon2");
                         var ran = Math.floor(Math.random() * 4)+1;
-                        this.attackSound[ran].play();
+                        //this.attackSound[ran].play();
 
                         var dodge = Math.floor(Math.random() * (this.hunter.dodge));
                         var hit = Math.floor(Math.random() * (unit.dex));
@@ -1206,7 +1208,7 @@
             }
             else{
                 var ran = Math.floor(Math.random() * 4)+1;
-                this.attackSound[ran].play();
+                //this.attackSound[ran].play();
                 
                 //extra attacks
                 if(unit.extraAttack > 0){
@@ -1236,10 +1238,11 @@
                    damage = 1;
                 }
                 if(this.hunter.isBlocking ){
-                  this.hunter.armor-=damage;
-                  if(this.hunter.armor <= 0){
+                  this.hunter.stamina-=damage;
+                  if( this.hunter.stamina <= 0){
                     this.hunter.isBlocking = false;
-                    this.hero[1].stamina = 0;                    
+                    this.hero[1].stamina = 0;           
+                     this.hunter.stamina = 0;
                   }
                   
                   damage = 0;
@@ -1372,9 +1375,7 @@
                     this.hero[unit].speed = 2;
                     this.hero[unit].ability = "Taunt: \nLose "+this.hero[unit].cost+" HP and gain "+50*this.hero[unit].intel*this.hero[unit].level+" threat";
                     this.hero[unit].cost = 1;
-                    this.hero[unit].comboLimit = 2;
-                    this.hero[unit].comboTimer = 0;
-                    this.hero[unit].comboDuration = 400;
+
                     break;
                 case 11:
                     this.hero[unit].name = "Adam, The Second Blood"
@@ -1388,7 +1389,7 @@
                     this.hero[unit].intel = 1;
                     this.hero[unit].speed =1;
                     this.hero[unit].ability = "Blood Heal: \nLose "+this.hero[unit].cost+" HP and heal \nyour other party members by "+this.hero[unit].intel*this.hero[unit].level+" HP";  
-                    this.hero[unit].cost = 2;
+                    this.hero[unit].cost = 0;
                     break;
                 case 12:
                     this.hero[unit].name = "Abel, The Third Blood"
@@ -1498,6 +1499,9 @@
             this.monster.width = 800;
             this.monster.height = 800;
             this.monster.tarSize = this.monster.width;    
+            var ran = (Math.floor(Math.random() *50)-25)*10;
+            this.monster.goodWidth = (this.monster.width/2)-ran;
+            this.monster.badWidth = (this.monster.width/2)+ran;
           
               
           
@@ -1677,12 +1681,18 @@
                   case 1:
                     var ran = Math.floor(Math.random() * 4)+1;
                     if(!this.attackSound[ran].isPlaying){
-                        this.attackSound[ran].play();
-                    }                     
+                        //this.attackSound[ran].play();
+                    } 
                     var dodge = Math.floor(Math.random() * (this.monster.dodge));
+                    //console.log(this.monsterstamUI.width +" "+(this.monsterstamUIBad.x-(this.monsterstamUIBad.width/2)))
+                    if(this.monsterstamUI.width  >= (this.monsterstamUIBad.x-(this.monsterstamUIBad.width/2)) ){
+                      dodge = 100;
+                    }
+                    
+                    
                     //hero get a bonus to hit
                     var hit = unit.level+Math.floor(Math.random() * (unit.dex))+3;
-                    var attack = unit.attack*this.hunter.combo;
+                    var attack = unit.attack
                     var damage = Math.round((attack*attack) / (attack + this.monster.defence));
                     //damage cant be reduced lower than 1
                     if(damage <= 0){
@@ -1783,24 +1793,15 @@
                 
                     unit.y -= 100;
                     unit.stamina = 0;
-                    this.hunter.stamina -= unit.cost*this.hunter.combo;
-                    if(this.hunter.combo >= 1){
-                      this.hero[0].comboTimer = this.hero[0].comboDuration;
-                    }
-                    if( this.hero[0].comboTimer > 0){
-                      this.hunter.combo++;
-                      if(this.hunter.combo > this.hero[0].comboLimit){
-                        this.hunter.combo = 3;
+                    this.hunter.stamina -= unit.cost;
 
-                      }                      
-                    }
                     
                     
 
                     break;
                   case 2:
                       if(!this.shieldSound.isPlaying){
-                          this.shieldSound.play();
+                          //this.shieldSound.play();
                       }                    
                       if(!this.hunter.isBlocking){
                         this.hunter.isBlocking  = true;
@@ -1809,14 +1810,11 @@
                         this.hunter.isBlocking = false;
                         unit.stamina = 0;
                       }
-                      if(this.hunter.armor <= 0){
-                        this.hunter.isBlocking = false;
-                      }
                       //this.hunter.armor++;
                       if(this.hunter.armor > this.hero[2].maxArmour){
                         //this.hunter.armor = this.hero[2].maxArmour;
                       }
-                      this.hunter.combo = 1;
+                      
                     break;
                   case 3:
                       unit.loadTexture("emptyBot");
@@ -1827,8 +1825,8 @@
                       unit.y -= 100;
                       unit.stamina = 0;
                       unit.cost = 100;
-                      this.hunter.combo = 1;
-                      this.hunter.stamina -= unit.cost;
+                      
+                      //this.hunter.stamina -= unit.cost;
                     break;
                     
                 }
@@ -1842,10 +1840,10 @@
           else{
               
                 if(unit.gender == 1 ){
-                    this.notRM.play()
+                    //this.notRM.play()
                 }
               else{
-                  this.notRF.play()
+                  //this.notRF.play()
               }
           }
             

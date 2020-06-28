@@ -50,6 +50,7 @@
             this.load.image('textBG', 'assets/textBG.png');
             this.load.image('levelDark', 'assets/levelDark.png');
             this.load.image('locked', 'assets/locked.png');
+            this.load.image('stamArrow', 'assets/stamArrow.png');
             this.load.image('aggroUI', 'assets/aggroUI.png');
             this.load.image('wallUI', 'assets/cavetile.png');
             this.load.image('botTile', 'assets/botTile.png');
