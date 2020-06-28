@@ -1076,15 +1076,8 @@
                         if(damage < 1){
                            damage = 1;
                         }
-                        if(this.hunter.isBlocking ){
-                            damage *= 2;
-                            this.hunter.armor-=damage;
-                            if(this.hunter.armor <= 0){
-                              this.hunter.isBlocking = false;
-                              this.hero[1].stamina = 0;                    
-                            }
-                            damage = 0;
-                        }
+                        damage *= 3
+
                         this.hunter.hp -= damage  
                         //this.monster.tarSize += Math.round((unit.intel*unit.level))*5
                         break;
@@ -1374,7 +1367,7 @@
                     this.hero[unit].intel = 1;
                     this.hero[unit].speed = 2;
                     this.hero[unit].ability = "Taunt: \nLose "+this.hero[unit].cost+" HP and gain "+50*this.hero[unit].intel*this.hero[unit].level+" threat";
-                    this.hero[unit].cost = 1;
+                    this.hero[unit].cost = 3;
 
                     break;
                 case 11:
