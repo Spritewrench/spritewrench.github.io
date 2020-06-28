@@ -1776,7 +1776,7 @@
                             if(this.damageUI[i].alpha <= 0.01){
 
                                 this.damageUI[i].tint = 0xFFFFFF;
-                                this.damageUI[i].fontSize = 32;
+                                this.damageUI[i].fontSize = 300;
                                 this.damageUI[i].text  = "DODGE";
                                 this.damageUI[i].x = this.monster.x;
                                 this.damageUI[i].y = this.monster.y;
