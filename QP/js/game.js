@@ -327,9 +327,16 @@
             this.monsterstamUIGood = this.add.sprite(this.monster.x-100, this.monster.y+this.monster.height/2, 'bg7');
             this.monsterstamUIGood.width = 0;
             this.monsterstamUIGood.height = 20;  
-            this.monsterstamUIBad = this.add.sprite(this.monster.x-100, this.monster.y+this.monster.height/2, 'bg7');
-            this.monsterstamUIBad.width = 0;
-            this.monsterstamUIBad.height = 20;    
+            
+            
+            this.monsterstamUIBad = [];
+            for(var i=0; i < 3; i++){
+              this.monsterstamUIBad[i] = this.add.sprite(this.monster.x-100, this.monster.y+this.monster.height/2, 'bg7');
+              this.monsterstamUIBad[i].anchor.setTo(0.5, 0);
+              this.monsterstamUIBad[i].width = 0;
+              this.monsterstamUIBad[i].height = 20;              
+            }
+    
           
             this.monsterstamArrow = this.add.sprite(this.monster.x-this.monster.width/2, this.monster.y+(this.monster.height/2)-100, 'stamArrow');
           
@@ -400,7 +407,15 @@
               // localStorage.setItem('state','lose')
               // this.game.state.start('preloader',true,true) 
             this.game.scale.refresh(); 
-            
+            for(var i=0; i < this.monster.badCount; i++){
+              //console.log(i+" "+this.monster.badSpot[i].begin+" "+this.monster.badSpot[i].ending+" x:"+this.monsterstamArrow.x)
+              if(this.monsterstamArrow.x  >= (this.monster.badSpot[i].begin-this.monster.badWidth[i]/2) && this.monsterstamArrow.x <= (this.monster.badSpot[i].ending-this.monster.badWidth[i]/2) ){
+                
+                console.log("bad");
+                i = this.monster.badCount;
+              }
+
+            }             
                 for(var i = 1; i < 4; i++){
                     if(this.tip[i].alpha > 0){
                         this.tip[i]
@@ -730,19 +745,35 @@
                 this.monsterhpUI.y = this.monster.y+(this.monster.height/2)-150
                 this.monsterstamUIGood.y = this.monster.y+(this.monster.height/2)-120
                 this.monsterstamUIBad.tint = 0xff0000;
-                this.monsterstamUIBad.y = this.monster.y+(this.monster.height/2)-120
+                //this.monsterstamUIBad.y = this.monster.y+(this.monster.height/2)-120
                 
                 this.monsterstamUI.x = this.monster.x-this.monster.width/2
                 this.monsterhpUI.x = this.monster.x-this.monster.width/2   
                 
                 this.monsterstamUIGood.width = this.monster.goodWidth
-                this.monsterstamUIBad.width = this.monster.badWidth                
+                
+                for(var i=0; i < this.monster.badCount ; i++){
+                  this.monsterstamUIBad[i].tint = 0xff0000;
+                  this.monsterstamUIBad[i].y = this.monster.y+(this.monster.height/2)-120
+                  this.monsterstamUIBad[i].x = this.monster.badSpot[i].begin
+                  this.monsterstamUIBad[i].width = this.monster.badSpot[i].ending - this.monster.badSpot[i].begin
+                 
+                  /*if(this.monsterstamUIBad[i].x <=( this.monsterstamUIGood.x+this.monsterstamUIBad[i].width/2)){
+                    this.monsterstamUIBad[i].x = this.monsterstamUIGood.x+this.monsterstamUIBad[i].width/2
+                    this.monster.badSpot[i].begin = this.monsterstamUIBad[i].x
+                    this.monsterstamUIBad[i].ending = this.monster.badSpot[i].begin + this.monsterstamUIBad[i].width 
+                  }*/
+                  //this.monsterstamUIBad[i].x = 0;
+                   console.log(this.monsterstamUIGood.x+ " "+ this.monsterstamUIBad[i].x )
+                      
+                }                
+                //this.monsterstamUIBad.width = this.monster.badWidth                
                 
                 this.monsterstamUIGood.x = this.monster.x-(this.monster.width/2)
-                this.monsterstamUIBad.x = this.monsterstamUIGood.width+100
+                //this.monsterstamUIBad.x = this.monsterstamUIGood.width+100
                 
                 this.monsterstamUIGood.width = this.monster.goodWidth
-                this.monsterstamUIBad.width = this.monster.badWidth
+                //this.monsterstamUIBad.width = this.monster.badWidth
                 
                 this.monsterstamUI.width = (this.monster.stamina/100)*this.monster.tarSize;
                 this.monsterstamArrow.y = this.monster.y+(this.monster.height/2)-90;
@@ -783,11 +814,11 @@
                   this.monsterTimer--;
                
                 if(this.monsterTimer <= 0){
-                  console.log("attack")
+                  //console.log("attack")
                   //this.monster.target = this.selectTarget();
 
                     this.actionStats.alpha = 1;
-                    console.log(this.monster.mp - this.monster.actionTimer == 1)
+                    //console.log(this.monster.mp - this.monster.actionTimer == 1)
                     if(this.monster.mp - this.monster.actionTimer == 1){
                         //warning
                         this.monster.stamina = 0;
@@ -1367,7 +1398,7 @@
                     this.hero[unit].intel = 1;
                     this.hero[unit].speed = 2;
                     this.hero[unit].ability = "Taunt: \nLose "+this.hero[unit].cost+" HP and gain "+50*this.hero[unit].intel*this.hero[unit].level+" threat";
-                    this.hero[unit].cost = 3;
+                    this.hero[unit].cost = 2;
 
                     break;
                 case 11:
@@ -1493,8 +1524,29 @@
             this.monster.height = 800;
             this.monster.tarSize = this.monster.width;    
             var ran = (Math.floor(Math.random() *50)-25)*10;
-            this.monster.goodWidth = (this.monster.width/2)-ran;
-            this.monster.badWidth = (this.monster.width/2)+ran;
+            this.monster.goodWidth = this.monster.width//(this.monster.width/2)-ran;
+            this.monster.badWidth = []
+            this.monster.badx = []
+            this.monster.badSpot = [];
+            this.monster.badCount = 3;
+            var edge = this.monster.x-(this.monster.width/2)
+            var startX = 250
+            var space = 0;
+            for(var i = 0; i < this.monster.badCount; i++){
+              //this.monster.badWidth[i] = (Math.floor(Math.random() *(this.monster.width/(this.monster.badCount+1)))+50);
+              this.monster.badWidth[i] = Math.floor(Math.random() *(50))+10;
+              this.monster.badx[i] = startX + space;
+              space += this.monster.badWidth[i]+Math.floor(Math.random() *(100))+100;
+              //this.monster.badx[i] = Math.floor(Math.random() * (this.monster.width-edge+1)) + edge;
+              //console.log(edge+ " "+ this.monster.badx[i])
+
+              //console.log(edge+" !"+this.monster.badx[i])
+              this.monster.badSpot[i] = new Object;
+              this.monster.badSpot[i].begin =  this.monster.badx[i];
+              this.monster.badSpot[i].ending = this.monster.badSpot[i].begin +this.monster.badWidth[i];
+              
+            }
+            //this.monster.badWidth = (this.monster.width/2)+ran;
           
               
           
@@ -1678,9 +1730,16 @@
                     } 
                     var dodge = Math.floor(Math.random() * (this.monster.dodge));
                     //console.log(this.monsterstamUI.width +" "+(this.monsterstamUIBad.x-(this.monsterstamUIBad.width/2)))
-                    if(this.monsterstamUI.width  >= (this.monsterstamUIBad.x-(this.monsterstamUIBad.width/2)) ){
-                      dodge = 100;
-                    }
+                    
+                    // crit check
+                    var tweak = 25;
+                    for(var i=0; i < this.monster.badCount; i++){
+                      if(this.monsterstamArrow.x  >= (this.monster.badSpot[i].begin-this.monster.badWidth[i]/2-tweak) && this.monsterstamArrow.x <= (this.monster.badSpot[i].ending-this.monster.badWidth[i]/2-tweak)){
+                        //dodge = 100;
+                        i = this.monster.badCount;
+                      }
+
+                    }                         
                     
                     
                     //hero get a bonus to hit
@@ -1727,7 +1786,19 @@
                         if(difference >= 10){
                             damage = damage*2;
                             crit = 1;
-                        }                    
+                        }      
+                      
+                        // crit check
+                        var tweak = 25;
+                        for(var i=0; i < this.monster.badCount; i++){
+                          if(this.monsterstamArrow.x  >= (this.monster.badSpot[i].begin-this.monster.badWidth[i]/2-tweak) && this.monsterstamArrow.x <= (this.monster.badSpot[i].ending-this.monster.badWidth[i]/2-tweak)){
+                            //dodge = 100;
+                            damage = damage*3;
+                            crit = 1;
+                            i = this.monster.badCount;
+                          }
+
+                        }                           
                         this.monster.hp -= damage
 
                         var length = this.actionStats.text.length
@@ -1769,7 +1840,7 @@
                             if(this.damageUI[i].alpha <= 0.01){
 
                                 this.damageUI[i].tint = 0xFFFFFF;
-                                this.damageUI[i].fontSize = 300;
+                                this.damageUI[i].fontSize = 100;
                                 this.damageUI[i].text  = "DODGE";
                                 this.damageUI[i].x = this.monster.x;
                                 this.damageUI[i].y = this.monster.y;
