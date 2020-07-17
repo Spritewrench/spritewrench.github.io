@@ -30,6 +30,8 @@
           
             this.load.image('armor', 'assets/ArmorIcon.png');
           
+            this.load.image('rhythmIcon1', 'assets/rhythmIcon1.png');
+            this.load.image('rhythmIcon2', 'assets/rhythmIcon2.png');
           
             this.load.image('attackIcon1', 'assets/attackIcon1.png');
             this.load.image('attackIcon2', 'assets/attackIcon2.png');

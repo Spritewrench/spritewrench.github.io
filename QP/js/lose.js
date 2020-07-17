@@ -50,7 +50,7 @@
     update: function () {
             if(!this.loseMusic.isPlaying && !this.menuClicked){
                 this.loseMusic.loop = true;
-                this.loseMusic.play();
+               // this.loseMusic.play();
             
             }  
 
@@ -88,7 +88,7 @@
             this.ping.play();
             this.loseMusic.fadeOut(1000)
             this.menuClicked = true;
-            //this.game.state.start('menu');
+            this.game.state.start('game');
         }
 	
         /*var user = firebase.auth().currentUser;
