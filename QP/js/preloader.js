@@ -37,7 +37,11 @@
             
             this.load.image('emptyBot', 'assets/emptyBot.png');
           
-            
+            this.load.image('blockHit', 'assets/blockHit.png');  
+            this.load.image('attackHit', 'assets/attackHit.png');  
+            this.load.image('blockMiss', 'assets/blockMiss.png');  
+            this.load.image('attackMiss', 'assets/attackMiss.png');            
+          
             this.load.image('logo', 'assets/logo.png');
             this.load.image('logo2', 'assets/logo2.png');
             this.load.image('map', 'assets/map.png');
