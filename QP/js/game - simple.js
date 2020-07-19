@@ -92,7 +92,7 @@
             this.monNum = 1;
             var ranRoom = 1
             this.room = []
-            this.party = "10-12-11";
+            this.party = "10-11-12";
             
             this.party = this.party.split("-");
 
@@ -178,11 +178,23 @@
                 role++;
                 //this.hero[i].cost = 1;
           
+                if(i == 0){
 
+                  this.hero[i].x = this.game.width/2
+                  this.hero[i].y = (this.game.height/2)-300   
+                  this.hero[i].origX = this.hero[i].x
+                  this.hero[i].origY = this.hero[i].y   
+                  this.hero[i].holderY = this.hero[i].origY
+                  this.hero[i].width = 50000
+                  this.hero[i].height = 50000                  
+                }
                 
                 //on click
                 this.hero[i].inputEnabled = true;
-                this.hero[i].events.onInputDown.add(this.onClick, this);            
+                if(i == 0){
+                  this.hero[i].events.onInputDown.add(this.onClick, this);   
+                }
+                         
                 dist+=250;
                 
                 this.hero[i].aggroMultiplyer = 0;
@@ -202,19 +214,7 @@
 
             
           
-            this.staminaUI =  this.add.sprite(-25, this.game.height-200, 'staminaUI');
-            this.staminaUI.width = 250;                
-            this.staminaUI.height = 250;   
-            
-          
-            this.stam = [];
-            var dist= 125;
-            for(var i = 0; i < 10; i++){
-              this.stam[i] =  this.add.sprite(this.staminaUI.x+dist, this.game.height-175, 'stam-unused');
-              this.stam[i].width = 200;                
-              this.stam[i].height = 200;              
-              dist+=80;
-            }          
+       
             
             //place monster
             this.monsterTimer = 100;
@@ -264,7 +264,7 @@
             this.hunter.armor = this.hero[2].maxArmour; 
             this.hunter.speed = 4;          
             this.hunter.stamina = 10; 
-            this.hunter.maxStamina = 100;
+            this.hunter.maxStamina = 50;
             this.hunter.isBlocking = false;            
           
 
@@ -342,59 +342,32 @@
             
             this.monsterRhythmUI = this.add.sprite(0, this.monster.y+300, 'bg7');
             this.monsterRhythmUI.width = this.game.width;
-            this.monsterRhythmUI.height = 100;  
+            this.monsterRhythmUI.height = 200;  
             this.monsterRhythmUI.alpha = 0.5;            
           
             this.monster.blockAction = [];
             
-            var dist = []
-            dist[0]= 0
-            dist[1]= 500
-            dist[2]= 2000
-            for(var i=0; i < this.monster.dex; i++){
-              this.monster.blockAction[i] = this.add.sprite(this.game.width+100+dist[i], this.monsterRhythmUI.y+50, 'attackIcon1');
-              
-              this.monster.blockAction[i].startPoint = this.game.width+100+dist[i]
-              //dist += 500
-
+            this.rhythmCount = 1;
+            for(var i=0; i < this.rhythmCount ; i++){
+              this.monster.blockAction[i] = this.add.sprite(this.game.width+100, this.monsterRhythmUI.y+this.monsterRhythmUI.height/2, 'rhythmIcon1');
               this.monster.blockAction[i].height = 200;
               this.monster.blockAction[i].width = 200;
               this.monster.blockAction[i].anchor.setTo(0.5, 0.5);
               this.monster.blockAction[i].alpha = 1;
-              
+              this.monster.blockAction[i].rhythmType = 1
               this.monster.blockAction[i].speed = this.monster.speed
+              this.monster.blockAction[i].miss = false;
               //this.attackIcon.alpha = 0                 
             }   
-              for(var j = 0; j < this.monster.dex; j++){
-                 this.monster.blockAction[j].startPoint =  this.monster.blockAction[this.monster.dex-1].startPoint;
-              }          
-            this.monster.attackAction = [];
-            
-            var dist = 0          
-            for(var i=0; i < this.hero[0].dex; i++){
-              this.monster.attackAction[i] = this.add.sprite(-300-dist, this.monsterRhythmUI.y+50, 'rhythmIcon2');
-              this.monster.attackAction[i].startPoint = -300+dist
-              dist -= 500
-              this.monster.bl
-              this.monster.attackAction[i].height = 200;
-              this.monster.attackAction[i].width = 200;
-              this.monster.attackAction[i].anchor.setTo(0.5, 0.5);
-              this.monster.attackAction[i].alpha = 1;
-              
-              this.monster.attackAction[i].speed = this.hero[0].speed
-              //this.attackIcon.alpha = 0                 
-            }    
-          
-            for(var j = 0; j < this.hero[0].dex; j++){
-               this.monster.attackAction[j].startPoint =  this.monster.attackAction[this.hero[0].dex-1].startPoint;
-            }             
+       
+             
                         
           
-            this.rhythmArrow =  this.add.sprite(this.game.width/2, this.monsterRhythmUI.y+120, 'stamArrow');
+            this.rhythmArrow =  this.add.sprite(this.game.width/2-400, this.monsterRhythmUI.y+this.monsterRhythmUI.height+50, 'stamArrow');
             this.rhythmArrow.anchor.setTo(0.5, 0.5);
             this.rhythmArrow.width = 200;                
             this.rhythmArrow.height = 200;            
-      
+            this.rhythmArrow.origY = this.monsterRhythmUI.y+this.monsterRhythmUI.height+50
             
             //UI 
             var style = { font: '14pt Muli', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 290 };
@@ -449,7 +422,10 @@
               // localStorage.setItem('state','lose')
               // this.game.state.start('preloader',true,true) 
             this.game.scale.refresh(); 
-           
+            if(this.rhythmArrow.y > this.rhythmArrow.origY){
+              this.rhythmArrow.y --;
+            }
+            
                 for(var i = 1; i < 4; i++){
                     if(this.tip[i].alpha > 0){
                         this.tip[i]
@@ -595,14 +571,7 @@
                   this.heart[k].loadTexture("heart");
                 }
                 
-                //update stamina
-                for(var k = 0; k < 10; k++){
-                  this.stam[k].loadTexture("stam-used");
-                }              
-                for(var k = 0; k < this.hunter.stamina; k++){
-                  this.stam[k].loadTexture("stam-unused");
-                  
-                }                
+               
               //death
                 
                 
@@ -667,8 +636,8 @@
                 else{
                     this.hero[i].hurtTimer--;
                 }
-                this.hero[i].width += (this.hero[i].tarSize - this.hero[i].width) * 0.05; 
-                this.hero[i].height += (this.hero[i].tarSize - this.hero[i].height) * 0.05; 
+                //this.hero[i].width += (this.hero[i].tarSize - this.hero[i].width) * 0.05; 
+                //this.hero[i].height += (this.hero[i].tarSize - this.hero[i].height) * 0.05; 
                 
                 //hero stat limits
 
@@ -772,9 +741,9 @@
                 
                 
                 //rhythm actions
-                for(var i=0; i < this.monster.dex; i++){
+                for(var i=0; i < this.rhythmCount; i++){
                   
-                  if(this.monster.blockAction[i].x <= this.rhythmArrow.x){
+                  if(this.monster.blockAction[i].x <= this.rhythmArrow.x || this.monster.blockAction[i].miss){
                     if(this.monster.blockAction[i].alpha == 1){
                      
                     }
@@ -782,52 +751,44 @@
                     if(this.monster.blockAction[i].alpha > 0.1){
                       this.monster.blockAction[i].y -= 1;
                       this.monster.blockAction[i].alpha += (0 - this.monster.blockAction[i].alpha) * 0.1; 
-                      this.monster.blockAction[i].speed = this.monster.speed
+                      
                     }
                     else{
-                      var currentStam= this.monster.stamina
-                      this.monAttack(this.monster) 
-                      this.monster.stamina=currentStam; 
-                      
-                      this.hunter.blockDuration = 0
-                      
+                      if(this.monster.blockAction[i].rhythmType == 1){
+                        var currentStam= this.monster.stamina
+                        this.monAttack(this.monster) 
+                        this.monster.stamina=currentStam; 
+
+                        this.hunter.blockDuration = 0                        
+                      }
+                      this.monster.blockAction[i].miss = false;
                       this.monster.blockAction[i].alpha = 1;
-                      console.log(this.monster.blockAction[i].startPoint)
-                      this.monster.blockAction[i].x = this.monster.blockAction[i].startPoint
-                      this.monster.blockAction[i].y = this.monsterRhythmUI.y+50
+                      this.monster.blockAction[i].x = this.game.width+100
+                      this.monster.blockAction[i].y = this.monsterRhythmUI.y+this.monsterRhythmUI.height/2
+                      var rhythm = this.monster.dex+this.hero[0].dex;
+                      var items = []
+                      for(var k =0; k < this.monster.dex; k++){
+                          items[k] = 1;
+                      }
+                      var newEnd = this.monster.dex+this.hero[0].dex
+                      for(var k =items.length; k < newEnd; k++){
+                          items[k] = 2;
+                      }                     
+                      var blockType = Math.floor(Math.random() * (rhythm-1))+1;
+                     
+                      this.monster.blockAction[i].rhythmType = items[blockType]
+                      this.monster.blockAction[i].loadTexture("rhythmIcon"+this.monster.blockAction[i].rhythmType);
                     }
                     //this.monster.blockAction[i].y -= this.monster.speed
                   }
                   else {
                     //console.log(this.monster.blockAction[i].speed)
-                    this.monster.blockAction[i].x -= this.monster.blockAction[i].speed;
+                    this.monster.blockAction[i].x -= this.monster.speed
                   }
                   //this.attackIcon.alpha = 0                 
                 }  
               
-                for(var i=0; i < this.hero[0].dex; i++){
-                  
-                  if(this.monster.attackAction[i].x >= this.rhythmArrow.x){
-                    //this.monster.blockAction[i].x -= this.monster.speed
-                    if(this.monster.attackAction[i].alpha > 0.1){
-                      this.monster.attackAction[i].y -= 1;
-                      this.monster.attackAction[i].alpha += (0 - this.monster.attackAction[i].alpha) * 0.1; 
-                      this.monster.attackAction[i].speed = this.hero[0].speed
-                    }
-                    else{
-                      
-                      this.monster.attackAction[i].alpha = 1;
-                      this.monster.attackAction[i].x = this.monster.attackAction[i].startPoint;//Math.floor(Math.random() * 150)-500 //-250
-                      this.monster.attackAction[i].y = this.monsterRhythmUI.y+50
-                    }
-                    //this.monster.blockAction[i].y -= this.monster.speed
-                  }
-                  else {
-                    //console.log(this.monster.blockAction[i].speed)
-                    this.monster.attackAction[i].x += this.monster.attackAction[i].speed;
-                  }
-                  //this.attackIcon.alpha = 0                 
-                }                
+               
               
                 this.monster.width += (this.monster.tarSize - this.monster.width) * 0.05; 
                 this.monster.height += (this.monster.tarSize - this.monster.height) * 0.05; 
@@ -1454,12 +1415,20 @@
             
             this.hero[unit].hpMax = "";
             this.hero[unit].attackMax = "";
+            this.hero[unit].attackMax = "";
             this.hero[unit].defenceMax = "";
             this.hero[unit].dexMax = "";
             this.hero[unit].dodgeMax = "";
             this.hero[unit].intMax = "";  
             this.hero[unit].speedMax = "";         
+            this.hero[unit].alpha = 0;  
             
+            
+
+          
+
+            
+          
             switch(heroID){
                 case 10:
                     this.hero[unit].name = "Lilith, The First Blood"
@@ -1468,10 +1437,10 @@
                     this.hero[unit].role = 1;
                     this.hero[unit].attack = 3;
                     this.hero[unit].defence = 3;
-                    this.hero[unit].dex = 3;
+                    this.hero[unit].dex = 1;
                     this.hero[unit].dodge = 1;
                     this.hero[unit].intel = 1;
-                    this.hero[unit].speed = 5;
+                    this.hero[unit].speed = 2;
                     this.hero[unit].ability = "Taunt: \nLose "+this.hero[unit].cost+" HP and gain "+50*this.hero[unit].intel*this.hero[unit].level+" threat";
                     this.hero[unit].cost = 0;
 
@@ -1767,8 +1736,8 @@
 
 
                 
-                unit.width =unit.tarSize+25;
-                unit.height =unit.tarSize+25;       
+                //unit.width =unit.tarSize+25;
+                //unit.height =unit.tarSize+25;       
 
                  
                 
@@ -1783,212 +1752,78 @@
                 ////console.log("Monster hit by "+this.monster.hitBy );   
                 switch(unit.role){
                   case 1:
-                    var ran = Math.floor(Math.random() * 4)+1;
-                    if(!this.attackSound[ran].isPlaying){
-                        //this.attackSound[ran].play();
-                    } 
-                    var dodge = Math.floor(Math.random() * (this.monster.dodge));
-                    //console.log(this.monsterstamUI.width +" "+(this.monsterstamUIBad.x-(this.monsterstamUIBad.width/2)))
-                    
-                     dodge = 1000;  
-                    //rhythm timing
-                    var buffer = 50
-                    for(var i=0; i < this.hero[0].dex; i++){
-                      var diff = this.rhythmArrow.x - this.monster.attackAction[i].x 
-                   
-                      if( diff <= buffer && this.monster.attackAction[i].alpha > 0.5){
-                        var ran = Math.floor(Math.random() * 4)+1;
-                        if(!this.attackSound[ran].isPlaying){
-                            this.attackSound[ran].play();
-                        }                         
-                        this.rhythemUI.alpha = 1;
-                        this.rhythemUI.loadTexture("attackHit");
-                        this.dialougeTimer = 100;
-                        dodge = 0
-                        this.monster.attackAction[i].alpha = 0;
-                        if(diff <= 100){
-                          i =   this.hero[0].dex;;
-                        }   
-
-                      }
-                      else{
-                        this.rhythemUI.alpha = 1;
-                        this.rhythemUI.loadTexture("attackMiss");     
-                        this.dialougeTimer = 100;
-                      }
-
-                    }                     
-                    
-                    //hero get a bonus to hit
-                    var hit = unit.level+Math.floor(Math.random() * (unit.dex))+3;
-                    var attack = unit.attack
-                    var damage = Math.round((attack*attack) / (attack + this.monster.defence));
-                    //damage cant be reduced lower than 1
-                    if(damage <= 0){
-                       damage = 1;
-                    }
-                    damage = 1
-                    console.log(damage+" asd "+dodge);
-                    //damage = att * att / (att + def)                     
-                    if(hit >= dodge && !this.monster.isFlying){
-
-                        //blood splatter
-                        var ran = Math.floor(Math.random() * 2);
-                        this.bloodSplatter[ran].alpha = 1;
-
-                        var ran2 = Math.floor(Math.random() * 10)+32;
-                        this.bloodSplatter[ran].width = 100
-                        this.bloodSplatter[ran].height = 100
-
-                        var ran3 = Math.floor(Math.random() * 100)-50;
-                        this.bloodSplatter[ran].x = this.monster.x+ran3
-
-                        var ran3 = Math.floor(Math.random() * 100)-50;
-                        this.bloodSplatter[ran].y = this.monster.y+ran3                    
-
-                        //critical hit
-                        var difference = hit - dodge;
-
-
-
-                        var strDiff = unit.attack - unit.dex
-                        if(strDiff < 0){
-                           strDiff  = 0
-                        }
-                        var dmgJitter = Math.floor(Math.random() * (strDiff*2))-strDiff;
-
-                        damage  = damage - dmgJitter;
-                        if(damage < 1 ){
-                           damage = 1;
-                        }
-
-                        if(difference >= 10){
-                            damage = damage*2;
-                            crit = 1;
-                        }      
-                      
-                          
-                        this.monster.hp -= damage
-
-                        var length = this.actionStats.text.length
-
-
-
-
-
-
-
-                        this.monster.y -= 50; 
-                        for(var i = 0; i < 100; i++){
-                           /* if(this.damageUI[i].alpha <= 0.01){
-
-                                this.damageUI[i].tint = 0xFFFFFF;
-                                this.damageUI[i].fontSize = 120;
-                                if(crit == 1){
-                                    this.damageUI[i].fontSize = 200;
-                                    this.damageUI[i].text  = "CRIT!\n"+damage;
-                                }   
-                                else{
-                                  this.damageUI[i].text  = damage;  
-                                }
-                              
-                                this.damageUI[i].x = this.bloodSplatter[ran].x;
-                                this.damageUI[i].y = this.bloodSplatter[ran].y;
-                                this.damageUI[i].alpha = 1;
-                                i = 100;                            
-                            }*/
-                        }              
-
-
-
-
-
-                    }
-                    if(hit < dodge || this.monster.isFlying){
-                       /* for(var i = 0; i < 100; i++){
-                            if(this.damageUI[i].alpha <= 0.01){
-
-                                this.damageUI[i].tint = 0xFFFFFF;
-                                this.damageUI[i].fontSize = 100;
-                                this.damageUI[i].text  = "DODGE";
-                                this.damageUI[i].x = this.monster.x;
-                                this.damageUI[i].y = this.monster.y;
-                                this.damageUI[i].alpha = 1;
-                                i = 100;                            
-                            }
-                        }     */               
-                    }   
-                    
-                    if(this.hunter.isBlocking){
-                      this.hunter.isBlocking = false;
-                      this.hero[1].stamina = 0;
-                    }
-                
                     unit.y -= 100;
-                    unit.stamina = 0;
-                    this.hunter.stamina -= unit.cost;
+                    unit.stamina = 0;  
+                    this.rhythmArrow.y += 25
+                    var buffer = 50
+                    for(var i=0; i < this.rhythmCount; i++){
+                      var diff = this.monster.blockAction[i].x - this.rhythmArrow.x
+                      
+                      switch(this.monster.blockAction[i].rhythmType){
+                        case 2:
+                          
+                          var damage = 0                          
 
-                    
-                    
+                          if( diff <= buffer && this.monster.blockAction[i].alpha > 0.5){
+                            var ran = Math.floor(Math.random() * 4)+1;
+                            if(!this.attackSound[ran].isPlaying){
+                                this.attackSound[ran].play();
+                            }                              
+                            this.rhythemUI.alpha = 1;
+                            this.rhythemUI.loadTexture("attackHit");
+                            this.dialougeTimer = 100;
+                            
 
-                    break;
-                  case 3:
-                      if(!this.shieldSound.isPlaying){
-                          //this.shieldSound.play();
-                      }  
-                    
-                      unit.y -= 100;
-                      unit.stamina = 0;  
-                      var buffer = 50
-                      for(var i=0; i < this.monster.dex; i++){
-                        var diff = this.monster.blockAction[i].x - this.rhythmArrow.x
+                            //blood splatter
+                            var ran = Math.floor(Math.random() * 2);
+                            this.bloodSplatter[ran].alpha = 1;
 
-                        if( diff <= buffer && this.monster.blockAction[i].alpha > 0.5){
-                          if(!this.shieldSound.isPlaying){
-                              this.shieldSound.play();
-                          }                            
-                          this.rhythemUI.alpha = 1;
-                          this.rhythemUI.loadTexture("blockHit");
-                          this.dialougeTimer = 100;
-                          this.hunter.blockDuration = 100;
-                          this.monster.blockAction[i].alpha = 0;
-                          if(diff <= 100){
-                            i =   this.monster.dex;
+                            var ran2 = Math.floor(Math.random() * 10)+32;
+                            this.bloodSplatter[ran].width = 100
+                            this.bloodSplatter[ran].height = 100
+
+                            var ran3 = Math.floor(Math.random() * 100)-50;
+                            this.bloodSplatter[ran].x = this.monster.x+ran3
+
+                            var ran3 = Math.floor(Math.random() * 100)-50;
+                            this.bloodSplatter[ran].y = this.monster.y+ran3                     
+
+                            this.monster.hp -= 1                            
+                          }
+                          else{
+                            var ran = Math.floor(Math.random() * 4)+1;
+                            if(!this.attackSound[ran].isPlaying){
+                                this.attackSound[ran].play();
+                            }   
+                            
+                            this.rhythemUI.alpha = 1;
+                            this.rhythemUI.loadTexture("attackMiss");     
+                            this.dialougeTimer = 100;
+                            this.monster.blockAction[i].miss = true;
                           }                          
-                        }
-                        else{
-                          this.rhythemUI.alpha = 1;
-                          this.rhythemUI.loadTexture("blockMiss");     
-                          this.dialougeTimer = 100;
-                        }
-             
-                      } 
-                    
-                      if(!this.hunter.isBlocking){
-                        //this.hunter.isBlocking  = true;
+                          break;
+                        case 1:
+                          if( diff <= buffer && this.monster.blockAction[i].alpha > 0.5){
+                            if(!this.shieldSound.isPlaying){
+                                this.shieldSound.play();
+                            }                            
+                            this.rhythemUI.alpha = 1;
+                            this.rhythemUI.loadTexture("blockHit");
+                            this.dialougeTimer = 100;
+                            this.hunter.blockDuration = 100;
+                          
+                          }
+                          else{
+                            this.rhythemUI.alpha = 1;
+                            this.rhythemUI.loadTexture("blockMiss");     
+                            this.dialougeTimer = 100;
+                            this.monster.blockAction[i].miss = true;
+                          }                      
+                          break;
                       }
-                      else{
-                        //this.hunter.isBlocking = false;
-                        //unit.stamina = 0;
-                      }
-                      //this.hunter.armor++;
-                      if(this.hunter.armor > this.hero[2].maxArmour){
-                        //this.hunter.armor = this.hero[2].maxArmour;
-                      }
-                      
+                    }
                     break;
-                  case 2:
-                      unit.loadTexture("emptyBot");
-                      this.hunter.hp = 3;
-                      if(this.hunter.hp > 3){
-                        this.hunter.hp = 3
-                      }
-                      unit.y -= 100;
-                      unit.stamina = 0;
-                      unit.cost = 100;
-                      
-                      //this.hunter.stamina -= unit.cost;
-                    break;
+
                     
                 }
                 

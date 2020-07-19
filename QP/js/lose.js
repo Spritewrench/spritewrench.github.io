@@ -88,6 +88,7 @@
             this.ping.play();
             this.loseMusic.fadeOut(1000)
             this.menuClicked = true;
+            //asdsad
             this.game.state.start('game');
         }
 	
