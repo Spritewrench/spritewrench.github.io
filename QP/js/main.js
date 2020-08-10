@@ -13,7 +13,8 @@ window.onload = function () {
     game.state.add('leaderboard', ns.Leaderboard);
     game.state.add('game', ns.Game);
     game.state.add('win', ns.Win);
-    game.state.add('lose', ns.Lose);    
+    game.state.add('lose', ns.Lose);   
+    game.state.add('warden', ns.Warden);   
     game.state.start('boot');
     console.log(game)
 };

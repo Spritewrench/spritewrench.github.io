@@ -55,8 +55,9 @@
             }  
 
             if(this.loseMusic.volume == 0 && this.menuClicked){
-               localStorage.setItem('state','menu')
-               this.game.state.start('preloader',true,true) 
+              this.game.state.start('warden');  
+               //localStorage.setItem('state','menu')
+               //this.game.state.start('preloader',true,true) 
             //localStorage.setItem("score",this.score);
             } 
         if(parseInt(localStorage.getItem("win")) == 1){
@@ -89,7 +90,8 @@
             this.loseMusic.fadeOut(1000)
             this.menuClicked = true;
             //asdsad
-            this.game.state.start('game');
+            localStorage.setItem('state','warden')
+            this.game.state.start('preloader');
         }
 	
         /*var user = firebase.auth().currentUser;

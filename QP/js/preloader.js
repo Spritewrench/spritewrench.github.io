@@ -7,19 +7,23 @@
     }
     Preloader.prototype = {
         preload: function () {
-            var x = (this.game.width / 2)
-                , y = this.game.height /2;      
-            this.load.image('preloader', 'assets/preloader.gif');
-            this.asset = this.add.sprite(x, y, 'preloader');
-            this.asset.alpha = 0;
+          
+            //this.game.scale.refresh(); 
+            
+          
+            var x = (this.game.width / 2);
+            var y = this.game.height /2;      
+            this.asset = this.add.sprite(x+300, y+500, 'preloader');
             this.asset.anchor.setTo(0.5, 0.5);
             this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
             this.load.setPreloadSprite(this.asset);
-
+      
             
+            this.load.script('Gray', 'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/Gray.js');
+          
             this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
-          
-          
+            
+            this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;    
           
             this.load.image('heart', 'assets/heart.png');
             this.load.image('heart-hurt', 'assets/heart-hurt.png');
@@ -65,6 +69,15 @@
             this.load.image('uiFlash', 'assets/uiFlash.png');
             this.load.image('statUI2', 'assets/statUI2.png');
             
+            this.load.image('BG0', 'assets/BG0.png');
+            this.load.image('BG1', 'assets/BG1.png');
+            this.load.image('BG2', 'assets/BG2.png');
+            
+            this.load.image('huntTickets', 'assets/HuntTickets.png');
+            this.load.image('wardenHunt', 'assets/wardenHunt.png');
+            this.load.image('wardenHunt-No', 'assets/wardenHunt-no.png');
+            this.load.image('wardenReward', 'assets/wardenReward.png');
+            this.load.image('returnMap', 'assets/returnMap.png');          
 
             
             this.load.image('scroll', 'assets/scroll.png');
@@ -96,6 +109,14 @@
             this.load.image('turnBack', 'assets/turnBack.png');
  
             this.load.image("mon", 'assets/mon/mon.png');
+          
+            this.load.image("wocco", 'assets/mon/wocco.png');
+            this.load.image("noot", 'assets/mon/noot.png');
+            this.load.image("maddock", 'assets/mon/maddock.png');
+          
+          
+          
+          
             this.load.image("monDmg", 'assets/mon/monDmg.png');
             
             this.load.image("goblin", 'assets/mon/gob.png');
@@ -194,17 +215,17 @@
    
         }
         , create: function () {
-            this.asset.cropEnabled = false;
-            this.game.scale.setMinMax(1280,800,1920,1080)
-            console.log(this.game.width)
+            //this.asset.cropEnabled = false;
+            //this.game.scale.setMinMax(1280,800,1920,1080)
+            
         }
         , update: function () {
             this.game.scale.refresh(); 
             this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;            
             if (!!this.ready) {
-                console.log(localStorage.getItem('state'))
-                //this.game.state.start(localStorage.getItem('state'));
-                this.game.state.start('game');
+                //console.log(localStorage.getItem('state'))
+                this.game.state.start(localStorage.getItem('state'));
+                //this.game.state.start('warden');
             }
         }
         , onLoadComplete: function () {

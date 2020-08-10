@@ -28,7 +28,8 @@
     },
 
     onDown: function () {
-	this.game.state.start('game');
+     localStorage.setItem('state','warden')
+     this.game.state.start('preloader',true,true) 
         /*var user = firebase.auth().currentUser;
 
         if (user) {
