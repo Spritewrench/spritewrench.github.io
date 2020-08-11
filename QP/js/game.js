@@ -234,7 +234,14 @@
             this.rhythemUI.anchor.setTo(0.5, 0.5);
             this.rhythemUI.width = 1500;
             this.rhythemUI.height = 1500;
-            this.rhythemUI.alpha = 0             
+            this.rhythemUI.alpha = 0      
+
+            this.rhythemUI2 = this.add.sprite(this.monster.x-100, 150, 'blockPerfect');
+            this.rhythemUI2.anchor.setTo(0.5, 0.5);
+            //this.rhythemUI2.width = 500;
+            
+            this.rhythemUI2.angle = -15;
+            this.rhythemUI2.alpha = 0;              
        
             
             
@@ -513,11 +520,23 @@
             }
             else{
               this.rhythemUI.y--;
+              this.rhythemUI2.y--;
               this.rhythemUI.alpha += (0 - this.rhythemUI.alpha) * 0.1; 
+              if(this.rhythemUI2.alpha > 0){
+                this.rhythemUI2.alpha += (0 - this.rhythemUI.alpha) * 0.1;   
+              }
+              
+              
               if(this.rhythemUI.alpha <= 0.1){
                 this.rhythemUI.alpha = 0;
                 this.rhythemUI.y = 300
+                
+                this.rhythemUI2.alpha = 0;
+                this.rhythemUI2.y = 150               
+                
+                
                 this.dialougeTimer = 100;
+                
               } 
             }            
           
@@ -1427,7 +1446,7 @@
                     
                      dodge = 1000;  
                     //rhythm timing
-                    var buffer = 50
+                    var buffer = 100
                     var miss = false
                     for(var i=0; i < 1; i++){
                      
@@ -1479,13 +1498,15 @@
                         //damage = 0
                         //this.monster.attackAction[i].alpha = 0;
                         
-                        if(diff <= 100){
-                          i =   this.hero[0].dex;;
-                        }   
+                        if(diff <= 50){
+                          this.rhythemUI2.alpha = 1
+                          damage *= 2;
+                        }
                         
                       }
                       else{
                         this.rhythemUI.alpha = 1;
+                        this.rhythemUI2.alpha = 0;
                         this.rhythemUI.loadTexture("attackMiss");     
                         this.dialougeTimer = 100;
                         damage = 0;
@@ -1551,6 +1572,7 @@
                           //perfect block
                           if(diff <= 50){
                             //attack type
+                            this.rhythemUI2.alpha = 1;
                             var hunterAttack = this.hero[2].skill[0];
                             var damage = 0;
                             var attackType =""
@@ -1572,7 +1594,7 @@
                                 var attack = hunterAttack.attack
                                 damage = Math.round((attack*attack) / (attack + this.monster.bashDef));     
                                 attackType ="BASH"
-                                this.rhythemUI.loadTexture("attackHit-bash");
+                                //this.rhythemUI.loadTexture("attackHit-bash");
                                 break;                        
                             }
                             attackType =""
@@ -1596,7 +1618,7 @@
                                     this.damageUI[i].text  = damage+"\n"+attackType;
                                     this.damageUI[i].x = this.monster.x;
                                     this.damageUI[i].y = this.monster.y;
-                                    this.damageUI[i].alpha = 1;
+                                    //this.damageUI[i].alpha = 1;
                                     i = 100; 
                                 }
                               }                            
@@ -1607,6 +1629,7 @@
                         }
                         else{
                           this.rhythemUI.alpha = 1;
+                          this.rhythemUI2.alpha = 0;
                           this.rhythemUI.loadTexture("blockMiss");     
                           this.dialougeTimer = 100;
                         }

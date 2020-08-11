@@ -49,6 +49,7 @@
             this.load.image('attackHit-stab', 'assets/attackHit-stab.png');
             this.load.image('attackHit-bash', 'assets/attackHit-bash.png');
             this.load.image('blockMiss', 'assets/blockMiss.png');  
+            this.load.image('blockPerfect', 'assets/blockPerfect.png');  
             this.load.image('attackMiss', 'assets/attackMiss.png');            
           
             this.load.image('logo', 'assets/logo.png');
