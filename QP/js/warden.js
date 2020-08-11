@@ -27,7 +27,7 @@
             this.wardenHunt.inputEnabled = true;
             this.wardenHunt.events.onInputDown.add(this.hunt, this);             
             
-            this.wardenReward = this.add.sprite((this.game.width/2),(this.game.height/2)+100, 'wardenReward');
+            this.wardenReward = this.add.sprite((this.game.width/2),(this.game.height/2)+100, 'wardenReward-No');
             this.wardenReward.anchor.setTo(0.5, 0.5);
             this.wardenReward.width = 450
             this.wardenReward.height = 250   
