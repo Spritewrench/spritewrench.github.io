@@ -93,6 +93,8 @@
             localStorage.setItem('state','warden')
             this.game.state.start('preloader');
         }
+        localStorage.setItem('state','warden')
+        this.game.state.start('preloader');      
 	
         /*var user = firebase.auth().currentUser;
 

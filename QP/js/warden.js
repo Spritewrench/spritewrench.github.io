@@ -62,12 +62,13 @@
             //this.gray = this.game.add.filter('Gray');
         }          
         , update: function () {
+            this.TixCountVal = 5;
             this.game.scale.refresh(); 
             this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
             this.timer++;
             // show tix
             this.TixCount.text = "x"+this.TixCountVal
-            console.log(this.timer%10+" "+this.TixTimerVal)
+            //console.log(this.timer%10+" "+this.TixTimerVal)
             //timer
             if(this.TixTimerVal >0 && this.TixCountVal <= 0 ){
               

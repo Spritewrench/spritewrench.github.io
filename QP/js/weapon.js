@@ -1,27 +1,52 @@
 var weapon = [];
 
-//beginner bone set
-monster[1] = new Object();
-monster[1].name = "Beginner Bone Set"
-monster[1].hp = 3;
-monster[1].mp = 2;
-monster[1].attack = 1;
-monster[1].defence = 1;
-monster[1].dex = 3;
-monster[1].dodge = 0;
-monster[1].intel = 1;
-monster[1].speed = 5;
-monster[1].attackPattern = "001"
+//dodge
+weapon[0] = new Object();
+weapon[0].name = "Dodge"
+weapon[0].role = 2;
+weapon[0].hp = 3;
+// higher the weight faster the skill execute
+weapon[0].weight = 5;
+weapon[0].cost = 0;
+weapon[0].comboPattern = ""
+weapon[0].skill = [];
+weapon[0].skill[0] = skill[0]
 
-                    this.hero[unit].name = "Lilith, The First Blood"
-                    this.hero[unit].gender = 0;
-                    this.hero[unit].hp = 10;
-                    this.hero[unit].role = 1;
-                    this.hero[unit].attack = 3;
-                    this.hero[unit].defence = 3;
-                    this.hero[unit].dex = 1;
-                    this.hero[unit].dodge = 1;
-                    this.hero[unit].intel = 1;
-                    this.hero[unit].speed = 5;
-                    this.hero[unit].ability = "Taunt: \nLose "+this.hero[unit].cost+" HP and gain "+50*this.hero[unit].intel*this.hero[unit].level+" threat";
-                    this.hero[unit].cost = 0;
+//Beginner-Blade
+weapon[1] = new Object();
+weapon[1].name = "Beginner-Blade"
+weapon[1].role = 1;
+weapon[1].hp = 3;
+// higher the weight faster the skill execute
+weapon[1].weight = 5;
+weapon[1].cost = 0;
+weapon[1].comboPattern = "001"
+weapon[1].skill = [];
+weapon[1].skill[0] = skill[1]
+weapon[1].skill[1] = skill[2]
+weapon[1].defSkill = skill[3]
+
+//Wooden shield
+weapon[2] = new Object();
+weapon[2].name = "Wooden-Shield"
+weapon[2].role = 3;
+weapon[2].hp = 3;
+// higher the weight faster the skill execute
+weapon[2].weight = 5;
+weapon[2].cost = 0;
+weapon[2].comboPattern = ""
+weapon[2].skill = [];
+weapon[2].skill[0] = skill[3]
+
+//red potion
+weapon[3] = new Object();
+weapon[3].name = "Red-Potion"
+weapon[3].role = 2;
+weapon[3].hp = 3;
+// higher the weight faster the skill execute
+weapon[3].weight = 5;
+weapon[3].cost = 0;
+weapon[3].comboPattern = ""
+weapon[3].skill = [];
+weapon[3].skill[0] = skill[4]
+

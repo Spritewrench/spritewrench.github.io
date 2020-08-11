@@ -93,7 +93,7 @@
             this.monNum = 1;
             var ranRoom = 1
             this.room = []
-            this.party = "10-12-11";
+            this.party = "1-3-2";
             
             this.party = this.party.split("-");
 
@@ -153,7 +153,7 @@
             var dist= -250;
             var role = 1;
             for(var i = 0; i < 3; i++){
-                this.hero[i] = this.add.sprite(x+dist-0, this.game.height-450, 'player');
+                this.hero[i] = this.add.sprite(x+dist-0, this.game.height-250, 'player');
                 this.hero[i].anchor.setTo(0.5, 0.5);
                 this.hero[i].origX = this.hero[i].x
                 this.hero[i].origY = this.hero[i].y
@@ -172,11 +172,9 @@
                 this.hero[i].threat = 0;
                 this.hero[i].social = 0
                 
-                var race = (Math.floor(Math.random() * 3) +1)*10;
-                var hero = Math.floor(Math.random() * 3)
+
                 this.setHero(i, parseInt(this.party[i]));
-                this.hero[i].role = role;
-                role++;
+
                 //this.hero[i].cost = 1;
           
 
@@ -194,7 +192,7 @@
             this.heart = [];
             var dist= -250;
             for(var i = 0; i < 3; i++){
-              this.heart[i] =  this.add.sprite(x+dist-100, this.game.height-350, 'heart');
+              this.heart[i] =  this.add.sprite(x+dist-100, this.game.height-180, 'heart');
               this.heart[i].width = 200;                
               this.heart[i].height = 200;              
               dist+=250;
@@ -203,19 +201,7 @@
 
             
           
-            this.staminaUI =  this.add.sprite(-25, this.game.height-200, 'staminaUI');
-            this.staminaUI.width = 250;                
-            this.staminaUI.height = 250;   
-            
-          
-            this.stam = [];
-            var dist= 125;
-            for(var i = 0; i < 10; i++){
-              this.stam[i] =  this.add.sprite(this.staminaUI.x+dist, this.game.height-175, 'stam-unused');
-              this.stam[i].width = 200;                
-              this.stam[i].height = 200;              
-              dist+=80;
-            }          
+        
             
             //place monster
             this.monsterTimer = 100;
@@ -351,15 +337,16 @@
           
             this.monster.blockAction = [];
             this.monster.moveKey = 0
+            this.hunter.comboKey = 0
             this.monster.moveDecide = this.monster.attackPattern[this.monster.moveKey];
             var dist = []
-            dist[0]= 0
+            dist[0]= 500
             dist[1]= 0
             dist[2]= 0
             for(var i=0; i < 1; i++){
               this.monster.blockAction[i] = this.add.sprite(this.game.width+100+dist[i], this.monsterRhythmUI.y+50, 'attackIcon1');
               
-              this.monster.blockAction[i].startPoint = this.game.width+100+dist[i]
+              this.monster.blockAction[i].startPoint = this.game.width+100
               //dist += 500
 
               this.monster.blockAction[i].height = 200;
@@ -595,14 +582,7 @@
                   this.heart[k].loadTexture("heart");
                 }
                 
-                //update stamina
-                for(var k = 0; k < 10; k++){
-                  this.stam[k].loadTexture("stam-used");
-                }              
-                for(var k = 0; k < this.hunter.stamina; k++){
-                  this.stam[k].loadTexture("stam-unused");
-                  
-                }                
+             
               //death
                 
                 
@@ -770,7 +750,7 @@
                     
                 }
             }
-              console.log (this.monster.moveKey+" length"+this.monster.attackPattern.length)
+              
             if(this.monster.hp > 0){
                 //console.log("checking")
                 // block duration
@@ -804,8 +784,14 @@
                         if(this.monster.moveKey >= this.monster.attackPattern.length){
                           this.monster.moveKey = 0;
                         }
+
                       }
                       this.monster.moveDecide = this.monster.attackPattern[this.monster.moveKey];  
+                      if(this.monster.moveDecide == 1){
+                        //alert(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name)
+                        this.monster.attackAction[0].loadTexture(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name);
+
+                      }                      
                       //this.monster.moveDecide = Math.floor(Math.random() * 2);
                     }
                     //this.monster.blockAction[i].y -= this.monster.speed
@@ -834,11 +820,24 @@
                       this.monster.attackAction[i].y = this.monsterRhythmUI.y+50
                       if(this.monster.moveKey < this.monster.attackPattern.length){
                         this.monster.moveKey++;    
+                          
                         if(this.monster.moveKey >= this.monster.attackPattern.length){
                           this.monster.moveKey = 0;
                         }
                       }
+                      if(this.hunter.comboKey < this.hero[0].comboPattern.length){
+                        this.hunter.comboKey++;    
+                          
+                        if(this.hunter.comboKey >= this.hero[0].comboPattern.length){
+                          this.hunter.comboKey = 0;
+                        }
+                      }                      
                       this.monster.moveDecide = this.monster.attackPattern[this.monster.moveKey];  
+                      if(this.monster.moveDecide == 1){
+                        //alert(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name)
+                        this.monster.attackAction[0].loadTexture(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name);
+
+                      }                       
                     }
                     //this.monster.blockAction[i].y -= this.monster.speed
                   }
@@ -1105,8 +1104,13 @@
             for(var i = 0; i < 100; i++){
                 if(this.damageUI[i].alpha > 0){
                     
-                    this.damageUI[i].alpha += (0 - this.damageUI[i].alpha) * 0.02; 
-                    this.damageUI[i].y-=2;
+                    this.damageUI[i].alpha += (0 - this.damageUI[i].alpha) * 0.03; 
+                    this.damageUI[i].y-=this.damageUI[i].upward;
+                    this.damageUI[i].x -= this.damageUI[i].slide;
+                    if(this.damageUI[i].upward > -10){
+                      this.damageUI[i].upward --;
+                    }
+                    
                 }
 
             }             
@@ -1277,154 +1281,23 @@
         }
         , setHero: function (unit, heroID){
             this.hero[unit].heroID = heroID;
-            this.hero[unit].race = Math.floor(heroID/10);
             
-            this.startingExp = 50
-            this.hero[unit].exp = this.startingExp;
-            this.hero[unit].prevExp = this.hero[unit].exp
-            this.hero[unit].level = 1;
-            this.hero[unit].cost = 2;
-            this.hero[unit].level = Math.round(0.1*Math.sqrt(this.hero[unit].exp));
-            this.hero[unit].currentLevel = this.hero[unit].level;
-
+            this.hero[unit].hp = weapon[heroID].hp;
+            this.hero[unit].role = weapon[heroID].role;
+            this.hero[unit].name = weapon[heroID].name;
+            this.hero[unit].swordName = weapon[heroID].swordName;
+            this.hero[unit].shieldName = weapon[heroID].shieldName;
+            this.hero[unit].speed = weapon[heroID].weight;
+          
+            this.hero[unit].cost = weapon[heroID].cost;
+            this.hero[unit].comboPattern = weapon[heroID].comboPattern;
+            this.hero[unit].skill = weapon[heroID].skill;
+            this.hero[unit].defSkill = weapon[heroID].defSkill;
             
             this.hero[unit].counterTimer = 0;
             
-            this.hero[unit].hpMax = "";
-            this.hero[unit].attackMax = "";
-            this.hero[unit].defenceMax = "";
-            this.hero[unit].dexMax = "";
-            this.hero[unit].dodgeMax = "";
-            this.hero[unit].intMax = "";  
-            this.hero[unit].speedMax = "";         
-            
-            switch(heroID){
-                case 10:
-                    this.hero[unit].name = "Lilith, The First Blood"
-                    this.hero[unit].gender = 0;
-                    this.hero[unit].hp = 10;
-                    this.hero[unit].role = 1;
-                    this.hero[unit].attack = 3;
-                    this.hero[unit].defence = 3;
-                    this.hero[unit].dex = 1;
-                    this.hero[unit].dodge = 1;
-                    this.hero[unit].intel = 1;
-                    this.hero[unit].speed = 5;
-                    this.hero[unit].ability = "Taunt: \nLose "+this.hero[unit].cost+" HP and gain "+50*this.hero[unit].intel*this.hero[unit].level+" threat";
-                    this.hero[unit].cost = 0;
-
-                    break;
-                case 11:
-                    this.hero[unit].name = "Adam, The Second Blood"
-                    this.hero[unit].gender = 1;
-                    this.hero[unit].hp = 10;
-                    this.hero[unit].role = 3;
-                    this.hero[unit].attack = 2;
-                    this.hero[unit].defence = 1;
-                    this.hero[unit].dex = 2;
-                    this.hero[unit].dodge = 1;
-                    this.hero[unit].intel = 1;
-                    this.hero[unit].speed =2;
-                    this.hero[unit].ability = "Blood Heal: \nLose "+this.hero[unit].cost+" HP and heal \nyour other party members by "+this.hero[unit].intel*this.hero[unit].level+" HP";  
-                    this.hero[unit].cost = 0;
-                    break;
-                case 12:
-                    this.hero[unit].name = "Abel, The Third Blood"
-                    this.hero[unit].gender = 1;
-                    this.hero[unit].hp = 10;
-                    this.hero[unit].role = 2;
-                    this.hero[unit].attack = 4;
-                    this.hero[unit].defence = 1;
-                    this.hero[unit].dex = 2;
-                    this.hero[unit].dodge = 2;
-                    this.hero[unit].intel = 1;
-                    this.hero[unit].speed = 2;
-                    this.hero[unit].ability = "Quicken: \nLose "+this.hero[unit].cost+" HP and gains "+(this.hero[unit].intel*this.hero[unit].level)+" DEX";  
-                    this.hero[unit].maxArmour = 10;
-                    this.hero[unit].cost = 0;
-                    break;                    
-                case 20:     
-                    this.hero[unit].name = "Zion, The Holy One"
-                    this.hero[unit].gender = 1;
-                    this.hero[unit].hp = 4;
-                    this.hero[unit].role = 3;
-                    this.hero[unit].attack = 2;
-                    this.hero[unit].defence = 5;
-                    this.hero[unit].dex = 1;
-                    this.hero[unit].dodge = 3;
-                    this.hero[unit].intel = 2;
-                    this.hero[unit].speed = 3;
-                    this.hero[unit].ability = "Self \nHeal: Gain "+Math.round((25*this.hero[unit].intel*this.hero[unit].level)/2)+" threat and heals "+Math.round((this.hero[unit].intel*this.hero[unit].level)/2)+" HP";
-                    break;
-                case 21:
-                    this.hero[unit].name = "Denali, The Steep One"
-                    this.hero[unit].gender = 1;
-                    this.hero[unit].hp = 5;
-                    this.hero[unit].role = 2;
-                    this.hero[unit].attack = 4;
-                    this.hero[unit].defence = 5;
-                    this.hero[unit].dex = 3;
-                    this.hero[unit].dodge = 1;
-                    this.hero[unit].intel = 1;
-                    this.hero[unit].speed = 2;
-                    this.hero[unit].ability = "Sharpen: Gain "+(this.hero[unit].intel*this.hero[unit].level)+" STR";
-                    break; 
-                case 22:
-                    this.hero[unit].name = "Everest, The Impassable One"
-                    this.hero[unit].gender = 0;
-                    this.hero[unit].hp = 6;
-                    this.hero[unit].role = 1;
-                    this.hero[unit].attack = 3;
-                    this.hero[unit].defence = 5;
-                    this.hero[unit].dex = 2;
-                    this.hero[unit].dodge = 2;
-                    this.hero[unit].intel = 1;
-                    this.hero[unit].speed = 4;
-                    this.hero[unit].ability = "Insult: \nGain "+25*this.hero[unit].intel*this.hero[unit].level+" threat and gains "+this.hero[unit].intel*this.hero[unit].level+" DEF";
-                    break;                     
-                case 30:
-                    this.hero[unit].name = "Daniel, The Lucky"
-                    this.hero[unit].gender = 1;
-                    this.hero[unit].hp = 5;
-                    this.hero[unit].role = 1;
-                    this.hero[unit].attack = 2;
-                    this.hero[unit].defence = 2;
-                    this.hero[unit].dex = 5;
-                    this.hero[unit].dodge = 5;
-                    this.hero[unit].intel = 1;
-                    this.hero[unit].speed = 2;
-                    this.hero[unit].ability = "Gibe: \nGain "+25*this.hero[unit].intel*this.hero[unit].level+" threat and gains "+this.hero[unit].intel*this.hero[unit].level+" EVA";
-                    break;
-                case 31:
-                    this.hero[unit].name = "Mary, The Swift"
-                    this.hero[unit].gender = 0;
-                    this.hero[unit].hp = 4;
-                    this.hero[unit].role = 2;
-                    this.hero[unit].attack = 3;
-                    this.hero[unit].defence = 2;
-                    this.hero[unit].dex = 5;
-                    this.hero[unit].dodge = 3;
-                    this.hero[unit].intel = 3;
-                    this.hero[unit].speed = 2;
-                    this.hero[unit].ability = "Haste: \nGain "+(this.hero[unit].intel*this.hero[unit].level)+" SPD";
-                    break;
-                case 32:
-                    this.hero[unit].name = "Esther, The Caring"
-                    this.hero[unit].gender = 0;
-                    this.hero[unit].hp = 5;
-                    this.hero[unit].role = 3;
-                    this.hero[unit].attack = 2;
-                    this.hero[unit].defence = 2;
-                    this.hero[unit].dex = 5;
-                    this.hero[unit].dodge = 1;
-                    this.hero[unit].intel = 2;
-                    this.hero[unit].speed = 4;
-                    this.hero[unit].ability = "Critical Heal: \nHeals the most injured  "+(this.hero[unit].intel*this.hero[unit].level)+" HP";  
-                    break;                  
-                  
-            }
-            this.hero[unit].loadTexture(this.hero[unit].heroID);
-            this.hero[unit].stamina =100;
+            this.hero[unit].loadTexture(weapon[heroID].name);
+            this.hero[unit].stamina = 100;
             this.hero[unit].maxhp = this.hero[unit].hp
 
             
@@ -1468,6 +1341,11 @@
             this.monster.mp = monster[this.biome][monID].mp;
             this.monster.attack = monster[this.biome][monID].attack;
             this.monster.defence = monster[this.biome][monID].defence;
+          
+            this.monster.slashDef = monster[this.biome][monID].slashDef;
+            this.monster.stabDef = monster[this.biome][monID].stabDef;
+            this.monster.bashDef = monster[this.biome][monID].bashDef;
+          
             this.monster.dex = monster[this.biome][monID].dex;
             this.monster.dodge = monster[this.biome][monID].dodge;
             this.monster.intel = monster[this.biome][monID].intel;
@@ -1536,7 +1414,7 @@
                 var crit =0
                 
                 this.monster.hitBy = unit.heroID;
-                console.log(unit.stamina);
+                //console.log(unit.stamina);
                 ////console.log("Monster hit by "+this.monster.hitBy );   
                 switch(unit.role){
                   case 1:
@@ -1553,14 +1431,36 @@
                     var miss = false
                     for(var i=0; i < 1; i++){
                      
-                    
-                    //hero get a bonus to hit
-                    var hit = unit.level+Math.floor(Math.random() * (unit.dex))+3;
-                    var attack = unit.attack
-                    var damage = Math.round((attack*attack) / (attack + this.monster.defence));
+                    this.monster.attackAction[0].loadTexture(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name);
+                    var damage = 0;
+                    //attack type
+                    var hunterAttack = this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]];
+                    var attackType =""
+                    switch(hunterAttack.attackType){
+                      case 0:
+                        var attack = hunterAttack.attack
+                       
+                        damage = Math.round((attack*attack) / (attack + this.monster.slashDef));   
+                        attackType ="SLASH"
+                        this.rhythemUI.loadTexture("attackHit-slash");
+                        break;
+                      case 1:
+                        var attack = hunterAttack.attack
+                        damage = Math.round((attack*attack) / (attack + this.monster.stabDef));   
+                        attackType ="STAB"
+                        this.rhythemUI.loadTexture("attackHit-stab");
+                        break;
+                      case 2:
+                        var attack = hunterAttack.attack
+                        damage = Math.round((attack*attack) / (attack + this.monster.bashDef));     
+                        attackType ="BASH"
+                        this.rhythemUI.loadTexture("attackHit-bash");
+                        break;                        
+                    }
+                    attackType =""
                     //damage cant be reduced lower than 1
                     if(damage <= 0){
-                       //damage = 1;
+                       damage = 0;
                     }
                     //damage = 1
                     //console.log(damage+" asd "+dodge);
@@ -1573,7 +1473,7 @@
                             this.attackSound[ran].play();
                         }                         
                         this.rhythemUI.alpha = 1;
-                        this.rhythemUI.loadTexture("attackHit");
+                        //this.rhythemUI.loadTexture("attackHit");
                         this.dialougeTimer = 100;
                         //dodge = 0
                         //damage = 0
@@ -1595,10 +1495,17 @@
                     this.monster.hp -= damage
                      for(var i = 0; i < 100; i++){
                         if(this.damageUI[i].alpha <= 0.01){
-
+                            this.damageUI[i].upward = 20;
+                            var ran = Math.floor(Math.random() * 2);
+                            if(ran == 0){
+                              this.damageUI[i].slide = 5  
+                            }
+                            else{
+                              this.damageUI[i].slide = -5
+                            }
                             this.damageUI[i].tint = 0xFFFFFF;
-                            this.damageUI[i].fontSize = 200;
-                            this.damageUI[i].text  = damage;
+                            this.damageUI[i].fontSize = 100;
+                            this.damageUI[i].text  = damage+"\n"+attackType;
                             this.damageUI[i].x = this.monster.x;
                             this.damageUI[i].y = this.monster.y;
                             this.damageUI[i].alpha = 1;
@@ -1626,7 +1533,7 @@
                     
                       unit.y -= 100;
                       unit.stamina = 0;  
-                      var buffer = 50
+                      var buffer = 100
                       for(var i=0; i < 1; i++){
                         var diff = this.monster.blockAction[i].x - this.rhythmArrow.x
                         if(this.monster.moveDecide == 0){
@@ -1641,10 +1548,61 @@
                           this.rhythemUI.loadTexture("blockHit");
                           this.dialougeTimer = 100;
                           this.hunter.blockDuration = 100;
+                          //perfect block
+                          if(diff <= 50){
+                            //attack type
+                            var hunterAttack = this.hero[2].skill[0];
+                            var damage = 0;
+                            var attackType =""
+                            switch(hunterAttack.attackType){
+                              case 0:
+                                var attack = hunterAttack.attack
+
+                                damage = Math.round((attack*attack) / (attack + this.monster.slashDef));   
+                                attackType ="SLASH"
+                                this.rhythemUI.loadTexture("attackHit-slash");
+                                break;
+                              case 1:
+                                var attack = hunterAttack.attack
+                                damage = Math.round((attack*attack) / (attack + this.monster.stabDef));   
+                                attackType ="STAB"
+                                this.rhythemUI.loadTexture("attackHit-stab");
+                                break;
+                              case 2:
+                                var attack = hunterAttack.attack
+                                damage = Math.round((attack*attack) / (attack + this.monster.bashDef));     
+                                attackType ="BASH"
+                                this.rhythemUI.loadTexture("attackHit-bash");
+                                break;                        
+                            }
+                            attackType =""
+                            if(damage <= 0){
+                               damage = 0;
+                            }      
+                            this.monster.hp -= damage
+                          
+                             for(var i = 0; i < 100; i++){
+                                if(this.damageUI[i].alpha <= 0.01){
+                                    this.damageUI[i].upward = 20;
+                                    var ran = Math.floor(Math.random() * 2);
+                                    if(ran == 0){
+                                      this.damageUI[i].slide = 5  
+                                    }
+                                    else{
+                                      this.damageUI[i].slide = -5
+                                    }                                  
+                                    this.damageUI[i].tint = 0xFFFFFF;
+                                    this.damageUI[i].fontSize = 100;
+                                    this.damageUI[i].text  = damage+"\n"+attackType;
+                                    this.damageUI[i].x = this.monster.x;
+                                    this.damageUI[i].y = this.monster.y;
+                                    this.damageUI[i].alpha = 1;
+                                    i = 100; 
+                                }
+                              }                            
+                          }
                           //this.monster.blockAction[i].alpha = 0;
-                          if(diff <= 100){
-                            i =   this.monster.dex;
-                          } 
+
                           
                         }
                         else{

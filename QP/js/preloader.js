@@ -44,7 +44,10 @@
             this.load.image('emptyBot', 'assets/emptyBot.png');
           
             this.load.image('blockHit', 'assets/blockHit.png');  
-            this.load.image('attackHit', 'assets/attackHit.png');  
+            this.load.image('attackHit', 'assets/attackHit.png');
+            this.load.image('attackHit-slash', 'assets/attackHit-slash.png');
+            this.load.image('attackHit-stab', 'assets/attackHit-stab.png');
+            this.load.image('attackHit-bash', 'assets/attackHit-bash.png');
             this.load.image('blockMiss', 'assets/blockMiss.png');  
             this.load.image('attackMiss', 'assets/attackMiss.png');            
           
@@ -80,6 +83,16 @@
             this.load.image('returnMap', 'assets/returnMap.png');          
 
             
+            //weapons & potions
+            this.load.image('Beginner-Blade', 'assets/wep/Beginner-Blade.png');
+            this.load.image('Wooden-Shield', 'assets/wep/Wooden-Shield.png');
+            this.load.image('Red-Potion', 'assets/wep/Red-Potion.png');
+          
+            //skills
+            this.load.image('Novice-Slash', 'assets/skills/Novice-Slash.png');
+            this.load.image('Novice-Stab', 'assets/skills/Novice-Stab.png');   
+            this.load.image('Shield-Bash', 'assets/skills/Shield-Bash.png');   
+          
             this.load.image('scroll', 'assets/scroll.png');
             
             this.load.image('quest', 'assets/quest.png');
