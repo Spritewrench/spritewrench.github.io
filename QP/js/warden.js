@@ -61,7 +61,7 @@
             //this.gray = this.game.add.filter('Gray');
         }          
         , update: function () {
-            this.TixCountVal = 5;
+            //this.TixCountVal = 5;
             this.game.scale.refresh(); 
             this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
             this.timer++;
