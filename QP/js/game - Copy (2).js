@@ -1513,7 +1513,7 @@
                         //damage = 0
                         //this.monster.attackAction[i].alpha = 0;
                         
-                        if(diff <= 25){
+                        if(diff <= 50){
                           this.rhythemUI2.alpha = 1
                           damage *= 2;
                         }
@@ -1527,9 +1527,7 @@
                         damage = 0;
                       }
 
-                    }            
-                    damage += this.hunter.charge;
-                    this.hunter.charge = 0;
+                    }                      
                     this.monster.hp -= damage
                      for(var i = 0; i < 100; i++){
                         if(this.damageUI[i].alpha <= 0.01){
@@ -1543,13 +1541,7 @@
                             }
                             this.damageUI[i].tint = 0xFFFFFF;
                             this.damageUI[i].fontSize = 100;
-                            if(damage <= 0){
-                              this.damageUI[i].text  = "RESIST";
-                            }
-                            else{
-                              this.damageUI[i].text  = damage+"\n"+attackType;
-                            }
-                            
+                            this.damageUI[i].text  = damage+"\n"+attackType;
                             this.damageUI[i].x = this.monster.x;
                             this.damageUI[i].y = this.monster.y;
                             this.damageUI[i].alpha = 1;
@@ -1592,17 +1584,59 @@
                           this.rhythemUI.loadTexture("blockHit");
                           this.dialougeTimer = 100;
                           this.hunter.blockDuration = 100;
-                          
                           //perfect block
-                          if(diff <= 25){
-                           this.rhythemUI2.alpha = 1
-                           this.hunter.charge = 3;
-                          }
-                          else{
-                            this.hunter.charge += 1;
-                            if(this.hunter.charge > 3){
-                              this.hunter.charge= 3;
+                          if(diff <= 50){
+                            //attack type
+                            this.rhythemUI2.alpha = 1;
+                            var hunterAttack = this.hero[2].skill[0];
+                            var damage = 0;
+                            var attackType =""
+                            switch(hunterAttack.attackType){
+                              case 0:
+                                var attack = hunterAttack.attack
+
+                                damage = Math.round((attack*attack) / (attack + this.monster.slashDef));   
+                                attackType ="SLASH"
+                                this.rhythemUI.loadTexture("attackHit-slash");
+                                break;
+                              case 1:
+                                var attack = hunterAttack.attack
+                                damage = Math.round((attack*attack) / (attack + this.monster.stabDef));   
+                                attackType ="STAB"
+                                this.rhythemUI.loadTexture("attackHit-stab");
+                                break;
+                              case 2:
+                                var attack = hunterAttack.attack
+                                damage = Math.round((attack*attack) / (attack + this.monster.bashDef));     
+                                attackType ="BASH"
+                                //this.rhythemUI.loadTexture("attackHit-bash");
+                                break;                        
                             }
+                            attackType =""
+                            if(damage <= 0){
+                               damage = 0;
+                            }      
+                            this.monster.hp -= damage
+                          
+                             for(var i = 0; i < 100; i++){
+                                if(this.damageUI[i].alpha <= 0.01){
+                                    this.damageUI[i].upward = 20;
+                                    var ran = Math.floor(Math.random() * 2);
+                                    if(ran == 0){
+                                      this.damageUI[i].slide = 5  
+                                    }
+                                    else{
+                                      this.damageUI[i].slide = -5
+                                    }                                  
+                                    this.damageUI[i].tint = 0xFFFFFF;
+                                    this.damageUI[i].fontSize = 100;
+                                    this.damageUI[i].text  = damage+"\n"+attackType;
+                                    this.damageUI[i].x = this.monster.x;
+                                    this.damageUI[i].y = this.monster.y;
+                                    //this.damageUI[i].alpha = 1;
+                                    i = 100; 
+                                }
+                              }                            
                           }
                           //this.monster.blockAction[i].alpha = 0;
 

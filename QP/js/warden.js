@@ -35,7 +35,6 @@
             this.Map = this.add.sprite((this.game.width)-120,(this.game.height/2)+450, 'returnMap');
             this.Map.anchor.setTo(0.5, 0.5);
             this.Map.width = 220;
-            console.log(this.Map)
             this.Map.height = 220    
             this.Map.clicked = false;
             this.Map.inputEnabled = true;
@@ -62,7 +61,7 @@
             //this.gray = this.game.add.filter('Gray');
         }          
         , update: function () {
-            
+            this.TixCountVal = 5;
             this.game.scale.refresh(); 
             this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
             this.timer++;

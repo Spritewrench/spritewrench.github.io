@@ -50,7 +50,11 @@
             this.load.image('attackHit-bash', 'assets/attackHit-bash.png');
             this.load.image('blockMiss', 'assets/blockMiss.png');  
             this.load.image('blockPerfect', 'assets/blockPerfect.png');  
-            this.load.image('attackMiss', 'assets/attackMiss.png');            
+            this.load.image('attackMiss', 'assets/attackMiss.png');   
+          
+          
+            this.load.image('charge', 'assets/charge.png');   
+            this.load.image('charge-spent', 'assets/charge-spent.png');   
           
             this.load.image('logo', 'assets/logo.png');
             this.load.image('logo2', 'assets/logo2.png');
@@ -81,6 +85,7 @@
             this.load.image('wardenHunt', 'assets/wardenHunt.png');
             this.load.image('wardenHunt-No', 'assets/wardenHunt-no.png');
             this.load.image('wardenReward', 'assets/wardenReward.png');
+            this.load.image('wardenReward-No', 'assets/wardenReward-no.png');
             this.load.image('returnMap', 'assets/returnMap.png');          
 
             
