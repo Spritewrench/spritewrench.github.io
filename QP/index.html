@@ -20,11 +20,6 @@
     </style>
 
   </head>
-  <body>
-    
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_ixRi-ia7rE13OLPVXDanaBi4s8SDo7w&libraries=places&callback=initMap" async defer></script>
-  </body>
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
 
@@ -309,7 +304,7 @@
           service = new google.maps.places.PlacesService(map);
 
           service.nearbySearch(request, function(results, status) {
-            var length =5
+            var length =5;
             if (status === google.maps.places.PlacesServiceStatus.OK) {
               for (var i = 0; i < length; i++) {
                 createMarker(results[i]);
@@ -356,120 +351,175 @@
       var random = 0
       
       //check in database if location is present
-      random = firebase.database().ref('places/' + place.place_id).once('value').then(function(snapshot) {
-        if(snapshot.val() == null){
-          random = Math.floor(Math.random() * 3);
-          firebase.database().ref('places/' +place.place_id).set({
-            biome: random
-          });        
-          var biome ="";
-          // biome set
-          switch(random){
-                 case 0:
-                  biome  = icons['grasslands'].icon;
-                 break;
-                 case 1:
-                  biome  = icons['cave'].icon;
-                 break;
-                 case 2:
-                  biome  = icons['mountain'].icon;
-                 break;               
+      try{
+        random = firebase.database().ref('places/' + place.place_id).once('value').then(function(snapshot) {
+          if(snapshot.val() == null){
+            random = Math.floor(Math.random() * 3);
+            firebase.database().ref('places/' +place.place_id).set({
+              biome: random
+            });        
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
+
+            marker.place = place;
+            marker.biome = random;
+
+
+
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
+
+            google.maps.event.addListener(marker, 'click', function() {
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }   
+              //console.log(marker.biome)
+              localStorage.setItem("biome",random)
+              localStorage.setItem("state","warden")
+              localStorage.setItem("placeID",marker.place.place_id)
+              localStorage.setItem("placeName",marker.place.name)
+              //var currentClick = new Date();
+              //localStorage.setItem("lastClicked",currentClick)
+              if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                localStorage.setItem("TixCount"+marker.place.place_id,5)
+              }          
+              window.location.href = "index2.html";
+              //console.log(marker.place);
+            });         
           }
-          var marker = new google.maps.Marker({
-            map: map,
-            animation: google.maps.Animation.DROP,
-            icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
-            position: place.geometry.location
-          });
+          else{
+            console.log("Location Found")
+            random = parseInt(snapshot.val().biome);
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
 
-          marker.place = place;
-          marker.biome = random;
+            marker.place = place;
 
 
 
-          //firebase.database().ref('places/' +place.place_id).set({
-            //biome: marker.biome
-          //});    
 
-          google.maps.event.addListener(marker, 'click', function() {
-            //infowindow.setContent(place.name);
-            //infowindow.open(map, this);
-            if (marker.getAnimation() !== null) {
-              marker.setAnimation(null);
-            } else {
-              //marker.setAnimation(google.maps.Animation.BOUNCE);
-            }   
-            //console.log(marker.biome)
-            localStorage.setItem("biome",random)
-            localStorage.setItem("state","warden")
-            localStorage.setItem("placeID",marker.place.place_id)
-            localStorage.setItem("placeName",marker.place.name)
-            //var currentClick = new Date();
-            //localStorage.setItem("lastClicked",currentClick)
-            if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
-              localStorage.setItem("TixCount"+marker.place.place_id,5)
-            }          
-            window.location.href = "index2.html";
-            //console.log(marker.place);
-          });         
-        }
-        else{
-          console.log("Location Found")
-          random = parseInt(snapshot.val().biome);
-          var biome ="";
-          // biome set
-          switch(random){
-                 case 0:
-                  biome  = icons['grasslands'].icon;
-                 break;
-                 case 1:
-                  biome  = icons['cave'].icon;
-                 break;
-                 case 2:
-                  biome  = icons['mountain'].icon;
-                 break;               
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
+
+            google.maps.event.addListener(marker, 'click', function() {
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }   
+              //console.log(marker.biome)
+              localStorage.setItem("biome",random)
+              localStorage.setItem("state","warden")
+              localStorage.setItem("placeID",marker.place.place_id)
+              localStorage.setItem("placeName",marker.place.name)
+              //var currentClick = new Date();
+              //localStorage.setItem("lastClicked",currentClick)
+              if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                localStorage.setItem("TixCount"+marker.place.place_id,5)
+              }          
+              window.location.href = "index2.html";
+              //console.log(marker.place);
+            });          
+
           }
-          var marker = new google.maps.Marker({
-            map: map,
-            animation: google.maps.Animation.DROP,
-            icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
-            position: place.geometry.location
-          });
+        });    
+      }
+      catch(err){
+            console.log("Location Found")
+            random = parseInt(snapshot.val().biome);
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
 
-          marker.place = place;
+            marker.place = place;
 
 
 
 
-          //firebase.database().ref('places/' +place.place_id).set({
-            //biome: marker.biome
-          //});    
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
 
-          google.maps.event.addListener(marker, 'click', function() {
-            //infowindow.setContent(place.name);
-            //infowindow.open(map, this);
-            if (marker.getAnimation() !== null) {
-              marker.setAnimation(null);
-            } else {
-              //marker.setAnimation(google.maps.Animation.BOUNCE);
-            }   
-            //console.log(marker.biome)
-            localStorage.setItem("biome",random)
-            localStorage.setItem("state","warden")
-            localStorage.setItem("placeID",marker.place.place_id)
-            localStorage.setItem("placeName",marker.place.name)
-            //var currentClick = new Date();
-            //localStorage.setItem("lastClicked",currentClick)
-            if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
-              localStorage.setItem("TixCount"+marker.place.place_id,5)
-            }          
-            window.location.href = "index2.html";
-            //console.log(marker.place);
-          });          
-         
-        }
-      });    
-      
+            google.maps.event.addListener(marker, 'click', function() {
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }   
+              //console.log(marker.biome)
+              localStorage.setItem("biome",random)
+              localStorage.setItem("state","warden")
+              localStorage.setItem("placeID",marker.place.place_id)
+              localStorage.setItem("placeName",marker.place.name)
+              //var currentClick = new Date();
+              //localStorage.setItem("lastClicked",currentClick)
+              if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                localStorage.setItem("TixCount"+marker.place.place_id,5)
+              }          
+              window.location.href = "index2.html";
+              //console.log(marker.place);
+            });          
+      }
 
 
 
@@ -481,4 +531,10 @@
       return jamaica;
     }      
   </script>  
+  <body>
+    
+    <div id="map"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_ixRi-ia7rE13OLPVXDanaBi4s8SDo7w&libraries=places&callback=initMap" ></script>
+  </body>
+  
 </html>

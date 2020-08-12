@@ -101,7 +101,7 @@
               this.Map.height--;
             }  
             if(this.Map.width <= 221 && this.Map.height <= 221 && this.Map.clicked){
-              window.location.href = "https://spritewrench.com/QP/";
+              //window.location.href = "/";
             }    
           
             //animate hunt button
@@ -130,7 +130,7 @@
             this.Map.width = 250;
             this.Map.height = 250  
             this.Map.clicked = true;
-
+            window.location.href = "https://spritewrench.com/QP/";
         }   
         , time_convert: function (num) {
             var hours = Math.floor(num / 60);  
