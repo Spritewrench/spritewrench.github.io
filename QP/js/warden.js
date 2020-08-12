@@ -101,7 +101,7 @@
               this.Map.height--;
             }  
             if(this.Map.width <= 221 && this.Map.height <= 221 && this.Map.clicked){
-              window.location.href = "index.html";
+              window.location.href = "/";
             }    
           
             //animate hunt button
