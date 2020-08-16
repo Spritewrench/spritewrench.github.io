@@ -1591,9 +1591,7 @@
           this.monster.attackAction[0].hp = 1+(1*this.hunter.charge);
         }
         , onClick: function (unit, pointer) {
-          console.log(unit.role)
-          console.log(unit.cost)
-          
+
           if(((this.hunter.stamina-unit.cost)  >= 0 || unit.role == 2) && unit.stamina >= this.hunter.maxStamina){
             
             if( unit.role == 2){
