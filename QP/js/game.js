@@ -1383,7 +1383,7 @@
                 var attack = unit.attack;
 
                 var damage = Math.round((attack*attack) / (attack + this.hunter.defence));
-                
+              
                 var strDiff = unit.attack - unit.dex
                 if(strDiff < 0){
                    strDiff  = 0
@@ -1395,7 +1395,25 @@
                 if(damage < 1){
                    damage = 1;
                 }
-                damage = this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].attack
+                var damage = this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].attack
+                // special attack effects
+                var monSkillType = this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].id
+                switch(monSkillType){
+                  case 4:
+                    //regen
+                    this.monster.hp += damage;
+                    damage = 0;
+                    if(this.monster.hp > this.monster.maxhp){
+                      this.monster.hp = this.monster.maxhp
+                    }
+                    //this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].speed += 5;
+                    break;                    
+                  case 5:
+                    //explode 
+                    //this.monster.hp += 1;
+                    //this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].speed += 5;
+                    break;
+                }                  
                 if(this.hunter.isBlocking || this.hunter.blockDuration > 0){
 
                   
@@ -1843,7 +1861,14 @@
                           this.rhythemUI.alpha = 1;
                           this.rhythemUI.loadTexture("blockHit");
                           this.dialougeTimer = 100;
-                          this.monster.blockAction[i].hp--;
+                         ;
+                          if(this.monster.blockAction[i].hp > 1){
+                             this.monster.blockAction[i].hp--
+                              this.monster.blockAction[i].x += 200
+                          }
+                          else{
+                             this.monster.blockAction[i].hp--
+                          }  
                           
                           if(this.monster.blockAction[i].hp <= 0){
                         
