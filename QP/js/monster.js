@@ -46,10 +46,10 @@ monster[1][1].dodge = 0;
 monster[1][1].intel = 1;
 monster[1][1].speed = 6;
 monster[1][1].attackPattern = "12130"
-monster[0][1].skill = [];
-monster[0][1].skill[1] =monSkill[1]
-monster[0][1].skill[2] =monSkill[2]
-monster[0][1].skill[3] =monSkill[3]
+monster[1][1].skill = [];
+monster[1][1].skill[1] =monSkill[1]
+monster[1][1].skill[2] =monSkill[2]
+monster[1][1].skill[3] =monSkill[3]
 
 //noot
 monster[2][1] = new Object();
@@ -68,7 +68,7 @@ monster[2][1].dodge = 0;
 monster[2][1].intel = 1;
 monster[2][1].speed = 6;
 monster[2][1].attackPattern = "12130"
-monster[0][1].skill = [];
-monster[0][1].skill[1] =monSkill[1]
-monster[0][1].skill[2] =monSkill[2]
-monster[0][1].skill[3] =monSkill[3]
+monster[2][1].skill = [];
+monster[2][1].skill[1] =monSkill[1]
+monster[2][1].skill[2] =monSkill[2]
+monster[2][1].skill[3] =monSkill[3]

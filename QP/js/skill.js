@@ -45,7 +45,7 @@ skill[4] = new Object();
 skill[4].name = "Critical-Strike"
 skill[4].id = 4;
 skill[4].hp = 1;
-skill[4].attack = 1;
+skill[4].attack = 10;
 skill[4].speed = 0
 // slash - 0, stab - 1 & bash - 2 & True - 4
-skill[4].attackType = 4;
+skill[4].attackType = 2;

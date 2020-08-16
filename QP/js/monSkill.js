@@ -5,7 +5,7 @@ monSkill[1] = new Object();
 monSkill[1].name = "Rake"
 monSkill[1].id = 1
 monSkill[1].hp = 1
-monSkill[1].attack = 0;
+monSkill[1].attack = 1;
 monSkill[1].speed = 2;
 // slash - 0, stab - 1 & bash - 2
 monSkill[1].attackType = 0;
