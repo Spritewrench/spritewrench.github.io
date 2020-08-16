@@ -54,10 +54,15 @@
             this.TixTimer.alpha = 0;
           
           
-            this.biomeName = this.add.bitmapText(this.game.width-250, this.huntTickets.y+(this.huntTickets.height/2)-5, 'minecraftia', '',40);
+            this.biomeName = this.add.bitmapText(this.game.width-200, this.huntTickets.y+(this.huntTickets.height/2)-5+150, 'minecraftia', '',40);
             this.biomeName.text = localStorage.getItem("placeName");
             this.biomeName.anchor.setTo(0.5, 0.5);       
             this.biomeName.maxWidth = 400;
+          
+            this.weatherIcon = this.add.sprite(this.game.width-200, this.huntTickets.y+(this.huntTickets.height/2)-5, 'weatherIcon');
+            this.weatherIcon.anchor.setTo(0.5, 0.5);
+            this.weatherIcon.width = 300
+            this.weatherIcon.height = 300            
             //this.gray = this.game.add.filter('Gray');
         }          
         , update: function () {
@@ -130,7 +135,7 @@
             this.Map.width = 250;
             this.Map.height = 250  
             this.Map.clicked = true;
-            window.location.href = "https://spritewrench.com/QP/";
+            window.location.href = "index.html";
         }   
         , time_convert: function (num) {
             var hours = Math.floor(num / 60);  

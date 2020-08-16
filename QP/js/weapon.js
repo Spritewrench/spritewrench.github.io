@@ -20,11 +20,11 @@ weapon[1].hp = 3;
 // higher the weight faster the skill execute
 weapon[1].weight = 5;
 weapon[1].cost = 0;
-weapon[1].comboPattern = "001"
+weapon[1].comboPattern = "01"
 weapon[1].skill = [];
 weapon[1].skill[0] = skill[1]
 weapon[1].skill[1] = skill[2]
-weapon[1].defSkill = skill[3]
+weapon[1].ultSkill = skill[4]
 
 //Wooden shield
 weapon[2] = new Object();

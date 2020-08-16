@@ -411,6 +411,9 @@
           }
           else{
             console.log("Location Found")
+    
+            
+            
             random = parseInt(snapshot.val().biome);
             var biome ="";
             // biome set
@@ -449,18 +452,31 @@
               } else {
                 //marker.setAnimation(google.maps.Animation.BOUNCE);
               }   
-              //console.log(marker.biome)
-              localStorage.setItem("biome",random)
-              localStorage.setItem("state","warden")
-              localStorage.setItem("placeID",marker.place.place_id)
-              localStorage.setItem("placeName",marker.place.name)
-              //var currentClick = new Date();
-              //localStorage.setItem("lastClicked",currentClick)
-              if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
-                localStorage.setItem("TixCount"+marker.place.place_id,5)
-              }          
-              window.location.href = "index2.html";
-              //console.log(marker.place);
+              
+              var weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat="+marker.place.geometry.location.lat()+"&lon="+marker.place.geometry.location.lng()+"&appid=5fcd044a0d8fe8941b4a3b00fbd1098e"
+              var obj;
+              
+              fetch(weatherURL)
+                .then(res => res.json())
+                .then(data => obj = data)
+                .then(
+                  function(obj) {
+                    localStorage.setItem("weather"+marker.place.place_id,obj.weather[0].main);
+                    localStorage.setItem("weatherIcon"+marker.place.place_id,obj.weather[0].icon);
+                    localStorage.setItem("biome",random)
+                    localStorage.setItem("state","warden")
+                    localStorage.setItem("placeID",marker.place.place_id)
+                    localStorage.setItem("placeName",marker.place.name)
+                    //var currentClick = new Date();
+                    //localStorage.setItem("lastClicked",currentClick)
+                    if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                      localStorage.setItem("TixCount"+marker.place.place_id,5)
+                    }      
+                    //console.log(localStorage.getItem("weatherIcon"+marker.place.place_id))
+                    window.location.href = "index2.html";                    
+                  }
+                )
+
             });          
 
           }
@@ -506,18 +522,28 @@
               } else {
                 //marker.setAnimation(google.maps.Animation.BOUNCE);
               }   
-              //console.log(marker.biome)
-              localStorage.setItem("biome",random)
-              localStorage.setItem("state","warden")
-              localStorage.setItem("placeID",marker.place.place_id)
-              localStorage.setItem("placeName",marker.place.name)
-              //var currentClick = new Date();
-              //localStorage.setItem("lastClicked",currentClick)
-              if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
-                localStorage.setItem("TixCount"+marker.place.place_id,5)
-              }          
-              window.location.href = "index2.html";
-              //console.log(marker.place);
+              var weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat="+marker.place.geometry.location.lat()+"&lon="+marker.place.geometry.location.lng()+"&appid=5fcd044a0d8fe8941b4a3b00fbd1098e"
+              var obj;
+              
+              fetch(weatherURL)
+                .then(res => res.json())
+                .then(data => obj = data)
+                .then(
+                  function(obj) {
+                    localStorage.setItem("weather"+marker.place.place_id,obj.weather[0].main);
+                    localStorage.setItem("weatherIcon"+marker.place.place_id,obj.weather[0].icon);
+                    localStorage.setItem("biome",random)
+                    localStorage.setItem("state","warden")
+                    localStorage.setItem("placeID",marker.place.place_id)
+                    localStorage.setItem("placeName",marker.place.name)
+                    //var currentClick = new Date();
+                    //localStorage.setItem("lastClicked",currentClick)
+                    if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                      localStorage.setItem("TixCount"+marker.place.place_id,5)
+                    }          
+                    window.location.href = "index2.html";                    
+                  }
+                )
             });          
       }
 

@@ -51,10 +51,21 @@
             this.load.image('blockMiss', 'assets/blockMiss.png');  
             this.load.image('blockPerfect', 'assets/blockPerfect.png');  
             this.load.image('attackMiss', 'assets/attackMiss.png');   
-          
+            
+            this.load.image('weatherIcon', 'http://openweathermap.org/img/wn/'+localStorage.getItem("weatherIcon"+localStorage.getItem("placeID"))+'@2x.png');
+            //alert(localStorage.getItem("weatherIcon"+localStorage.getItem("placeID")))
           
             this.load.image('charge', 'assets/charge.png');   
-            this.load.image('charge-spent', 'assets/charge-spent.png');   
+            this.load.image('charge-spent', 'assets/charge-spent.png');  
+            this.load.image('storeCharge', 'assets/storeCharge.png');  
+          
+            this.load.image('storeCharge-0', 'assets/storeCharge-0.png');  
+            this.load.image('storeCharge-1', 'assets/storeCharge-1.png');  
+            this.load.image('storeCharge-2', 'assets/storeCharge-2.png');  
+            this.load.image('storeCharge-3', 'assets/storeCharge-3.png');  
+            this.load.image('storeCharge-4', 'assets/storeCharge-4.png');  
+            this.load.image('storeCharge-5', 'assets/storeCharge-5.png');  
+            this.load.image('storeCharge-6', 'assets/storeCharge-6.png');  
           
             this.load.image('logo', 'assets/logo.png');
             this.load.image('logo2', 'assets/logo2.png');
@@ -94,10 +105,18 @@
             this.load.image('Wooden-Shield', 'assets/wep/Wooden-Shield.png');
             this.load.image('Red-Potion', 'assets/wep/Red-Potion.png');
           
+            //mon skills
+            this.load.image('Rake', 'assets/monSkills/Rake.png');
+            this.load.image('Bite', 'assets/monSkills/Bite.png');
+            this.load.image('Acid-Spit', 'assets/monSkills/Acid-Spit.png');
+            this.load.image('Regen', 'assets/monSkills/Regen.png');
+            this.load.image('Explode', 'assets/monSkills/Explode.png');
+          
             //skills
             this.load.image('Novice-Slash', 'assets/skills/Novice-Slash.png');
             this.load.image('Novice-Stab', 'assets/skills/Novice-Stab.png');   
             this.load.image('Shield-Bash', 'assets/skills/Shield-Bash.png');   
+            this.load.image('Critical-Strike', 'assets/skills/Critical-Strike.png'); 
           
             this.load.image('scroll', 'assets/scroll.png');
             

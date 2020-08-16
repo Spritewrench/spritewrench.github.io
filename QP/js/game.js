@@ -244,13 +244,24 @@
             this.rhythemUI2.alpha = 0;              
             
             this.chargeUI = [];
-            var dist = -200;
-            for(var i = 0; i < 3; i++){
+            var dist = -1*(110*this.hero[2].skill[0].attack);
+            for(var i = 0; i < this.hero[2].skill[0].attack; i++){
               this.chargeUI[i] = this.add.sprite(x+dist,  this.game.height-500, 'charge');
               dist += 150;
             }
             
-            
+            //spend charge
+            //var dist = -1*(70*this.hero[2].skill[0].attack);
+            this.spendCharge = this.add.sprite(x+dist+125, this.game.height-500,'storeCharge');   
+            this.spendCharge.width = 200;
+            this.spendCharge.height = 200;         
+            this.spendCharge.anchor.setTo(0.5, 0.5);
+            this.spendCharge.inputEnabled = true;
+            this.spendCharge.events.onInputDown.add(this.spendCharges, this);       
+          
+            var dist = 0;
+
+          
             this.hunter = new Object; 
             this.hunter.gender = 0;
             this.hunter.name = "you";
@@ -265,8 +276,9 @@
             this.hunter.stamina = 10; 
             this.hunter.maxStamina = 100;
             this.hunter.charge = 0;
+            this.hunter.ultCharge = 0;
             this.hunter.isBlocking = false;            
-          
+            this.hunter.ulting = false
 
 
             
@@ -361,7 +373,7 @@
               
               this.monster.blockAction[i].startPoint = this.game.width+100
               //dist += 500
-
+              this.monster.blockAction[i].hp = 1
               this.monster.blockAction[i].height = 200;
               this.monster.blockAction[i].width = 200;
               this.monster.blockAction[i].anchor.setTo(0.5, 0.5);
@@ -378,6 +390,7 @@
               this.monster.attackAction[i] = this.add.sprite(0+dist, this.monsterRhythmUI.y+50, 'rhythmIcon2');
               this.monster.attackAction[i].startPoint = 0+dist
               dist -= 0
+              this.monster.attackAction[i].hp = 1
               this.monster.attackAction[i].height = 200;
               this.monster.attackAction[i].width = 200;
               this.monster.attackAction[i].anchor.setTo(0.5, 0.5);
@@ -438,10 +451,18 @@
                 this.tip[i].alpha = 0;
             }            
             
-            
-            
-            //this.game.input.mouse.mouseWheelCallback=this.scroll;
-            //this.game.canvas.addEventListener("mousewheel", this.scroll.bind(this), true)
+            //ult emitter
+            this.ultEmitter = [];
+            for(var i =0; i < 10;i++){
+              this.ultEmitter[i] = this.add.sprite(0, 0,'bg7');  
+              this.ultEmitter[i].width = 100;
+              this.ultEmitter[i].height = 100;
+              this.ultEmitter[i].alpha = 0;
+              this.ultEmitter[i].timer = 0
+              this.ultEmitter[i].inputEnabled = true;
+              this.ultEmitter[i].events.onInputDown.add(this.ultMove, this);                
+            }
+
             
             
         }
@@ -608,15 +629,27 @@
                 }
                 
                 //update charge
-                console.log(this.chargeUI.length)
+                
                 for(var k = 0; k < this.chargeUI.length; k++){
                   this.chargeUI[k].loadTexture("charge-spent");
                 }              
                 for(var k = 0; k < this.hunter.charge; k++){
                   this.chargeUI[k].loadTexture("charge");
                 }              
-                
-             
+                this.spendCharge.loadTexture("storeCharge-"+this.hunter.ultCharge);
+                // Charge Ready
+                if(this.hunter.ultCharge >= 6){
+                  this.spendCharge.width += (200 - this.spendCharge.width) * 0.1; 
+                  this.spendCharge.height += (200 - this.spendCharge.width) * 0.1; 
+                  if(this.spendCharge.width <= 201){
+                    this.spendCharge.width = 250;
+                    this.spendCharge.height = 250;
+                  }
+                    
+                }
+ 
+               
+              
               //death
                 
                 
@@ -806,13 +839,24 @@
                     else{
                       var currentStam= this.monster.stamina
                       this.monAttack(this.monster) 
+                      // post attack effects
+                      var monSkillType = this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].id
+                      switch(monSkillType){
+                        case 1:
+                          this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].speed += 5;
+                          break;
+                      }
                       this.monster.stamina=currentStam; 
                       
                       this.hunter.blockDuration = 0
                       this.monster.blockAction[i].miss = false;
                       this.monster.blockAction[i].alpha = 1;
-                      this.monster.blockAction[i].x = this.monster.blockAction[i].startPoint
-                      this.monster.blockAction[i].y = this.monsterRhythmUI.y+50                
+                      this.monster.blockAction[i].width += ((200*1) + this.monster.blockAction[i].width) * 0.5;
+                      this.monster.blockAction[i].height += ((200*1) + this.monster.blockAction[i].height) * 0.5;                          
+                      this.monster.blockAction[i].x = this.monster.blockAction[i].startPoint + this.monster.blockAction[i].width
+                      this.monster.blockAction[i].y = this.monsterRhythmUI.y+50            
+                      this.monster.blockAction[i].hp = 1;  
+                      
                       if(this.monster.moveKey < this.monster.attackPattern.length){
                         this.monster.moveKey++;    
                         if(this.monster.moveKey >= this.monster.attackPattern.length){
@@ -821,18 +865,48 @@
 
                       }
                       this.monster.moveDecide = this.monster.attackPattern[this.monster.moveKey];  
-                      if(this.monster.moveDecide == 1){
+                      this.map.alpha = 1;
+                      if(this.monster.moveDecide == 0){
                         //alert(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name)
                         this.monster.attackAction[0].loadTexture(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name);
+                        if(this.hunter.ultCharge >= 6|| this.hunter.ulting == true){
+                            this.monster.attackAction[0].loadTexture(this.hero[0].ultSkill.name);
+                            this.hunter.ultCharge = 0;
+                            this.hunter.charge = 0;
+                            this.map.alpha = 0.2;
+                            this.hunter.ulting = true;
+                        }
+                                              
+                        this.monster.attackAction[i].hp = 1+(1*this.hunter.charge);
+                        //this.hunter.charge = 0;
 
-                      }                      
+                      } 
+                      else{
+                        this.monster.blockAction[i].hp = this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].hp  
+                        this.monster.blockAction[i].loadTexture(this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].name);
+                      }
                       //this.monster.moveDecide = Math.floor(Math.random() * 2);
                     }
                     //this.monster.blockAction[i].y -= this.monster.speed
                   }
-                  else if( this.monster.moveDecide == 0){
+                  else if( this.monster.moveDecide != 0){
+                    if( this.hunter.ulting){
+                      
+                      //ult emitter end
+                      for(var j =0; j < this.ultEmitter.length;j++){
+                        this.ultEmitter[j].alpha = 0;
+                        this.map.alpha = 1;            
+                      }                      
+                    }                      
                     //console.log(this.monster.blockAction[i].speed)
-                    this.monster.blockAction[i].x -= this.monster.blockAction[i].speed;
+                    //console.log(this.monster.skill);
+                    console.log(this.monster.blockAction[i])
+                    this.monster.blockAction[i].alpha = 1;
+                    this.monster.blockAction[i].width += ((200*this.monster.blockAction[i].hp) - this.monster.blockAction[i].width) * 0.5;
+                    this.monster.blockAction[i].height += ((200*this.monster.blockAction[i].hp) - this.monster.blockAction[i].height) * 0.5;
+                    this.monster.blockAction[i].x -= this.monster.blockAction[i].speed+(this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].speed);
+                    console.log(this.monster.blockAction[i])
+                    this.monster.blockAction[i].loadTexture(this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].name);
                   }
                   //this.attackIcon.alpha = 0                 
                 }  
@@ -840,7 +914,7 @@
                 for(var i=0; i < 1; i++){
                   //console.log(this.monster.attackAction[i].miss)
                   if(this.monster.attackAction[i].x >= this.rhythmArrow.x || this.monster.attackAction[i].miss){
-                    console.log(this.monster.attackAction[i].miss)
+                    //console.log(this.monster.attackAction[i].miss)
                     //this.monster.blockAction[i].x -= this.monster.speed
                     if(this.monster.attackAction[i].alpha > 0.1){
                       this.monster.attackAction[i].y -= 1;
@@ -850,8 +924,11 @@
                     else{
                       this.monster.attackAction[i].miss = false;
                       this.monster.attackAction[i].alpha = 1;
-                      this.monster.attackAction[i].x = this.monster.attackAction[i].startPoint;//Math.floor(Math.random() * 150)-500 //-250
+                      this.monster.attackAction[i].width += ((200*(1+(this.hunter.charge*0.25))) - this.monster.attackAction[i].width) * 0.5;
+                      this.monster.attackAction[i].height += ((200*(1+(this.hunter.charge*0.25))) - this.monster.attackAction[i].height) * 0.5;                         
+                      this.monster.attackAction[i].x = this.monster.attackAction[i].startPoint - this.monster.attackAction[i].width;//Math.floor(Math.random() * 150)-500 //-250
                       this.monster.attackAction[i].y = this.monsterRhythmUI.y+50
+                      
                       if(this.monster.moveKey < this.monster.attackPattern.length){
                         this.monster.moveKey++;    
                           
@@ -867,7 +944,7 @@
                         }
                       }                      
                       this.monster.moveDecide = this.monster.attackPattern[this.monster.moveKey];  
-                      if(this.monster.moveDecide == 1){
+                      if(this.monster.moveDecide == 0){
                         //alert(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name)
                         this.monster.attackAction[0].loadTexture(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name);
 
@@ -875,9 +952,57 @@
                     }
                     //this.monster.blockAction[i].y -= this.monster.speed
                   }
-                  else if( this.monster.moveDecide == 1){
+                  else if( this.monster.moveDecide == 0){
                     //console.log(this.monster.blockAction[i].speed)
-                    this.monster.attackAction[i].x += this.monster.attackAction[i].speed;
+                    this.monster.attackAction[i].width += ((200*(1+(this.hunter.charge*0.25))) - this.monster.attackAction[i].width) * 0.5;
+                    this.monster.attackAction[i].height += ((200*(1+(this.hunter.charge*0.25))) - this.monster.attackAction[i].height) * 0.5;  
+                    //this.monster.attackAction[i].alpha = 5;
+                    //this.monster.attackAction[i].alpha += (1 - this.monster.attackAction[i].alpha) * 0.1; 
+                    
+                    var speed = this.monster.attackAction[i].speed+(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].speed)-this.monster.attackAction[i].hp;
+                    if(speed <= 0 || this.hunter.ulting){
+                      speed = 1;
+                      var dist = 0;
+                      var fallSpeed = 2;
+                      //ult emitter
+                      for(var j =0; j < this.ultEmitter.length;j++){
+                        if(this.ultEmitter[j].timer == 0){
+                          this.ultEmitter[j].timer = 200;
+                          this.ultEmitter[j].alpha = 1;
+                          this.ultEmitter[j].speed = fallSpeed
+                          this.ultEmitter[j].loadTexture(this.hero[0].ultSkill.name);
+                          this.ultEmitter[j].width = this.monster.attackAction[i].width;
+                          this.ultEmitter[j].height = this.monster.attackAction[i].height;
+                          this.ultEmitter[j].x = dist;
+                          //var ran = Math.floor(Math.random() * 300)-100;
+                          dist += 200
+                          fallSpeed += 1;
+                          this.ultEmitter[j].y = 100;
+                        }
+                        else{
+                          this.ultEmitter[j].timer--;
+                          this.ultEmitter[j].y+=this.ultEmitter[j].speed;
+                          
+                        }            
+                      }                      
+                    }    
+                    console.log(this.hunter.ulting)
+                    if(this.hunter.ultCharge >= 6 || this.hunter.ulting == true){
+                        
+                        if(this.monster.attackAction[i].width <= (200*(1+this.hunter.charge)) ){
+                          this.monster.attackAction[i].width = this.monster.attackAction[i].width*1.2;
+                          this.monster.attackAction[i].height = this.monster.attackAction[i].height*1.2;
+                          //this.monster.attackAction[i].alpha = 5;
+                        }
+                        this.monster.attackAction[0].loadTexture(this.hero[0].ultSkill.name);
+                        
+                        this.hunter.ultCharge = 0;
+                        this.hunter.charge = 0;
+                        this.map.alpha = 0.2;
+                        this.hunter.ulting = true;
+                    }                    
+
+                    this.monster.attackAction[i].x += speed;
                   }
                   //this.attackIcon.alpha = 0                 
                 }                
@@ -1225,7 +1350,7 @@
                 if(damage < 1){
                    damage = 1;
                 }
-                damage = 1
+                damage = this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].attack
                 if(this.hunter.isBlocking || this.hunter.blockDuration > 0){
 
                   
@@ -1326,7 +1451,13 @@
             this.hero[unit].cost = weapon[heroID].cost;
             this.hero[unit].comboPattern = weapon[heroID].comboPattern;
             this.hero[unit].skill = weapon[heroID].skill;
-            this.hero[unit].defSkill = weapon[heroID].defSkill;
+            if(weapon[heroID].ultSkill == null){
+              
+            }
+            else{
+              this.hero[unit].ultSkill = weapon[heroID].ultSkill 
+            }
+            
             
             this.hero[unit].counterTimer = 0;
             
@@ -1386,6 +1517,8 @@
             this.monster.speed = monster[this.biome][monID].speed;
             this.monster.target = Math.floor(Math.random() * 3);
           
+            this.monster.skill = monster[this.biome][monID].skill;
+          
             this.monster.attackPattern = monster[this.biome][monID].attackPattern;
 
       
@@ -1413,7 +1546,50 @@
         , hideTip: function (tip) {
             tip.alpha = 0;
             
-        }         
+        }       
+        , ultMove: function (unit) {
+          if(unit.alpha >= 1){
+            console.log("ULT "+damage)
+            var damage = this.hero[0].ultSkill.attack;
+            this.monster.hp -= damage;
+             for(var i = 0; i < 100; i++){
+                if(this.damageUI[i].alpha <= 0.01){
+                    this.damageUI[i].upward = 20;
+                    var ran = Math.floor(Math.random() * 2);
+                    if(ran == 0){
+                      this.damageUI[i].slide = 5  
+                    }
+                    else{
+                      this.damageUI[i].slide = -5
+                    }
+                    this.damageUI[i].tint = 0xFFFFFF;
+                    this.damageUI[i].fontSize = 100;
+                    if(damage <= 0){
+                      this.damageUI[i].text  = "RESIST";
+                    }
+                    else{
+                      this.damageUI[i].text  = damage;
+                    }
+
+                    this.damageUI[i].x = this.monster.x;
+                    this.damageUI[i].y = this.monster.y;
+                    this.damageUI[i].alpha = 1;
+                    i = 100; 
+                }
+              }            
+            unit.alpha = 0;            
+          }
+
+        }
+        , spendCharges: function () {
+          
+          this.hunter.ultCharge += this.hunter.charge
+          if(this.hunter.ultCharge > 6){
+            this.hunter.ultCharge = 6;
+          }
+          this.hunter.charge = 0
+          this.monster.attackAction[0].hp = 1+(1*this.hunter.charge);
+        }
         , onClick: function (unit, pointer) {
           console.log(unit.role)
           console.log(unit.cost)
@@ -1464,32 +1640,37 @@
                     var buffer = 100
                     var miss = false
                     for(var i=0; i < 1; i++){
-                     
+                    var buffer = this.monster.attackAction[i].width-100; 
                     this.monster.attackAction[0].loadTexture(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name);
                     var damage = 0;
                     //attack type
                     var hunterAttack = this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]];
                     var attackType =""
-                    switch(hunterAttack.attackType){
-                      case 0:
-                        var attack = hunterAttack.attack
-                       
-                        damage = Math.round((attack*attack) / (attack + this.monster.slashDef));   
-                        attackType ="SLASH"
-                        this.rhythemUI.loadTexture("attackHit-slash");
-                        break;
-                      case 1:
-                        var attack = hunterAttack.attack
-                        damage = Math.round((attack*attack) / (attack + this.monster.stabDef));   
-                        attackType ="STAB"
-                        this.rhythemUI.loadTexture("attackHit-stab");
-                        break;
-                      case 2:
-                        var attack = hunterAttack.attack
-                        damage = Math.round((attack*attack) / (attack + this.monster.bashDef));     
-                        attackType ="BASH"
-                        this.rhythemUI.loadTexture("attackHit-bash");
-                        break;                        
+                    if(this.hunter.ulting){
+                      damage = this.hero[0].ultSkill.attack;
+                    }
+                    else{
+                      switch(hunterAttack.attackType){
+                        case 0:
+                          var attack = hunterAttack.attack
+
+                          damage = Math.round((attack*attack) / (attack + this.monster.slashDef));   
+                          attackType ="SLASH"
+                          this.rhythemUI.loadTexture("attackHit-slash");
+                          break;
+                        case 1:
+                          var attack = hunterAttack.attack
+                          damage = Math.round((attack*attack) / (attack + this.monster.stabDef));   
+                          attackType ="STAB"
+                          this.rhythemUI.loadTexture("attackHit-stab");
+                          break;
+                        case 2:
+                          var attack = hunterAttack.attack
+                          damage = Math.round((attack*attack) / (attack + this.monster.bashDef));     
+                          attackType ="BASH"
+                          this.rhythemUI.loadTexture("attackHit-bash");
+                          break;                        
+                      }
                     }
                     attackType =""
                     //damage cant be reduced lower than 1
@@ -1499,12 +1680,15 @@
                     //damage = 1
                     //console.log(damage+" asd "+dodge);
                       var diff = this.rhythmArrow.x - this.monster.attackAction[i].x 
-                      this.monster.attackAction[i].miss = true;
+                      if(this.monster.attackAction[i].hp <= 1){
+                        this.monster.attackAction[i].miss = true;    
+                      }
+                      
                      
                       if( diff <= buffer && this.monster.attackAction[i].alpha > 0.5){
                         var ran = Math.floor(Math.random() * 4)+1;
                         if(!this.attackSound[ran].isPlaying){
-                            this.attackSound[ran].play();
+                            //this.attackSound[ran].play();
                         }                         
                         this.rhythemUI.alpha = 1;
                         //this.rhythemUI.loadTexture("attackHit");
@@ -1512,8 +1696,12 @@
                         //dodge = 0
                         //damage = 0
                         //this.monster.attackAction[i].alpha = 0;
-                        
-                        if(diff <= 25){
+                        this.monster.attackAction[i].hp--;       
+                        //this.hunter.comboKey++; 
+                        if(this.hunter.comboKey >= this.hero[0].comboPattern.length){
+                          //this.hunter.comboKey = 0;
+                        }                        
+                        if(diff <= buffer/5){
                           this.rhythemUI2.alpha = 1
                           damage *= 2;
                         }
@@ -1528,8 +1716,11 @@
                       }
 
                     }            
-                    damage += this.hunter.charge;
-                    this.hunter.charge = 0;
+                    //damage += this.hunter.charge;
+                    this.hunter.charge --;
+                    if(this.hunter.charge <= 0){
+                      this.hunter.charge = 0;
+                    }
                     this.monster.hp -= damage
                      for(var i = 0; i < 100; i++){
                         if(this.damageUI[i].alpha <= 0.01){
@@ -1576,32 +1767,44 @@
                       }  
                     
                       unit.y -= 100;
-                      unit.stamina = 0;  
-                      var buffer = 100
+                      //unit.stamina = 0;  
+                      //console.log("width "+)
+                      
                       for(var i=0; i < 1; i++){
+                        var buffer = this.monster.blockAction[i].width-50;
                         var diff = this.monster.blockAction[i].x - this.rhythmArrow.x
-                        if(this.monster.moveDecide == 0){
+                        if(this.monster.moveDecide != 0 && this.monster.blockAction[i].hp <= 1){
                           this.monster.blockAction[i].miss = true; 
-                        }
+                        }  
                         
                         if( diff <= buffer && this.monster.blockAction[i].alpha > 0.5){
                           if(!this.shieldSound.isPlaying){
-                              this.shieldSound.play();
+                              //this.shieldSound.play();
                           }                            
                           this.rhythemUI.alpha = 1;
                           this.rhythemUI.loadTexture("blockHit");
                           this.dialougeTimer = 100;
-                          this.hunter.blockDuration = 100;
+                          this.monster.blockAction[i].hp--;
+                          
+                          if(this.monster.blockAction[i].hp <= 0){
+                        
+                            this.hunter.blockDuration = 100;                            
+                          }
+
                           
                           //perfect block
-                          if(diff <= 25){
+                          if(diff <= (buffer/4)){
                            this.rhythemUI2.alpha = 1
-                           this.hunter.charge = 3;
+                           //this.hunter.charge = this.hero[2].skill[0].attack;
+                           this.hunter.charge += 1;
+                            if(this.hunter.charge > this.hero[2].skill[0].attack){
+                              this.hunter.charge= this.hero[2].skill[0].attack;
+                            }                            
                           }
                           else{
-                            this.hunter.charge += 1;
-                            if(this.hunter.charge > 3){
-                              this.hunter.charge= 3;
+                            //this.hunter.charge += 1;
+                            if(this.hunter.charge > this.hero[2].skill[0].attack){
+                              //this.hunter.charge= this.hero[2].skill[0].attack;
                             }
                           }
                           //this.monster.blockAction[i].alpha = 0;
