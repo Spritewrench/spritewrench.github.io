@@ -270,7 +270,7 @@
             this.hunter.speed = 4;          
             this.hunter.stamina = 10; 
             this.hunter.maxStamina = 100;
-            this.hunter.charge = 6;
+            this.hunter.charge = 0;
             this.hunter.ultCharge = 0;
             this.hunter.ultMul = 0;
             this.hunter.isBlocking = false;            
