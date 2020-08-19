@@ -52,7 +52,9 @@
             this.load.image('attackHit-bash', 'assets/attackHit-bash.png');
             this.load.image('blockMiss', 'assets/blockMiss.png');  
             this.load.image('blockPerfect', 'assets/blockPerfect.png');  
-            this.load.image('attackMiss', 'assets/attackMiss.png');   
+            this.load.image('attackMiss', 'assets/attackMiss.png');
+          
+            this.load.image('ultSwipe', 'assets/ultSwipe.png');
             
             this.load.image('weatherIcon', 'http://openweathermap.org/img/wn/'+localStorage.getItem("weatherIcon"+localStorage.getItem("placeID"))+'@2x.png');
             //alert(localStorage.getItem("weatherIcon"+localStorage.getItem("placeID")))
