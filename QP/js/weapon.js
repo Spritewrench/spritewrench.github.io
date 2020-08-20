@@ -44,7 +44,7 @@ weapon[3].name = "Red-Potion"
 weapon[3].role = 2;
 weapon[3].hp = 3;
 // higher the weight faster the skill execute
-weapon[3].weight = 5;
+weapon[3].weight = 0;
 weapon[3].cost = 0;
 weapon[3].comboPattern = ""
 weapon[3].skill = [];

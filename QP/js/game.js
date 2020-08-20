@@ -277,7 +277,7 @@
             this.hunter.ulting = false
             this.hunter.ultingBash = 0;
             this.hunter.ultingStab = 0; 
-            
+            this.hunter.blockDuration = 0;
             this.actionsStat = this.add.bitmapText(x+115, 10, 'minecraftia', '',16);
             
           
@@ -1014,12 +1014,16 @@
             if(this.monster.hp > 0){
                 //console.log("checking")
                 // block duration
-                
+                //console.log(this.hunter.blockDuration)
+                this.hunter.blockDuration--;
+                if(this.hunter.blockDuration <= 0){
+                  this.hunter.blockDuration = 0
+                }
                 
                 //rhythm actions
                 for(var i=0; i < 1; i++){
                   
-                  if(this.monster.blockAction[i].x <= this.rhythmArrow.x || this.monster.blockAction[i].miss ){
+                  if( (this.monster.blockAction[i].x <= this.rhythmArrow.x && this.monster.blockAction[i].hp <= 1) || this.monster.blockAction[i].miss ){
                     if(this.monster.blockAction[i].alpha == 1){
                      
                     }
@@ -1031,7 +1035,11 @@
                     }
                     else{
                       var currentStam= this.monster.stamina
-                      this.monAttack(this.monster) 
+                      if(true){
+                        this.monster.isAttacking = true;
+                        this.monAttack(this.monster) 
+                      }
+                      
                       // post attack effects
                       var monSkillType = this.monster.skill[this.monster.attackPattern[this.monster.moveKey]].id
                       switch(monSkillType){
@@ -1041,7 +1049,7 @@
                       }
                       this.monster.stamina=currentStam; 
                       this.hunter.ulting = false;
-                      this.hunter.blockDuration = 0
+                      //this.hunter.blockDuration = 0
                       this.monster.blockAction[i].miss = false;
                       this.monster.blockAction[i].alpha = 1;
                       this.monster.blockAction[i].width += ((200*1) + this.monster.blockAction[i].width) * 0.5;
@@ -1086,6 +1094,19 @@
                       //this.monster.moveDecide = Math.floor(Math.random() * 2);
                     }
                     //this.monster.blockAction[i].y -= this.monster.speed
+                  }
+                  else if(this.monster.blockAction[i].x <= this.rhythmArrow.x && this.monster.blockAction[i].hp > 1){
+                    this.monster.blockAction[i].hp --;
+                    this.monster.blockAction[i].x += 10;
+                    this.monster.blockAction[i].pushBack = 30
+                    this.rhythemUI.alpha = 1;
+                    this.rhythemUI2.alpha = 0;
+                    this.rhythemUI.loadTexture("blockMiss");     
+                    this.dialougeTimer = 100;                    
+                    var currentStam= this.monster.stamina
+                    this.monster.isAttacking = true;
+                    this.monAttack(this.monster)     
+                    this.monster.stamina=currentStam; 
                   }
                   else if( this.monster.moveDecide != 0){
                     if( this.hunter.ulting){
@@ -1593,14 +1614,15 @@
                   
                   damage = 0;
                 }
-              
+                console.log("Take "+damage)
                 //damage = att * att / (att + def) 
 
                 if(hit >= dodge){
                     // take damage
+                    console.log("Am I still blocking "+this.hunter.blockDuration)
                     this.hunter.hp -= damage  
                     this.monster.score -= damage;
-                    
+                    this.monster.isAttacking = false;
                     
 
                     this.hunter.y += 50;
@@ -1714,6 +1736,7 @@
             this.monster.width = 800;
             this.monster.height = 800;
             this.monster.tarSize = this.monster.width;    
+            this.monster.isAttacking = false;
 
             
           
@@ -2053,6 +2076,7 @@
 
                     break;
                   case 3:
+                      console.log("BLOCKED")
                       if(!this.shieldSound.isPlaying){
                           //this.shieldSound.play();
                       }  
@@ -2068,7 +2092,7 @@
                           this.monster.blockAction[i].miss = true; 
                         }  
                         
-                        if( diff <= buffer && this.monster.blockAction[i].alpha > 0.5){
+                        if( diff <= buffer && this.monster.blockAction[i].alpha > 0.5 && !this.monster.isAttacking){
                           if(!this.shieldSound.isPlaying){
                               //this.shieldSound.play();
                           }                            
@@ -2084,11 +2108,8 @@
                           else{
                              this.monster.blockAction[i].hp--
                           }  
-                          
-                          if(this.monster.blockAction[i].hp <= 0){
-                        
-                            this.hunter.blockDuration = 100;                            
-                          }
+                          this.hunter.blockDuration = 100;
+
 
                           
                           //perfect block
@@ -2133,14 +2154,17 @@
                       
                     break;
                   case 2:
-                      unit.loadTexture("emptyBot");
-                      this.hunter.hp = 3;
-                      if(this.hunter.hp > 3){
-                        this.hunter.hp = 3
+                      if(unit.stamina > 0){
+                        unit.loadTexture("emptyBot");
+                        this.hunter.hp = 3;
+                        if(this.hunter.hp > 3){
+                          this.hunter.hp = 3
+                        }
+                        unit.y -= 100;
+                        unit.stamina = 0;
+                        unit.cost = 100;                        
                       }
-                      unit.y -= 100;
-                      unit.stamina = 0;
-                      unit.cost = 100;
+
                       
                       //this.hunter.stamina -= unit.cost;
                     break;
