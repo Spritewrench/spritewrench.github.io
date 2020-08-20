@@ -270,13 +270,13 @@
             this.hunter.speed = 4;          
             this.hunter.stamina = 10; 
             this.hunter.maxStamina = 100;
-            this.hunter.charge = 0;
+            this.hunter.charge = 6;
             this.hunter.ultCharge = 0;
             this.hunter.ultMul = 0;
             this.hunter.isBlocking = false;            
             this.hunter.ulting = false
-
-
+            this.hunter.ultingBash = 0;
+            this.hunter.ultingStab = 0; 
             
             this.actionsStat = this.add.bitmapText(x+115, 10, 'minecraftia', '',16);
             
@@ -483,6 +483,7 @@
             this.game.input.onDown.add(function(pointer) {  
               swipeCoordX = pointer.clientX;        
               swipeCoordY = pointer.clientY;        
+           
             }, this);    
             this.game.input.onUp.add(function(pointer) {        
               swipeCoordX2 = pointer.clientX;        
@@ -533,14 +534,22 @@
                     }                    
                 }
               }*/
-              if(midX >= (this.monster.x-(this.monster.width/2)) && midX <= (this.monster.x+(this.monster.width/2)) && midY >= (this.monster.y-(this.monster.height/2)) && midY <= (this.monster.y+(this.monster.height/2)) ){
+              switch(this.hero[0].ultSkill.attackType){
+                case 0:
+                  break;
+                case 1:
+                  break;
+                case 2:
+                  break;
+              }
+              if(this.hero[0].ultSkill.attackType !=2 && midX >= (this.monster.x-(this.monster.width/2)) && midX <= (this.monster.x+(this.monster.width/2)) && midY >= (this.monster.y-(this.monster.height/2)) && midY <= (this.monster.y+(this.monster.height/2)) ){
                   this.hunter.ultMul++;
                    var ran = Math.floor(Math.random() * 200)-100;
                   this.monster.y += ran
                   var ran = Math.floor(Math.random() * 200)-100;
                   this.monster.x += ran
               }
-              
+
             }, this);   
             
         }
@@ -557,12 +566,75 @@
             if(this.hunter.ulting && this.rhythemUI.alpha <= 0.1 ){
               this.rhythemUI.alpha = 1;
               this.rhythemUI2.alpha = 0;
-              this.rhythemUI.loadTexture("ultSwipe");    
+              switch(this.hero[0].ultSkill.attackType){
+                case 0:
+                  this.rhythemUI.loadTexture("ultSwipe"); 
+                  break;
+                case 1:
+                  this.rhythemUI.loadTexture("ultTap"); 
+                  break;
+                case 2:
+                  this.rhythemUI.loadTexture("ultHold"); 
+                  break;                
+              }
+                 
               
                             
             }
             if(this.hunter.ulting && this.rhythemUI.alpha > 0.1){
               this.rhythemUI.alpha += (0 - this.rhythemUI.alpha) * 0.05; 
+            }
+            //ult bash
+            if(this.hunter.ulting && this.hero[0].ultSkill.attackType == 2 && this.game.input.activePointer.isDown && this.timer%10 == 0){
+              this.monster.width= this.monster.tarSize -50;
+              this.monster.height = this.monster.tarSize -50;
+              this.hunter.ultMul++;
+            }  
+            if(this.hunter.ultingBash > 0){
+              this.hunter.ultingBash--
+              if(this.hunter.ultingBash < 0){
+                this.hunter.ultingBash = 0
+              }
+              this.monster.height = this.monster.tarSize -350;
+              
+            }
+            // ult stab
+            if(this.hunter.ultingStab > 0 && this.timer%5 == 0  ){
+                this.hunter.ultingStab--;
+                if(this.hunter.ultingStab  <= 0){
+                  this.hunter.ultingStab = 0;
+                  this.monster.hp -= this.hero[0].ultSkill.attack*= this.hunter.ultMul;
+                }
+               //damage =  this.hero[0].ultSkill.attack;
+               for(var k = 0; k < 100; k++){
+                  if(this.damageUI[k].alpha <= 0.01){
+                      this.damageUI[k].upward = 20;
+                      var ran = Math.floor(Math.random() * 2);
+                      if(ran == 0){
+                        this.damageUI[k].slide = 5  
+                      }
+                      else{
+                        this.damageUI[k].slide = -5
+                      }
+                      this.damageUI[k].tint = 0xFFFFFF;
+                      this.damageUI[k].fontSize = 200;
+                      if(damage <= 0){
+                        this.damageUI[k].text  = "RESIST";
+                      }
+                      else{
+                        this.damageUI[k].text  = this.hero[0].ultSkill.attack
+                      }
+
+                      this.damageUI[k].x = this.monster.x;
+                      this.damageUI[k].y = this.monster.y;
+                      this.damageUI[k].alpha = 1;
+                      k = 100; 
+                  }
+                }
+                var ran = Math.floor(Math.random() * 200)-100;
+                this.monster.y += ran
+                var ran = Math.floor(Math.random() * 200)-100;
+                this.monster.x += ran          
             }
             //ult slash
             if(this.slashAttack.alpha == 1){
@@ -598,6 +670,7 @@
                 if(this.slashAttack.alpha <= 0){
                   this.slashAttack.alpha = 0;
                   this.slashAttack.width = 0;
+
                 }
               }
             }
@@ -991,10 +1064,15 @@
                         this.monster.attackAction[0].loadTexture(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name);
                         if(this.hunter.ultCharge >= 6|| this.hunter.ulting == true){
                             this.monster.attackAction[0].loadTexture(this.hero[0].ultSkill.name);
+                            if(this.hunter.ultCharge >= 6){
+                              this.hunter.ultMul = 0;
+                              this.mulStats.alpha = 0;
+                            }
                             this.hunter.ultCharge = 0;
                             this.hunter.charge = 0;
                             this.map.alpha = 0.2;
                             this.hunter.ulting = true;
+                            
                         }
                                               
                         this.monster.attackAction[i].hp = 1;
@@ -1070,11 +1148,15 @@
                         }
                       }                      
                       this.monster.moveDecide = this.monster.attackPattern[this.monster.moveKey];  
+                      if(this.hunter.ulting == true){
+                        this.hunter.ulting = false;
+                        this.hunter.ultMul = 0;
+                        this.mulStats.alpha = 0;   
+                        this.rhythemUI.alpha = 0;
+                      }                        
                       if(this.monster.moveDecide == 0){
                         //alert(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name)
-                        if(this.hunter.ulting == true){
-                          this.hunter.ulting = false;
-                        }   
+ 
                         this.monster.attackAction[0].loadTexture(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name);
 
 
@@ -1865,12 +1947,49 @@
                           this.map.alpha = 1;
                           //damage = this.hero[0].ultSkill.attack;
                           this.monster.attackAction[i].miss = true;    
-                          this.rhythemUI.loadTexture("attackHit");  
-                          this.slashAttack.alpha = 1;
-                          this.slashAttack.x = 0;
-                          this.slashAttack.y = this.monster.y
-                          this.slashAttack.width= 10;
-                          this.slashAttack.height = 10;
+                          this.rhythemUI.loadTexture("attackHit"); 
+                          if(this.hero[0].ultSkill.attackType == 0){
+                            this.slashAttack.alpha = 1;
+                            this.slashAttack.x = 0;
+                            this.slashAttack.y = this.monster.y
+                            this.slashAttack.width= 10;
+                            this.slashAttack.height = 10;                            
+                          }
+                          if(this.hero[0].ultSkill.attackType == 1){
+                            this.hunter.ultingStab = this.hunter.ultMul;
+                           }
+                         
+                          if(this.hero[0].ultSkill.attackType == 2){
+                            this.hunter.ultingBash = 25;
+                           this.monster.hp -= this.hero[0].ultSkill.attack*this.hunter.ultMul;
+                           damage =  this.hero[0].ultSkill.attack*this.hunter.ultMul;
+                           for(var k = 0; k < 100; k++){
+                              if(this.damageUI[k].alpha <= 0.01){
+                                  this.damageUI[k].upward = 20;
+                                  var ran = Math.floor(Math.random() * 2);
+                                  if(ran == 0){
+                                    this.damageUI[k].slide = 5  
+                                  }
+                                  else{
+                                    this.damageUI[k].slide = -5
+                                  }
+                                  this.damageUI[k].tint = 0xFFFFFF;
+                                  this.damageUI[k].fontSize = 200;
+                                  if(damage <= 0){
+                                    this.damageUI[k].text  = "RESIST";
+                                  }
+                                  else{
+                                    this.damageUI[k].text  = this.hero[0].ultSkill.attack*this.hunter.ultMul;
+                                  }
+
+                                  this.damageUI[k].x = this.monster.x;
+                                  this.damageUI[k].y = this.monster.y;
+                                  this.damageUI[k].alpha = 1;
+                                  k = 100; 
+                              }
+                            }                              
+                          }
+
 
                         }                        
                         
