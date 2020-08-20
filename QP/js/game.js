@@ -270,7 +270,7 @@
             this.hunter.speed = 4;          
             this.hunter.stamina = 10; 
             this.hunter.maxStamina = 100;
-            this.hunter.charge = 6;
+            this.hunter.charge = 0;
             this.hunter.ultCharge = 0;
             this.hunter.ultMul = 0;
             this.hunter.isBlocking = false;            
@@ -1153,6 +1153,7 @@
                         this.hunter.ultMul = 0;
                         this.mulStats.alpha = 0;   
                         this.rhythemUI.alpha = 0;
+                        this.map.alpha = 1;
                       }                        
                       if(this.monster.moveDecide == 0){
                         //alert(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].name)
@@ -1173,7 +1174,7 @@
                     
                     var speed = this.monster.attackAction[i].speed+(this.hero[0].skill[this.hero[0].comboPattern[this.hunter.comboKey]].speed)-this.monster.attackAction[i].hp;
                     if(speed <= 0 || this.hunter.ulting){
-                      speed = 1;                     
+                      speed = 2;                     
                     }    
 
                     if(this.hunter.ultCharge >= 6 || this.hunter.ulting == true){
