@@ -35,6 +35,7 @@
     <script src="js/skill.js"></script>  
     <script src="js/monSkill.js"></script>     
     <script src="js/monster.js"></script>
+    <script src="js/monsterReward.js"></script>
     <script src="js/weapon.js"></script>
     <script src="js/leaderboard.js"></script>
     <script src="js/lib/control.js"></script>
@@ -68,7 +69,9 @@ if(!navigator.onLine) { // true|false
 	localStorage.setItem("online",1) 
 }    
     
-       
+localStorage.setItem('hasSlashed',0);
+localStorage.setItem('hasStabbed',0);
+localStorage.setItem('hasBashed',0);  
     // Initialize Firebase
    /* var config = {
     apiKey: "AIzaSyDLavESdxZeNSEcFKFYVF1riDoNzR72gPU",

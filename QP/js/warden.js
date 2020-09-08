@@ -6,7 +6,7 @@
     }
     Warden.prototype = {
         create: function () {
-            
+                  
             this.game.stage.backgroundColor = "#160c2c";
             this.game.stage.backgroundColor = "#160c2c";
             console.log(localStorage.getItem("biome"))
@@ -66,7 +66,10 @@
             //this.gray = this.game.add.filter('Gray');
         }          
         , update: function () {
-            //this.TixCountVal = 5;
+            this.TixCountVal = 5;
+            localStorage.setItem('hasSlashed',0);
+            localStorage.setItem('hasStabbed',0);
+            localStorage.setItem('hasBashed',0);            
             this.game.scale.refresh(); 
             this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
             this.timer++;

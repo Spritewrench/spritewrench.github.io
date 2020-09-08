@@ -24,6 +24,83 @@
             this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
             
             this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;    
+            
+            this.load.image('mainBG', 'assets/mainBG.png');
+            this.load.image('slay_small', 'assets/slay_small.png');
+            this.load.image('slay_medium', 'assets/slay_medium.png');
+            this.load.image('slay_large', 'assets/slay_large.png');
+          
+            this.load.image('gotSlain_small', 'assets/gotSlain_small.png');
+            this.load.image('gotSlain_medium', 'assets/gotSlain_medium.png');
+            this.load.image('gotSlain_large', 'assets/gotSlain_large.png');          
+          
+            this.load.image('monRewardCount_small', 'assets/monRewards_small.png');
+            this.load.image('monRewardCount_medium', 'assets/monRewards_medium.png');
+            this.load.image('monRewardCount_large', 'assets/monRewards_large.png');
+          
+          
+            this.load.image('return_0', 'assets/return_grasslands.png');
+            this.load.image('return_1', 'assets/return_cave.png');
+            this.load.image('return_2', 'assets/return_mountain.png');      
+          
+
+            this.load.image('Red Dragon Gem', 'assets/monDrops/generic_red_dragon_gem.png');
+            this.load.image('Blue Dragon Gem', 'assets/monDrops/generic_blue_dragon_gem.png');
+            this.load.image('Yellow Dragon Gem', 'assets/monDrops/generic_yellow_dragon_gem.png');
+            this.load.image('Small Monster Bone', 'assets/monDrops/generic_small_bone.png');
+            this.load.image('Medium Monster Bone', 'assets/monDrops/generic_medium_bone.png');
+            this.load.image('Large Monster Bone', 'assets/monDrops/generic_large_bone.png');  
+            this.load.image('Fertile Droppings', 'assets/monDrops/generic_droppings.png');
+          
+            this.load.image('Red Dragon Gem Name', 'assets/monDrops/generic_red_dragon_gem_name.png');
+            this.load.image('Blue Dragon Gem Name', 'assets/monDrops/generic_blue_dragon_gem_name.png');
+            this.load.image('Yellow Dragon Gem Name', 'assets/monDrops/generic_yellow_dragon_gem_name.png');
+            this.load.image('Small Monster Bone Name', 'assets/monDrops/generic_small_bone_name.png');
+            this.load.image('Medium Monster Bone Name', 'assets/monDrops/generic_medium_bone_name.png');
+            this.load.image('Large Monster Bone Name', 'assets/monDrops/generic_large_bone_name.png');  
+            this.load.image('Fertile Droppings Name', 'assets/monDrops/generic_droppings_name.png');          
+          
+            this.load.image('Wocco Claw', 'assets/monDrops/wocco_claw.png');
+            this.load.image('Wocco Pelt', 'assets/monDrops/wocco_pelt.png');
+            this.load.image('Wocco Tail', 'assets/monDrops/wocco_tail.png');
+            this.load.image('Wocco Feather', 'assets/monDrops/wocco_feather.png');
+            this.load.image('Wocco Horn', 'assets/monDrops/wocco_horn.png');
+            this.load.image('Wocco Acid Sac', 'assets/monDrops/wocco_acid_sac.png');  
+          
+            this.load.image('Wocco Claw Name', 'assets/monDrops/wocco_claw_name.png');
+            this.load.image('Wocco Pelt Name', 'assets/monDrops/wocco_pelt_name.png');
+            this.load.image('Wocco Tail Name', 'assets/monDrops/wocco_tail_name.png');
+            this.load.image('Wocco Feather Name', 'assets/monDrops/wocco_feather_name.png');
+            this.load.image('Wocco Horn Name', 'assets/monDrops/wocco_horn_name.png');
+            this.load.image('Wocco Acid Sac Name', 'assets/monDrops/wocco_acid_sac_name.png');           
+          
+            this.load.image('Maddock Talon', 'assets/monDrops/maddock_talon.png');
+            this.load.image('Maddock Skin', 'assets/monDrops/maddock_skin.png');
+            this.load.image('Maddock Tail', 'assets/monDrops/maddock_tail.png');
+            this.load.image('Maddock Scale', 'assets/monDrops/maddock_scale.png');
+            this.load.image('Maddock Horn', 'assets/monDrops/maddock_horn.png');
+            this.load.image('Maddock Spine', 'assets/monDrops/maddock_acid_sac.png');  
+          
+            this.load.image('Maddock Talon Name', 'assets/monDrops/maddock_talon_name.png');
+            this.load.image('Maddock Skin Name', 'assets/monDrops/maddock_skin_name.png');
+            this.load.image('Maddock Tail Name', 'assets/monDrops/maddock_tail_name.png');
+            this.load.image('Maddock Scale Name', 'assets/monDrops/maddock_scale_name.png');
+            this.load.image('Maddock Horn Name', 'assets/monDrops/maddock_horn_name.png');
+            this.load.image('Maddock Spine Name', 'assets/monDrops/maddock_spine_name.png');  
+          
+            this.load.image('Noot Claw', 'assets/monDrops/noot_claw.png');
+            this.load.image('Noot Skin', 'assets/monDrops/noot_skin.png');
+            this.load.image('Noot Tail', 'assets/monDrops/noot_tail.png');
+            this.load.image('Noot Scale', 'assets/monDrops/noot_scale.png');
+            this.load.image('Noot Horn', 'assets/monDrops/noot_horn.png');
+            this.load.image('Noot Boom Gland', 'assets/monDrops/noot_boom_gland.png');  
+          
+            this.load.image('Noot Claw Name', 'assets/monDrops/noot_claw_name.png');
+            this.load.image('Noot Skin Name', 'assets/monDrops/noot_skin_name.png');
+            this.load.image('Noot Tail Name', 'assets/monDrops/noot_tail_name.png');
+            this.load.image('Noot Scale Name', 'assets/monDrops/noot_scale_name.png');
+            this.load.image('Noot Horn Name', 'assets/monDrops/noot_horn_name.png');
+            this.load.image('Noot Boom Gland Name', 'assets/monDrops/noot_boom_gland_name.png');           
           
             this.load.image('heart', 'assets/heart.png');
             this.load.image('heart-hurt', 'assets/heart-hurt.png');
@@ -155,8 +232,11 @@
             this.load.image("mon", 'assets/mon/mon.png');
           
             this.load.image("wocco", 'assets/mon/wocco.png');
+            this.load.image("wocco_name", 'assets/mon/wocco_name.png');
             this.load.image("noot", 'assets/mon/noot.png');
+            this.load.image("noot_name", 'assets/mon/noot_name.png');
             this.load.image("maddock", 'assets/mon/maddock.png');
+            this.load.image("maddock_name", 'assets/mon/maddock_name.png');
           
           
           
@@ -269,7 +349,7 @@
             if (!!this.ready) {
                 //console.log(localStorage.getItem('state'))
                 this.game.state.start(localStorage.getItem('state'));
-                //this.game.state.start('warden');
+                //this.game.state.start('lose');
             }
         }
         , onLoadComplete: function () {

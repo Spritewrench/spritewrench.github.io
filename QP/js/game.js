@@ -1270,7 +1270,19 @@
                 this.monsterstamUI.y = this.monster.y+(this.monster.height/2)-120
                 for(var i =0; i < this.monsterhpUI.length; i++){
                     //this.monsterhpUI[i].alpha = 0;
-                    this.monsterhpUI[i].y = this.monster.y+(this.monster.height/2)-150
+                    //small
+                    if(this.monster.width == 400){
+                      this.monsterhpUI[i].y = this.monster.y+(this.monster.height/2)-80
+                    }
+                    //medium
+                    if(this.monster.width == 600){
+                      this.monsterhpUI[i].y = this.monster.y+(this.monster.height/2)-120
+                    }                  
+                    //large
+                    if(this.monster.width == 800){
+                      this.monsterhpUI[i].y = this.monster.y+(this.monster.height/2)-130
+                    }                  
+                    
                 }                   
                 
 
@@ -1732,9 +1744,28 @@
           
             this.monsterstamUI.width = 0;
             
-            this.monster.loadTexture(monster[this.biome][monID].name);  
-            this.monster.width = 800;
-            this.monster.height = 800;
+            this.monster.loadTexture(monster[this.biome][monID].name);
+            localStorage.setItem("monName",monster[this.biome][monID].name);
+            var ran = Math.floor(Math.random() * 3)+1;
+            //small
+            if(ran == 1){
+              localStorage.setItem("monSize","small");
+              this.monster.width = 400;
+              this.monster.height = 400;
+            }
+            //medium
+            if(ran == 2){
+              localStorage.setItem("monSize","medium");  
+              this.monster.width = 600;
+              this.monster.height = 600;
+            }                  
+            //large
+            if(ran == 3){
+              localStorage.setItem("monSize","large");  
+              this.monster.width = 800;
+              this.monster.height = 800;
+            }             
+
             this.monster.tarSize = this.monster.width;    
             this.monster.isAttacking = false;
 
@@ -1915,18 +1946,27 @@
                           var attack = hunterAttack.attack
 
                           damage = Math.round((attack*attack) / (attack + this.monster.slashDef));   
+                          if(damage > 0){
+                            localStorage.setItem('hasSlashed',1);
+                          }
                           attackType ="SLASH"
                           this.rhythemUI.loadTexture("attackHit-slash");
                           break;
                         case 1:
                           var attack = hunterAttack.attack
                           damage = Math.round((attack*attack) / (attack + this.monster.stabDef));   
+                          if(damage > 0){
+                            localStorage.setItem('hasStabbed',1);
+                          }                          
                           attackType ="STAB"
                           this.rhythemUI.loadTexture("attackHit-stab");
                           break;
                         case 2:
                           var attack = hunterAttack.attack
                           damage = Math.round((attack*attack) / (attack + this.monster.bashDef));     
+                          if(damage > 0){
+                            localStorage.setItem('hasBashed',1);
+                          }                          
                           attackType ="BASH"
                           this.rhythemUI.loadTexture("attackHit-bash");
                           break;                        
