@@ -32,13 +32,13 @@ deadMonster[1][1].rareRewards = [];
 deadMonster[1][1].rareRewards[1] = 'Maddock Spine'
 
 //noot
-deadMonster[1][1] = new Object();
-deadMonster[1][1].commonRewards = [];
-deadMonster[1][1].commonRewards[1] = 'Noot Claw'
-deadMonster[1][1].commonRewards[2] = 'Noot Skin'
-deadMonster[1][1].uncommonRewards = [];
-deadMonster[1][1].uncommonRewards[1] = 'Noot Tail'
-deadMonster[1][1].uncommonRewards[2] = 'Noot Scale'
-deadMonster[1][1].uncommonRewards[3] = 'Noot Horn'
-deadMonster[1][1].rareRewards = [];
-deadMonster[1][1].rareRewards[1] = 'Noot Boom Gland'
+deadMonster[2][1] = new Object();
+deadMonster[2][1].commonRewards = [];
+deadMonster[2][1].commonRewards[1] = 'Noot Claw'
+deadMonster[2][1].commonRewards[2] = 'Noot Skin'
+deadMonster[2][1].uncommonRewards = [];
+deadMonster[2][1].uncommonRewards[1] = 'Noot Tail'
+deadMonster[2][1].uncommonRewards[2] = 'Noot Scale'
+deadMonster[2][1].uncommonRewards[3] = 'Noot Horn'
+deadMonster[2][1].rareRewards = [];
+deadMonster[2][1].rareRewards[1] = 'Noot Boom Gland'
