@@ -79,7 +79,7 @@
             this.load.image('Maddock Tail', 'assets/monDrops/maddock_tail.png');
             this.load.image('Maddock Scale', 'assets/monDrops/maddock_scale.png');
             this.load.image('Maddock Horn', 'assets/monDrops/maddock_horn.png');
-            this.load.image('Maddock Spine', 'assets/monDrops/maddock_acid_sac.png');  
+            this.load.image('Maddock Spine', 'assets/monDrops/maddock_spine.png');  
           
             this.load.image('Maddock Talon Name', 'assets/monDrops/maddock_talon_name.png');
             this.load.image('Maddock Skin Name', 'assets/monDrops/maddock_skin_name.png');
