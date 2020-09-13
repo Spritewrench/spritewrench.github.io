@@ -39,7 +39,8 @@
         this.updateLeader = 0;
         if(!navigator.onLine) { // true|false
             this.updateLeader = 1;
-        }           
+        }
+      localStorage.setItem("hasLost",1);
     },
 
     update: function () {
@@ -53,11 +54,11 @@
             this.loseMusic.fadeOut(1000)
             this.menuClicked = true;
             //asdsad
-            localStorage.setItem('state','warden')
-            this.game.state.start('preloader');
+            //localStorage.setItem('state','warden')
+            this.game.state.start('warden');
         }
         localStorage.setItem('state','warden')
-        this.game.state.start('preloader');      
+        this.game.state.start('warden');      
 	
         /*var user = firebase.auth().currentUser;
 

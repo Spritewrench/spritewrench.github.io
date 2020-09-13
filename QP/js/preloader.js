@@ -15,8 +15,9 @@
             var y = this.game.height /2;      
             this.asset = this.add.sprite(x+300, y+500, 'preloader');
             this.asset.anchor.setTo(0.5, 0.5);
-            this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
             this.load.setPreloadSprite(this.asset);
+            this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
+            
       
             
             this.load.script('Gray', 'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/Gray.js');
@@ -24,8 +25,12 @@
             this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
             
             this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;    
-            
+            //this.load.image('preloader', 'assets/preloader.gif');
             this.load.image('mainBG', 'assets/mainBG.png');
+            this.load.image('craftBG', 'assets/craftBG.png');
+            this.load.image('craftBGE', 'assets/craftBG_equipped.png');
+            this.load.image('craftArrowLeft', 'assets/craftArrowLeft.png');
+            this.load.image('craftArrowRight', 'assets/craftArrowRight.png');
             this.load.image('slay_small', 'assets/slay_small.png');
             this.load.image('slay_medium', 'assets/slay_medium.png');
             this.load.image('slay_large', 'assets/slay_large.png');
@@ -41,7 +46,12 @@
           
             this.load.image('return_0', 'assets/return_grasslands.png');
             this.load.image('return_1', 'assets/return_cave.png');
-            this.load.image('return_2', 'assets/return_mountain.png');      
+            this.load.image('return_2', 'assets/return_mountain.png');     
+            this.load.image('return_0MINI', 'assets/return_grasslandsMINI.png');
+            this.load.image('return_1MINI', 'assets/return_caveMINI.png');
+            this.load.image('return_2MINI', 'assets/return_mountainMINI.png');   
+          
+            this.load.image('openCraft', 'assets/openCraft.png');  
           
 
             this.load.image('Red Dragon Gem', 'assets/monDrops/generic_red_dragon_gem.png');
@@ -178,13 +188,32 @@
             this.load.image('huntTickets', 'assets/HuntTickets.png');
             this.load.image('wardenHunt', 'assets/wardenHunt.png');
             this.load.image('wardenHunt-No', 'assets/wardenHunt-no.png');
+            this.load.image('wardenTalk', 'assets/talk.png');
             this.load.image('wardenReward', 'assets/wardenReward.png');
             this.load.image('wardenReward-No', 'assets/wardenReward-no.png');
-            this.load.image('returnMap', 'assets/returnMap.png');          
+            this.load.image('returnMap', 'assets/returnMap.png');  
+          
+            this.load.image('warden0', 'assets/warden0.png');  
+            this.load.image('warden1', 'assets/warden1.png');    
+            this.load.image('warden2', 'assets/warden2.png');   
+          
+            this.load.image('repair', 'assets/repair.png'); 
+            this.load.image('craft', 'assets/craft.png'); 
+            this.load.image('repairNo', 'assets/repairNo.png'); 
+            this.load.image('craftNo', 'assets/craftNo.png');
+            this.load.image('equip', 'assets/equip.png'); 
+            this.load.image('equipNo', 'assets/equipNo.png');          
 
             
             //weapons & potions
-            this.load.image('Beginner-Blade', 'assets/wep/Beginner-Blade.png');
+            this.load.image('B-Sword', 'assets/wep/B-Sword.png');
+            this.load.image('B-Knife', 'assets/wep/B-Knife.png');
+            this.load.image('B-Hammer', 'assets/wep/B-Hammer.png');
+          
+            this.load.image('M-Sword', 'assets/wep/M-Sword.png');
+            this.load.image('M-Rapier', 'assets/wep/M-Rapier.png');
+            this.load.image('M-Hammer', 'assets/wep/M-Hammer.png');
+          
             this.load.image('Wooden-Shield', 'assets/wep/Wooden-Shield.png');
             this.load.image('Red-Potion', 'assets/wep/Red-Potion.png');
           
@@ -197,9 +226,16 @@
           
             //skills
             this.load.image('Novice-Slash', 'assets/skills/Novice-Slash.png');
-            this.load.image('Novice-Stab', 'assets/skills/Novice-Stab.png');   
+            this.load.image('Novice-Stab', 'assets/skills/Novice-Stab.png');
+            this.load.image('Novice-Bash', 'assets/skills/Novice-Bash.png');
+            this.load.image('Severe-Slash', 'assets/skills/Severe-Slash.png');
+            this.load.image('Savage-Stab', 'assets/skills/Savage-Stab.png');
+            this.load.image('Brutal-Bash', 'assets/skills/Brutal-Bash.png');          
             this.load.image('Shield-Bash', 'assets/skills/Shield-Bash.png');   
-            this.load.image('Critical-Strike', 'assets/skills/Critical-Strike.png'); 
+            this.load.image('Penta-Slash', 'assets/skills/Penta-Slash.png'); 
+            this.load.image('Penta-Stab', 'assets/skills/Penta-Stab.png'); 
+            this.load.image('Penta-Bash', 'assets/skills/Penta-Bash.png'); 
+
           
             this.load.image('scroll', 'assets/scroll.png');
             
@@ -349,7 +385,7 @@
             if (!!this.ready) {
                 //console.log(localStorage.getItem('state'))
                 this.game.state.start(localStorage.getItem('state'));
-                //this.game.state.start('lose');
+                //this.game.state.start('craft');
             }
         }
         , onLoadComplete: function () {

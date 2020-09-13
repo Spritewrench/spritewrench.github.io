@@ -93,7 +93,7 @@
             this.monNum = 1;
             var ranRoom = 1
             this.room = []
-            this.party = "1-3-2";
+            this.party = localStorage.getItem("equip0")+"-"+localStorage.getItem("equip1")+"-"+localStorage.getItem("equip2");
             
             this.party = this.party.split("-");
 
@@ -273,6 +273,7 @@
             this.hunter.charge = 0;
             this.hunter.ultCharge = 0;
             this.hunter.ultMul = 0;
+            this.hunter.ultSkillMax = this.hero[0].ultSkillMax
             this.hunter.isBlocking = false;            
             this.hunter.ulting = false
             this.hunter.ultingBash = 0;
@@ -562,6 +563,11 @@
             if(this.hunter.ulting){
               this.mulStats.alpha = 1;
               this.mulStats.text = "x"+this.hunter.ultMul
+              if(this.hunter.ultMul >= this.hunter.ultSkillMax){
+                this.hunter.ultMul = this.hunter.ultSkillMax
+                this.mulStats.text = "x"+this.hunter.ultMul+"(MAX)"
+              }              
+              
             }
             if(this.hunter.ulting && this.rhythemUI.alpha <= 0.1 ){
               this.rhythemUI.alpha = 1;
@@ -589,6 +595,7 @@
               this.monster.width= this.monster.tarSize -50;
               this.monster.height = this.monster.tarSize -50;
               this.hunter.ultMul++;
+
             }  
             if(this.hunter.ultingBash > 0){
               this.hunter.ultingBash--
@@ -603,7 +610,7 @@
                 this.hunter.ultingStab--;
                 if(this.hunter.ultingStab  <= 0){
                   this.hunter.ultingStab = 0;
-                  this.monster.hp -= this.hero[0].ultSkill.attack*= this.hunter.ultMul;
+                  this.monster.hp -= this.hero[0].ultSkill.attack* this.hunter.ultMul;
                 }
                //damage =  this.hero[0].ultSkill.attack;
                for(var k = 0; k < 100; k++){
@@ -1729,10 +1736,13 @@
               this.hero[unit].ultSkill = weapon[heroID].ultSkill 
             }
             
+            this.hero[unit].ultSkillMax =  weapon[heroID].ultSkillMax;
             
             this.hero[unit].counterTimer = 0;
-            
+            console.log(heroID)
             this.hero[unit].loadTexture(weapon[heroID].name);
+            this.hero[unit].width = 250;
+            this.hero[unit].height = 250;
             this.hero[unit].stamina = 100;
             this.hero[unit].maxhp = this.hero[unit].hp
 

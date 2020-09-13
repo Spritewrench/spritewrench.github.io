@@ -15,6 +15,7 @@ window.onload = function () {
     game.state.add('win', ns.Win);
     game.state.add('lose', ns.Lose);   
     game.state.add('warden', ns.Warden);   
+    game.state.add('craft', ns.Craft);   
     game.state.start('boot');
     console.log(game)
 };

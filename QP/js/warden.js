@@ -10,10 +10,12 @@
             this.game.stage.backgroundColor = "#160c2c";
             this.game.stage.backgroundColor = "#160c2c";
             console.log(localStorage.getItem("biome"))
+            this.biome = parseInt(localStorage.getItem("biome"))
             this.map = this.add.sprite(0, 0, 'BG'+localStorage.getItem("biome"));
             this.map.width = this.game.width;
             this.map.height = this.game.height;           
-          
+            
+            this.hasLost = parseInt(localStorage.getItem("hasLost"))
           
             this.huntTickets = this.add.sprite(0,0, 'huntTickets');
             this.huntTickets.width = 300
@@ -27,18 +29,28 @@
             this.wardenHunt.inputEnabled = true;
             this.wardenHunt.events.onInputDown.add(this.hunt, this);             
             
-            this.wardenReward = this.add.sprite((this.game.width/2),(this.game.height/2)+100, 'wardenReward-No');
-            this.wardenReward.anchor.setTo(0.5, 0.5);
-            this.wardenReward.width = 450
-            this.wardenReward.height = 250   
+            this.wardenTalk = this.add.sprite((this.game.width/2),(this.game.height/2)+100, 'wardenTalk');
+            this.wardenTalk.anchor.setTo(0.5, 0.5);
+            this.wardenTalk.width = 450
+            this.wardenTalk.height = 250   
+            this.wardenTalk.inputEnabled = true;
+            this.wardenTalk.events.onInputDown.add(this.chat, this);                
             
-            this.Map = this.add.sprite((this.game.width)-120,(this.game.height/2)+450, 'returnMap');
+            this.Map = this.add.sprite((this.game.width)-120,(this.game.height/2)+750, 'returnMap');
             this.Map.anchor.setTo(0.5, 0.5);
             this.Map.width = 220;
             this.Map.height = 220    
             this.Map.clicked = false;
             this.Map.inputEnabled = true;
-            this.Map.events.onInputDown.add(this.goToMap, this);               
+            this.Map.events.onInputDown.add(this.goToMap, this);    
+          
+            this.openCraft = this.add.sprite(110,(this.game.height/2)+750, 'openCraft');
+            this.openCraft.anchor.setTo(0.5, 0.5);
+            this.openCraft.width = 220;
+            this.openCraft.height = 220    
+            this.openCraft.clicked = false;
+            this.openCraft.inputEnabled = true;
+            this.openCraft.events.onInputDown.add(this.goToCraft, this);             
             
             this.TixCount = this.add.bitmapText(this.huntTickets.x+this.huntTickets.width-70, this.huntTickets.y+(this.huntTickets.height/2)-10, 'minecraftia', '',40);
             this.TixCount.text = "x"+localStorage.getItem("TixCount"+localStorage.getItem("placeID"));
@@ -62,16 +74,46 @@
             this.weatherIcon = this.add.sprite(this.game.width-200, this.huntTickets.y+(this.huntTickets.height/2)-5, 'weatherIcon');
             this.weatherIcon.anchor.setTo(0.5, 0.5);
             this.weatherIcon.width = 300
-            this.weatherIcon.height = 300            
+            this.weatherIcon.height = 300  
+            
+            this.warden = this.add.sprite(this.game.width, 0, 'warden'+this.biome);
+            this.warden.alpha = 0;
+            this.warden.width = this.game.width
+            this.warden.height = this.game.height  
+            this.warden.inputEnabled = true;
+            this.warden.events.onInputDown.add(this.hideChat, this);             
+            
+            this.wardenText = this.add.text(100, this.game.height-350, "yo",{font:'LondrinaSolid-Black'});
+            this.wardenText.alpha = 0;
+            this.wardenText.fill= '#fff';
+            this.wardenText.fontSize = 60;   
+            this.wardenText.wordWrap = true;
+            this.wardenText.wordWrapWidth = this.game.width-150;     
+            this.isChatting = false;
             //this.gray = this.game.add.filter('Gray');
         }          
         , update: function () {
-            this.TixCountVal = 5;
+            //this.TixCountVal = 5;
             localStorage.setItem('hasSlashed',0);
             localStorage.setItem('hasStabbed',0);
             localStorage.setItem('hasBashed',0);            
             this.game.scale.refresh(); 
             this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+          
+            //has lost
+            if(this.hasLost == 1){
+              this.warden.x = 0
+              this.warden.alpha = 1;
+              this.wardenText.alpha = 1;
+              this.wardenText.text = "Ah! \n Bested by a "+localStorage.getItem("monSize")+" "+localStorage.getItem("monName")+"?\n Maybe try a different weapon?"
+
+              
+            }
+            else if (!this.isChatting){
+              this.warden.alpha = 0;
+              this.warden.x = this.game.width
+              this.wardenText.alpha = 0;              
+            }
             this.timer++;
             // show tix
             this.TixCount.text = "x"+this.TixCountVal
@@ -91,7 +133,7 @@
               this.TixTimer.alpha = 0;
               this.TixTimerVal = 60*2;
               if(this.TixCountVal <= 0 ){
-                this.TixCountVal = 5;
+                this.TixCountVal = 2;
                 localStorage.setItem("TixCount"+localStorage.getItem("placeID"), this.TixCountVal);
               }
               
@@ -138,8 +180,62 @@
             this.Map.width = 250;
             this.Map.height = 250  
             this.Map.clicked = true;
-            window.location.href = "index.html";
+            window.location.href = "index2.html";
         }   
+        , goToCraft: function (unit) {
+           //localStorage.setItem('state','craft')
+           this.game.state.start('craft') 
+            
+        }    
+        , chat: function (unit) {
+           //localStorage.setItem('state','craft')
+           //this.game.state.start('craft') 
+          this.isChatting = true;
+          this.warden.x = 0
+          this.warden.alpha = 1;
+          this.wardenText.alpha = 1;
+          var ran = Math.floor(Math.random() * 2);
+          if(this.TixCountVal <= 0){
+            this.TixCountVal = 2
+            this.wardenText.text = "It seems you've run out of TICKETS. Very well, I'll loan you 2 more ... just this once."
+          }
+          else{
+            switch(ran){
+              case 0:
+                this.wardenText.text = "Greetings Hunter. The Hunted and the Hunter are linked. I'll be here to remind you of that fact lest you forget."
+                break;
+              case 1:
+                var location = parseInt(this.biome)
+                switch(location){
+                  case 0:
+                     this.wardenText.text = "Well met Hunter! Wocco are curious beasts are they not? The way they shrug off SLASH and BASH type attacks makes quite a challenge."
+                    break;
+                  case 1:
+                     this.wardenText.text = "Well met Hunter! Maddock Wyrms are wily beasts are they not? Their resistance of STAB and BASH type attacks make them truly formidable!"
+                    break;
+                  case 2:
+                     this.wardenText.text = "Well met Hunter! Don't let the adorable visage of the Noot fool you now. They resist SLASH and STAB type and are quite savage!"                    
+                    break;                    
+                }
+               
+                break;
+             
+            }            
+          }
+
+            
+        }   
+        , hideChat: function (unit) {
+           //localStorage.setItem('state','craft')
+           //this.game.state.start('craft') 
+          this.isChatting = false;
+          this.warden.alpha = 0;
+          this.warden.x = this.game.width
+          this.wardenText.alpha = 0;
+          localStorage.setItem("hasLost",0);
+          this.hasLost = 0;          
+            
+        }        
         , time_convert: function (num) {
             var hours = Math.floor(num / 60);  
             var minutes = num % 60;

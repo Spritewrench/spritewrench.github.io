@@ -1,107 +1,566 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>QuestLike: Pocket</title>
-
-  <!-- build:css main.min.css -->
-  <link rel="stylesheet" href="css/main.css"> 
-  <link rel="stylesheet" href="css/font.css"> 
-  <!-- /build -->
-</head>
-
-<body>
-  
-  <div id="simplewar-game" class="game"></div>
-
-  <!-- build:remove -->
-
-  <!-- /build -->
-
-  <!-- build:js main.min.js -->
-    <script src="js/lib/phaserOLD.min.js"></script>
-    <script src="js/lib/ScreenShake.js"></script>
-    <script src="js/lib/ntc.js"></script>
-    <script src="js/boot.js"></script>
-    <script src="js/preloader.js"></script>
-    <script src="js/menu.js"></script>
-    <script src="js/win.js"></script>    
-    <script src="js/lose.js"></script>    
-    <script src="js/game.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/choose.js"></script>
-    <script src="js/warden.js"></script>
-    <script src="js/credit.js"></script>
-    <script src="js/skill.js"></script>  
-    <script src="js/monSkill.js"></script>     
-    <script src="js/monster.js"></script>
-    <script src="js/monsterReward.js"></script>
-    <script src="js/weapon.js"></script>
-    <script src="js/leaderboard.js"></script>
-    <script src="js/lib/control.js"></script>
-    <script src="js/lib/webfont.js"></script>
-    <script type="text/javascript" src="js/steam.js"></script>
-    <script type="text/javascript" src="js/lib/App42-all-3.1.min.js"></script>
-    
-
-  <!-- /build -->
-
-</body>
-
-<script>
-    //localStorage.setItem('state','menu')
-    WebFontConfig = {
-      custom: {
-        families: ['Fredoka One', 'Muli', 'Berkshire Swash']
+  <head>
+    <title>Questlike: Pocket</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
       }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+  </head>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-database.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDx5EOUQe4XuN1UDOxqBXxIB7xaRgPYWf0",
+      authDomain: "questlike-pocket.firebaseapp.com",
+      databaseURL: "https://questlike-pocket.firebaseio.com",
+      projectId: "questlike-pocket",
+      storageBucket: "questlike-pocket.appspot.com",
+      messagingSenderId: "829763116897",
+      appId: "1:829763116897:web:4283af40b2a9777d15af20",
+      measurementId: "G-PYFE1Q1ZM9"
     };
-
-    WebFont.load(WebFontConfig);    
-    
-//make unique ID
-        if (localStorage.getItem("userID") === null || localStorage.getItem("userID").length <= 0) {
-            localStorage.setItem("userID",(Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase());
-
-        }    
-    
-//check if online
-if(!navigator.onLine) { // true|false
-	localStorage.setItem("online",1) 
-}    
-    
-localStorage.setItem('hasSlashed',0);
-localStorage.setItem('hasStabbed',0);
-localStorage.setItem('hasBashed',0);  
     // Initialize Firebase
-   /* var config = {
-    apiKey: "AIzaSyDLavESdxZeNSEcFKFYVF1riDoNzR72gPU",
-    authDomain: "hedhnt.firebaseapp.com",
-    databaseURL: "https://hedhnt.firebaseio.com",
-    storageBucket: "hedhnt.appspot.com",
-    messagingSenderId: "412595932285"
-    };
-    firebase.initializeApp(config);
-    
-    
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });    
-    */
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>  
+  <script>
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-</script>    
+    var map;
+    var service;
+    var infowindow;
+    var placeID;
+    var lat,long;
+    var jamaica;
+    var icons;
+    function initMap() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+          lat = position.coords.latitude;
+          long = position.coords.longitude;
+          var jamaica = new google.maps.LatLng(lat, long);
+
+          infowindow = new google.maps.InfoWindow();
+            var mapOptions = {
+                // The latitude and longitude to center the map (always required)
+                center: jamaica,
+                // How zoomed in you want the map to start at (always required)
+                zoom: 16,
+                disableDefaultUI: true, // a way to quickly hide all controls     
+                mapTypeControl: false,
+                // How you would like to style the map. 
+                // This is where you would paste any style found on Snazzy Maps.
+                styles: 
+              [
+              {
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#ebe3cd"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#523735"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                  {
+                    "color": "#f5f1e6"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#c9b2a6"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.land_parcel",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#dcd2be"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.land_parcel",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#ae9e90"
+                  }
+                ]
+              },
+              {
+                "featureType": "landscape.natural",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#dfd2ae"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#dfd2ae"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#93817c"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "geometry.fill",
+                "stylers": [
+                  {
+                    "color": "#a5b076"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#447530"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#f5f1e6"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#fdfcf8"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#f8c967"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#e9bc62"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway.controlled_access",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#e98d58"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway.controlled_access",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                  {
+                    "color": "#db8555"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.local",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#806b63"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.line",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#dfd2ae"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.line",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#8f7d77"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.line",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                  {
+                    "color": "#ebe3cd"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.station",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#dfd2ae"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "geometry.fill",
+                "stylers": [
+                  {
+                    "color": "#b9d3c2"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#92998d"
+                  }
+                ]
+              }
+            ]
+            };
+          var mapElement = document.getElementById('map');
+          map = new google.maps.Map( mapElement , mapOptions);            
+          var request = {
+            location: jamaica,
+            rankBy: google.maps.places.RankBy.DISTANCE,
+            type: 'restaurant'
+          };
+
+
+
+          service = new google.maps.places.PlacesService(map);
+
+          service.nearbySearch(request, function(results, status) {
+            var length =5;
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              for (var i = 0; i < length; i++) {
+                createMarker(results[i]);
+                //var loc = new google.maps.LatLng(results[i].position.lat(), results[i].position.lng()); 
+
+                //map.setCenter(results[i].geometry.location);
+              }
+              var middle = length/2;
+              map.panTo(results[0].geometry.location);                
+              //placeID = results[i].place_id;
+
+
+              var request2 = {
+                placeId: results[i].place_id,
+                fields: ['name', 'formatted_address', 'place_id', 'geometry']
+              }; 
+              service.getDetails(request2, function(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                  //console.log(results)
+                  for (var k = 0; k < results.length; k++) {
+                    console.log(results[k])
+                  }
+                }            
+              });            
+            }
+          });
+        });
+      }
+    }
+    function createMarker(place) {
+          var icons = {
+            grasslands: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_grassland.png'
+            },
+            cave: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_cavern.png'
+            },
+            mountain: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_mountain.png'
+            }
+          };
+
+      //console.log(icons['grasslands']);
+      var random = 0
+      
+      //check in database if location is present
+      try{
+        random = firebase.database().ref('places/' + place.place_id).once('value').then(function(snapshot) {
+          if(snapshot.val() == null){
+            random = Math.floor(Math.random() * 3);
+            firebase.database().ref('places/' +place.place_id).set({
+              biome: random
+            });        
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
+
+            marker.place = place;
+            marker.biome = random;
+
+
+
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
+
+            google.maps.event.addListener(marker, 'click', function() {
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }   
+              //console.log(marker.biome)
+              localStorage.setItem("biome",random)
+              localStorage.setItem("state","warden")
+              localStorage.setItem("placeID",marker.place.place_id)
+              localStorage.setItem("placeName",marker.place.name)
+              //var currentClick = new Date();
+              //localStorage.setItem("lastClicked",currentClick)
+              if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                localStorage.setItem("TixCount"+marker.place.place_id,5)
+              }          
+              window.location.href = "index3.html";
+              //console.log(marker.place);
+            });         
+          }
+          else{
+            console.log("Location Found")
+    
+            
+            
+            random = parseInt(snapshot.val().biome);
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
+
+            marker.place = place;
+
+
+
+
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
+
+            google.maps.event.addListener(marker, 'click', function() {
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }   
+              
+              var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat="+marker.place.geometry.location.lat()+"&lon="+marker.place.geometry.location.lng()+"&appid=5fcd044a0d8fe8941b4a3b00fbd1098e"
+              var obj;
+              
+              fetch(weatherURL)
+                .then(res => res.json())
+                .then(data => obj = data)
+                .then(
+                  function(obj) {
+                    localStorage.setItem("weather"+marker.place.place_id,obj.weather[0].main);
+                    localStorage.setItem("weatherIcon"+marker.place.place_id,obj.weather[0].icon);
+                    localStorage.setItem("biome",random)
+                    localStorage.setItem("state","warden")
+                    localStorage.setItem("placeID",marker.place.place_id)
+                    localStorage.setItem("placeName",marker.place.name)
+                    //var currentClick = new Date();
+                    //localStorage.setItem("lastClicked",currentClick)
+                    if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                      localStorage.setItem("TixCount"+marker.place.place_id,5)
+                    }      
+                    //console.log(localStorage.getItem("weatherIcon"+marker.place.place_id))
+                    window.location.href = "index3.html";                    
+                  }
+                )
+
+            });          
+
+          }
+        });    
+      }
+      catch(err){
+            console.log("Location Found")
+            random = parseInt(snapshot.val().biome);
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
+
+            marker.place = place;
+
+
+
+
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
+
+            google.maps.event.addListener(marker, 'click', function() {
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }   
+              var weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat="+marker.place.geometry.location.lat()+"&lon="+marker.place.geometry.location.lng()+"&appid=5fcd044a0d8fe8941b4a3b00fbd1098e"
+              var obj;
+              
+              fetch(weatherURL)
+                .then(res => res.json())
+                .then(data => obj = data)
+                .then(
+                  function(obj) {
+                    localStorage.setItem("weather"+marker.place.place_id,obj.weather[0].main);
+                    localStorage.setItem("weatherIcon"+marker.place.place_id,obj.weather[0].icon);
+                    localStorage.setItem("biome",random)
+                    localStorage.setItem("state","warden")
+                    localStorage.setItem("placeID",marker.place.place_id)
+                    localStorage.setItem("placeName",marker.place.name)
+                    //var currentClick = new Date();
+                    //localStorage.setItem("lastClicked",currentClick)
+                    if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                      localStorage.setItem("TixCount"+marker.place.place_id,5)
+                    }          
+                    window.location.href = "index3.html";                    
+                  }
+                )
+            });          
+      }
+
+
+
+
+    }
+    function showPosition(position) {
+
+
+      return jamaica;
+    }      
+  </script>  
+  <body>
+    
+    <div id="map"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_ixRi-ia7rE13OLPVXDanaBi4s8SDo7w&libraries=places&callback=initMap" ></script>
+  </body>
+  
 </html>
-
