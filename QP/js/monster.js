@@ -15,9 +15,9 @@ monster[0][1].mp = 2;
 monster[0][1].attack = 1;
 monster[0][1].defence = 1;
 
-monster[0][1].slashDef = 10;
+monster[0][1].slashDef = 20;
 monster[0][1].stabDef = 0;
-monster[0][1].bashDef = 10;
+monster[0][1].bashDef = 20;
 
 monster[0][1].dex = 3;
 monster[0][1].dodge = 0;
@@ -38,8 +38,8 @@ monster[1][1].attack = 1;
 monster[1][1].defence = 1;
 
 monster[1][1].slashDef = 0;
-monster[1][1].stabDef = 15;
-monster[1][1].bashDef = 15;
+monster[1][1].stabDef = 20;
+monster[1][1].bashDef = 20;
 
 monster[1][1].dex = 3;
 monster[1][1].dodge = 0;
@@ -59,8 +59,8 @@ monster[2][1].mp = 2;
 monster[2][1].attack = 1;
 monster[2][1].defence = 1;
 
-monster[2][1].slashDef = 2;
-monster[2][1].stabDef = 2;
+monster[2][1].slashDef = 20;
+monster[2][1].stabDef = 20;
 monster[2][1].bashDef = 0;
 
 monster[2][1].dex = 3;

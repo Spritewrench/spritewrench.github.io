@@ -224,7 +224,7 @@
           if(weapon[this.wepCount].craft[i].count > inveNum){
             this.currentCraftText[i].fill ='red'
           }
-          this.currentCraftText[i].text = weapon[this.wepCount].craft[i].name+" \n"+weapon[this.wepCount].craft[i].count+"/"+inveNum
+          this.currentCraftText[i].text = weapon[this.wepCount].craft[i].name+" \n"+inveNum+"/"+weapon[this.wepCount].craft[i].count
         }
         else{
            this.currentCraft[i].alpha = 0;
