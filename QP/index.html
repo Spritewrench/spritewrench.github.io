@@ -17,11 +17,104 @@
         margin: 0;
         padding: 0;
       }
+      body {
+        color: #333;
+      }
+      #progressbar{
+        height: 26px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 200px;
+        background: rgba(159, 159, 159, 0.5);
+        border-radius: 10px;
+        margin: -20px 0 0 -100px;
+        padding: 2px;
+      }
+      #loading{
+        transition: all 50ms ease;
+        height: 20px;
+        width: calc(100% - 10px);
+        border-radius: 8px;
+        background: #474747;
+        position: absolute;
+        margin: 3px;
+        display: inline-block;
+        animation: load 5s ease infinite;
+      }
+      #load{
+        font-family: Arial;
+        font-weight: bold;
+        text-align: center;
+        margin-top: -30px;
+      }
+
+      @keyframes load{
+        0%{
+          width: 2%;
+        }
+        10%{
+          width: 10%;
+        }
+      }      
     </style>
 
   </head>
- 
-  <body style="background-image: url('assets/start.png'); background-repeat:no-repeat; background-size:cover;" onclick="window.location.href = 'index2.html'">
+    
+   
+  <script>
+    // onSuccess Callback
+    // This method accepts a Position object, which contains the
+    // current GPS coordinates
+    //
+    localStorage.setItem("hasLoaded",0)
+    function success(pos) {
+      
+      var crd = pos.coords;
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+      localStorage.setItem("hasLoaded",1)
+      document.getElementById("bg").style.backgroundImage ="url('assets/start.png')"
+    }
+
+    function error(err) {
+      alert("ERROR: GPS signal not found!\nPlease enable and restart application");
+      document.getElementById("bg").style.backgroundImage ="url('assets/startNo.png')"
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    } 
+    function next() {
+      var loader = parseInt(localStorage.getItem("hasLoaded"))
+      if(loader == 1){
+        window.location.href = 'index2.html'
+      }
+      else{
+        alert("ERROR: GPS signal not found!\nPlease enable and restart application");
+        navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+        //document.getElementById("bg").style.backgroundImage ="url('assets/start.png')"
+      }
+      
+    }      
+    function hideBar(){
+      //alert("long")
+      //document.getElementById("bg").style.backgroundImage ="url('assets/start.png')"
+      document.getElementById("progressbar").style.visibility = "hidden";
+      
+      //document.getElementById("loading").style.visibility = "hidden";
+      //document.getElementById("loading").style.visibility = "hidden";
+    }
+    navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+    
+    window.setTimeout(hideBar, 5000);
+    //document.getElementById("progressbar").style.visibility = "hidden";
+  </script>
+  <body id="bg" style="background-image: url('assets/startNo.png'); background-size: auto; background-position: center; background-repeat:no-repeat; background-size:cover;" onclick="next()" >
+    <div id="progressbar">
+      <span id="loading"></span>
+      <div id="load"></div>
+    </div> 
   </body>
-  
+
 </html>

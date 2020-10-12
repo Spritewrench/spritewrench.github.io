@@ -164,6 +164,7 @@
         this.rareRewardCount = 3;
       }      
       var dropRan= Math.floor(Math.random() * (deadMonster[this.biome][1].rareRewards.length));
+      console.log("rare "+dropRan)
       var dropName = "";
       if(dropRan == 0){
         switch(this.biome){

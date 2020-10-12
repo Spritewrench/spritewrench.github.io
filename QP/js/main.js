@@ -4,7 +4,8 @@ window.onload = function () {
   var game
     , ns = window['simplewar'];
 
-    game = new Phaser.Game(360, 640, Phaser.CANVAS, 'shiny-gauntlet-game');
+    game = new Phaser.Game(window.innerWidth, window.innerHeight,Phaser.CANVAS, 'shiny-gauntlet-game');
+    
     game.state.add('boot', ns.Boot);
     game.state.add('preloader', ns.Preloader);
     game.state.add('menu', ns.Menu); 
@@ -15,7 +16,8 @@ window.onload = function () {
     game.state.add('win', ns.Win);
     game.state.add('lose', ns.Lose);   
     game.state.add('warden', ns.Warden);   
-    game.state.add('craft', ns.Craft);   
+    game.state.add('craft', ns.Craft); 
+    game.state.add('rank', ns.Rank); 
     game.state.start('boot');
     console.log(game)
 };

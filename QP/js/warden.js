@@ -44,13 +44,21 @@
             this.Map.inputEnabled = true;
             this.Map.events.onInputDown.add(this.goToMap, this);    
           
-            this.openCraft = this.add.sprite(110,(this.game.height/2)+750, 'openCraft');
+            this.openCraft = this.add.sprite(450,(this.game.height/2)+750, 'openCraft');
             this.openCraft.anchor.setTo(0.5, 0.5);
             this.openCraft.width = 220;
             this.openCraft.height = 220    
             this.openCraft.clicked = false;
             this.openCraft.inputEnabled = true;
-            this.openCraft.events.onInputDown.add(this.goToCraft, this);             
+            this.openCraft.events.onInputDown.add(this.goToCraft, this);            
+
+            this.openGuild = this.add.sprite(110,(this.game.height/2)+750, 'openGuild');
+            this.openGuild.anchor.setTo(0.5, 0.5);
+            this.openGuild.width = 220;
+            this.openGuild.height = 220    
+            this.openGuild.clicked = false;
+            this.openGuild.inputEnabled = true;
+            this.openGuild.events.onInputDown.add(this.goToGuild, this)          
             
             this.TixCount = this.add.bitmapText(this.huntTickets.x+this.huntTickets.width-70, this.huntTickets.y+(this.huntTickets.height/2)-10, 'minecraftia', '',40);
             this.TixCount.text = "x"+localStorage.getItem("TixCount"+localStorage.getItem("placeID"));
@@ -67,7 +75,7 @@
           
           
             this.biomeName = this.add.bitmapText(this.game.width-200, this.huntTickets.y+(this.huntTickets.height/2)-5+150, 'minecraftia', '',40);
-            this.biomeName.text = localStorage.getItem("placeName");
+            this.biomeName.text = ""//localStorage.getItem("placeName");
             this.biomeName.anchor.setTo(0.5, 0.5);       
             this.biomeName.maxWidth = 400;
           
@@ -77,13 +85,14 @@
             this.weatherIcon.height = 300  
             
             this.warden = this.add.sprite(this.game.width, 0, 'warden'+this.biome);
+            //this.warden.anchor.setTo(0.5, 0.5);
             this.warden.alpha = 0;
             this.warden.width = this.game.width
-            this.warden.height = this.game.height  
+            this.warden.height = this.game.height
             this.warden.inputEnabled = true;
             this.warden.events.onInputDown.add(this.hideChat, this);             
             
-            this.wardenText = this.add.text(100, this.game.height-350, "yo",{font:'LondrinaSolid-Black'});
+            this.wardenText = this.add.text(100, this.game.height-450, "yo",{font:'LondrinaSolid-Black'});
             this.wardenText.alpha = 0;
             this.wardenText.fill= '#fff';
             this.wardenText.fontSize = 60;   
@@ -93,12 +102,13 @@
             //this.gray = this.game.add.filter('Gray');
         }          
         , update: function () {
+            
+            //this.game.scale.refresh();
             //this.TixCountVal = 5;
             localStorage.setItem('hasSlashed',0);
             localStorage.setItem('hasStabbed',0);
-            localStorage.setItem('hasBashed',0);            
-            this.game.scale.refresh(); 
-            this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+            localStorage.setItem('hasBashed',0);   
+          //this.game.scale.setMinMax(window.innerWidth,window.innerHeight,window.innerWidth,window.innerHeight) 
           
             //has lost
             if(this.hasLost == 1){
@@ -187,34 +197,40 @@
            this.game.state.start('craft') 
             
         }    
+        , goToGuild: function (unit) {
+           //localStorage.setItem('state','craft')
+           this.game.state.start('rank') 
+            
+        }        
         , chat: function (unit) {
+          console.log("chat")
            //localStorage.setItem('state','craft')
            //this.game.state.start('craft') 
           this.isChatting = true;
-          this.warden.x = 0
+          this.warden.x = 0;
           this.warden.alpha = 1;
           this.wardenText.alpha = 1;
           var ran = Math.floor(Math.random() * 2);
           if(this.TixCountVal <= 0){
             this.TixCountVal = 2
-            this.wardenText.text = "It seems you've run out of TICKETS. Very well, I'll loan you 2 more ... just this once."
+            this.wardenText.text = "It seems you've run out of TICKETS.\nVery well, I'll loan you 2 more ...\njust this once."
           }
           else{
             switch(ran){
               case 0:
-                this.wardenText.text = "Greetings Hunter. The Hunted and the Hunter are linked. I'll be here to remind you of that fact lest you forget."
+                this.wardenText.text = "Greetings!\nThe Hunted and the Hunter are linked. I'll be here to remind you of that fact, lest you forget."
                 break;
               case 1:
                 var location = parseInt(this.biome)
                 switch(location){
                   case 0:
-                     this.wardenText.text = "Well met Hunter! Wocco are curious beasts are they not? The way they shrug off SLASH and BASH type attacks makes quite a challenge."
+                     this.wardenText.text = "Well met Hunter!\nWocco are curious beasts are they not? The way they shrug off SLASH and BASH type attacks makes quite a challenge."
                     break;
                   case 1:
-                     this.wardenText.text = "Well met Hunter! Maddock Wyrms are wily beasts are they not? Their resistance of STAB and BASH type attacks make them truly formidable!"
+                     this.wardenText.text = "Well met Hunter! \nMaddock Wyrms are wily beasts are they not? Their resistance of STAB and BASH type attacks make them truly formidable!"
                     break;
                   case 2:
-                     this.wardenText.text = "Well met Hunter! Don't let the adorable visage of the Noot fool you now. They resist SLASH and STAB type and are quite savage!"                    
+                     this.wardenText.text = "Well met Hunter! \nDon't let the adorable visage of the Noot fool you now. They resist SLASH and STAB type and are quite savage!"                    
                     break;                    
                 }
                
@@ -230,7 +246,8 @@
            //this.game.state.start('craft') 
           this.isChatting = false;
           this.warden.alpha = 0;
-          this.warden.x = this.game.width
+          this.warden.x = this.game.width;
+          //this.warden.y = this.warden.height;
           this.wardenText.alpha = 0;
           localStorage.setItem("hasLost",0);
           this.hasLost = 0;          
