@@ -288,7 +288,7 @@
           itemCount2 -= cost2;
           localStorage.setItem(weapon[this.wepCount].craft[0].name+" Count",itemCount1)
           localStorage.setItem(weapon[this.wepCount].craft[1].name+" Count",itemCount2)
-          localStorage.setItem("crafted"+weapon[this.wepCount].id)
+          localStorage.setItem("crafted"+weapon[this.wepCount].id, 1)
         }
       }
     },   

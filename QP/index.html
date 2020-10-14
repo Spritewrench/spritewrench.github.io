@@ -68,6 +68,13 @@
     // current GPS coordinates
     //
     localStorage.setItem("hasLoaded",0)
+    //demo items
+    localStorage.setItem("Yellow Dragon Gem Count",99)    
+    localStorage.setItem("Red Dragon Gem Count",99)    
+    localStorage.setItem("Blue Dragon Gem Count",99)  
+    
+    localStorage.setItem("Small Monster Bone Count",99) 
+    localStorage.setItem("Wocco Pelt Count",99) 
     function success(pos) {
       
       var crd = pos.coords;
@@ -76,7 +83,7 @@
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
       console.log(`More or less ${crd.accuracy} meters.`);
-      localStorage.setItem("hasLoaded",1)
+      localStorage.setItem("hasLoaded",2)
       document.getElementById("bg").style.backgroundImage ="url('assets/start.png')"
     }
 
@@ -87,10 +94,16 @@
     } 
     function next() {
       var loader = parseInt(localStorage.getItem("hasLoaded"))
-      if(loader == 1){
+      if(loader == 2){
         window.location.href = 'index2.html'
       }
+      else if(loader == 0){
+        localStorage.setItem("hasLoaded",1)
+        //localStorage.setItem("hasLoaded",2)
+        //window.location.href = 'index2.html'
+      }      
       else{
+        //localStorage.setItem("hasLoaded",1)
         alert("ERROR: GPS signal not found!\nPlease enable and restart application");
         navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
         //document.getElementById("bg").style.backgroundImage ="url('assets/start.png')"

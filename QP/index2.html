@@ -263,15 +263,21 @@
 
           service.nearbySearch(request, function(results, status) {
             var length =100;
+            console.log(status)
             if (status === google.maps.places.PlacesServiceStatus.OK) {
+              console.log("checking ...")
               for (var i = 0; i < length; i++) {
                 createMarker(results[i]);
+                
+                map.panTo(results[i].geometry.location);   
                 //var loc = new google.maps.LatLng(results[i].position.lat(), results[i].position.lng()); 
 
                 //map.setCenter(results[i].geometry.location);
               }
+              
               var middle = length/2;
-              map.panTo(results[0].geometry.location);                
+              //console.log(results[0].geometry.location)
+                           
               //placeID = results[i].place_id;
 
 
@@ -444,7 +450,7 @@
         });    
       }
       catch(err){
-            console.log("Location Found")
+            //console.log("Location Found")
             random = parseInt(snapshot.val().biome);
             var biome ="";
             // biome set
