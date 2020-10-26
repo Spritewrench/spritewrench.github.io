@@ -76,13 +76,13 @@ characters:
     displayName: Jamie
     speechColour: "#000"
     looks:
-      normal: assets/characters/Jamie-m.png     
+      normal: assets/characters/jamie-m.png     
 
   jamie-f:
     displayName: Jamie
     speechColour: "#000"
     looks:
-      normal: assets/characters/Jamie-f.png   
+      normal: assets/characters/jamie-f.png   
 
   mom:
     displayName: Mom
