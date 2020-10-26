@@ -1,0 +1,487 @@
+
+start:
+  - play morningBGM:
+  - show kadeem_room: WITH FADE CONTINUE
+  - show kadeem: normal AT CENTER WITH FADE
+  - kadeem says normal: I'm someone who loves to have fun.
+  - kadeem says normal: Playing pickup games with my friends. 
+  - kadeem says normal: School isn't too big of a concern at the moment.
+  - hide kadeem:  
+  - show julian_room: WITH FADE CONTINUE
+  - call panBackground:
+      time: 1500
+      x: "+100"
+  - show julian: normal AT CENTER WITH FADE    
+  - julian says normal: I'm all about football! 
+  - julian says normal: Whether its playing FIFA or on the school team.
+  - julian says normal: I avoid boredom at all costs and hate reading!
+  - hide julian: normal AT CENTER WITH FADE    
+  - show adrianna_room: WITH FADE CONTINUE
+  - call panBackground:
+      time: 1500
+      x: "-100"  
+  - show adrianna: normal AT CENTER WITH FADE   
+  - adrianna says normal: I love to dance and watch reality TV!
+  - adrianna says normal: I also have my very own self-care Instagram page.
+  - adrianna says normal: I plan to start up a small business someday.
+  - hide adrianna: normal AT CENTER WITH FADE  
+  - show christian_room: WITH FADE CONTINUE
+  - show christian: normal AT CENTER WITH FADE    
+  - christian says normal: I like to play first-person shooter video games.   
+  - christian says normal: I keep to myself and I'm not very social outside of his immediate family.
+  - hide christian: normal AT CENTER WITH FADE 
+  - show maria_room: WITH FADE CONTINUE
+  - show maria: normal AT CENTER WITH FADE   
+  - maria says normal: I love to run and has begun training for the track at school.
+  - maria says normal: I like listening to music while doing chores and spend a lot of time drawing.
+  - maria says normal: I don’t have much interest in 'traditional girl things' 
+  - hide maria: normal AT CENTER WITH FADE 
+  - show patrick_room: WITH FADE CONTINUE
+  - show patrick: normal AT CENTER WITH FADE  
+  - patrick says normal: I love to play chess and other strategy games. 
+  - patrick says normal: I also like to learn about history, World War 1 & 2 in particular. 
+  - patrick says normal: I know you have to put in work to be successful ...
+  - patrick says normal: So I invest my time networking and looking for professional development resources
+  - scene: chooseAvatar
+  
+chooseAvatar:
+  - hide patrick: normal AT CENTER WITH FADE  
+  - text: So who do you identify the most with?
+  - choice:
+    - Kadeem:
+      - show kadeem_room: WITH FADE CONTINUE
+      - var isKadeem: 1
+      - call storeLocal:
+          param1: "kadeem"
+          param2: "1"    
+    - Julian:
+      - show julian_room: WITH FADE CONTINUE
+      - var isJulian: 1
+      - call storeLocal:
+          param1: "julian"
+          param2: "1"     
+    - Neither:
+      - text: How about?
+      - choice:
+        - Adrianna:
+          - show adrianna_room: WITH FADE CONTINUE
+          - var isAdrianna: 1
+          - call storeLocal:
+              param1: "adrianna"
+              param2: "1"         
+        - Christian:  
+          - show christian_room: WITH FADE CONTINUE
+          - var isChristian: 1
+          - call storeLocal:
+              param1: "christian"
+              param2: "1"         
+        - Neither:
+          - text: Well, what about?
+          - choice:
+            - Maria:
+              - show maria_room: WITH FADE CONTINUE
+              - var isMaria: 1
+              - call storeLocal:
+                  param1: "maria"
+                  param2: "1"             
+            - Patrick:  
+              - show patrick_room: WITH FADE CONTINUE
+              - var isPatrick: 1
+              - call storeLocal:
+                  param1: "patrick"
+                  param2: "1"             
+            - Neither:
+              - text: You need to select an Avatar. 
+              - text: Who best matches YOU.
+              - scene: chooseAvatar
+  - scene: scene0
+  
+scene0:
+  - show stadiumBG: WITH CUT CONTINUE
+  - text: Today is the biggest event on the high school sporting and social calendar.  
+  - text: Students across the city are getting ready to attend the Edutrack Championship Games!
+  - text: Media houses have gathered from near & far.
+  - text: Local and Foregin.
+  - text: From ova yah suh and ova deh suh!
+  - text: All to see which school will have the honour of producing a Champion! 
+  - scene: scene1
+
+scene1:
+  - if ({isKadeem} == 1):
+    - show kadeem_room:
+    - show kadeem: normal AT CENTER WITH FADE     
+    - kadeem says happy: Yaassss! Finally Edutrack reach! 
+    - kadeem says normal: Getting to see my friends from other schools, especially Jamie is what I've been waiting for all year.   
+    - kadeem says angry: Can believe I'm not allowed to text with people on social media without parental monitoring ... 
+    - kadeem says sad: Would probably get grounded for life if I set up a finsta.    
+    
+    - hide kadeem: 
+    - show mom: normal AT CENTER WITH FADE       
+    - mom says normal: I know you're excited about today's meet but I’m telling you to remember your behaviour. 
+    - mom says normal: I put out your clothes. See here, your lunch money.
+    - mom says normal: Make sure to get yourself a proper lunch because it'll be a long day.
+    - mom says normal: You know what I expect, so don't be messing with any robot taxis.
+    - mom says normal: Remember I'm trusting in you.
+    
+    - hide mom: 
+    - show kadeem: normal AT CENTER WITH FADE       
+    - kadeem says normal: Ok then, I know Mom means well ... but I'm a high schooler! 
+    - kadeem says sad: Look at these clothes! 
+    - kadeem says sad: I’m gonna have to transfer schools to have any street cred after this.   
+    - kadeem says sad: Soooooo not lit. SMH.
+    
+    - choice:
+      - Listen to Mom:
+        - kadeem says normal: You know what, I'm gonna wear just wear this. 
+        - kadeem says normal: It's not about how I look but how much fun I have.    
+        - kadeem says happy: "* Takes Selfie *"
+        - show flash: AT 0,0 WITH CUT 
+        - hide flash: WITH FADE
+      - Do your own thing:
+        - kadeem says normal: This is MY time now.
+        - kadeem says angry: I can handle myself. 
+        - kadeem says normal: So I'll just wear this, take a selfie and send it to Moms 
+        - kadeem says normal: And then change into something a bit cooler
+        - kadeem says normal: She'll never know ...
+        - kadeem says normal: "* Takes Selfie *"   
+        - show flash: AT 0,0 WITH CUT 
+        - var wearCoolClothes: 1
+    - show kadeem: AT OUTRIGHT WITH MOVE 
+    - hide kadeem: WITH FADE     
+  - scene: scene2
+    
+scene2:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH FADE     
+  - chambers says normal: WHAT IS THE BEST WAY TO ACHIEVE PERSONAL GOALS?
+  - choice:
+    - Keep your head down, focus on getting your education you?:
+    - Seek a Mentor to guide you?:
+    - Deal with life, one day at a time as it happens?:
+  - scene: scene3
+
+scene3:
+  - show busStopBG:
+  - if ({isKadeem} == 1):
+    - show kadeem: normal AT CENTER WITH FADE    
+    - kadeem says happy: Yo Leslie! Can you believe the big day's here?!!
+    - kadeem says normal: I finally get to see you-know-who.  
+    - kadeem says normal: As much as I enjoy the races, hooking up with Jamie is the plan.
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE    
+    - leslie-m says normal: I can't imagine what you're feeling!
+    - leslie-m says normal: But I hope get to meet me a 'Jamie' this year hahaha!
+    - leslie-m says normal:  Remember when unuh met?
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE    
+    - kadeem says happy: Yeaaaaah.
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE  
+    - leslie-m says normal: OH NO! There goes another rammed bus.
+    - leslie-m says normal: Why are all the buses on this route full up or late?
+    - leslie-m says normal: I'm not about that, it's gonna take forever for the next one.    
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: Let's catch this taxi here. Wait ... Nuh Dice that? From primary school, remember?
+    - kadeem says normal: Wait ... Nuh Dice that? 
+    - kadeem says normal: From primary school, remember?
+    - hide kadeem: WITH CUT
+    - leslie-m says normal: I never really knew him. 
+    - leslie-m says normal: Didn't he dropped out before he took his CSEC?
+    - hide leslie-m: WITH CUT
+    - show dice: normal AT CENTER WITH FADE
+    - dice says normal: Wah gwaan yutes! Where you heading?
+    - hide dice: WITH CUT
+    - kadeem says normal: Stadium. 
+    - hide kadeem: WITH CUT
+    - dice says normal: Stadium?! 
+    - dice says normal: Don't tell me unuh get the day off class and unuh gonna spend it at a BORING school event.
+    - hide dice: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: It's not that bad. At least we aren't in class.  
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE  
+    - leslie-m says normal: You never know who you might meet.  
+    - leslie-m says normal: But what are you saying?   What's happening?
+    - hide leslie-m: WITH CUT
+    - show dice: normal AT CENTER WITH FADE
+    - dice says normal: Yuh don't know? Pure excitement if you make a flex.  
+    - dice says normal: Listen nuh ...
+    - choice:
+      - Skip Edutrack and come hang with me and my friends?:
+      - Don't worry about the fare. Give me your money to set up some party things, big people tings?:
+      - Give me your numbers so we can link up to hit the after party?:
+  - scene: scene4
+
+scene4:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH FADE     
+  - chambers says normal: Do You Consider the Consequences of Your Choices?
+  - choice:
+    - Yes, I have to be responsible for myself and my reputation:
+    - No, not really I just move with my vibe at the time:
+  - scene: scene5
+  
+  
+scene5:
+  - show stadiumBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: Are you thinking what I'm thinking?
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: Right!?
+    - kadeem says normal: Did you see how on point Dice's car looks?  
+    - kadeem says normal: Not to mention those brand new Clarks he's got on.  Their fire.
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: I've never been to an after party before.   
+    - leslie-m says normal: We got the invite and a ride.
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: If we want,  I've got a different link-up on my mind. 
+    - choice:
+      - As much as Dice's cool and his car is hot, bad company is not a good move:
+      - Let’s make this the best track meet ever and be the champion supporters:
+      - Ready, mi ready to step up inna life and have some adult fun:
+  - scene: scene6
+   
+   
+scene6:
+  - show stadiumSeatsBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):  
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: Alright, this is the spot.
+    - kadeem says normal: Let's make a pact. 
+    - kadeem says normal: No matter what, we watch each other's backs AND make sure we have the best time.
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - show leslie-m: Every time!
+    - show cheer0: AT 0,0 WITH CUT 
+    - show cheer1: AT 0,0 WITH CUT 
+    - show cheer2: AT 0,0 WITH CUT 
+    - show cheer3: AT 0,0 WITH CUT 
+    - show cheer4: AT 0,0 WITH CUT 
+  - scene: scene7
+
+scene7:
+  - show stadiumSeatsBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):  
+    - show chambers: normal AT CENTER WITH FADE     
+    - chambers says normal: Yes good work team! 
+    - chambers says normal: That will give us some more points!
+    - chambers says normal: Alright,  everyone!  Let's keep the vibes flowing so our athletes can feel the support.
+    - chambers says normal: Pressure! Pressure! 
+    - chambers says normal: Oh! Kadeem, Leslie. So nice for you to join us. 
+    - chambers says normal: Come on now join in with the cheering.     
+    - hide chambers: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - choice:
+      - Mr Chambers is sorely mistaken if he believes I'm getting into all this. My phone has enough excitement for me:
+        - kadeem says normal: Action
+      - Hey guys. I worked all night coming up with a cheer and dance moves to go with it. It's easy. Unuh want to learn?:
+        - kadeem says normal: Action
+    - kadeem says happy: Work it!
+    - kadeem says happy: Come on! Come come on!
+    - kadeem says happy: hold steady, stay in time ... We got this!
+    - kadeem says happy: We got the race too... YAAAAAAAAAAAAAAAY!!! 
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: wait...look at the big screen, IT'S US!!!
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says happy: We're on live TV ... this is so kool!!!
+    - hide kadeem: WITH CUT
+    - show chambers: normal AT CENTER WITH FADE   
+    - chambers says normal: Unuh international now!
+    - hide chambers: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says happy: OMG! LESLIE!!! It's a text from Jamie asking to meet up!
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: Nice! So ... what you gonna do?    
+    - choice:
+      - You stay here, man. I got this:
+      - Can come with me? I'm a bit nervous:
+      - No sah, this is too much fun!  Make Jamie wait:
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says happy: Mr Chambers,  Permission to use the restroom? I'll be right back.
+    - hide kadeem: WITH CUT
+    - show chambers: normal AT CENTER WITH FADE   
+    - chambers says normal: Sure. Just be safe and no idling.
+    - hide chambers: WITH CUT
+    - kadeem says general: Pull yourself together! This is my chance to show Jamie who I am.  
+    - kadeem says general: Who am I really tho?
+    - scene: scene8
+    
+scene8:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH FADE     
+  - chambers says normal: What Am I Projecting About Myself?
+  - choice:
+    - Being my true, natural self is always important to me:
+    - I’m ready for everything adults do, right now:
+    - I like to put on a game face so people don't see the real me:
+  - scene: scene9
+
+scene9:
+  - show stadiumMeetBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):  
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says happy: Still looking good ... Wah gwaan Jamie?   
+    - hide kadeem: WITH CUT
+    - show jamie-f: normal AT CENTER WITH FADE
+    - jamie-f says normal: So we finally meet in person.  What's the plan?
+    - choice:
+      - Jamie, would you like to join me at my school's section? I'd rather not stay away or stray too far from my mates:
+      - Remember when we spoke that one time?  You asked if I've ever kissed anyone? Wouldn't you like to find out if I can?:
+      - Forget about this high school crush, I can par with big people now:    
+    - scene: end
+ 
+scene10:
+  - show stadiumBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: You realize we gave Dice all our cash?  
+    - leslie-m says normal: Not even a bus fare mi have left. 
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: Don't fret,  he's legit gonna hook us up.
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: He better include some snacks ...
+    - leslie-m says normal: 'cause he's gone with my patty money too!  
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: Stop worry about the food. Dice will come through.. 
+    - choice:
+      - Let’s find our school and at least show our faces.  Don’t we get credit for this?:
+      - Ready, mi ready to step up inna life and have some REAL fun:
+  - scene: scene11  
+  
+scene11:  
+  - show stadiumSeatsBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):  
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: Alright, this is the spot.
+    - kadeem says normal: Let's make a pact. 
+    - kadeem says normal: No matter what, we watch each other's backs AND make sure we have the best time.
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - show leslie-m: Every time!
+    - show cheer0: AT 0,0 WITH CUT 
+    - show cheer1: AT 0,0 WITH CUT 
+    - show cheer2: AT 0,0 WITH CUT 
+    - show cheer3: AT 0,0 WITH CUT 
+    - show cheer4: AT 0,0 WITH CUT 
+  - scene: scene12
+  
+scene12:
+  - show stadiumSeatsBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):  
+    - show chambers: normal AT CENTER WITH FADE     
+    - chambers says normal: Yes good work team! 
+    - chambers says normal: That will give us some more points!
+    - chambers says normal: Alright,  everyone!  Let's keep the vibes flowing so our athletes can feel the support.
+    - chambers says normal: Pressure! Pressure! 
+    - chambers says normal: Oh! Kadeem, Leslie. So nice for you to join us. 
+    - chambers says normal: Come on now join in with the cheering.     
+    - hide chambers: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - choice:
+      - Gonna stay low key until Dice calls with the goods:
+        - kadeem says normal: Action
+      - Better to focus on this meet and see who I can beg some food and bus fare from:
+      - We’ll get the stuff from Dice and then the main event of the day, seeing Jamie:
+        - kadeem says normal: Action
+    - kadeem says happy: Finally, Dice is answering my messages.   
+    - kadeem says happy: Says to meet him at the back fence.  He's got something for us 
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: Let’s go!!!!!
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says happy: You know this moves us into big people tings.    
+    - hide kadeem: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: I do know that any badness at the meet can get you suspended or some serious punishment
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says happy: Dice says he's at the spot.
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: Figures that he would know the one security hole in this huge place.  
+    - choice:
+      - Is that second thoughts in my head, should we slow our roll?:
+      - Full stream ahead,  let's get this party started:
+    - scene: scene13
+
+scene13:
+  - show stadiumMeetBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):  
+    - show dice: normal AT CENTER WITH FADE  
+    - dice says normal: Dump out your water bottle and pass it here.
+    - hide dice: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: How do you know about this setup Dice?
+    - hide kadeem: WITH CUT
+    - show dice: normal AT CENTER WITH FADE  
+    - dice says normal: Nuh worry bout dat. Long time me run tings.  
+    - dice says normal: Just a tip of soda, yuh dun know.  This will put you in a party mood.  
+    - dice says normal: Try it nuh.
+    - hide dice: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: Alright, you are the mixmaster, fi real. 
+    - leslie-m says normal: "*SIPS*"
+    - leslie-m says normal: "*COUGHS*"
+    - leslie-m says normal: Ah suh it supposed to burn?
+    - hide leslie-m: WITH CUT
+    - show dice: normal AT CENTER WITH FADE  
+    - dice says normal: Ha ha! 
+    - dice says normal: Drink up yute! and hold dis. 
+    - dice says normal: Wait! 
+    - dice says normal: Nuh Old Man Chambers dat! Sorry yutes, have to bounce. 
+    - hide dice: WITH CUT    
+    - show chambers: normal AT CENTER WITH FADE     
+    - chambers says normal: Kadeem! Leslie!  
+    - chambers says normal: What do you think you're doing!
+    - hide chambers: WITH CUT
+    - show leslie-m: normal AT CENTER WITH FADE
+    - leslie-m says normal: We're busted ...
+    - hide leslie-m: WITH CUT
+    - show kadeem: normal AT CENTER WITH FADE
+    - kadeem says normal: Aww man ... My mother is gonna kill me!
+  - scene: scene14
+
+scene14:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH FADE     
+  - chambers says normal: Who do I want to be?
+  - choice:
+    - Doing things that line up with my true values is important to me:
+    - I’m ready for everything adults do, right now:
+    - I’m ready for everything adults do, right now:
+  - scene: end    
+    
+end: 
+
+flashback:
+  - show stadiumBG: WITH CUT CONTINUE
+  - if ({isKadeem} == 1):
+
+  - effect ROLLINGCREDITS:
+    endGame: true
+    text:
+      - RenJS developed by
+      - lunafromthemoon
+      - null
+      - Inspired by Ren'Py
+      - Powered by PhaserJS
+      - null
+      - null
+      - background art and cgs by
+      - konett
+      - null
+      - characters by
+      - Shida
+      - null
+      - music by
+      - Evan Schaeffer

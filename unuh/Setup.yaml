@@ -1,0 +1,154 @@
+backgrounds:
+  room: assets/backgrounds/room_day.jpg
+  forest: assets/backgrounds/forest-spritesheet-800x600.png 800 600 5
+  kadeem_room: assets/backgrounds/BG4.png
+  julian_room: assets/backgrounds/BG0.png
+  patrick_room: assets/backgrounds/BG5.png
+  christian_room: assets/backgrounds/BG3.png
+  maria_room: assets/backgrounds/BG1.png
+  adrianna_room: assets/backgrounds/BG2.png
+  stadiumBG: assets/backgrounds/stadiumBG.png
+  stadiumSeatsBG: assets/backgrounds/stadiumSeatsBG.png
+  stadiumMeetBG: assets/backgrounds/stadiumMeet.png
+  questionBG: assets/backgrounds/questionBG.png
+  busStopBG: assets/backgrounds/busStop.png
+  
+  
+characters:
+  kadeem:
+    displayName: Kadeem
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/kadeem.png
+      happy: assets/characters/kadeem_happy.png
+      angry: assets/characters/kadeem_angry.png
+      sad: assets/characters/kadeem_sad.png
+      
+  kadeemMessy:
+    displayName: Kadeem
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/kadeem_messy.png      
+      
+  julian:
+    displayName: Julian
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/julian.png    
+      
+  patrick:
+    displayName: Patrick
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/patrick.png    
+      
+  christian:
+    displayName: Christian
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/christian.png     
+      
+  maria:
+    displayName: Maria
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/maria.png  
+      
+  adrianna:
+    displayName: Adrianna
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/adrianna.png  
+      
+  leslie-m:
+    displayName: Leslie
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/leslie-m.png     
+      
+  leslie-f:
+    displayName: Leslie
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/leslie-f.png       
+      
+  jamie-m:
+    displayName: Jamie
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/Jamie-m.png     
+
+  jamie-f:
+    displayName: Jamie
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/Jamie-f.png   
+
+  mom:
+    displayName: Mom
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/mom.png       
+
+  dad:
+    displayName: Dad
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/dad.png  
+      
+  chambers:
+    displayName: Mr. Chambers
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/chambers.png
+      happy: assets/characters/chambers_happy.png
+      sad: assets/characters/chambers_sad.png
+      angry: assets/characters/chambers_angry.png
+      
+  dice:
+    displayName: Dice
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/dice.png          
+
+cgs:
+  flash: assets/backgrounds/flash.png
+  heart: assets/characters/heart.png
+  cheering0: assets/backgrounds/cheer0.png
+  cheering1: assets/backgrounds/cheer1.png
+  cheering2: assets/backgrounds/cheer2.png
+  cheering3: assets/backgrounds/cheer3.png
+  cheering4: assets/backgrounds/cheer4.png
+  token: assets/gui/token.png
+  
+  phone_msg_mom_1: assets/cg/phone_msg_mom_1.png
+  phone_msg_mom_2: assets/cg/phone_msg_mom_2.png
+  
+  phone_msg_jamie_1: assets/cg/phone_msg_jamie_1.png
+  
+  phone_msg_dice_1: assets/cg/phone_msg_dice_1.png
+  
+  badEnd: assets/cg/badEnd.png
+  goodEnd: assets/cg/goodEnd.png
+  
+
+sfx:
+  phoneNotification:  assets/audio/effects/PhoneNotification.mp3
+  phoneFlash:  assets/audio/effects/PhoneFlash.wav
+  cheer2: assets/audio/effects/Cheer2.mp3
+  cheer3: assets/audio/effects/Cheer3.wav
+  traffic: assets/audio/effects/traffic.wav
+  collectCoin: assets/audio/effects/collectCoin.wav
+  success: assets/audio/effects/success.wav
+
+music:
+  rollingCredits: assets/audio/Evan_Schaeffer_-_01_-_Aqueduct.mp3
+  morningBGM: assets/audio/Evan_Schaeffer_-_03_-_Glow.mp3
+  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
+  Dub02: assets/audio/DuBoLoGy_-_02_-_Black_Monday.mp3
+  Dub03: assets/audio/DuBoLoGy_-_03_-_Freakonomics_Dub.mp3
+  Dub04: assets/audio/DuBoLoGy_-_04_-_Chacha_Dub.mp3 
+  Dub05: assets/audio/DuBoLoGy_-_05_-_Dub_Action.mp3
+  Dub06: assets/audio/DuBoLoGy_-_06_-_Walk_In_Forest.mp3
+  Dub07: assets/audio/DuBoLoGy_-_07_-_Epic_Dub.mp3
+  Dub08: assets/audio/DuBoLoGy_-_08_-_Swan_Lake_Dub.mp3
