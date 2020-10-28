@@ -52,7 +52,16 @@ characters:
     displayName: Maria
     speechColour: "#000"
     looks:
-      normal: assets/characters/maria.png  
+      normal: assets/characters/maria.png
+      happy: assets/characters/maria_happy.png
+      angry: assets/characters/maria_angry.png
+      sad: assets/characters/maria_sad.png
+  
+  mariaMessy:
+    displayName: Kadeem
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/maria_messy.png        
       
   adrianna:
     displayName: Adrianna
@@ -76,13 +85,13 @@ characters:
     displayName: Jamie
     speechColour: "#000"
     looks:
-      normal: assets/characters/Jamie-m.png     
+      normal: assets/characters/jamie-m.png     
 
   jamie-f:
     displayName: Jamie
     speechColour: "#000"
     looks:
-      normal: assets/characters/Jamie-f.png   
+      normal: assets/characters/jamie-f.png   
 
   mom:
     displayName: Mom
@@ -125,6 +134,7 @@ cgs:
   phone_msg_mom_2: assets/cg/phone_msg_mom_2.png
   
   phone_msg_jamie_1: assets/cg/phone_msg_jamie_1.png
+  phone_msg_jamie_2: assets/cg/phone_msg_jamie_2.png
   
   phone_msg_dice_1: assets/cg/phone_msg_dice_1.png
   
@@ -142,13 +152,11 @@ sfx:
   success: assets/audio/effects/success.wav
 
 music:
-  rollingCredits: assets/audio/Evan_Schaeffer_-_01_-_Aqueduct.mp3
-  morningBGM: assets/audio/Evan_Schaeffer_-_03_-_Glow.mp3
-  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
-  Dub02: assets/audio/DuBoLoGy_-_02_-_Black_Monday.mp3
-  Dub03: assets/audio/DuBoLoGy_-_03_-_Freakonomics_Dub.mp3
-  Dub04: assets/audio/DuBoLoGy_-_04_-_Chacha_Dub.mp3 
-  Dub05: assets/audio/DuBoLoGy_-_05_-_Dub_Action.mp3
-  Dub06: assets/audio/DuBoLoGy_-_06_-_Walk_In_Forest.mp3
-  Dub07: assets/audio/DuBoLoGy_-_07_-_Epic_Dub.mp3
-  Dub08: assets/audio/DuBoLoGy_-_08_-_Swan_Lake_Dub.mp3
+  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg
+  Dub02: assets/audio/DuBoLoGy_-_02_-_Black_Monday.ogg
+  Dub03: assets/audio/DuBoLoGy_-_03_-_Freakonomics_Dub.ogg
+  Dub04: assets/audio/DuBoLoGy_-_04_-_Chacha_Dub.ogg 
+  Dub05: assets/audio/DuBoLoGy_-_05_-_Dub_Action.ogg
+  Dub06: assets/audio/DuBoLoGy_-_06_-_Walk_In_Forest.ogg
+  Dub07: assets/audio/DuBoLoGy_-_07_-_Epic_Dub.ogg
+  Dub08: assets/audio/DuBoLoGy_-_08_-_Swan_Lake_Dub.ogg

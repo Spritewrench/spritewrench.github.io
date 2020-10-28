@@ -10,5 +10,5 @@ characters:
       happy: assets/characters/Char3Happy.png
 
 music:
-  rollingCredits: assets/audio/Evan_Schaeffer_-_01_-_Aqueduct.mp3
-  morningBGM: assets/audio/Evan_Schaeffer_-_03_-_Glow.mp3
+  rollingCredits: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg
+  morningBGM: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg

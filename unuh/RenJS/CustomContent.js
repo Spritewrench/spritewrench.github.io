@@ -4,8 +4,8 @@ RenJS.customContent = {
 	homeScreen: function (params) {
         
         setTimeout(function () {
-           window.location.replace("index.html");//will redirect to your blog page (an ex: blog.html)
-        }, 1000);        
+           window.location.replace("index2.html");//will redirect to your blog page (an ex: blog.html)
+        }, 2000);        
 		RenJS.resolve();
 	},   
 setToken: function(params) {

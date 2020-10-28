@@ -95,7 +95,7 @@
     },      
     onDown: function () {
       console.log("tet")
-      window.location.href = "index2.html";
+      window.location.href = "index3.html";
         
     },
     onDown2: function () {
