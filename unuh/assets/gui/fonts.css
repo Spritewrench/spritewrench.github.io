@@ -1,29 +1,27 @@
+@font-face {
 
+    font-family: 'LondrinaSolid-Black';
 
-      @font-face {
+    src: url('/assets/gui/fontsLondrinaSolid-Black.ttf');
 
-          font-family: 'LondrinaSolid-Black';
+    src: url('/assets/gui/fontsLondrinaSolid-Black.ttf').format('truetype');
 
-          src: url('/assets/gui/fontsLondrinaSolid-Black.ttf');
+    font-weight: normal;
 
-          src: url('/assets/gui/fontsLondrinaSolid-Black.ttf').format('truetype');
+    font-style: normal;
 
-          font-weight: normal;
+}
 
-          font-style: normal;
+@font-face {
 
-      }
+    font-family: 'PatrickHand-Regular';
 
-      @font-face {
+    src: url('/assets/gui/PatrickHand-Regular.ttf');
 
-          font-family: 'PatrickHand-Regular';
+    src: url('/assets/gui/PatrickHand-Regular.ttf').format('truetype');
 
-          src: url('/assets/gui/PatrickHand-Regular.ttf');
+    font-weight: normal;
 
-          src: url('/assets/gui/PatrickHand-Regular.ttf').format('truetype');
+    font-style: normal;
 
-          font-weight: normal;
-
-          font-style: normal;
-
-      }
+}
