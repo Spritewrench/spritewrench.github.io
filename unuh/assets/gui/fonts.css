@@ -2,9 +2,9 @@
 
     font-family: 'LondrinaSolid-Black';
 
-    src: url('../assets/gui/fontsLondrinaSolid-Black.ttf');
+    src: url('../gui/fontsLondrinaSolid-Black.ttf');
 
-    src: url('../assets/gui/fontsLondrinaSolid-Black.ttf').format('truetype');
+    src: url('../gui/fontsLondrinaSolid-Black.ttf').format('truetype');
 
     font-weight: normal;
 
@@ -16,9 +16,9 @@
 
     font-family: 'PatrickHand-Regular';
 
-    src: url('../assets/gui/PatrickHand-Regular.ttf');
+    src: url('../gui/PatrickHand-Regular.ttf');
 
-    src: url('../assets/gui/PatrickHand-Regular.ttf').format('truetype');
+    src: url('../gui/PatrickHand-Regular.ttf').format('truetype');
 
     font-weight: normal;
 
