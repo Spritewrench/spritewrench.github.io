@@ -24,6 +24,7 @@
 
         //this.game.stage.scale.setScreenSize(true);
       }
+      //console.log("where we going? boot "+localStorage.getItem('state'))
       this.game.state.start('preloader');
     }
   };

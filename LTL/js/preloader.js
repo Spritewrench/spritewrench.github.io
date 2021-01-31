@@ -14,10 +14,14 @@
 
             
             this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
+            
+            this.load.image('start', 'assets/HomeScreen-bg.jpg');
+            this.load.image('arcademode-Button', 'assets/Home Screen-button-arcademode.png');
+            this.load.image('timeattack-Button', 'assets/Home Screen-button-timeattack.png');
+            
+            
             this.load.image('mainBG', 'assets/LTL-Establishing shot.jpg');
             this.load.image('block2', 'assets/Block_2/Block-2.jpg');
-            
-          
             this.load.image('Block-2_1A', 'assets/Block_2/Block-2_1A.png');
             this.load.image('Block-2_1B', 'assets/Block_2/Block-2_1B.png');
           
@@ -42,6 +46,41 @@
             this.load.image('overlay', 'assets/overlay.png');
             this.load.image('kids', 'assets/kids.png');
             this.load.image('chat', 'assets/chat.png');
+            //popup
+            this.load.image('popUp-0', 'assets/popup/bones-popUp.png'); 
+            this.load.image('popUp-1', 'assets/popup/bubbles-popUp.png'); 
+            this.load.image('popUp-2', 'assets/popup/donald-popUp.png'); 
+            this.load.image('popUp-3', 'assets/popup/gussi-popUp.png'); 
+            this.load.image('popUp-4', 'assets/popup/jnr-popUp.png'); 
+            this.load.image('popUp-5', 'assets/popup/johnny-popUp.png'); 
+            this.load.image('popUp-6', 'assets/popup/johnnySnr-popUp.png'); 
+            this.load.image('popUp-7', 'assets/popup/petal-popUp.png'); 
+            this.load.image('popUp-8', 'assets/popup/sammy-popUp.png'); 
+            this.load.image('popUp-9', 'assets/popup/zella-popUp.png'); 
+            
+            //chibi
+            this.load.image('chibi-0', 'assets/chibi/LTL-game-sprite-bones.png'); 
+            this.load.image('chibi-1', 'assets/chibi/LTL-game-sprite-bubbles.png'); 
+            this.load.image('chibi-2', 'assets/chibi/LTL-game-sprite-Donald.png'); 
+            this.load.image('chibi-3', 'assets/chibi/LTL-game-sprite-maas-gussy.png'); 
+            this.load.image('chibi-4', 'assets/chibi/LTL-game-sprite-jr.png'); 
+            this.load.image('chibi-5', 'assets/chibi/LTL-game-sprite-johnny-jr.png'); 
+            this.load.image('chibi-6', 'assets/chibi/LTL-game-sprite-johnny-snr.png'); 
+            this.load.image('chibi-7', 'assets/chibi/LTL-game-sprite-petal.png'); 
+            this.load.image('chibi-8', 'assets/chibi/LTL-game-sprite-sammy.png'); 
+            this.load.image('chibi-9', 'assets/chibi/LTL-game-sprite-zella.png'); 
+          
+            //stage select
+            this.load.image('Stage-selection-bg', 'assets/Stage-selection-bg.jpg'); 
+            this.load.image('stage-select-button-back', 'assets/stage-select-button-back.png'); 
+            this.load.image('stage-select-button-next', 'assets/stage-select-button-next.png'); 
+          
+            this.load.image('Stage-select-0', 'assets/Stage-select-bones.png'); 
+            this.load.image('Stage-select-1', 'assets/Stage-select-gussy.png'); 
+            this.load.image('Stage-select-2', 'assets/Stage-select-zella.png'); 
+          
+            //audio 
+            this.game.load.audio('menuMusic', ['assets/audio/LTL-ingame-track.wav']);
         }
         , create: function () {
             this.asset.cropEnabled = false;

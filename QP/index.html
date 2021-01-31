@@ -48,7 +48,26 @@
         text-align: center;
         margin-top: -30px;
       }
-
+      #userID{
+        font-family: Helvetica;
+        margin: auto;
+        width: 50%;
+        padding: 10px;   
+        color: #ffff;
+        font-weight: bold;
+        text-align: center;
+        position: sticky;
+        height: 0px;
+        top: calc( 100vh - 80px );    
+      }
+      #userIDHidden{
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0);
+      }
       @keyframes load{
         0%{
           width: 2%;
@@ -68,34 +87,61 @@
     // current GPS coordinates
     //
     localStorage.setItem("hasLoaded",0)
+    localStorage.setItem("state","hub")
+    localStorage.setItem("newPlace",0)
+    localStorage.setItem("biome",0)    
+    localStorage.setItem("newPlace",1)
+
+      
+      //  
+        
     //demo items
-    localStorage.setItem("Yellow Dragon Gem Count",99)    
+    localStorage.setItem("Small Monster Bone Count",99) 
+    localStorage.setItem("Wocco Feather Count",99) 
+    
+   /* localStorage.setItem("Yellow Dragon Gem Count",99)    
     localStorage.setItem("Red Dragon Gem Count",99)    
     localStorage.setItem("Blue Dragon Gem Count",99)  
     
     localStorage.setItem("Small Monster Bone Count",99) 
     localStorage.setItem("Wocco Pelt Count",99) 
+    localStorage.setItem("Nioleo Claw Count",99) 
+    localStorage.setItem("Red Dragon Gem Count",99) 
+    localStorage.getItem("crafted4",1)
+    localStorage.setItem("Wocco Feather Count",99) 
+    localStorage.setItem("Small Monster Bone Count",99)     
+    */
+    
     function success(pos) {
       
-      var crd = pos.coords;
+      //var crd = pos.coords;
 
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
-      localStorage.setItem("hasLoaded",2)
-      document.getElementById("bg").style.backgroundImage ="url('assets/start.png')"
+      //console.log('Your current position is:');
+      //console.log(`Latitude : ${crd.latitude}`);
+      //console.log(`Longitude: ${crd.longitude}`);
+      //console.log(`More or less ${crd.accuracy} meters.`);
+      //localStorage.setItem("hasLoaded",2)
+      //document.getElementById("bg").style.backgroundImage ="url('assets/start.png')"
     }
 
     function error(err) {
-      alert("ERROR: GPS signal not found!\nPlease enable and restart application");
-      document.getElementById("bg").style.backgroundImage ="url('assets/startNo.png')"
-      console.warn(`ERROR(${err.code}): ${err.message}`);
+      if(loader == 0){
+        localStorage.setItem("hasLoaded",1)
+        //localStorage.setItem("hasLoaded",2)
+        //window.location.href = 'index2.html'
+      }      
+      else{
+        //alert("ERROR: GPS signal not found!\nPlease enable and restart application");
+        document.getElementById("bg").style.backgroundImage ="url('assets/startNo.png')"
+        //console.warn(`ERROR(${err.code}): ${err.message}`);
+      }      
+
     } 
     function next() {
-      var loader = parseInt(localStorage.getItem("hasLoaded"))
+      window.location.href = 'index3.html'
+      /*var loader = parseInt(localStorage.getItem("hasLoaded"))
       if(loader == 2){
-        window.location.href = 'index2.html'
+        window.location.href = 'index3.html'
       }
       else if(loader == 0){
         localStorage.setItem("hasLoaded",1)
@@ -104,10 +150,10 @@
       }      
       else{
         //localStorage.setItem("hasLoaded",1)
-        alert("ERROR: GPS signal not found!\nPlease enable and restart application");
-        navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+          //alert("ERROR: GPS signal not found!\nPlease enable and restart application");
+          //navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
         //document.getElementById("bg").style.backgroundImage ="url('assets/start.png')"
-      }
+      }*/
       
     }      
     function hideBar(){
@@ -118,16 +164,54 @@
       //document.getElementById("loading").style.visibility = "hidden";
       //document.getElementById("loading").style.visibility = "hidden";
     }
-    navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+    
+    function copyID(){
+      /* Get the text field */
+      var copyText = document.getElementById("userIDHidden");
+      //copyText.select();
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy");
+      navigator.clipboard.writeText(copyText.value);
+      alert("Copied the text: " + copyText.value);     
+    }
+    
+   
+    
+    //navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
     
     window.setTimeout(hideBar, 5000);
     //document.getElementById("progressbar").style.visibility = "hidden";
+        //make unique ID
+        if (localStorage.getItem("userID") === null || localStorage.getItem("userID").length <= 0) {
+            localStorage.setItem("userID",(Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase());
+            
+        }  
+        //onclick="next()"
+
   </script>
-  <body id="bg" style="background-image: url('assets/startNo.png'); background-size: auto; background-position: center; background-repeat:no-repeat; background-size:cover;" onclick="next()" >
+  <body id="bg" style="background-image: url('assets/start.png'); background-size: auto; background-position: center; background-repeat:no-repeat; background-size:cover;"  onclick="next()">
+    <audio autoplay="" loop="" preload=""  id="musicBG">
+      <source src="assets/audio/combat-Assault_on_Valorv5_loop.ogg" type="audio/mpeg"></source>
+      Your browser does not support the audio element.
+    </audio>
     <div id="progressbar">
       <span id="loading"></span>
       <div id="load"></div>
     </div> 
+    <div id="userID" onclick="copyID();  event.stopPropagation();">USERID: #</div>
+    <input id="userIDHidden" ></input>
   </body>
-
+  <script>
+    document.getElementById("userID").innerHTML = "VERSION 0.1.8<br\>USERID: "+localStorage.getItem("userID")
+    document.getElementById("userIDHidden").setAttribute('value', localStorage.getItem("userID"));
+      var vid = document.getElementById("musicBG");
+      vid.volume = 0.1;        
+      document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === 'visible') {
+          vid.play();
+        } else {
+          vid.pause();
+        }
+      });
+  </script>
 </html>

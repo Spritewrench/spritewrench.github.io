@@ -18,6 +18,10 @@ window.onload = function () {
     game.state.add('warden', ns.Warden);   
     game.state.add('craft', ns.Craft); 
     game.state.add('rank', ns.Rank); 
+    game.state.add('hub', ns.Hub); 
+    game.state.add('archive', ns.Archive); 
+    game.state.add('shop', ns.Shop); 
+    console.log("where we going? main "+localStorage.getItem('state'))
     game.state.start('boot');
-    console.log(game)
+    //console.log(game)
 };

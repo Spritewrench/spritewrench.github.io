@@ -30,6 +30,8 @@
   <script src="lib/firebase-database.js"></script>
 
   <script>
+
+     //this.game.state.start('warden')    
     // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyDx5EOUQe4XuN1UDOxqBXxIB7xaRgPYWf0",
@@ -46,6 +48,9 @@
     firebase.analytics();
   </script>  
   <script>
+    //console.log(localStorage.getItem('state'))
+     localStorage.setItem('state','hub')
+     //console.log(localStorage.getItem('state'))    
     // This example requires the Places library. Include the libraries=places
     // parameter when you first load the API. For example:
     // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -57,7 +62,36 @@
     var lat,long;
     var jamaica;
     var icons;
+    function success(pos) {
+      
+      var crd = pos.coords;
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      //geolocation failover
+      alert("Welcome to Questlike:Pocket!\nIt's seems that we cannot load the world map!\nPlease ensure that GPS is enabled.\nFor now let's direct you to the closest known location.");      
+      console.log(err)
+      localStorage.setItem("newPlace",0)
+      localStorage.setItem("biome",0)
+      localStorage.setItem("wweatherChIJK0D8P-g_244RERwqm47m90A","Clouds");
+      localStorage.setItem("weatherIconChIJK0D8P-g_244RERwqm47m90A","02d");
+      
+      //
+      localStorage.setItem("placeID","ChIJK0D8P-g_244RERwqm47m90A")
+      localStorage.setItem("placeName","Bully Full Pon Plate")      
+      window.location.href = "index3.html" 
+
+    } 
+    navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:500, enableHighAccuracy:true});
     function initMap() {
+      
+                                                                               
+      ///navigator.geolocation
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
           lat = position.coords.latitude;
@@ -298,7 +332,8 @@
         });
       }
       else{
-        console.log("refresh")
+        //console.log("refresh")
+        window.location.href = "index3.html"          
       }
     }
     function createMarker(place) {
@@ -311,7 +346,16 @@
             },
             mountain: {
               icon: 'assets/map/icons_standard_diamond_both-colored_big_mountain.png'
-            }
+            },
+            grasslands_noVisit: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_grassland_noVisit.png'
+            },
+            cave_noVisit: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_cavern_noVisit.png'
+            },
+            mountain_noVisit: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_mountain_noVisit.png'
+            }            
           };
 
       //console.log(icons['grasslands']);
@@ -319,23 +363,39 @@
       
       //check in database if location is present
       try{
+        //console.log("work nuh")
+        //write userID
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy
+        firebase.database().ref('player/' +localStorage.getItem("userID")).update({
+          lastLogin: today
+        });  
+        
         random = firebase.database().ref('places/' + place.place_id).once('value').then(function(snapshot) {
-          if(snapshot.val() == null){
+          if(snapshot.val() == null || typeof(snapshot) == "undefined"){
             random = Math.floor(Math.random() * 3);
             firebase.database().ref('places/' +place.place_id).set({
               biome: random
-            });        
+            }); 
+           
+            //firebase.database().ref('player/' + localStorage.getItem("userID")).set({
+              //lastLogin: new Date()
+            //});             
             var biome ="";
             // biome set
             switch(random){
                    case 0:
-                    biome  = icons['grasslands'].icon;
+                    biome  = icons['grasslands_noVisit'].icon;
                    break;
                    case 1:
-                    biome  = icons['cave'].icon;
+                    biome  = icons['cave_noVisit'].icon;
                    break;
                    case 2:
-                    biome  = icons['mountain'].icon;
+                    biome  = icons['mountain_noVisit'].icon;
                    break;               
             }
             var marker = new google.maps.Marker({
@@ -364,15 +424,21 @@
               }   
               //console.log(marker.biome)
               localStorage.setItem("biome",random)
-              localStorage.setItem("state","warden")
+              //localStorage.setItem("state","warden")
               localStorage.setItem("placeID",marker.place.place_id)
               localStorage.setItem("placeName",marker.place.name)
               //var currentClick = new Date();
               //localStorage.setItem("lastClicked",currentClick)
-              if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
-                localStorage.setItem("TixCount"+marker.place.place_id,1)
-              }          
-              window.location.href = "index3.html";
+              if (localStorage.getItem("place"+marker.place.place_id) === null) {
+                localStorage.setItem("place"+marker.place.place_id,1)
+                //localStorage.setItem("newPlace",1)
+                //alert("new place!")
+              }
+              else{
+                //localStorage.setItem("newPlace",0)
+                // alert("place"+marker.place.place_id)
+              }
+              //window.location.href = "index3.html";
               //console.log(marker.place);
             });         
           }
@@ -404,7 +470,28 @@
 
             marker.place = place;
 
+            if (localStorage.getItem("place"+marker.place.place_id) === null) {
+              //localStorage.setItem("place"+marker.place.place_id,1)
+              //localStorage.setItem("newPlace",1)
+              console.log("new place!")
+              switch(random){
+                     case 0:
+                      biome  = icons['grasslands_noVisit'].icon;
+                     break;
+                     case 1:
+                      biome  = icons['cave_noVisit'].icon;
+                     break;
+                     case 2:
+                      biome  = icons['mountain_noVisit'].icon;
+                     break;               
+              }              
+              marker.icon.url = biome
 
+            }
+            else{
+              //localStorage.setItem("newPlace",0)
+               //alert("place"+marker.place.place_id)
+            }               
 
 
             //firebase.database().ref('places/' +place.place_id).set({
@@ -418,7 +505,18 @@
                 marker.setAnimation(null);
               } else {
                 //marker.setAnimation(google.maps.Animation.BOUNCE);
-              }   
+              }  
+              
+              if (localStorage.getItem("place"+marker.place.place_id) === null) {
+                localStorage.setItem("place"+marker.place.place_id,1)
+                localStorage.setItem("newPlace",1)
+
+              }  
+              else{
+                localStorage.setItem("newPlace",0)
+              }              
+              
+            
               
               var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat="+marker.place.geometry.location.lat()+"&lon="+marker.place.geometry.location.lng()+"&appid=5fcd044a0d8fe8941b4a3b00fbd1098e"
               var obj;
@@ -431,16 +529,19 @@
                     localStorage.setItem("weather"+marker.place.place_id,obj.weather[0].main);
                     localStorage.setItem("weatherIcon"+marker.place.place_id,obj.weather[0].icon);
                     localStorage.setItem("biome",random)
-                    localStorage.setItem("state","warden")
+                    //localStorage.setItem("state","warden")
                     localStorage.setItem("placeID",marker.place.place_id)
                     localStorage.setItem("placeName",marker.place.name)
                     //var currentClick = new Date();
                     //localStorage.setItem("lastClicked",currentClick)
                     if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
-                      localStorage.setItem("TixCount"+marker.place.place_id,5)
+                      //localStorage.setItem("TixCount"+marker.place.place_id,5)
                     }      
+
+                    playSound();
                     //console.log(localStorage.getItem("weatherIcon"+marker.place.place_id))
-                    window.location.href = "index3.html";                    
+                    //setTimeout(window.location.href = "index3.html", 10000)
+                    ;                    
                   }
                 )
 
@@ -451,7 +552,7 @@
       }
       catch(err){
             //console.log("Location Found")
-            random = parseInt(snapshot.val().biome);
+            random = Math.floor(Math.random() * 3);
             var biome ="";
             // biome set
             switch(random){
@@ -482,6 +583,7 @@
             //});    
 
             google.maps.event.addListener(marker, 'click', function() {
+              
               //infowindow.setContent(place.name);
               //infowindow.open(map, this);
               if (marker.getAnimation() !== null) {
@@ -500,7 +602,7 @@
                     localStorage.setItem("weather"+marker.place.place_id,obj.weather[0].main);
                     localStorage.setItem("weatherIcon"+marker.place.place_id,obj.weather[0].icon);
                     localStorage.setItem("biome",random)
-                    localStorage.setItem("state","warden")
+                    //localStorage.setItem("state","warden")
                     localStorage.setItem("placeID",marker.place.place_id)
                     localStorage.setItem("placeName",marker.place.name)
                     //var currentClick = new Date();
@@ -508,7 +610,7 @@
                     if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
                       localStorage.setItem("TixCount"+marker.place.place_id,5)
                     }          
-                    window.location.href = "index3.html";                    
+                    //window.location.href = "index3.html";                    
                   }
                 )
             });          
@@ -522,10 +624,40 @@
 
 
       return jamaica;
-    }      
+    }
+  function playSound() {
+    //alert("!")
+    try{
+    var audio = new Audio('assets/audio/ping.ogg');
+    audio.addEventListener("ended", function(){
+         audio.currentTime = 0;
+         console.log("ended");
+         window.location.href = "index3.html"  
+    });    
+    audio.play();
+    }
+    catch(err){
+      window.location.href = "index3.html" 
+    }
+    //setTimeout(, 10000)
+  }    
+  if (localStorage.getItem("firstVisit-Index2") === null ) {
+      localStorage.setItem("firstVisit-Index2",1);
+      setTimeout(function () {
+          alert("Welcome to Questlike:Pocket!\nEach Tile represents a hub for you to interact with.\nTap on a Tile to enter that location's hub.");
+      }, 4000);    
+
+      
+
+  }     
+      var vid = document.getElementById("musicBG");
+      vid.volume = 0.1;       
   </script>  
   <body>
-    
+    <audio autoplay="" loop="" preload=""  id="musicBG">
+      <source src="assets/audio/map-Dark Fantasy Studio- Immortals (seamless).wav" type="audio/mpeg"></source>
+      Your browser does not support the audio element.
+    </audio>    
     <div id="map"></div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_ixRi-ia7rE13OLPVXDanaBi4s8SDo7w&libraries=places&callback=initMap" ></script>
   </body>

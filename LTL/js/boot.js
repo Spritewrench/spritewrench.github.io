@@ -12,6 +12,7 @@
     create: function () {
       this.game.input.maxPointers = 1;
       this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+      //this.game.stage.scaleMode = Phaser.ScaleManager.SHOW_ALL
       this.game.scale.setMinMax(window.innerWidth,window.innerHeight,window.innerWidth,window.innerHeight)  
       //this.game.stage.scaleMode = this.StageScaleMode.SHOW_ALL
       // this.game.stage.disableVisibilityChange = true;

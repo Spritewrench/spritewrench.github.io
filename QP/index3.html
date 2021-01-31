@@ -3,10 +3,49 @@
 <head>
   <meta charset="utf-8">
   <!-- chheck this out -->
-  <meta name="viewport" content="user-scalable=no, initial-scale=0.45, width=device-width, height=device-height, viewport-fit=cover">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width, height=device-height, viewport-fit=cover">
   <title>QuestLike: Pocket</title>
+  <!-- GameAnalytics -->
+  <script>
+  (function(w,d,a,m){var s='script';var g='GameAnalytics';w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)},a=d.createElement(s),m=d.getElementsByTagName(s)[0];a.async=1;a.src='js/lib/GameAnalytics.min.js';m.parentNode.insertBefore(a,m)})(window,document);
 
+  GameAnalytics("setEnabledInfoLog", true);
+  GameAnalytics("setEnabledVerboseLog", true);
+  GameAnalytics("configureBuild", "android 0.0.9");
+  GameAnalytics("initialize", "9b8b799d4d1cc2cc16a5db3796840a22", "f3bbf5f5e5c9ba630f27fa8ebba5f795f7e012b4");
+    //console.log("where we going? "+localStorage.getItem('state'))
+  
+  </script>
+  <!-- End GameAnalytics -->
+  <script src="lib/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="lib/firebase-analytics.js"></script>
+  <script src="lib/firebase-auth.js"></script>
+  <script src="lib/firebase-database.js"></script>
+
+  <script>
+
+     //this.game.state.start('warden')    
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDx5EOUQe4XuN1UDOxqBXxIB7xaRgPYWf0",
+      authDomain: "questlike-pocket.firebaseapp.com",
+      databaseURL: "https://questlike-pocket.firebaseio.com",
+      projectId: "questlike-pocket",
+      storageBucket: "questlike-pocket.appspot.com",
+      messagingSenderId: "829763116897",
+      appId: "1:829763116897:web:4283af40b2a9777d15af20",
+      measurementId: "G-PYFE1Q1ZM9"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>  
   <!-- build:css main.min.css -->
+</head>
+ 
   <link rel="stylesheet" href="css/main.css"> 
   <link rel="stylesheet" href="css/font.css"> 
   <!-- /build -->
@@ -40,13 +79,19 @@
     <script src="js/monSkill.js"></script>     
     <script src="js/monster.js"></script>
     <script src="js/monsterReward.js"></script>
+    <script src="js/hub.js"></script>
+    <script src="js/archive.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/encounter.js"></script>
     <script src="js/weapon.js"></script>
+    <script src="js/npcReward.js"></script>
+    <script src="js/tixDiscount.js"></script>
+    <script src="js/dailyWeather.js"></script>
     <script src="js/guildBoard.js"></script>
     <script src="js/leaderboard.js"></script>
+    <script src="js/titles.js"></script>
     <script src="js/lib/control.js"></script>
     <script src="js/lib/webfont.js"></script>
-    <script type="text/javascript" src="js/steam.js"></script>
-    <script type="text/javascript" src="js/lib/App42-all-3.1.min.js"></script>
     
 
   <!-- /build -->
@@ -54,6 +99,7 @@
 </body>
 
 <script>
+    //console.log("where we going? index3  "+localStorage.getItem('state'))
     //localStorage.setItem('state','menu')
     WebFontConfig = {
       custom: {
@@ -63,11 +109,7 @@
 
     WebFont.load(WebFontConfig);    
     
-//make unique ID
-        if (localStorage.getItem("userID") === null || localStorage.getItem("userID").length <= 0) {
-            localStorage.setItem("userID",(Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase());
-
-        }    
+  
     
 //check if online
 if(!navigator.onLine) { // true|false
@@ -88,13 +130,64 @@ if (localStorage.getItem("equip2") === null) {
 } 
 if (localStorage.getItem("hasLost") === null) {
   localStorage.setItem("hasLost",0)
+} 
+
+if (localStorage.getItem("hunterRank") === null) {
+  localStorage.setItem("hunterRank",0)
+}  
+if (localStorage.getItem("currentRank") === null) {
+  localStorage.setItem("currentRank",1)
 }   
+if (localStorage.getItem("exp") === null) {
+  localStorage.setItem("exp",0)
+}   
+
+if (localStorage.getItem("TixCount0") === null) {
+  localStorage.setItem("TixCount0",30)
+} 
+  
+if (localStorage.getItem("TixCount1") === null) {
+  localStorage.setItem("TixCount1",30)
+} 
+  
+if (localStorage.getItem("TixCount2") === null) {
+  localStorage.setItem("TixCount2",30)
+} 
+  
+if (localStorage.getItem("playerTitle") === null) {
+  localStorage.setItem("playerTitle","HUNTER")
+  localStorage.setItem("HUNTER unlocked",1)
+} 
+  
+if (localStorage.getItem("dailyPurchase") === null) {
+  //localStorage.setItem("playerTitle","HUNTER")
+  localStorage.setItem("dailyPurchase",3)
+}   
+    
+localStorage.setItem("adReady",0)
+  
+//GPS removal pivot
+localStorage.setItem("newPlace",0)
+localStorage.setItem("biome",0)
+
     //localStorage.setItem("equip0",1)
     localStorage.setItem("crafted1",1)
     //localStorage.setItem("equip1",200)
     localStorage.setItem("crafted2",1)
     //localStorage.setItem("equip2",100)
     localStorage.setItem("crafted3",1)
+    localStorage.setItem("revengeHunt",0)
+    localStorage.setItem("revengeHuntSize",1)
+    localStorage.setItem("newPlace",0)
+    localStorage.setItem("biome",0)    
+    
+    
+    //localStorage.setItem("Small Monster Bone Count",99)
+    //localStorage.setItem("Urania Pelt Count",3)
+    //localStorage.setItem("Nivreh Tongue Count",99)
+    //localStorage.setItem("blueprintCount",99)
+    
+    //console.log("where we going? "+localStorage.getItem('state'))
     // Initialize Firebase
    /* var config = {
     apiKey: "AIzaSyDLavESdxZeNSEcFKFYVF1riDoNzR72gPU",
@@ -124,8 +217,13 @@ if (localStorage.getItem("hasLost") === null) {
       // ...
     });    
     */
+   
+</script> 
+<script src='cordova.js'></script>
+<script src='js/index.js'></script>
 
-    
-</script>    
+<script type="text/javascript" src="js/lib/display-ads-on-android-using-admob.js"></script>
+
+
 </html>
 
