@@ -96,7 +96,10 @@
                 this.character[i].x = this.game.width/2 - randomValX
                 this.character[i].y = this.game.height/2 - randomValY        */             
             }
-            
+            this.charBark = [];
+            for(var i = 0; i < 10; i++){
+              this.charBark[i] = this.add.audio('charBark-'+i);
+            }            
             //character placement
             switch(this.stage){
                
@@ -206,12 +209,13 @@
           
           var charName = ""+char.key
           var lastChar = parseInt(charName.slice(charName.length-1));
+          this.clickChar = lastChar
           //console.log(charName)
           //this.characterOverlay.alpha = 1;
           this.characterMessage.alpha = 1;
           this.characterMessageText.alpha = 1
           this.characterMessage.loadTexture("popUp-"+lastChar)
-          
+          this.charBark[lastChar].play();
           switch(this.stage){
             case 0:
               switch(lastChar){
@@ -228,7 +232,7 @@
                   this.characterMessageText.text = "Someting not right about that bwoy.";
                   break;
                 case 4:
-                  this.characterMessageText.text = "MISSING";
+                  this.characterMessageText.text = "Uncle Bones taxi nice fi play inna!";
                   break;
                 case 5:
                   this.characterMessageText.text = "A mi doops dat, him gone tek on the road.";
@@ -237,7 +241,7 @@
                   this.characterMessageText.text = "Him nearly tek mi home yesterday with him bad driving  and I not talking Lime Tree Lane.";
                   break;
                 case 7:
-                  this.characterMessageText.text = "MISSING";
+                  this.characterMessageText.text = "Uncle Bones taxi drive fas enuh!";
                   break;
                 case 8:
                   this.characterMessageText.text = "Dat teifing bwoy, mi nah tek him taxi again.";
@@ -259,6 +263,10 @@
 
         }
         , onDown2: function () {
+          if(this.clickChar == this.stage){
+           this.bgSound.stop();  
+           this.game.state.start('win');            
+          }
           this.overlay.x = this.game.width*2;
           this.characterOverlay.alpha = 0;
           this.characterMessage.alpha = 0;

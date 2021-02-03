@@ -18,6 +18,13 @@
             this.load.image('start', 'assets/HomeScreen-bg.jpg');
             this.load.image('arcademode-Button', 'assets/Home Screen-button-arcademode.png');
             this.load.image('timeattack-Button', 'assets/Home Screen-button-timeattack.png');
+          
+            this.load.image('win', 'assets/Win screen-bg.jpg');
+            this.load.image('lose', 'assets/Lose screen-bg.jpg');
+            this.load.image('retryButton', 'assets/Lose-screen-button-restart.png');
+            this.load.image('homeButton', 'assets/Win-screen-button-home.png');
+            this.load.image('nextButton', 'assets/Win-screen-button-next.png');
+
             
             
             this.load.image('mainBG', 'assets/LTL-Establishing shot.jpg');
@@ -81,6 +88,16 @@
           
             //audio 
             this.game.load.audio('menuMusic', ['assets/audio/LTL-ingame-track.wav']);
+            this.game.load.audio('charBark-0', ['assets/audio/character-barks/charBark-0.mp3']);
+            this.game.load.audio('charBark-1', ['assets/audio/character-barks/charBark-1.mp3']);
+            this.game.load.audio('charBark-2', ['assets/audio/character-barks/charBark-2.mp3']);
+            this.game.load.audio('charBark-3', ['assets/audio/character-barks/charBark-3.mp3']);  
+            this.game.load.audio('charBark-4', ['assets/audio/character-barks/charBark-4.mp3']);
+            this.game.load.audio('charBark-5', ['assets/audio/character-barks/charBark-5.mp3']);
+            this.game.load.audio('charBark-6', ['assets/audio/character-barks/charBark-6.mp3']);
+            this.game.load.audio('charBark-7', ['assets/audio/character-barks/charBark-7.mp3']);    
+            this.game.load.audio('charBark-8', ['assets/audio/character-barks/charBark-8.mp3']);   
+            this.game.load.audio('charBark-9', ['assets/audio/character-barks/charBark-9.mp3']);              
         }
         , create: function () {
             this.asset.cropEnabled = false;

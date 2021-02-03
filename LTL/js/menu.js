@@ -54,6 +54,7 @@
 
     },
     timeattack: function () {
+     this.bgSound.stop();    
 	   this.game.state.start('levelSelect');
         /*var user = firebase.auth().currentUser;
 
@@ -66,7 +67,9 @@
         
     },
     arcademode: function () {
+     this.bgSound.stop();  
 	   this.game.state.start('levelSelect');
+     //this.game.state.start('levelSelect');
         /*var user = firebase.auth().currentUser;
 
         if (user) {

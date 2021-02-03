@@ -93,6 +93,7 @@
         
     },
     onDown: function () {
+     this.bgSound.stop();    
      localStorage.setItem("stage",this.stageCounter);
 	   this.game.state.start('game');
         /*var user = firebase.auth().currentUser;
