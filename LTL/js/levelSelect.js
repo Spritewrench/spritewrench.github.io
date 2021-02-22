@@ -12,7 +12,7 @@
       var x = this.game.width / 2
         , y = this.game.height / 2;
 
-
+      localStorage.clear();
       this.titleTxt = this.add.bitmapText(x, y, 'minecraftia', 'FIND WALTON',16);
       this.titleTxt.anchor.setTo(0.5, 0.5);
       
@@ -95,6 +95,15 @@
     onDown: function () {
      this.bgSound.stop();    
      localStorage.setItem("stage",this.stageCounter);
+    if(this.stageCounter == 0){
+      localStorage.setItem("stage",0);  
+    }
+    if(this.stageCounter == 1){
+      localStorage.setItem("stage",3);  
+    }      
+    if(this.stageCounter == 2){
+      localStorage.setItem("stage",9);  
+    }      
 	   this.game.state.start('game');
         /*var user = firebase.auth().currentUser;
 

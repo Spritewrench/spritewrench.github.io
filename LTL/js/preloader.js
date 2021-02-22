@@ -16,6 +16,8 @@
             this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
             
             this.load.image('start', 'assets/HomeScreen-bg.jpg');
+            this.load.image('lime', 'assets/lime.png');
+            this.load.image('backdrop', 'assets/backdrop.png');
             this.load.image('arcademode-Button', 'assets/Home Screen-button-arcademode.png');
             this.load.image('timeattack-Button', 'assets/Home Screen-button-timeattack.png');
           
@@ -25,30 +27,53 @@
             this.load.image('homeButton', 'assets/Win-screen-button-home.png');
             this.load.image('nextButton', 'assets/Win-screen-button-next.png');
 
-            
+            this.load.image('block1', 'assets/Block_1/Block-1.png');
+            this.load.image('block2', 'assets/Block_2/Block-2.png');
+            this.load.image('block3', 'assets/Block_3/Block-3.png');
+            this.load.image('block4', 'assets/Block_4/Block-4.png');
             
             this.load.image('mainBG', 'assets/LTL-Establishing shot.jpg');
-            this.load.image('block2', 'assets/Block_2/Block-2.jpg');
-            this.load.image('Block-2_1A', 'assets/Block_2/Block-2_1A.png');
-            this.load.image('Block-2_1B', 'assets/Block_2/Block-2_1B.png');
-          
-            this.load.image('Block-2_2A', 'assets/Block_2/Block-2_2A.png');
-            this.load.image('Block-2_2B', 'assets/Block_2/Block-2_2B.png');      
-          
-            this.load.image('Block-2_3A', 'assets/Block_2/Block-2_3A.png');
-            this.load.image('Block-2_3B', 'assets/Block_2/Block-2_3B.png');
-          
-            this.load.image('Block-2_4A', 'assets/Block_2/Block-2_4A.png');
-            this.load.image('Block-2_4B', 'assets/Block_2/Block-2_4B.png');
-          
-            this.load.image('Block-2_5A', 'assets/Block_2/Block-2_5A.png');
-            this.load.image('Block-2_5B', 'assets/Block_2/Block-2_5B.png');      
-          
-            this.load.image('Block-2_6A', 'assets/Block_2/Block-2_6A.png');
-            this.load.image('Block-2_6B', 'assets/Block_2/Block-2_6B.png');          
-          
-            this.load.image('Block-2_7A', 'assets/Block_2/Block-2_7A.png');
-            this.load.image('Block-2_7B', 'assets/Block_2/Block-2_7B.png');             
+            for(var i = 1; i <5;i++){
+              this.load.image('Block-'+i+'_1A', 'assets/Block_'+i+'/Block-'+i+'_1A.png');
+              this.load.image('Block-'+i+'_1B', 'assets/Block_'+i+'/Block-'+i+'_1B.png');
+
+              this.load.image('Block-'+i+'_2A', 'assets/Block_'+i+'/Block-'+i+'_2A.png');
+              this.load.image('Block-'+i+'_2B', 'assets/Block_'+i+'/Block-'+i+'_2B.png');      
+              
+              if(i != 3){
+                this.load.image('Block-'+i+'_3A', 'assets/Block_'+i+'/Block-'+i+'_3A.png');
+                this.load.image('Block-'+i+'_3B', 'assets/Block_'+i+'/Block-'+i+'_3B.png');                
+              }
+
+
+              this.load.image('Block-'+i+'_4A', 'assets/Block_'+i+'/Block-'+i+'_4A.png');
+              this.load.image('Block-'+i+'_4B', 'assets/Block_'+i+'/Block-'+i+'_4B.png');
+
+              this.load.image('Block-'+i+'_5A', 'assets/Block_'+i+'/Block-'+i+'_5A.png');
+              this.load.image('Block-'+i+'_5B', 'assets/Block_'+i+'/Block-'+i+'_5B.png');      
+
+              this.load.image('Block-'+i+'_6A', 'assets/Block_'+i+'/Block-'+i+'_6A.png');
+              this.load.image('Block-'+i+'_6B', 'assets/Block_'+i+'/Block-'+i+'_6B.png');          
+              
+              if(i != 1){  
+                this.load.image('Block-'+i+'_7A', 'assets/Block_'+i+'/Block-'+i+'_7A.png');
+                this.load.image('Block-'+i+'_7B', 'assets/Block_'+i+'/Block-'+i+'_7B.png');   
+              }
+              if(i == 3 || i == 4){
+                this.load.image('Block-'+i+'_8A', 'assets/Block_'+i+'/Block-'+i+'_8A.png');
+                this.load.image('Block-'+i+'_8B', 'assets/Block_'+i+'/Block-'+i+'_8B.png');   
+                
+                this.load.image('Block-'+i+'_9A', 'assets/Block_'+i+'/Block-'+i+'_9A.png');
+                this.load.image('Block-'+i+'_9B', 'assets/Block_'+i+'/Block-'+i+'_9B.png');                   
+              }  
+              if(i == 4){
+                this.load.image('Block-'+i+'_10A', 'assets/Block_'+i+'/Block-'+i+'_10A.png');
+                this.load.image('Block-'+i+'_10B', 'assets/Block_'+i+'/Block-'+i+'_10B.png');                 
+              }               
+              
+            }
+            
+        
           
             this.load.image('overlay', 'assets/overlay.png');
             this.load.image('kids', 'assets/kids.png');

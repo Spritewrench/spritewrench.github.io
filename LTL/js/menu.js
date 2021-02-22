@@ -38,16 +38,16 @@
       this.menuStart.height = this.game.height
       //this.input.onDown.add(this.onDown, this);
       
-      this.arcademodeButton = this.add.sprite(this.game.width/2-200, this.game.height-100, 'arcademode-Button')
+      this.arcademodeButton = this.add.sprite(this.game.width/2, this.game.height-100, 'arcademode-Button')
       this.arcademodeButton.anchor.setTo(0.5, 0.5);  
       this.arcademodeButton.inputEnabled = true;
       this.arcademodeButton.events.onInputDown.add(this.arcademode, this);
       
       
-      this.timeattackButton = this.add.sprite(this.game.width/2+200, this.game.height-100, 'timeattack-Button')
-      this.timeattackButton.anchor.setTo(0.5, 0.5);   
-      this.timeattackButton.inputEnabled = true;
-      this.timeattackButton.events.onInputDown.add(this.timeattack, this);
+      //this.timeattackButton = this.add.sprite(this.game.width/2+200, this.game.height-100, 'timeattack-Button')
+      //this.timeattackButton.anchor.setTo(0.5, 0.5);   
+      //this.timeattackButton.inputEnabled = true;
+      //this.timeattackButton.events.onInputDown.add(this.timeattack, this);
     },
 
     update: function () {
