@@ -96,7 +96,7 @@
             display: block;
             font-family: Helvetica;
             margin: auto;
-            font-size: 16px;
+            font-size: 14px;
             padding: 10px;   
             font-weight: bold;
             text-align: center;
@@ -260,11 +260,11 @@
               <div class="smalltext">⏳</div>
             </div>
             <div class="countdown">
-              <span class="minutes"></span>
+              <span class="minutes" id="minutes"></span>
               <div class="smalltext"></div>
             </div>
             <div class="countdown">
-              <span class="seconds"></span>
+              <span class="seconds" id="seconds"></span>
               <div class="smalltext"></div>
             </div>
           </div>        
@@ -417,13 +417,16 @@ function makeChart(){
         
         var enteredWords = [];
         //check version
+        var version = "0.0.6"
         if(localStorage.getItem("version") === null){
             localStorage.clear();
             //set version
-            var version = "0.0.5"
+            //var version = "0.0.6"
             localStorage.setItem("version",version)
-            document.getElementById("version").innerHTML = "VERSION: "+version
+            
         }
+        document.getElementById("version").innerHTML = "VERSION: "+version
+        
         if(dailyLog.localeCompare(today) !== 0 ){
             //localStorage.clear();
             localStorage.removeItem("shareText")
@@ -778,12 +781,19 @@ function makeChart(){
             //document.getElementById('myinputbox').value = str.slice(0, -1);
             //document.getElementById('entry'+key).innerHTML = document.getElementById('myinputbox').value;
             if(key == 0){
-                document.getElementById('entry0').innerHTML = document.getElementById('myinputbox').value;
+                document.getElementById('entry0').innerHTML = "<span id='word"+key+"'>"+document.getElementById('myinputbox').value+"</span>";
             }
             else{
-                document.getElementById('entry0').innerHTML += "<br/>"+document.getElementById('myinputbox').value;
+                document.getElementById('entry0').innerHTML += "<br/>"+"<span id='word"+key+"'>"+document.getElementById('myinputbox').value+"</span>";;
             }
+            var html = document.getElementById('word'+key).innerHTML;
+            //alert(html)
+            html = html.replace(likes, "<span id='wordsLeft'>"+likes+"</span>");
+            //alert(html.replace(likes, "<span id='#wordsLeft'>"+likes+"</span>"))
+            document.getElementById('word'+key).innerHTML = html
+            //console.log(p.replace('dog', 'monkey'));
             
+
             document.getElementById('myinputbox').value = "";
             document.querySelector("input").value = ""
             myKeyboard.clearInput();
@@ -883,11 +893,13 @@ function makeChart(){
                     confirmButtonText: 'Continue'
                     }).then((result) => {
                         if(result.isConfirmed) {
-
+                            
+                            //document.getElementById("minutes").innerHTML
                             const t = getTimeRemaining(deadline);
-                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2);  
+                            //var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2);  
+                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+document.getElementById("minutes").innerHTML+":"+document.getElementById("seconds").innerHTML;  
                             if(localStorage.getItem("shareText") === null){
-                                localStorage.setItem("shareText", document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2) )
+                                localStorage.setItem("shareText", document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+document.getElementById("minutes").innerHTML+":"+document.getElementById("seconds").innerHTML)
                                 //localStorage.setItem("time"+t.minutes,parseInt(localStorage.getItem("time"+t.minutes) )+1)
                             }   
                             else{
@@ -897,10 +909,10 @@ function makeChart(){
                         if(result.isDenied) {
                             const t = getTimeRemaining(deadline);
                         
-                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2);  
+                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+document.getElementById("minutes").innerHTML+":"+document.getElementById("seconds").innerHTML;  
                             
                             if(localStorage.getItem("shareText") === null){
-                                localStorage.setItem("shareText", document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2) )
+                                localStorage.setItem("shareText", document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+document.getElementById("minutes").innerHTML+":"+document.getElementById("seconds").innerHTML )
                                // localStorage.setItem("time"+t.minutes,parseInt(localStorage.getItem("time"+t.minutes) )+1)
                             }   
                             else{

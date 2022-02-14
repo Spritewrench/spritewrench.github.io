@@ -63,9 +63,9 @@ function initializeClock(id, endtime) {
         }).then((result) => {
             if(result.isConfirmed) {
                 const t = getTimeRemaining(deadline);
-                var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+document.getElementById("minutes").innerHTML+":"+document.getElementById("seconds").innerHTML; 
                 if (localStorage.getItem("shareText") == null) {
-                    var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                    var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+document.getElementById("minutes").innerHTML+":"+document.getElementById("seconds").innerHTML; 
                     localStorage.setItem("shareText",shareText)
                     
                 }  
@@ -76,9 +76,9 @@ function initializeClock(id, endtime) {
             if(result.isDenied) {
                 const t = getTimeRemaining(deadline);
             
-                var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+document.getElementById("minutes").innerHTML+":"+document.getElementById("seconds").innerHTML; 
                 if (localStorage.getItem("shareText") == null) {
-                    var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                    var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+document.getElementById("minutes").innerHTML+":"+document.getElementById("seconds").innerHTML; 
                     localStorage.setItem("shareText",shareText)
                     //localStorage.setItem("time"+t.minutes,parseInt(localStorage.getItem("time"+t.minutes) )+1)
                 }  
