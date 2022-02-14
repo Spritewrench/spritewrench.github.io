@@ -1,0 +1,100 @@
+{% extends "layout_common.html" %}
+
+{% block title %}{{ company.title }}{% endblock %}
+{% block css_path %}"style.css"{% endblock %}
+{% block company_path %}""{% endblock %}
+{% block credit_path %}"credits.html"{% endblock %}
+{% block histories_history %}
+    {% if company.histories|length > 0 %}
+        <li><a href="#history">History</a></li>
+    {% endif %}
+{% endblock %}
+{% block projects_features %}
+    {% if get_projects()|length > 0 %}<li><a href="#projects">Projects</a></li>{% endif %}
+{% endblock %}
+{% block images_screenshots %}<li><a href="#images">Images</a></li>{% endblock %}
+
+{% block header %}
+    {% set url = company.website|replace("http://", "") %}
+    {% if url|truncate(4, true, "") == "www." %}
+        {% set url = url|replace("www.", "", 1) %}
+    {% endif %}
+    <a class="nav-header" href={{ company.website }}>{{ url }}</a>
+{% endblock %}
+
+{% block foundingdate_releasedate %}
+    {% if company.founding_date|length > 0 %}
+        <p>
+            <strong>Founding date:</strong><br/>
+            {{ company.founding_date }}
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block press_regularprice %}
+    {% if company.press_contact|length > 0 %}
+        <p>
+            <strong>Press / Business Contact:</strong><br/>
+            <a href="mailto:{{ company.press_contact }}">{{ company.press_contact }}</a>
+        </p>
+    {% endif %}
+
+    {% if company.socials|length > 0 %}
+        <p>
+            <strong>Social:</strong><br/>
+            {% for social in company.socials.social %}
+                <a href="{{ parse_url(social.link) }}">{{ social.name }}</a><br/>
+            {% endfor %}
+        </p>
+    {% endif %}
+
+    {% if get_projects()|length > 0 %}
+        <p>
+            <strong>Releases:</strong><br />
+            {% for project in get_projects() %}
+                <a href="{{ project }}/index.html">{{ project|replace("_", " ")|title }}</a><br />
+            {% endfor %}
+        </p>
+    {% endif %}
+
+    <p>
+    {% if company.address|length > 0 %}
+        <strong>Address:</strong><br/>
+        {% for address in company.address.line %}
+            {{ address }}<br/>
+        {% endfor %}
+    {% endif %}
+    </p>
+
+    {% if company.phone|length > 0 %}
+        <p>
+            <strong>Phone:</strong><br/>
+            {{ company.phone }}
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block historieprojects_historyfeatures %}
+    {% if company.histories|length > 0 %}
+        <h2 id="history">History</h2>
+
+        {% for history in company.histories.history %}
+            <strong>{{ history.header }}</strong>
+            <p>{{ history.text }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% if get_projects()|length > 0 %}
+        <h2 id="projects">Projects</h2>
+        <ul>
+
+        {% for project in get_projects() %}
+            <li><a href="{{ project }}/index.html">{{ project|replace("_", " ")|title }}</a></li>
+        {% endfor %}
+    {% endif %}
+
+    </ul>
+{% endblock %}
+
+{% block credit_name %}Team & Repeating Collaborators{% endblock %}
+
