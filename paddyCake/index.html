@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <meta http-equiv="Content-Type" content="text/html"> <meta name="keywords" content="GitHubGameOff"> <title>Game-Off 2017 Entry By Team Kickpunch</title> <meta name="description" content="Team Kickpunch's rocking entry"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <style> body {
+      padding: 0;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+      /*
+        flex behaves strange with canvas, it's off the center horizontally
+        when Chrome's window resized to larger width
+      */
+      overflow: hidden;
+      background: url(./assets/graphics/gameboy-plastic-texture-88d0f5b07058ef204f3569d00ea71a22.png);
+    }
+
+    canvas {
+      pointer-events: none; /* fixes inability to regain keyboard focus
+        when game is loaded in iframe*/
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-left: 4px solid rgb(100, 100, 100);
+      border-top: 4px solid rgb(100, 100, 100);
+      border-right: 4px solid rgb(150, 150, 150);
+      border-bottom: 4px solid rgb(150, 150, 150);
+
+      /* Use nearest neighbor interpolation */
+      /* https://stackoverflow.com/questions/7615009/disable-interpolation-when-scaling-a-canvas */
+      /* https://stackoverflow.com/questions/14068103/disable-antialising-when-scaling-images */
+      image-rendering: optimizeSpeed;             /* Older versions of FF          */
+      image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+      image-rendering: -webkit-optimize-contrast; /* Safari                        */
+      image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+      image-rendering: crisp-edges;                 /* Awesome future-browsers       */
+      image-rendering: optimize-contrast;         /* CSS3 Proposed                 */
+      -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+    } </style> </head> <body> <script type="text/javascript" src="./assets/vendor-7544b7b18b709171a541.js"></script><script type="text/javascript" src="./assets/app-88eb4354e30dcff5e96e.js"></script></body> </html> 

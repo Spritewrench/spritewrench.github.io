@@ -1,0 +1,94 @@
+.matBtn {
+
+
+  display: block;
+  margin: 30px auto;
+  padding: 0;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  font-size: 30px;
+  background-color: #2ecc71;
+  color: #ecf0f1;
+
+  font-family: Helvetica;
+  margin: auto;
+
+  padding: 10px;   
+  font-weight: bold;
+  text-align: center;
+  position: sticky;
+
+  top: 55%;
+
+  transition: background-color .3s;
+
+}
+
+.matBtn:hover, .matBtn:focus {
+  background-color: #27ae60;
+}
+
+.matBtn > * {
+  position: relative;
+}
+
+.matBtn span {
+  display: block;
+  padding: 12px 24px;
+}
+
+.matBtn:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.matBtn:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+/* Styles, not important */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+.matBtn.orange {
+  background-color: #e67e22;
+}
+
+.matBtn.orange:hover, .matBtn.orange:focus {
+  background-color: #d35400;
+}
+
+.matBtn.red {
+  background-color: #e74c3c;
+}
+
+.matBtn.red:hover, .matBtn.red:focus {
+  background-color: #c0392b;
+}

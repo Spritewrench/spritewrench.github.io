@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h2>Last Patient Entry ID for April 2019</h2>
+<input type="text" class="formInput" id="1" name="contactForm_name"/>
+<br/>
+<h2>Number of Patients Entered</h2>
+<input type="text" class="formInput" id="2" name="contactForm_name"/>
+<br/><br/>
+<button type="button" onclick="loadDoc()">Generate Links</button>
+</div>
+
+<script>
+function loadDoc() {
+	var baseID = parseInt(document.getElementById("1").value);
+    var count = parseInt(document.getElementById("2").value);
+    var updatedID = baseID+1
+	for(i =0; i< count; i++){
+      var a = document.createElement('a');
+      var b = document.createElement('br');
+      updatedID += 1
+      var linkText = document.createTextNode("Patient Entry ID: "+updatedID);
+      a.appendChild(linkText);
+      a.href = "http://10.48.28.189/system-reports/violence-related-injury/"+updatedID+"/detail/";
+      a.target = "_blank"	
+      document.body.appendChild(a);
+      document.body.appendChild(b);
+      document.body.appendChild(b);
+      document.body.appendChild(b);
+    }
+	
+}
+</script>
+
+</body>
+</html>

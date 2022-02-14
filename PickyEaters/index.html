@@ -1,0 +1,997 @@
+<html>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+
+    <head>
+        <link rel="stylesheet" href="css/kioskboard-2.0.0.min.css" />
+        <link rel="stylesheet" href="css/materialButton.css" />
+        <link rel="stylesheet" href="css/shakeError.css" />
+        <link rel="stylesheet" href="css/heartAnimation.css" />
+        <link rel="stylesheet" href="css/confetti.css" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+
+        <script src="js/kioskboard-2.0.0.min.js"></script> 
+        <script src="js/words_dictionary.js"></script> 
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+        
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9W88GKY1ZK"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-9W88GKY1ZK');
+        </script>
+                
+        <style>
+        element.style {
+            overflow: hidden; 
+        }
+        body{
+            display: block;
+            font-family: Helvetica;
+            margin: auto;
+            width: 350px;
+
+        }
+        #instruction{
+            display: block;
+            margin: auto;
+            font-family: Helvetica;
+            font-size: 18px;
+            padding: 10px;   
+            font-weight: bold;
+            text-align: center;
+            position: sticky;            
+            top: 18%          
+        }     
+        #hint{
+            display: block;
+            margin: auto;
+            font-family: Helvetica;
+            font-size: 14px;
+            padding: 10px;   
+            font-weight: bold;
+            text-align: center;
+            position: sticky; 
+            font-style: italic;           
+            top: 20%          
+        }      
+        #faveLetter{
+            color: #60bd96;
+        }   
+        #hateLetter{
+            color: #E76F51;
+        }
+        #entry2{
+            display: block;
+            font-family: Helvetica;
+            margin: auto;
+            font-size: 18px;
+            padding: 10px;   
+            font-weight: bold;
+            text-align: center;
+            position: sticky;            
+            top: 40%;            
+        }
+        #entry1{
+            display: block;
+            font-family: Helvetica;
+            margin: auto;
+            font-size: 34px;
+            padding: 10px;   
+            font-weight: bold;
+            text-align: center;
+            position: sticky;            
+            top: 45%;            
+        }
+        #entry0{
+            display: block;
+            font-family: Helvetica;
+            margin: auto;
+            font-size: 16px;
+            padding: 10px;   
+            font-weight: bold;
+            text-align: center;
+            position: sticky;            
+            top: 25%;            
+            columns: 2 auto; 
+            height : 150px;    
+        }    
+        .simple-keyboard{
+            display: block;
+            margin: auto;
+            position: sticky;            
+            top: 65%;             
+        }       
+        input {
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 5px 5px;
+            
+            font-size: 18px;
+            
+            text-align: center;
+            width: 100%;
+
+            border-radius: 5px;
+            border:0;
+
+            -webkit-box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.5);
+            -moz-box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.5);
+            box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.5);            
+
+            display: block;
+            font-family: Helvetica;
+            margin: auto;
+
+            font-size: 18px;
+            padding: 10px;   
+            font-weight: bold;
+            text-align: center;
+            position: absolute;      
+            width: 350px;      
+            top: 48%;
+        }   
+        #letters{
+            display: block;
+            margin: auto;
+            position: sticky;
+            top: 10%;
+              
+        }   
+
+  
+        
+        #pet{
+            font-size: 34px;
+            display: block;
+            margin: auto;
+            padding: 12px 0px;
+            text-align: center;
+            position: sticky;
+            width: 100%;
+            top: 55%;            
+            
+        } 
+        #petType{
+            
+            padding: 0px 0px;
+            
+        }          
+        #clockdiv{
+            display: block;
+            margin: auto;            
+            font-family: sans-serif;
+            color: #fff;
+            font-weight: 100;
+            text-align: center;
+            font-size: 14px;
+            padding-top: 18px;
+            width: 95%;
+            position: sticky;
+            top: 53%;
+        }
+        
+        #clockdiv > div{
+            padding: 5px;
+            border-radius: 3px;
+
+            display: inline-block;
+        }   
+
+        #clockdiv div > span{
+            padding: 15px;
+            border-radius: 3px;
+            background: #00816A;
+            display: inline-block;
+            
+        }
+
+        #wordsLeft{
+            color: #00816A;
+        }
+        .smalltext{
+            padding-top: 5px;
+            font-size: 14px;
+            
+        }   
+        #likeEmoji #hateEmoji{
+            display: block;
+            margin: auto;  
+            padding: 0px 0px;          
+        }     
+        .logo{
+            display: block;
+            margin: auto;
+            width: 300px;      
+        }          
+        .swal2-container {
+            overflow: hidden !important;
+            overflow-x: hidden; /* Hide horizontal scrollbar */            
+        }
+        #version{
+            display: block;
+            margin: auto;        
+            font-size: 14px;
+            font-weight: bold;  
+            text-align: center;            
+        }
+        </style>
+    </head>
+
+    <body onLoad="document.getElementById('myinputbox').focus();">
+        <div >
+            <img class="logo" src="images/logo.png"/>
+            <span id="version">VERSION: 0.0.5</span>
+        </div>
+        <div id="letters">
+            <div id="pet"><span id="petType">🐉</span><span id="petName">Dragon</span></div> 
+        
+        </div>
+        <div id="instruction">FEED <span id="petType">🐉</span> <span id="wordsLeft">"+keyLimit+"</span> WORDS</div>
+        <div id="hint">LOVES <span id="faveLetter">"?"</span> AND HATES <span id="hateLetter">"?"</span></div>
+        <div id="entry0"></div>
+   
+        
+        
+        
+    
+        <input inputmode='none' id="myinputbox" type="text" maxlength="5" placeholder="ENTER 5-LETTER WORD" onkeyup="this.value = this.value.toUpperCase();" class="js-kioskboard-input" data-kioskboard-type="keyboard" data-kioskboard-specialcharacters="false">
+        <button hidden class="matBtn" id="feed" type="button"><span>FEED</span></button>       
+        
+        <div id="clockdiv">
+            <div class="clocks">  
+              <span class="days"></span>
+              <div class="smalltext">Days</div>
+            </div>
+            <div class="clocks">  
+                <span class="hours"></span>
+                <div class="smalltext">Days</div>
+              </div>            
+            <div class="countdown">
+              <div class="smalltext">⏳</div>
+            </div>
+            <div class="countdown">
+              <span class="minutes"></span>
+              <div class="smalltext"></div>
+            </div>
+            <div class="countdown">
+              <span class="seconds"></span>
+              <div class="smalltext"></div>
+            </div>
+          </div>        
+        </div> 
+        <div class="simple-keyboard"></div>
+        <div id="confetti-wrapper">
+        </div>
+    </body>
+    
+    <script>
+
+function makeChart(){
+     
+
+    var time0 = parseInt(localStorage.getItem("time0"))
+    var time1 = parseInt(localStorage.getItem("time1"))
+    var time2 = parseInt(localStorage.getItem("time2"))
+    var time3 = parseInt(localStorage.getItem("time3"))
+    var time4 = parseInt(localStorage.getItem("time4"))
+
+    var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['0', '1', '2', '3', '4'],
+                datasets: [{
+                    label: 'Daily Times in Mins',
+                    data: [time0, time1, time2, time3, time4],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+}
+
+        </script>    
+
+    <script src="js/clock.js"></script> 
+    <script src="js/confetti.js"></script>     
+    <script>
+        //setup
+        //const deadline = new Date(Date.parse(new Date()) + (5*60 * 1000)+(10 * 1000));
+        const deadline = new Date(Date.parse(new Date()) + (5*60 * 1000)+(10 * 1000));
+        var d = new Date();
+        //localStorage.setItem("dailyLog",d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getUTCFullYear())    
+        var today = d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getUTCFullYear()
+        var dailyLog = localStorage.getItem("dailyLog")
+        if(localStorage.getItem("dailyLog") === null){
+              localStorage.setItem("dailyLog", "")
+              dailyLog = localStorage.getItem("dailyLog")
+        }    
+        let day = d.getDay()
+        var intro = ""
+        var fave = ""
+        var hates = ""   
+        var monName = ""     
+        switch(day){
+            case 0:
+                document.getElementById("petType").innerHTML = "👾"
+                document.getElementById("petName").innerHTML = "Aleck"  
+                monName = "Aleck" 
+                intro = "Feed them before they destory the town!"
+                var name = document.getElementById("petName").innerHTML
+                var ran = Math.floor(Math.random() * name.length)
+                fave = name[ran].toUpperCase()
+                hates ="M"
+
+                break;
+            case 1:
+                document.getElementById("petType").innerHTML = "👻"
+                document.getElementById("petName").innerHTML = "Ghary"   
+                monName = "Ghary"  
+                intro = "Feed him before he haunts everyone!"     
+                var name = document.getElementById("petName").innerHTML
+                var ran = Math.floor(Math.random() * name.length)
+                fave = name[ran].toUpperCase()
+                hates ="I"                          
+                break;   
+            case 2:
+                document.getElementById("petType").innerHTML = "🐙"
+                document.getElementById("petName").innerHTML = "Ocho"   
+                monName = "Ocho" 
+                intro = "Feed her before she grabs everything!"     
+                var name = document.getElementById("petName").innerHTML
+                var ran = Math.floor(Math.random() * name.length)
+                fave = name[ran].toUpperCase()
+                hates ="R"                          
+                break;
+            case 3:
+                document.getElementById("petType").innerHTML = "👹"
+                document.getElementById("petName").innerHTML = "Oscar"  
+                monName = "Oscar" 
+                intro = "Feed him before he gets bored" 
+                var name = document.getElementById("petName").innerHTML
+                var ran = Math.floor(Math.random() * name.length)
+                fave = name[ran].toUpperCase()
+                hates ="L"                
+                break;    
+            case 4:
+                document.getElementById("petType").innerHTML = "🤖"
+                document.getElementById("petName").innerHTML = "Ron"   
+                monName = "Ron" 
+                intro = "Feed them before they self destruct!"    
+                var name = document.getElementById("petName").innerHTML
+                var ran = Math.floor(Math.random() * name.length)
+                fave = name[ran].toUpperCase()
+                hates ="M"                      
+                break;   
+            case 5:
+                document.getElementById("petType").innerHTML = "💩"
+                document.getElementById("petName").innerHTML = "Steve"  
+                monName = "Steve"  
+                intro = "Feed him to make him go away!"   
+                var name = document.getElementById("petName").innerHTML
+                var ran = Math.floor(Math.random() * name.length)
+                fave = name[ran].toUpperCase()
+                hates ="O"                          
+                break;
+            case 6:
+                document.getElementById("petType").innerHTML = "🐉"
+                document.getElementById("petName").innerHTML = "Danielle"
+                monName = "Danielle"   
+                intro = "Feed her before she eats us all!"       
+                var name = document.getElementById("petName").innerHTML
+                var ran = Math.floor(Math.random() * name.length)
+                fave = name[ran].toUpperCase()
+                hates ="K"                        
+                break;                                              
+        }
+        
+        var enteredWords = [];
+        //check version
+        if(localStorage.getItem("version") === null){
+            localStorage.clear();
+            //set version
+            var version = "0.0.5"
+            localStorage.setItem("version",version)
+            document.getElementById("version").innerHTML = "VERSION: "+version
+        }
+        if(dailyLog.localeCompare(today) !== 0 ){
+            //localStorage.clear();
+            localStorage.removeItem("shareText")
+            Swal.fire({
+            title: 'OH NO!',
+            text: document.getElementById("petName").innerHTML+" is Attacking!",
+            icon: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continue'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'HELP!',
+                    text: intro,
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continue'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        
+                        initializeClock('clockdiv', deadline);
+                    }
+                })
+            }
+            })            
+        }
+        else{
+            document.getElementById("instruction").innerHTML = "I'M FULL ... FOR NOW"; 
+            if(localStorage.getItem("lost") === null){
+                document.getElementById("instruction").innerHTML = "I'M FULL ... FOR NOW"; 
+                
+                $('#pet').addClass('animate__animated animate__fadeOutUp');
+                $( "input" ).hide();
+                //$( "#entry0" ).hide();
+                rainConfetti()
+                //var audio = new Audio('yay.wav');
+                //audio.play();
+                stopClock()
+                localStorage.setItem("dailyLog",d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getUTCFullYear())    
+                Swal.fire({
+                    title: 'The Day is Saved!',
+                    text: 'But the beast will return tomorrow ...',
+                    html: '<canvas id="myChart" width="200" height="200"></canvas>',
+                    showDenyButton: true,
+                    denyButtonText: 'Share',
+                    confirmButtonColor: '#3085d6',
+                    denyButtonColor: '#d33',
+                    confirmButtonText: 'Continue'
+                    }).then((result) => {
+                        if(result.isConfirmed) {
+                            const t = getTimeRemaining(deadline);
+                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                            if (localStorage.getItem("shareText") == null) {
+                                var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                                localStorage.setItem("shareText",shareText)
+                            }  
+                            else{
+                                shareText = localStorage.getItem("shareText")// document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                            }
+                        }
+                        if(result.isDenied) {
+                            const t = getTimeRemaining(deadline);
+                        
+                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                            if (localStorage.getItem("shareText") == null) {
+                                var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                                localStorage.setItem("shareText",shareText)
+                            }  
+                            else{
+                                shareText = localStorage.getItem("shareText")// document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                            }
+                            navigator.clipboard.writeText(shareText);
+                            Swal.fire(
+                            'Copied results to clipboard',
+                            '',
+                            'success'
+                            )
+                        }                        
+                    })
+                    makeChart();                  
+            }
+            else{
+                document.getElementById("instruction").innerHTML = "TIME'S UP"; 
+                $( "input" ).hide();    
+                //$( "#entry0" ).hide();  
+                stopClock();                
+                Swal.fire({
+                    title: 'The Day is Lost!',
+                    text: 'The Town is Destroyed. Better luck tomorrow!',
+                    html: '<canvas id="myChart" width="200" height="200"></canvas>',
+                    icon: 'error',
+                    showDenyButton: true,
+                    denyButtonText: 'Share',
+                    confirmButtonColor: '#3085d6',
+                    denyButtonColor: '#d33',
+                    confirmButtonText: 'Continue'
+                    }).then((result) => {
+                        if(result.isConfirmed) {
+                            document.getElementById("instruction").innerHTML = "TIME'S UP"; 
+                            const t = getTimeRemaining(deadline);
+                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                            if (localStorage.getItem("shareText") == null) {
+                                var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                                localStorage.setItem("shareText",shareText)
+                            }  
+                            else{
+                                shareText = localStorage.getItem("shareText")// document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                            }
+                        }
+                        if(result.isDenied) {
+                            document.getElementById("instruction").innerHTML = "TIME'S UP"; 
+                            const t = getTimeRemaining(deadline);
+                        
+                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                            if (localStorage.getItem("shareText") == null) {
+                                var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                                localStorage.setItem("shareText",shareText)
+                            }  
+                            else{
+                                shareText = localStorage.getItem("shareText")// document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2); 
+                            }
+                            navigator.clipboard.writeText(shareText);
+                            Swal.fire(
+                            'Copied results to clipboard',
+                            '',
+                            'success'
+                            )
+                        }                        
+                    })  
+                    makeChart();                  
+  
+            }
+                           
+
+        }
+        
+        fave=fave.toUpperCase();
+        hates=hates.toUpperCase();
+        document.getElementById("faveLetter").innerHTML = '"'+fave+'"'//String.fromCharCode(65+Math.floor(Math.random() * 26))
+        document.getElementById("hateLetter").innerHTML = '"'+hates+'"'//String.fromCharCode(65+Math.floor(Math.random() * 26))
+        console.log(fave)
+        //$("div[data-skbtn='" + fave + "']").hide()
+        //$("div[data-skbtn='" + fave + "']").css("background", "#60bd96");
+        
+        
+        var key=0;
+        var duration = 2000
+        var submitKey = 13 //32
+        monName = monName.toUpperCase();
+        document.getElementById("petName").innerHTML = ""  
+        var keyLimit = 10
+        
+
+        if(dailyLog.localeCompare(today) !== 0 ){
+            document.getElementById("instruction").innerHTML = "FEED "+monName+" <span id='wordsLeft'>"+keyLimit+"</span> WORDS"  
+        }
+        else{
+            if(localStorage.getItem("lost") === null){
+                document.getElementById("instruction").innerHTML = "I'M FULL ... FOR NOW"; 
+            }
+            else{
+                document.getElementById("instruction").innerHTML = "TIME'S UP"; 
+            }            
+            //document.getElementById("instruction").innerHTML = "I'M FULL ... FOR NOW"; 
+        }
+        var d = new Date();
+        
+
+        
+
+
+
+        const clock = document.getElementById('clockdiv');
+        const minutesSpan = clock.querySelector('.minutes');
+        const secondsSpan = clock.querySelector('.seconds');        
+        minutesSpan.innerHTML = '00'
+        secondsSpan.innerHTML = '00'
+
+        
+
+    function keyBoardNotify(e){
+        if(e.keyCode == 13){
+            notify(document.querySelector("input").value);
+        }
+    }
+
+    function notify(e) {
+        //var keyCode = e.currentTarget.value.charCodeAt(5)    
+        //console.log(e.currentTarget.value)
+        
+        console.log(e.keyCode)
+        var str = document.querySelector("input").value // e.currentTarget.value
+        
+        var lastEntry = str[str.length-1]
+        //console.log("last Entry "+lastEntry)
+        
+        var likes = fave//document.getElementById("likeLetterSpan").innerHTML;
+        //var hates = document.getElementById("hateLetterSpan").innerHTML;
+
+        var word0 = document.getElementById("entry0").innerHTML;
+        //var word1 = document.getElementById("entry1").innerHTML;
+        //var word2 = document.getElementById("entry2").innerHTML;
+        var enteredAlready = false
+        console.log(enteredWords[str])
+        if (enteredWords[str] !== undefined) {
+            enteredAlready = true
+        }          
+        if( (str.includes(word0)) && ( word0.length > 0) ){
+            
+        }
+        /*
+        if( (str.includes(word1)) && ( word1.length > 0) ){
+            enteredAlready = true
+        }
+        if( (str.includes(word2)) && ( word2.length > 0 ) ){
+            enteredAlready = true
+        }     
+        */           
+        //var strip_str = str.slice(0, -1)
+        var lowStr = str.toLowerCase()
+        var is_a_word = dictionary[lowStr];
+
+        
+        console.log("str "+str )    
+        console.log("in dictionary "+dictionary[lowStr])
+
+
+
+        if(true){
+        //error handling
+        if(document.querySelector("input").value.length > 5 ){
+            $('input').addClass('ahashakeheartache');
+            //document.getElementById('myinputbox').value = str.slice(0, -1);
+            
+            document.getElementById("feed").click();
+            document.getElementById("instruction").innerHTML = "WORD TOO LONG";
+            document.querySelector("input").value = ""
+            myKeyboard.clearInput();
+            setTimeout(function () {
+                console.log("YAY")
+                document.getElementById('myinputbox').focus();
+                
+                document.getElementById("wordsLeft").innerHTML = keyLimit-key ;                  
+
+            }, duration);  
+
+            $('input').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+            $('input').delay(200).removeClass('ahashakeheartache');
+            });            
+        }            
+        // word too short
+        else if(document.querySelector("input").value.length < 5 ){
+            $('input').addClass('ahashakeheartache');
+            //document.getElementById('myinputbox').value = str.slice(0, -1);
+            document.getElementById("feed").click();
+
+            document.getElementById("instruction").innerHTML = "WORD TOO SHORT"; 
+            setTimeout(function () {
+                console.log("YAY")
+                document.getElementById('myinputbox').focus();
+                //document.getElementById("instruction").innerHTML = "FEED ME <span id='wordsLeft'>"+keyLimit+"</span> WORDS"  
+                document.getElementById("wordsLeft").innerHTML = keyLimit-key ;  
+
+            }, duration);  
+
+            $('input').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+            $('input').delay(200).removeClass('ahashakeheartache');
+            });            
+        }
+        // uses a HATED letter
+        else if(str.includes(hates)){
+            $('input').addClass('ahashakeheartache');
+            document.getElementById('myinputbox').value = ""
+            myKeyboard.clearInput();
+            document.getElementById("feed").click();
+            document.getElementById("instruction").innerHTML = "I HATE WORDS WITH "+hates; 
+            //document.getElementById("hateLetterSpan").innerHTML = hates//String.fromCharCode(65+Math.floor(Math.random() * 26))
+            setTimeout(function () {
+                console.log("YAY")
+                document.getElementById('myinputbox').focus();
+                document.getElementById("instruction").innerHTML = "FEED "+monName+" <span id='wordsLeft'>"+keyLimit+"</span> WORDS"  
+                document.getElementById("wordsLeft").innerHTML = keyLimit-key ;  
+            }, duration);  
+
+            $('input').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+            $('input').delay(200).removeClass('ahashakeheartache');
+            });            
+        }
+        //correct word length but fav letter is NOT used
+        else if(key < keyLimit && !str.includes(likes)){
+            $('input').addClass('ahashakeheartache');
+            //document.getElementById('myinputbox').value = str.slice(0, -1);
+            document.getElementById("feed").click();
+
+            document.getElementById("instruction").innerHTML = "I WANT WORDS WITH "+likes; 
+            document.getElementById('myinputbox').value = ""
+            myKeyboard.clearInput();
+            setTimeout(function () {
+                console.log("YAY")
+                document.getElementById('myinputbox').focus();
+                document.getElementById("instruction").innerHTML = "FEED "+monName+" <span id='wordsLeft'>"+keyLimit+"</span> WORDS"  
+                document.getElementById("wordsLeft").innerHTML = keyLimit-key ;  
+
+            }, duration);  
+
+            $('input').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+            $('input').delay(200).removeClass('ahashakeheartache');
+            });   
+        }   
+        //correct word length and fav letter used and a repeat word     
+        else if( key < keyLimit && str.includes(likes) && enteredAlready){
+            $('input').addClass('ahashakeheartache');
+            document.getElementById('myinputbox').value = "";
+            myKeyboard.clearInput();
+            document.getElementById("feed").click();
+            document.getElementById("instruction").innerHTML = "I REMEMBER THAT WORD FROM THE PAST..."
+            setTimeout(function () {
+                console.log("YAY")
+                document.getElementById('myinputbox').focus();
+                document.getElementById("instruction").innerHTML = "FEED "+monName+" <span id='wordsLeft'>"+keyLimit+"</span> WORDS"  
+                document.getElementById("wordsLeft").innerHTML = keyLimit-key ;  
+            }, duration);  
+
+            $('input').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+            $('input').delay(200).removeClass('ahashakeheartache');
+            });
+        }        
+        //correct word length and fav letter used and no repeat word and is NOT a word in the dictionary
+        else if( key < keyLimit && str.includes(likes) && !enteredAlready && is_a_word != 1){
+            $('input').addClass('ahashakeheartache');
+            //document.getElementById('myinputbox').value = ""
+            
+            document.getElementById("feed").click();
+            document.getElementById("instruction").innerHTML = "IS NOT A WORD!"
+            setTimeout(function () {
+                console.log("YAY")
+                document.getElementById('myinputbox').focus();
+                document.getElementById("instruction").innerHTML = "FEED "+monName+" <span id='wordsLeft'>"+keyLimit+"</span> WORDS"  
+                document.getElementById("wordsLeft").innerHTML = keyLimit-key ;  
+            }, duration);  
+
+            $('input').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+            $('input').delay(200).removeClass('ahashakeheartache');
+            });
+        }          
+        //correct word length and fav letter used and no repeat word and is a word in the dictionary
+        else if( key < keyLimit && str.includes(likes) && !enteredAlready && is_a_word == 1){
+            //document.getElementById('myinputbox').value = str.slice(0, -1);
+            //document.getElementById('entry'+key).innerHTML = document.getElementById('myinputbox').value;
+            if(key == 0){
+                document.getElementById('entry0').innerHTML = document.getElementById('myinputbox').value;
+            }
+            else{
+                document.getElementById('entry0').innerHTML += "<br/>"+document.getElementById('myinputbox').value;
+            }
+            
+            document.getElementById('myinputbox').value = "";
+            document.querySelector("input").value = ""
+            myKeyboard.clearInput();
+            lastEntry =""
+            enteredWords[str] = 1
+            //localStorage.setItem(str,1)
+            str = document.querySelector("input").value  
+            key++;
+
+            console.log("old "+ fave)
+            $("div[data-skbtn='" + fave + "']").css("background", "#FFF");
+            ran = Math.floor(Math.random() * name.length)
+            fave = name[ran].toUpperCase()
+            console.log("new "+ fave)
+            document.getElementById("faveLetter").innerHTML = '"'+fave+'"'//String.fromCharCode(65+Math.floor(Math.random() * 26))        
+            $("div[data-skbtn='" + fave + "']").css("background", "#60bd96");
+
+            //document.getElementById("likeLetterSpan").innerHTML = fave//String.fromCharCode(65+Math.floor(Math.random() * 26))
+            document.getElementById("instruction").innerHTML = "YUM";    
+            let value3 = Math.floor(Math.random() * 3);
+            switch(value3){
+                case 0:
+                    document.getElementById("instruction").innerHTML = "YUM";    
+                    break;
+                case 1:
+                    document.getElementById("instruction").innerHTML = "DELICIOUS";    
+                    break;   
+                case 2:
+                    document.getElementById("instruction").innerHTML = "TASTY";    
+                    break;                                     
+            }
+
+            $('#pet').addClass('ahashakeheartache');
+            $('#pet').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+            $('#pet').delay(200).removeClass('ahashakeheartache');
+            });              
+            if(key == keyLimit){
+                document.getElementById("instruction").innerHTML = "I'M FULL ... FOR NOW"; 
+                
+                $('#pet').addClass('animate__animated animate__fadeOutUp');
+                $( "input" ).hide();
+                //$( "#entry0" ).hide();
+                rainConfetti()
+                var audio = new Audio('yay.wav');
+                audio.play();
+                stopClock()
+                localStorage.setItem("dailyLog",d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getUTCFullYear())    
+                const t = getTimeRemaining(deadline);
+
+                if(localStorage.getItem("time0") === null){
+                    localStorage.setItem("time0", 0)
+                }   
+                if(localStorage.getItem("time1") === null){
+                    localStorage.setItem("time1", 0)
+                }
+                if(localStorage.getItem("time2") === null){
+                    localStorage.setItem("time2", 0)
+                }          
+                if(localStorage.getItem("time3") === null){
+                    localStorage.setItem("time3", 0)
+                }
+                if(localStorage.getItem("time4") === null){
+                    localStorage.setItem("time4", 0)
+                } 
+                console.log("setting time: "+"slot "+t.minutes+" "+localStorage.getItem("time"+t.minutes) )
+                localStorage.setItem("time"+t.minutes,parseInt(localStorage.getItem("time"+t.minutes) )+1)
+                //$( "div.countdown" ).hide();
+                //console.log(timeinterval)
+                //clearInterval(timeinterval);
+            }
+            else{
+                var audio = new Audio('success.wav');
+                audio.play();                
+            }
+            //document.activeElement.blur();
+            //document.getElementById("feed").click();
+            console.log("empty? "+str ) 
+           
+            //document.getElementById("myinputbox").display = "none";
+            //alert( "clicked" );
+            setTimeout(function () {
+                console.log("YAY")
+                
+                document.getElementById("instruction").innerHTML = "FEED "+monName+" <span id='wordsLeft'>"+keyLimit+"</span> WORDS"  
+                document.getElementById("wordsLeft").innerHTML = keyLimit-key ;   
+                if(key == keyLimit){
+                    document.getElementById("instruction").innerHTML = "I'M FULL ... FOR NOW"; 
+                    
+                    Swal.fire({
+                    title: 'The Day is Saved!',
+                    text: 'But the beast will return tomorrow ...',
+                    html: '<canvas id="myChart" width="200" height="200"></canvas>',
+                    showDenyButton: true,
+                    denyButtonText: 'Share',
+                    confirmButtonColor: '#3085d6',
+                    denyButtonColor: '#d33',
+                    confirmButtonText: 'Continue'
+                    }).then((result) => {
+                        if(result.isConfirmed) {
+
+                            const t = getTimeRemaining(deadline);
+                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2);  
+                            if(localStorage.getItem("shareText") === null){
+                                localStorage.setItem("shareText", document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2) )
+                                //localStorage.setItem("time"+t.minutes,parseInt(localStorage.getItem("time"+t.minutes) )+1)
+                            }   
+                            else{
+                                shareText = localStorage.getItem("shareText")// document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2);
+                            } 
+                        }
+                        if(result.isDenied) {
+                            const t = getTimeRemaining(deadline);
+                        
+                            var shareText = document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2);  
+                            
+                            if(localStorage.getItem("shareText") === null){
+                                localStorage.setItem("shareText", document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2) )
+                               // localStorage.setItem("time"+t.minutes,parseInt(localStorage.getItem("time"+t.minutes) )+1)
+                            }   
+                            else{
+                                shareText = localStorage.getItem("shareText")// document.getElementById("petType").innerHTML+" "+key+"/"+keyLimit+" @ "+('0' + t.minutes).slice(-2)+":"+('0' + t.seconds).slice(-2);
+                            }                             
+                            navigator.clipboard.writeText(shareText);
+                            Swal.fire(
+                            'Copied results to clipboard',
+                            '',
+                            'success'
+                            )
+                        }                        
+                    })   
+                    makeChart();                       
+                    //document.getElementById("feed").click();
+                    
+                }     
+                else{
+                    document.getElementById('myinputbox').focus();
+                }                          
+
+            }, 800);  
+        }  
+    }      
+
+      
+        
+      }
+      //$("button#feed").on( "click", notify );     
+      $('button#feed').hide();     
+      $("input").on( "keydown", keyBoardNotify );    
+
+    </script>
+    
+    <script>
+        $( "div.clocks" ).hide();
+        $(document).ready(function() {
+            $("div[data-skbtn='" + fave + "']").css("background", "#60bd96");
+            $("div[data-skbtn='" + hates + "']").css("background", "#E76F51");
+
+        });        
+        
+    </script>
+    <script>
+        const Keyboard = window.SimpleKeyboard.default;
+
+        const myKeyboard = new Keyboard({
+        layout: {
+            'default': [
+
+                'Q W E R T Y U I O P',
+                'A S D F G H J K L',
+                'Z X C V B N M',
+                '{enter} {bksp}'
+            ],
+            'shift': [
+                '~ ! @ # $ % ^ &amp; * ( ) _ + {bksp}',
+                '{tab} Q W E R T Y U I O P { } |',
+                '{lock} A S D F G H J K L : " {enter}',
+                '{shift} Z X C V B N M &lt; &gt; ? {shift}',
+                '.com @ {space}'
+            ]
+        },
+        display: {
+            '{bksp}': 'BACKSPACE',
+            '{enter}': 'ENTER',
+            '@': 'at'
+        },                    
+        onChange: input => onChange(input),
+        onKeyPress: button => onKeyPress(button)
+        });
+
+        function onChange(input) {
+        document.querySelector("input").value = input.toUpperCase();
+        //$("input").value = input
+        //notify(input);
+        //alert(input.length)
+        if(input.length >= 5){
+            //input = ""
+        }
+        console.log("Input changed", input[input.length-1]);
+        }
+
+        function onKeyPress(button) {
+        if(button.includes("{enter}") ){
+            notify(document.querySelector("input").value);
+        }
+        
+        console.log("Button pressed", button);
+
+        }
+        
+    </script>
+</html>

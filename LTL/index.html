@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+  <title>LTL</title>
+
+  <!-- build:css main.min.css -->
+  <link rel="stylesheet" href="css/main.css"> 
+  <link rel="stylesheet" href="css/font.css"> 
+  <!-- /build -->
+</head>
+
+<body>
+  <link rel="manifest" href="manifest.json">
+  <div id="simplewar-game" class="game"></div>
+
+  <!-- build:remove -->
+
+  <!-- /build -->
+
+  <!-- build:js main.min.js -->
+    <script src="js/lib/phaser.min.js"></script>
+    <script src="js/lib/ScreenShake.js"></script>
+    <script src="js/boot.js"></script>
+    <script src="js/preloader.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/levelSelect.js"></script>
+    <script src="js/win.js"></script>    
+    <script src="js/lose.js"></script>    
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/lib/webfont.js"></script>
+
+  <!-- /build -->
+
+</body>
+
+<script>
+    WebFontConfig = {
+      custom: {
+        families: ['Fredoka One', 'Muli', 'Berkshire Swash', 'LondrinaSolid-Black', 'monsterhunter']
+      }
+    };
+
+    WebFont.load(WebFontConfig);      
+    // Initialize Firebase
+   /* var config = {
+    apiKey: "AIzaSyDLavESdxZeNSEcFKFYVF1riDoNzR72gPU",
+    authDomain: "hedhnt.firebaseapp.com",
+    databaseURL: "https://hedhnt.firebaseio.com",
+    storageBucket: "hedhnt.appspot.com",
+    messagingSenderId: "412595932285"
+    };
+    firebase.initializeApp(config);
+    
+    
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });    
+    */
+
+</script>    
+</html>
+
