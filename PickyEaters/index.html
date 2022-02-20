@@ -38,7 +38,7 @@
             display: block;
             font-family: Helvetica;
             margin: auto;
-            width: 350px;
+            
 
         }
         #instruction{
@@ -107,9 +107,13 @@
         }    
         .simple-keyboard{
             display: block;
-            margin: auto;
-            position: sticky;            
-            top: 65%;             
+            margin-left: auto;
+            margin-right: auto;
+            position: sticky; 
+            text-align: center;           
+            top: 65%;     
+            width:100%;
+     
         }       
         input {
             -moz-box-sizing: border-box;
@@ -137,7 +141,7 @@
             font-weight: bold;
             text-align: center;
             position: absolute;      
-            width: 350px;      
+            width: 100%;    
             top: 48%;
         }   
         #letters{
@@ -326,8 +330,9 @@ function makeChart(){
     <script src="js/confetti.js"></script>     
     <script>
         //setup
+        var clockStart = false
         //const deadline = new Date(Date.parse(new Date()) + (5*60 * 1000)+(10 * 1000));
-        const deadline = new Date(Date.parse(new Date()) + (5*60 * 1000)+(10 * 1000));
+        const deadline = new Date(Date.parse(new Date()) + (5*60 * 1000));
         var d = new Date();
         //localStorage.setItem("dailyLog",d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getUTCFullYear())    
         var today = d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getUTCFullYear()
@@ -417,7 +422,7 @@ function makeChart(){
         
         var enteredWords = [];
         //check version
-        var version = "0.0.6"
+        var version = "0.0.7"
         if(localStorage.getItem("version") === null){
             localStorage.clear();
             //set version
@@ -450,8 +455,8 @@ function makeChart(){
                     confirmButtonText: 'Continue'
                     }).then((result) => {
                     if (result.isConfirmed) {
+                        //alert("!")
                         
-                        initializeClock('clockdiv', deadline);
                     }
                 })
             }
@@ -606,7 +611,7 @@ function makeChart(){
         const clock = document.getElementById('clockdiv');
         const minutesSpan = clock.querySelector('.minutes');
         const secondsSpan = clock.querySelector('.seconds');        
-        minutesSpan.innerHTML = '00'
+        minutesSpan.innerHTML = '05'
         secondsSpan.innerHTML = '00'
 
         
@@ -618,6 +623,10 @@ function makeChart(){
     }
 
     function notify(e) {
+        if(!clockStart){
+            initializeClock('clockdiv', deadline);
+            clockStart = true;
+        }
         //var keyCode = e.currentTarget.value.charCodeAt(5)    
         //console.log(e.currentTarget.value)
         
