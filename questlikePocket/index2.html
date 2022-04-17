@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Questlike: Pocket</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+
+      
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      /* Customize Modal */
+      .modal-dialog {
+        background: transparent;
+        border-radius: 1rem;
+        .modal-content {
+          /* From https://css.glass */
+          background: rgba(0, 51, 102, 0.8);
+          border-radius: 1rem;
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          backdrop-filter: blur(6px) saturate(180%);
+          -webkit-backdrop-filter: blur(6px) saturate(180%);
+          border: 1px solid rgba(0, 51, 102, 0.8);
+          .modal-header {
+            background: transparent;
+            border: none;
+            .modal-title {
+              color: #fafafa;
+            }
+          }
+          .modal-body {
+            color: #fafafa;
+          }
+          .modal-footer {
+            background: transparent;
+            border: none;
+          }
+        }
+      }
+
+    </style>
+
+  </head>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="lib/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="lib/firebase-analytics.js"></script>
+  <script src="lib/firebase-auth.js"></script>
+  <script src="lib/firebase-database.js"></script>
+
+  <script>
+
+     //this.game.state.start('warden')    
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDx5EOUQe4XuN1UDOxqBXxIB7xaRgPYWf0",
+      authDomain: "questlike-pocket.firebaseapp.com",
+      databaseURL: "https://questlike-pocket.firebaseio.com",
+      projectId: "questlike-pocket",
+      storageBucket: "questlike-pocket.appspot.com",
+      messagingSenderId: "829763116897",
+      appId: "1:829763116897:web:4283af40b2a9777d15af20",
+      measurementId: "G-PYFE1Q1ZM9"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>  
+  <script>
+    //console.log(localStorage.getItem('state'))
+     localStorage.setItem('state','hub')
+     //console.log(localStorage.getItem('state'))    
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+    var map;
+    var service;
+    var infowindow;
+    var placeID;
+    var lat,long;
+    var jamaica;
+    var icons;
+    function success(pos) {
+      
+      var crd = pos.coords;
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      //geolocation failover
+      alert("Welcome to Questlike:Pocket!\nIt's seems that we cannot load the world map!\nPlease ensure that GPS is enabled.\nFor now let's direct you to the closest known location.");      
+      console.log(err)
+      localStorage.setItem("newPlace",0)
+      localStorage.setItem("biome",0)
+      localStorage.setItem("wweatherChIJK0D8P-g_244RERwqm47m90A","Clouds");
+      localStorage.setItem("weatherIconChIJK0D8P-g_244RERwqm47m90A","02d");
+      
+      //
+      localStorage.setItem("placeID","ChIJK0D8P-g_244RERwqm47m90A")
+      localStorage.setItem("placeName","Bully Full Pon Plate")      
+      window.location.href = "index3.html" 
+
+    } 
+    navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:500, enableHighAccuracy:true});
+    function initMap() {
+      
+                                                                               
+      ///navigator.geolocation
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+          lat = position.coords.latitude;
+          long = position.coords.longitude;
+          var jamaica = new google.maps.LatLng(lat, long);
+
+          infowindow = new google.maps.InfoWindow();
+            var mapOptions = {
+                // The latitude and longitude to center the map (always required)
+                center: jamaica,
+                // How zoomed in you want the map to start at (always required)
+                zoom: 16,
+                disableDefaultUI: true, // a way to quickly hide all controls     
+                mapTypeControl: false,
+                // How you would like to style the map. 
+                // This is where you would paste any style found on Snazzy Maps.
+                styles: 
+                [
+                    {
+                        "featureType": "all",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#ff7000"
+                            },
+                            {
+                                "lightness": "69"
+                            },
+                            {
+                                "saturation": "100"
+                            },
+                            {
+                                "weight": "1.17"
+                            },
+                            {
+                                "gamma": "2.04"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#cb8536"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "color": "#ffb471"
+                            },
+                            {
+                                "lightness": "66"
+                            },
+                            {
+                                "saturation": "100"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "gamma": 0.01
+                            },
+                            {
+                                "lightness": 20
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "saturation": -31
+                            },
+                            {
+                                "lightness": -33
+                            },
+                            {
+                                "weight": 2
+                            },
+                            {
+                                "gamma": 0.8
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.icon",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "lightness": "-8"
+                            },
+                            {
+                                "gamma": "0.98"
+                            },
+                            {
+                                "weight": "2.45"
+                            },
+                            {
+                                "saturation": "26"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "lightness": 30
+                            },
+                            {
+                                "saturation": 30
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "saturation": 20
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "lightness": 20
+                            },
+                            {
+                                "saturation": -20
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "lightness": 10
+                            },
+                            {
+                                "saturation": -30
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "saturation": 25
+                            },
+                            {
+                                "lightness": 25
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "lightness": -20
+                            },
+                            {
+                                "color": "#ecc080"
+                            }
+                        ]
+                    }
+                ]
+            };
+          var mapElement = document.getElementById('map');
+          map = new google.maps.Map( mapElement , mapOptions);            
+          var request = {
+            location: jamaica,
+            rankBy: google.maps.places.RankBy.DISTANCE,
+            type: 'restaurant'
+          };
+
+
+
+          service = new google.maps.places.PlacesService(map);
+
+          service.nearbySearch(request, function(results, status) {
+            var length =100;
+            console.log(status)
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              console.log("checking ...")
+              for (var i = 0; i < length; i++) {
+                createMarker(results[i]);
+                
+                map.panTo(results[i].geometry.location);   
+                //var loc = new google.maps.LatLng(results[i].position.lat(), results[i].position.lng()); 
+
+                //map.setCenter(results[i].geometry.location);
+              }
+              
+              var middle = length/2;
+              //console.log(results[0].geometry.location)
+                           
+              //placeID = results[i].place_id;
+
+
+              var request2 = {
+                placeId: results[i].place_id,
+                fields: ['name', 'formatted_address', 'place_id', 'geometry']
+              }; 
+              service.getDetails(request2, function(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                  //console.log(results)
+                  for (var k = 0; k < results.length; k++) {
+                    console.log(results[k])
+                  }
+                }            
+              });            
+            }
+          });
+        });
+      }
+      else{
+        //console.log("refresh")
+        window.location.href = "index3.html"          
+      }
+    }
+    function createMarker(place) {
+          var icons = {
+            grasslands: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_grassland.png'
+            },
+            cave: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_cavern.png'
+            },
+            mountain: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_mountain.png'
+            },
+            grasslands_noVisit: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_grassland_noVisit.png'
+            },
+            cave_noVisit: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_cavern_noVisit.png'
+            },
+            mountain_noVisit: {
+              icon: 'assets/map/icons_standard_diamond_both-colored_big_mountain_noVisit.png'
+            }            
+          };
+
+      //console.log(icons['grasslands']);
+      var random = 0
+      
+      //check in database if location is present
+      try{
+        //console.log("work nuh")
+        //write userID
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy
+        firebase.database().ref('player/' +localStorage.getItem("userID")).update({
+          lastLogin: today
+        });  
+        
+        random = firebase.database().ref('places/' + place.place_id).once('value').then(function(snapshot) {
+          if(snapshot.val() == null || typeof(snapshot) == "undefined"){
+            random = Math.floor(Math.random() * 3);
+            firebase.database().ref('places/' +place.place_id).set({
+              biome: random
+            }); 
+           
+            //firebase.database().ref('player/' + localStorage.getItem("userID")).set({
+              //lastLogin: new Date()
+            //});             
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands_noVisit'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave_noVisit'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain_noVisit'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
+
+            marker.place = place;
+            marker.biome = random;
+
+
+
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
+
+            google.maps.event.addListener(marker, 'click', function() {
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }   
+              //console.log(marker.biome)
+              localStorage.setItem("biome",random)
+              //localStorage.setItem("state","warden")
+              localStorage.setItem("placeID",marker.place.place_id)
+              localStorage.setItem("placeName",marker.place.name)
+              //var currentClick = new Date();
+              //localStorage.setItem("lastClicked",currentClick)
+              if (localStorage.getItem("place"+marker.place.place_id) === null) {
+                localStorage.setItem("place"+marker.place.place_id,1)
+                //localStorage.setItem("newPlace",1)
+                //alert("new place!")
+              }
+              else{
+                //localStorage.setItem("newPlace",0)
+                // alert("place"+marker.place.place_id)
+              }
+              //window.location.href = "index3.html";
+              //console.log(marker.place);
+            });         
+          }
+          else{
+            console.log("Location Found")
+    
+            
+            
+            random = parseInt(snapshot.val().biome);
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
+
+            marker.place = place;
+
+            if (localStorage.getItem("place"+marker.place.place_id) === null) {
+              //localStorage.setItem("place"+marker.place.place_id,1)
+              //localStorage.setItem("newPlace",1)
+              console.log("new place!")
+              switch(random){
+                     case 0:
+                      biome  = icons['grasslands_noVisit'].icon;
+                     break;
+                     case 1:
+                      biome  = icons['cave_noVisit'].icon;
+                     break;
+                     case 2:
+                      biome  = icons['mountain_noVisit'].icon;
+                     break;               
+              }              
+              marker.icon.url = biome
+
+            }
+            else{
+              //localStorage.setItem("newPlace",0)
+               //alert("place"+marker.place.place_id)
+            }               
+
+
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
+
+            google.maps.event.addListener(marker, 'click', function() {
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }  
+              
+              if (localStorage.getItem("place"+marker.place.place_id) === null) {
+                localStorage.setItem("place"+marker.place.place_id,1)
+                localStorage.setItem("newPlace",1)
+
+              }  
+              else{
+                localStorage.setItem("newPlace",0)
+              }              
+              
+            
+              
+              var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat="+marker.place.geometry.location.lat()+"&lon="+marker.place.geometry.location.lng()+"&appid=5fcd044a0d8fe8941b4a3b00fbd1098e"
+              var obj;
+              
+              fetch(weatherURL)
+                .then(res => res.json())
+                .then(data => obj = data)
+                .then(
+                  function(obj) {
+                    localStorage.setItem("weather"+marker.place.place_id,obj.weather[0].main);
+                    localStorage.setItem("weatherIcon"+marker.place.place_id,obj.weather[0].icon);
+                    localStorage.setItem("biome",random)
+                    //localStorage.setItem("state","warden")
+                    localStorage.setItem("placeID",marker.place.place_id)
+                    localStorage.setItem("placeName",marker.place.name)
+                    //var currentClick = new Date();
+                    //localStorage.setItem("lastClicked",currentClick)
+                    if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                      //localStorage.setItem("TixCount"+marker.place.place_id,5)
+                    }      
+
+                    playSound();
+                    //console.log(localStorage.getItem("weatherIcon"+marker.place.place_id))
+                    //setTimeout(window.location.href = "index3.html", 10000)
+                    ;                    
+                  }
+                )
+
+            });          
+
+          }
+        });    
+      }
+      catch(err){
+            //console.log("Location Found")
+            random = Math.floor(Math.random() * 3);
+            var biome ="";
+            // biome set
+            switch(random){
+                   case 0:
+                    biome  = icons['grasslands'].icon;
+                   break;
+                   case 1:
+                    biome  = icons['cave'].icon;
+                   break;
+                   case 2:
+                    biome  = icons['mountain'].icon;
+                   break;               
+            }
+            var marker = new google.maps.Marker({
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: { url: biome, scaledSize: new google.maps.Size(75, 75)},
+              position: place.geometry.location
+            });
+
+            marker.place = place;
+
+
+
+
+            //firebase.database().ref('places/' +place.place_id).set({
+              //biome: marker.biome
+            //});    
+
+            google.maps.event.addListener(marker, 'click', function() {
+              
+              //infowindow.setContent(place.name);
+              //infowindow.open(map, this);
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+              }   
+              var weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat="+marker.place.geometry.location.lat()+"&lon="+marker.place.geometry.location.lng()+"&appid=5fcd044a0d8fe8941b4a3b00fbd1098e"
+              var obj;
+              
+              fetch(weatherURL)
+                .then(res => res.json())
+                .then(data => obj = data)
+                .then(
+                  function(obj) {
+                    localStorage.setItem("weather"+marker.place.place_id,obj.weather[0].main);
+                    localStorage.setItem("weatherIcon"+marker.place.place_id,obj.weather[0].icon);
+                    localStorage.setItem("biome",random)
+                    //localStorage.setItem("state","warden")
+                    localStorage.setItem("placeID",marker.place.place_id)
+                    localStorage.setItem("placeName",marker.place.name)
+                    //var currentClick = new Date();
+                    //localStorage.setItem("lastClicked",currentClick)
+                    if (localStorage.getItem("TixCount"+marker.place.place_id) === null) {
+                      localStorage.setItem("TixCount"+marker.place.place_id,5)
+                    }          
+                    //window.location.href = "index3.html";                    
+                  }
+                )
+            });          
+      }
+
+
+
+
+    }
+    function showPosition(position) {
+
+
+      return jamaica;
+    }
+  function playSound() {
+    //alert("!")
+    try{
+    var audio = new Audio('assets/audio/ping.ogg');
+    audio.addEventListener("ended", function(){
+         audio.currentTime = 0;
+         console.log("ended");
+         window.location.href = "index3.html"  
+    });    
+    audio.play();
+    }
+    catch(err){
+      window.location.href = "index3.html" 
+    }
+    //setTimeout(, 10000)
+  }    
+  if (localStorage.getItem("firstVisit-Index2") === null ) {
+      localStorage.setItem("firstVisit-Index2",1);
+      setTimeout(function () {
+          alert("Welcome to Questlike:Pocket!\nEach Tile represents a hub for you to interact with.\nTap on a Tile to enter that location's hub.");
+      }, 4000);    
+
+      
+
+  }     
+      var vid = document.getElementById("musicBG");
+      vid.volume = 0.1;       
+  </script>  
+  <body>
+    <audio autoplay="" loop="" preload=""  id="musicBG">
+      <source src="assets/audio/map-Dark Fantasy Studio- Immortals (seamless).wav" type="audio/mpeg"></source>
+      Your browser does not support the audio element.
+    </audio>    
+    <div id="map"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_ixRi-ia7rE13OLPVXDanaBi4s8SDo7w&libraries=places&callback=initMap" ></script>
+  </body>
+  <div class="modal fade" id="modalExample1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-md-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalHeader">Gotcha!</h4>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo suscipit consequuntur impedit quidem explicabo ad error. Ut hic iure eum pariatur consectetur repudiandae reprehenderit fuga ullam quo. Optio, aut animi.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="https://reezhdesign.com" class="btn rounded-pill btn-outline-light">
+            <span>ReeZh Design</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>  
+</html>

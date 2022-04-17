@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<!--
+	Story by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html>
+	<head>
+		<title>Spritewrench: Merch & Rewards</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/cust.css" />
+		<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+		<link href="assets/css/brands.css" rel="stylesheet">
+		<link href="assets/css/solid.css" rel="stylesheet">				
+		<link rel="Shortcut Icon" href="images/favicon.ico">
+		<script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+		<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- One -->
+					<section class="wrapper style1 align-center wild">
+						<div class="inner">
+                            <a href="http://www.spritewrench.com"><img src="images/logo.png" width="150px"/></a>
+							<h2 class="bold">Spritewrench - Merch & Rewards</h2>
+							<p class="bold">
+								Your Accomplishments, Your Rewards
+								<br/>
+								Earn exclusive rewards that set you apart, both in game and in the real world.
+								<div id="firebaseui-auth-container"></div>
+								<div class="bold" id="loader">Loading...</div>							
+
+							</p>
+						</div>
+					</section>
+					<section class="wrapper style1 align-center info">
+						<div class="inner">
+							<div class="items style1 medium ">
+								<section>
+									<i class="fa-solid fa-gamepad"></i>
+									<h3>Play </h3>
+									<p> Connect the platform you play Spritewrench games on</p>
+								</section>
+								<section>
+									<i class="fa-solid fa-crown"></i>
+									<h3>Earn</h3>
+									<p>Complete triumphs, collections and in-game challenges</p>
+								</section>
+								<section>
+									<i class="fa-solid fa-gift"></i>
+									<h3>Reward</h3>
+									<p>Unlock free digital rewards and trophies for purchase</p>
+								</section>
+						
+							</div>
+						</div>
+					</section>                
+                
+					<section class="spotlight style1 orient-left content-align-left image-position-center ">
+						<div class="content">
+							<h2>Line Work - $30 USD</h2>
+							<h4>Detailed line sketch without shading.</h4>
+							
+							Includes:
+							<ul class="actions vertical">
+								<li>Number of 'Check Ins': One(1)</li>
+								<li>Number of Major Revision(s) (such as different pose, etc): One(1)</li>
+								<li>Number of Minor Revision(s) (such as adjustment of hair length,etc): unlimited</li>
+								<li>Expected Turn Around Time: 3 Days (Given timely feedback)</li>
+								<li>Payment Plan: 100% up front</li>
+								
+							</ul>
+						</div>
+						<div class="image">
+							<img src="images/old Mag-Lines.png" alt="" />
+						</div>
+					</section>
+
+				<!-- Two -->
+					<section class="spotlight style1 orient-right content-align-left image-position-center" >
+						<div class="content">
+							<h2>Lines & Flat Colors - $60 USD</h2>
+							<h4>Detailed line sketch with flat color.</h4>
+							
+							Includes:
+							<ul class="actions vertical">
+								<li>Number of 'Check Ins': Two(2)</li>
+								<li>Number of Major Revision(s) (such as different pose, etc): One(1)</li>
+								<li>Number of Minor Revision(s) (such as adjustment of hair length,etc): unlimited</li>
+								<li>Expected Turn Around Time: 5 Days (Given timely feedback)</li>
+								<li>Payment Plan: 50% deposit. 50% on completion</li>
+							</ul>
+						</div>
+						<div class="image">
+							<img src="images/old Mag-Flat.png" alt="" />
+						</div>
+					</section>
+
+				<!-- Three -->
+					<section class="spotlight style1 orient-left content-align-left image-position-center ">
+						<div class="content">
+							<h2>Full Digital Painting - $120 USD</h2>
+							<h4>Full Digital Painting.</h4>
+							
+							Includes:
+							<ul class="actions vertical">
+								<li>Number of 'Check Ins': Two(2)</li>
+								<li>Number of Major Revision(s) (such as different pose, etc): One(1)</li>
+								<li>Number of Minor Revision(s) (such as adjustment of hair length,etc): unlimited</li>
+								<li>Expected Turn Around Time: 7 Days (Given timely feedback)</li>
+								<li>Payment Plan: 50% deposit. 50% on completion</li>
+								
+							</ul>
+						</div>
+						<div class="image">
+							<img src="images/old Mag-Shade.png" alt="" />
+						</div>
+					</section>
+
+
+
+				<!-- Six -->
+
+				<!-- Seven -->
+					<section class="wrapper style1 align-center">
+						<div class="inner medium">
+							<h2>Get in touch</h2>
+							<form action="https://formspree.io/ghenry@spritewrench.com" method="POST">
+								<div class="field half first">
+									<label for="name">Name</label>
+									<input type="text" name="name" id="name" value="" />
+								</div>
+								<div class="field half">
+									<label for="email">Email</label>
+									<input type="email" name="_replyto" id="email" value="" />
+								</div>
+								<div class="field">
+									<label for="message">Message</label>
+									<textarea name="message" id="message" rows="6"></textarea>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" name="submit" id="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer class="wrapper style1 align-center">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="https://twitter.com/SpriteWrench" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.instagram.com/spritewrench/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+							</ul>
+							<p>&copy; Glen Henry 2021</p>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-96353514-1', 'auto');
+			  ga('send', 'pageview');
+
+			</script>
+			<script src="lib/firebase-app.js"></script>
+			  <!-- TODO: Add SDKs for Firebase products that you want to usehttps://firebase.google.com/docs/web/setup#available-libraries -->
+  			<script src="lib/firebase-analytics.js"></script>
+  			<script src="lib/firebase-auth.js"></script>
+  			<script src="lib/firebase-database.js"></script>
+
+			<script>
+
+     //this.game.state.start('warden')    
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDx5EOUQe4XuN1UDOxqBXxIB7xaRgPYWf0",
+      authDomain: "questlike-pocket.firebaseapp.com",
+      databaseURL: "https://questlike-pocket.firebaseio.com",
+      projectId: "questlike-pocket",
+      storageBucket: "questlike-pocket.appspot.com",
+      messagingSenderId: "829763116897",
+      appId: "1:829763116897:web:4283af40b2a9777d15af20",
+      measurementId: "G-PYFE1Q1ZM9"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+				function signIn() {
+					// Using a popup.
+					var provider = new firebase.auth.GoogleAuthProvider();
+					provider.addScope('profile');
+					provider.addScope('email');
+					firebase.auth().signInWithPopup(provider).then(function(result) {
+					// This gives you a Google Access Token.
+					var token = result.credential.accessToken;
+					// The signed-in user info.
+					var user = result.user;
+					localStorage.setItem("userID",result.user.uid)
+					});		
+
+				}
+				function fireSync(){
+					if( localStorage.getItem("userID") === null || localStorage.getItem("userID").length <= 0){
+						alert("No UserID")
+					}
+					else{
+						//this.hubrankBadgeTapCount =0;
+						console.log(localStorage.getItem("userID"))
+						var querySync = firebase.database().ref('player/' +localStorage.getItem("userID")+"/localData");
+
+						querySync.once("value", function(snapshot) {
+						//alert("start sync")
+
+						snapshot.forEach(function(childSnapshot) {
+
+							var key = childSnapshot.key;
+							var childData = childSnapshot.val();      
+							console.log("overwriting "+key+" to "+childData)
+							localStorage.setItem(key,childSnapshot.val());
+
+
+						});
+						}, function(error) {
+						console.error(error);
+						});     
+						//console.log("Sync Complete")
+						//alert("Your local data has been synced with the Database snapshot")
+					}     
+
+   				}			
+			</script>
+								<script>
+									// Initialize the FirebaseUI Widget using Firebase.
+									var ui = new firebaseui.auth.AuthUI(firebase.auth());		
+	
+									
+									var uiConfig = {
+									callbacks: {
+										signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+										localStorage.setItem("userID",authResult.user.uid)
+										//alert(authResult.user)
+										//alert(authResult.user.displayName)
+										localStorage.setItem("userName",authResult.user.displayName)
+										
+										// User successfully signed in.
+										// Return type determines whether we continue the redirect automatically
+										// or whether we leave that to developer to handle.
+										
+										return true;
+										},
+										uiShown: function() {
+										// The widget is rendered.
+										// Hide the loader.
+										document.getElementById('loader').style.display = 'none';
+										}
+									},
+									// Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+									signInFlow: 'popup',
+									signInSuccessUrl: 'index.html',
+									signInOptions: [
+										// Leave the lines as is for the providers you want to offer your users.
+										firebase.auth.GoogleAuthProvider.PROVIDER_ID
+									],
+									// Terms of service url.
+									tosUrl: '<your-tos-url>',
+									// Privacy policy url.
+									privacyPolicyUrl: '<your-privacy-policy-url>'
+									};	
+
+									if( localStorage.getItem("userID") === null || localStorage.getItem("userID").length <= 0){
+										ui.start('#firebaseui-auth-container', uiConfig);	
+										
+									}
+									else{
+										document.getElementById('firebaseui-auth-container').style.display = 'none';
+										document.getElementById('loader').innerHTML = 'Welcome, '+localStorage.getItem("userName");
+										fireSync();
+									}
+																
+								</script>		
+	</body>
+</html>

@@ -1,0 +1,394 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- chheck this out -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * gap://ready data: 'unsafe-eval'; img-src * data: gap://ready; frame-src *; connect-src * ; style-src * 'self' 'unsafe-inline' 'unsafe-eval'; media-src *; script-src * data: 'self' 'unsafe-inline' 'unsafe-eval' gap://ready; ">
+  <title>QuestLike: Pocket</title>
+  <style>
+    /* Optional: Makes the sample page fill the window. */
+    canvas {
+      image-rendering: -webkit-optimize-contrast;
+    }
+  </style>  
+  <!-- GameAnalytics -->
+  <script src="js/config.js"></script>
+  <script>
+  function setDPI(dpi) {
+      var canvas =  document.getElementsByTagName("canvas")[0];
+      // Set up CSS size.
+      canvas.style.width = canvas.style.width || canvas.width + 'px';
+      canvas.style.height = canvas.style.height || canvas.height + 'px';
+
+      // Get size information.
+      var scaleFactor = dpi / 96;
+      var width = parseFloat(canvas.style.width);
+      var height = parseFloat(canvas.style.height);
+
+      // Backup the canvas contents.
+      var oldScale = canvas.width / width;
+      var backupScale = scaleFactor / oldScale;
+      var backup = canvas.cloneNode(false);
+      backup.getContext('2d').drawImage(canvas, 0, 0);
+
+      // Resize the canvas.
+      var ctx = canvas.getContext('2d');
+      canvas.width = Math.ceil(width * scaleFactor);
+      canvas.height = Math.ceil(height * scaleFactor);
+      
+      // Redraw the canvas image and scale future draws.
+      ctx.setTransform(backupScale, 0, 0, backupScale, 0, 0);
+      ctx.drawImage(backup, 0, 0);
+      ctx.setTransform(scaleFactor, 0, 0, scaleFactor, 0, 0);
+      //alert("DPR");
+      console.log("DPI set to "+dpi)
+  }  
+
+
+  
+  </script>
+
+  <!-- build:css main.min.css -->
+</head>
+ 
+  <link rel="stylesheet" href="css/main.css"> 
+  <link rel="stylesheet" href="css/font.css"> 
+  <link rel="stylesheet" href="realMedia/style.css"> 
+  <link rel="stylesheet" href="realMedia/main-theme.css">   
+  <!-- /build -->
+</head>
+
+<body>
+  
+  <div id="simplewar-game" class="game"></div>
+
+  <!-- build:remove -->
+
+  <!-- /build -->
+
+  <!-- build:js main.min.js -->
+    <script src="js/lib/phaser.min.js"></script>
+    <script src="js/lib/ScreenShake.js"></script>
+    <script src="js/lib/phaser-kinetic-scrolling-plugin.js"></script>
+    <script src="js/lib/SoundAnalyse.js"></script>
+    <script src="js/lib/ntc.js"></script>
+    <script src="js/boot.js"></script>
+    <script src="js/preloader.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/win.js"></script>    
+    <script src="js/lose.js"></script>    
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/choose.js"></script>
+    <script src="js/warden.js"></script>
+    <script src="js/faction.js"></script>
+    <script src="js/craft.js"></script>
+    <script src="js/rank.js"></script>
+    <script src="js/credit.js"></script>
+    <script src="js/skill.js"></script>  
+    <script src="js/monSkill.js"></script>     
+    <script src="js/monster.js"></script>
+    <script src="js/monsterReward.js"></script>
+    <script src="js/hub.js"></script>
+    <script src="js/archive.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/encounter.js"></script>
+    <script src="js/weapon.js"></script>
+    <script src="js/npcReward.js"></script>
+    <script src="js/tixDiscount.js"></script>
+    <script src="js/dailyWeather.js"></script>
+    <script src="js/guildBoard.js"></script>
+    <script src="js/leaderboard.js"></script>
+    <script src="js/titles.js"></script>
+    <script src="js/lib/control.js"></script>
+    <script src="js/lib/webfont.js"></script>
+    <script src="js/lib/jsLogger.js"></script>
+    <script src="js/lib/glow.js"></script>
+
+    <script src="realMedia/zone.min.js"></script>
+
+  <!-- /build -->
+    <my-ads id="ads"></my-ads>
+</body>
+
+<script>
+    //disable console.log
+    
+    console.debug(gameConfig.consoleOn);
+
+    //console.log("Debug not working")
+
+    //console.log("where we going? index3  "+localStorage.getItem('state'))
+    //localStorage.setItem('state','menu')
+    WebFontConfig = {
+      custom: {
+        families: ['Fredoka One', 'Muli', 'Berkshire Swash', 'LondrinaSolid-Black', 'monsterhunter']
+      }
+    };
+
+    WebFont.load(WebFontConfig);    
+    
+  
+
+
+//check if online
+if(!navigator.onLine) { // true|false
+	localStorage.setItem("online",1) 
+}    
+  
+localStorage.setItem("hunterHP",3);
+
+localStorage.setItem('hasSlashed',0);
+localStorage.setItem('hasStabbed',0);
+localStorage.setItem('hasBashed',0);  
+
+if (localStorage.getItem("equip0") === null) {
+  localStorage.setItem("equip0",1)
+}    
+if (localStorage.getItem("equip1") === null) {
+  localStorage.setItem("equip1",200)
+}    
+if (localStorage.getItem("equip2") === null) {
+  localStorage.setItem("equip2",1000)
+} 
+localStorage.setItem("equip2",1000)
+if (localStorage.getItem("hasLost") === null) {
+  localStorage.setItem("hasLost",0)
+} 
+
+if (localStorage.getItem("hunterRank") === null) {
+  localStorage.setItem("hunterRank",0)
+}  
+if (localStorage.getItem("currentRank") === null) {
+  localStorage.setItem("currentRank",1)
+}   
+if (localStorage.getItem("exp") === null) {
+  localStorage.setItem("exp",0)
+}   
+if (localStorage.getItem("prevexp") === null) {
+  localStorage.setItem("prevexp",0)
+}   
+
+if (localStorage.getItem("ExpTotal") === null) {
+  localStorage.setItem("ExpTotal",0)
+}   
+if (localStorage.getItem("TixCount-1") === null) {
+  localStorage.setItem("TixCount-1",0)
+} 
+if (localStorage.getItem("TixCount0") === null) {
+  localStorage.setItem("TixCount0",0)
+} 
+  
+if (localStorage.getItem("TixCount1") === null) {
+  localStorage.setItem("TixCount1",0)
+} 
+  
+if (localStorage.getItem("TixCount2") === null) {
+  localStorage.setItem("TixCount2",0)
+} 
+  
+if (localStorage.getItem("playerTitle") === null) {
+  localStorage.setItem("playerTitle","HUNTER")
+  localStorage.setItem("HUNTER unlocked",1)
+} 
+  
+if (localStorage.getItem("dailyPurchase") === null) {
+  //localStorage.setItem("playerTitle","HUNTER")
+  localStorage.setItem("dailyPurchase",3)
+}   
+    
+if (localStorage.getItem("huntingTip") === null) {
+  localStorage.setItem("huntingTip",0)
+}  
+
+
+if (localStorage.getItem("hunterHP") === null) {
+  localStorage.setItem("hunterHP",3)
+}  
+  
+if (localStorage.getItem("uncommonUnlock") === null) {
+  localStorage.setItem("uncommonUnlock",0)
+}     
+if (localStorage.getItem("uncommonUnlock-first") === null) {
+  localStorage.setItem("uncommonUnlock-first",0)
+}       
+ 
+if (localStorage.getItem("rareUnlock") === null) {
+  localStorage.setItem("rareUnlock",0)
+}
+if (localStorage.getItem("rareUnlock-first") === null) {
+  localStorage.setItem("rareUnlock-first",0)
+}
+  
+if (localStorage.getItem("surgeUnlock") === null) {
+  localStorage.setItem("surgeUnlock",0)
+}   
+if (localStorage.getItem("mutantUnlock") === null) {
+  localStorage.setItem("mutantUnlock",1)
+}
+if (localStorage.getItem("mutantUnlock-first") === null) {
+  localStorage.setItem("mutantUnlock-first",1)
+}  
+if (localStorage.getItem("legendHuntUnlock") === null) {
+  localStorage.setItem("legendHuntUnlock",0)
+}     
+if (localStorage.getItem("legendUnlock-first") === null) {
+  localStorage.setItem("legendUnlock-first",0)
+} 
+  
+
+if (localStorage.getItem("veteranRank") === null) {
+  localStorage.setItem("veteranRank",0)
+}     
+  
+if (localStorage.getItem("veteranPoints") === null) {
+  localStorage.setItem("veteranPoints",0)
+}     
+  
+if (localStorage.getItem("monCount") === null) {
+  localStorage.setItem("monCount",0)
+}     
+
+if(localStorage.getItem("giftCount0") == null){
+  localStorage.setItem("giftCount0",0)
+}
+if(localStorage.getItem("giftCountComplete0") == null){
+  localStorage.setItem("giftCountComplete0",0)
+} 
+if(localStorage.getItem("giftCount1") == null){
+  localStorage.setItem("giftCount1",0)
+}
+if(localStorage.getItem("giftCountComplete1") == null){
+  localStorage.setItem("giftCountComplete1",0)
+} 
+if(localStorage.getItem("giftCount2") == null){
+  localStorage.setItem("giftCount2",0)
+}
+if(localStorage.getItem("giftCountComplete2") == null){
+  localStorage.setItem("giftCountComplete2",0)
+} 
+
+if(localStorage.getItem("huntFly0 Count") == null){
+  localStorage.setItem("huntFly0 Count",0)
+}
+if(localStorage.getItem("huntFly1 Count") == null){
+  localStorage.setItem("huntFly1 Count",0)
+}
+if(localStorage.getItem("huntFly2 Count") == null){
+  localStorage.setItem("huntFly2 Count",0)
+}
+
+if(localStorage.getItem("titlesBought") == null){
+  
+localStorage.setItem("titlesBought", 0 ) 
+}
+
+if(localStorage.getItem("huntNum") == null){
+  
+  localStorage.setItem("huntNum", 0 ) 
+}
+
+if(localStorage.getItem("potUsed") == null){
+  
+  localStorage.setItem("potUsed", 100 ) 
+}
+
+if(localStorage.getItem("blueprintCount") == null){
+  
+  localStorage.setItem("blueprintCount", 0 ) 
+}
+
+
+if(localStorage.getItem("blueprintCount0") == null){
+  
+  localStorage.setItem("blueprintCount0", 0 ) 
+}
+if(localStorage.getItem("blueprintCount1") == null){
+  
+  localStorage.setItem("blueprintCount1", 0 ) 
+}
+if(localStorage.getItem("blueprintCount2") == null){
+  
+  localStorage.setItem("blueprintCount2", 0 ) 
+}
+if(localStorage.getItem("blueprintCount3") == null){
+  
+  localStorage.setItem("blueprintCount3", 0 ) 
+}
+
+
+if(localStorage.getItem("Yellow Dragon Gem Count") == null){
+  
+  localStorage.setItem("Yellow Dragon Gem Count",0)
+}
+if(localStorage.getItem("Blue Dragon Gem Count") == null){
+  
+  localStorage.setItem("Blue Dragon Gem Count",0)
+}
+if(localStorage.getItem("Red Dragon Gem Count") == null){
+  
+  localStorage.setItem("Red Dragon Gem Count",0)
+}
+if(localStorage.getItem("Prismatic Gem Count") == null){
+  
+  localStorage.setItem("Prismatic Gem Count",0)
+}
+
+if(localStorage.getItem("shards") == null){
+  
+  localStorage.setItem("shards",0)
+}
+
+localStorage.setItem("wep1Craftable",1)
+localStorage.setItem("wep2Craftable",1)
+localStorage.setItem("wep3Craftable",1) 
+
+localStorage.setItem("1-isNew",1)
+localStorage.setItem("2-isNew",1)
+localStorage.setItem("3-isNew",1)
+
+localStorage.setItem("adReady",0)
+  
+  //GPS removal pivot
+  localStorage.setItem("newPlace",0)
+  localStorage.setItem("biome",0)
+
+    //localStorage.setItem("equip0",1)
+    localStorage.setItem("crafted1",1)
+    //localStorage.setItem("equip1",200)
+    localStorage.setItem("crafted2",1)
+    //localStorage.setItem("equip2",100)
+    localStorage.setItem("crafted3",1)
+    localStorage.setItem("revengeHunt",0)
+    localStorage.setItem("revengeHuntSize",1)
+    localStorage.setItem("newPlace",0)
+    localStorage.setItem("biome",0)    
+    
+
+   //window.onunload beforeunload
+    window.addEventListener('onunload', function(event) {
+      alert("Are you sure")
+      //console.log(`do something with the event:`, event);
+      // most recommended is to emit socket like this (just for example):
+      // socket.emit("exit-app", {access_token});
+      });   
+</script> 
+<script src='cordova.js'></script>
+<script src='js/index.js'></script>
+<script src="js/lib/foveaIAP.js"></script>
+<script src="js/SocialSharing.js"></script>
+<script>
+
+
+
+</script>
+<!--
+<script src="realMedia/my-badge.js"></script>
+<script src="realMedia/my-ads.js"></script>
+<script src="realMedia/my-input.js"></script>
+<script src="realMedia/my-button.js"></script>
+<script src="realMedia/main.js"></script>
+-->
+</html>
+

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Questlike: Pocket</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link  rel="stylesheet" href="css/all.min.css">
+    <style>
+      .fa-bounce {
+          display: inline-block;
+          position: relative;
+          -moz-animation: bounce 1s infinite linear;
+          -o-animation: bounce 1s infinite linear;
+          -webkit-animation: bounce 1s infinite linear;
+          animation: bounce 1s infinite linear;
+      }
+
+      @-webkit-keyframes bounce {
+          0% { top: 0; }
+          50% { top: -0.2em; }
+          70% { top: -0.3em; }
+          100% { top: 0; }
+      }
+      @-moz-keyframes bounce {
+          0% { top: 0; }
+          50% { top: -0.2em; }
+          70% { top: -0.3em; }
+          100% { top: 0; }
+      }
+      @-o-keyframes bounce {
+          0% { top: 0; }
+          50% { top: -0.2em; }
+          70% { top: -0.3em; }
+          100% { top: 0; }
+      }
+      @-ms-keyframes bounce {
+          0% { top: 0; }
+          50% { top: -0.2em; }
+          70% { top: -0.3em; }
+          100% { top: 0; }
+      }
+      @keyframes bounce {
+          0% { top: 0; }
+          50% { top: -0.2em; }
+          70% { top: -0.3em; }
+          100% { top: 0; }
+      }      
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+      image-rendering: -webkit-optimize-contrast;
+      }      
+      body {
+        color: #333;
+      }
+
+      .float{
+        margin-top:22px;
+       position:fixed;
+      width:60px;
+      height:60px;
+      top:25px;
+      right:25px;
+      background-color:#FF424D;
+      color:#FFF;
+      border-radius:50px;
+      text-align:center;
+      box-shadow: 2px 2px 3px #141518;
+    }
+    .my-float{
+      margin-top:22px;
+    }       
+
+      #progressbar{
+
+      }
+      #loading{
+
+      }
+      #load{
+        font-family: Arial;
+        font-weight: bold;
+        text-align: center;
+        margin-top: -30px;
+      }
+      #userID{
+        font-family: Helvetica;
+        margin: auto;
+        width: 75%;
+        padding: 10px;   
+        color: #ffff;
+        font-weight: bold;
+        text-align: center;
+        position: sticky;
+        height: 0px;
+        top: calc( 100vh - 110px );    
+      }
+      #credit{
+        font-family: Helvetica;
+        margin: auto;
+        width: 75%;
+        padding: 10px;   
+        color: #ffff;
+        font-weight: bold;
+        text-align: center;
+        position: sticky;
+        height: 0px;
+        top: calc( 100vh - 140px );    
+      }      
+      #userIDHidden{
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0);
+      }
+      a {
+        color: grey;
+        text-decoration: none;
+      }      
+      @keyframes load{
+        0%{
+          width: 2%;
+        }
+        10%{
+          width: 10%;
+        }
+      }    
+
+    .trigger{
+      text-align: center;
+      padding: 7px 13px;
+      background: #3e3e3e;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      font-family: cursive;
+    }
+
+    .modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    }
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #170B2F;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        font-family: Helvetica;
+        font-size: 14px;
+        color: white;
+    }
+    .close-button {
+        float: right;
+        width: 3.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        font-size: 18px;
+        
+    }
+    .close-button:hover {
+        background-color: darkgray;
+    }
+    .show-modal {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.0);
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+    
+
+    
+    </style>
+
+  </head>
+    
+  <script src="js/config.js"></script>
+  <script>
+    localStorage.setItem("userID","INLOGIC")
+
+if (localStorage.getItem("openTrack") === null) {
+  localStorage.setItem("openTrack",1)
+}     
+else{
+  localStorage.setItem("openTrack",parseInt(localStorage.getItem("openTrack"))+1)
+} 
+
+
+    // onSuccess Callback
+    // This method accepts a Position object, which contains the
+    // current GPS coordinates
+    //
+    localStorage.setItem("fromHunt",0)
+    localStorage.setItem("hasLoaded",0)
+    localStorage.setItem("state","hub")
+    localStorage.setItem("newPlace",0)
+    localStorage.setItem("biome",0)    
+    localStorage.setItem("newPlace",1)
+    localStorage.setItem("fromHunt",0)
+    //var querySync = 
+    
+      //  
+        
+
+    
+   /* localStorage.setItem("Yellow Dragon Gem Count",99)    
+    localStorage.setItem("Red Dragon Gem Count",99)    
+    localStorage.setItem("Blue Dragon Gem Count",99)  
+    
+    localStorage.setItem("Small Monster Bone Count",99) 
+    localStorage.setItem("Wocco Pelt Count",99) 
+    localStorage.setItem("Nioleo Claw Count",99) 
+    localStorage.setItem("Red Dragon Gem Count",99) 
+    localStorage.getItem("crafted4",1)
+    localStorage.setItem("Wocco Feather Count",99) 
+    localStorage.setItem("Small Monster Bone Count",99)     
+    */
+
+
+    function success(pos) {
+      
+      //var crd = pos.coords;
+
+      //console.log('Your current position is:');
+      //console.log(`Latitude : ${crd.latitude}`);
+      //console.log(`Longitude: ${crd.longitude}`);
+      //console.log(`More or less ${crd.accuracy} meters.`);
+      //localStorage.setItem("hasLoaded",2)
+      //document.getElementById("bg").style.backgroundImage ="url('assets/start.webp')"
+    }
+
+    function error(err) {
+      if(loader == 0){
+        localStorage.setItem("hasLoaded",1)
+        //localStorage.setItem("hasLoaded",2)
+        //window.location.href = 'index2.html'
+      }      
+      else{
+        //alert("ERROR: GPS signal not found!\nPlease enable and restart application");
+        document.getElementById("bg").style.backgroundImage ="url('assets/startNo.webp')"
+        //console.warn(`ERROR(${err.code}): ${err.message}`);
+      }      
+
+    } 
+    function next() { 
+if (localStorage.getItem("userID") === null && localStorage.getItem("versionOutOfDate") == null ) {
+
+
+  var clientId = '829763116897-1h15al3pmuop92ajojbot85ua3jcs76n.apps.googleusercontent.com'
+  FirebasePlugin.authenticateUserWithGoogle(clientId, function(credential) {
+    FirebasePlugin.signInWithCredential(credential, function() {
+            //console.log("Successfully signed in");
+            
+            FirebasePlugin.getCurrentUser(function(user) {
+              //alert("Signed In "+user.uid);
+                console.log("Name: "+user.name);
+                console.log("Email: "+user.email);
+                console.log("Is email verified?: "+user.emailIsVerified);
+                console.log("Phone number: "+user.phoneNumber);
+                console.log("Photo URL: "+user.photoUrl);
+                console.log("UID: "+user.uid);
+                console.log("Provider ID: "+user.providerId);
+                console.log("ID token: "+user.idToken);
+                localStorage.setItem("userID",user.uid)
+                localStorage.setItem("email",user.email)
+                document.getElementById("bg").style.backgroundImage ="url('assets/start-ID.webp')"
+                document.getElementById("userID").innerHTML = "<a href=''>LOG OUT</a><br\><br\>VERSION "+gameConfig.version+"<br\><a href='' onclick='copy(); event.stopPropagation();'>USERID: "+localStorage.getItem("userID")+"</a>"
+                fireSync();                
+            }, function(error) {
+                console.error("Failed to get current user data: " + error);
+            });            
+        }, function(error) {
+            //alert("Failed to sign in "+error);
+        });
+  }, function(error) {
+      alert("Failed to authenticate with Google "+error);
+  });  
+
+
+
+}
+//localStorage.getItem("versionOutOfDate") != null 
+else if(false ){
+  alert("Update Available. Please visit the play store!")
+  document.getElementById("bg").style.backgroundImage ="url('assets/startNo.webp')"
+  if(localStorage.getItem("userID") != null ){
+    document.getElementById("bg").style.backgroundImage ="url('assets/startNo-old.webp')"
+  }
+}       
+else{
+  //fireSync();
+  //fireWrite();
+  //setTimeout(function(){ window.location.href = 'index3.html'  }, 2000);
+  var audio = new Audio('assets/audio/ping.ogg');
+    audio.play();  
+
+
+  
+    setTimeout(function(){ window.location.href = 'index3.html'  }, 2000);      
+
+
+  //window.location.href = 'index3.html'  
+}
+    
+
+      //firebase.auth().signInWithRedirect(provider)
+     
+     
+       
+      //window.location.href = 'index3.html'
+      /*var loader = parseInt(localStorage.getItem("hasLoaded"))
+      if(loader == 2){
+        window.location.href = 'index3.html'
+      }
+      else if(loader == 0){
+        localStorage.setItem("hasLoaded",1)
+        //localStorage.setItem("hasLoaded",2)
+        //window.location.href = 'index2.html'
+      }      
+      else{
+        //localStorage.setItem("hasLoaded",1)
+          //alert("ERROR: GPS signal not found!\nPlease enable and restart application");
+          //navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+        //document.getElementById("bg").style.backgroundImage ="url('assets/start.webp')"
+      }*/
+      
+    }      
+    function hideBar(){
+      //alert("long")
+      //document.getElementById("bg").style.backgroundImage ="url('assets/start.webp')"
+      document.getElementById("progressbar").style.visibility = "hidden";
+      
+      //document.getElementById("loading").style.visibility = "hidden";
+      //document.getElementById("loading").style.visibility = "hidden";
+    }
+
+    function logout(){
+      /* Get the text field */
+      //var copyText = document.getElementById("userIDHidden");
+      //copyText.select();
+      //copyText.setSelectionRange(0, 99999)
+      //document.execCommand("copy");
+      //navigator.clipboard.writeText(copyText.value);
+      //alert("Copied the text: " + copyText.value);     
+      if(localStorage.getItem("userID") != null ){
+        //document.getElementById("bg").style.backgroundImage ="url('assets/startNo-old.webp')"
+        fireWrite();
+        localStorage.removeItem('userID')
+        localStorage.clear()        
+
+
+        
+        
+        FirebasePlugin.signOutUser(function() {
+          console.log("User signed out");
+        }, function(error) {
+            console.error("Failed to sign out user: " + error);
+        });        
+        
+           
+        
+      }      
+
+      
+      //window.location.href = 'index.html'
+    }
+
+
+
+
+    window.setTimeout(hideBar, 5000);
+    //document.getElementById("progressbar").style.visibility = "hidden";
+        //make unique ID
+        if (localStorage.getItem("userID") === null || localStorage.getItem("userID").length <= 0) {
+            //localStorage.setItem("userID",(Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase());
+            
+        }  
+        //onclick="next()"
+
+  </script>
+
+
+  <script>
+
+
+
+      
+    //alert(test)
+  </script>    
+  <body id="bg" style="background-image: url('assets/start.webp'); background-size: auto; background-position: center; background-repeat:no-repeat; background-size:cover;"  onclick="next()">
+
+    
+
+
+
+
+
+    <audio autoplay="" loop="" preload=""  id="musicBG">
+      <source src="assets/audio/combat-Assault_on_Valorv5_loop.ogg" type="audio/mpeg"></source>
+      Your browser does not support the audio element.
+    </audio>
+    <div id="progressbar">
+      <span id="loading"></span>
+      <div id="load"></div>
+    </div> 
+    <div id="credit" onclick='toggleModal();  event.stopPropagation();' >CREDITS</div>
+    <div id="userID">USERID: #</div>
+    
+    <input id="userIDHidden" ></input>
+
+    <div class="modal" onclick='console.log(""); event.stopPropagation();'>
+      <div class="modal-content" onclick='console.log(""); event.stopPropagation();'>
+          <span class="close-button" onclick='toggleModal();  event.stopPropagation();'>×</span>
+          <br/>
+          <h1>CREDITS</h1>
+          <h1>ART & PROGRAMMING</h1>
+          Glen Henry
+          <h1>AUDIO</h1>
+          Music Composed by Chase Bethea
+          <br/>
+          Additional Music by DARK FANTASY STUDIO
+          <h1>QUALITY ASSURANCE</h1>
+          Alrick Brown 
+          <br/>
+          Charis Cayetano
+          <br/>
+          Douglas Davidson
+          <br/>
+          Graham Reid          
+          <br/>
+          Moe Barkat
+          <br/>
+          Paul Griffith
+          <br/>
+          Shaun Douglas
+
+
+
+
+
+          <h1>SPECIAL THANKS</h1>
+          Aaron Nemoyten
+          <br/>
+          Shawn Alexander Allen
+          <br/>
+          <br/>
+      </div>
+  </div>   
+
+  </body>
+  <script>
+    screen.orientation.lock('portrait');
+    if (localStorage.getItem("userID") === null) {
+      //document.getElementById("userID").innerHTML = "<br\><br\>VERSION "+gameConfig.version+"<br\>USERID: ???"
+    }    
+    else{
+      document.getElementById("bg").style.backgroundImage ="url('assets/start-ID.webp')"
+      document.getElementById("userID").innerHTML = "<br\>VERSION "+gameConfig.version+"<br\>"
+    }
+    //document.getElementById("userID").innerHTML = "VERSION 0.2.7"
+    document.getElementById("userIDHidden").setAttribute('value', localStorage.getItem("userID"));
+      var vid = document.getElementById("musicBG");
+      vid.volume = 0.4;        
+      document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === 'visible') {
+          vid.play();
+        } else {
+          vid.pause();
+        }
+      });
+
+   localStorage.setItem("hunterHP",3);
+
+   if(localStorage.getItem("userID") === null || localStorage.getItem("userID").length <= 0){
+
+  }
+  else{
+    //alert("loaded")
+    //fireSync();
+    fireWrite();
+  }   
+  </script>
+<script>
+  
+
+    var modal = document.querySelector(".modal");
+    var trigger = document.querySelector(".trigger");
+    var closeButton = document.querySelector(".close-button");
+
+    function toggleModal() {
+        modal.classList.toggle("show-modal");
+    }
+
+
+
+</script>  
+<script src='cordova.js'></script>
+<script src='js/index.js'></script>  
+<script>
+    function copy(){
+      try{
+        alert("USERID Copied to Clipboard!")
+        cordova.plugins.clipboard.copy(localStorage.getItem("userID"));
+      }
+      catch(e){
+
+      }
+    }  
+</script>
+
+</html>
