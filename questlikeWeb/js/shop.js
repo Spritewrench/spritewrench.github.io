@@ -16,7 +16,7 @@
       }
 
       localStorage.setItem("fromHunt",0)
-      this.game.world.setBounds(0, 0, this.game.width, this.game.height*0);
+      this.game.world.setBounds(0, 0, this.game.width, this.game.height*0.4);
       //plugins'
       this.game.kineticScrolling  = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
       this.game.kineticScrolling.start();
