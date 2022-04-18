@@ -1160,7 +1160,7 @@
 
         if(this.extraCarve == 1 || gameConfig.enableAds == false || parseInt(localStorage.getItem("didMonRun")) == 1 || this.biome == -1){
           this.watchButton.loadTexture("watchNo")
-          this.optionText.text = "NOTHING LEFT TO CARVE"
+          this.optionText.text = " "
           this.extraCarve = 1
         }
         else{
@@ -1233,7 +1233,7 @@
           catch(error){
             this.extraCarve = 0
             this.watchButton.loadTexture("watchNo")
-            this.optionText.text = "NOTHING LEFT TO CARVE"          
+            this.optionText.text = " "          
             //admob.rewardVideo.show();   
           } 
         }

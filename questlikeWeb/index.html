@@ -274,35 +274,7 @@ else{
 if (localStorage.getItem("userID") === null && localStorage.getItem("versionOutOfDate") == null ) {
 
 
-  var clientId = '829763116897-1h15al3pmuop92ajojbot85ua3jcs76n.apps.googleusercontent.com'
-  FirebasePlugin.authenticateUserWithGoogle(clientId, function(credential) {
-    FirebasePlugin.signInWithCredential(credential, function() {
-            //console.log("Successfully signed in");
-            
-            FirebasePlugin.getCurrentUser(function(user) {
-              //alert("Signed In "+user.uid);
-                console.log("Name: "+user.name);
-                console.log("Email: "+user.email);
-                console.log("Is email verified?: "+user.emailIsVerified);
-                console.log("Phone number: "+user.phoneNumber);
-                console.log("Photo URL: "+user.photoUrl);
-                console.log("UID: "+user.uid);
-                console.log("Provider ID: "+user.providerId);
-                console.log("ID token: "+user.idToken);
-                localStorage.setItem("userID",user.uid)
-                localStorage.setItem("email",user.email)
-                document.getElementById("bg").style.backgroundImage ="url('assets/start-ID.webp')"
-                document.getElementById("userID").innerHTML = "<a href=''>LOG OUT</a><br\><br\>VERSION "+gameConfig.version+"<br\><a href='' onclick='copy(); event.stopPropagation();'>USERID: "+localStorage.getItem("userID")+"</a>"
-                fireSync();                
-            }, function(error) {
-                console.error("Failed to get current user data: " + error);
-            });            
-        }, function(error) {
-            //alert("Failed to sign in "+error);
-        });
-  }, function(error) {
-      alert("Failed to authenticate with Google "+error);
-  });  
+ 
 
 
 
@@ -378,12 +350,7 @@ else{
 
 
         
-        
-        FirebasePlugin.signOutUser(function() {
-          console.log("User signed out");
-        }, function(error) {
-            console.error("Failed to sign out user: " + error);
-        });        
+      
         
            
         

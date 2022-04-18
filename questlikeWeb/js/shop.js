@@ -16,7 +16,7 @@
       }
 
       localStorage.setItem("fromHunt",0)
-      this.game.world.setBounds(0, 0, this.game.width, this.game.height*0.4);
+      this.game.world.setBounds(0, 0, this.game.width, this.game.height*0.6);
       //plugins'
       this.game.kineticScrolling  = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
       this.game.kineticScrolling.start();
@@ -31,7 +31,8 @@
         onUpdate: null
       });
       
-
+      this.game.load.script('gray', 'js/lib/Gray.js');
+      this.gray = this.game.add.filter('Gray');      
 
       this.glowFilter = new Phaser.Filter.Glow(this.game);
 
@@ -76,7 +77,6 @@
       this.ticketSpendShard.events.onInputDown.add(this.buyTix, this)  
 
       //shards
-      /*
       this.buyShard = this.add.sprite(this.game.width/2,640, 'buyShard');
       this.buyShard.anchor.setTo(0.5, 0.5);  
       this.buyShard.width = this.game.width
@@ -100,10 +100,10 @@
       this.purchaseShard2.anchor.setTo(0.5, 0.5); 
       this.purchaseShard2.inputEnabled = true;
       this.purchaseShard2.events.onInputDown.add(this.buyShards2, this)           
-       
+        
       this.sparkle = this.add.sprite(this.buyShard.x-this.buyShard.width/2+50,this.buyShard.y-80, 'sparkle');
       this.sparkle .anchor.setTo(0.5, 0.5); 
-       */
+
       this.shardCount = this.add.sprite(0,0, 'shardCount');
       this.shardAmount = parseInt(localStorage.getItem("shards"))
       this.shardCountText = this.add.text(this.shardCount.x+(this.shardCount.width/2)+13, this.shardCount.y+15 ,"",{font:'LondrinaSolid-Black'});
@@ -195,7 +195,18 @@
         this.game.state.start('craft') 
       }
       
-      
+      this.sparkle.width += (this.targetSparkleSize - this.sparkle.width) * 0.1; 
+      this.sparkle.height = this.sparkle.width
+      var diff = this.targetSparkleSize - this.sparkle.width
+      //console.log(diff+" "+this.targetSparkleSize)
+
+      if(diff  <= 1 && diff >= 0 ){
+        this.targetSparkleSize = 80
+        //this.sparkle.scale.x *= -1;  
+      }
+      if(diff  >= -1 && diff <= 0 ){
+        this.targetSparkleSize = 100
+      }      
       
 
 

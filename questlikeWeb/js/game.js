@@ -4429,7 +4429,7 @@
             if(shinyMax < 3){
               shinyMax = 3
             }
-            var shinyChance = Math.floor(Math.random() * apexMax);
+            var shinyChance = Math.floor(Math.random() * shinyMax);
 
             var apexMax = 5 - parseInt(localStorage.getItem("monCount"))
             if(apexMax < 2){
@@ -4442,7 +4442,8 @@
             else{
               
             }
-
+            //Apex always 0 in this build
+            apexChance = 0;
             if(this.biome == -1){
               apexChance = 0;
             }

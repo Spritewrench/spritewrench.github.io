@@ -85,6 +85,7 @@
             this.title = localStorage.getItem("playerTitle")
             
             //console.log("new "+day)
+            //alert(tixDiscount[day])
             this.biome = parseInt(tixDiscount[day])
             
             
@@ -887,6 +888,7 @@
 
               switch(this.markerBiome){
                 case -1:
+                  this.chatTimer = 0
                   this.textBackdropText2.text = "Jean, the Collector"    
                   this.textBackdropText.text = "Looks like you can make a NEW weapon.\nYou should get on that"
                   break;                
@@ -1573,6 +1575,7 @@
             else{
               this.specialDiscount.alpha = 0;
             }
+            this.hubBonus2.loadTexture('hubBonus2-'+this.biome);
                     
           }
           else if(this.day >= 5){
@@ -2204,6 +2207,7 @@
                     creep = "Noot"
                     break;                                          
                 }
+                
                 this.textBackdropText.text = "Wait ... That sounds like a "+creep+"'s roar. \nHead to the "+location+" and see whats happening..."                    
               }
               else if(parseInt(localStorage.getItem("GuildGift")) == 3){
