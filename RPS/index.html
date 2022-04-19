@@ -1,0 +1,318 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+        <div class="form">
+	
+            <header class="form__header">
+                <h2 class="form__title">RUSH. PARRY. STRIKE</h2>
+                <p class="form__instruction">Select different attack combinations!<br/>Reduce your Opponent's HP to ZERO</p>
+            </header>
+            <p id= "form__round" class="form__stats">ROUND: 1</p>
+            <p id= "form__HP" class="form__stats">PLAYER HP: 10</p>
+            <p id= "form__opHP" class="form__stats">OP HP: 10</p>
+            <p id="form__stats" class="form__stats"></p>
+            <form>
+                <fieldset class="form__optionsA">
+                    <legend class="form__questionA">Hero A
+                    </legend>
+                    <p class="form__answerA"> 
+                        <input type="radio" name="matchA" id="match_1_1" value="1" checked> 
+                        <label for="match_1_1">
+
+                            RUSH
+                        </label> 
+                    </p>
+                    
+                    <p class="form__answerA"> 
+                        <input type="radio" name="matchA" id="match_1_2" value="2"> 
+                        <label for="match_1_2">
+                            PARRY
+                        </label> 
+                    </p>
+                    
+                    <p class="form__answerA"> 
+                        <input type="radio" name="matchA" id="match_1_3" value="3"> 
+                        <label for="match_1_3">
+
+                            STRIKE
+                        </label> 
+                    </p>
+                    
+                    
+
+                    
+                </fieldset>
+                
+
+            </form>
+            <form>
+                <fieldset class="form__optionsB">
+                    <legend class="form__questionB">Hero B
+                    </legend>
+                    <p class="form__answerB"> 
+                        <input type="radio" name="matchB" id="match_2_1" value="1" checked> 
+                        <label for="match_2_1">
+    
+                            RUSH
+                        </label> 
+                    </p>
+                    
+                    <p class="form__answerB"> 
+                        <input type="radio" name="matchB" id="match_2_2" value="2"> 
+                        <label for="match_2_2">
+                            PARRY
+                        </label> 
+                    </p>
+                    
+                    <p class="form__answerB"> 
+                        <input type="radio" name="matchB" id="match_2_3" value="3"> 
+                        <label for="match_2_3">
+    
+                            STRIKE
+                        </label> 
+                    </p>
+                    
+                    
+    
+                    
+                </fieldset> 
+            </form>
+            <form id="formC">
+                <fieldset class="form__optionsC">
+                    <legend class="form__questionC">Hero C
+                    </legend>
+                    <p class="form__answerC"> 
+                        <input type="radio" name="matchC" id="match_3_1" value="1" checked> 
+                        <label for="match_3_1">
+    
+                            RUSH
+                        </label> 
+                    </p>
+                    
+                    <p class="form__answerC"> 
+                        <input type="radio" name="matchC" id="match_3_2" value="2"> 
+                        <label for="match_3_2">
+                            PARRY
+                        </label> 
+                    </p>
+                    
+                    <p class="form__answerC"> 
+                        <input type="radio" name="matchC" id="match_3_3" value="3"> 
+                        <label for="match_3_3">
+    
+                            STRIKE
+                        </label> 
+                    </p>
+                    
+                    
+    
+                    
+                </fieldset> 
+            </form>            
+            <button class="form__button" type="submit" onclick="calcRound()">Submit your info</button>
+        </div>
+       
+    </body>
+    <script>
+            var roundCount = 1;
+            var attack = 0;
+            var defend = 0;
+            var ultMeter = 0;       
+            var squadHP = 10;
+
+            var opAttack = 0;
+            var opDefend = 0;
+            var opUltMeter = 0; 
+            var opHP = 10;              
+            
+        function findSelection(rad_name) {
+            let rad_val = document.querySelector('input[name=' + rad_name + ']:checked');
+            return (rad_val ? rad_val.value : "");
+        }        
+        function calcRound(){
+            var round = document.getElementById("form__round")
+            roundCount +=1
+            round.innerHTML ="ROUND: "+(roundCount)
+
+            var attack = 0;
+            var defend = 0;
+
+            var opAttack = 0;
+            var opDefend = 0;            
+            
+            var special = 0;
+            var oppSpecial = 0;
+
+            var ultCount = 0;
+            var heroAaction = parseInt(findSelection("matchA"))
+            switch(heroAaction){
+                case 1:
+                    attack += 1
+                    break;
+                case 2:
+                    defend += 1
+                    break;        
+                case 3:
+                    ultMeter += 1
+                    ultCount += 1
+                    break;                                
+            }
+            var heroBaction =parseInt(findSelection("matchB"))
+            switch(heroBaction){
+                case 1:
+                    attack += 1
+                    break;
+                case 2:
+                    defend += 1
+                    break;        
+                case 3:
+                    ultMeter += 1
+                    ultCount += 1
+                    break;                                
+            }            
+            var heroCaction =parseInt(findSelection("matchC"))
+            switch(heroCaction){
+                case 1:
+                    attack += 1
+                    break;
+                case 2:
+                    defend += 1
+                    break;        
+                case 3:
+                    ultMeter += 1
+                    ultCount += 1
+                    break;                                
+            }
+            console.log(ultMeter)
+            var stats = document.getElementById("form__stats")
+            
+            stats.innerHTML ="Your Squad:<br/>RUSHES in for "+attack+" damage<br\>PARRIES "+defend+" damage<br/>And charges "+ultCount+" for the next STRIKE"
+            if(ultMeter > 3){
+                ultMeter = 0; 
+                stats.innerHTML ="Your Squad:<br/>RUSHES in for "+attack+" damage<br\>PARRIES "+defend+" damage<br/>And Unleashes a STRIKE for 5 DAMAGE"
+                special = 1
+            }
+            stats.innerHTML += "<br/><br/>"
+
+
+            //opponent AI
+            ultCount = 0;
+            var oppAaction = Math.floor(Math.random() *3)+1;
+            switch(oppAaction){
+                case 1:
+                    opAttack += 1
+                    break;
+                case 2:
+                    opDefend += 1
+                    break;        
+                case 3:
+                    //opUltMeter += 1
+                    ultCount += 1
+                    break;                                
+            }     
+                 
+            var oppBaction = Math.floor(Math.random() *3)+1;
+            switch(oppBaction){
+                case 1:
+                    opAttack += 1
+                    break;
+                case 2:
+                    opDefend += 1
+                    break;        
+                case 3:
+                    //opUltMeter += 1
+                    ultCount += 1
+                    break;                                
+            }  
+            
+            var oppCaction = Math.floor(Math.random() *3)+1;
+            switch(oppCaction){
+                case 1:
+                    opAttack += 1
+                    break;
+                case 2:
+                    opDefend += 1
+                    break;        
+                case 3:
+                    //opUltMeter += 1
+                    ultCount += 1
+                    break;                                
+            }     
+                  
+            var stats = document.getElementById("form__stats")
+            var hpText = document.getElementById("form__HP")
+            var ophpText = document.getElementById("form__opHP")
+            
+
+            console.log(opAttack+" "+opDefend+" "+ultCount)
+            //ai checks
+            //anti-cheese
+            if(attack == 3 && squadHP > opHP){
+                    opDefend = 3;
+                    opAttack = 0;
+                ultCount = 0;
+            }
+            else if(attack == 3 && squadHP <= opHP){
+                opDefend = 2;
+                opAttack = 0;
+                ultCount = 1;
+            }         
+            
+
+
+            var ran = Math.floor(Math.random() *2)+1
+            if(ran == 1){
+
+              
+            }
+            opUltMeter += ultCount
+            if(opUltMeter > 3){
+                opUltMeter = 0; 
+                stats.innerHTML +="The Opp Squad:<br/>RUSHES in for "+opAttack+" damage<br\>PARRIES "+opDefend+" damage<br/>And Unleashes a STRIKE for 5 DAMAGE"
+                oppSpecial = 1;
+            }            
+            else{
+                stats.innerHTML +="The Opp Squad:<br/>RUSHES in for "+opAttack+" damage<br\>PARRIES "+opDefend+" damage<br/>And charges "+ultCount+" for the next STRIKE"
+            }  
+               
+            var damage =    opAttack - defend
+            if(oppSpecial == 1){
+                oppSpecial = 0;
+                damage =  (opAttack+5) - defend
+            }
+            if(damage < 0){
+                damage =0;
+            }    
+            
+            squadHP -= damage
+            
+            var damage =    attack - opDefend
+            if(special == 1){
+                special = 0;
+                damage =  (attack+5) - opDefend
+            }            
+            if(damage < 0){
+                damage =0;
+            }             
+            opHP -= damage
+
+            hpText.innerHTML ="PLAYER HP: "+squadHP
+            ophpText.innerHTML ="OP HP: "+opHP
+
+            if(squadHP <= 0 && opHP > 0){
+                alert("YOU LOSE!")
+                //location.reload();
+            }
+            else if(opHP <= 0){
+                alert("YOU WIN!")
+                //location.reload();
+            }
+            else if(opHP <= 0 && squadHP <= 0){
+                alert("It's a DRAW!")
+                //location.reload();
+            }
+        }
+    </script>
+</html>
