@@ -11,7 +11,7 @@ html, body {
 
 /* Form Styles */
 .form {
-  max-width: 610px;
+  max-width:1000px;
   margin: 60px auto;
 }
 
@@ -48,12 +48,21 @@ html, body {
   box-sizing: border-box;
   width: 23%;
   margin: 20px 1% 20px 0;
-  height: 100px;
+  height: 50px;
   vertical-align: top;
   font-size: 22px;
   text-align: center;
 }
+#form__stats, .row {
+    display: flex;
+    font-size: 22px;
+}   
+.column {
+    flex: 50%;
+  }
+  .vs{
 
+  }
 label {
   border: 1px solid rgba(250, 250, 250, 0.15);
   box-sizing: border-box;
