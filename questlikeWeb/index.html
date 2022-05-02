@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Questlike: Pocket</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>Questlike: Web</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/main.css">
     <link  rel="stylesheet" href="css/all.min.css">
@@ -62,6 +62,9 @@
       }      
       body {
         color: #333;
+        width: 623.99px;
+        display : block;   
+        margin : auto;      
       }
 
       .float{
@@ -196,8 +199,15 @@
         transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
     }
     
+    @media screen and (max-width: 480px) {
+      body {
+        width: 100%;
+        display : block;   
+        margin : auto;      
+      }
 
-    
+    }
+      
     </style>
 
   </head>

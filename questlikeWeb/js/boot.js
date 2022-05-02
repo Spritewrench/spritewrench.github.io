@@ -11,6 +11,7 @@
     },
 
     create: function () {
+      this.game.scale.pageAlignHorizontally = true;
       //this.game.input.maxPointers = 1;
       //this.game.scale.scaleMode = Phaser.ScaleManager.EXAC
       //this.scale.setUserScale(0.5,0.5)
@@ -29,15 +30,15 @@
       this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
       this.game.renderer.renderSession.roundPixels = true;
       
-      this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;       
+      //this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;       
 
       
       //this.game.scale.setMinMax(window.innerWidth,window.innerHeight,window.innerWidth,window.innerHeight)  
       //this.game.scale.refresh();
-      var dpi = window.devicePixelRatio;
-      const roundHalf = num => Math.round(num * 2) / 2
-      const DPR = roundHalf(window.devicePixelRatio)      
-      setDPI(DPR)
+      //var dpi = window.devicePixelRatio;
+      //const roundHalf = num => Math.round(num * 2) / 2
+      //const DPR = roundHalf(window.devicePixelRatio)      
+      //setDPI(DPR)
       this.game.state.start('preloader');
     }
   };

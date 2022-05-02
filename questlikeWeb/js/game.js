@@ -57,7 +57,7 @@
 
             this.battleMusic = this.add.audio('Battle'); 
 
-            this.cameraSnap = this.add.audio('cameraSnap'); 
+
    
             this.ping = this.add.audio('ping');
             this.menuClicked = false;
@@ -2877,7 +2877,7 @@
                       this.monsterFought.alpha = 1;
                       
                       
-                      this.shareButton.alpha = 1
+                      //this.shareButton.alpha = 1
 
                       this.grade.alpha = 1;
                       this.scoreText.alpha = 1
@@ -2889,7 +2889,8 @@
                       this.okayButton.x = Math.floor(this.game.width/2)
                       this.okayButton.y = Math.floor(this.game.height/2+190)
 
-                      this.shareButton.alpha = 1
+                      //this.shareButton.alpha = 1
+                      
                       this.shareButton.x = Math.floor(this.game.width/2-this.shareButton.width)
                       this.shareButton.y = Math.floor(this.game.height/2+190)    
 
@@ -5096,7 +5097,6 @@
         , shareScore: function(){
           if(this.shareButton.alpha == 1){
             //this.ping.play();
-            this.cameraSnap.play();
             this.sweatSound.stop();       
             
            

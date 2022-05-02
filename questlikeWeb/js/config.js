@@ -31,7 +31,7 @@ gameConfig.baseRareReward = 3
 
 gameConfig.bufferRank = 1
 
-gameConfig.version = "0.6.8"; // Current APEX Udate  // Next Version (0.6.9)
+gameConfig.version = "1.0.0"; // Current APEX Udate  // Next Version (0.6.9)
 
 gameConfig.alwaysAngry = false;
 gameConfig.isDebug = false; // needs to be false for production

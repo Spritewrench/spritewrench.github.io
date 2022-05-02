@@ -16,25 +16,14 @@
       }
 
       localStorage.setItem("fromHunt",0)
-      this.game.world.setBounds(0, 0, this.game.width, this.game.height*0.6);
+      this.game.world.setBounds(0, 0, this.game.width, this.game.height);
       //plugins'
-      this.game.kineticScrolling  = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
-      this.game.kineticScrolling.start();
-      this.game.kineticScrolling.configure({
-        kineticMovement: false,
-        timeConstantScroll: 400, //really mimic iOS
-        horizontalScroll: false,
-        verticalScroll: true,
-        horizontalWheel: false,
-        verticalWheel: true,
-        deltaWheel: 40,
-        onUpdate: null
-      });
-      
-      this.game.load.script('gray', 'js/lib/Gray.js');
-      this.gray = this.game.add.filter('Gray');      
 
-      this.glowFilter = new Phaser.Filter.Glow(this.game);
+      
+      //this.game.load.script('gray', 'js/lib/Gray.js');
+      //this.gray = this.game.add.filter('Gray');      
+
+      
 
       this.mapBG = this.add.sprite(0, 0, 'blankHub'); 
       //this.mapBG.anchor.setTo(0.5, 0);
@@ -84,6 +73,8 @@
       this.purchaseShard.anchor.setTo(0.5, 0.5); 
       this.purchaseShard.inputEnabled = true;
       this.purchaseShard.events.onInputDown.add(this.buyShards, this)     
+      this.buyShard.alpha = 0;
+      this.purchaseShard.alpha = 0;
 
       this.buyShardBag = this.add.sprite(this.game.width/2,860, 'buyShardBag');
       this.buyShardBag.anchor.setTo(0.5, 0.5);  
@@ -92,6 +83,8 @@
       this.purchaseShard1.anchor.setTo(0.5, 0.5); 
       this.purchaseShard1.inputEnabled = true;
       this.purchaseShard1.events.onInputDown.add(this.buyShards1, this)     
+      this.buyShardBag.alpha = 0;
+      this.purchaseShard1.alpha = 0;      
       
       this.buyShardBox = this.add.sprite(this.game.width/2,1080, 'buyShardBox');
       this.buyShardBox.anchor.setTo(0.5, 0.5);  
@@ -99,10 +92,13 @@
       this.purchaseShard2 = this.add.sprite(this.buyShard.width/2,this.buyShardBox.y+this.buyShardBox.height/2-15, 'purchaseShard2');
       this.purchaseShard2.anchor.setTo(0.5, 0.5); 
       this.purchaseShard2.inputEnabled = true;
-      this.purchaseShard2.events.onInputDown.add(this.buyShards2, this)           
+      this.purchaseShard2.events.onInputDown.add(this.buyShards2, this)    
+      this.buyShardBox.alpha = 0;
+      this.purchaseShard2.alpha = 0;             
         
       this.sparkle = this.add.sprite(this.buyShard.x-this.buyShard.width/2+50,this.buyShard.y-80, 'sparkle');
       this.sparkle .anchor.setTo(0.5, 0.5); 
+      this.sparkle.alpha = 0;
 
       this.shardCount = this.add.sprite(0,0, 'shardCount');
       this.shardAmount = parseInt(localStorage.getItem("shards"))
@@ -318,7 +314,7 @@
       this.highlightTar = this.selectInventory.x
       this.tarKey = 0;
       this.selectShop.loadTexture ('tab_shop_unselected');      
-      this.game.kineticScrolling.stop();       
+      //this.game.kineticScrolling.stop();       
       //this.game.state.start('craft')          
        
     },  
@@ -328,7 +324,7 @@
       this.highlightTar = this.selectHub.x
       this.tarKey = 1;
       this.selectShop.loadTexture ('tab_shop_unselected');       
-      this.game.kineticScrolling.stop();         
+      //this.game.kineticScrolling.stop();         
       //this.game.state.start('hub')           
     },   
     buyScroll: function (unit) {

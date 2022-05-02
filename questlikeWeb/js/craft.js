@@ -10,7 +10,7 @@
 
     create: function () {
       localStorage.setItem("fromHunt",0)
-      this.game.world.setBounds(0, 0, this.game.width, 0);
+      this.game.world.setBounds(0, 0, this.game.width, this.game.height*0.25);
       //plugins'
       this.game.kineticScrolling  = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
       this.game.kineticScrolling.start();
@@ -27,8 +27,7 @@
 
 
 
-      this.glowFilter = new Phaser.Filter.Glow(this.game);
-
+      
       this.weaponArray = []
       this.weaponKey = 0;
       this.weaponCount = weapon.filter(function(value) { 

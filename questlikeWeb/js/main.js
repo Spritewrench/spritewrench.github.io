@@ -5,8 +5,8 @@ window.onload = function () {
     , ns = window['simplewar'];
 
     var config = {
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: 480,
+      height: 800,
       renderer: Phaser.CANVAS,
       transparent: false,
       enableDebug: true,
