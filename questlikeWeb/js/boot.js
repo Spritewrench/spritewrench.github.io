@@ -23,7 +23,7 @@
       
       
 
-       
+       alert(window.innerHeight)
       if(navigator.userAgentData.mobile === true){
         this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
       }      
