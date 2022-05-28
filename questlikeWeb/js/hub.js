@@ -166,7 +166,7 @@
             this.rankText.fontSize = 20;  
             this.rankText.anchor.setTo(0.5, 0.5);       
             this.rankText.wordWrap = true;
-            this.rankText.wordWrapWidth = 600;
+            this.rankText.wordWrapWidth = 650;
             this.rankText.align ='center'             
             //this.rankText.text = this.currentRank;
           
@@ -459,7 +459,7 @@
             this.targetHighScoreText.y = this.targetOverlayRank.height/2+115
             this.targetHighScoreText.fontSize = 24;  
           }  
-          if(window.innerHeight <= 600 && navigator.userAgentData.mobile === false){
+          if(window.innerHeight <= 650 ){
             this.targetHighScoreText.y = this.targetOverlayRank.height/2+150
             this.targetHighScoreText.fontSize = 24;  
           }  
@@ -496,7 +496,7 @@
             this.bountyCount.x = 50
             this.bountyCount.fontSize = 22;
           }  
-          if(window.innerHeight <= 600 && navigator.userAgentData.mobile === false){
+          if(window.innerHeight <= 650 ){
             this.bountyCount.y = 70
             this.bountyCount.x = 75
             this.bountyCount.fontSize = 22;
@@ -832,7 +832,7 @@
           */       
         }  
         //minimum res
-        if(window.innerHeight <= 600 && navigator.userAgentData.mobile === false){
+        if(window.innerHeight <= 650 ){
 
           this.textBackdropText.fontSize = 18;
           this.textBackdropText2.fontSize = 18;
@@ -1229,7 +1229,7 @@
             }
 
             //minimum res
-            if(window.innerHeight <= 600 && navigator.userAgentData.mobile === false){
+            if(window.innerHeight <= 650 ){
 
               if((this.monKey == 4) && this.markerBiome == 0){
                 this.targetMon.y = this.game.height/2-350                 
