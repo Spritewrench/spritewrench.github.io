@@ -454,10 +454,17 @@
           this.targetHighScoreText= this.add.text(this.game.width/2, this.targetOverlayRank.height/2+150, "",{font:'LondrinaSolid-Black'});
           this.targetHighScoreText.fontSize = 28;  
           //media breakpoint 
+          
           if(window.innerHeight < 700){
             this.targetHighScoreText.y = this.targetOverlayRank.height/2+115
             this.targetHighScoreText.fontSize = 24;  
-          }               
+          }  
+          if(window.innerHeight <= 600 && navigator.userAgentData.mobile === false){
+            this.targetHighScoreText.y = this.targetOverlayRank.height/2+150
+            this.targetHighScoreText.fontSize = 24;  
+          }  
+          
+          
           this.targetHighScoreText.fill= '#fff';  
           //this.targetHighScoreText.fontSize = 28;  
           this.targetHighScoreText.anchor.setTo(0.5, 0.5);       
@@ -489,7 +496,11 @@
             this.bountyCount.x = 50
             this.bountyCount.fontSize = 22;
           }  
-            
+          if(window.innerHeight <= 600 && navigator.userAgentData.mobile === false){
+            this.bountyCount.y = 70
+            this.bountyCount.x = 75
+            this.bountyCount.fontSize = 22;
+          }              
 
           this.wardenHunt = this.add.sprite((this.game.width/2)-25,-1000, 'wardenHunt0');
           this.wardenHunt.anchor.setTo(0.5, 0.5);
@@ -820,7 +831,17 @@
           this.textBackdropText2.y = this.textBackdropText.y-100      
           */       
         }  
+        //minimum res
+        if(window.innerHeight <= 600 && navigator.userAgentData.mobile === false){
 
+          this.textBackdropText.fontSize = 18;
+          this.textBackdropText2.fontSize = 18;
+          
+          this.textBackdropText.y = 185
+          this.textBackdropText2.y = this.textBackdropText.y-80        
+          this.okayButton2.y = this.game.height/2-60             
+              
+        } 
             
           this.huntStart = false;
           this.tarKey = -1;
@@ -1206,7 +1227,22 @@
               this.targetMon.y = this.game.height/2-300               
                              
             }
-            
+
+            //minimum res
+            if(window.innerHeight <= 600 && navigator.userAgentData.mobile === false){
+
+              if((this.monKey == 4) && this.markerBiome == 0){
+                this.targetMon.y = this.game.height/2-350                 
+              }
+              else if(this.monKey == 99 && this.markerBiome == 0){
+                this.targetMon.y = this.game.height/2-350                            
+              } 
+              else{
+                this.targetMon.y = this.game.height/2-300 
+              }              
+                  
+            }              
+              
             this.targetarrowLeft.y = this.game.height/2-200
             this.targetarrowRight.y = this.game.height/2-200
             
