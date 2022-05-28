@@ -813,7 +813,7 @@
           this.textBackdropText.fontSize = 18;
           this.textBackdropText2.fontSize = 18;
           
-          this.textBackdropText.y = 165
+          this.textBackdropText.y = 180 
           this.textBackdropText2.y = this.textBackdropText.y-80        
           this.okayButton2.y = this.game.height/2-60
           
