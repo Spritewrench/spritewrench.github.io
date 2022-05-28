@@ -1315,7 +1315,7 @@
           this.textBackdropText.fontSize = 18;
           this.textBackdropText2.fontSize = 18;
           
-          this.textBackdropText.y = 160
+          this.textBackdropText.y = 180 
           this.textBackdropText2.y = this.textBackdropText.y-75        
           
           
