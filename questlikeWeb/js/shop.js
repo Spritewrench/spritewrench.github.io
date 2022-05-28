@@ -38,7 +38,9 @@
       
       if(!this.bgSound.isPlaying){
           this.bgSound.loop = true;
-          this.bgSound.play();
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.bgSound.play();   
+          }   
           this.bgSound.volume = 0.5;
           //this.introCheck = true;
       }          
@@ -175,6 +177,15 @@
 
     update: function () {
 
+      if(parseInt(localStorage.getItem("muted")) == 1){
+        this.bgSound.stop();
+        this.ping.stop();
+        this.winSound.stop();    
+      }
+      else{
+     
+      }
+
       if(this.game.camera.y > this.game.world.bounds.height ){
         this.game.camera.y = this.game.world.bounds.height
       }
@@ -309,7 +320,9 @@
     goToCraft: function (unit) {
       //localStorage.setItem('state','craft')
       
-      this.ping.play();
+      if(parseInt(localStorage.getItem("muted")) == 0){
+        this.ping.play();  
+      } 
       this.bgSound.stop();      
       this.highlightTar = this.selectInventory.x
       this.tarKey = 0;
@@ -319,7 +332,9 @@
        
     },  
     goToHub: function (unit) {
-      this.ping.play();
+      if(parseInt(localStorage.getItem("muted")) == 0){
+        this.ping.play();  
+      } 
       this.bgSound.stop(); 
       this.highlightTar = this.selectHub.x
       this.tarKey = 1;
@@ -329,7 +344,9 @@
     },   
     buyScroll: function (unit) {
       if(this.shardAmount >= 250){
-        this.ping.play();
+        if(parseInt(localStorage.getItem("muted")) == 0){
+          this.ping.play();  
+        } 
         this.randomKey = Math.floor(Math.random() * 3)
         console.log("randomKey "+this.randomKey)
         this.getScrollKey++;
@@ -357,7 +374,9 @@
       
     },    
     nextPurchase: function (unit) {
-      this.ping.play();
+      if(parseInt(localStorage.getItem("muted")) == 0){
+        this.ping.play();  
+      } 
       if(this.getTixKey > -1){
         this.getTixKey++;
         this.getPurchase.y = this.getPurchase.origY
@@ -367,7 +386,10 @@
           
           //this.randomKey = Math.floor(Math.random() * 3)
           //console.log(this.randomKey)
-          this.winSound.play();       
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.winSound.play();   
+          }           
+                
           var tixKey = this.randomKey
           var currentTix = parseInt(localStorage.getItem("TixCount"+tixKey )) 
           localStorage.setItem("TixCount"+tixKey , currentTix+5)
@@ -399,7 +421,9 @@
         
         if(this.getScrollKey == 4){
           //this.randomKey = Math.floor(Math.random() * 3)
-          this.winSound.play();  
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.winSound.play();   
+          }   
           var scrollKey = this.randomKey
           var currentScroll = parseInt(localStorage.getItem("blueprintCount"+scrollKey) ) 
           localStorage.setItem("blueprintCount"+scrollKey , currentScroll+5)

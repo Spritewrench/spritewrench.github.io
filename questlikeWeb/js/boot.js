@@ -11,7 +11,7 @@
     },
 
     create: function () {
-      this.game.scale.pageAlignHorizontally = true;
+      //this.game.scale.pageAlignHorizontally = true;
       //this.game.input.maxPointers = 1;
       //this.game.scale.scaleMode = Phaser.ScaleManager.EXAC
       //this.scale.setUserScale(0.5,0.5)
@@ -23,14 +23,23 @@
       
       
       //this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-      //this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-      //this.game.scale.pageAlignHorizontally = true;
-      //this.game.scale.pageAlignVertically = true;      
-      
       this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      this.game.scale.pageAlignHorizontally = true;
+      this.game.scale.pageAlignVertically = true;      
+
+      if(screen.width < 1024){
+        //alert(screen.width)  
+        //this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;   
+        this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+
+      }
+       
+      //this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
       this.game.renderer.renderSession.roundPixels = true;
       
-      //this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;       
+
+    
+         
 
       
       //this.game.scale.setMinMax(window.innerWidth,window.innerHeight,window.innerWidth,window.innerHeight)  

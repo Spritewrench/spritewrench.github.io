@@ -321,14 +321,12 @@
           this.load.image('BG1-night', 'assets/BG1-night.webp');
           this.load.image('BG2-night', 'assets/BG2-night.webp');            
 
-           
+          this.load.image('sound', 'assets/sound.webp');  
+          this.load.image('soundNo', 'assets/soundNo.webp');                 
         
           this.load.image('legendOverlay', 'assets/legendOverlay.webp');  
           this.load.image('bagOverlay', 'assets/bagOverlay.webp');            
-        
-          this.load.image('factionBG0', 'assets/factionBG0.webp');
-          this.load.image('factionBG1', 'assets/factionBG1.webp');
-          this.load.image('factionBG2', 'assets/factionBG2.webp');          
+           
           
           this.load.image('huntTickets', 'assets/HuntTickets.webp');
           this.load.image('contHunt', 'assets/contHunt.webp');
@@ -379,10 +377,7 @@
           this.load.image('warden2-happy', 'assets/warden2-happy.webp');
           this.load.image('warden2-sad', 'assets/warden2-sad.webp');
           this.load.image('warden2-angry', 'assets/warden2-angry.webp');            
-        
-          this.load.image('factionLeader0', 'assets/factionLeader0.webp');  
-          this.load.image('factionLeader1', 'assets/factionLeader1.webp');    
-          this.load.image('factionLeader2', 'assets/factionLeader2.webp'); 
+
         
           this.load.image('tip0', 'assets/map/tip0.webp');  
           this.load.image('tip1', 'assets/map/tip1.webp');    
@@ -466,26 +461,9 @@
           this.load.image('elemTile1', 'assets/wep/elemTile1.webp');
           this.load.image('elemTile2', 'assets/wep/elemTile2.webp');
           this.load.image('elemTile3', 'assets/wep/elemTile3.webp');
-          this.load.image('charm', 'assets/wep/charmTiles.webp'); 
-          this.load.image('charm-equipped', 'assets/wep/charmTiles-selected.webp'); 
           this.load.image('tileSelect', 'assets/wep/tileSelect.webp');
           this.load.image('newWep', 'assets/wep/newWep.webp');
           
-          //charms
-          this.load.image('Mysterious Claw Charm', 'assets/wep/charms/Mysterious Claw Charm.webp');
-          this.load.image('Mysterious Claw Charm-no', 'assets/wep/charms/Mysterious Claw Charm-no.webp');
-          this.load.image('Grass Cutter Charm', 'assets/wep/charms/Grass Cutter Charm.webp');
-          this.load.image('Grass Cutter Charm-no', 'assets/wep/charms/Grass Cutter Charm-no.webp');
-          this.load.image('Hard Rock Charm', 'assets/wep/charms/Hard Rock Charm.webp');
-          this.load.image('Hard Rock Charm-no', 'assets/wep/charms/Hard Rock Charm-no.webp');
-          this.load.image('Gentle Flame Charm', 'assets/wep/charms/Gentle Flame Charm.webp');
-          this.load.image('Gentle Flame Charm-no', 'assets/wep/charms/Gentle Flame Charm-no.webp');
-          this.load.image('Sharp Charm', 'assets/wep/charms/Sharp Charm.webp');
-          this.load.image('Sharp Charm-no', 'assets/wep/charms/Sharp Charm-no.webp');
-          this.load.image('Strong Arm Charm', 'assets/wep/charms/Strong Arm Charm.webp');
-          this.load.image('Strong Arm Charm-no', 'assets/wep/charms/Strong Arm Charm-no.webp');
-          this.load.image('Lunar Grace Charm', 'assets/wep/charms/Lunar Grace Charm.webp');
-          this.load.image('Lunar Grace Charm-no', 'assets/wep/charms/Lunar Grace Charm-no.webp');
           
           //weapons & potions
           this.load.image('equipped', 'assets/wep/equipped.webp');
@@ -519,10 +497,6 @@
           this.load.image('Crownsmasher-no', 'assets/wep/Crownsmasher-no.webp');
           this.load.image('Elder Kris', 'assets/wep/Elder Kris.webp');  
           this.load.image('Elder Kris-no', 'assets/wep/Elder Kris-no.webp');        
-
-          this.load.image('Apex Blade', 'assets/wep/Apex Blade.webp');
-          this.load.image('Apex Blade-variant', 'assets/wep/Apex Blade-variant.webp');
-          this.load.image('Apex Blade-no', 'assets/wep/Apex Blade-no.webp');
 
           //legendary weapons
           this.load.image('Rising Dawn', 'assets/wep/Rising Dawn.webp');
@@ -685,7 +659,6 @@
           
           
           this.load.image('selectedInventory', 'assets/selectedInventory.webp')
-          this.load.image('selectedInventory-charm', 'assets/selectedInventory-charm.webp')
           
           
           this.load.image('hubBonus1', 'assets/map/hubBonus1.webp')
@@ -759,78 +732,75 @@
           
           
           //sound
-          this.game.load.audio('runAwaySound', ['assets/audio/runAway.ogg']); 
+          this.game.load.audio('runAwaySound', ['assets/audio/runAway.mp3']); 
 
-          this.game.load.audio('runAwaySweat', ['assets/audio/sweat.ogg']);  
+          this.game.load.audio('runAwaySweat', ['assets/audio/sweat.mp3']);  
 
-          this.game.load.audio('battle1', ['assets/audio/Battle_Background1.ogg']);  
-          this.game.load.audio('reactBeat1', ['assets/audio/reactive/Battle_Background_reactive1.ogg']); 
+          this.game.load.audio('battle1', ['assets/audio/Battle_Background1.mp3']);  
+          this.game.load.audio('reactBeat1', ['assets/audio/reactive/Battle_Background_reactive1.mp3']); 
           
-          this.game.load.audio('battle2', ['assets/audio/Battle_Background2.ogg']);  
-          this.game.load.audio('reactBeat2', ['assets/audio/reactive/Battle_Background_reactive2.ogg']); 
+          this.game.load.audio('battle2', ['assets/audio/Battle_Background2.mp3']);  
+          this.game.load.audio('reactBeat2', ['assets/audio/reactive/Battle_Background_reactive2.mp3']); 
           
-          this.game.load.audio('battle3', ['assets/audio/Battle_Background3.ogg']);  
-          this.game.load.audio('reactBeat3', ['assets/audio/reactive/Battle_Background_reactive3.ogg']); 
+          this.game.load.audio('battle3', ['assets/audio/Battle_Background3.mp3']);  
+          this.game.load.audio('reactBeat3', ['assets/audio/reactive/Battle_Background_reactive3.mp3']); 
           
-          this.game.load.audio('battle4', ['assets/audio/Battle_Background4.ogg']);  
-          this.game.load.audio('reactBeat4', ['assets/audio/reactive/Battle_Background_reactive4.ogg']);             
+          this.game.load.audio('battle4', ['assets/audio/Battle_Background4.mp3']);  
+          this.game.load.audio('reactBeat4', ['assets/audio/reactive/Battle_Background_reactive4.mp3']);             
 
 
-          this.game.load.audio('ping', ['assets/audio/ping.ogg']);           
-          this.game.load.audio('hubMusic', ['assets/audio/hub-Dark Fantasy Studio- Emblem (seamless).ogg']);
-          this.game.load.audio('giftMusic', ['assets/audio/gifts-Dark Fantasy Studio- Home (seamless).ogg']);
-          this.game.load.audio('combatMusic', ['assets/audio/combat-Assault_on_Valorv5_loop.ogg']);  
-          this.game.load.audio('wardenMusic', ['assets/audio/warden-Dark Fantasy Studio- The village (seamless).ogg']);  
-          this.game.load.audio('legendMusic', ['assets/audio/Dark Fantasy Studio- Chimeria (seamless).ogg']);  
-          
-          this.game.load.audio('monCry--1-1', ['assets/audio/monCry/mon--1-1.ogg']);
-          this.game.load.audio('monCry-0-1', ['assets/audio/monCry/mon-0-1.ogg']);
-          this.game.load.audio('monCry-0-2', ['assets/audio/monCry/mon-0-2.ogg']);
-          this.game.load.audio('monCry-0-3', ['assets/audio/monCry/mon-0-3.ogg']);
-          this.game.load.audio('monCry-0-4', ['assets/audio/monCry/mon-0-4.ogg']);
-          this.game.load.audio('monCry-0-99', ['assets/audio/monCry/mon-0-5.ogg']);  
-          this.game.load.audio('monCry-1-1', ['assets/audio/monCry/mon-1-1.ogg']);
-          this.game.load.audio('monCry-1-2', ['assets/audio/monCry/mon-1-2.ogg']);
-          this.game.load.audio('monCry-1-3', ['assets/audio/monCry/mon-1-3.ogg']);
-          this.game.load.audio('monCry-1-4', ['assets/audio/monCry/mon-1-4.ogg']);
-          this.game.load.audio('monCry-1-99', ['assets/audio/monCry/mon-1-5.ogg']);       
-          this.game.load.audio('monCry-2-1', ['assets/audio/monCry/mon-2-1.ogg']);
-          this.game.load.audio('monCry-2-2', ['assets/audio/monCry/mon-2-2.ogg']);
-          this.game.load.audio('monCry-2-3', ['assets/audio/monCry/mon-2-3.ogg']);
-          this.game.load.audio('monCry-2-4', ['assets/audio/monCry/mon-2-4.ogg']);
-          this.game.load.audio('monCry-2-99', ['assets/audio/monCry/mon-2-5.ogg']);               
+          this.game.load.audio('ping', ['assets/audio/ping.mp3']);           
+          this.game.load.audio('hubMusic', ['assets/audio/hub-Dark Fantasy Studio- Emblem (seamless).mp3']);
+          this.game.load.audio('giftMusic', ['assets/audio/gifts-Dark Fantasy Studio- Home (seamless).mp3']);
+          this.game.load.audio('combatMusic', ['assets/audio/combat-Assault_on_Valorv5_loop.mp3']);  
 
-          this.game.load.audio('monCry-1-1-beat', ['assets/audio/monCry/mon-1-1-beat.ogg']);      
+          
+          this.game.load.audio('monCry--1-1', ['assets/audio/monCry/mon--1-1.mp3']);
+          this.game.load.audio('monCry-0-1', ['assets/audio/monCry/mon-0-1.mp3']);
+          this.game.load.audio('monCry-0-2', ['assets/audio/monCry/mon-0-2.mp3']);
+          this.game.load.audio('monCry-0-3', ['assets/audio/monCry/mon-0-3.mp3']);
+          this.game.load.audio('monCry-0-4', ['assets/audio/monCry/mon-0-4.mp3']);
+          this.game.load.audio('monCry-0-99', ['assets/audio/monCry/mon-0-5.mp3']);  
+          this.game.load.audio('monCry-1-1', ['assets/audio/monCry/mon-1-1.mp3']);
+          this.game.load.audio('monCry-1-2', ['assets/audio/monCry/mon-1-2.mp3']);
+          this.game.load.audio('monCry-1-3', ['assets/audio/monCry/mon-1-3.mp3']);
+          this.game.load.audio('monCry-1-4', ['assets/audio/monCry/mon-1-4.mp3']);
+          this.game.load.audio('monCry-1-99', ['assets/audio/monCry/mon-1-5.mp3']);       
+          this.game.load.audio('monCry-2-1', ['assets/audio/monCry/mon-2-1.mp3']);
+          this.game.load.audio('monCry-2-2', ['assets/audio/monCry/mon-2-2.mp3']);
+          this.game.load.audio('monCry-2-3', ['assets/audio/monCry/mon-2-3.mp3']);
+          this.game.load.audio('monCry-2-4', ['assets/audio/monCry/mon-2-4.mp3']);
+          this.game.load.audio('monCry-2-99', ['assets/audio/monCry/mon-2-5.mp3']);               
+
+          this.game.load.audio('monCry-1-1-beat', ['assets/audio/monCry/mon-1-1-beat.mp3']);      
 
 
 
               
           
 
-          this.game.load.audio('chargeFail', ['assets/audio/chargeFail.ogg']);                 
+          this.game.load.audio('chargeFail', ['assets/audio/chargeFail.mp3']);                 
           
-          this.game.load.audio('equip', ['assets/audio/equip.ogg']); 
+          this.game.load.audio('equip', ['assets/audio/equip.mp3']); 
           
-          this.game.load.audio('forge1', ['assets/audio/forge1.ogg']);        
-          this.game.load.audio('forge2', ['assets/audio/forge2.ogg']);   
-          this.game.load.audio('forge3', ['assets/audio/forge3.ogg']); 
+          this.game.load.audio('forge1', ['assets/audio/forge1.mp3']);        
           
-          this.game.load.audio('beastBass', ['assets/audio/beastBass.ogg']); 
+          this.game.load.audio('beastBass', ['assets/audio/beastBass.mp3']); 
   
-          this.game.load.audio('raiseShield', ['assets/audio/zapsplat_warfare_sword_medieval_heavy_draw_scabbard_004_12091.ogg']);
+          this.game.load.audio('raiseShield', ['assets/audio/zapsplat_warfare_sword_medieval_heavy_draw_scabbard_004_12091.mp3']);
         
-          this.game.load.audio('win', ['assets/audio/win.ogg']); 
-          this.game.load.audio('lose', ['assets/audio/lose.ogg']); 
+          this.game.load.audio('win', ['assets/audio/win.mp3']); 
+          this.game.load.audio('lose', ['assets/audio/lose.mp3']); 
 
-          this.game.load.audio('slash1', ['assets/audio/wepAttacks/slash1.ogg']);  
-          this.game.load.audio('slash2', ['assets/audio/wepAttacks/slash2.ogg']);     
+          this.game.load.audio('slash1', ['assets/audio/wepAttacks/slash1.mp3']);  
+          this.game.load.audio('slash2', ['assets/audio/wepAttacks/slash2.mp3']);     
 
-          this.game.load.audio('stab1', ['assets/audio/wepAttacks/stab1.ogg']);  
-          this.game.load.audio('stab2', ['assets/audio/wepAttacks/stab2.ogg']);   
+          this.game.load.audio('stab1', ['assets/audio/wepAttacks/stab1.mp3']);  
+          this.game.load.audio('stab2', ['assets/audio/wepAttacks/stab2.mp3']);   
 
-          this.game.load.audio('bash1', ['assets/audio/wepAttacks/bash1.ogg']);  
-          this.game.load.audio('bash2', ['assets/audio/wepAttacks/bash2.ogg']);  
-          //this.game.load.audio('bash3', ['assets/audio/wepAttacks/bashUlt.ogg']);                
+          this.game.load.audio('bash1', ['assets/audio/wepAttacks/bash1.mp3']);  
+          this.game.load.audio('bash2', ['assets/audio/wepAttacks/bash2.mp3']);  
+          //this.game.load.audio('bash3', ['assets/audio/wepAttacks/bashUlt.mp3']);                
           
      
           

@@ -571,7 +571,7 @@
 
       //this.input.onDown.add(this.onDown, this);
       
-            this.bgSound = this.add.audio('wardenMusic');
+            this.bgSound = this.add.audio('giftMusic');
             this.ping = this.add.audio('ping');
       
             this.winSound = this.add.audio('win');
@@ -579,11 +579,18 @@
       
             if(!this.bgSound.isPlaying){
                 this.bgSound.loop = true;
-                this.bgSound.play();
+                if(parseInt(localStorage.getItem("muted")) == 0){
+                  this.bgSound.play();
+                }                 
+                
                 this.bgSound.volume = 0.5;
                 //this.introCheck = true;
             }
-            this.winSound.play();
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.winSound.play();
+      
+            }            
+            
             this.winSound.volume = 0.1
 
       this.craftBackdrop = this.add.sprite(0, 0, 'mainBG');
@@ -853,6 +860,17 @@
     },
 
     update: function () {
+
+      if(parseInt(localStorage.getItem("muted")) == 1){
+        this.bgSound.stop();
+        this.ping.stop();
+        this.winSound.stop();
+
+      }
+      else{
+     
+      }
+
       if(parseInt(localStorage.getItem("restartState")) == 1 ){
         
         localStorage.removeItem("restartState")
@@ -1197,7 +1215,10 @@
     watchAd: function (unit) {
         
         if(this.extraCarve == 0 && gameConfig.enableAds){
-          this.ping.play()  
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.ping.play()  
+          }            
+          
           try{
               //getAds();
               //localStorage.setItem("letsCarve",0);
@@ -1312,7 +1333,9 @@
             this.transitionKey = 0
           }
           //ocalStorage.setItem("Markerbiome",this.markerBiome)
-          this.ping.play();
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.ping.play()  
+          }           
           this.bgSound.stop();               
           
         }           
@@ -1339,7 +1362,9 @@
           localStorage.setItem("firstVisit-reward",1);    
           //localStorage.setItem("firstVisit-combat-lose",1);
           this.bgSound.stop();
-          this.ping.play()         
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.ping.play()  
+          }                 
          //localStorage.setItem('state','warden')
          localStorage.setItem("revengeHunt",0)
          this.transition.alpha = 1;
@@ -1413,14 +1438,19 @@
         
     },    
     noDown: function () {
-      this.ping.play();
+      if(parseInt(localStorage.getItem("muted")) == 0){
+        this.ping.play()  
+      }       
+      
       this.bgSound.stop();          
       this.game.state.start('game')      
         
     }, 
     hideExp: function () {
       if(this.rankText2.alpha >= 1){
-        this.ping.play();
+        if(parseInt(localStorage.getItem("muted")) == 0){
+          this.ping.play()  
+        } 
         this.popUp.x = this.game.width
       }
 

@@ -61,8 +61,8 @@
             timeConstantScroll: 325, //really mimic iOS
             horizontalScroll: true,
             verticalScroll: false,
-            horizontalWheel: true,
-            verticalWheel: false,
+            horizontalWheel: false,
+            verticalWheel: true,
             deltaWheel: 40,
             onUpdate: null,
             button: ""
@@ -421,6 +421,7 @@
     * Event called when the mousewheel is used, affect the direction of scrolling.
     */
     Phaser.Plugin.KineticScrolling.prototype.mouseWheel = function (event) {
+        
         if (!this.settings.horizontalWheel && !this.settings.verticalWheel) return;
 
         event.preventDefault();

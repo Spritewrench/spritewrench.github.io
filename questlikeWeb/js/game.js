@@ -1392,10 +1392,75 @@
             this.okayButton2.y = this.game.height/2-60
             
           }  
-                  
+        //pause screen
+          this.pauseCount = 1
+          this.game.onBlur.add(function() {
+            if(this.pauseCount == 0){
+              this.pauseCount = 1;
+            }
+            else if(this.pauseCount > 0){
+              this.chatTimer = 1;
+              this.mapWarden.loadTexture("warden"+this.biome)
+              this.mapWarden.x = 0
+              switch(this.biome){
+                case 0:
+                  this.textBackdropText2.text = "Neeka, the Sure"                  
+                  break;
+                case 1:
+                  this.textBackdropText2.text = "Roz, the Steady"                    
+                  break;
+                case 2:
+                  this.textBackdropText2.text = "Rayla, the Indifferent"                 
+                  break;                
+              } 
+              this.textBackdropText.text = "Welcome back.\nI paused the fight you.\nLet's get back to the hunt shall we?"
+            }
+            
+          },this);   
+          
         }
         , update: function () {
           
+          //pause on rotate
+          if(parseInt(localStorage.getItem("isPortrait")) == 0){
+            this.chatTimer = 1;
+            
+            this.mapWarden.loadTexture("warden"+this.biome)
+            this.mapWarden.x = 0
+            switch(this.biome){
+              case 0:
+                this.textBackdropText2.text = "Neeka, the Sure"                  
+                break;
+              case 1:
+                this.textBackdropText2.text = "Roz, the Steady"                    
+                break;
+              case 2:
+                this.textBackdropText2.text = "Rayla, the Indifferent"                 
+                break;                
+            } 
+            this.textBackdropText.text = "Welcome back.\nI paused the fight you.\nLet's get back to the hunt shall we?"
+          }
+
+          if(parseInt(localStorage.getItem("muted")) == 1){
+            this.bgSound.stop();
+            this.ping.stop();
+            this.sweatSound.stop();
+            this.runSound.stop();
+            this.monCry.stop();
+            this.stabSound[1].stop();
+            this.stabSound[2].stop();
+            this.slashSound[1].stop();
+            this.slashSound[2].stop();
+            this.bashSound[1].stop();
+            this.bashSound[2].stop();
+            this.shieldSound.stop();
+            this.chargeFail.stop();
+            this.beastBass.stop();
+            this.reactiveBeatOrig.volume = 0
+          }
+          else{
+         
+          }          
           this.loadGrass1.x += ((-this.game.width/2) - this.loadGrass1.x) * 0.1;  
           this.loadGrass2.x += ((this.game.width*1.5) - this.loadGrass2.x) * 0.1;  
           
@@ -1548,8 +1613,10 @@
             this.textBackdrop.width = this.game.width/1.5
             this.textBackdrop.height = this.game.height/1.5                 
           }
+          if(this.chatTimer <= 0){
+            this.huntTimer--
+          }
           
-          this.huntTimer--
           console.log("countDown "+this.huntTimer+" "+this.runAwayTimer)
           if(this.huntTimer == -500 && parseInt(localStorage.getItem("firstVisit-combat")) >= 15){
             this.runAwayTimer = 150
@@ -1558,7 +1625,10 @@
           if(this.runAwayTimer >= 0 && this.monster.hp > 0 ){
             this.runAwayTimer--;
             if(!this.sweatSound.isPlaying){
-              this.sweatSound.play();
+              if(parseInt(localStorage.getItem("muted")) == 0){
+                this.sweatSound.play();
+              }                
+              
             }
             if(this.sweatDrop.alpha > 0){
               this.sweatDrop.alpha -= 0.04
@@ -1602,7 +1672,10 @@
             this.monster.ranAway = true;
             this.runAwayTimer = -1;
             localStorage.setItem("didMonRun",1)
-            this.runSound.play();                                
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.runSound.play();    
+            }                
+                                        
           } 
 
           if(this.startCounter == 1 && this.scoreScreen.alpha == 0 && this.huntTimer > 0){
@@ -1929,8 +2002,8 @@
                         
                         if(parseInt(localStorage.getItem("firstVisit-combat")) == 34){
                           //warden tips
-                          this.chatTimer = 1;
-                          this.textBackdropText.text = "Nice attempt.\nTry upgrading your weapon..."                              
+                          //this.chatTimer = 1;
+                          //this.textBackdropText.text = "Nice attempt.\nTry upgrading your weapon..."                              
                         }                        
                          
                       }
@@ -2088,7 +2161,10 @@
               this.monAppear--;
               if(this.firstTime == false){
                 this.firstTime = true;
-                this.monCry.play();
+                if(parseInt(localStorage.getItem("muted")) == 0){
+                  this.monCry.play(); 
+                }                  
+                
                 this.monsterShadow.alpha = 1      
                 this.monster.tint = 0xffffff;     
                 if(this.monster.isApex){
@@ -2282,7 +2358,10 @@
                 this.attackFX.y = this.monster.y+ran        
 
                 var ran = Math.floor(Math.random() * 2)+1;
-                this.stabSound[ran].play();
+                if(parseInt(localStorage.getItem("muted")) == 0){
+                  this.stabSound[ran].play();
+                }                 
+                
 
 
                 if(this.hunter.ultingStab  <= 0){
@@ -3444,7 +3523,10 @@
 
                       if(this.hitFlag == 0){
                         if(!this.chargeFail.isPlaying){
-                          this.chargeFail.play();
+                          if(parseInt(localStorage.getItem("muted")) == 0){
+                            this.chargeFail.play();
+                          }                            
+                          
                         }
                         
                         this.hunter.critMul = 1;
@@ -4187,7 +4269,9 @@
                       this.hunter.charge = 0
                     }                    
                     if(!this.chargeFail.isPlaying){
-                      this.chargeFail.play();
+                      if(parseInt(localStorage.getItem("muted")) == 0){
+                        this.chargeFail.play();
+                      }                        
                     }
                     
                     this.hunter.critMul = 1;
@@ -5036,7 +5120,10 @@
             this.monsterShadow.alpha = 1
             this.monster.rageOn = true;
             //this.game.sound.stopAll();
-            this.monCry.play();
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.monCry.play();
+            }              
+            
             //this.monster.speed += 2;
             if(this.monster.speed > 10){
               //this.monster.speed = 10;
@@ -5079,7 +5166,10 @@
         }  
         , loot: function(){
           if(this.lootOkay){
-            this.ping.play();
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.ping.play();
+            }             
+            
             this.sweatSound.stop();
             localStorage.setItem('state','win')
             localStorage.setItem("markedMon",this.encounterID)
@@ -5162,7 +5252,7 @@
         , monBop: function(){
             //console.log("Tick")
             
-            if(this.monAppear <= 0 && this.monster.hp > 0 && this.startCounter == 1){
+            if(this.monAppear <= 0 && this.monster.hp > 0 && this.startCounter == 1 && this.chatTimer <= 0){
               this.startCount.alpha = 0;
                 this.monster.tint = 0xffffff;  
                 if(this.monster.isApex){
@@ -5170,7 +5260,7 @@
                 }                 
                 //console.log(this.soundAnalyseSprite.isPlaying())
                
-                if( this.soundAnalyseSprite.isPlaying() == false && parseInt(localStorage.getItem("firstVisit-combat")) > 7 ){
+                if( this.soundAnalyseSprite.isPlaying() == false && parseInt(localStorage.getItem("firstVisit-combat")) > 7 && parseInt(localStorage.getItem("muted")) == 0){
                   //this.soundAnalyseSprite.play()     
                   this.soundAnalyseSprite.play("startHere")
                 }
@@ -5409,7 +5499,10 @@
 
                             var ran = Math.floor(Math.random() * 2)+1;
                             if(!this.slashSound[ran].isPlaying){
+                              if(parseInt(localStorage.getItem("muted")) == 0){
                                 this.slashSound[ran].play();
+                              }                              
+                                
                             }                             
 
                             this.rhythemUI.loadTexture("attackHit-slash");
@@ -5449,7 +5542,10 @@
 
                             var ran = Math.floor(Math.random() * 2)+1;
                             if(!this.stabSound[ran].isPlaying){
-                               this.stabSound[ran].play();
+                              if(parseInt(localStorage.getItem("muted")) == 0){
+                                this.stabSound[ran].play();
+                              }                               
+                               
                             }
 
                             this.rhythemUI.loadTexture("attackHit-stab");
@@ -5475,7 +5571,10 @@
 
                             var ran = Math.floor(Math.random() * 2)+1;
                             if(!this.bashSound[ran].isPlaying){
-                               this.bashSound[ran].play();
+                              if(parseInt(localStorage.getItem("muted")) == 0){
+                                this.bashSound[ran].play();
+                              }                                
+                               
                             }   
 
                             //this.monster.height = this.monster.tarSize -100;
@@ -5600,7 +5699,10 @@
                           
                               if (localStorage.getItem("firstVisit-combat-HeavyHit") === null ) {
                                   localStorage.setItem("firstVisit-combat-HeavyHit",1);
-                                  this.monCry.play()
+                                  if(parseInt(localStorage.getItem("muted")) == 0){
+                                    this.monCry.play()
+                                  }                                      
+                                  
                                   this.monsterShadow.alpha = 1
                                   this.monster.rageOn = true;                                  
                                   localStorage.setItem("firstVisit-combat",8);  
@@ -5847,7 +5949,10 @@
                           
                           if(this.hunter.critMul > 1){
                             if(!this.chargeFail.isPlaying){
-                              this.chargeFail.play();
+                              if(parseInt(localStorage.getItem("muted")) == 0){
+                                this.chargeFail.play();
+                              }                               
+                              
                             }
                             
                             this.hunter.critMul = 1;
@@ -5901,7 +6006,10 @@
                   case 3:
                       ////////console.log("BLOCKED")
                       if(!this.shieldSound.isPlaying){
-                         this.shieldSound.play();
+                        if(parseInt(localStorage.getItem("muted")) == 0){
+                          this.shieldSound.play();
+                        }                         
+                         
                       }  
                       this.playBeat();
 
@@ -5928,7 +6036,10 @@
                           this.guardCount2 = this.guardCount
 
                           if(!this.shieldSound.isPlaying){
+                            if(parseInt(localStorage.getItem("muted")) == 0){
                               this.shieldSound.play();
+                            }                              
+                            
                           }
                           if(parseInt(localStorage.getItem("first-block-attempt")) == 0){
                             this.shieldArrow.alpha = 0;

@@ -59,7 +59,7 @@
 
   <!-- /build -->
 </head>
-
+<div id = "turn"></div>
 <body>
   
   <div id="simplewar-game" class="game"></div>
@@ -81,9 +81,7 @@
     <script src="js/lose.js"></script>    
     <script src="js/game.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/choose.js"></script>
     <script src="js/warden.js"></script>
-    <script src="js/faction.js"></script>
     <script src="js/craft.js"></script>
     <script src="js/rank.js"></script>
     <script src="js/credit.js"></script>
@@ -92,7 +90,6 @@
     <script src="js/monster.js"></script>
     <script src="js/monsterReward.js"></script>
     <script src="js/hub.js"></script>
-    <script src="js/archive.js"></script>
     <script src="js/shop.js"></script>
     <script src="js/encounter.js"></script>
     <script src="js/weapon.js"></script>
@@ -101,13 +98,10 @@
     <script src="js/dailyWeather.js"></script>
     <script src="js/guildBoard.js"></script>
     <script src="js/leaderboard.js"></script>
-    <script src="js/titles.js"></script>
     <script src="js/lib/control.js"></script>
     <script src="js/lib/webfont.js"></script>
     <script src="js/lib/jsLogger.js"></script>
     <script src="js/lib/glow.js"></script>
-
-    <script src="realMedia/zone.min.js"></script>
 
   <!-- /build -->
     <my-ads id="ads"></my-ads>
@@ -143,6 +137,8 @@ localStorage.setItem("hunterHP",3);
 localStorage.setItem('hasSlashed',0);
 localStorage.setItem('hasStabbed',0);
 localStorage.setItem('hasBashed',0);  
+
+localStorage.setItem("muted",0)
 
 if (localStorage.getItem("equip0") === null) {
   localStorage.setItem("equip0",1)
@@ -377,10 +373,30 @@ localStorage.setItem("adReady",0)
 </script> 
 <script src='cordova.js'></script>
 <script src='js/index.js'></script>
-<script src="js/SocialSharing.js"></script>
 <script>
 
+let portrait = window.matchMedia("(orientation: portrait)");
 
+if(navigator.userAgentData.mobile === true){
+  portrait.addEventListener("change", function(e) {
+      if(e.matches) {
+        console.log("p")
+        document.getElementById("turn").style.display="none";
+        localStorage.setItem("isPortrait",1)
+          // Portrait mode
+      } else {
+          console.log("l")
+          document.getElementById("turn").style.display="block";
+          localStorage.setItem("isPortrait",0)
+          // Landscape
+      }
+    }) 
+}
+ 
+
+  document.addEventListener("touchstart", function(e){
+    e.preventDefault();
+  },{passive: false});
 
 </script>
 <!--

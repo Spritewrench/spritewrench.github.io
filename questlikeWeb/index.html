@@ -53,7 +53,6 @@
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
-        height: 100%;
         margin: 0;
         padding: 0;
       }
@@ -61,9 +60,12 @@
       image-rendering: -webkit-optimize-contrast;
       }      
       body {
+        background-image: url(assets/start-ID.webp);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;        
         color: #333;
-        width: 623.99px;
-        display : block;   
+        height: 100%; 
         margin : auto;      
       }
 
@@ -199,9 +201,12 @@
         transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
     }
     
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 800px) {
       body {
-        width: 100%;
+        background-image: url(assets/start-ID.webp);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
         display : block;   
         margin : auto;      
       }
@@ -301,7 +306,7 @@ else{
   //fireSync();
   //fireWrite();
   //setTimeout(function(){ window.location.href = 'index3.html'  }, 2000);
-  var audio = new Audio('assets/audio/ping.ogg');
+  var audio = new Audio('assets/audio/ping.mp3');
     audio.play();  
 
 
@@ -354,7 +359,7 @@ else{
       //alert("Copied the text: " + copyText.value);     
       if(localStorage.getItem("userID") != null ){
         //document.getElementById("bg").style.backgroundImage ="url('assets/startNo-old.webp')"
-        fireWrite();
+        //fireWrite();
         localStorage.removeItem('userID')
         localStorage.clear()        
 
@@ -392,7 +397,8 @@ else{
       
     //alert(test)
   </script>    
-  <body id="bg" style="background-image: url('assets/start.webp'); background-size: auto; background-position: center; background-repeat:no-repeat; background-size:cover;"  onclick="next()">
+  <div id = "turn"></div>
+  <body id="bg"   onclick="next()">
 
     
 
@@ -401,7 +407,7 @@ else{
 
 
     <audio autoplay="" loop="" preload=""  id="musicBG">
-      <source src="assets/audio/combat-Assault_on_Valorv5_loop.ogg" type="audio/mpeg"></source>
+      <source src="assets/audio/combat-Assault_on_Valorv5_loop.mp3" type="audio/mpeg"></source>
       Your browser does not support the audio element.
     </audio>
     <div id="progressbar">
@@ -482,7 +488,7 @@ else{
   else{
     //alert("loaded")
     //fireSync();
-    fireWrite();
+    //fireWrite();
   }   
   </script>
 <script>
@@ -511,6 +517,21 @@ else{
 
       }
     }  
+    
+    let portrait = window.matchMedia("(orientation: portrait)");
+
+    portrait.addEventListener("change", function(e) {
+    if(e.matches) {
+      console.log("p")
+      document.getElementById("turn").style.display="none";
+        // Portrait mode
+    } else {
+        console.log("l")
+        document.getElementById("turn").style.display="block";
+
+        // Landscape
+    }    
+  });
 </script>
 
 </html>

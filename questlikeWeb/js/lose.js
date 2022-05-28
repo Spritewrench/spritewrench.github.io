@@ -106,12 +106,14 @@
             this.updateLeader = 1;
         }
       
-            this.bgSound = this.add.audio('wardenMusic');
+            this.bgSound = this.add.audio('giftMusic');
             this.ping = this.add.audio('ping');    
       
             if(!this.bgSound.isPlaying){
                 this.bgSound.loop = true;
-                this.bgSound.play();
+                if(parseInt(localStorage.getItem("muted")) == 0){
+                  this.bgSound.play()  
+                } 
                 this.bgSound.volume = 0.5;
                 //this.introCheck = true;
             }         
@@ -147,7 +149,14 @@
     },
 
     update: function () {
+      if(parseInt(localStorage.getItem("muted")) == 1){
+        this.bgSound.stop();
+        this.ping.stop();
 
+      }
+      else{
+     
+      }
       if(this.transition.alpha == 1){
         this.transition.y-=25
         if(this.transition.y <= -500){
@@ -192,7 +201,9 @@
       
       try{
         if(this.letsHunt == 1 || gameConfig.enableAds == false){
-          this.ping.play() 
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.ping.play()  
+            }    
             if(this.bgSound.isPlaying){
                 this.bgSound.stop();
                 //this.introCheck = true;
@@ -208,7 +219,9 @@
         else{
           this.letsHunt = 1
           this.bgSound.stop();
-          this.ping.play()          
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.ping.play()  
+          }        
           
           try{
             //getAds();
@@ -245,7 +258,9 @@
         }*/
         //this.fireWrite();
         this.bgSound.stop();
-        this.ping.play()      
+        if(parseInt(localStorage.getItem("muted")) == 0){
+          this.ping.play()  
+        } 
         try{
             admob.rewardvideo.remove()
         }

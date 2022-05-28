@@ -9,7 +9,7 @@
   Menu.prototype = {
 
     create: function () {
-        //this.game.scale.setMinMax(360, 640, 480,853)
+        //this.game.scale.setMinMax(360, 640, 800,window.innerHeight)
         
         this.game.stage.backgroundColor = "#160c2c";
         

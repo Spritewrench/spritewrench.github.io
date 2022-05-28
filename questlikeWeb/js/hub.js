@@ -179,6 +179,10 @@
             
             this.hasLost = parseInt(localStorage.getItem("hasLost"))
             
+            this.sound = this.add.sprite(10, 10, "sound");  
+            this.sound.inputEnabled = true;
+            this.sound.events.onInputDown.add(this.adjustSound, this);  
+
             this.arrowLeft = this.add.sprite(10, this.game.height/2-200, "craftArrowLeft");  
             this.arrowLeft.inputEnabled = true;
             this.arrowLeft.events.onInputDown.add(this.left, this);  
@@ -265,7 +269,10 @@
             
             if(!this.bgSound.isPlaying){
                 this.bgSound.loop = true;
-                this.bgSound.play();
+                if(parseInt(localStorage.getItem("muted")) == 0){
+                  this.bgSound.play();
+                }                   
+                
                 this.bgSound.volume = 0.5;
                 //this.introCheck = true;
             } 
@@ -444,16 +451,15 @@
           this.targetMonWeakText.align ='center'   
           this.targetMonWeakText.alpha = 0;
           
-          this.targetHighScoreText= this.add.text(this.game.width/2, this.targetOverlayRank.height/2+160, "",{font:'LondrinaSolid-Black'});
-          //media breakpoint 
-          if(window.innerHeight < 800){
-            this.targetHighScoreText.y = this.targetOverlayRank.height/2+140
-          }
-          if(window.innerHeight < 700){
-            this.targetHighScoreText.y = this.targetOverlayRank.height/2+130
-          }          
-          this.targetHighScoreText.fill= '#fff';  
+          this.targetHighScoreText= this.add.text(this.game.width/2, this.targetOverlayRank.height/2+150, "",{font:'LondrinaSolid-Black'});
           this.targetHighScoreText.fontSize = 28;  
+          //media breakpoint 
+          if(window.innerHeight < 700){
+            this.targetHighScoreText.y = this.targetOverlayRank.height/2+115
+            this.targetHighScoreText.fontSize = 24;  
+          }               
+          this.targetHighScoreText.fill= '#fff';  
+          //this.targetHighScoreText.fontSize = 28;  
           this.targetHighScoreText.anchor.setTo(0.5, 0.5);       
           this.targetHighScoreText.align ='center'   
           this.targetHighScoreText.alpha = 0;
@@ -476,12 +482,14 @@
           this.bountyCount.stroke = 'white';
           this.bountyCount.strokeThickness = 3;          
           //media breakpoint 
+          
+                          
           if(window.innerHeight < 700){
-            this.bountyCount.y = 53
-          }  
-          if(window.innerWidth < 400){
+            this.bountyCount.y = 55
             this.bountyCount.x = 50
-          }            
+            this.bountyCount.fontSize = 22;
+          }  
+            
 
           this.wardenHunt = this.add.sprite((this.game.width/2)-25,-1000, 'wardenHunt0');
           this.wardenHunt.anchor.setTo(0.5, 0.5);
@@ -557,7 +565,7 @@
           this.textBackdropText.wordWrap = true;
           this.textBackdropText.wordWrapWidth = this.game.width-35;      
 
-          this.textBackdropText2 = this.add.text(15,this.textBackdropText.y-93, "Lorem Ipsum",{font:'LondrinaSolid-Black'});
+          this.textBackdropText2 = this.add.text(this.textBackdrop.x-this.textBackdrop.width/2-this.textBackdrop.width/6,this.textBackdropText.y-93, "Lorem Ipsum",{font:'LondrinaSolid-Black'});
           this.textBackdropText2.angle = -5
           this.textBackdropText2.alpha = 0;
           this.textBackdropText2.fill= '#FF8900';
@@ -798,23 +806,12 @@
           this.textBackdropText2.y = this.textBackdropText.y-80        
           this.okayButton2.y = this.game.height/2-60
           
-        }
-        else if(window.innerHeight < 800){
-          this.textBackdropText.fontSize = 19;
-          this.textBackdropText2.fontSize = 19;
-          this.textBackdropText.y = 190
-          this.textBackdropText2.y = this.textBackdropText.y-90                
-          /*
-          this.textBackdropText.y = this.game.height-100
-          this.textBackdropText2.fontSize = 24;
-          this.textBackdropText2.y = this.textBackdropText.y-100      
-          */       
-        }        
+        }     
         else{ 
           
           this.textBackdropText.fontSize = 19;
           this.textBackdropText2.fontSize = 19;
-          this.textBackdropText.y = 190
+          this.textBackdropText.y = 180
           this.textBackdropText2.y = this.textBackdropText.y-75             
           //this.textBackdropText.fontSize = 24;
           /*
@@ -824,6 +821,7 @@
           */       
         }  
 
+            
           this.huntStart = false;
           this.tarKey = -1;
           this.tarHuntAlphaKey = 0;
@@ -835,12 +833,30 @@
               this.markerBiome = parseInt(localStorage.getItem("lastBiomeVisited"));
             }      
             this.monCry = this.add.audio('monCry-'+this.biome+'-1');
+            
+            var soundKey = parseInt(localStorage.getItem("muted"))
+            if(soundKey == 0 ){
+              this.sound.loadTexture("sound")
+              //localStorage.setItem("muted",1)
+            } 
+            else{
+              this.sound.loadTexture("soundNo")
+              //localStorage.setItem("muted",0)
+            }            
         }      
         
         
       
 
         , update: function () {
+          if(parseInt(localStorage.getItem("muted")) == 1){
+            this.bgSound.stop();
+            this.ping.stop();
+            this.monCry.stop();
+          }
+          else{
+         
+          }
           if(this.markerBiome != -1){
             this.targetOverlay.loadTexture('targetOverlay'); 
           }
@@ -1132,29 +1148,63 @@
 
           if(this.targetOverlay.alpha == 1 && (this.targetOverlay.y <= 2)){
 
-            this.wardenHunt.y = (this.game.height/2)+210
+            this.wardenHunt.y = (this.game.height/2)+240
+   
+
             this.tixText2.y = this.wardenHunt.y-30
 
             //wocco too high
             if((this.monKey == 4) && this.markerBiome == 0){
               this.targetMon.y = this.game.height/2-350
-              //media breakpoint 
-              if(window.innerHeight < 700){
-                this.targetMon.y = this.game.height/2-320
-              }               
+              //media breakpoint                     
             }
             else if(this.monKey == 99 && this.markerBiome == 0){
               this.targetMon.y = this.game.height/2-350
               //media breakpoint 
               if(window.innerHeight < 700){
                 this.targetMon.y = this.game.height/2-300
-              }               
+              }                               
             }  
+            else if(this.monKey == 1 && this.markerBiome == 1){
+              this.targetMon.y = this.game.height/2-300
+              //media breakpoint 
+              if(window.innerHeight < 700){
+                this.targetMon.y = this.game.height/2-260
+              }                              
+            } 
+            else if(this.monKey == 2 && this.markerBiome == 1){
+              this.targetMon.y = this.game.height/2-300
+              //media breakpoint 
+              if(window.innerHeight < 700){
+                this.targetMon.y = this.game.height/2-260
+              }                              
+            }                        
+            else if(this.monKey == 4 && this.markerBiome == 1){
+              this.targetMon.y = this.game.height/2-300
+              //media breakpoint 
+              if(window.innerHeight < 700){
+                this.targetMon.y = this.game.height/2-260
+              }                                 
+            }
+            else if(this.monKey == 99 && this.markerBiome == 1){
+              this.targetMon.y = this.game.height/2-310
+              //media breakpoint 
+              if(window.innerHeight < 700){
+                this.targetMon.y = this.game.height/2-260
+              }                               
+            }                         
             else if(this.monKey == 99 && this.markerBiome == 2){
               this.targetMon.y = this.game.height/2-325
+              //media breakpoint 
+              if(window.innerHeight < 700){
+                this.targetMon.y = this.game.height/2-250
+                this.targetMon.width = 150;
+                this.targetMon.height = 150;
+              }                                                 
             }                        
             else{
-              this.targetMon.y = this.game.height/2-300
+              this.targetMon.y = this.game.height/2-300               
+                             
             }
             
             this.targetarrowLeft.y = this.game.height/2-200
@@ -1188,6 +1238,31 @@
             this.targetHighScoreText.alpha = this.tarHuntAlphaKey;       
             this.wardenHunt.alpha = this.tarHuntAlphaKey
             this.tixText2.alpha = this.tarHuntAlphaKey          
+
+            if(window.innerHeight > 700){
+              var newY = this.targetOverlayRank.height/2+55;
+              this.targetMonCommonDrop.y = newY
+              this.targetMonUncommonDrop1.y = newY
+              this.targetMonUncommonDrop2.y = newY
+              this.targetMonUncommonDrop3.y = newY
+              this.targetMonRareDrop.y = newY
+            }      
+            if(window.innerHeight >= 900){
+              var newY = this.targetOverlayRank.height/2+55;
+              this.targetMonCommonDrop.y = newY
+              this.targetMonUncommonDrop1.y = newY
+              this.targetMonUncommonDrop2.y = newY
+              this.targetMonUncommonDrop3.y = newY
+              this.targetMonRareDrop.y = newY
+            }            
+            if(window.innerHeight > 1000){
+              var newY = this.targetOverlayRank.height/2+55;
+              this.targetMonCommonDrop.y = newY
+              this.targetMonUncommonDrop1.y = newY
+              this.targetMonUncommonDrop2.y = newY
+              this.targetMonUncommonDrop3.y = newY
+              this.targetMonRareDrop.y = newY
+            }    
 
             //no other monsters at guild and no drops
             if(this.markerBiome == -1){
@@ -1404,7 +1479,7 @@
           
           var rankHolder = Math.floor(parseInt(localStorage.getItem("currentRank"))/10);
           //console.log(rankHolder)
-          if(rankHolder > 2){
+          if(rankHolder > 2){this.okayButton
             rankHolder = 2;
           }
           this.hubrankBadge.loadTexture('rankBadge-'+rankHolder)   
@@ -1698,7 +1773,11 @@
           }
           else{
             this.targetOverlay.alpha = 1;
-            this.ping.play();
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.ping.play();
+      
+            }                 
+            
           }
           
           if(parseInt(localStorage.getItem("bountyCompleted-"+this.markerBiome)) == 0 && parseInt(localStorage.getItem("firstVisit-combat")) >= 30){
@@ -1775,7 +1854,10 @@
         }   
         , exitHunt: function(){
           if(this.exitTarget.alpha == 1){
-            this.ping.play();
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.ping.play();
+      
+            }      
             this.targetOverlay.alpha = 0;
             this.monKey = 1
           }
@@ -1788,7 +1870,10 @@
               //localStorage.setItem("monName",monster[this.biome][1].name);
               //this.game.state.start('win');
             if(this.canHunt && (parseInt(localStorage.getItem("firstVisit-combat")) >= 30 || (parseInt(localStorage.getItem("firstVisit-combat")) == 22 && this.monKey == 1) )){
-              this.ping.play();
+              if(parseInt(localStorage.getItem("muted")) == 0){
+                this.ping.play();
+        
+              }      
               this.bgSound.stop();
               localStorage.setItem("Markerbiome",this.markerBiome)
               localStorage.setItem("TixCount"+this.markerBiome,localStorage.getItem("TixCount"+this.markerBiome)-this.tixCost);
@@ -1853,7 +1938,10 @@
             //this.selectShop.clicked = true;
             //window.location.href = "index2.html";
             //console.log("leader")
-            this.ping.play();
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.ping.play();
+      
+            }      
             this.bgSound.stop(); 
             this.highlightTar = this.selectShop.x
             this.tarKey = 2;
@@ -1863,7 +1951,10 @@
         , goToArchive: function (unit) {
             //this.selectShop.width = 250;
             //this.selectShop.height = 250  
-            this.ping.play();
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.ping.play();
+      
+            }      
             this.bgSound.stop(); 
             this.game.state.start('archive') 
             //this.selectShop.clicked = true;
@@ -1873,7 +1964,10 @@
         , goToCraft: function (unit) {
            //localStorage.setItem('state','craft')
            
-           this.ping.play();
+           if(parseInt(localStorage.getItem("muted")) == 0){
+            this.ping.play();
+    
+          }      
            this.bgSound.stop();     
            this.highlightTar = this.selectInventory.x
            this.tarKey = 0;
@@ -1883,7 +1977,10 @@
         }    
         , goToGuild: function (unit) {
            //localStorage.setItem('state','craft')
+           if(parseInt(localStorage.getItem("muted")) == 0){
             this.ping.play();
+    
+          }      
             this.bgSound.stop();          
            this.game.state.start('rank') 
             
@@ -2072,7 +2169,10 @@
                 localStorage.setItem("Markerbiome",2)
                 
                 localStorage.setItem("targetID",1)
-                this.ping.play();
+                if(parseInt(localStorage.getItem("muted")) == 0){
+                  this.ping.play();
+          
+                }      
                 this.bgSound.stop();              
                 //this.game.state.start('game');       
                 this.transition.alpha = 1;
@@ -2190,7 +2290,11 @@
                 
                 this.textBackdropText2.text = "Roz, the Steady" 
                 this.game.plugins.screenShake.shake(15);  
-                this.monCry.play()
+                if(parseInt(localStorage.getItem("muted")) == 0){
+                  this.monCry.play()
+          
+                }                      
+                
                 var location = ""
                 var creep = ""
                 switch(this.biome){
@@ -2243,7 +2347,11 @@
         }  
         ,openLeaderBoard: function(){
           try{
-            this.ping.play();
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.ping.play();
+      
+            }            
+            
             var data = {
               leaderboardId: "CgkI4b7xjZMYEAIQAQ"
             };            
@@ -2291,7 +2399,22 @@
           firebase.database().ref('dailyChallenge').update({
             [localStorage.getItem("loginDate")]: val
           });           
-        }         
+        } 
+        , adjustSound : function () {
+          
+            var soundKey = parseInt(localStorage.getItem("muted"))
+            if(soundKey == 0 ){
+              this.sound.loadTexture("soundNo")
+              localStorage.setItem("muted",1)
+            } 
+            else{
+              this.sound.loadTexture("sound")
+              localStorage.setItem("muted",0)
+              if(!this.bgSound.isPlaying){
+                this.bgSound.play();
+              }                  
+            }         
+        }           
         , addNewsLetter: function () {
           if(parseInt(localStorage.getItem("firstVisit-combat")) == 33){
             localStorage.setItem("firstVisit-combat",34); 
@@ -2300,7 +2423,11 @@
             
             this.textBackdropText2.text = "Roz, the Steady" 
             this.game.plugins.screenShake.shake(15);  
-            this.monCry.play()
+            if(parseInt(localStorage.getItem("muted")) == 0){
+              this.monCry.play()
+      
+            }             
+            
             var location = ""
             var creep = ""
             switch(this.biome){

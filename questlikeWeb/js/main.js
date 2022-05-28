@@ -4,10 +4,12 @@ window.onload = function () {
   var game
     , ns = window['simplewar'];
 
+
     var config = {
       width: 480,
       height: 800,
       renderer: Phaser.CANVAS,
+      mouseWheel: true,
       transparent: false,
       enableDebug: true,
       resolution: 1,
@@ -15,9 +17,10 @@ window.onload = function () {
       antialias: true,
       autoFocus: true
     };
-    
+
+
     game = new Phaser.Game(config);
-    game.preserveDrawingBuffer = true;
+   
     
 
 
@@ -35,11 +38,9 @@ window.onload = function () {
     game.state.add('win', ns.Win);
     game.state.add('lose', ns.Lose);   
     game.state.add('warden', ns.Warden);  
-    game.state.add('faction', ns.Faction);  
     game.state.add('craft', ns.Craft); 
     game.state.add('rank', ns.Rank); 
     game.state.add('hub', ns.Hub); 
-    game.state.add('archive', ns.Archive); 
     game.state.add('shop', ns.Shop); 
     console.log("where we going? main "+localStorage.getItem('state'))
     game.state.start('boot');

@@ -13,7 +13,7 @@
       this.game.world.setBounds(0, 0, this.game.width, this.game.height*0.25);
       //plugins'
       this.game.kineticScrolling  = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
-      this.game.kineticScrolling.start();
+      
       this.game.kineticScrolling.configure({
         kineticMovement: false,
         timeConstantScroll: 400, //really mimic iOS
@@ -24,8 +24,8 @@
         deltaWheel: 40,
         onUpdate: null
       });
-
-
+      this.game.kineticScrolling.start();
+      
 
       
       this.weaponArray = []
@@ -57,16 +57,22 @@
 
       var scale = 1.8
       //media breakpoint
+ 
       if(window.innerWidth < 400){
         this.tileSelect.width = Math.floor(this.tileSelect.width/scale)
         this.tileSelect.height = Math.floor(this.tileSelect.height/scale)     
       }
+      
       else{
         this.tileSelect.width = Math.floor(this.tileSelect.width/1.5)
         this.tileSelect.height = Math.floor(this.tileSelect.height/1.5)      
       }
       
 
+      if(window.innerHeight <= 600){
+        this.tileSelect.width = Math.floor(this.tileSelect.width/1.6)
+        this.tileSelect.height = Math.floor(this.tileSelect.height/1.6)     
+      }
 
       this.bgSound = this.add.audio('giftMusic');
       this.ping = this.add.audio('ping');
@@ -79,7 +85,9 @@
 
       if(!this.bgSound.isPlaying){
           this.bgSound.loop = true;
-          this.bgSound.play();
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.bgSound.play();
+          }  
           this.bgSound.volume = 0.3;
           //this.introCheck = true;
       }       
@@ -96,6 +104,10 @@
         //media breakpoint
         if(window.innerHeight < 700){
           this.startY = this.game.height/2-150 
+        }  
+        
+        if(window.innerHeight <= 600){
+          this.startY = this.game.height/2-100     
         }        
         this.weaponGridBG[i] = this.add.sprite(this.startX,this.startY, 'tab_shop_unselected');
         this.weaponGrid[i] = this.add.sprite(this.startX,this.startY, 'tab_shop_unselected');
@@ -129,6 +141,11 @@
         else{
           this.weaponGrid[i].width = Math.floor(this.weaponGrid[i].width/1.5)
           this.weaponGrid[i].height = Math.floor(this.weaponGrid[i].height/1.5)          
+        }
+
+        if(window.innerHeight <= 600){
+          this.weaponGrid[i].width = Math.floor(this.weaponGrid[i].width/1.6)
+          this.weaponGrid[i].height = Math.floor(this.weaponGrid[i].height/1.6)   
         }
 
         if( ((this.weaponArray[i].element != this.weaponArray[i-1].element) && this.weaponArray[i].id < 97) || i %4 ==0 || this.weaponArray[i].id == 97){
@@ -176,6 +193,16 @@
           this.weaponNew[i].height = Math.floor(this.weaponNew[i].height/1.5)               
         }      
 
+        if(window.innerHeight <= 600){
+          this.weaponGridBG[i].width = Math.floor(this.weaponGridBG[i].width/1.6)
+          this.weaponGridBG[i].height = Math.floor(this.weaponGridBG[i].height/1.6) 
+
+          this.weaponNew[i].width = Math.floor(this.weaponNew[i].width/1.6)
+          this.weaponNew[i].height = Math.floor(this.weaponNew[i].height/1.6)      
+        }
+
+
+
         this.weaponGrid[i].inputEnabled = true;
         this.weaponGrid[i].events.onInputDown.add(this.selectWeapon, this);       
         
@@ -201,6 +228,10 @@
         this.equippedTile.height = Math.floor(this.equippedTile.height/1.5)      
       }      
 
+      if(window.innerHeight <= 600){
+        this.equippedTile.width = Math.floor(this.equippedTile.width/1.6)
+        this.equippedTile.height = Math.floor(this.equippedTile.height/1.6)   
+      }      
       
 
       this.categoryText = this.add.text(15, this.wepYPoint-20, "WEAPONS",{font:'LondrinaSolid-Black'});
@@ -412,12 +443,47 @@
         this.charmWeight = parseInt(localStorage.getItem("charmWeight"))
       }
       this.hunterWeight = 0; 
+
+      this.mouseWheelVelInitial = 50
+      this.mouseWheelVel = 50
     },
 
     update: function () {
 
+
+      if(parseInt(localStorage.getItem("muted")) == 1){
+        this.bgSound.stop();
+        this.ping.stop();
+        this.equipSound.stop();
+        this.forgeSound[1].stop();
+      }
+      else{
+     
+      }
+
+      if(true){
+        console.log(this.game.input.mouseWheel.delta)
+        if(this.game.input.mouseWheel.delta > 0){
+          this.game.camera.y-=this.mouseWheelVel;
+          this.mouseWheelVel--;
+          if(this.mouseWheelVel<0){
+            this.mouseWheelVel = this.mouseWheelVelInitial
+            this.game.input.mouseWheel.delta = 0;
+          }        
+        }
+        else if(this.game.input.mouseWheel.delta < 0){
+          this.game.camera.y+=this.mouseWheelVel
+          this.mouseWheelVel--;
+          if(this.mouseWheelVel<0){
+            this.mouseWheelVel = this.mouseWheelVelInitial
+            this.game.input.mouseWheel.delta = 0;
+          }
+        }        
+      }
+
+
       if(this.chatTimer > 0){
-            
+
         //this.mapWarden.bringToTop();
         this.mapWarden.x += (0 - this.mapWarden.x) * 0.1; 
         this.textBackdrop.alpha = 1;
@@ -486,7 +552,7 @@
           break;             
              
       }         
-      console.log("weight "+this.hunterWeight)
+      
       this.weightText.text ="WEIGHT: "+(this.hunterWeight+this.charmWeight)+"/5";
       //OVER BURDENED
       if((this.hunterWeight+this.charmWeight) > 5){
@@ -936,7 +1002,9 @@
     },
     goToShop: function (unit) {
       if(this.hunterWeight+this.charmWeight <= 5){
-        this.ping.play();
+        if(parseInt(localStorage.getItem("muted")) == 0){
+          this.ping.play();  
+        } 
         this.bgSound.stop(); 
         this.highlightTar = this.selectShop.x
         this.tarKey = 2;
@@ -952,7 +1020,9 @@
     }, 
     goToHub: function (unit) {
       if(this.hunterWeight+this.charmWeight <= 5){
-        this.ping.play();
+        if(parseInt(localStorage.getItem("muted")) == 0){
+          this.ping.play();  
+        } 
         this.bgSound.stop(); 
         //this.game.state.start('hub')        
         this.highlightTar = this.selectHub.x
@@ -987,7 +1057,10 @@
 
         var ran = 1//Math.floor(Math.random() * 3)+1;
         if(!this.forgeSound[ran].isPlaying){
-            this.forgeSound[ran].play();
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.forgeSound[ran].play();  
+          }           
+            
         }    
 
         this.glowTimer = 100
@@ -1017,7 +1090,9 @@
 
             var ran = 1//Math.floor(Math.random() * 3)+1;
             if(!this.forgeSound[ran].isPlaying){
-                this.forgeSound[ran].play();
+              if(parseInt(localStorage.getItem("muted")) == 0){
+                this.forgeSound[ran].play();  
+              }   
             }    
 
         this.glowTimer = 25
@@ -1098,6 +1173,9 @@
         }
 
     },   
+    mouseWheel: function (event) {   
+      console.log(this.game.input.mouse.wheelDelta); 
+    },
     equip: function () {   
       if(weapon[this.targetWep].element == -1 && localStorage.getItem("charmEquiped"+weapon[this.targetWep].id) != 1 && parseInt(localStorage.getItem("crafted"+weapon[this.targetWep].id)) == 1){
        console.log("Charm Equipped") 
@@ -1144,7 +1222,10 @@
       }
       else{
         if(this.currentWep != this.targetWep && parseInt(localStorage.getItem("crafted"+weapon[this.targetWep].id)) != 0){
-          this.equipSound.play();
+          if(parseInt(localStorage.getItem("muted")) == 0){
+            this.equipSound.play();
+          }             
+          
           localStorage.setItem("equip0",this.targetWep)
           this.equipedGridKey = this.selectedgridKey
 
