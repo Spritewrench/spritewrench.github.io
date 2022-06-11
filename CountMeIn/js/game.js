@@ -130,11 +130,12 @@
             this.houseCount = 0;
             this.chatCount = 0;            
             this.timer = 0;
+            this.losePoint = 15
         }
         , update: function () {
 
             //win or lose check
-            if(this.houseCount >= 10 || (Math.floor(this.timer/100)) > 29){
+            if(this.houseCount >= 10 || (Math.floor(this.timer/100)) > this.losePoint-1 || this.player.x > 11350){
                 this.ceiliaPopin.alpha = 1
                 this.ceiliaPopin.x += (this.game.camera.x - this.ceiliaPopin.x  ) * 0.1;
                 this.player.body.velocity.x = 0;
@@ -193,7 +194,7 @@
             }              
             if(this.chatCount == 4){
                 this.chatCount++
-                this.player.body.velocity.x = 100;
+                this.player.body.velocity.x = 200;
                 this.player.acceleration = 5
                 this.speechBubble.alpha = 0
                 this.chat.alpha = 0
@@ -217,7 +218,7 @@
             }                      
 
             //lose
-            if((Math.floor(this.timer/100)) > 29){
+            if((Math.floor(this.timer/100)) > this.losePoint-1){
                 this.chat.text = "Oh no!\n we need to be quicker than that. Let's try again"
             }
             
@@ -231,7 +232,7 @@
             
 
             
-            if(this.player.body.velocity.x < 500 && this.player.body.velocity.x > 0){
+            if(this.player.body.velocity.x < 800 && this.player.body.velocity.x > 0){
                 this.player.acceleration += 2
                 this.player.body.velocity.x = this.player.acceleration
             }
@@ -270,7 +271,7 @@
             if(this.speechBubble.alpha != 0){
                 this.chatCount++;
                 //lose
-                if((Math.floor(this.timer/100)) > 29){
+                if((Math.floor(this.timer/100)) > this.losePoint-1){
                     this.chat.text = "Oh no!\n we need to be quicker than that. Let's try again"
                     this.game.state.start('game');
                 }
