@@ -217,7 +217,7 @@
             }                      
 
             //lose
-            if((Math.floor(this.timer/100)) > 5){
+            if((Math.floor(this.timer/100)) > 29){
                 this.chat.text = "Oh no!\n we need to be quicker than that. Let's try again"
             }
             
@@ -270,7 +270,7 @@
             if(this.speechBubble.alpha != 0){
                 this.chatCount++;
                 //lose
-                if((Math.floor(this.timer/100)) > 5){
+                if((Math.floor(this.timer/100)) > 29){
                     this.chat.text = "Oh no!\n we need to be quicker than that. Let's try again"
                     this.game.state.start('game');
                 }
