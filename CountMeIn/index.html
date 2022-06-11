@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- chheck this out -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * gap://ready data: 'unsafe-eval'; img-src * data: gap://ready; frame-src *; connect-src * ; style-src * 'self' 'unsafe-inline' 'unsafe-eval'; media-src *; script-src * data: 'self' 'unsafe-inline' 'unsafe-eval' gap://ready; ">
+  <title>Count Me In!</title>
+  <style>
+    /* Optional: Makes the sample page fill the window. */
+    canvas {
+      image-rendering: -webkit-optimize-contrast;
+    }
+  </style>  
+  <!-- GameAnalytics -->
+  <script src="js/config.js"></script>
+  <script>
+  function setDPI(dpi) {
+      var canvas =  document.getElementsByTagName("canvas")[0];
+      // Set up CSS size.
+      canvas.style.width = canvas.style.width || canvas.width + 'px';
+      canvas.style.height = canvas.style.height || canvas.height + 'px';
+
+      // Get size information.
+      var scaleFactor = dpi / 96;
+      var width = parseFloat(canvas.style.width);
+      var height = parseFloat(canvas.style.height);
+
+      // Backup the canvas contents.
+      var oldScale = canvas.width / width;
+      var backupScale = scaleFactor / oldScale;
+      var backup = canvas.cloneNode(false);
+      backup.getContext('2d').drawImage(canvas, 0, 0);
+
+      // Resize the canvas.
+      var ctx = canvas.getContext('2d');
+      canvas.width = Math.ceil(width * scaleFactor);
+      canvas.height = Math.ceil(height * scaleFactor);
+      
+      // Redraw the canvas image and scale future draws.
+      ctx.setTransform(backupScale, 0, 0, backupScale, 0, 0);
+      ctx.drawImage(backup, 0, 0);
+      ctx.setTransform(scaleFactor, 0, 0, scaleFactor, 0, 0);
+      //alert("DPR");
+      console.log("DPI set to "+dpi)
+  }  
+
+
+  
+  </script>
+
+  <!-- build:css main.min.css -->
+</head>
+ 
+  <link rel="stylesheet" href="css/main.css"> 
+  <link rel="stylesheet" href="css/font.css"> 
+
+  <!-- /build -->
+</head>
+
+<body>
+  
+  <div id="simplewar-game" class="game"></div>
+
+  <!-- build:remove -->
+
+  <!-- /build -->
+
+  <!-- build:js main.min.js -->
+    <script src="js/lib/phaser.min.js"></script>
+    <script src="js/lib/ScreenShake.js"></script>
+    <script src="js/lib/phaser-kinetic-scrolling-plugin.js"></script>
+    <script src="js/lib/ntc.js"></script>
+    <script src="js/boot.js"></script>
+    <script src="js/preloader.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/win.js"></script>    
+    <script src="js/lose.js"></script>    
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/choose.js"></script>
+    <script src="js/lib/control.js"></script>
+    <script src="js/lib/webfont.js"></script>
+    <script src="js/lib/jsLogger.js"></script>
+  <!-- /build -->
+    <my-ads id="ads"></my-ads>
+</body>
+
+<script>
+    //disable console.log
+    
+    console.debug(gameConfig.consoleOn);
+
+    //console.log("Debug not working")
+
+    //console.log("where we going? index3  "+localStorage.getItem('state'))
+    //localStorage.setItem('state','menu')
+    WebFontConfig = {
+      custom: {
+        families: ['Fredoka One', 'Muli', 'Berkshire Swash', 'LondrinaSolid-Black', 'monsterhunter']
+      }
+    };
+
+    WebFont.load(WebFontConfig);    
+    
+  
+
+
+//check if online
+if(!navigator.onLine) { // true|false
+	localStorage.setItem("online",1) 
+}    
+  
+
+</script> 
+<script src='cordova.js'></script>
+<script src='js/index.js'></script>
+<script src="js/SocialSharing.js"></script>
+<script>
+
+
+
+</script>
+<!--
+<script src="realMedia/my-badge.js"></script>
+<script src="realMedia/my-ads.js"></script>
+<script src="realMedia/my-input.js"></script>
+<script src="realMedia/my-button.js"></script>
+<script src="realMedia/main.js"></script>
+-->
+</html>
+
