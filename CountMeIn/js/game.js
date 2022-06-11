@@ -130,7 +130,7 @@
             this.houseCount = 0;
             this.chatCount = 0;            
             this.timer = 0;
-            this.losePoint = 15
+            this.losePoint = 20
         }
         , update: function () {
 
