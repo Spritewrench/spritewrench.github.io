@@ -29,31 +29,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
-        screen.orientation.lock('portrait');
-        try{
-            //localStorage.setItem("adReady",0)  
-            setupVideoReward();
-            //getAds();        
-          }
-          catch(error){
-            //admob.rewardvideo.show();   
-          }
-
-        try{
-            cordova.plugins.playGamesServices.auth(function() {
-                //alert("sign in working")// On logged in
-            }, function() {
-                //alert("sign in NOT working")// On not logged in
-            });
-
-           
-
-    
-        }
-        catch(e){
-            //alert(e)
-        }
-
+        screen.orientation.lock('landscape');
         
         try{
             if(!gameConfig.isDebug ){
@@ -69,41 +45,7 @@ var app = {
 
         }
 
-        /*
-        // fired when silent login is successul
-        document.addEventListener("play.CONNECTED", ()=>{
-            // your code here 
-            
-        })
-        
-        document.addEventListener("play.SILENT_SIGNED_IN_FAILED",  () => {
-            // when silent login is failed. Show login button to user or try manual login.
-        })
-        
-        document.addEventListener("play.SILENT_SIGNED_IN_SUCCESS",  () => {
-            // when silent login is successful
-            
-        })
-        
-        document.addEventListener("play.PLAYER_INFO",  (data) => {
-            // when player info is fetched 
-            // data.playerId is id of player 
-            // data.displayName is name of player 
-        })
-        
-        document.addEventListener("play.SIGNIN_REQUIRED",  () => {
-            // user can signout of your game using play games app. This event is fired you try to perform some action but user is logged out. show login button to user in this case.
-        })      
-        
-        document.addEventListener("play.SUBMIT_SCORE_SUCCESS",  (data) => {
-            //alert(data.displayName+" score: "+data.score)
-            // user can signout of your game using play games app. This event is fired you try to perform some action but user is logged out. show login button to user in this case.
-        })        
-         
-        cordova.plugins.playGamesServices.initialize();
-        cordova.plugins.playGamesServices.login();
-        */
-        
+
     },
 
     // Update DOM on a Received Event

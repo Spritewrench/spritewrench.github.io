@@ -38,8 +38,8 @@
         this.animTimer2 = 50;
         
         
-        var style = { font: '24pt Muli', fill: 'black', align: 'center', wordWrap: true, wordWrapWidth: 290 };
-        this.start = this.add.text(x, y+100, "", style); 
+        var style = { font: 'bold 24pt Muli', fill: 'black', align: 'center', wordWrap: true, wordWrapWidth: 290 };
+        this.start = this.add.text(x, y+200, "", style); 
         this.start.anchor.setTo(0.5, 0.5);
         this.start.alpha = 0;
         this.start.inputEnabled = true;
@@ -49,11 +49,19 @@
         
    
         
-        var style = { font: '20pt Muli', fill: 'black', align: 'center', wordWrap: true, wordWrapWidth: 290 };
-        this.version = this.add.text(x, this.game.height-24, "VER 0.0.0", style); 
+        var style = { font: '20pt Muli', fill: 'black', align: 'center', wordWrap: true, wordWrapWidth: 290};
+        this.version = this.add.text(x, this.game.height-20, "VER 0.0.0", style); 
         this.version.anchor.setTo(0.5, 0.5);
         this.version.alpha = 0;
                 
+
+    this.bgSound = this.add.audio('bgMusic');
+    this.ping = this.add.audio('ping');
+    if(!this.bgSound.isPlaying){
+        //this.bgSound.loop = true;
+        //this.bgSound.play();    
+    }
+
         
         
 
@@ -81,7 +89,7 @@
 
             this.start.alpha += (1 - this.start.alpha  ) * 0.05;
             //this.start.tint = 0xFFFFFF
-            this.start.text = "START"       
+            this.start.text = "TAP TO START"       
         }  
         if(this.titleBG.alpha >= 0.1 ){
             if(this.animTimer2 > 0){
@@ -90,7 +98,7 @@
             else{
                 this.start.alpha += (1 - this.start.alpha  ) * 0.05;
                 //this.start.tint = 0xFFFFFF
-                this.start.text = "START"     
+                this.start.text = "TAP TO START"     
                 
             }
 
@@ -108,6 +116,7 @@
         unit.tint = 0xFFFFFF
     },      
     onDown: function () {
+        this.ping.play();
         this.game.state.start('choose') 
     
 	//this.game.state.start('choose');

@@ -31,19 +31,19 @@
             var bubbleMidY = this.speechBubble.y+(this.speechBubble.height/2)
             var bubbleMidX = this.speechBubble.x+(this.speechBubble.width/2)
             var style = { font: '22pt Muli', fill: 'black', align: 'center', wordWrap: true, wordWrapWidth: 400 };
-            this.chat = this.add.text(bubbleMidX, bubbleMidY, "Hey there!", style); 
+            this.chat = this.add.text(bubbleMidX, bubbleMidY+25, "Hey there!", style); 
             this.chat.anchor.setTo(0.5, 0.5);
             this.chat.alpha = 0;
 
             this.chatCount = 0;
 
-            this.levelSelect= this.add.sprite(-this.game.width, 0, 'levelSelect');
+            this.levelSelect= this.add.sprite(-this.game.width, -this.game.height, 'levelSelect');
             this.levelSelect.width = this.game.width;
             this.levelSelect.alpha = 0;           
             this.levelSelect.inputEnabled = true;
             this.levelSelect.events.onInputDown.add(this.play, this);                 
 
-
+            this.ping = this.add.audio('ping');
        
             
         }          
@@ -58,9 +58,11 @@
             //chat
             if(this.chatCount == 0){
                 this.chat.text = "Hey there!"
+                this.ceiliaPopin.loadTexture("ceiliaPopin_happy")
             }
             if(this.chatCount == 1){
                 this.chat.text = "Thanks for stopping by ..."
+                this.ceiliaPopin.loadTexture("ceiliaPopin_reg")
             }    
             if(this.chatCount == 2){
                 this.chat.text = "I could really use your help with the 2022 census!"
@@ -77,6 +79,8 @@
             }                                              
             if(this.levelSelect.alpha == 1){
                 this.levelSelect.x = 0 
+                this.levelSelect.y += (0 - this.levelSelect.y) * 0.1;
+                this.ceiliaPopin.x += (-this.game.width/2-50 - this.ceiliaPopin.x  ) * 0.1;
             }
         }   
         ,talk: function () {
@@ -87,6 +91,7 @@
         }   
         ,play: function () {
             if(this.levelSelect.alpha != 0){
+                this.ping.play();
                 this.game.state.start('game');
             }
             
