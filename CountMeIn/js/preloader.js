@@ -27,10 +27,14 @@
           this.load.setPreloadSprite(this.asset);
           this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
          
+          //sound   
           this.game.load.audio('ping', ['assets/audio/ping.ogg']); 
           this.game.load.audio('jumpSound', ['assets/audio/jumpSound.wav']); 
           this.game.load.audio('bgMusic', ['assets/audio/royalty-free-reggaeprod-by-mjrtist-9541.mp3']); 
           this.game.load.audio('yay', ['assets/audio/yay.mp3']); 
+          this.game.load.audio('celiaLine1', ['assets/audio/CeliaLine1.ogg']); 
+          this.game.load.audio('celiaLine2', ['assets/audio/CeliaLine2.ogg']); 
+          this.game.load.audio('celiaLine3', ['assets/audio/CeliaLine3.ogg']); 
           
 
           this.load.image('mainBG', 'assets/test.webp'); 
@@ -69,7 +73,7 @@
           this.load.image('timerCount','assets/timerCount.png'); 
 
 
-     
+          
           
           
           

@@ -115,8 +115,11 @@
             this.player.isJumping = 0;
             this.game.camera.follow(this.player);
 
-            this.jumpBtn =  this.add.sprite(this.game.width-150, this.game.height-100, 'jumpBtn');
+            this.jumpBtn =  this.add.sprite(this.game.width-150, this.game.height-50, 'jumpBtn');
             this.jumpBtn.anchor.setTo(0.5, 0.5);
+            var scale = 0.75
+            this.jumpBtn.width = this.jumpBtn.width*scale;
+            this.jumpBtn.height = this.jumpBtn.height*scale;
             this.jumpBtn.inputEnabled = true;
             this.jumpBtn.events.onInputDown.add(this.doJump, this); 
             this.jumpBtn.alpha = 0   

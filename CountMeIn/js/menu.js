@@ -85,7 +85,7 @@
         if(this.logo.y <= 0.1){
             this.logo2.alpha += (1 - this.logo2.alpha  ) * 0.05;
             this.version.alpha += (1 - this.version) * 0.05;
-            this.version.text ="ver 0.0.1"      
+            this.version.text ="ver 0.0.3"      
 
             this.start.alpha += (1 - this.start.alpha  ) * 0.05;
             //this.start.tint = 0xFFFFFF

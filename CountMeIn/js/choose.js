@@ -44,6 +44,10 @@
             this.levelSelect.events.onInputDown.add(this.play, this);                 
 
             this.ping = this.add.audio('ping');
+            this.celiaLine1 = this.add.audio('celiaLine1');
+            this.celiaLine2 = this.add.audio('celiaLine2');
+            this.celiaLine3 = this.add.audio('celiaLine3');
+            this.dialogKey = 0;
        
             
         }          
@@ -52,23 +56,42 @@
            
             if(this.ceiliaPopin.x > -3){
                 this.speechBubble.alpha = 1
+                if(this.chat.alpha == 0){
+                    this.celiaLine1.play()
+                }
                 this.chat.alpha = 1
                 this.speechBubbleCont.alpha = 1
             }
             //chat
             if(this.chatCount == 0){
-                this.chat.text = "Hey there!"
+                this.chat.text = "Hey there, friends!\nMy name is Celia!"
                 this.ceiliaPopin.loadTexture("ceiliaPopin_happy")
+                
             }
             if(this.chatCount == 1){
-                this.chat.text = "Thanks for stopping by ..."
+                this.chat.text = "I could really use your help with the 2022 population and housing census!"
                 this.ceiliaPopin.loadTexture("ceiliaPopin_reg")
+                if(this.dialogKey == 0 ){
+                    this.dialogKey = 1;
+                    this.celiaLine1.stop();
+                    this.celiaLine2.play();
+                }
+                
             }    
             if(this.chatCount == 2){
-                this.chat.text = "I could really use your help with the 2022 census!"
+                this.chat.text = "Our community benefits from everyone being counted!"
+                if(this.dialogKey == 0 ){
+                    this.dialogKey = 1;
+                    this.celiaLine2.stop();
+                    this.celiaLine3.play();
+                }
             }  
             if(this.chatCount == 3){
                 this.chat.text = "Let's start with the Chestnut Community"
+                if(this.dialogKey == 0 ){
+                    this.dialogKey = 1;
+                    this.celiaLine3.stop();
+                }                
                 
             }    
             if(this.chatCount >= 4){
@@ -86,6 +109,7 @@
         ,talk: function () {
             if(this.speechBubble.alpha != 0){
                 this.chatCount++;
+                this.dialogKey = 0;
             }
             
         }   
