@@ -38,10 +38,21 @@
           this.load.image('undo', 'assets/undo.png'); 
 
           this.load.image('win', 'assets/win.png'); 
-          this.load.image('lose', 'assets/lose.png');           
+          this.load.image('lose', 'assets/lose.png'); 
+          
+          this.load.image('userNames0', 'assets/userNames0.png'); 
+          this.load.image('userNames1', 'assets/userNames1.png'); 
+          this.load.image('userNames2', 'assets/userNames2.png'); 
 
           
-
+          //sound
+          this.game.load.audio('bgMusic', ['assets/audio/comedy-jazzy-time-entertainment-happy-background-music-21106.ogg']); 
+          this.game.load.audio('buttonPress1', ['assets/audio/buttonPress1.ogg']); 
+          this.game.load.audio('buttonPress2', ['assets/audio/buttonPress2.ogg']); 
+          this.game.load.audio('buttonPress3', ['assets/audio/buttonPress3.ogg']);  
+          
+          this.game.load.audio('winSound', ['assets/audio/victory.ogg']);  
+          this.game.load.audio('loseSound', ['assets/audio/lose.ogg']);  
      
           
           
