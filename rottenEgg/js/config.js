@@ -38,6 +38,7 @@ gameConfig.isDebug = true; // needs to be false for production
 gameConfig.consoleOn = true; //needs to false for production
 gameConfig.enableAds = false; //needs to true for production
 gameConfig.tutorialOn = false; //tutorial always on -- needs to be false for production 
-
+gameConfig.GameCode = false; // sets a default random game id
+gameConfig.URL = "r4meyr.us-east-vin.colyseus.net"//false; // set url in production
 //C:\Users\ghenry\Downloads\Questlike\config.xml
 ////C:\Users\ghenry\Downloads\Questlike\platforms\android\app\src\main\AndroidManifest.xml

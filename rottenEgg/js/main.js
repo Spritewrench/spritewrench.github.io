@@ -1,10 +1,9 @@
 window.onload = function () {
   'use strict';
 
-  var game
-    , ns = window['simplewar'];
-
-    var config = {
+  var game,
+      ns = window['simplewar'], 
+      config = {
       width: 640,
       height: 1136,
       renderer: Phaser.CANVAS,
@@ -32,8 +31,5 @@ window.onload = function () {
     game.state.add('game', ns.Game);
     game.state.add('win', ns.Win);
     game.state.add('lose', ns.Lose);   
-
-    console.log("where we going? main "+localStorage.getItem('state'))
     game.state.start('boot');
-    //console.log(game)
 };

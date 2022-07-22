@@ -1,33 +1,65 @@
 (function () {
     'use strict';
-
-    function Game() {
+	
+	function Game() {
         this.player = null;
+    	this.opponentName = null;
+    	this.isMyTurn;
+    	this.playerID = window['simplewar'].Multiplayer.getPlayerId
+    	this.onResetGame = window['simplewar'].Multiplayer.onResetGame
+    	this.onPickedEggs = window['simplewar'].Multiplayer.onPickedEggs
+    	this.setGameReadyStatus =  window['simplewar'].Multiplayer.setGameReadyStatus
+    
+    	window['simplewar'].Multiplayer.onGetOpponentName.add(function(name){
+        	this.opponentName = name;
+        	console.log('name', name, this.opponentName)
+        }, this);
+    	window['simplewar'].Multiplayer.onPlayerTurn.add(function(turn){
+        	this.isMyTurn = turn !== this.playerID()
+        }, this);
+    	window['simplewar'].Multiplayer.onEggsPicked.add(function(eggs){
+        	if(this.isMyTurn) return false
+        	
+        	for(var i = 0; i < eggs.length; i++) this.currentPos[eggs[i]] = 0
+        	
+        	if(this._checkIfYouHaveWon()) {
+            	this.youWon = true;
+            	this.result.loadTexture("win")
+        		this.winSound.play();
+                this._resetGame();
+            } else {
+            	this.hiddenCount += eggs.length;
+            	this.turnCount++;
+            }
+        	
+       	}, this);
+    	window['simplewar'].Multiplayer.onGameStatus.add(function(status){
+        	this.gameStatus = status;
+        	if(this.gameStatus == 'game_start' && this.hiddenCount <= 0) this.game.state.start('game') 
+        }, this);
     }
+
     Game.prototype = {
         create: function () {
             this.map = this.add.sprite(0, 0, 'gameBG');
             this.map.width = this.game.width;
             this.map.height = this.game.height;        
 
-            var x = this.game.width / 2
-            , y = this.game.height / 2;            
-            
-            //eggs
-            this.egg = []
-            this.currentPos = []
-            var count = 15;
-            var startX = 50;
-            var distX = x-90//startX
-            var distY = y-125
-            var spacingX = 90
-            var spacingY = 90
-            
+            var x = this.game.width / 2,
+                y = this.game.height / 2,
+                startX = 50,
+                distX = x-90,
+                distY = y-125,
+                spacingX = 90,
+                spacingY = 90,
+                row = 1,
+                style = { font: 'bold 32pt Muli', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 290 };
+        	this.maxCount = 15;
             this.turnCount = 1;
             this.targetRow = 0;
-            var row = 1;
             this.hiddenCount = 0;
-
+			this.egg = [];
+        	this.currentPos = [];
 
             this.oppNum = Math.floor(Math.random() * 3);
             this.userName = this.add.sprite(0, 0, 'userNames'+this.oppNum);
@@ -45,8 +77,8 @@
 
             this.winSound = this.add.audio('winSound');
             this.loseSound = this.add.audio('loseSound');
-
-            for(var k = 0; k < count; k++){
+			
+            for(var k = 0; k < this.maxCount; k++){
                 if(k%2 == 0){
                     this.egg[k] = this.add.sprite(distX, distY, 'egg1');
                 }
@@ -57,6 +89,7 @@
                 this.egg[k].anchor.setTo(0.5, 0.5);          
                 this.egg[k].inputEnabled = true;
                 this.egg[k].events.onInputDown.add(this.pickEgg, this);   
+            	this.egg[k].id = k;   
                              
                 distX += spacingX;  
                 if(k == 2){
@@ -91,9 +124,8 @@
             this.undo.width = 150;
             this.undo.height = 150;
             this.undo.inputEnabled = true;
-            this.undo.events.onInputDown.add(this.undoTurn, this);               
-            
-            var style = { font: 'bold 32pt Muli', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 290 };
+            this.undo.events.onInputDown.add(this.undoTurn, this); 
+        
             this.turnNum = this.add.text(x, 150, "TURN 1 \n", style); 
             this.turnNum.anchor.setTo(0.5, 0.5);         
 
@@ -102,272 +134,114 @@
             this.result.height = this.game.height;          
             this.result.targetX =  -this.game.width 
             this.result.inputEnabled = true;
-            this.result.events.onInputDown.add(this.onClick, this);         
-            
-            this.origHiddenCount = this.hiddenCount
-
+            this.result.events.onInputDown.add(this.onClick, this);   
+        
             this.emergencySelect = false
             this.winSoundCount = 0;
+        	this.picked = [];
         }
         , update: function () {
-
-            if(this.decisionTimer == 0){
-                if((this.turnCount) % 2 == 0 && (this.turnCount) > 1){
-                    this.origHiddenCount = this.hiddenCount
-                    console.log("AI taking turn ...")
-                    var aiRow = Math.floor(Math.random() * 3)+1;
-                    this.oppNum = 1
-                    if(!this.emergencySelect){
-                        if(this.oppNum == 0){
-                            aiRow = 1
-                        }
-                        if(this.oppNum == 2){
-                            aiRow = 3
-                        }
-                    }
-                    
-    
-                    var aiAmount = Math.floor(Math.random() * 5)+1;
-                    if(aiRow == 1){
-                        var alphaCount = 0
-                        var alreadyHidden = 0
-                        for(var k = 0; k <= 2; k++){
-                            var ran = Math.floor(Math.random() * 2);
-                            if(this.trickCounter == 1){
-                                ran = 1
-                            }   
-                            if(this.egg[k].alpha == 0){
-                                alreadyHidden++
-                            }
-    
-                            if(ran == 0 && this.egg[k].alpha == 1){
-                                this.egg[k].alpha = 0;
-                                this.hiddenCount++
-                                alphaCount++
-                                console.log("Taking Egg #"+k)
-                                ran = Math.floor(Math.random() * 5);
-                                if(this.oppNum == 0 || ran == 0){
-                                    this.trickCounter = 1
-                                }
-                                
-                              
-                            }
-                        }
-                        var ran = Math.floor(Math.random() * 3);
-                        if(alphaCount == 0 && alreadyHidden < 3 && this.egg[ran].alpha == 1){
-                            
-                            this.egg[ran].alpha = 0;
-                            this.hiddenCount++
-                            this.emergencySelect = true;
-                            console.log("Emergency Taking Egg #"+k)
-                            
-                        }
-                        else if(alreadyHidden >= 3){
-                            aiRow++
-                        }
-                    }
-                    if(aiRow == 2){
-                        var alphaCount = 0
-                        var alreadyHidden = 0
-                        for(var k = 3; k <= 7; k++){
-                            var ran = Math.floor(Math.random() * 2);
-                            if(this.trickCounter == 1){
-                                ran = 1
-                            }                        
-                            if(this.egg[k].alpha == 0){
-                                alreadyHidden++
-                            }                        
-                            if(ran == 0 && this.egg[k].alpha == 1){
-                                this.egg[k].alpha = 0;
-                                this.hiddenCount++
-                                alphaCount++
-                                console.log("Taking Egg #"+k)     
-                                ran = Math.floor(Math.random() * 5);
-                                if(this.oppNum == 0 || ran == 0){
-                                    this.trickCounter = 1
-                                }                
-                            }
-                        }
-                        var ran = Math.floor(Math.random() * 5)+3;
-                        if(alphaCount == 0 && alreadyHidden < 5 && this.egg[ran].alpha == 1){
-                            
-                            this.egg[ran].alpha = 0;
-                            this.hiddenCount++
-                            this.emergencySelect = true;
-                            console.log("Emergency Taking Egg #"+k)
-                            
-                        }  
-                        else if(alreadyHidden >= 5){
-                            aiRow++
-                        }                                      
-                    }
-                    if(aiRow == 3){
-                        var alphaCount = 0
-                        var alreadyHidden = 0
-                        for(var k = 8; k <= 14; k++){
-                            var ran = Math.floor(Math.random() * 2);   
-                            if(this.trickCounter == 1){
-                                ran = 1
-                            }                   
-                            if(this.egg[k].alpha == 0){
-                                alreadyHidden++
-                            }                             
-                            if(ran == 0 && this.egg[k].alpha == 1){
-                                
-                                this.egg[k].alpha = 0;
-                                this.hiddenCount++
-                                alphaCount++
-                                console.log("Taking Egg #"+k)
-                                ran = Math.floor(Math.random() * 5);
-                                if(this.oppNum == 0 || ran == 0){
-                                    this.trickCounter = 1
-                                }
-                              
-                            }
-                        }
-                        console.log(alreadyHidden)
-                        var ran = Math.floor(Math.random() * 6)+8;
-                        if(alphaCount == 0  && alreadyHidden < 7 && this.egg[ran].alpha == 1){
-                  
-                            this.egg[ran].alpha = 0;
-                            this.hiddenCount++
-                            this.emergencySelect = true;
-                            console.log("Emergency Taking Egg #"+k)
-                           
-                        }    
-                        else if(alreadyHidden >= 7){
-                            aiRow = 1;
-                        }                                       
-                    } 
-                    if(this.hiddenCount >= 15){
-                        this.result.loadTexture("win")
-                        this.result.targetX = 0;
-                        if (localStorage.getItem("winCount") === null) {
-                            localStorage.setItem("winCount",0)
-                        }  
-                        if (localStorage.getItem("winStreak") === null) {
-                            localStorage.setItem("winStreak",0)
-                        }                          
-                        this.youWon = true;
-                        if(this.winSoundCount == 0){
-                            this.winSoundCount = 1;
-                            this.bgSound.stop();
-                            this.winSound.play();   
-                        }
-                     
-                        //this.game.state.start('lose') 
-                    }                
-                    else if(this.origHiddenCount != this.hiddenCount){
-                        this.newTurn()
-                        //this.origHiddenCount = this.hiddenCount
-                    }
-                    
-                }
-            }
-            else{
-                this.decisionTimer--
-                if(this.turnCount % 2 == 0 && (this.turnCount) > 1){
-                    if(this.decisionTimer%25 == 0){
-                        this.turnNum.text = this.turnNum.text+"."
-                    }
-                    
-                }                
-                
-                if(this.decisionTimer < 0){
-                    this.decisionTimer = 0
-                }
-            }
-
+        	for(var i = 0; i < this.currentPos.length; i++) this.egg[i].alpha = this.currentPos[i]
+        
             this.result.x += ((this.result.targetX) - this.result.x) * 0.1;  
-            //this.result
-        }
-        ,doNothing: function () {   
+            if(this.gameStatus == 'game_start' && !this.isMyTurn) this._decisionIndicator();
+        	else this._setTurnCount("TURN".concat(" ", this.turnCount, "\n"))
+        },
+    	_decisionIndicator() {
+        	 this.decisionTimer--
+             if(this.decisionTimer%25 == 0){
+               
+               this._setTurnCount(this.turnNum.text.concat('.'));
+             }             
+                
+             if(this.decisionTimer < 0){
+             	this._setTurnCount();
+             	this.decisionTimer = 50*( Math.floor(Math.random() * 3)+1);
+             }
+        },
+    	_setTurnCount: function(count) {
+        	this.turnNum.text = count || "TURN".concat(" ", this.turnCount, "\n");
+        },
+        doNothing: function () {   
 
 
         }  
         ,newTurn: function () {   
-            this.hiddenCount = 0;
-            this.trickCounter = 0;
-            
-
-
-            var ran = Math.floor(Math.random() * 3)+1;
-            this.decisionTimer = 50*ran;
-            for(var k = 0; k < 15; k++){
-                this.currentPos[k] = this.egg[k].alpha
-                if(this.egg[k].alpha == 0){
-                    this.hiddenCount++
-                }
-            }
-
-            
-            if(this.origHiddenCount == this.hiddenCount){
+        	this.decisionTimer = 50*( Math.floor(Math.random() * 3)+1);
+        	if(this.picked.length < 1){
                 alert("You need to pick up an EGG")
             }
+        
             else{
                 this.targetRow = 0
                 this.turnCount++;
-                this.origHiddenCount = this.hiddenCount
+            	this.onPickedEggs.dispatch(this.picked)
+            	this.picked = [];
             }
             
-            this.turnNum.text ="TURN "+(this.turnCount)
-            this.turnNum.text = this.turnNum.text+"\n"
+            this._setTurnCount("TURN".concat(' ', this.turnCount, '\n' ))
         }   
         ,undoTurn: function () {  
-            this.hiddenCount = 0; 
-            for(var k = 0; k < 15; k++){
-                this.egg[k].alpha = this.currentPos[k]
-                if(this.egg[k].alpha == 0){
-                    this.hiddenCount++
-                }                
-                
-            }
-            this.targetRow = 0
-            //this.hiddenCount = this.origHiddenCount
-            //this.turnCount++;
+        	this.targetRow = 0;
+        	this.hiddenCount -= this.picked.length;
+        	for(var i = 0; i < this.picked.length; i++) this.currentPos[this.picked[i]] = 1;
+        
+        	this.picked = [];
 
         }                         
         , pickEgg: function (unit) {
-            if(this.turnCount % 2 != 0 || this.turnCount == 1){
-
-
+            if(this.isMyTurn){
                 if(this.targetRow < 1){
                     this.targetRow = unit.row
                 }
+            
                 if(this.targetRow == unit.row){
                     var ran = Math.floor(Math.random() * 3);
                     this.buttonPress[ran].play()                    
-                    unit.alpha = 0;
+                    this.picked.push(unit.id);
+                	this.currentPos[unit.id] = unit.alpha = 0
                     this.hiddenCount++
                 }
-                if(this.hiddenCount >= 15){
-                    this.result.loadTexture("lose")
-                    this.result.targetX = 0;
-                    localStorage.setItem("winStreak",0)
-                    this.youWon = false
-                    this.bgSound.stop();
-                    this.loseSound.play();
-                    //this.game.state.start('lose') 
-                }                
-            }
-
-            //this.result.targetX = 0;
             
-        }
+            	if(this._checkIfYouHaveLost()) {
+                	localStorage.setItem("winStreak",0)
+                	this.newTurn()
+                	this.result.loadTexture("lose")
+        			this.loseSound.play();
+                	this._resetGame();
+                }
+            	
+            } else alert("It is NOT your turn!!")
+        },
+    	_resetGame: function(){
+        	this.result.targetX = 0;
+            this.youWon = false
+        	this.bgSound.stop();
+        	this.picked = [];
+        	this.gameStatus = '';
+        	this.hiddenCount = 0;
+        	this.turnCount = 0;
+        	this.onResetGame.dispatch();
+        },
+    	_checkIfYouHaveLost: function(){
+        	return this.hiddenCount >= this.maxCount
+        },
+    	_checkIfYouHaveWon: function(){ return (this.maxCount - this.hiddenCount) == 1 }
         , onClick: function (unit) {
             if(this.youWon){
                 var winCount = parseInt(localStorage.getItem("winCount"))
                 var winStreak = parseInt(localStorage.getItem("winStreak"))
 
                 localStorage.setItem("winCount",winCount+1)
-                localStorage.setItem("winStreak",winStreak+1)                
+                localStorage.setItem("winStreak",winStreak+1)   
             }
-            this.bgSound.stop();
-            this.game.state.start('game') 
+        	this.bgSound.stop();
+        	if(this.gameStatus !== 'game_start') this.setGameReadyStatus.dispatch()
         }
           
         
     };
     window['simplewar'] = window['simplewar'] || {};
     window['simplewar'].Game = Game;
+	
 }());
