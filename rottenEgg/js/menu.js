@@ -1,6 +1,10 @@
 (function() {
   'use strict';
 
+  if (localStorage.getItem("playerName") === null || localStorage.getItem("playerName") === undefined) {
+    //alert("tes")
+    localStorage.setItem("playerName","PLAYER");
+  }   
 
   var name = localStorage.getItem('playerName'), gameId 
 
@@ -64,9 +68,7 @@
         //this.namePlate.height = this.game.height;      
         var style = { font: '32pt Muli', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 1000 };
 
-        if (localStorage.getItem("playerName") === null) {
-          localStorage.setItem("playerName","PLAYER");
-        }   
+
 
         this.namePlateText = this.add.text(this.namePlate.x, this.namePlate.y,localStorage.getItem("playerName") , style); 
         this.namePlateText.anchor.setTo(0.5, 0.5);
@@ -151,10 +153,14 @@
         catch(e){
 
         }        
+        if (result.isConfirmed) {
+          this.menuClicked = true;
+          gameConfig.GameCode = result.value
+          gameId = gameConfig.GameCode
+          this.joinGame(localStorage.getItem("playerName") , gameId)          
+        }        
         //result.value = result.value.toUpperCase()
-        gameConfig.GameCode = result.value
-        gameId = gameConfig.GameCode
-        this.joinGame(localStorage.getItem("playerName") , gameId)
+
         //localStorage.setItem("playerName",result.value);
 
       })        
@@ -163,7 +169,7 @@
     	//if(!this.gameStatus && !name  && ! (name = prompt('Please enter your name', false ))) return false
     	if(!this.gameStatus && !this.menuClicked){
         this.createGameID();
-        this.menuClicked = true;
+        //this.menuClicked = true;
         //this.joinGame(localStorage.getItem("playerName") , gameId);
       } 
     	else if(this.gameStatus == 'game_start') {
