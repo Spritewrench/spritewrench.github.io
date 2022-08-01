@@ -62,7 +62,7 @@
         	this.currentPos = [];
 
             this.oppNum = Math.floor(Math.random() * 3);
-            this.userName = this.add.sprite(0, 0, 'userNames'+this.oppNum);
+            this.userName = this.add.sprite(0, 0, 'userNamesMULT');
             this.userName.width = this.game.width;
             this.userName.height = this.game.height;        
 
@@ -128,6 +128,13 @@
         
             this.turnNum = this.add.text(x, 150, "TURN 1 \n", style); 
             this.turnNum.anchor.setTo(0.5, 0.5);         
+
+            style = { font: 'bold 24pt Muli', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 290 };
+            this.playerName = this.add.text(25, 150, localStorage.getItem("playerName"), style); 
+
+            style = { font: 'bold 24pt Muli', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 290 };
+            this.OppName = this.add.text(this.game.width-25, 150, this.opponentName, style);             
+            this.OppName.anchor.setTo(1, 0);                
 
             this.result = this.add.sprite(-this.game.width, 0, 'win');
             this.result.width = this.game.width;

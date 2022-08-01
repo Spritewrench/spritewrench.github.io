@@ -73,7 +73,7 @@
         this.namePlateText.alpha = 0;        
 
         var style = { font: '24pt Muli', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 1000 };
-        this.record = this.add.text(x, this.game.height/2+250, "WIN STREAK: "+parseInt(localStorage.getItem("winStreak"))+"\nTOTAL WIN COUNT: "+parseInt(localStorage.getItem("winCount")), style); 
+        this.record = this.add.text(x, this.game.height/2+250, "WIN STREAK: "+parseInt(localStorage.getItem("winStreak")), style); 
         this.record.anchor.setTo(0.5, 0.5);
         this.record.alpha = 0;      
         //this.input.onDown.add(this.onDown, this);
@@ -116,14 +116,56 @@
         },
         allowOutsideClick: () => !Swal.isLoading()
       }).then((result) => {
-        result.value = result.value.toUpperCase()
+        try{
+          result.value = result.value.toUpperCase()
+        }
+        catch(e){
+
+        }
+        
         localStorage.setItem("playerName",result.value);
 
       })        
     }, 
+    createGameID: function(){
+      Swal.fire({
+        position: 'top',
+        title: 'Please Enter a Game ID to Join a new game',
+        input: 'text',
+        inputValue: gameConfig.GameCode,         
+        backdrop: true,
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        try{
+          result.value = result.value.toUpperCase()
+        }
+        catch(e){
+
+        }        
+        //result.value = result.value.toUpperCase()
+        gameConfig.GameCode = result.value
+        gameId = gameConfig.GameCode
+        this.joinGame(localStorage.getItem("playerName") , gameId)
+        //localStorage.setItem("playerName",result.value);
+
+      })        
+    },     
     onDown: function () {
     	//if(!this.gameStatus && !name  && ! (name = prompt('Please enter your name', false ))) return false
-    	if(!this.gameStatus && (gameId = prompt('Please enter a game id or start a new game', gameConfig.GameCode || '123345') )) this.joinGame(localStorage.getItem("playerName") , gameId);
+    	if(!this.gameStatus && !this.menuClicked){
+        this.createGameID();
+        this.menuClicked = true;
+        //this.joinGame(localStorage.getItem("playerName") , gameId);
+      } 
     	else if(this.gameStatus == 'game_start') {
     		this.menuClicked = true;
     		this.game.state.start('game') 

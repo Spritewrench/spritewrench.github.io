@@ -45,6 +45,7 @@
           this.load.image('userNames0', 'assets/userNames0.png'); 
           this.load.image('userNames1', 'assets/userNames1.png'); 
           this.load.image('userNames2', 'assets/userNames2.png'); 
+          this.load.image('userNamesMULT', 'assets/userNamesMULT.png'); 
 
           
           //sound
