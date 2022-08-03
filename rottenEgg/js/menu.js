@@ -113,19 +113,21 @@
         showCancelButton: true,
         confirmButtonText: 'Submit',
         showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-
-        },
-        allowOutsideClick: () => !Swal.isLoading()
+        allowOutsideClick: false,
+        allowEscapeKey: false,        
       }).then((result) => {
-        try{
-          result.value = result.value.toUpperCase()
-        }
-        catch(e){
+        if (result.isConfirmed) {
+          try{
+            result.value = result.value.toUpperCase()
+          }
+          catch(e){
+  
+          }
+          localStorage.setItem("playerName",result.value);
+        } else if (result.isDenied) {
+          //localStorage.setItem("playerName","result.value");
+        }        
 
-        }
-        
-        localStorage.setItem("playerName",result.value);
 
       })        
     }, 
@@ -142,10 +144,8 @@
         showCancelButton: true,
         confirmButtonText: 'Submit',
         showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-
-        },
-        allowOutsideClick: () => !Swal.isLoading()
+        allowOutsideClick: false,
+        allowEscapeKey: false,            
       }).then((result) => {
         try{
           result.value = result.value.toUpperCase()

@@ -41,6 +41,8 @@
           this.load.image('lose', 'assets/lose.png');
 
           this.load.image('namePlate', 'assets/namePlate.png'); 
+
+          this.load.image('button', 'assets/button.png'); 
           
           this.load.image('userNames0', 'assets/userNames0.png'); 
           this.load.image('userNames1', 'assets/userNames1.png'); 
