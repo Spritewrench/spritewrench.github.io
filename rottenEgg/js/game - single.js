@@ -234,6 +234,15 @@
                                 }
                             } 
                         }  
+                        else if(botRowCount == 1 && topRowCount == 1  && midRowCount == 1){
+                            
+                            for(var k = 0; k <= 2; k++){
+                                if(this.egg[k].alpha == 1){
+                                    this.egg[k].alpha = 0; 
+                                    this.hiddenCount++
+                                }
+                            }
+                        }                          
                     } 
                     else{
                         
@@ -362,7 +371,7 @@
                                     this.hiddenCount++
                                 }
                             }
-                        }                          
+                        }                                                   
                         else if(topRowCount > 0 && topRowCount > 1 && totalEggCount %2 != 0 ){
                             for(var k = 0; k <= 2; k++){
                                 if(this.egg[k].alpha == 1){
