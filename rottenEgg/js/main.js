@@ -27,8 +27,11 @@ window.onload = function () {
     game.state.add('boot', ns.Boot);
     game.state.add('preloader', ns.Preloader);
     game.state.add('menu', ns.Menu); 
+    game.state.add('menu-multi', ns.Menu_Multi); 
     game.state.add('choose', ns.Choose);
     game.state.add('game', ns.Game);
+    game.state.add('game-single', ns.Game_Single);
+    game.state.add('game-multi', ns.Game_Multi);
     game.state.add('win', ns.Win);
     game.state.add('lose', ns.Lose);   
     game.state.start('boot');

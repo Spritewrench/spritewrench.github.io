@@ -1,10 +1,6 @@
 (function() {
   'use strict';
 
-  if (localStorage.getItem("playerName") === null || localStorage.getItem("playerName") === undefined) {
-    //alert("tes")
-    localStorage.setItem("playerName","PLAYER");
-  }   
 
   var name = localStorage.getItem('playerName'), gameId 
 
@@ -64,15 +60,37 @@
         this.namePlate.x = this.game.width/2
         this.namePlate.inputEnabled = true;
         this.namePlate.events.onInputDown.add(this.changeName, this);           
+
+        this.singleBtn = this.add.sprite(0,-300, 'button');
+        this.singleBtn.anchor.setTo(0.5, 0.5);
+        this.singleBtn.x = this.game.width/2
+        this.singleBtn.inputEnabled = true;
+        this.singleBtn.events.onInputDown.add(this.playSingle, this);        
+
+        this.multiBtn = this.add.sprite(0,-300, 'button');
+        this.multiBtn.anchor.setTo(0.5, 0.5);
+        this.multiBtn.x = this.game.width/2
+        this.multiBtn.inputEnabled = true;
+        this.multiBtn.events.onInputDown.add(this.playMulti, this);                
         //this.namePlate.width = this.game.width;
         //this.namePlate.height = this.game.height;      
         var style = { font: '32pt Muli', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 1000 };
 
-
+        if (localStorage.getItem("playerName") === null) {
+          localStorage.setItem("playerName","PLAYER");
+        }   
 
         this.namePlateText = this.add.text(this.namePlate.x, this.namePlate.y,localStorage.getItem("playerName") , style); 
         this.namePlateText.anchor.setTo(0.5, 0.5);
-        this.namePlateText.alpha = 0;        
+        this.namePlateText.alpha = 0;  
+        
+        this.singleBtnText = this.add.text(this.singleBtn.x, this.singleBtn.y,"SINGLE PLAYER" , style); 
+        this.singleBtnText.anchor.setTo(0.5, 0.5);
+        this.singleBtnText.alpha = 0;   
+        
+        this.multiBtnText = this.add.text(this.singleBtn.x, this.singleBtn.y,"MULTIPLAYER" , style); 
+        this.multiBtnText.anchor.setTo(0.5, 0.5);
+        this.multiBtnText.alpha = 0;           
 
         var style = { font: '24pt Muli', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 1000 };
         this.record = this.add.text(x, this.game.height/2+250, "WIN STREAK: "+parseInt(localStorage.getItem("winStreak")), style); 
@@ -85,16 +103,25 @@
 
         if(this.animTimer1 > 0){
             this.animTimer1--;
-            this.start.alpha += (1 - this.start.alpha  ) * 0.05;
+            //this.start.alpha += (1 - this.start.alpha  ) * 0.05;
             this.start.y += ((this.game.height/2+100) - this.start.y) * 0.05;
 
             this.namePlate.y += (125 - this.namePlate.y) * 0.05;
             this.namePlateText.y = this.namePlate.y-15
+
+            this.singleBtn.y += (850 - this.singleBtn.y) * 0.05;
+            this.singleBtnText.y = this.singleBtn.y-15
+
+            this.multiBtn.y += (1100 - this.multiBtn.y) * 0.05;
+            this.multiBtnText.y = this.multiBtn.y-15            
+            
         }
     
         if(this.start.y - (this.game.height/2+100) <= 30 && this.start.y - (this.game.height/2+100) > 25){
-          this.record.alpha += 0.1;
+          //this.record.alpha += 0.1;
           this.namePlateText.alpha += 0.1
+          this.singleBtnText.alpha += 0.1
+          this.multiBtnText.alpha += 0.1
         }
         this.namePlateText.text = localStorage.getItem("playerName")
     	if(this.gameStatus == 'game_start') {
@@ -113,24 +140,22 @@
         showCancelButton: true,
         confirmButtonText: 'Submit',
         showLoaderOnConfirm: true,
-        allowOutsideClick: false,
-        allowEscapeKey: false,        
-      }).then((result) => {
-        if (result.isConfirmed) {
-          try{
-            result.value = result.value.toUpperCase()
-          }
-          catch(e){
-  
-          }
-          localStorage.setItem("playerName",result.value);
-        } else if (result.isDenied) {
-          //localStorage.setItem("playerName","result.value");
-        }        
+        preConfirm: (login) => {
 
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        result.value = result.value.toUpperCase()
+        localStorage.setItem("playerName",result.value);
 
       })        
     }, 
+    playSingle: function(){
+      this.game.state.start('game-single') 
+    },  
+    playMulti: function(){
+      this.game.state.start('menu-multi') 
+    },         
     createGameID: function(){
       Swal.fire({
         position: 'top',
@@ -144,23 +169,15 @@
         showCancelButton: true,
         confirmButtonText: 'Submit',
         showLoaderOnConfirm: true,
-        allowOutsideClick: false,
-        allowEscapeKey: false,            
+        preConfirm: (login) => {
+
+        },
+        allowOutsideClick: () => !Swal.isLoading()
       }).then((result) => {
-        try{
-          result.value = result.value.toUpperCase()
-        }
-        catch(e){
-
-        }        
-        if (result.isConfirmed) {
-          this.menuClicked = true;
-          gameConfig.GameCode = result.value
-          gameId = gameConfig.GameCode
-          this.joinGame(localStorage.getItem("playerName") , gameId)          
-        }        
-        //result.value = result.value.toUpperCase()
-
+        result.value = result.value.toUpperCase()
+        gameConfig.GameCode = result.value
+        gameId = gameConfig.GameCode
+        this.joinGame(localStorage.getItem("playerName") , gameId)
         //localStorage.setItem("playerName",result.value);
 
       })        
@@ -169,7 +186,7 @@
     	//if(!this.gameStatus && !name  && ! (name = prompt('Please enter your name', false ))) return false
     	if(!this.gameStatus && !this.menuClicked){
         this.createGameID();
-        //this.menuClicked = true;
+        this.menuClicked = true;
         //this.joinGame(localStorage.getItem("playerName") , gameId);
       } 
     	else if(this.gameStatus == 'game_start') {

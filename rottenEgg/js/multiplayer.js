@@ -2,7 +2,16 @@
     'use strict';
 	var LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ', Config = {
     	URL: 'wss://'.concat(gameConfig.URL || 'black-pearl.local:2567')
-    }, client, events, id;
+    }, client, events = {
+       			onGameStatus: new Phaser.Signal(),
+       			onPlayerTurn: new Phaser.Signal(),
+       			onPickedEggs: new Phaser.Signal(),
+       			onEggsPicked: new Phaser.Signal(),
+            	onResetGame: new Phaser.Signal(),
+            	setGameReadyStatus: new Phaser.Signal(),
+            	onGetOpponentName: new Phaser.Signal(),
+            	onJoinGameResponse: new Phaser.Signal()
+       		}, id, rooms = [];
 
 	function generateId() {
         let result = '';
@@ -12,30 +21,30 @@
         return result;
 	}
 
+	
+
 	function connect () {
     	try {
-        	client = new Colyseus.Client(Config.URL) 
-        	events = {
-       			onGameStatus: new Phaser.Signal(),
-       			onPlayerTurn: new Phaser.Signal(),
-       			onPickedEggs: new Phaser.Signal(),
-       			onEggsPicked: new Phaser.Signal(),
-            	onResetGame: new Phaser.Signal(),
-            	setGameReadyStatus: new Phaser.Signal(),
-            	onGetOpponentName: new Phaser.Signal()
-       		}
+        	client = new Colyseus.Client(Config.URL);
         } catch (e) {
         	throw e
         }
     }
 
 	function join (name, id) {
-    	try {
-    		gameConfig.GameCode = id
-    		client.joinOrCreate("rottenEggs", { gameId: id, name: name }).then(setUpPlayer).catch(e => { throw e })
-        } catch (e) {
-        	throw e
-        }
+    	gameConfig.GameCode = id;
+        client.joinOrCreate("rottenEggs", { gameId: id, name: name }).then(setUpPlayer).catch(events.onJoinGameResponse.dispatch)
+    }
+
+	function availableRooms(cb) {
+    	client.getAvailableRooms('rottenEggs').then(function(rooms){
+        	rooms = rooms.filter(function(room){
+            	//return room.clients < 2;
+				return room.clients;
+            });
+			console.log(rooms)
+        	if(cb) cb(rooms)
+        })
     }
 
 	function setUpPlayer(room) {
@@ -87,6 +96,7 @@
 
 	events.joinGame = join;
 	events.getPlayerId = getId;
+	events.getAvailableRooms = availableRooms;
 
    	window['simplewar'] = window['simplewar'] || {};
 	window['simplewar'].Multiplayer = events
