@@ -96,6 +96,7 @@
         this.record = this.add.text(x, this.game.height/2+250, "WIN STREAK: "+parseInt(localStorage.getItem("winStreak")), style); 
         this.record.anchor.setTo(0.5, 0.5);
         this.record.alpha = 0;      
+        alert("VERSION 0.0.5")
         //this.input.onDown.add(this.onDown, this);
     },
 
