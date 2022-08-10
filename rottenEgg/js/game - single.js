@@ -237,7 +237,7 @@
                     } 
                     else{
                         
-                        if(topRowCount == 0 & midRowCount == 0 && botRowCount > 0){
+                        if(topRowCount == 0 & midRowCount == 0 && botRowCount > 1){
               
                             for(var k = 8; k <= 14; k++){
                                 if(this.egg[k].alpha == 1){
@@ -251,7 +251,7 @@
                                 }
                             }
                         }  
-                        else if(topRowCount == 0 & midRowCount > 0 && botRowCount == 0){
+                        else if(topRowCount == 0 & midRowCount > 1 && botRowCount == 0){
               
                             for(var k = 3; k <= 7; k++){
                                 if(this.egg[k].alpha == 1){
@@ -265,7 +265,7 @@
                                 }
                             }
                         }  
-                        else if(topRowCount > 0 & midRowCount == 0 && botRowCount == 0){
+                        else if(topRowCount > 1 & midRowCount == 0 && botRowCount == 0){
               
                             for(var k = 0; k <= 2; k++){
                                 if(this.egg[k].alpha == 1){
@@ -278,7 +278,37 @@
 
                                 }
                             }
-                        }                                                                         
+                        }         
+                        else if(topRowCount == 0 & midRowCount == 0 && botRowCount == 1){
+              
+                            for(var k = 8; k <= 14; k++){
+                                if(this.egg[k].alpha == 1){
+                                    this.egg[k].alpha = 0; 
+                                    this.hiddenCount++      
+
+                                }
+                            }
+                        }  
+                        else if(topRowCount == 0 & midRowCount == 1 && botRowCount == 0){
+              
+                            for(var k = 3; k <= 7; k++){
+                                if(this.egg[k].alpha == 1){
+                                    this.egg[k].alpha = 0; 
+                                    this.hiddenCount++      
+
+                                }
+                            }
+                        }  
+                        else if(topRowCount == 1 & midRowCount == 0 && botRowCount == 0){
+              
+                            for(var k = 0; k <= 2; k++){
+                                if(this.egg[k].alpha == 1){
+                                    this.egg[k].alpha = 0; 
+                                    this.hiddenCount++      
+
+                                }
+                            }
+                        }                                                                                          
                         else if(topRowCount == 0 & midRowCount == 1 && botRowCount > 0){
               
                             for(var k = 8; k <= 14; k++){
