@@ -1,0 +1,138 @@
+* {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+canvas {   display : block;   margin : auto;}
+
+@font-face {
+    font-family: 'dayposterblackregular';
+    src: url('DAYPBL__-webfont.eot');
+    src: url('DAYPBL__-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DAYPBL__-webfont.woff') format('woff'),
+         url('DAYPBL__-webfont.ttf') format('truetype'),
+         url('DAYPBL__-webfont.svg#dayposterblackregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body{
+  font-family: 'dayposterblackregular';
+}
+
+iframe {
+  display: block;
+  margin : auto;
+  
+}
+
+
+/* (A) FIXED WRAPPER */
+.hwrap {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  overflow: hidden; /* HIDE SCROLL BAR */
+  background: #FFCC00;
+  font-family: Arial;
+  font-style: bold;
+}
+ 
+/* (B) MOVING TICKER WRAPPER */
+.hmove { display: flex; }
+
+/* (C) ITEMS - INTO A LONG HORIZONTAL ROW */
+.hitem {
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+}
+ 
+/* (D) ANIMATION - MOVE ITEMS FROM RIGHT TO LEFT */
+/* 4 ITEMS -400%, CHANGE THIS IF YOU ADD/REMOVE ITEMS */
+@keyframes tickerh {
+  0% { transform: translate3d(100%, 0, 0); }
+  100% { transform: translate3d(-400%, 0, 0); }
+}
+.hmove { animation: tickerh linear 60s infinite; }
+.hmove:hover { animation-play-state: paused; }
+
+@media only screen and (max-width: 768px) {
+  .hmove { animation-duration: 20s; }
+}
+
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 50px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: #09f;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}

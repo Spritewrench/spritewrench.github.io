@@ -1,0 +1,15 @@
+{
+    "app_name": "Parrot Game",
+    "main": "index.html",
+    "name": "Parrot Game",
+    "webkit": {},
+    "window": {
+        "frame": true,
+        "id": "Parrot Game",
+        "resizable": true,
+        "show": true,
+        "show_in_taskbar": true,
+        "title": "Parrot Game",
+        "visible": true
+    }
+}

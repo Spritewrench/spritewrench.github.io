@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Daily Diagnostic🦜</title>
+
+  <!-- build:css main.min.css -->
+  <link rel="stylesheet" href="css/main.css"> >
+  <link rel="stylesheet" href="css/confetti.css" />
+  <!-- /build -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script  src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  
+<style>
+    .swal2-container{
+      font-family: Arial
+    }
+  </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCYZBK0SZ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PCYZBK0SZ2');
+</script>
+
+<body>
+  <div id="confetti-wrapper">
+  </div>  
+  <div id="TCP" class="game"></div>
+  <div class="hwrap"><div class="hmove">
+    <div class="hitem">&#9888 WARNING: Don't Feed The Artifical Intelligence &#9888</div>
+    <div class="hitem">&#9888 WARNING: Operation completed, but that doesn’t mean it’s error free &#9888</div>
+    <div class="hitem">&#9888 WARNING: Windows Error – It’s OK to have an error &#9888</div>
+  </div></div>
+
+  <!-- build:remove -->
+
+  <!-- /build -->
+
+  <!-- build:js main.min.js -->
+    <script src="js/lib/phaser.min.js"></script>
+    <script src="js/lib/ScreenShake.js"></script>
+    <script src="js/lib/ntc.js"></script>
+    <script src="js/boot.js"></script>
+    <script src="js/preloader.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/win.js"></script>    
+    <script src="js/lose.js"></script>    
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/confetti.js"></script>
+    <script src="js/writeToSpreadsheet.js"></script>
+    
+    
+  <!-- /build -->
+
+</body>
+<script>
+  var test = []
+  test[0] = {name:"Rating",value:"123"}
+  test[1] = {name:"Puzzle ID",value:"123"}
+function SubForm (value){
+  $.ajax({
+    url:"https://api.apispreadsheets.com/data/UovxljdQ4nMZgmdp/",
+    type:"post",
+    data:value,
+    success: function(){
+      console.log("Form Data Submitted :)")
+    },
+    error: function(){
+      console.log("There was an error :(")
+    }
+  });
+}
+</script>
+<script>
+Swal.fire({
+  title: 'Welcome to the Daily Diagnostic🦜',
+  width: 700,
+  html: "<p>Here we test your INTELLIGENCE with a daily challenge.<br/>Use WASD keys to navigate P.O.L.L.I.<br/>Press SPACEBAR to restart the test.<br/>Cover all tiles in one color to complete the excercise.</p>",
+  icon: 'info',
+  confirmButtonText: 'Start'
+})  
+
+function recordRating(value) {
+  
+  localStorage.setItem("rating",value)
+}
+    // Initialize Firebase
+   /* var config = {
+    apiKey: "AIzaSyDLavESdxZeNSEcFKFYVF1riDoNzR72gPU",
+    authDomain: "hedhnt.firebaseapp.com",
+    databaseURL: "https://hedhnt.firebaseio.com",
+    storageBucket: "hedhnt.appspot.com",
+    messagingSenderId: "412595932285"
+    };
+    firebase.initializeApp(config);
+    
+    
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });    
+    */
+
+</script>    
+</html>
+
