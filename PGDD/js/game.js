@@ -32,8 +32,9 @@
             console.log(difference);
             this.level =  totalDays;            
 
-            this.level = parseInt(sessionStorage.getItem("level"));
-                    
+            //this.level = parseInt(sessionStorage.getItem("level"));
+            $('#expCount').text(this.level)
+                 
             switch(this.level){
               case 1:
                   text = "0000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
@@ -579,9 +580,10 @@
               
 
             }  
+            //skip
             if(key.keyCode == Phaser.Keyboard.P){
-              sessionStorage.setItem("level",this.level+1)
-              this.game.state.start('game');  
+              //sessionStorage.setItem("level",this.level+1)
+              //this.game.state.start('game');  
               /*
                   sessionStorage.setItem("level",this.level+1)
                     if(this.level >= 5){
