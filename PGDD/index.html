@@ -127,7 +127,9 @@ function SubForm (value){
   var today = new Date(); 
   var prevLog = new Date();
   if(localStorage.getItem("prevLog") === null){
-        localStorage.setItem("prevLog", today)
+        var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
+        //alert(yesterday)
+        localStorage.setItem("prevLog",yesterday)
         prevLog = new Date(localStorage.getItem("prevLog")); 
   } 
   else{
@@ -136,6 +138,9 @@ function SubForm (value){
    
   var difference = today.getTime() - prevLog.getTime() 
   var totalDays = Math.ceil(difference / (1000 * 3600 * 24)) - 1;
+
+  console.log(localStorage.getItem("prevLog"))
+  //alert(totalDays)
 
   if(totalDays > 1 || localStorage.getItem("currentStreak") === null){
     localStorage.setItem("currentStreak", 0)

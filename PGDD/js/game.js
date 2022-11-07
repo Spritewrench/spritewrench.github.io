@@ -33,7 +33,7 @@
             var totalDays = Math.ceil(difference / (1000 * 3600 * 24));
             console.log(difference);
                
-            if(urlParams.get('puzzleID')){
+            if(urlParams.has('puzzleID')){
               this.level =  parseInt(urlParams.get('puzzleID'));   
             }                  
             else{
@@ -645,11 +645,18 @@
               var difference = today.getTime() - prevLog.getTime() 
               var totalDays = Math.ceil(difference / (1000 * 3600 * 24))-1;
               
+              const queryString = window.location.search;
+              const urlParams = new URLSearchParams(queryString);               
+
               if(totalDays >= 1 ){
                 localStorage.setItem("prevLog", today)
-                var streakCount = parseInt(localStorage.getItem("currentStreak"))+1
-                localStorage.setItem("currentStreak", streakCount)
-                $('#streakCount').text(streakCount)   
+
+                if(!urlParams.has('puzzleID')){
+                  var streakCount = parseInt(localStorage.getItem("currentStreak"))+1
+                  localStorage.setItem("currentStreak", streakCount)
+                  $('#streakCount').text(streakCount) 
+                }
+  
               }
 
            
