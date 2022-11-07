@@ -10,6 +10,7 @@
   <!-- /build -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script  src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/b05150ce94.js" crossorigin="anonymous"></script>
   
 <style>
     .swal2-container{
@@ -20,10 +21,35 @@
       font-family: Arial;
       margin-top: 50px;
       margin-left: 25px;
-      font-size: 50px;
+      font-size: 28px;
       position: absolute;
       top: 0;
       left: 0;      
+    }
+    .social{
+      position: absolute;
+      bottom: 0;
+      right: 0;     
+      padding-bottom: 100px; 
+      padding-right: 100px; 
+    }  
+    .social button {
+      background-color: #7289DA;
+      border: none;
+      color: white;
+
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      width: 150px;
+      height: 48px;
+      border-radius: 3px;
+    }      
+    .social i{
+
     }
   </style>
 </head>
@@ -38,14 +64,21 @@
 </script>
 
 <body>
-  <div class="expTracker">DAILY TEST<br/>#<span id="expCount">1</span></div>
+  <div class="expTracker">DAILY TEST #<span id="expCount">1</span><br/><br/>Restart Counter: <span id="attemptCount">0</span><br/><br/>Current Streak: <span id="streakCount">0</span></div>
   <div id="confetti-wrapper">
+  <div class="social">
+    <button onclick="takeScreenShot()"><i class="fa-solid fa-camera"></i></button>
+    <br/>
+    <button onclick="sharePuzzle()"><i class="fa-solid fa-share"></i></button>
+    <br/>
+    <button style="background: url(assets/join-our-discord.png); background-size: 150px 48px;" onclick="joingDiscord()"></button>
+  </div>
   </div>  
   <div id="TCP" class="game"></div>
   <div class="hwrap"><div class="hmove">
-    <div class="hitem">&#9888 WARNING: Don't Feed The Artifical Intelligence &#9888</div>
-    <div class="hitem">&#9888 WARNING: Operation completed, but that doesn’t mean it’s error free &#9888</div>
-    <div class="hitem">&#9888 WARNING: Windows Error – It’s OK to have an error &#9888</div>
+    <div class="hitem"><i class="fa-solid fa-triangle-exclamation"></i> WARNING: Don't Feed The Artifical Intelligence <i class="fa-solid fa-triangle-exclamation"></i></div>
+    <div class="hitem"><i class="fa-solid fa-triangle-exclamation"></i> WARNING: Operation completed, but that doesn’t mean it’s error free <i class="fa-solid fa-triangle-exclamation"></i></div>
+    <div class="hitem"><i class="fa-solid fa-triangle-exclamation"></i>WARNING: Windows Error – It’s OK to have an error <i class="fa-solid fa-triangle-exclamation"></i></div>
   </div></div>
 
   <!-- build:remove -->
@@ -56,6 +89,7 @@
     <script src="js/lib/phaser.min.js"></script>
     <script src="js/lib/ScreenShake.js"></script>
     <script src="js/lib/ntc.js"></script>
+    <script src="js/lib/html2canvas.min.js"></script>
     <script src="js/boot.js"></script>
     <script src="js/preloader.js"></script>
     <script src="js/menu.js"></script>
@@ -87,14 +121,49 @@ function SubForm (value){
 }
 </script>
 <script>
-Swal.fire({
-  title: 'Welcome to the Daily Diagnostic🦜',
-  width: 700,
-  html: "<p>Here we test your INTELLIGENCE with a daily challenge.<br/>Use WASD keys to navigate P.O.L.L.I.<br/>Press SPACEBAR to restart the test.<br/>Cover all tiles in one color to complete the excercise.</p>",
-  icon: 'info',
-  confirmButtonText: 'Start'
-})  
+  //reset attempt count
+  localStorage.setItem("attemptCounter", 0)
+  //count streaks
+  var today = new Date(); 
+  var prevLog = new Date();
+  if(localStorage.getItem("prevLog") === null){
+        localStorage.setItem("prevLog", today)
+        prevLog = new Date(localStorage.getItem("prevLog")); 
+  } 
+  else{
+    prevLog = new Date(localStorage.getItem("prevLog")); 
+  }
+   
+  var difference = today.getTime() - prevLog.getTime() 
+  var totalDays = Math.ceil(difference / (1000 * 3600 * 24)) - 1;
 
+  if(totalDays > 1 || localStorage.getItem("currentStreak") === null){
+    localStorage.setItem("currentStreak", 0)
+  }
+  $('#streakCount').text(localStorage.getItem("currentStreak"))
+
+    Swal.fire({
+      title: 'Welcome to the Daily Diagnostic🦜',
+      width: 700,
+      html: "<p>Here we test your INTELLIGENCE with a daily challenge.<br/>Use WASD keys to navigate P.O.L.L.I.<br/>Press SPACEBAR to restart the test.<br/>Cover all tiles in one color to complete the excercise.</p>",
+      icon: 'info',
+      confirmButtonText: 'Start'
+    })  
+function takeScreenShot(){
+  html2canvas(document.body).then((canvas) => {
+                let a = document.createElement("a");
+                a.download = "dailyDiagnosticSS-"+(sessionStorage.getItem("level"))+".png";
+                a.href = canvas.toDataURL("image/png");
+                a.click();
+              });   
+}
+function sharePuzzle(){
+  navigator.clipboard.writeText("https://spritewrench.com/PGDD?puzzleID="+sessionStorage.getItem("level"));
+  Swal.fire('Saved!', 'Puzzle URL Copied', 'success')
+}
+function joingDiscord(){
+  window.open('https://discord.gg/mr3yfuDeZE', '_blank');
+}
 function recordRating(value) {
   
   localStorage.setItem("rating",value)

@@ -18,6 +18,8 @@
             
             var text = ""
             var message = ""
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
 
             if(sessionStorage.getItem("aiCount") == null){
     
@@ -30,8 +32,14 @@
             var difference = today.getTime() - startDate.getTime() 
             var totalDays = Math.ceil(difference / (1000 * 3600 * 24));
             console.log(difference);
-            this.level =  totalDays;            
-
+               
+            if(urlParams.get('puzzleID')){
+              this.level =  parseInt(urlParams.get('puzzleID'));   
+            }                  
+            else{
+              this.level =  totalDays;   
+            }
+            sessionStorage.setItem("level",this.level)
             //this.level = parseInt(sessionStorage.getItem("level"));
             $('#expCount').text(this.level)
                  
@@ -304,10 +312,12 @@
           this.chat = this.add.sprite(0, this.game.height/2, 'drG_neutral');
           this.chat2 = this.add.sprite(0, this.game.height/2, 'speechCon');
           this.chat2.alpha = 0;
-          var style = { font: '20pt arial', fill: 'black', align: 'left', wordWrap: true, wordWrapWidth: 850 };
-          this.tips = this.add.text(this.game.width/2+100, (this.game.height/2)+460, message, style);             
-          this.tips.alpha = 0;
-          this.tips.y = (this.game.height/2)+460
+          var style = { font: '20pt arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 850 };
+          this.tips = this.add.text(this.game.width/2, (this.game.height/2)+280, message, style);       
+          this.tips.text = "Use WASD keys to navigate P.O.L.L.I.\nPress SPACEBAR to restart the test.\nCover all tiles in one color to complete the excercise."      
+          this.tips.alpha = 0.7;
+          this.attemptCounter  = 0;
+          //this.tips.y = (this.game.height/2)+460
 
           this.tips.anchor.setTo(0.5, 0.5);
            this.tips.align = "center"              
@@ -404,9 +414,9 @@
                 if(this.chatKey == 0 || this.chatKey == 2 || this.chatKey == 3){
                   this.chat.y += ((0) - this.chat.y) * 0.1;  
                   this.chat2.y = this.chat.y
-                  this.tips.y += ( (this.game.height-85) - this.tips.y) * 0.1;
+                  //this.tips.y += ( (this.game.height-85) - this.tips.y) * 0.1;
                   if(this.chat.y < 10 && this.chat.y >= 0){
-                    this.tips.alpha+= ( 1 - this.tips.alpha) * 0.1;   
+                    //this.tips.alpha+= ( 1 - this.tips.alpha) * 0.1;   
                     console.log(this.chatKey)
                     if(this.chatKey == 3){
                       this.chat2.alpha = 0;
@@ -549,6 +559,10 @@
               }
             }
             if(key.keyCode == Phaser.Keyboard.SPACEBAR){
+              
+              this.attemptCounter = parseInt(localStorage.getItem("attemptCounter"))+1;
+              localStorage.setItem("attemptCounter", this.attemptCounter)
+              $('#attemptCount').text(this.attemptCounter) 
                 ///sessionStorage.setItem("level",this.level+1)
                 if(this.chatKey == 0){
                   this.chatKey = 1;
@@ -562,7 +576,7 @@
                   var currentAiNum = parseInt(sessionStorage.getItem("aiCount"))
                   sessionStorage.setItem("aiCount",currentAiNum+1)
                   this.chat.loadTexture('drG_sad')   
-                  this.tips.text= "Procedural AI Instance #"+currentAiNum+" seems to be unable to solve current exercise. Terminating instance, generating replacement and restarting excercise"            
+                  //this.tips.text= "Procedural AI Instance #"+currentAiNum+" seems to be unable to solve current exercise. Terminating instance, generating replacement and restarting excercise"            
                 }  
                 else if(this.chatKey == 2){
                   this.chatKey = 1;
@@ -582,6 +596,7 @@
             }  
             //skip
             if(key.keyCode == Phaser.Keyboard.P){
+  
               //sessionStorage.setItem("level",this.level+1)
               //this.game.state.start('game');  
               /*
@@ -618,8 +633,27 @@
                 }
             }         
             console.log(this.sovled)
+
             //finish level
             if(this.winCount >= this.tileLength-2 && !this.sovled){
+
+
+              var today = new Date(); 
+              var prevLog = new Date(localStorage.getItem("prevLog")); 
+
+               
+              var difference = today.getTime() - prevLog.getTime() 
+              var totalDays = Math.ceil(difference / (1000 * 3600 * 24))-1;
+              
+              if(totalDays >= 1 ){
+                localStorage.setItem("prevLog", today)
+                var streakCount = parseInt(localStorage.getItem("currentStreak"))+1
+                localStorage.setItem("currentStreak", streakCount)
+                $('#streakCount').text(streakCount)   
+              }
+
+           
+              
               rainConfetti()
               this.sovled = true;
               Swal.fire({
