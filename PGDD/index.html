@@ -13,6 +13,14 @@
   <script src="https://kit.fontawesome.com/b05150ce94.js" crossorigin="anonymous"></script>
   
 <style>
+
+
+
+
+*{
+    margin:0;
+    padding:0;
+}  
     .swal2-container{
       font-family: Arial
     }
@@ -30,8 +38,7 @@
       position: absolute;
       bottom: 0;
       right: 0;     
-      padding-bottom: 100px; 
-      padding-right: 100px; 
+      padding-bottom: 15px; 
     }  
     .social button {
       background-color: #7289DA;
@@ -48,8 +55,10 @@
       height: 48px;
       border-radius: 3px;
     }      
-    .social i{
-
+    canvas{
+      width: 1000px !important;
+      height: 600px !important;
+      margin-top: 25px;
     }
   </style>
 </head>
@@ -64,21 +73,17 @@
 </script>
 
 <body>
-  <div class="expTracker">DAILY TEST #<span id="expCount">1</span><br/><br/>Restart Counter: <span id="attemptCount">0</span><br/><br/>Current Streak: <span id="streakCount">0</span></div>
+  <div class="expTracker"></div>
   <div id="confetti-wrapper">
   <div class="social">
     <button onclick="takeScreenShot()"><i class="fa-solid fa-camera"></i></button>
-    <br/>
     <button onclick="sharePuzzle()"><i class="fa-solid fa-share"></i></button>
-    <br/>
-    <button style="background: url(assets/join-our-discord.png); background-size: 150px 48px;" onclick="joingDiscord()"></button>
+    <button  onclick="joingDiscord()"><i class="fa-brands fa-discord"></i></button>
   </div>
   </div>  
   <div id="TCP" class="game"></div>
   <div class="hwrap"><div class="hmove">
-    <div class="hitem"><i class="fa-solid fa-triangle-exclamation"></i> WARNING: Don't Feed The Artifical Intelligence <i class="fa-solid fa-triangle-exclamation"></i></div>
-    <div class="hitem"><i class="fa-solid fa-triangle-exclamation"></i> WARNING: Operation completed, but that doesn’t mean it’s error free <i class="fa-solid fa-triangle-exclamation"></i></div>
-    <div class="hitem"><i class="fa-solid fa-triangle-exclamation"></i>WARNING: Windows Error – It’s OK to have an error <i class="fa-solid fa-triangle-exclamation"></i></div>
+    <div class="hitem"><i class="fa-solid fa-triangle-exclamation"></i>  &nbsp &nbsp &nbsp DAILY TEST #<span id="expCount">1</span> &nbsp &nbsp &nbsp &#x2022 &nbsp &nbsp &nbsp Restart Counter: <span id="attemptCount">0</span> &nbsp &nbsp &nbsp &#x2022 &nbsp &nbsp &nbsp Current Streak: <span id="streakCount">0</span> &nbsp &nbsp &nbsp <i class="fa-solid fa-triangle-exclamation"></i></div>
   </div></div>
 
   <!-- build:remove -->
@@ -155,7 +160,12 @@ function SubForm (value){
       confirmButtonText: 'Start'
     })  
 function takeScreenShot(){
-  html2canvas(document.body).then((canvas) => {
+  html2canvas(document.body , {
+    scrollX: 0,
+    scrollY: -window.scrollY,
+    backgroundColor: "black",
+}).then((canvas) => {
+
                 let a = document.createElement("a");
                 a.download = "dailyDiagnosticSS-"+(sessionStorage.getItem("level"))+".png";
                 a.href = canvas.toDataURL("image/png");

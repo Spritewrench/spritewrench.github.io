@@ -45,6 +45,16 @@ iframe {
   font-family: Arial;
   font-style: bold;
 }
+
+.social {
+  position: fixed;
+  bottom:0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  font-family: Arial;
+  font-style: bold;
+}
  
 /* (B) MOVING TICKER WRAPPER */
 .hmove { display: flex; }
@@ -56,20 +66,10 @@ iframe {
   box-sizing: border-box;
   padding: 10px;
   text-align: center;
+  font-weight: bolder;
 }
  
-/* (D) ANIMATION - MOVE ITEMS FROM RIGHT TO LEFT */
-/* 4 ITEMS -400%, CHANGE THIS IF YOU ADD/REMOVE ITEMS */
-@keyframes tickerh {
-  0% { transform: translate3d(100%, 0, 0); }
-  100% { transform: translate3d(-400%, 0, 0); }
-}
-.hmove { animation: tickerh linear 60s infinite; }
-.hmove:hover { animation-play-state: paused; }
 
-@media only screen and (max-width: 768px) {
-  .hmove { animation-duration: 20s; }
-}
 
 .rating {
   display: inline-block;
