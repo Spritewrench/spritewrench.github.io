@@ -314,7 +314,7 @@
           this.chat2.alpha = 0;
           var style = { font: '20pt arial', fill: 'white', align: 'left', wordWrap: true, wordWrapWidth: 850 };
           this.tips = this.add.text(this.game.width/2, (this.game.height/2)+280, message, style);       
-          this.tips.text = "Use WASD keys to navigate P.O.L.L.I.\nPress SPACEBAR to restart the test.\nCover all tiles in one color to complete the excercise."      
+          this.tips.text = "Use WASD keys to navigate P.O.L.L.I.\nPress SPACEBAR to restart the test.\nCover all tiles in one color to complete the exercise."      
           this.tips.alpha = 0.7;
           this.attemptCounter  = 0;
           //this.tips.y = (this.game.height/2)+460
