@@ -35,14 +35,16 @@
                
             if(urlParams.has('puzzleID')){
               this.level =  parseInt(urlParams.get('puzzleID'));   
+              $('#streakCount').text("N/A")
             }                  
             else{
               this.level =  totalDays;   
+              
             }
             sessionStorage.setItem("level",this.level)
             //this.level = parseInt(sessionStorage.getItem("level"));
-            $('#expCount').text(this.level)
-                 
+            
+            $('#expCount').text(this.level)     
             switch(this.level){
               case 1:
                   text = "0000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
@@ -289,6 +291,13 @@
             this.playerTint = color;
             this.bg.tint = color;
             this.playerFace.tint = color;
+            var hexColor = "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+            $("#button1").css('background-color', hexColor);
+            $("#button2").css('background-color', hexColor);
+            $("#button3").css('background-color', hexColor);
+            $("#button4").css('background-color', hexColor);
+            $("#button5").css('background-color', hexColor);
+            
             this.tileFlash[this.player].alpha = 0;
             
           

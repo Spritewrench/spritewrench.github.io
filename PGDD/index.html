@@ -76,9 +76,11 @@
   <div class="expTracker"></div>
   <div id="confetti-wrapper">
   <div class="social">
-    <button onclick="takeScreenShot()"><i class="fa-solid fa-camera"></i></button>
-    <button onclick="sharePuzzle()"><i class="fa-solid fa-share"></i></button>
-    <button  onclick="joingDiscord()"><i class="fa-brands fa-discord"></i></button>
+    <button id="button1" onclick="prevPuzzle()"><i class="fa-solid fa-backward-fast"></i></button>
+    <button id="button2" onclick="todayShow()"><i class="fa-solid fa-house"></i></button>
+    <button id="button3" onclick="takeScreenShot()"><i class="fa-solid fa-camera"></i></button>
+    <button id="button4" onclick="sharePuzzle()"><i class="fa-solid fa-share"></i></button>
+    <button  id="button5" onclick="joingDiscord()"><i class="fa-brands fa-discord"></i></button>
   </div>
   </div>  
   <div id="TCP" class="game"></div>
@@ -152,13 +154,19 @@ function SubForm (value){
   }
   $('#streakCount').text(localStorage.getItem("currentStreak"))
 
-    Swal.fire({
-      title: 'Welcome to the Daily Diagnostic🦜',
-      width: 700,
-      html: "<p>Here we test your INTELLIGENCE with a daily challenge.<br/>Use WASD keys to navigate P.O.L.L.I.<br/>Press SPACEBAR to restart the test.<br/>Cover all tiles in one color to complete the exercise.</p>",
-      icon: 'info',
-      confirmButtonText: 'Start'
-    })  
+  const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);            
+    if(!urlParams.has('puzzleID')){
+      Swal.fire({
+        title: 'Welcome to the Daily Diagnostic🦜',
+        width: 700,
+        html: "<p>Here we test your INTELLIGENCE with a daily challenge.<br/>Use WASD keys to navigate P.O.L.L.I.<br/>Press SPACEBAR to restart the test.<br/>Cover all tiles in one color to complete the exercise.</p>",
+        icon: 'info',
+        confirmButtonText: 'Start'
+      })  
+    }   
+
+
 function takeScreenShot(){
   html2canvas(document.body , {
     scrollX: 0,
@@ -175,6 +183,22 @@ function takeScreenShot(){
 function sharePuzzle(){
   navigator.clipboard.writeText("https://spritewrench.com/PGDD?puzzleID="+sessionStorage.getItem("level"));
   Swal.fire('Saved!', 'Puzzle URL Copied', 'success')
+}
+function prevPuzzle(){
+  var tarLevel = parseInt(sessionStorage.getItem("level"))
+  var baseURL = window.location.href.split('?')[0]
+  var puzzleVal = tarLevel-1
+  if(puzzleVal < 1){
+    puzzleVal = 1
+  }
+  window.location.href = baseURL+"?puzzleID="+(puzzleVal)
+
+}
+function todayShow(){
+
+  var baseURL = window.location.href.split('?')[0]
+  window.location.href = baseURL
+
 }
 function joingDiscord(){
   window.open('https://discord.gg/mr3yfuDeZE', '_blank');
