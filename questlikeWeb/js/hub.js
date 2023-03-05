@@ -396,7 +396,7 @@
           this.targetOverlayRank.height = this.game.height;  
           this.targetOverlayRank.alpha = 0;           
 
-          this.targetMonHuntRewards = this.add.sprite(0,10, 'bounty');
+          this.targetMonHuntRewards = this.add.sprite(0,30, 'bounty');
           this.targetMonHuntRewards.width = this.game.width
           this.targetMonHuntRewards.height = this.game.height
           this.targetMonHuntRewards.alpha = 0;  
@@ -480,7 +480,7 @@
           this.targetMonHuntText.alpha = 0;          
 
 
-          this.bountyCount = this.add.text(55,70, "10",{font:'LondrinaSolid-Black'});
+          this.bountyCount = this.add.text(75,this.targetMonHuntRewards.y+60, "10",{font:'LondrinaSolid-Black'});
           this.bountyCount.fill= '#7C433A';
           this.bountyCount.fontSize = 34;
           //this.bountyCount.anchor.setTo(0.5, 0.5);    
@@ -492,12 +492,12 @@
           
                           
           if(window.innerHeight < 700){
-            this.bountyCount.y = 55
+            this.bountyCount.y = this.targetMonHuntRewards.y+60
             this.bountyCount.x = 50
             this.bountyCount.fontSize = 22;
           }  
           if(window.innerHeight <= 650 ){
-            this.bountyCount.y = 70
+            this.bountyCount.y = this.targetMonHuntRewards.y+60
             this.bountyCount.x = 75
             this.bountyCount.fontSize = 22;
           }              
@@ -1096,12 +1096,15 @@
             this.Notification.alpha = 1
             this.Notification.x = this.selectInventory.x
           }          
-          else if(parseInt(localStorage.getItem("firstVisit-combat")) >= 20 && parseInt(localStorage.getItem("firstVisit-combat")) <= 21 && parseInt(localStorage.getItem("crafted9")) == 1 && parseInt(localStorage.getItem("equip0")) != 9) {
+          else if(parseInt(localStorage.getItem("firstVisit-combat")) >= 20 && parseInt(localStorage.getItem("firstVisit-combat")) <= 22 && parseInt(localStorage.getItem("crafted9")) == 1 && parseInt(localStorage.getItem("equip0")) != 9) {
             this.chatTimer = 1;
             this.mapWarden.loadTexture("warden2")
             localStorage.setItem("firstVisit-combat",21); 
             this.textBackdropText2.text = "Rayla, the Indifferent"
-            this.textBackdropText.text = "You need to EQUIP the weapon before we try again ..."   
+            this.textBackdropText.text = "You need to EQUIP the weapon before we try again ..."  
+            if(parseInt(localStorage.getItem("firstVisit-combat")) == 22){
+              localStorage.setItem("firstVisit-combat",21); 
+            } 
           }               
           else if(parseInt(localStorage.getItem("firstVisit-combat")) >= 20 && parseInt(localStorage.getItem("firstVisit-combat")) <= 21 && parseInt(localStorage.getItem("crafted9")) == 1 && parseInt(localStorage.getItem("equip0")) == 9) {
             this.chatTimer = 1;

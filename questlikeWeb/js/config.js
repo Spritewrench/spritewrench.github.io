@@ -35,7 +35,7 @@ gameConfig.version = "1.0.0"; // Current APEX Udate  // Next Version (0.6.9)
 
 gameConfig.alwaysAngry = false;
 gameConfig.isDebug = false; // needs to be false for production
-gameConfig.consoleOn = true; //needs to false for production
+gameConfig.consoleOn = false; //needs to false for production
 gameConfig.enableAds = false; //needs to true for production
 gameConfig.tutorialOn = false; //tutorial always on -- needs to be false for production 
 

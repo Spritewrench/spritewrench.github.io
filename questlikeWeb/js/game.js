@@ -1392,8 +1392,8 @@
             this.okayButton2.y = this.game.height/2-60
             
           }  
+          /*
         //pause screen
-        /*
           this.pauseCount = 1
           this.game.onBlur.add(function() {
             if(this.pauseCount == 0){
@@ -1421,9 +1421,8 @@
           */
         }
         , update: function () {
-          
-          //pause on rotate
           /*
+          //pause on rotate
           if(parseInt(localStorage.getItem("isPortrait")) == 0){
             this.chatTimer = 1;
             

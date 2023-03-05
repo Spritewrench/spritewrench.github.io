@@ -173,9 +173,21 @@
       this.Notification = this.add.sprite(60,(this.game.height)-50, 'notification');
       this.Notification.anchor.setTo(0.5, 0.5);  
       this.Notification.alpha = 0;        
+
+      if(parseInt(localStorage.getItem("firstVisit-combat")) == 21 && parseInt(localStorage.getItem("equip0")) != 9){
+        this.Notification.alpha = 1;
+        this.Notification.x = this.selectInventory.x
+        this.Notification.y = this.selectInventory.y    
+      }   
+      if(parseInt(localStorage.getItem("firstVisit-combat")) == 21 && parseInt(localStorage.getItem("equip0")) == 9){
+        this.Notification.alpha = 1;
+        this.Notification.x = this.selectHub.x
+        this.Notification.y = this.selectHub.y    
+      }            
     },
 
     update: function () {
+
 
       if(parseInt(localStorage.getItem("muted")) == 1){
         this.bgSound.stop();

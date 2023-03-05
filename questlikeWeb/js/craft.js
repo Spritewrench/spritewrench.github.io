@@ -365,10 +365,26 @@
 
       //this.selectedWeaponText.anchor.setTo(0.5, 0.5);    
       //this.tixText2.alpha = 0      
-      if (parseInt(localStorage.getItem("firstVisit-combat")) == 21 ){
+      if (parseInt(localStorage.getItem("firstVisit-combat")) == 21 && parseInt(localStorage.getItem("equip0")) != 9){
         this.Notification.alpha = 1;
         this.Notification.x = this.weaponGridBG[9].x+(this.weaponGridBG[9].width/2)  
         this.Notification.y = this.weaponGridBG[9].y+(this.weaponGridBG[9].height/2)    
+      }  
+      
+
+      this.headBacktoHub = 0;
+      if (parseInt(localStorage.getItem("firstVisit-combat")) == 21 && parseInt(localStorage.getItem("equip0")) == 9){
+        this.Notification.alpha = 1;
+        this.headBacktoHub = 1   
+        this.Notification.x = this.selectHub.x
+        this.Notification.y = this.selectHub.y          
+      }  
+      
+      if (parseInt(localStorage.getItem("firstVisit-combat")) == 31 ){
+        this.Notification.alpha = 1;
+        this.headBacktoHub = 1   
+        this.Notification.x = this.selectHub.x
+        this.Notification.y = this.selectHub.y          
       }        
 
       this.weightText = this.add.text(this.game.width-80, 0, "WEIGHT:",{font:'LondrinaSolid-Black'});
@@ -449,6 +465,7 @@
     },
 
     update: function () {
+
 
 
       if(parseInt(localStorage.getItem("muted")) == 1){
@@ -614,6 +631,13 @@
       this.selectHighlight.y = this.selectShop.y
       this.mapBG.y = this.game.camera.y
       this.bagBG.y = this.mapBG.y 
+
+      if (parseInt(localStorage.getItem("firstVisit-combat")) == 21 && this.headBacktoHub == 1){
+        this.Notification.y = (this.game.camera.height)-50+this.game.camera.y
+      }   
+      if (parseInt(localStorage.getItem("firstVisit-combat")) == 31 && this.headBacktoHub == 1){
+        this.Notification.y = (this.game.camera.height)-50+this.game.camera.y
+      }             
 
       this.selectedWep.y = this.game.camera.y
       this.selectedWeapon.y = this.selectedWep.y+50
@@ -1048,6 +1072,10 @@
         this.Notification.alpha = 1;
         this.Notification.x = this.craftButton.x 
         this.Notification.y = this.craftButton.y
+        if(parseInt(localStorage.getItem("crafted9")) == 1){
+          this.Notification.x = this.equipButton.x 
+          this.Notification.y = this.equipButton.y       
+        }
       }        
 
 
@@ -1233,6 +1261,7 @@
             this.Notification.alpha = 1;
             this.Notification.x = this.selectHub.x
             this.Notification.y = this.selectHub.y    
+            this.headBacktoHub = 1;
           }        
         }
       }
