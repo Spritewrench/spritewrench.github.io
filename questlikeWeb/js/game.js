@@ -1393,6 +1393,7 @@
             
           }  
         //pause screen
+        /*
           this.pauseCount = 1
           this.game.onBlur.add(function() {
             if(this.pauseCount == 0){
@@ -1417,11 +1418,12 @@
             }
             
           },this);   
-          
+          */
         }
         , update: function () {
           
           //pause on rotate
+          /*
           if(parseInt(localStorage.getItem("isPortrait")) == 0){
             this.chatTimer = 1;
             
@@ -1440,7 +1442,7 @@
             } 
             this.textBackdropText.text = "Welcome back.\nI paused the fight you.\nLet's get back to the hunt shall we?"
           }
-
+          */
           if(parseInt(localStorage.getItem("muted")) == 1){
             this.bgSound.stop();
             this.ping.stop();
