@@ -28,7 +28,7 @@
     },
 
     onDown: function () {
-	this.game.state.start('menu');
+	  this.game.state.start('menu');
         /*var user = firebase.auth().currentUser;
 
         if (user) {

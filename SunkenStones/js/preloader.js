@@ -26,6 +26,9 @@
             this.load.image('crew-4', 'assets/crew-3.png');
             this.load.image('crew-5', 'assets/crew-4.png');
 
+            this.load.image('buff_1', 'assets/buff_1.png');
+            this.load.image('buff_2', 'assets/buff_2.png');
+
             this.load.image('freeCounter', 'assets/freeCounter.png');
 
             this.load.image('crewSelect', 'assets/crewSelect.png');
