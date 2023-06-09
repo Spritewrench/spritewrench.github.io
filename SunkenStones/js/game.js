@@ -333,9 +333,9 @@
           this.turnMarkerText = this.add.text(this.turnMarker.x-100,this.turnMarker.y, 'SPAWN PHASE', {font: '120px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.turnMarkerText.anchor.setTo(0.5, 0.5);   
 
-          this.turnCounter = 150;
+          this.turnCounter = 100;
           
-          this.turnCounterStart = 150
+          this.turnCounterStart = this.turnCounter
           this.phaseCounter = 0;
 
           this.turnWait = 0
