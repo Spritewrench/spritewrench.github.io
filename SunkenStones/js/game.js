@@ -31,16 +31,24 @@
             this.bg2 = this.add.sprite(0, 0, 'ui_back');
             this.bg2.width = this.game.width
             this.bg2.height = this.game.height    
+
+            this.combatOrder  = this.add.sprite(0, 0, 'combatOrder');
+            this.combatOrder .width = this.game.width
+            this.combatOrder .height = this.game.height              
             
             this.selectInfo = this.add.sprite(this.game.width, 0, 'selectInfoPanel');
             this.selectInfo.width = this.game.width
             this.selectInfo.height = this.game.height      
+
+            this.capInfo = this.add.sprite(-this.game.width, 0, 'capInfoPanel');
+            this.capInfo.width = this.game.width
+            this.capInfo.height = this.game.height                  
             
             
             this.selectName = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-450, '10', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
             //this.selectName.anchor.setTo(0.5, 0.5);    
 
-            this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-410, '10', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
+            this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-410, '10', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left', wordWrap: true, wordWrapWidth: 450  });
             //this.selectStats.anchor.setTo(0.5, 0.5); 
 
             this.selectAbility = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-370, '10', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
@@ -67,12 +75,31 @@
             this.deploy_poolCurrent = 4;
             this.deploy_poolMax = 4
 
+            this.clear_Button = this.add.sprite(this.game.width-500, this.game.height-300, 'ui_clear_button');            
+            this.clear_Button.inputEnabled = true;
+            this.clear_Button.events.onInputDown.add(this.clearBoard, this);     
 
-            this.endTurn_Button = this.add.sprite(this.game.width-500, this.game.height-175, 'ui_endTurn_Button');
-            
+            this.endTurn_Button = this.add.sprite(this.game.width-500, this.game.height-175, 'ui_endTurn_Button');            
             this.endTurn_Button.inputEnabled = true;
-            this.endTurn_Button.events.onInputDown.add(this.endDeployPhase, this);            
+            this.endTurn_Button.events.onInputDown.add(this.endDeployPhase, this);   
+            
 
+            this.ult_text = this.add.text(70,this.game.height-400, 'CAPTAIN ROSE \n SKILL: DEAL 2 DAMAGE TO ALL ENEMIES', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
+            this.ult_text.angle = -2
+
+            this.ult_pool = this.add.sprite(this.game.width-500, this.game.height-350, 'ui_deploy_pool');
+            this.ult_pool.anchor.setTo(0.5, 0.5);
+            this.ult_pool.width = 100;
+            this.ult_pool.height = 100;
+            this.ult_poolText = this.add.text(this.ult_pool.x,this.ult_pool.y+15, '3/3', {font: '26px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+            this.ult_poolText.anchor.setTo(0.5, 0.5);               
+
+            this.ult_Button = this.add.sprite(this.game.width-500, this.game.height-340, 'ui_ult_buttonReady'); 
+            this.ult_Button.anchor.setTo(0.5, 0.5);           
+            this.ult_Button.inputEnabled = true;
+            this.ult_Button.events.onInputDown.add(this.captainUlt, this);   
+            this.ult_Button.width =500/1.5
+            this.ult_Button.height = 200/1.5    
 
             
             text = text.split("");
@@ -98,11 +125,37 @@
             
             x = (this.game.width/2)-((Math.floor(this.boardWidth/2)*this.size)+(this.size/2)-(this.spacing*this.boardWidth))
 
-            
+          this.crewOrder = []
+          this.placeOrderKey = 0;
+          this.placeOrderTracker = 0;
+
+         
+   
+          
+
+          for(var i = 0; i < 5; i++){
+
+            this.crewOrder[i] = this.add.sprite(x+distX, y+distY-100, 'blankCrew');
+            this.crewOrder[i].anchor.setTo(0.5, 0.5);
+            this.crewOrder[i].width = 100;
+            this.crewOrder[i].height = 100;
+            distX += this.crewOrder[i].width+this.spacing
+
+            this.crewOrder[i]
+
+            this.crewOrder[i].healthText = this.add.text(this.crewOrder[i].x-(this.size/2),this.crewOrder[i].y+(this.size/2)-16, '1', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+            this.crewOrder[i].healthText.anchor.setTo(0.5, 0.5); 
+
+            this.crewOrder[i].powerText = this.add.text(this.crewOrder[i].x-(this.size/2),this.crewOrder[i].y+(this.size/2)-16, '1', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+            this.crewOrder[i].powerText.anchor.setTo(0.5, 0.5);             
+          }
+
+          var distX = 0;
+          var distY = 0;
           for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){
                 
-                this.tile[''+j+i] = this.add.sprite(x+distX, y+distY, 'tile');
+                this.tile[''+j+i] = this.add.sprite(x+distX, y+distY+25, 'tile');
                 this.tile[''+j+i].origX = this.tile[''+j+i].x;
                 this.tile[''+j+i].origY = this.tile[''+j+i].y;
                 this.tile[''+j+i].y = 1000;
@@ -240,7 +293,7 @@
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 1
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "ON RETURN GIVE CAPTAIN +3 HEALTH"
+                this.crew[i].ability  = "BOOST STRIKE - NEXT CREW MATE GETS +1 POWER"
                 break;
               case 2:
                 this.crew[i].deployCost = 1;
@@ -249,7 +302,7 @@
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 5
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "ON COMBAT KNOCK ENEMIES AWAY"                       
+                this.crew[i].ability  = "SHOVE STRIKE - KNOCK BACK ALL ENEMIES IN THE SAME ROW AND COLUMN"                       
                 break;
               case 3:
                 this.crew[i].deployCost = 2;
@@ -258,7 +311,7 @@
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 3
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "ROW STRIKE"                
+                this.crew[i].ability  = "ROW STRIKE - ON COMBAT FIGHT ALL ENEMIES IN THE SAME ROW"                  
                 break;
               case 4:
                 this.crew[i].deployCost = 2;
@@ -267,7 +320,7 @@
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 2
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "COLUMN STRIKE"                
+                this.crew[i].ability  = "COLUMN STRIKE - ON COMBAT FIGHT ALL ENEMIES IN THE SAME COLUMN"                   
                 break;  
               case 5:
                 this.crew[i].deployCost = 0;
@@ -342,12 +395,16 @@
           this.ActionCounter = 0;;
           this.actionTimer = 0;
 
-          this.turnCountText = this.add.text(this.game.width/2,50, 'TURN #1 ', {font: '64px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.turnCountText = this.add.text(125,50, 'TURN #1 ', {font: '64px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.turnCountText.anchor.setTo(0.5, 0.5);  
           this.turnCountNum = 1     
           
-          this.buttonTimer = 0;
-        
+          this.endbuttonTimer = 0;
+          this.clearbuttonTimer = 0;
+          this.ultbuttonTimer = 0;
+
+          this.capEnergy = 0;
+          
 
         }
         , update: function () {
@@ -356,6 +413,104 @@
 
 
             //UI 
+            //combat order
+            this.placedCrew = []
+            this.placedCrewID = []
+            this.placedCrewKey = 0;
+
+            this.placedCrewID[0] = -1;
+            this.placedCrewID[1] = -1;
+            this.placedCrewID[2] = -1;
+            this.placedCrewID[3] = -1;
+            this.placedCrewID[4] = -1;
+
+            for(var l = 0; l < this.boardHeight; l++){
+              for(var m = 0; m < this.boardWidth; m++){
+                
+                if(this.tile[""+m+l].isCrewHere){
+                  this.placedCrew[this.placedCrewKey] =this.tile[""+m+l].texture
+                  this.placedCrewID[this.placedCrewKey]= this.tile[""+m+l].crewID
+                  console.log(this.placedCrewKey+" "+this.tile[""+m+l].crewID)
+                  this.placedCrewKey++
+                  
+                  //alert("!")
+
+                }
+
+
+        
+              }
+            }            
+            for(var i=0; i< 5; i++){
+              
+              
+              if(this.placedCrewID[i] != -1 && this.placedCrewID[i] != 0){
+                this.crewOrder[i].alpha = 1
+                this.crewOrder[i].loadTexture(this.placedCrew[i])
+
+                
+                //next up effects 
+                this.crew[this.placedCrewID[i]].power = this.crew[this.placedCrewID[i]].origPower  
+                if(i > 0){
+                  
+                  if(this.placedCrewID[i-1] == 1 ){
+                    
+                    this.crew[this.placedCrewID[i]].power = this.crew[this.placedCrewID[i]].origPower+1
+                    
+                  }
+                  
+                }
+                
+                this.crewOrder[i].healthText.x = this.crewOrder[i].x-(this.size/2)+23
+                
+                
+                this.crewOrder[i].healthText.text = this.crew[this.placedCrewID[i]].deployCost
+                this.crewOrder[i].powerText.x = this.crewOrder[i].x+(this.size/2)-22       
+                this.crewOrder[i].powerText.text = this.crew[this.placedCrewID[i]].power
+                this.crewOrder[i].healthText.addColor("#232727", 0)
+                this.crewOrder[i].powerText.addColor("#FFF", 0)
+                if(parseInt(this.crew[this.placedCrewID[i]].origPower) > parseInt(this.crew[this.placedCrewID[i]].power)){
+                          
+                  this.crewOrder[i].powerText.addColor("#BA363B", 0)
+                }
+                if(parseInt(this.crew[this.placedCrewID[i]].origPower) < parseInt(this.crew[this.placedCrewID[i]].power)){
+                  this.crewOrder[i].powerText.addColor("#30B64A", 0)
+                }                  
+
+                this.crewOrder[i].width = 100;
+                this.crewOrder[i].height = 100; 
+                
+
+              }
+              else{
+                this.crewOrder[i].healthText.text = ""
+                this.crewOrder[i].powerText.text = ""
+                this.crewOrder[i].alpha = 0;
+              }
+                  
+                 
+            }
+            
+            //cap info panel
+            this.capInfo.x += (0 - this.capInfo.x) * 0.2;
+            if(this.capEnergy >= 9 && this.phaseCounter == 2){
+
+              this.ult_Button.loadTexture('ui_ult_buttonReady');
+              this.ult_Button.y = this.game.height-290
+              this.ult_pool.y = this.game.height-360              
+            }
+            else{
+              this.ult_Button.loadTexture('ui_ult_buttonNotReady');
+              this.ult_Button.y = this.game.height-280
+              this.ult_pool.y = this.game.height-340
+            }
+            this.ult_Button.x += ((this.capInfo.x+530) - this.ult_Button.x) * 0.2;
+            this.ult_pool.x = this.ult_Button.x+100
+            this.ult_poolText.y = this.ult_pool.y+10
+            this.ult_poolText.x = this.ult_pool.x
+            this.ult_poolText.text = this.capEnergy+"/9"
+
+
             // select info panel
             if(this.selectedCrew == 0){
               this.selectInfo.x += ( this.game.width - this.selectInfo.x) * 0.2;
@@ -365,8 +520,8 @@
             else{
               this.selectInfo.x += ( 0 - this.selectInfo.x) * 0.2;
               this.selectName.text = "NAME: "+this.crew[this.selectedCrew].name
-              this.selectStats.text = "POWER: "+this.crew[this.selectedCrew].power
-              this.selectAbility.text = "ABILITY: \n"+this.crew[this.selectedCrew].ability
+              this.selectStats.text = "ABILITY: \n"+this.crew[this.selectedCrew].ability
+              this.selectAbility.text = ""
               
               this.selectName.angle = 3;
               this.selectStats.angle = 3;
@@ -380,13 +535,22 @@
             
 
             //button anim
-            if(this.buttonTimer > 0){
-              this.buttonTimer--
+            if(this.endbuttonTimer > 0){
+              this.endbuttonTimer--
               this.endTurn_Button.y = this.game.height-175+35
             }
             else{
               this.endTurn_Button.y = this.game.height-175
             }
+
+            if(this.clearbuttonTimer > 0){
+              this.clearbuttonTimer--
+              this.clear_Button.y = this.game.height-300+35
+            }
+            else{
+              this.clear_Button.y = this.game.height-300
+            }            
+            
             //Turn Count
             this.turnCountText.text = "TURN #"+this.turnCountNum
             // phase marker
@@ -590,7 +754,7 @@
 
                   
                   //show enemy health and deploy cost
-                  if(this.tile[''+j+i].isEnemyHere || this.tile[''+j+i].isCrewHere){
+                  if((this.tile[''+j+i].isEnemyHere || this.tile[''+j+i].isCrewHere) && this.tile[''+j+i].monID != 1){
                     this.tile[''+j+i].healthText.alpha = 1;
                     this.tile[''+j+i].powerText.alpha = 1;
 
@@ -607,67 +771,82 @@
                     
                       
                       if(this.phaseCounter == 2 || this.phaseCounter ==3){
-                        //show attack pattern - red
-                        switch(parseInt(this.crew[this.tile[''+j+i].crewID].attackPattern)){
-                          //normal
-                          case 1:
-                              this.tintTile(this.tile[''+(j+1)+(i)],"0xFF0000")
-                              this.tintTile(this.tile[''+(j-1)+(i)],"0xFF0000")
-                              this.tintTile(this.tile[''+(j)+(i+1)],"0xFF0000")
-                              this.tintTile(this.tile[''+(j)+(i-1)],"0xFF0000")                          
-                            break;
-                          //col strike 
-                          case 2:
-                            for(var l = 0; l < this.boardHeight; l++){
-                              for(var m = 0; m < this.boardWidth; m++){
-                                if(j == m){
-                                  this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
-                                }
-                              }
-                            }  
-                            this.tile[""+j+i].tint = '0xFFFFFF'                           
-                            break;    
-                          //row strike 
-                          case 3:
-                            for(var l = 0; l < this.boardHeight; l++){
-                              for(var m = 0; m < this.boardWidth; m++){
-                                if(i == l){
-                                  this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
-                                }
-                              }
-                            }   
-                            this.tile[""+j+i].tint = '0xFFFFFF'                        
-                            break;
-                            //area     
-                            case 4:
-                              this.tintTile(this.tile[''+(j+1)+(i)],"0xFF0000")
-                              this.tintTile(this.tile[''+(j-1)+(i)],"0xFF0000")
-                              this.tintTile(this.tile[''+(j)+(i+1)],"0xFF0000")
-                              this.tintTile(this.tile[''+(j)+(i-1)],"0xFF0000")       
-                              
-                              this.tintTile(this.tile[''+(j+1)+(i+1)],"0xFF0000")
-                              this.tintTile(this.tile[''+(j-1)+(i-1)],"0xFF0000")   
-                              this.tintTile(this.tile[''+(j-1)+(i+1)],"0xFF0000")
-                              this.tintTile(this.tile[''+(j+1)+(i-1)],"0xFF0000")                                                           
-                            break;          
-                            case 5:
+                        try{
+                          //show attack pattern - red
+                          switch(parseInt(this.crew[this.tile[''+j+i].crewID].attackPattern)){
+                            //normal
+                            case 1:
+                                this.tintTile(this.tile[''+(j+1)+(i)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j-1)+(i)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j)+(i+1)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j)+(i-1)],"0xFF0000")                          
+                              break;
+                            //col strike 
+                            case 2:
                               for(var l = 0; l < this.boardHeight; l++){
                                 for(var m = 0; m < this.boardWidth; m++){
                                   if(j == m){
                                     this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
                                   }
                                 }
-                              }       
+                              }  
+                              this.tile[""+j+i].tint = '0xFFFFFF'                           
+                              break;    
+                            //row strike 
+                            case 3:
                               for(var l = 0; l < this.boardHeight; l++){
                                 for(var m = 0; m < this.boardWidth; m++){
                                   if(i == l){
                                     this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
                                   }
                                 }
-                              }                               
-                              this.tile[""+j+i].tint = '0xFFFFFF'                                                          
-                            break;                                                                                         
+                              }   
+                              this.tile[""+j+i].tint = '0xFFFFFF'                        
+                              break;
+                              //area     
+                              case 4:
+                                this.tintTile(this.tile[''+(j+1)+(i)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j-1)+(i)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j)+(i+1)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j)+(i-1)],"0xFF0000")       
+                                
+                                this.tintTile(this.tile[''+(j+1)+(i+1)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j-1)+(i-1)],"0xFF0000")   
+                                this.tintTile(this.tile[''+(j-1)+(i+1)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j+1)+(i-1)],"0xFF0000")                                                           
+                              break;          
+                              case 5:
+                                for(var l = 0; l < this.boardHeight; l++){
+                                  for(var m = 0; m < this.boardWidth; m++){
+                                    if(j == m){
+                                      this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
+                                    }
+                                  }
+                                }       
+                                for(var l = 0; l < this.boardHeight; l++){
+                                  for(var m = 0; m < this.boardWidth; m++){
+                                    if(i == l){
+                                      this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
+                                    }
+                                  }
+                                }                               
+                                this.tile[""+j+i].tint = '0xFFFFFF'                                                          
+                              break;                                                                                         
+                          }
+
+                          //don't highlight crew
+                          for(var l = 0; l < this.boardHeight; l++){
+                            for(var m = 0; m < this.boardWidth; m++){
+                              if(this.tile[''+(m)+(l)].isCrewHere){
+                                this.tintTile(this.tile[''+(m)+(l)],"0xFFFFFF")          
+                              }
+                            }
+                          }                           
                         }
+                        catch(e){
+
+                        }
+
                       }
 
 
@@ -679,11 +858,13 @@
                         this.tile[''+j+i].healthText.x = this.tile[''+j+i].x-(this.size/2)+23
                         this.tile[''+j+i].powerText.x = this.tile[''+j+i].x+(this.size/2)-22
                         this.tile[''+j+i].healthText.addColor("#232727", 0)
+                        this.tile[''+j+i].powerText.addColor("#FFF", 0)
                         if(parseInt(this.crew[ this.tile[''+j+i].crewID].origPower) > parseInt(this.crew[ this.tile[''+j+i].crewID].power)){
-                          this.tile[''+j+i].powerText.addColor("#30B64A", 0)
+                          
+                          this.tile[''+j+i].powerText.addColor("#BA363B", 0)
                         }
                         if(parseInt(this.crew[ this.tile[''+j+i].crewID].origPower) < parseInt(this.crew[ this.tile[''+j+i].crewID].power)){
-                          this.tile[''+j+i].powerText.addColor("#BA363B", 0)
+                          this.tile[''+j+i].powerText.addColor("#30B64A", 0)
                         }  
                       }
                       catch(e){
@@ -734,6 +915,66 @@
                     
 
         }
+        ,captainUlt: function (){
+          if(this.capEnergy >= 9 && this.phaseCounter == 2){
+            this.capEnergy -= 9
+            for(var i = 0; i < this.boardHeight; i++){
+              for(var j = 0; j < this.boardWidth; j++){      
+                if(this.tile[''+j+i].isEnemyHere){
+                  
+                  this.tile[''+j+i].hp -= 2
+                  if(this.tile[''+j+i].hp <= 0){
+                    this.tile[''+j+i].hp = 0;
+                    this.enemyDie(this.tile[''+j+i])
+                  }                  
+                }
+              }
+            }                 
+          }
+     
+        }
+        ,clearBoard: function () {
+          this.clearbuttonTimer = 10
+          //check how many crew deployed
+          for(var i = 0; i < this.boardHeight; i++){
+            for(var j = 0; j < this.boardWidth; j++){      
+              if(this.tile[''+j+i].isCrewHere || this.tile[''+j+i].crewID != 0){
+                
+                this.deployCrewCount++
+              }
+            }
+          }
+          //crew returns          
+          for(var i = 0; i < this.boardHeight; i++){
+            for(var j = 0; j < this.boardWidth; j++){      
+              if(this.tile[''+j+i].isCrewHere){
+                this.tile[''+j+i].hasActed = true;
+                this.tile[''+j+i].y  = 1000;
+                this.tile[''+j+i].loadTexture('tile');
+                this.deploy_poolCurrent += this.crew[this.tile[''+j+i].crewID].deployCost
+                if(this.tile[''+j+i].crewID == 5){
+                  this.freeCounterNum++;
+                }                 
+                this.tile[''+j+i].crewID = 0
+                this.tile[''+j+i].monID = 0
+                this.tile[''+j+i].isCrewHere = false;
+                this.tile[''+j+i].isEnemyHere = false;
+                this.tile[''+j+i].healthText.text = "";
+                this.tile[''+j+i].powerText.text = "";
+                this.tile[''+j+i].healthText.alpha = 0
+                this.tile[''+j+i].powerText.alpha = 0;                    
+                //break;
+              }
+
+            }
+          }  
+          for(var i = 1; i < 6; i++){
+            this.crew[i].isSelected = false;
+            this.crew[i].isDeployed = false
+          }   
+          this.removeTint();
+          
+        }
         ,spawnMonsters: function (tile) {
           this.deployReady = false;
 
@@ -750,27 +991,78 @@
           
           
 
-            
+          var text = waves[this.turnCountNum]				
+          //text = text.split("");
+          var textKey = 0
           for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){      
                 //reset stats
                 this.tile[''+j+i].hasAttacked = false;
                 //place mon
-                var placeMonHere = Math.floor(Math.random() * 4);
+                var placeMonHere =Math.floor(Math.random() * 4);
+                //this.monCount = 100;
                 if(placeMonHere == 0 && this.monCount > 0 && !this.tile[''+j+i].isEnemyHere && !this.tile[''+j+i].isCrewHere){
                   this.tile[''+j+i].y = 1000+dist;
                   dist += 1000;
-                  this.tile[''+j+i].isEnemyHere = true
-                  this.tile[''+j+i].monID = 1
+                  
+                  //this.tile[''+j+i].monID = Math.floor(Math.random() * 3)+1;//parseInt(text[textKey])
+                  
+                  var healthSpawn = Math.floor(Math.random() * 4)
+                  if(this.turnCountNum <= 5){
+                    this.tile[''+j+i].monID = 2
+                  }
+                  else if(this.turnCountNum > 5 && this.turnCountNum <= 10){
+                    this.tile[''+j+i].monID = Math.floor(Math.random() * 2)+2
+                  }      
+                  
+                  if(healthSpawn == 0 && this.monCount > 1 && this.cap_healthValue < 8){
+                    this.tile[''+j+i].monID = 1
+                  }                  
+                  
+                  if(this.turnCountNum > 10){
+                    if(this.monCount == 1){
+                      this.tile[''+j+i].monID = 4
+                    }
+                    else{
+                      this.tile[''+j+i].monID = Math.floor(Math.random() * 2)+2
+                    }
+                    
+                  }       
+                  
+                  
+
+                  
+                  
+                  textKey++;
                   this.monCount--;
                   //diff types of enemy
                   switch(this.tile[''+j+i].monID){
                     //base monster
                     case 1:
+                      this.tile[''+j+i].hp = 1;
+                      this.tile[''+j+i].power = 0;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;
+                    case 2:
+                      this.tile[''+j+i].hp = 1;
+                      this.tile[''+j+i].power = 1;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;            
+                    case 3:
                       this.tile[''+j+i].hp = 2;
                       this.tile[''+j+i].power = 1;
+                      this.tile[''+j+i].isEnemyHere = true
                       break;
+                    case 4:
+                      this.tile[''+j+i].hp = 10;
+                      this.tile[''+j+i].power = 2;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;                                    
                   }
+                }
+                else{
+                  //this.tile[''+j+i].isEnemyHere = false
+                  //this.tile[''+j+i].monID = 0;
                 }
 
                 distX += this.tile[''+j+i].width+this.spacing
@@ -820,10 +1112,7 @@
                 //crew return ability
                 switch(this.tile[''+j+i].crewID){
                   case 1:
-                    //heal 
-                    this.cap_healthValue += 3;
-                    this.cap_health.height += 150;
-                    this.cap_health.width += 150;
+
                     break;
                   case 2:
 
@@ -860,6 +1149,7 @@
           //next phase                
           this.ActionCounter++;  
           if(this.ActionCounter >= this.deployCrewCount){
+            this.deploy_poolCurrent = this.deploy_poolMax
             this.phaseCounter++;
             this.turnWait = 100;
             this.ActionCounter = 0;
@@ -881,11 +1171,13 @@
         }
         ,endDeployPhase: function (tile) {
           if(this.deployReady){
-            this.buttonTimer = 10
+            this.endbuttonTimer = 10
             this.turnWait = 1;
             this.phaseCounter++        
             this.turnMarkerText.text = "COMBAT PHASE"
             this.deployReady = false;  
+            this.capEnergy += this.deploy_poolCurrent
+            this.deploy_poolCurrent -= this.deploy_poolCurrent
           }
    
         }
@@ -901,9 +1193,10 @@
           }
           //crew attacks          
           for(var i = 0; i < this.boardHeight; i++){
-            for(var j = 0; j < this.boardWidth; j++){      
-              if(this.tile[''+j+i].isCrewHere  && !this.tile[''+j+i].hasAttacked){
+            for(var j = 0; j < this.boardWidth; j++){      //&& this.placeOrderTracker == this.tile[''+j+i].placeOrder
+              if(this.tile[''+j+i].isCrewHere  && !this.tile[''+j+i].hasAttacked ){
                 this.tile[''+j+i].hasAttacked = true;
+                //this.placeOrderTracker++;
                 this.tile[''+j+i].width  += 100;
                 this.tile[''+j+i].height += 100;
                 
@@ -949,7 +1242,23 @@
                       this.crewAttackTile(this.tile[''+(j-1)+(i-1)],this.tile[''+j+i].crewID)   
                       this.crewAttackTile(this.tile[''+(j-1)+(i+1)],this.tile[''+j+i].crewID)
                       this.crewAttackTile(this.tile[''+(j+1)+(i-1)],this.tile[''+j+i].crewID)                                                           
-                    break;                                                                    
+                    break;    
+                    case 5:
+                      for(var l = 0; l < this.boardHeight; l++){
+                        for(var m = 0; m < this.boardWidth; m++){
+                          if(j == m){
+                            this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
+                          }
+                        }
+                      }                        
+                      for(var l = 0; l < this.boardHeight; l++){
+                        for(var m = 0; m < this.boardWidth; m++){
+                          if(i == l){
+                            this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
+                          }
+                        }
+                      }                                                            
+                    break;                                                                                     
                 }
 
                 //crew combat ability trigger
@@ -1038,9 +1347,12 @@
             this.phaseCounter++;
             this.turnWait = 100;
             this.ActionCounter = 0;
+            this.placeOrderTracker = 0;
+            this.placeOrderKey = 0;
             for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){   
                 this.tile[''+j+i].hasActed = false;
+                this.tile[''+j+i].placeOrder = -1;
               }
             }             
           }
@@ -1070,6 +1382,22 @@
         ,enemyDie: function (enemy) {
           enemy.isEnemyHere = false;
           enemy.loadTexture('tile');
+
+          //enemy death effects
+          
+          switch(enemy.monID){
+            case 1:
+              this.cap_healthValue += 2;
+              this.cap_health.height += 150;
+              this.cap_health.width += 150;
+              break;
+            case 2:
+              break;
+            case 3:
+              break;
+            case 4:
+              break
+          }          
           this.game.plugins.screenShake.shake(5); 
 
           //enemy.y = 1000;          
@@ -1230,6 +1558,8 @@
             var remainingDeploy = this.deploy_poolCurrent - this.crew[this.selectedCrew].deployCost
             if(remainingDeploy >= 0){
               try{
+
+                
                 tile.loadTexture(this.crew[this.selectedCrew].texture)
                 tile.width = this.size
                 tile.height = this.size
@@ -1254,6 +1584,8 @@
 
           }
           else if (tile.isCrewHere){
+
+
             tile.loadTexture("tile")
             tile.width = this.size
             tile.height = this.size

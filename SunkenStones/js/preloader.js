@@ -18,13 +18,20 @@
             this.load.image('tile', 'assets/tile.png');
             this.load.image('hero', 'assets/hero.png');
             this.load.image('mon', 'assets/mon.png');
-            this.load.image('mon-1', 'assets/mon-1.png');
+
+            this.load.image('mon-0', 'assets/tile.png')
+            this.load.image('mon-1', 'assets/mon-0.png');
+            this.load.image('mon-2', 'assets/mon-1.png');
+            this.load.image('mon-3', 'assets/mon-2.png');
+            this.load.image('mon-4', 'assets/mon-3.png');
 
             this.load.image('crew-1', 'assets/crew-0.png');
             this.load.image('crew-2', 'assets/crew-1.png');
             this.load.image('crew-3', 'assets/crew-2.png');
             this.load.image('crew-4', 'assets/crew-3.png');
             this.load.image('crew-5', 'assets/crew-4.png');
+
+            this.load.image('blankCrew', 'assets/blankCrew.png');
 
             this.load.image('buff_1', 'assets/buff_1.png');
             this.load.image('buff_2', 'assets/buff_2.png');
@@ -41,13 +48,19 @@
           
             this.load.image('bg', 'assets/bg.png');
             this.load.image('ui_back', 'assets/ui_back.png');
+            this.load.image('combatOrder', 'assets/combatOrder.png');
 
             this.load.image('selectInfoPanel', 'assets/selectInfoPanel.png');
+            this.load.image('capInfoPanel', 'assets/capInfoPanel.png');
 
             this.load.image('ui_cap_health', 'assets/cap_health.png');
             this.load.image('ui_deploy_pool', 'assets/deploy_pool.png');
 
             this.load.image('ui_endTurn_Button', 'assets/endTurn_button.png');
+            this.load.image('ui_clear_button', 'assets/clear_button.png');
+
+            this.load.image('ui_ult_buttonReady', 'assets/ult_buttonReady.png');
+            this.load.image('ui_ult_buttonNotReady', 'assets/ult_buttonNotReady.png');
 
             this.load.image('listenmi', 'assets/listenMi.png');
             this.load.image('wrench', 'assets/wrench.png');
