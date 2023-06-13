@@ -23,6 +23,7 @@
         this.game.scale.pageAlignHorizontally = true;
         this.game.scale.pageAlignVertically = true;         
       } else {
+        /*
         this.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
         this.game.stage.scale.minWidth =  480;
         this.game.stage.scale.minHeight = 260;
@@ -32,6 +33,7 @@
         this.game.scale.pageAlignHorizontally = true;
         this.game.scale.pageAlignVertically = true;     
         this.game.stage.scale.setScreenSize(true);
+        */
       }
       this.game.state.start('preloader');
     }
