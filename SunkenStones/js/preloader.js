@@ -53,6 +53,11 @@
             this.load.image('selectInfoPanel', 'assets/selectInfoPanel.png');
             this.load.image('capInfoPanel', 'assets/capInfoPanel.png');
 
+            this.load.image('selectInfoPanel-0', 'assets/selectInfoPanel-0.png');
+            this.load.image('selectInfoPanel-1', 'assets/selectInfoPanel-1.png');
+            this.load.image('selectInfoPanel-2', 'assets/selectInfoPanel-2.png');
+            this.load.image('selectInfoPanel-3', 'assets/selectInfoPanel-3.png');
+
             this.load.image('ui_cap_health', 'assets/cap_health.png');
             this.load.image('ui_deploy_pool', 'assets/deploy_pool.png');
 

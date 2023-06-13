@@ -38,7 +38,11 @@
             
             this.selectInfo = this.add.sprite(this.game.width, 0, 'selectInfoPanel');
             this.selectInfo.width = this.game.width
-            this.selectInfo.height = this.game.height      
+            this.selectInfo.height = this.game.height   
+
+            this.selectInfoDetail = this.add.sprite(this.game.width, 0, 'selectInfoPanel');
+            this.selectInfoDetail.width = this.game.width
+            this.selectInfoDetail.height = this.game.height               
 
             this.capInfo = this.add.sprite(-this.game.width, 0, 'capInfoPanel');
             this.capInfo.width = this.game.width
@@ -307,7 +311,7 @@
               case 3:
                 this.crew[i].deployCost = 2;
                 this.crew[i].name = "GRACE O'MALLEY"
-                this.crew[i].power = 1
+                this.crew[i].power = 2
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 3
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
@@ -316,7 +320,7 @@
               case 4:
                 this.crew[i].deployCost = 2;
                 this.crew[i].name = "PETE 'GUNNER' EASTON"
-                this.crew[i].power = 1
+                this.crew[i].power = 2
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 2
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
@@ -523,10 +527,16 @@
               this.selectStats.text = "ABILITY: \n"+this.crew[this.selectedCrew].ability
               this.selectAbility.text = ""
               
+
+              this.selectInfoDetail.loadTexture("selectInfoPanel-"+(this.crew[this.selectedCrew].id-1))
+
               this.selectName.angle = 3;
               this.selectStats.angle = 3;
               this.selectAbility.angle = 3;
             }
+
+            this.selectInfoDetail.x = this.selectInfo.x
+            
 
             this.selectName.x =  this.selectInfo.x+this.selectInfo.width-580
             this.selectStats.x =  this.selectInfo.x+this.selectInfo.width-580
@@ -766,6 +776,7 @@
                       this.tile[''+j+i].healthText.x = this.tile[''+j+i].x-(this.size/2)+25
                       this.tile[''+j+i].powerText.x = this.tile[''+j+i].x+(this.size/2)-23
                       this.tile[''+j+i].healthText.addColor("#fff", 0)
+                      this.tile[''+j+i].powerText.addColor("#FFF", 0)
                     }
                     if(this.tile[''+j+i].isCrewHere){
                     
@@ -987,6 +998,7 @@
           this.size = 100
           this.spacing = 10
           this.monCount = this.monBaseCount + this.turnCountNum;
+
           var dist = 0
           
           
@@ -1014,20 +1026,16 @@
                   else if(this.turnCountNum > 5 && this.turnCountNum <= 10){
                     this.tile[''+j+i].monID = Math.floor(Math.random() * 2)+2
                   }      
-                  
+                  else if(this.turnCountNum > 10 ){
+                    this.tile[''+j+i].monID = Math.floor(Math.random() * 3)+2
+
+                    
+                  }                  
                   if(healthSpawn == 0 && this.monCount > 1 && this.cap_healthValue < 8){
                     this.tile[''+j+i].monID = 1
                   }                  
                   
-                  if(this.turnCountNum > 10){
-                    if(this.monCount == 1){
-                      this.tile[''+j+i].monID = 4
-                    }
-                    else{
-                      this.tile[''+j+i].monID = Math.floor(Math.random() * 2)+2
-                    }
-                    
-                  }       
+       
                   
                   
 
@@ -1054,7 +1062,7 @@
                       this.tile[''+j+i].isEnemyHere = true
                       break;
                     case 4:
-                      this.tile[''+j+i].hp = 10;
+                      this.tile[''+j+i].hp = 4;
                       this.tile[''+j+i].power = 2;
                       this.tile[''+j+i].isEnemyHere = true
                       break;                                    
@@ -1396,8 +1404,10 @@
             case 3:
               break;
             case 4:
+              //this.game.state.start('win');
               break
-          }          
+          }       
+          enemy.monID = 0;   
           this.game.plugins.screenShake.shake(5); 
 
           //enemy.y = 1000;          
