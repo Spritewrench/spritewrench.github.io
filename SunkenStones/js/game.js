@@ -1813,8 +1813,11 @@
             //check if win
             if(this.turnCountNum >= 10){
               this.game.state.start('win');
+              var score = parseInt(sessionStorage.getItem("highScore"))
+              if(this.scoreCountNum > score){
+                sessionStorage.setItem("highScore",this.scoreCountNum)
+              }
               
-              localStorage.setItem("highScore",this.scoreCountNum)
             }
           }
           else{
