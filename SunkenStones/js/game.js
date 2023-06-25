@@ -67,7 +67,7 @@
 
             this.cap_health.origWidth = this.cap_health.width
             this.cap_health.origHeight = this.cap_health.height
-            this.cap_healthValue = 10;         
+            this.cap_healthValue = 25;         
 
             this.deploy_pool = this.add.sprite(375, this.game.height-100, 'ui_deploy_pool');
             this.deploy_pool.anchor.setTo(0.5, 0.5);
@@ -88,17 +88,19 @@
             this.endTurn_Button.events.onInputDown.add(this.endDeployPhase, this);   
             
 
-            this.ult_text = this.add.text(70,this.game.height-400, 'CAPTAIN ROSE \n SKILL: DEAL 2 DAMAGE TO ALL ENEMIES', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
+            this.ult_text = this.add.text(70,this.game.height-400, 'CAPTAIN ROSE \n SKILL: DEAL 1 DAMAGE TO ALL ENEMIES', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
             this.ult_text.angle = -2
 
+            /*
             this.ult_pool = this.add.sprite(this.game.width-500, this.game.height-350, 'ui_deploy_pool');
             this.ult_pool.anchor.setTo(0.5, 0.5);
             this.ult_pool.width = 100;
             this.ult_pool.height = 100;
             this.ult_poolText = this.add.text(this.ult_pool.x,this.ult_pool.y+15, '3/3', {font: '26px LondrinaSolid-Black',fill: '#fff', align: 'center'});
             this.ult_poolText.anchor.setTo(0.5, 0.5);               
+            */
 
-            this.ult_Button = this.add.sprite(this.game.width-500, this.game.height-340, 'ui_ult_buttonReady'); 
+            this.ult_Button = this.add.sprite(this.game.width-500, this.game.height-280, 'ui_ult_buttonReady'); 
             this.ult_Button.anchor.setTo(0.5, 0.5);           
             this.ult_Button.inputEnabled = true;
             this.ult_Button.events.onInputDown.add(this.captainUlt, this);   
@@ -202,22 +204,29 @@
               }
 
           }
-          //buffs
-          this.buff = []
-         
-          this.buff[0] = this.add.sprite(this.game.width-400, 50, 'buff_1');
-          this.buff[0].anchor.setTo(0.5, 0.5);
-          this.buff[0].width = 50
-          this.buff[0].height = 50
-          this.buff[0].alpha = 0;
-          this.buff[0].hasBuff = false;
+          //treasure UI
+          var distX = 0
+          var spacing = 60
+          this.collectedTreasure = []
+          this.collectedTreasureText = []
+          for(var i = 1 ; i < 10; i++){
+            this.collectedTreasure[i] = this.add.sprite(((this.game.width/2)+390)+distX , 50, 'treasureUI_'+i);
+            this.collectedTreasure[i].anchor.setTo(0.5, 0.5);
+            this.collectedTreasure[i].width = 75
+            this.collectedTreasure[i].height = 75
+            this.collectedTreasure[i].alpha = 0;
 
-          this.buff[1] = this.add.sprite(this.game.width-340, 50, 'buff_2');
-          this.buff[1].anchor.setTo(0.5, 0.5);
-          this.buff[1].width = 50
-          this.buff[1].height = 50      
-          this.buff[1].alpha = 0;    
-          this.buff[1].hasBuff = false;
+            this.collectedTreasureText[i] = this.add.text(this.collectedTreasure[i].x+20,this.collectedTreasure[i].y+20, 'x0', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+            this.collectedTreasureText[i].anchor.setTo(0.5, 0.5);
+            this.collectedTreasureText[i].alpha = 0;
+
+            this.collectedTreasure[i].count = 0;
+            //this.collectedTreasure[i].alpha = 0;    
+            distX +=  spacing        
+          }
+
+         
+
           
           //crew 
 
@@ -387,10 +396,10 @@
           this.turnMarker.width = this.game.width
           this.turnMarker.height = this.game.height          
 
-          this.turnMarkerText = this.add.text(this.turnMarker.x-100,this.turnMarker.y, 'SPAWN PHASE', {font: '120px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.turnMarkerText = this.add.text(this.turnMarker.x-100,this.turnMarker.y, 'ENEMY TURN', {font: '120px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.turnMarkerText.anchor.setTo(0.5, 0.5);   
 
-          this.turnCounter = 100;
+          this.turnCounter = 75;
           
           this.turnCounterStart = this.turnCounter
           this.phaseCounter = 0;
@@ -399,9 +408,16 @@
           this.ActionCounter = 0;;
           this.actionTimer = 0;
 
-          this.turnCountText = this.add.text(125,50, 'TURN #1 ', {font: '64px LondrinaSolid-Black',fill: '#fff', align: 'center'});
-          this.turnCountText.anchor.setTo(0.5, 0.5);  
-          this.turnCountNum = 1     
+          this.turnCountText = this.add.text(450,50, 'TURN #1 ', {font: '48px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.turnCountText.anchor.setTo(1, 0.5);  
+          this.turnCountNum = 0 
+          
+          this.scoreCountUI = this.add.sprite(125,50, 'coinCount');
+          this.scoreCountUI.anchor.setTo(0.5, 0.5);  
+
+          this.scoreCount = this.add.text(this.scoreCountUI.x,this.scoreCountUI.y, '0', {font: '48px LondrinaSolid-Black',fill: '#fff', align: 'left'});
+          this.scoreCount.anchor.setTo(0.5, 0.5);  
+          this.scoreCountNum = 0           
           
           this.endbuttonTimer = 0;
           this.clearbuttonTimer = 0;
@@ -410,6 +426,26 @@
           this.capEnergy = 0;
           
 
+          this.overlay = this.add.sprite(0, 0, 'bgOverlay');
+          this.overlay.width = this.game.width
+          this.overlay.height = this.game.height      
+          this.overlay.alpha = 0;    
+
+
+          this.treasureOptions = []
+          distX = -450
+          spacing = 650;
+          for(var i =0; i < 3; i++){
+
+            this.treasureOptions[i] = this.add.sprite(x+distX, this.game.height*10 , 'treasure_1');
+            this.treasureOptions[i].anchor.setTo(0.5, 0.5);
+            this.treasureOptions[i].value = 1;
+            this.treasureOptions[i].inputEnabled = true;
+            this.treasureOptions[i].events.onInputDown.add(this.selectTreasue, this);            
+            this.treasureOptions[i].alpha = 0;
+            distX += spacing
+          }
+
         }
         , update: function () {
           
@@ -417,6 +453,32 @@
 
 
             //UI 
+            //hide pause
+            this.overlay.alpha = 0;           
+            
+            for(var i =0; i < 3; i++){
+              this.treasureOptions[i].alpha = 0;
+              this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
+              this.treasureOptions[i].y += ( this.game.height*10 - this.treasureOptions[i].y) * 0.2;
+              
+            }              
+
+            //treasure 
+            for(var i = 1; i < 10; i++){
+              if(this.collectedTreasure[i].count > 0){
+                this.collectedTreasure[i].alpha = 1
+                this.collectedTreasureText[i].alpha = 1
+                this.collectedTreasureText[i].text = "x"+this.collectedTreasure[i].count
+              }
+              else{
+                this.collectedTreasure[i].alpha = 0
+                this.collectedTreasureText[i].alpha = 0         
+              }
+            }
+
+            //track gold 
+            this.scoreCount.text = this.scoreCountNum
+
             //combat order
             this.placedCrew = []
             this.placedCrewID = []
@@ -430,13 +492,19 @@
 
             for(var l = 0; l < this.boardHeight; l++){
               for(var m = 0; m < this.boardWidth; m++){
-                
+                if(this.tile[""+m+l].placeOrder >= 0){
+
+                  this.placedCrew[this.tile[""+m+l].placeOrder] =this.tile[""+m+l].texture
+                  this.placedCrewID[this.tile[""+m+l].placeOrder]= this.tile[""+m+l].crewID
+                  //this.placedCrewKey++
+                }
                 if(this.tile[""+m+l].isCrewHere){
+                  //old order logic
+                  /*
                   this.placedCrew[this.placedCrewKey] =this.tile[""+m+l].texture
                   this.placedCrewID[this.placedCrewKey]= this.tile[""+m+l].crewID
-                  console.log(this.placedCrewKey+" "+this.tile[""+m+l].crewID)
                   this.placedCrewKey++
-                  
+                  */
                   //alert("!")
 
                 }
@@ -497,22 +565,23 @@
             
             //cap info panel
             this.capInfo.x += (0 - this.capInfo.x) * 0.2;
-            if(this.capEnergy >= 9 && this.phaseCounter == 2){
+            //this.capEnergy >= 9 
+            if(this.phaseCounter == 1 && this.deploy_poolCurrent >= 4){
 
               this.ult_Button.loadTexture('ui_ult_buttonReady');
-              this.ult_Button.y = this.game.height-290
-              this.ult_pool.y = this.game.height-360              
+              this.ult_Button.y = this.game.height-280
+              //this.ult_pool.y = this.game.height-360              
             }
             else{
               this.ult_Button.loadTexture('ui_ult_buttonNotReady');
-              this.ult_Button.y = this.game.height-280
-              this.ult_pool.y = this.game.height-340
+              //this.ult_Button.y = this.game.height-280
+              //this.ult_pool.y = this.game.height-340
             }
-            this.ult_Button.x += ((this.capInfo.x+530) - this.ult_Button.x) * 0.2;
-            this.ult_pool.x = this.ult_Button.x+100
-            this.ult_poolText.y = this.ult_pool.y+10
-            this.ult_poolText.x = this.ult_pool.x
-            this.ult_poolText.text = this.capEnergy+"/9"
+            this.ult_Button.x += ((this.capInfo.x+350) - this.ult_Button.x) * 0.2;
+            //this.ult_pool.x = this.ult_Button.x+100
+            //this.ult_poolText.y = this.ult_pool.y+10
+            //this.ult_poolText.x = this.ult_pool.x
+            //this.ult_poolText.text = this.capEnergy+"/9"
 
 
             // select info panel
@@ -545,7 +614,7 @@
             
 
             //button anim
-            if(this.endbuttonTimer > 0){
+            if(this.endbuttonTimer > 0 || !this.deployReady){
               this.endbuttonTimer--
               this.endTurn_Button.y = this.game.height-175+35
             }
@@ -553,7 +622,7 @@
               this.endTurn_Button.y = this.game.height-175
             }
 
-            if(this.clearbuttonTimer > 0){
+            if(this.clearbuttonTimer > 0 || !this.deployReady){
               this.clearbuttonTimer--
               this.clear_Button.y = this.game.height-300+35
             }
@@ -562,7 +631,7 @@
             }            
             
             //Turn Count
-            this.turnCountText.text = "TURN #"+this.turnCountNum
+            this.turnCountText.text = "WAVE #"+this.turnCountNum+"/9"
             // phase marker
             
             if(this.turnWait > 0){
@@ -581,12 +650,14 @@
               
             } 
 
-            if(this.turnCounter > 0){
+            if(this.turnCounter > 0 ){
               this.turnCounter--;
               this.phaseStart = true;
               
-             
-              this.turnMarker.y += ( this.game.height/2 - this.turnMarker.y) * 0.2;
+              if(this.phaseCounter != 3){
+                this.turnMarker.y += ( this.game.height/2 - this.turnMarker.y) * 0.2;
+              }
+              
 
               if(this.turnMarker.y - ( this.game.height/2)  < 10){
                 this.turnMarkerText.x++
@@ -603,52 +674,48 @@
             }
             else{
               //phase wall
-                                           
+
+                               
               
             
               this.turnMarker.y += ( this.game.height+this.game.height/2 - this.turnMarker.y) * 0.2;
+
+
+              
               var markerDiff = this.turnMarker.y - (this.game.height+this.game.height/2)
               if(this.actionTimer > 0){
                 this.actionTimer--;
               }
-              if(( markerDiff <= 5 && this.actionTimer == 0)&& this.phaseCounter == 2 && this.phaseStart ){
+              if(( markerDiff <= 5 && this.actionTimer == 0)&& this.phaseCounter == 1 && this.phaseStart ){
                 
-                this.deployReady = true;                
+                this.deployReady = true;  
+                
+              
+                
+    
+    
               }
-              if(( markerDiff <= 5 && this.actionTimer == 0)&& this.phaseCounter != 2 && this.phaseStart ){
+              if(( markerDiff <= 5 && this.actionTimer == 0)&& this.phaseCounter != 1 && this.phaseStart ){
                 //phase actions
                 this.phaseStart = false;
                 if(this.phaseCounter == 0 ){
-                  
-                  this.spawnMonsters();
-                  this.turnMarkerText.text = "RETURN PHASE"
-                  //this.phaseCounter++
+                  if(this.turnCountNum <= 1){
+                    this.spawnMonsters();
+                  }
                 }
                 else if(this.phaseCounter == 1 ){
-                  this.turnMarkerText.text = "DEPLOYMENT PHASE"
-                  this.returnCrew();
                   
-                  //this.phaseCounter++
-                }
+                  
+                } 
                 else if(this.phaseCounter == 2 ){
-
-                  this.turnMarkerText.text = "COMBAT PHASE"
-                 
-
+                  this.turnMarkerText.text = ""
+                  this.crewFight();
                 } 
                 else if(this.phaseCounter == 3 ){
-                  this.turnMarkerText.text = "RETALIATION PHASE"
-                  
-                  
-                  this.crewFight();
-                  
-                  
-
-                } 
+                  this.returnCrew();
+                }                   
                 else if(this.phaseCounter == 4 ){
-                  
                   this.enemyFight();
-                  this.turnMarkerText.text = "SPAWN PHASE"
 
 
                 }                 
@@ -781,7 +848,7 @@
                     if(this.tile[''+j+i].isCrewHere){
                     
                       
-                      if(this.phaseCounter == 2 || this.phaseCounter ==3){
+                      if(this.phaseCounter == 1 || this.phaseCounter ==2){
                         try{
                           //show attack pattern - red
                           switch(parseInt(this.crew[this.tile[''+j+i].crewID].attackPattern)){
@@ -915,9 +982,14 @@
 
           }
           else{
-                       
+            this.overlay.alpha = 1;           
             
-            
+            for(var i =0; i < 3; i++){
+              this.treasureOptions[i].alpha = 1;
+              this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
+              this.treasureOptions[i].y += ( 150+this.game.height/3 - this.treasureOptions[i].y) * 0.2;
+              
+            }                      
           }
 
             
@@ -926,14 +998,45 @@
                     
 
         }
+        ,selectTreasue: function(treasure){
+          this.collectedTreasure[treasure.value].count++;
+          this.scoreCountNum += 100*treasure.value;
+          /* in case you want to balance score/gold individually
+          switch(treasure.value){
+            case 1:
+              this.scoreCountNum += 100;
+              break;
+            case 2:
+              this.scoreCountNum += 200;
+              break;
+            case 3:
+              this.scoreCountNum += 100;
+              break;
+            case 4:
+              break;           
+            case 5:
+              break;
+            case 6:
+              break;
+            case 7:
+              break;
+            case 8:
+              break;        
+            case 9:
+              break;                            
+
+          }
+          */
+          this.chatTimer = 0;
+        }
         ,captainUlt: function (){
-          if(this.capEnergy >= 9 && this.phaseCounter == 2){
-            this.capEnergy -= 9
+          if(this.deploy_poolCurrent >= 4 && this.phaseCounter == 1){
+            this.deploy_poolCurrent -= 4
             for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){      
                 if(this.tile[''+j+i].isEnemyHere){
                   
-                  this.tile[''+j+i].hp -= 2
+                  this.tile[''+j+i].hp -= 1
                   if(this.tile[''+j+i].hp <= 0){
                     this.tile[''+j+i].hp = 0;
                     this.enemyDie(this.tile[''+j+i])
@@ -946,6 +1049,7 @@
         }
         ,clearBoard: function () {
           this.clearbuttonTimer = 10
+          this.placeOrderTracker = 0;
           //check how many crew deployed
           for(var i = 0; i < this.boardHeight; i++){
             for(var j = 0; j < this.boardWidth; j++){      
@@ -973,7 +1077,9 @@
                 this.tile[''+j+i].healthText.text = "";
                 this.tile[''+j+i].powerText.text = "";
                 this.tile[''+j+i].healthText.alpha = 0
-                this.tile[''+j+i].powerText.alpha = 0;                    
+                this.tile[''+j+i].powerText.alpha = 0;   
+                this.tile[''+j+i].hasActed = false;
+                this.tile[''+j+i].placeOrder = -1;                                 
                 //break;
               }
 
@@ -998,7 +1104,20 @@
           this.size = 100
           this.spacing = 10
           this.monCount = this.monBaseCount + this.turnCountNum;
+          if(this.turnCountNum == 0 || this.turnCountNum %3 == 0){
+            this.monCount = 1
+          }
+          else{
+            this.monCount = 3+this.turnCountNum
+            // treasures add to moncount
+            for(var i = 1 ; i < 10; i++){
+              this.monCount += this.collectedTreasure[i].count      
+            }            
+          }
 
+
+
+          console.log(this.turnCountNum+" "+this.monCount)
           var dist = 0
           
           
@@ -1011,15 +1130,41 @@
                 //reset stats
                 this.tile[''+j+i].hasAttacked = false;
                 //place mon
-                var placeMonHere =Math.floor(Math.random() * 4);
+                var placeMonHere =Math.floor(Math.random() * 3);
                 //this.monCount = 100;
                 if(placeMonHere == 0 && this.monCount > 0 && !this.tile[''+j+i].isEnemyHere && !this.tile[''+j+i].isCrewHere){
-                  this.tile[''+j+i].y = 1000+dist;
+                  
                   dist += 1000;
                   
                   //this.tile[''+j+i].monID = Math.floor(Math.random() * 3)+1;//parseInt(text[textKey])
                   
                   var healthSpawn = Math.floor(Math.random() * 4)
+                  if(this.turnCountNum == 0 || this.turnCountNum %3 == 0){
+                    this.tile[''+j+i].monID = 99
+                    this.tile[''+j+i].y = 1000+dist;
+                  }
+                  else{
+                    // treasures affect mon spawn
+                    for(var k = 1 ; k < 10; k++){
+                      if(this.collectedTreasure[k].count > 0){
+                        var spawnChance = Math.floor(Math.random() * (this.monCount) )
+                        if(spawnChance <= this.collectedTreasure[k].count){
+                          this.tile[''+j+i].monID = k+1;
+                          this.tile[''+j+i].y = 1000+dist;
+                        }
+                        else{
+
+                        }
+                      }
+                        
+                    }
+                  }
+
+                  
+
+
+
+                  /*
                   if(this.turnCountNum <= 5){
                     this.tile[''+j+i].monID = 2
                   }
@@ -1030,8 +1175,11 @@
                     this.tile[''+j+i].monID = Math.floor(Math.random() * 3)+2
 
                     
-                  }                  
-                  if(healthSpawn == 0 && this.monCount > 1 && this.cap_healthValue < 8){
+                  }       
+                  */
+
+                  //spawn health
+                  if(healthSpawn == 0  && this.cap_healthValue < 8){
                     this.tile[''+j+i].monID = 1
                   }                  
                   
@@ -1042,7 +1190,10 @@
                   
                   
                   textKey++;
+                  console.log("Mon Count "+this.monCount)
                   this.monCount--;
+                  console.log("Mon Count "+this.monCount)
+                  
                   //diff types of enemy
                   switch(this.tile[''+j+i].monID){
                     //base monster
@@ -1053,7 +1204,7 @@
                       break;
                     case 2:
                       this.tile[''+j+i].hp = 1;
-                      this.tile[''+j+i].power = 1;
+                      this.tile[''+j+i].power = 2;
                       this.tile[''+j+i].isEnemyHere = true
                       break;            
                     case 3:
@@ -1062,10 +1213,45 @@
                       this.tile[''+j+i].isEnemyHere = true
                       break;
                     case 4:
-                      this.tile[''+j+i].hp = 4;
+                      this.tile[''+j+i].hp = 8;
                       this.tile[''+j+i].power = 2;
                       this.tile[''+j+i].isEnemyHere = true
-                      break;                                    
+                      break; 
+                    case 5:
+                      this.tile[''+j+i].hp = 3;
+                      this.tile[''+j+i].power = 5;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;
+                    case 6:
+                      this.tile[''+j+i].hp = 3;
+                      this.tile[''+j+i].power = 3;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;            
+                    case 7:
+                      this.tile[''+j+i].hp = 2;
+                      this.tile[''+j+i].power = 8;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;
+                    case 8:
+                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].power = 1;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;        
+                    case 9:
+                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].power = 2;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;
+                    case 10:
+                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].power = 3;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;
+                    case 99:
+                      this.tile[''+j+i].hp = 1;
+                      this.tile[''+j+i].power = 0;
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;                                                                                                 
                   }
                 }
                 else{
@@ -1073,6 +1259,7 @@
                   //this.tile[''+j+i].monID = 0;
                 }
 
+                
                 distX += this.tile[''+j+i].width+this.spacing
                 if(distX > this.size*this.boardWidth){
                   distX = 0;
@@ -1084,8 +1271,15 @@
           }  
           
           //next phase
+          if(this.turnCountNum <= 1){
+
+          }
+          this.turnMarkerText.text = "YOUR TURN"
+          this.turnMarker.alpha = 1;       
+          
           this.turnWait = 100;
-          this.phaseCounter++          
+          this.phaseCounter++    
+          this.turnCountNum++;      
         }
         ,returnCrew: function () {
    
@@ -1154,12 +1348,20 @@
             this.crew[i].isSelected = false;
             this.crew[i].isDeployed = false
           }    
-          //next phase                
+          //next phase  
+                     
           this.ActionCounter++;  
           if(this.ActionCounter >= this.deployCrewCount){
             this.deploy_poolCurrent = this.deploy_poolMax
+            
+            this.turnMarkerText.text = "ENEMY TURN"
+            this.turnMarker.alpha = 1;                
             this.phaseCounter++;
-            this.turnWait = 100;
+
+
+
+            
+            this.turnWait = 25;
             this.ActionCounter = 0;
             for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){   
@@ -1179,13 +1381,17 @@
         }
         ,endDeployPhase: function (tile) {
           if(this.deployReady){
+            this.placeOrderTracker = 0;
+
             this.endbuttonTimer = 10
             this.turnWait = 1;
             this.phaseCounter++        
-            this.turnMarkerText.text = "COMBAT PHASE"
+            this.turnMarkerText.text = ""
+            this.turnMarker.alpha = 0;
+
             this.deployReady = false;  
-            this.capEnergy += this.deploy_poolCurrent
-            this.deploy_poolCurrent -= this.deploy_poolCurrent
+            //this.capEnergy += this.deploy_poolCurrent
+            //this.deploy_poolCurrent -= this.deploy_poolCurrent
           }
    
         }
@@ -1199,12 +1405,14 @@
               }
             }
           }
+
           //crew attacks          
           for(var i = 0; i < this.boardHeight; i++){
-            for(var j = 0; j < this.boardWidth; j++){      //&& this.placeOrderTracker == this.tile[''+j+i].placeOrder
-              if(this.tile[''+j+i].isCrewHere  && !this.tile[''+j+i].hasAttacked ){
+            for(var j = 0; j < this.boardWidth; j++){      //
+              
+              if(this.tile[''+j+i].isCrewHere  && !this.tile[''+j+i].hasAttacked && this.placeOrderTracker == this.tile[''+j+i].placeOrder){
                 this.tile[''+j+i].hasAttacked = true;
-                //this.placeOrderTracker++;
+                this.placeOrderTracker++;
                 this.tile[''+j+i].width  += 100;
                 this.tile[''+j+i].height += 100;
                 
@@ -1283,6 +1491,15 @@
                         if(!this.tile[''+(k+1)+(i)].isEnemyHere && this.tile[''+(k)+(i)].isEnemyHere){
                           this.knockBack(this.tile[''+(k)+(i)],this.tile[''+j+i])
                         }
+                        else if(this.tile[''+(k+1)+(i)].isEnemyHere && this.tile[''+(k)+(i)].isEnemyHere){
+                          //collision logic
+                          /*
+                          this.crewAttackTile(this.tile[''+(k+1)+(i)],1) 
+                          this.crewAttackTile(this.tile[''+(k)+(i)],1)  
+                          this.game.plugins.screenShake.shake(10);                           
+                          */                          
+
+                        }
                       }
                       catch(e){
 
@@ -1353,7 +1570,11 @@
           if(this.ActionCounter >= this.deployCrewCount){
             this.removeTint();
             this.phaseCounter++;
-            this.turnWait = 100;
+
+            this.turnMarkerText.text = ""
+            this.turnMarker.alpha = 0;    
+            
+            this.turnWait = 25;
             this.ActionCounter = 0;
             this.placeOrderTracker = 0;
             this.placeOrderKey = 0;
@@ -1400,12 +1621,46 @@
               this.cap_health.width += 150;
               break;
             case 2:
+              this.scoreCountNum += 10
               break;
             case 3:
+              this.scoreCountNum += 15
               break;
             case 4:
-              //this.game.state.start('win');
+              this.scoreCountNum += 20
               break
+            case 5:
+              this.scoreCountNum += 25
+              break;
+            case 6:
+              this.scoreCountNum += 25
+              break;
+            case 7:
+              this.scoreCountNum += 30
+              break     
+            case 8:
+              this.scoreCountNum += 35
+              break;
+            case 9:
+              this.scoreCountNum += 40
+              break;             
+            case 10:
+              this.scoreCountNum += 45
+              break;             
+            case 99:
+              this.chatTimer = 1;
+              for(var i =0; i < 3; i++){
+                Math.floor(Math.random() * 9);
+                var chestCount = 0
+                if(this.turnCountNum > 3){
+                  chestCount = (this.turnCountNum-1)
+                }
+
+                
+                this.treasureOptions[i].value = Math.floor(Math.random() * (3+chestCount))+1;
+              }              
+              //this.scoreCountNum += 45
+              break;                                                               
           }       
           enemy.monID = 0;   
           this.game.plugins.screenShake.shake(5); 
@@ -1517,6 +1772,7 @@
               }
             }
           } 
+
           //enemy attacks          
           for(var i = 0; i < this.boardHeight; i++){
             for(var j = 0; j < this.boardWidth; j++){      
@@ -1542,16 +1798,24 @@
           this.ActionCounter++;
           
           if(this.ActionCounter >= this.monCount){
-            
+            //this.turnMarkerText.text = "ENEMY TURN"               
             this.phaseCounter = 0;
-            this.turnWait = 100;
+            this.turnWait = 25;
             this.ActionCounter = 0;
             for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){   
                 this.tile[''+j+i].hasActed = false;
               }
             }             
-            this.turnCountNum++;
+            this.turnMarkerText.text = ""
+            this.turnMarker.alpha = 0;     
+            this.spawnMonsters();
+            //check if win
+            if(this.turnCountNum >= 10){
+              this.game.state.start('win');
+              
+              localStorage.setItem("highScore",this.scoreCountNum)
+            }
           }
           else{
             this.phaseStart = true;
@@ -1566,6 +1830,8 @@
           
           if(this.selectedCrew != 0 && !tile.isEnemyHere && !tile.isCrewHere ){
             var remainingDeploy = this.deploy_poolCurrent - this.crew[this.selectedCrew].deployCost
+            tile.placeOrder = this.placeOrderTracker
+            this.placeOrderTracker++
             if(remainingDeploy >= 0){
               try{
 
@@ -1593,6 +1859,7 @@
             }
 
           }
+          /*
           else if (tile.isCrewHere){
 
 
@@ -1610,6 +1877,7 @@
             } 
             this.removeTint();
           }
+          */
        
         }   
         ,tintTile: function (tile,color) {

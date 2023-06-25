@@ -23,6 +23,8 @@
         this.game.scale.pageAlignHorizontally = true;
         this.game.scale.pageAlignVertically = true;         
       } else {
+        this.game.stage.scale.forceLandscape = true;
+        this.scale.forceOrientation(true, false)
         /*
         this.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
         this.game.stage.scale.minWidth =  480;

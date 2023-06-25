@@ -24,6 +24,35 @@
             this.load.image('mon-2', 'assets/mon-1.png');
             this.load.image('mon-3', 'assets/mon-2.png');
             this.load.image('mon-4', 'assets/mon-3.png');
+            this.load.image('mon-5', 'assets/mon-4.png');
+            this.load.image('mon-6', 'assets/mon-5.png');
+            this.load.image('mon-7', 'assets/mon-6.png');
+            this.load.image('mon-8', 'assets/mon-7.png');  
+            this.load.image('mon-9', 'assets/mon-8.png');  
+            this.load.image('mon-10', 'assets/mon-9.png');  
+            this.load.image('mon-99', 'assets/mon-99.png'); 
+            
+            this.load.image('treasure_1', 'assets/treasure_1.png');
+            this.load.image('treasure_2', 'assets/treasure_2.png');
+            this.load.image('treasure_3', 'assets/treasure_3.png');
+            this.load.image('treasure_4', 'assets/treasure_4.png');
+            this.load.image('treasure_5', 'assets/treasure_5.png');
+            this.load.image('treasure_6', 'assets/treasure_6.png');
+            this.load.image('treasure_7', 'assets/treasure_7.png');
+            this.load.image('treasure_8', 'assets/treasure_8.png');
+            this.load.image('treasure_9', 'assets/treasure_9.png');
+
+            this.load.image('treasureUI_1', 'assets/treasureUI_1.png');
+            this.load.image('treasureUI_2', 'assets/treasureUI_2.png');
+            this.load.image('treasureUI_3', 'assets/treasureUI_3.png');
+            this.load.image('treasureUI_4', 'assets/treasureUI_4.png');
+            this.load.image('treasureUI_5', 'assets/treasureUI_5.png');
+            this.load.image('treasureUI_6', 'assets/treasureUI_6.png');
+            this.load.image('treasureUI_7', 'assets/treasureUI_7.png');
+            this.load.image('treasureUI_8', 'assets/treasureUI_8.png');
+            this.load.image('treasureUI_9', 'assets/treasureUI_9.png');            
+
+          
 
             this.load.image('crew-1', 'assets/crew-0.png');
             this.load.image('crew-2', 'assets/crew-1.png');
@@ -47,8 +76,11 @@
             this.load.image('turnMarker', 'assets/turnMarker.png');
           
             this.load.image('bg', 'assets/bg.png');
+            this.load.image('bgOverlay', 'assets/bgOverlay2.png');
             this.load.image('ui_back', 'assets/ui_back.png');
             this.load.image('combatOrder', 'assets/combatOrder.png');
+
+            this.load.image('coinCount', 'assets/coinCount.png');
 
             this.load.image('selectInfoPanel', 'assets/selectInfoPanel.png');
             this.load.image('capInfoPanel', 'assets/capInfoPanel.png');
