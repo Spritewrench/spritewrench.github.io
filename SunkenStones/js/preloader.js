@@ -76,6 +76,8 @@
             this.load.image('turnMarker', 'assets/turnMarker.png');
           
             this.load.image('bg', 'assets/bg.png');
+            this.load.image('winBG', 'assets/winBG.png');
+            this.load.image('loseBG', 'assets/loseBG.png');
             this.load.image('bgOverlay', 'assets/bgOverlay2.png');
             this.load.image('ui_back', 'assets/ui_back.png');
             this.load.image('combatOrder', 'assets/combatOrder.png');
@@ -89,6 +91,18 @@
             this.load.image('selectInfoPanel-1', 'assets/selectInfoPanel-1.png');
             this.load.image('selectInfoPanel-2', 'assets/selectInfoPanel-2.png');
             this.load.image('selectInfoPanel-3', 'assets/selectInfoPanel-3.png');
+            this.load.image('selectInfoPanel-3', 'assets/selectInfoPanel-4.png');
+
+            this.load.image('selectInfoPanel-101', 'assets/selectInfoPanel-101.png');
+            this.load.image('selectInfoPanel-102', 'assets/selectInfoPanel-102.png');
+            this.load.image('selectInfoPanel-103', 'assets/selectInfoPanel-103.png');
+            this.load.image('selectInfoPanel-104', 'assets/selectInfoPanel-104.png');    
+            this.load.image('selectInfoPanel-105', 'assets/selectInfoPanel-105.png');
+            this.load.image('selectInfoPanel-106', 'assets/selectInfoPanel-106.png');
+            this.load.image('selectInfoPanel-107', 'assets/selectInfoPanel-107.png');
+            this.load.image('selectInfoPanel-108', 'assets/selectInfoPanel-108.png'); 
+            this.load.image('selectInfoPanel-109', 'assets/selectInfoPanel-109.png');  
+            this.load.image('selectInfoPanel-199', 'assets/selectInfoPanel-199.png');                        
 
             this.load.image('ui_cap_health', 'assets/cap_health.png');
             this.load.image('ui_deploy_pool', 'assets/deploy_pool.png');
