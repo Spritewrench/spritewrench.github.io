@@ -601,47 +601,47 @@
               if(this.selectedCrew > 100){
                 var monInfoKey = this.selectedCrew-100
                 switch(monInfoKey){
-                  case 1:
+                  case 2:
                     this.selectName.text = "NAME: TENTACLE [RIGHT]"
                     this.selectStats.text = ""
                     this.selectAbility.text = ""                    
                     break;
-                  case 2:
+                  case 3:
                     this.selectName.text = "NAME: TENTACLE [LEFT]"
                     this.selectStats.text = ""
                     this.selectAbility.text = ""                       
                     break;
-                  case 3:
+                  case 4:
                     this.selectName.text = "NAME: KRAKEN"
                     this.selectStats.text = "ABILITY: SPAWN TENTACLES ON COMBAT"
                     this.selectAbility.text = ""                       
                     break;
-                  case 4:
+                  case 5:
                     this.selectName.text = "NAME: SEA SERPENT"
                     this.selectStats.text = ""
                     this.selectAbility.text = ""                      
                     break;
-                  case 5:
+                  case 6:
                     this.selectName.text = "NAME: LEVIATHAN"
                     this.selectStats.text = ""
                     this.selectAbility.text = ""                       
                     break;
-                  case 6:
+                  case 7:
                     this.selectName.text = "NAME: SCYLLA"
                     this.selectStats.text = ""
                     this.selectAbility.text = ""                       
                     break;
-                  case 7:
+                  case 8:
                     this.selectName.text = "NAME: GHOST"
                     this.selectStats.text = "ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                     
                     break;  
-                  case 8:
+                  case 9:
                     this.selectName.text = "NAME: WRAITH"
                     this.selectStats.text = "ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                        
                     break;
-                  case 9:
+                  case 10:
                     this.selectName.text = "NAME: SHADOW"
                     this.selectStats.text = "ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                        
