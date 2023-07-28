@@ -18,6 +18,9 @@
             this.load.image('tile', 'assets/tile.png');
             this.load.image('hero', 'assets/hero.png');
             this.load.image('mon', 'assets/mon.png');
+           
+
+            this.load.image('bgGIF', 'assets/ocean-wave-43-colorful-waves-sea-acegif.gif')
 
             this.load.image('mon-0', 'assets/tile.png')
             this.load.image('mon-1', 'assets/mon-0.png');
@@ -31,6 +34,7 @@
             this.load.image('mon-9', 'assets/mon-8.png');  
             this.load.image('mon-10', 'assets/mon-9.png');  
             this.load.image('mon-99', 'assets/mon-99.png'); 
+            this.load.image('mon-101', 'assets/mon-101.png'); 
             
             this.load.image('treasure_1', 'assets/treasure_1.png');
             this.load.image('treasure_2', 'assets/treasure_2.png');
@@ -41,6 +45,9 @@
             this.load.image('treasure_7', 'assets/treasure_7.png');
             this.load.image('treasure_8', 'assets/treasure_8.png');
             this.load.image('treasure_9', 'assets/treasure_9.png');
+
+            this.load.image('treasure_200', 'assets/treasure_200.png');
+            this.load.image('treasure_201', 'assets/treasure_201.png');
 
             this.load.image('treasureUI_1', 'assets/treasureUI_1.png');
             this.load.image('treasureUI_2', 'assets/treasureUI_2.png');
@@ -76,9 +83,11 @@
             this.load.image('turnMarker', 'assets/turnMarker.png');
           
             this.load.image('bg', 'assets/bg.png');
+            this.load.image('bgLogo', 'assets/bgLogo.png');
             this.load.image('winBG', 'assets/winBG.png');
             this.load.image('loseBG', 'assets/loseBG.png');
             this.load.image('bgOverlay', 'assets/bgOverlay2.png');
+            this.load.image('bgOverlay2', 'assets/bgOverlay3.png');
             this.load.image('ui_back', 'assets/ui_back.png');
             this.load.image('combatOrder', 'assets/combatOrder.png');
 
@@ -102,7 +111,8 @@
             this.load.image('selectInfoPanel-107', 'assets/selectInfoPanel-107.png');
             this.load.image('selectInfoPanel-108', 'assets/selectInfoPanel-108.png'); 
             this.load.image('selectInfoPanel-109', 'assets/selectInfoPanel-109.png');  
-            this.load.image('selectInfoPanel-199', 'assets/selectInfoPanel-199.png');    
+            this.load.image('selectInfoPanel-199', 'assets/selectInfoPanel-199.png'); 
+            this.load.image('selectInfoPanel-201', 'assets/selectInfoPanel-201.png');    
             
 
             
@@ -132,6 +142,7 @@
             this.load.image('textBox', 'assets/textBox.png');
             this.load.image('textBoxFoe', 'assets/textBoxFoe.png');
             
+            this.game.load.video('waves', 'assets/waves without green.mp4');
           
         }
         , create: function () {

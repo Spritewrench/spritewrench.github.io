@@ -10,7 +10,7 @@
 		
 		
             var x = 400
-                , y = 100;
+                , y = 150;
           
             this.game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
             
@@ -67,7 +67,9 @@
 
             this.cap_health.origWidth = this.cap_health.width
             this.cap_health.origHeight = this.cap_health.height
-            this.cap_healthValue = 15;         
+            this.cap_healthValue = 25;         
+
+            this.cap_ultCost = 4;
 
             this.deploy_pool = this.add.sprite(375, this.game.height-100, 'ui_deploy_pool');
             this.deploy_pool.anchor.setTo(0.5, 0.5);
@@ -79,7 +81,7 @@
             this.deploy_poolCurrent = 2;
             this.deploy_poolMax = this.deploy_poolCurrent 
 
-            this.clear_Button = this.add.sprite(this.game.width-500, this.game.height-300, 'ui_clear_button');            
+            this.clear_Button = this.add.sprite(this.game.width-500, this.game.height-400, 'ui_clear_button');            
             this.clear_Button.inputEnabled = true;
             this.clear_Button.events.onInputDown.add(this.clearBoard, this);     
 
@@ -88,7 +90,7 @@
             this.endTurn_Button.events.onInputDown.add(this.endDeployPhase, this);   
             
 
-            this.ult_text = this.add.text(70,this.game.height-400, 'CAPTAIN ROSE \n SKILL: DEAL 1 DAMAGE TO ALL ENEMIES', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
+            this.ult_text = this.add.text(70,this.game.height-400, 'CAPTAIN ROSE \n SKILL: DEAL 5 DAMAGE TO ALL ENEMIES', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
             this.ult_text.angle = -2
 
             /*
@@ -107,7 +109,9 @@
             this.ult_Button.width =500/1.5
             this.ult_Button.height = 200/1.5    
 
-            
+            this.ult_ButtonText = this.add.text(this.ult_Button.x,this.ult_Button.y, '3/3', {font: '32px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+            this.ult_ButtonText.anchor.setTo(0.5, 0.5);                
+
             text = text.split("");
             var textKey = 0;
 
@@ -298,7 +302,8 @@
             this.crew[i].deployCost = 1;
             this.crew[i].power = 1;
             this.crew[i].attackPattern = 0
-            
+            this.crew[i].holderPower = []
+             
             switch(this.crew[i].id){
               case 1:
                 this.crew[i].deployCost = 1;
@@ -409,7 +414,7 @@
           this.ActionCounter = 0;;
           this.actionTimer = 0;
 
-          this.turnCountText = this.add.text(110,85, 'TURN #1 ', {font: '38px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.turnCountText = this.add.text(this.game.width/2+50,85, 'TURN #1 ', {font: '38px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.turnCountText.anchor.setTo(1, 0.5);  
           this.turnCountNum = 0 
           
@@ -436,11 +441,11 @@
           this.chestUI.width = 100
           this.chestUI.height = 100      
           
-          this.rationUI = this.add.sprite(30, 80, 'ration');
+          this.rationUI = this.add.sprite(this.game.width/2-30, 80, 'ration');
           this.rationUI.anchor.setTo(0.5, 0.5);  
           this.rationUI.width = 100
           this.rationUI.height = 100         
-          this.rationCount = 30   
+          this.rationCount = 30
 
           this.expWidth = this.chestUI.x - this.saltMeterUI.x
           this.saltMeterBack.width = this.expWidth
@@ -455,6 +460,16 @@
           this.ultbuttonTimer = 0;
 
           this.capEnergy = 0;
+
+          this.saltParticleCount = 100
+          this.saltParticle = [];
+          for(var i = 0; i < this.saltParticleCount; i++){
+            this.saltParticle[i] = this.add.sprite(0, 0, 'saltUI');
+            this.saltParticle[i].anchor.setTo(0.5, 0.5);  
+            this.saltParticle[i].width = 50
+            this.saltParticle[i].height = 50
+            this.saltParticle[i].alpha = 0;
+          }          
           
 
           this.overlay = this.add.sprite(0, 0, 'bgOverlay');
@@ -474,6 +489,8 @@
             this.treasureOptions[i].inputEnabled = true;
             this.treasureOptions[i].events.onInputDown.add(this.selectTreasue, this);            
             this.treasureOptions[i].alpha = 0;
+            this.treasureOptions[i].origX = this.treasureOptions[i].x
+            this.treasureOptions[i].origY = this.treasureOptions[i].y
             distX += spacing
           }
 
@@ -488,16 +505,8 @@
           this.saltCounter = 0;
           this.saltCounterBase = 5
           this.saltCounterMax = this.saltCounterBase
-          
-          this.saltParticleCount = 100
-          this.saltParticle = [];
-          for(var i = 0; i < this.saltParticleCount; i++){
-            this.saltParticle[i] = this.add.sprite(0, 0, 'saltUI');
-            this.saltParticle[i].anchor.setTo(0.5, 0.5);  
-            this.saltParticle[i].width = 50
-            this.saltParticle[i].height = 50
-            this.saltParticle[i].alpha = 0;
-          }
+          this.bounty = 0;
+
 
         }
         , update: function () {
@@ -560,36 +569,7 @@
                 this.collectedTreasureText[i].text = "x"+this.collectedTreasure[i].count
 
 
-                // apply treasure buffs
-                switch(i){
-                  case 3:
-                    //boost strike buff
-                    for(var j=0; j< 5; j++){
-                      
-                      if(this.crew[j].id == 1){
-                        this.crew[j].power += this.collectedTreasure[i].count
-                      }
-                    }
-                    break;
-                  case 6:
-                    //row strike buff
-                    for(var j=0; j< 5; j++){
-                      
-                      if(this.crew[j].id == 3){
-                        this.crew[j].power += this.collectedTreasure[i].count
-                      }
-                    }                    
-                    break;        
-                  case 9:
-                    //col strike buff
-                    for(var j=0; j< 5; j++){
-                      
-                      if(this.crew[j].id == 4){
-                        this.crew[j].power += this.collectedTreasure[i].count
-                      }
-                    }                    
-                    break;                                
-                }                
+            
               }
               else{
                 this.collectedTreasure[i].alpha = 0.3
@@ -644,13 +624,20 @@
                 //next up effects 
                 this.crew[this.placedCrewID[i]].power = this.crew[this.placedCrewID[i]].origPower  
                 if(i > 0){
+                  
                   //boost strike
                   if(this.placedCrewID[i-1] == 1 ){
                     
-                    this.crew[this.placedCrewID[i]].power = this.crew[this.placedCrewID[i]].origPower+this.crew[this.placedCrewID[i-1]].power
+                    this.crew[this.placedCrewID[i]].holderPower[0] = this.crew[this.placedCrewID[i-1]].power//this.crew[this.placedCrewID[i]].origPower+this.crew[this.placedCrewID[i-1]].power
                     
                   }
+                  else{
+                    this.crew[this.placedCrewID[i]].holderPower[0] = 0;
+                  }
+
+
                   
+                  this.crew[this.placedCrewID[i]].power = this.crew[this.placedCrewID[i]].origPower+this.crew[this.placedCrewID[i]].holderPower[0]  
                 }
                 
                 this.crewOrder[i].healthText.x = this.crewOrder[i].x-(this.size/2)+23
@@ -691,7 +678,7 @@
             //cap info panel
             this.capInfo.x += (0 - this.capInfo.x) * 0.2;
             //this.capEnergy >= 9 
-            if(this.phaseCounter == 1 && this.deploy_poolCurrent >= 4){
+            if(this.phaseCounter == 1 && this.deploy_poolCurrent >= this.cap_ultCost){
 
               this.ult_Button.loadTexture('ui_ult_buttonReady');
               this.ult_Button.y = this.game.height-280
@@ -703,6 +690,8 @@
               //this.ult_pool.y = this.game.height-340
             }
             this.ult_Button.x += ((this.capInfo.x+350) - this.ult_Button.x) * 0.2;
+            this.ult_ButtonText.x = this.ult_Button.x-(this.ult_Button.width/3)
+            this.ult_ButtonText.text = this.cap_ultCost            
             //this.ult_pool.x = this.ult_Button.x+100
             //this.ult_poolText.y = this.ult_pool.y+10
             //this.ult_poolText.x = this.ult_pool.x
@@ -771,7 +760,12 @@
                     this.selectName.text = "NAME: CURSED CHEST"
                     this.selectStats.text = "NOTE: CURSED YA SAY? I'M SURE IT'LL BE FINE ..."
                     this.selectAbility.text = ""                        
-                    break;                                                                                                                                                                
+                    break; 
+                  case 101:
+                    this.selectName.text = "NAME: NAVY OFFICER"
+                    this.selectStats.text = "ABILITY: POWER EQUAL TO YOUR CURRENT BOUNTY"
+                    this.selectAbility.text = ""                        
+                    break;                                                                                                                                                                                    
 
                 }
 
@@ -823,13 +817,16 @@
 
             if(this.clearbuttonTimer > 0 || !this.deployReady){
               this.clearbuttonTimer--
-              this.clear_Button.y = this.game.height-300+35
+              this.clear_Button.y = this.game.height-310+35
             }
             else{
-              this.clear_Button.y = this.game.height-300
+              this.clear_Button.y = this.game.height-310
             }
 
             //check if win 
+            if(this.rationCount <= 0){
+              this.chatTimer = 1;
+            }             
             /*
             if(this.turnCountNum >= 10){
               if(this.transTimer == -1){
@@ -1219,14 +1216,41 @@
 
           }
           else{
-            this.overlay.alpha = 1;           
+            this.overlay.alpha = 1;        
+            if(this.rationCount <= 0){
+              this.overlay.loadTexture('bgOverlay2')
+              this.treasureOptions[0].alpha = 1;
+              this.treasureOptions[0].value= 200
+              this.treasureOptions[0].x = this.treasureOptions[0].origX+200
+
+              this.treasureOptions[1].alpha = 0;
+
+              this.treasureOptions[2].alpha = 1;
+              this.treasureOptions[2].value= 201
+              this.treasureOptions[2].x = this.treasureOptions[2].origX-200
+
+
+              for(var i =0; i < 3; i++){
+                this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
+                if(i ==0 || i == 2){
+                  this.treasureOptions[i].y += ( 150+this.game.height/3 - this.treasureOptions[i].y) * 0.2;
+                }
+                
+                
+              }               
+            }  
+            else{
+              this.overlay.loadTexture('bgOverlay')
+              for(var i =0; i < 3; i++){
+                this.treasureOptions[i].alpha = 1;
+                this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
+                this.treasureOptions[i].y += ( 150+this.game.height/3 - this.treasureOptions[i].y) * 0.2;
+                this.treasureOptions[i].x = this.treasureOptions[i].origX
+                
+              }                
+            }                
             
-            for(var i =0; i < 3; i++){
-              this.treasureOptions[i].alpha = 1;
-              this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
-              this.treasureOptions[i].y += ( 150+this.game.height/3 - this.treasureOptions[i].y) * 0.2;
-              
-            }                      
+                    
           }
 
             
@@ -1252,18 +1276,31 @@
           }          
         }
         ,selectTreasue: function(treasure){
-          this.collectedTreasure[treasure.value].count++;
+          try{
+            this.collectedTreasure[treasure.value].count++
+          }
+          catch(e){
+
+          }
+          ;
           //this.scoreCountNum += 100*treasure.value;
           //in case you want to balance score/gold individually
           switch(treasure.value){
             case 1:
-              this.cap_healthValue += 1
+              this.cap_healthValue += 5
               break;
             case 2:
-              this.cap_healthValue += 2
+              this.cap_healthValue += 10
               break;
             case 3:
-
+              //boost strike buff
+              for(var j=1; j< 6; j++){
+                if(this.crew[j].id == 1){
+                  this.crew[j].origPower += 1
+                  this.crew[j].power = this.crew[j].origPower
+                  this.crew[j].powerText.text = this.crew[j].power
+                }
+              } 
               break;
             case 4:
               this.deploy_poolMax += 1
@@ -1272,6 +1309,14 @@
               this.deploy_poolMax += 2
               break;
             case 6:
+              //row strike buff
+              for(var j=1; j< 6; j++){
+                if(this.crew[j].id == 3){
+                  this.crew[j].origPower += 1
+                  this.crew[j].power = this.crew[j].origPower
+                  this.crew[j].powerText.text = this.crew[j].power
+                }
+              }              
               break;
             case 7:
               this.freeCounterNum += 1
@@ -1280,22 +1325,52 @@
               this.freeCounterNum += 2
               break;        
             case 9:
+              //col strike buff
+              for(var j=1; j< 6; j++){
+                if(this.crew[j].id == 4){
+                  this.crew[j].origPower += 1
+                  this.crew[j].power = this.crew[j].origPower
+                  this.crew[j].powerText.text = this.crew[j].power
+                }
+              }               
               break;    
             case 10:
-              break;                                          
+              break; 
+            case 200:
+              this.scoreCountNum = 0;
+              for(var i = 1 ; i < 10; i++){
+                this.scoreCountNum += this.collectedTreasure[i].count*(i*55)
+                sessionStorage.setItem("collectedTreasure"+i,this.collectedTreasure[i].count  )   
+              }               
+              
+              var score = parseInt(sessionStorage.getItem("highScore"))
+              sessionStorage.setItem("currentScore",this.scoreCountNum)
+              if(this.scoreCountNum > score){
+                sessionStorage.setItem("highScore",this.scoreCountNum)
+              } 
+              
+              this.game.state.start('win');
+              
+               
+              break;      
+            case 201:
+              this.rationCount = 30
+              this.bounty += 10
+              break;                                                                    
 
           }
           
           this.chatTimer = 0;
         }
         ,captainUlt: function (){
-          if(this.deploy_poolCurrent >= 4 && this.phaseCounter == 1){
-            this.deploy_poolCurrent -= 4
+          if(this.deploy_poolCurrent >= this.cap_ultCost && this.phaseCounter == 1){
+            this.deploy_poolCurrent -= this.cap_ultCost
+            this.cap_ultCost += 2;
             for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){      
                 if(this.tile[''+j+i].isEnemyHere){
                   
-                  this.tile[''+j+i].hp -= 1
+                  this.tile[''+j+i].hp -= 5
                   if(this.tile[''+j+i].hp <= 0){
                     this.tile[''+j+i].hp = 0;
                     this.enemyDie(this.tile[''+j+i])
@@ -1428,6 +1503,16 @@
                       }
                         
                     }
+
+                    //navy hunt
+                    if(this.bounty > 0){
+                      var spawnChance = Math.floor(Math.random() * (4) )
+                      if(spawnChance == 0){
+                        this.tile[''+j+i].monID = 101;
+                        this.tile[''+j+i].y = 1000+dist;
+                      }                    
+
+                    }                    
                   }
 
                   
@@ -1536,7 +1621,13 @@
                       this.tile[''+j+i].power = 0;
                       this.tile[''+j+i].tier = 0
                       this.tile[''+j+i].isEnemyHere = true
-                      break;                                                                                                 
+                      break;   
+                    case 101:
+                      this.tile[''+j+i].hp = 4;
+                      this.tile[''+j+i].power = this.bounty;
+                      this.tile[''+j+i].tier = 2
+                      this.tile[''+j+i].isEnemyHere = true
+                      break;                                                                                                                     
                   }
                 }
                 else{
@@ -1564,9 +1655,13 @@
           this.turnMarker.alpha = 1;       
           
           this.turnWait = 100;
-          this.phaseCounter++    
+          this.phaseCounter++  
+          if(this.turnCountNum > 0){
+            this.rationCount--;
+           
+          }  
           this.turnCountNum++;   
-          this.rationCount--;
+          
           
           //return to port - end run?
           if(this.rationCount <= 0){
@@ -2109,8 +2204,11 @@
               if(this.tile[''+j+i].isEnemyHere  && !this.tile[''+j+i].hasAttacked){
                 this.tile[''+j+i].alpha = 1;
                 this.tile[''+j+i].hasAttacked = true;
+                
                 this.tile[''+j+i].width  += 100;
                 this.tile[''+j+i].height += 100;
+
+                this.placeCrew(this.tile[''+j+i])
                 
                 this.cap_healthValue-= parseInt(this.tile[''+j+i].power);  
 

@@ -12,7 +12,7 @@
       var x = this.game.width / 2
         , y = this.game.height / 2;
 
-      this.bg = this.add.sprite(0, 0, 'bg');
+      this.bg = this.add.sprite(0, 0, 'bgLogo');
       this.bg.width = this.game.width
       this.bg.height = this.game.height      
       //this.titleTxt = this.add.bitmapText(x, y, 'minecraftia', 'T.C.P',16);
@@ -20,15 +20,15 @@
       this.overlay = this.add.sprite(0, -300, 'bgOverlay');
       this.overlay.width = this.game.width
       this.overlay.height = this.game.height+300  
-      this.overlay.alpha = 0.6   
+      this.overlay.alpha = 0   
 
-      this.titleTxt = this.add.text(x,y, 'Sunken Stones', {font: '64px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+      this.titleTxt = this.add.text(x,y, '', {font: '64px LondrinaSolid-Black',fill: '#fff', align: 'center'});
       this.titleTxt.anchor.setTo(0.5, 0.5);
 
-      this.titleTxt2 = this.add.text(x-125,this.titleTxt.y+100, 'High Score:', {font: '50px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+      this.titleTxt2 = this.add.text(x-125,this.titleTxt.y+300, 'High Score:', {font: '50px LondrinaSolid-Black',fill: '#fff', align: 'center'});
       this.titleTxt2.anchor.setTo(0.5, 0.5);      
 
-      this.scoreCountUI = this.add.sprite(x+125,this.titleTxt.y+100, 'coinCount');
+      this.scoreCountUI = this.add.sprite(x+125,this.titleTxt.y+300, 'coinCount');
       this.scoreCountUI.anchor.setTo(0.5, 0.5);  
 
       if(sessionStorage.getItem("highScore") == null){
