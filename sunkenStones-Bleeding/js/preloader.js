@@ -35,6 +35,9 @@
             this.load.image('mon-10', 'assets/mon-9.png');  
             this.load.image('mon-99', 'assets/mon-99.png'); 
             this.load.image('mon-101', 'assets/mon-101.png'); 
+
+            this.load.image('status-0', 'assets/status-0.png'); 
+
             
             this.load.image('treasure_1', 'assets/treasure_1.png');
             this.load.image('treasure_2', 'assets/treasure_2.png');
@@ -94,7 +97,8 @@
             this.load.image('coinCount', 'assets/coinCount.png');
 
             this.load.image('selectInfoPanel', 'assets/selectInfoPanel.png');
-            this.load.image('capInfoPanel', 'assets/capInfoPanel.png');
+            this.load.image('capInfoPanel0', 'assets/capInfoPanel0.png');
+            this.load.image('capInfoPanel0-wanted', 'assets/capInfoPanel0-wanted.png');
 
             this.load.image('selectInfoPanel-0', 'assets/selectInfoPanel-0.png');
             this.load.image('selectInfoPanel-1', 'assets/selectInfoPanel-1.png');
@@ -102,6 +106,7 @@
             this.load.image('selectInfoPanel-3', 'assets/selectInfoPanel-3.png');
             this.load.image('selectInfoPanel-4', 'assets/selectInfoPanel-4.png');
 
+            this.load.image('selectInfoPanel-200', 'assets/selectInfoPanel-200.png');
             this.load.image('selectInfoPanel-101', 'assets/selectInfoPanel-101.png');
             this.load.image('selectInfoPanel-102', 'assets/selectInfoPanel-102.png');
             this.load.image('selectInfoPanel-103', 'assets/selectInfoPanel-103.png');
@@ -116,7 +121,8 @@
             
 
             
-            this.load.image('ration', 'assets/fruit_t.png');    
+            this.load.image('ration', 'assets/fruit_t.png'); 
+            this.load.image('monCount', 'assets/monCount.png');    
 
             this.load.image('saltUI', 'assets/saltUI.png');    
             this.load.image('chestUI', 'assets/chestUI.png');    
