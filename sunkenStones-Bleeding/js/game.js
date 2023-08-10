@@ -80,7 +80,7 @@
             
             
             //to be determined by selected ship
-            this.deploy_poolCurrent = 2;
+            this.deploy_poolCurrent = 3;
             this.deploy_poolMax = this.deploy_poolCurrent 
 
             this.clear_Button = this.add.sprite(this.game.width-500, this.game.height-400, 'ui_clear_button');            
@@ -460,7 +460,7 @@
           this.monCountUI.anchor.setTo(0.5, 0.5);  
           this.monCountUI.width = 100
           this.monCountUI.height = 100         
-          this.monCountValue = 100
+          this.monCountValue = 150
 
           this.expWidth = this.chestUI.x - this.saltMeterUI.x
           this.saltMeterBack.width = this.expWidth
@@ -1117,7 +1117,7 @@
                   
                   //show enemy health and deploy cost
                   
-                  if((this.tile[''+j+i].isEnemyHere || this.tile[''+j+i].isCrewHere) && this.tile[''+j+i].monID != 1 && !this.tile[""+j+i].submerged && !this.tile[""+j+i].isFlipping ){
+                  if(((this.tile[''+j+i].isEnemyHere && !this.tile[""+j+i].submerged) || this.tile[''+j+i].isCrewHere) && this.tile[''+j+i].monID != 1 && !this.tile[""+j+i].isFlipping ){
                     this.tile[''+j+i].healthText.alpha = 1;
                     this.tile[''+j+i].powerText.alpha = 1;
 
@@ -1259,7 +1259,7 @@
 
   
 
-                  if(this.tile[""+j+i].isEnemyHere){
+                  if(this.tile[""+j+i].isEnemyHere && !this.tile[""+j+i].isCrewHere){
                     if(this.tile[""+j+i].isFlipping){
                       this.tile[""+j+i].loadTexture(this.tile[""+j+i].oldTexture)
                     }
@@ -1453,7 +1453,7 @@
                
               break;      
             case 201:
-              this.monCountValue = 100
+              this.monCountValue = 50
               this.bounty += 10
               break;                                                                    
 
@@ -1517,13 +1517,13 @@
                   this.freeCounterNum++;
                 }                 
                 this.tile[''+j+i].crewID = 0
-                this.tile[''+j+i].monID = 0
+                //this.tile[''+j+i].monID = 0
                 this.tile[''+j+i].isCrewHere = false;
-                this.tile[''+j+i].isEnemyHere = false;
-                this.tile[''+j+i].healthText.text = "";
-                this.tile[''+j+i].powerText.text = "";
-                this.tile[''+j+i].healthText.alpha = 0
-                this.tile[''+j+i].powerText.alpha = 0;   
+                //this.tile[''+j+i].isEnemyHere = false;
+                //this.tile[''+j+i].healthText.text = "";
+                //this.tile[''+j+i].powerText.text = "";
+                //this.tile[''+j+i].healthText.alpha = 0
+                //this.tile[''+j+i].powerText.alpha = 0;   
                 this.tile[''+j+i].hasActed = false;
                 this.tile[''+j+i].placeOrder = -1;                                 
                 //break;
@@ -1727,14 +1727,14 @@
                       this.tile[''+j+i].isEnemyHere = true
                       break;
                     case 2:
-                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].hp = 3;
                       this.tile[''+j+i].power = 3;
                       this.tile[''+j+i].tier = 2
                       //this.tile[''+j+i].multiAttack = 1;
                       this.tile[''+j+i].isEnemyHere = true
                       break;            
                     case 3:
-                      this.tile[''+j+i].hp = 6;
+                      this.tile[''+j+i].hp = 3;
                       this.tile[''+j+i].power = 2;
                       this.tile[''+j+i].tier = 1
                       this.tile[''+j+i].multiAttack = 1;
@@ -1747,37 +1747,37 @@
                       this.tile[''+j+i].isEnemyHere = true
                       break; 
                     case 5:
-                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].hp = 4;
                       this.tile[''+j+i].power = 1;
                       this.tile[''+j+i].tier = 1
                       this.tile[''+j+i].isEnemyHere = true
                       break;
                     case 6:
-                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].hp = 4;
                       this.tile[''+j+i].power = 2;
                       this.tile[''+j+i].tier = 1
                       this.tile[''+j+i].isEnemyHere = true
                       break;            
                     case 7:
-                      this.tile[''+j+i].hp = 15;
+                      this.tile[''+j+i].hp = 8;
                       this.tile[''+j+i].power = 3;
                       this.tile[''+j+i].tier = 3
                       this.tile[''+j+i].isEnemyHere = true
                       break;
                     case 8:
-                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].hp = 2;
                       this.tile[''+j+i].power = 2;
                       this.tile[''+j+i].tier = 1
                       this.tile[''+j+i].isEnemyHere = true
                       break;        
                     case 9:
-                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].hp = 2;
                       this.tile[''+j+i].power = 3;
                       this.tile[''+j+i].tier = 1
                       this.tile[''+j+i].isEnemyHere = true
                       break;
                     case 10:
-                      this.tile[''+j+i].hp = 6;
+                      this.tile[''+j+i].hp = 2;
                       this.tile[''+j+i].power = 4;
                       this.tile[''+j+i].tier = 3
                       this.tile[''+j+i].isEnemyHere = true
@@ -1895,15 +1895,15 @@
                     break;                                                
                 }                
                 this.tile[''+j+i].crewID = 0
-                this.tile[''+j+i].monID = 0
+                //this.tile[''+j+i].monID = 0
                 this.tile[''+j+i].isCrewHere = false;
-                this.tile[''+j+i].isEnemyHere = false;
-                this.tile[''+j+i].healthText.text = "";
-                this.tile[''+j+i].powerText.text = "";
-                this.tile[''+j+i].healthText.alpha = 0
-                this.tile[''+j+i].powerText.alpha = 0;
+                //this.tile[''+j+i].isEnemyHere = false;
+                //this.tile[''+j+i].healthText.text = "";
+                //this.tile[''+j+i].powerText.text = "";
+                //this.tile[''+j+i].healthText.alpha = 0
+                //this.tile[''+j+i].powerText.alpha = 0;
                 
-                this.tile[''+j+i].isCrewHere = false;
+                
                 this.tile[''+j+i].hasActed = false;                
                 //j =  this.boardWidth
                 //i = this.boardHeight
@@ -1929,6 +1929,7 @@
             for(var j = 0; j < this.boardWidth; j++){   
               this.tile[''+j+i].isCrewHere = false;
               this.tile[''+j+i].hasActed = false;
+              this.tile[''+j+i].hasAttacked = false;
             }
           }  
           /*        
@@ -2095,8 +2096,8 @@
                     this.tile[''+j+i].y  = 1000;
                     this.tile[''+j+i].loadTexture('tile');                
                     this.tile[''+j+i].crewID = 0
-                    this.tile[''+j+i].monID = 0
-                    //this.tile[''+j+i].isCrewHere = false;
+                    //this.tile[''+j+i].monID = 0
+                    this.tile[''+j+i].isCrewHere = false;
                     //this.tile[''+j+i].isEnemyHere = false;
                     this.tile[''+j+i].healthText.text = "";
                     this.tile[''+j+i].powerText.text = "";
@@ -2131,6 +2132,7 @@
             for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){   
                 this.tile[''+j+i].hasActed = false;
+                this.tile[''+j+i].hasAttacked = false;
                 this.tile[''+j+i].placeOrder = -1;
               }
             }             
@@ -2404,12 +2406,17 @@
 
           //enemy attacks          
           for(var i = 0; i < this.boardHeight; i++){
-            for(var j = 0; j < this.boardWidth; j++){      
+            for(var j = 0; j < this.boardWidth; j++){     
+              
+              
               if(this.tile[''+j+i].isEnemyHere  && !this.tile[''+j+i].hasAttacked){
+
+
                 //this.tile[''+j+i].alpha = 1;
                 this.tile[''+j+i].hasAttacked = true;
                 //this.placeCrew(this.tile[''+j+i])
 
+                
 
 
                 if(!this.tile[''+j+i].submerged){
@@ -2564,14 +2571,20 @@
                   break;
                 }
                 else{
-                  this.tile[''+j+i].submerged = false;
-                  this.tile[''+j+i].width  = this.size
-                  this.tile[''+j+i].height = this.size  
-                  //this.ActionCounter--;
-                  if(!this.tile[''+j+i].isFlipping){
-                    this.tile[''+j+i].isFlipping = true;
-                    this.tile[""+j+i].oldTexture = this.tile[""+j+i].texture;    
-                   }                  
+                  if(this.tile[''+j+i].isCrewHere){
+                    this.tile[''+j+i].y -= 50;
+                  }
+                  else{
+                    this.tile[''+j+i].submerged = false;
+                    this.tile[''+j+i].width  = this.size
+                    this.tile[''+j+i].height = this.size  
+                    //this.ActionCounter--;
+                    if(!this.tile[''+j+i].isFlipping){
+                      this.tile[''+j+i].isFlipping = true;
+                      this.tile[""+j+i].oldTexture = this.tile[""+j+i].texture;    
+                    } 
+                  }
+                 
                   j =  this.boardWidth
                   i = this.boardHeight
                   break;                  
@@ -2622,8 +2635,8 @@
         ,placeCrew: function (tile) {
           
           
-          //alert("tile info \nIs Flipping? "+tile.isFlipping+"\nisEnemy? "+tile.isEnemyHere+"\nisSubmerged? "+tile.submerged+"\nmonID? "+tile.monID+"\nisCrew? "+tile.isCrewHere)
-          if(this.selectedCrew != 0 && !tile.isEnemyHere && !tile.isCrewHere ){
+          alert("tile info \nIs Flipping? "+tile.isFlipping+"\nisEnemy? "+tile.isEnemyHere+"\nisSubmerged? "+tile.submerged+"\nmonID? "+tile.monID+"\nisCrew? "+tile.isCrewHere)
+          if(this.selectedCrew != 0 && (!tile.isEnemyHere || tile.submerged) && !tile.isCrewHere ){
             var remainingDeploy = this.deploy_poolCurrent - this.crew[this.selectedCrew].deployCost
             tile.placeOrder = this.placeOrderTracker
             this.placeOrderTracker++

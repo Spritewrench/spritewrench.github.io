@@ -39,7 +39,7 @@
       this.scoreCount = this.add.text(this.scoreCountUI.x,this.scoreCountUI.y, sessionStorage.getItem("highScore"), {font: '48px LondrinaSolid-Black',fill: '#fff', align: 'left'});
       this.scoreCount.anchor.setTo(0.5, 0.5);        
       
-      this.titleTxt3 = this.add.text(x,this.game.height-100, '[CLICK TO START]', {font: '32px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+      this.titleTxt3 = this.add.text(x,this.game.height-100, 'VERSION: '+version+'\n[CLICK TO START]', {font: '32px LondrinaSolid-Black',fill: '#fff', align: 'center'});
       this.titleTxt3.anchor.setTo(0.5, 0.5);     
 
       y = y + this.titleTxt.height + 5;
