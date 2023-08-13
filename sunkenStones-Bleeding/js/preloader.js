@@ -34,6 +34,9 @@
             this.load.image('mon-9', 'assets/mon-8.png');  
             this.load.image('mon-10', 'assets/mon-9.png');  
             this.load.image('mon-99', 'assets/mon-99.png'); 
+            this.load.image('mon-99-0', 'assets/mon-99-0.png'); 
+            this.load.image('mon-99-1', 'assets/mon-99-1.png'); 
+            this.load.image('mon-99-2', 'assets/mon-99-2.png'); 
             this.load.image('mon-101', 'assets/mon-101.png'); 
 
             this.load.image('status-0', 'assets/status-0.png'); 
@@ -117,6 +120,9 @@
             this.load.image('selectInfoPanel-108', 'assets/selectInfoPanel-108.png'); 
             this.load.image('selectInfoPanel-109', 'assets/selectInfoPanel-109.png');  
             this.load.image('selectInfoPanel-199', 'assets/selectInfoPanel-199.png'); 
+            this.load.image('selectInfoPanel-199-0', 'assets/selectInfoPanel-199-0.png'); 
+            this.load.image('selectInfoPanel-199-1', 'assets/selectInfoPanel-199-1.png'); 
+            this.load.image('selectInfoPanel-199-2', 'assets/selectInfoPanel-199-2.png'); 
             this.load.image('selectInfoPanel-201', 'assets/selectInfoPanel-201.png');    
             
 

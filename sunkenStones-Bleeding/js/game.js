@@ -48,14 +48,14 @@
             this.capInfo.width = this.game.width
             this.capInfo.height = this.game.height                  
             
-            
-            this.selectName = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-450, '10', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
+            //#7E615F
+            this.selectName = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-450, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
             //this.selectName.anchor.setTo(0.5, 0.5);    
 
-            this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-410, '10', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left', wordWrap: true, wordWrapWidth: 450  });
+            this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-410, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 450  });
             //this.selectStats.anchor.setTo(0.5, 0.5); 
 
-            this.selectAbility = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-370, '10', {font: '28px LondrinaSolid-Black',fill: '#7E615F', align: 'left'});
+            this.selectAbility = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-370, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
             //this.selectAbility.anchor.setTo(0.5, 0.5); 
 
                            
@@ -67,7 +67,7 @@
 
             this.cap_health.origWidth = this.cap_health.width
             this.cap_health.origHeight = this.cap_health.height
-            this.cap_healthValue = 25;        
+            this.cap_healthValue = 15;        
             
             this.capKey = 0;
 
@@ -83,8 +83,11 @@
             this.deploy_poolCurrent = 3;
             this.deploy_poolMax = this.deploy_poolCurrent 
 
-            this.clear_Button = this.add.sprite(this.game.width-500, this.game.height-400, 'ui_clear_button');            
+            this.clear_Button = this.add.sprite(this.game.width/2-415, this.game.height-200, 'ui_clear_button');            
             this.clear_Button.inputEnabled = true;
+            this.clear_Button.anchor.setTo(0.5, 0.5);
+            this.clear_Button.width = 100
+            this.clear_Button.height = 100
             this.clear_Button.events.onInputDown.add(this.clearBoard, this);     
 
             this.endTurn_Button = this.add.sprite(this.game.width-500, this.game.height-175, 'ui_endTurn_Button');            
@@ -287,6 +290,8 @@
             this.crew[i].isDeployed = false;
             this.crew[i].isSelected = false;
 
+            this.crew[i].killCount = 0
+
             this.crew[i].deployText = this.add.text( this.crew[i].x-(size/2)+33,this.crew[i].y+(size/2)-3, '1', {font: '22px LondrinaSolid-Black',fill: '#232727', align: 'center'});
             this.crew[i].deployText.anchor.setTo(0.5, 0.5); 
 
@@ -322,48 +327,48 @@
             switch(this.crew[i].id){
               case 1:
                 this.crew[i].deployCost = 1;
-                this.crew[i].name = "REVA 'DOC' BONNY"
+                this.crew[i].name = ""
                 this.crew[i].power = 2
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 1
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "BOOST STRIKE - ADD YOUR POWER TO NEXT CREWMATE"
+                this.crew[i].ability  = "ON COMBAT:\nADD YOUR POWER TO NEXT FIGHTING CREWMATE"
                 break;
               case 2:
-                this.crew[i].deployCost = 1;
-                this.crew[i].name = "RACHEL WALL"
+                this.crew[i].deployCost = 4;
+                this.crew[i].name = ""
                 this.crew[i].power = 1
                 this.crew[i].origPower = this.crew[i].power
-                this.crew[i].attackPattern = 4
-                this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "SHOVE STRIKE - ON COMBAT KNOCK BACK ENEMIES 1 SPACE"                       
+                this.crew[i].attackPattern = 1
+                this.crew[i].type = 2 // 0- steel, 1 - salt, 2 -smoke
+                this.crew[i].ability  = "INCREASE POWER BY 1 FOR EACH ENEMY DEFEATED"                       
                 break;
               case 3:
                 this.crew[i].deployCost = 2;
-                this.crew[i].name = "GRACE O'MALLEY"
+                this.crew[i].name = ""
                 this.crew[i].power = 3
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 3
-                this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "ROW STRIKE - ON COMBAT FIGHT ALL ENEMIES IN THE SAME ROW"                  
+                this.crew[i].type = 1 // 0- steel, 1 - salt, 2 -smoke
+                this.crew[i].ability  = "ON COMBAT:\nFIGHT ALL ENEMIES IN THE SAME ROW"                  
                 break;
               case 4:
                 this.crew[i].deployCost = 2;
-                this.crew[i].name = "PETE 'GUNNER' EASTON"
+                this.crew[i].name = ""
                 this.crew[i].power = 3
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 2
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "COLUMN STRIKE - ON COMBAT FIGHT ALL ENEMIES IN THE SAME COLUMN"                   
+                this.crew[i].ability  = "ON COMBAT:\nFIGHT ALL ENEMIES IN THE SAME COLUMN"                   
                 break;  
               case 5:
                 this.crew[i].deployCost = 0;
-                this.crew[i].name = "RELIABLE CANNON SHOT"
+                this.crew[i].name = ""
                 this.crew[i].power = 5
                 this.crew[i].origPower = this.crew[i].power
                 this.crew[i].attackPattern = 4
                 this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
-                this.crew[i].ability  = "SPREAD STRIKE"                         
+                this.crew[i].ability  = "'OLD FAITHFUL. OLD RELIABLE.'"                         
                 break;                                                
             }
             
@@ -518,7 +523,7 @@
           this.chestCount = 0;
 
           this.saltCounter = 0;
-          this.saltCounterBase = 5
+          this.saltCounterBase = baseSaltReq
           this.saltCounterMax = this.saltCounterBase
           this.bounty = 0;
 
@@ -533,9 +538,14 @@
 
             //UI 
             
-
+            //bench UI
+            for(var i =1; i< 6; i++){
+              this.crew[i].deployText.text = this.crew[i].deployCost
+              this.crew[i].powerText.text = this.crew[i].origPower
+                          
+            }
             //salt meter
-            console.log("salt width "+(((this.saltCounter/this.saltCounterMax))*this.expWidth))
+            //console.log("salt width "+(((this.saltCounter/this.saltCounterMax))*this.expWidth))
             this.saltMeter.width += ( (((this.saltCounter/this.saltCounterMax))*this.expWidth) - this.saltMeter.width) * 0.5;
              if(this.saltMeter.width > this.expWidth){
               this.saltMeter.width = this.expWidth
@@ -744,62 +754,62 @@
                 
                 switch(monInfoKey){
                   case 100:
-                    this.selectName.text = "NAME: ???"
+                    this.selectName.text = ""
                     this.selectStats.text = "NOTE: SOMETHING STIRS UNDER THE SURFACE"
                     this.selectAbility.text = ""                    
                     break;                  
                   case 2:
-                    this.selectName.text = "NAME: TENTACLE [RIGHT]"
+                    this.selectName.text = ""
                     this.selectStats.text = ""
                     this.selectAbility.text = ""                    
                     break;
                   case 3:
-                    this.selectName.text = "NAME: TENTACLE [LEFT]"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: ATTACKS TWICE!"
                     this.selectAbility.text = ""                       
                     break;
                   case 4:
-                    this.selectName.text = "NAME: KRAKEN"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: SPAWN TENTACLES ON COMBAT"
                     this.selectAbility.text = ""                       
                     break;
                   case 5:
-                    this.selectName.text = "NAME: SEA SERPENT"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: +1 POWER WHEN HURT"
                     this.selectAbility.text = ""                      
                     break;
                   case 6:
-                    this.selectName.text = "NAME: LEVIATHAN"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: +1 POWER WHEN HURT"
                     this.selectAbility.text = ""                       
                     break;
                   case 7:
-                    this.selectName.text = "NAME: SCYLLA"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: +5 POWER WHEN HURT"
                     this.selectAbility.text = ""                       
                     break;
                   case 8:
-                    this.selectName.text = "NAME: GHOST"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: SHIFTS TO INTAGBILE AFTER ATTACK" //"ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                     
                     break;  
                   case 9:
-                    this.selectName.text = "NAME: WRAITH"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: SHIFTS TO INTAGBILE AFTER ATTACK" //"ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                        
                     break;
                   case 10:
-                    this.selectName.text = "NAME: SHADOW"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: SHIFTS TO INTAGBILE AFTER ATTACK" //"ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                        
                     break;
                   case 99:
-                    this.selectName.text = "NAME: CURSED CHEST"
+                    this.selectName.text = ""
                     this.selectStats.text = "NOTE: CURSED YA SAY? I'M SURE IT'LL BE FINE ..."
                     this.selectAbility.text = ""                        
                     break; 
                   case 101:
-                    this.selectName.text = "NAME: NAVY OFFICER"
+                    this.selectName.text = ""
                     this.selectStats.text = "ABILITY: POWER EQUAL TO YOUR CURRENT BOUNTY"
                     this.selectAbility.text = ""                        
                     break;                                                                                                                                                                                    
@@ -813,6 +823,15 @@
                 }
                 else{
                   this.selectInfoDetail.loadTexture("selectInfoPanel-"+this.selectedCrew)
+                  if(this.selectedCrew  == 199){
+                    this.selectInfoDetail.loadTexture("selectInfoPanel-"+this.selectedCrew+"-0")   
+                    if(this.chestCount % 2 == 0){
+                      this.selectInfoDetail.loadTexture("selectInfoPanel-"+this.selectedCrew+"-1")   
+                    } 
+                    if(this.chestCount % 3 == 0){
+                      this.selectInfoDetail.loadTexture("selectInfoPanel-"+this.selectedCrew+"-2")   
+                    }                           
+                  }                  
                 }
                       
                 
@@ -820,8 +839,11 @@
               }
               else{
                 
-                this.selectName.text = "NAME: "+this.crew[this.selectedCrew].name
-                this.selectStats.text = "ABILITY: \n"+this.crew[this.selectedCrew].ability
+                this.selectName.text = ""+this.crew[this.selectedCrew].name
+                this.selectStats.text = ""+this.crew[this.selectedCrew].ability
+                if(this.crew[this.selectedCrew].id == 2){
+                  this.selectStats.text += " (+"+this.crew[this.selectedCrew].killCount+")"
+                }
                 this.selectAbility.text = ""
                 
 
@@ -829,9 +851,9 @@
 
               }
               this.selectInfo.x += ( 0 - this.selectInfo.x) * 0.2;
-              this.selectName.angle = 3;
-              this.selectStats.angle = 3;
-              this.selectAbility.angle = 3;
+              this.selectName.angle = 2;
+              this.selectStats.angle = 2;
+              this.selectAbility.angle = 2;
             }
 
             this.selectInfoDetail.x = this.selectInfo.x
@@ -854,10 +876,10 @@
 
             if(this.clearbuttonTimer > 0 || !this.deployReady){
               this.clearbuttonTimer--
-              this.clear_Button.y = this.game.height-310+35
+              this.clear_Button.y = this.game.height-150+35
             }
             else{
-              this.clear_Button.y = this.game.height-310
+              this.clear_Button.y = this.game.height-150
             }
 
             //check if win 
@@ -1269,6 +1291,15 @@
                       }
                       else{
                         this.tile[""+j+i].loadTexture("mon-"+this.tile[""+j+i].monID)
+                        if(this.tile[""+j+i].monID == 99){
+                          this.tile[""+j+i].loadTexture("mon-"+this.tile[""+j+i].monID+"-0")   
+                          if(this.chestCount % 2 == 0){
+                            this.tile[""+j+i].loadTexture("mon-"+this.tile[""+j+i].monID+"-1")   
+                          } 
+                          if(this.chestCount % 3 == 0){
+                            this.tile[""+j+i].loadTexture("mon-"+this.tile[""+j+i].monID+"-2")   
+                          }                           
+                        }
                       }
                     }
 
@@ -2083,7 +2114,8 @@
 
                     break;
                   case 2:
-                    //knock back
+                    //death blade
+                    /*
                     this.knockBack(this.tile[''+(j+1)+(i)],this.tile[''+j+i])
                     this.knockBack(this.tile[''+(j-1)+(i)],this.tile[''+j+i])
                     this.knockBack(this.tile[''+(j)+(i+1)],this.tile[''+j+i])
@@ -2093,7 +2125,7 @@
                     this.knockBack(this.tile[''+(j-1)+(i-1)],this.tile[''+j+i])   
                     this.knockBack(this.tile[''+(j-1)+(i+1)],this.tile[''+j+i])
                     this.knockBack(this.tile[''+(j+1)+(i-1)],this.tile[''+j+i])  
-                    
+                    */
 
                     
                     break;
@@ -2164,7 +2196,13 @@
               
               //if intagible no damage
               if(enemy.alpha == 1){
-                enemy.hp -= this.crew[crewID].power
+                for(var i = 1; i < 6; i++){
+                  if(this.crew[i].id == crewID){
+                    console.log("id "+i+" power "+this.crew[i].power)
+                    enemy.hp -= this.crew[i].power
+                  }
+                }
+                
               }
               //enemy.spinSpeed = this.crew[crewID].power*10
               enemy.springX = 100;
@@ -2173,8 +2211,12 @@
               //enemy on hurt ability
               switch(enemy.monID){
                 case 5:
-                case 6:
                   enemy.power += 1
+                  enemy.width  += 100;
+                  enemy.height += 100;                    
+                  break;                  
+                case 6:
+                  enemy.power += 2
                   enemy.width  += 100;
                   enemy.height += 100;                    
                   break;
@@ -2198,7 +2240,7 @@
               }            
               if(enemy.hp <= 0){
                 enemy.hp = 0;
-                this.enemyDie(enemy)
+                this.enemyDie(enemy,crewID)
               }
               //this.enemyDie(enemy)
             }
@@ -2208,24 +2250,42 @@
           }
 
         }
-        ,enemyDie: function (enemy) {
+        ,enemyDie: function (enemy,crewID) {
+          
           enemy.isEnemyHere = false;
           enemy.submerged = false;
           enemy.loadTexture('tile');
 
+          if (crewID === undefined ) {
+            crewID = 1
+          
+          }
+          
           //check if win
           if(this.monCountValue <= 0){
             this.chatTimer = 1;
-          }             
-
+          }     
+            
+          // crew kill effects
+          
+          for(var k = 1; k < 6; k++){
+            if(this.crew[k].id == 2 && crewID == 2){
+              this.crew[k].origPower += 1;
+              //this.crew[k].power = this.crew[k].origPower;
+            }
+            if(this.crew[k].id == crewID){
+              this.crew[k].killCount+=1             
+            }
+          }          
+          
           //enemy death effects
           
-
+          
           for(var i = 0; i < enemy.tier; i++){
             this.spawnSalt(enemy.x, enemy.y)
           }     
 
-          console.log("current counter "+this.saltCounter )
+          
           switch(enemy.monID){
             case 1:
               /*
@@ -2262,6 +2322,7 @@
               //this.scoreCountNum += 45
               break;             
             case 99:
+              
               this.chatTimer = 1;
 
               this.treasureOptions[0].value = 1//Math.floor(Math.random() * 2)+1;
@@ -2452,98 +2513,122 @@
                     
                     case 4:      
                       //spawn tentacles
+                      
                       try{
+                        
+                        
                         if(!this.tile[''+(j+1)+(i)].isCrewHere && !this.tile[''+(j+1)+(i)].isEnemyHere){
                           var whichArm = Math.floor(Math.random() * 2);    
-
+                          //alert((j+1)+""+(i)+" "+this.tile[''+(j+1)+(i)].isEnemyHere)
                           if(whichArm == 0){
-                            this.tile[''+j+i].hp = 3;
-                            this.tile[''+j+i].power = 3;
-                            this.tile[''+j+i].tier = 2
+                            this.tile[''+(j+1)+(i)].hp = 3;
+                            this.tile[''+(j+1)+(i)].power = 3;
+                            this.tile[''+(j+1)+(i)].tier = 2
                             //this.tile[''+j+i].multiAttack = 1;
-                            this.tile[''+j+i].isEnemyHere = true
+                            this.tile[''+(j+1)+(i)].isEnemyHere = true
+                            this.tile[''+(j+1)+(i)].submerged = false
+                            this.tile[''+(j+1)+(i)].monID = 2
                           }
                           else{
-                            this.tile[''+j+i].hp = 3;
-                            this.tile[''+j+i].power = 2;
-                            this.tile[''+j+i].tier = 1
-                            this.tile[''+j+i].multiAttack = 1;
-                            this.tile[''+j+i].isEnemyHere = true
+                            this.tile[''+(j+1)+(i)].hp = 3;
+                            this.tile[''+(j+1)+(i)].power = 2;
+                            this.tile[''+(j+1)+(i)].tier = 1
+                            this.tile[''+(j+1)+(i)].multiAttack = 1;
+                            this.tile[''+(j+1)+(i)].isEnemyHere = true
+                            this.tile[''+(j+1)+(i)].submerged = false
+                            this.tile[''+(j+1)+(i)].monID = 3
                           }
 
                         }
                       } 
                       catch(e){
                         
-                      }         
+                      }
+
                       try{
+                        console.log(this.tile[''+(j-1)+(i)])
                         if(!this.tile[''+(j-1)+(i)].isCrewHere && !this.tile[''+(j-1)+(i)].isEnemyHere){
-                          var whichArm = Math.floor(Math.random() * 2);    
+                          var whichArm = Math.floor(Math.random() * 2);  
+                          console.log(" arm "+whichArm)
                           if(whichArm == 0){
-                            this.tile[''+j+i].hp = 3;
-                            this.tile[''+j+i].power = 3;
-                            this.tile[''+j+i].tier = 2
+                            this.tile[''+(j-1)+(i)].hp = 3;
+                            this.tile[''+(j-1)+(i)].power = 3;
+                            this.tile[''+(j-1)+(i)].tier = 2
                             //this.tile[''+j+i].multiAttack = 1;
-                            this.tile[''+j+i].isEnemyHere = true
+                            this.tile[''+(j-1)+(i)].isEnemyHere = true
+                            this.tile[''+(j-1)+(i)].submerged = false
+                            this.tile[''+(j-1)+(i)].monID = 2
                           }
                           else{
-                            this.tile[''+j+i].hp = 3;
-                            this.tile[''+j+i].power = 2;
-                            this.tile[''+j+i].tier = 1
-                            this.tile[''+j+i].multiAttack = 1;
-                            this.tile[''+j+i].isEnemyHere = true
+                            this.tile[''+(j-1)+(i)].hp = 3;
+                            this.tile[''+(j-1)+(i)].power = 2;
+                            this.tile[''+(j-1)+(i)].tier = 1
+                            this.tile[''+(j-1)+(i)].multiAttack = 1;
+                            this.tile[''+(j-1)+(i)].isEnemyHere = true
+                            this.tile[''+(j-1)+(i)].submerged = false
+                            this.tile[''+(j-1)+(i)].monID = 3
                           }
+                          console.log(this.tile[''+(j-1)+(i)])
                         }
+                        
                       } 
                       catch(e){
                         
                       }  
+                      
                       try{
 
                         if(!this.tile[''+(j)+(i+1)].isCrewHere && !this.tile[''+(j)+(i+1)].isEnemyHere){
                           var whichArm = Math.floor(Math.random() * 2);    
                           if(whichArm == 0){
-                            this.tile[''+j+i].hp = 3;
-                            this.tile[''+j+i].power = 3;
-                            this.tile[''+j+i].tier = 2
+                            this.tile[''+(j)+(i+1)].hp = 3;
+                            this.tile[''+(j)+(i+1)].power = 3;
+                            this.tile[''+(j)+(i+1)].tier = 2
                             //this.tile[''+j+i].multiAttack = 1;
-                            this.tile[''+j+i].isEnemyHere = true
+                            this.tile[''+(j)+(i+1)].isEnemyHere = true
+                            this.tile[''+(j)+(i+1)].submerged = false
+                            this.tile[''+(j)+(i+1)].monID = 2
                           }
                           else{
-                            this.tile[''+j+i].hp = 3;
-                            this.tile[''+j+i].power = 2;
-                            this.tile[''+j+i].tier = 1
-                            this.tile[''+j+i].multiAttack = 1;
-                            this.tile[''+j+i].isEnemyHere = true
+                            this.tile[''+(j)+(i+1)].hp = 3;
+                            this.tile[''+(j)+(i+1)].power = 2;
+                            this.tile[''+(j)+(i+1)].tier = 1
+                            this.tile[''+(j)+(i+1)].multiAttack = 1;
+                            this.tile[''+(j)+(i+1)].isEnemyHere = true
+                            this.tile[''+(j)+(i+1)].submerged = false
+                            this.tile[''+(j)+(i+1)].monID = 3
                           }                   
                         }
                       } 
                       catch(e){
-                        
+                       
                       }  
                       try{
                         if(!this.tile[''+(j)+(i-1)].isCrewHere && !this.tile[''+(j)+(i-1)].isEnemyHere){
                           var whichArm = Math.floor(Math.random() * 2);    
                           if(whichArm == 0){
-                            this.tile[''+j+i].hp = 3;
-                            this.tile[''+j+i].power = 3;
-                            this.tile[''+j+i].tier = 2
-                            //this.tile[''+j+i].multiAttack = 1;
-                            this.tile[''+j+i].isEnemyHere = true
+                            this.tile[''+(j)+(i-1)].hp = 3;
+                            this.tile[''+(j)+(i-1)].power = 3;
+                            this.tile[''+(j)+(i-1)].tier = 2
+                            //this.tile[''+(j)+(i-1)].multiAttack = 1;
+                            this.tile[''+(j)+(i-1)].isEnemyHere = true
+                            this.tile[''+(j)+(i-1)].submerged = false
+                            this.tile[''+(j)+(i-1)].monID = 2
                           }
                           else{
-                            this.tile[''+j+i].hp = 3;
-                            this.tile[''+j+i].power = 2;
-                            this.tile[''+j+i].tier = 1
-                            this.tile[''+j+i].multiAttack = 1;
-                            this.tile[''+j+i].isEnemyHere = true
+                            this.tile[''+(j)+(i-1)].hp = 3;
+                            this.tile[''+(j)+(i-1)].power = 2;
+                            this.tile[''+(j)+(i-1)].tier = 1
+                            this.tile[''+(j)+(i-1)].multiAttack = 1;
+                            this.tile[''+(j)+(i-1)].isEnemyHere = true
+                            this.tile[''+(j)+(i-1)].submerged = false
+                            this.tile[''+(j)+(i-1)].monID = 3
                           }
                         }
                       } 
                       catch(e){
-                        
+                       
                       }                                                              
-
 
 
                                         
@@ -2788,7 +2873,7 @@
 
         }     
         , springBody: function (degrade,tile){
-          console.log(tile.id+"  "+tile.springX)
+          //console.log(tile.id+"  "+tile.springX)
           if(tile.springY != 0){
                   
             if(tile.springY > 0){
