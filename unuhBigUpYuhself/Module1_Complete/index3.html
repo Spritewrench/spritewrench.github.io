@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+  
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+		<meta http-equiv="Content-Security-Policy" content="default-src * gap://ready data: 'unsafe-eval'; img-src * data: gap://ready; frame-src *; connect-src * ; style-src * 'self' 'unsafe-inline' 'unsafe-eval'; media-src *; script-src * data: 'self' 'unsafe-inline' 'unsafe-eval' gap://ready; ">
+	   
+		<title> Lifeapps™ Unuh™ </title>
+		<script type="text/javascript" src="libs/phaser.min.js"></script>
+		<script type="text/javascript" src="config.js"></script>     
+		<script type="text/javascript" src="RenJS/RenJSBootstrap.js"></script>     
+    <script>
+      for(let i=0; i<localStorage.length; i++) {
+        let key = localStorage.key(i);
+        //alert(`${key}: ${localStorage.getItem(key)}`);
+        localStorage.setItem(localStorage.getItem(key),0);
+      }
+    </script>
+	</head>
+	<label class="switch">
+		<input type="checkbox" name="myCheckbox">
+		<span class="slider round">
+		</span>
+	</label>
+	<script type="text/javascript">
+		var _selector = document.querySelector("input[name=myCheckbox]");
+		_selector.addEventListener("change", function (event){
+			var message = _selector.checked
+				? "Toggle Switch is on"
+				: "Toggle Switch is off";
+			
+			if(messageHandler){
+				messageHandler.postMessage(message);
+			}
+		});
+	</script>
+	<body style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px;margin-right: 0px;">		
+	</body>
+
+</html>

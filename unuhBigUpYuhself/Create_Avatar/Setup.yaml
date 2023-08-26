@@ -1,0 +1,100 @@
+backgrounds:
+  kadeem_room: assets/backgrounds/BG4.webp
+  julian_room: assets/backgrounds/BG0.webp
+  patrick_room: assets/backgrounds/BG5.webp
+  christian_room: assets/backgrounds/BG3.webp
+  maria_room: assets/backgrounds/BG1.webp
+  adrianna_room: assets/backgrounds/BG2.webp
+  stadiumBG: assets/backgrounds/stadiumBG.webp
+  stadiumSeatsBG: assets/backgrounds/stadiumSeatsBG.webp
+  stadiumMeetBG: assets/backgrounds/stadiumMeet.webp
+  questionBG: assets/backgrounds/questionBG.webp
+  busStopBG: assets/backgrounds/busStop.webp
+  
+  
+characters:
+  char1:
+    displayName: Narrator
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char1_A.png 
+
+  char2:
+    displayName: char2
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char2_A.png 
+
+  char3:
+    displayName: char3
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char3_A.png 
+
+  char4:
+    displayName: char4
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char4_A.png 
+
+  char5:
+    displayName: char5
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char5_A.png                         
+      
+
+  char6:
+    displayName: char6
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char6_A.png                         
+            
+
+cgs:
+  splash-init: assets/gui/loaderasset1.png
+  flash: assets/backgrounds/flash.webp
+  heart: assets/characters/heart.webp
+  cheering0: assets/backgrounds/cheer0.webp
+  cheering1: assets/backgrounds/cheer1.webp
+  cheering2: assets/backgrounds/cheer2.webp
+  cheering3: assets/backgrounds/cheer3.webp
+  cheering4: assets/backgrounds/cheer4.webp
+  token: assets/gui/token.webp
+  
+  phone_msg_mom_1: assets/cg/phone_msg_mom_1.webp
+  phone_msg_mom_2: assets/cg/phone_msg_mom_2.webp
+  
+  phone_msg_jamie_1: assets/cg/phone_msg_jamie_1.webp
+  phone_msg_jamie_2: assets/cg/phone_msg_jamie_2.webp
+  
+  phone_msg_dice_1: assets/cg/phone_msg_dice_1.webp
+  
+  badEnd: assets/cg/badEnd.webp
+  goodEnd: assets/cg/goodEnd.webp
+  
+  b1: assets/gui/b1.png
+  b2: assets/gui/b2.png
+  b3: assets/gui/b3.png
+  b4: assets/gui/b4.png
+  b5: assets/gui/b5.png
+  b6: assets/gui/b6.png  
+
+  selectChar: assets/gui/selectChar.png  
+
+  leftarrow: assets/gui/leftArrow.webp
+  rightarrow: assets/gui/rightArrow.webp
+  
+
+sfx:
+  phoneNotification:  assets/audio/effects/PhoneNotification.mp3
+  phoneFlash:  assets/audio/effects/PhoneFlash.wav
+  cheer2: assets/audio/effects/Cheer2.mp3
+  cheer3: assets/audio/effects/Cheer3.wav
+  traffic: assets/audio/effects/traffic.wav
+  collectCoin: assets/audio/effects/collectCoin.wav
+  success: assets/audio/effects/success.wav
+
+music:
+  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg
+  rollingCredits: assets/audio/DuBoLoGy_-_08_-_Swan_Lake_Dub.ogg

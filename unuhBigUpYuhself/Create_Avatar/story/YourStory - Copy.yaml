@@ -1,0 +1,1524 @@
+start:
+  - play Dub01:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH CUT   
+  - chambers says normal: What if the way we have believed that our lives are determined ... 
+  - chambers says normal: Were to shift radically? 
+  - chambers says happy: From focusing only on what we DO and our ACTIONS, to who we ARE BEING, what we THINK and FEEL?
+  - chambers says normal: How would that impact YOUR world?
+  - chambers says happy: Welcome to UNUH, a group of fun and thought-provoking scenarios ...
+  - chambers says normal: Earn TOKENS for correct choices!
+  - chambers says normal: Also here's a tip!
+  - chambers says normal: Tap to progress events more quickly 
+  - call setToken:
+  - chambers says normal: And find YOUR answers to life's toughest questions!
+  - chambers says happy: First Question, Who Are You?    
+  - chambers says happy: Which of the following characters do you identify the MOST with?
+  - hide chambers: WITH FADE
+  - grim_tab1 AT 0,0:
+      - scene: b1
+  - play Dub01:
+
+  - show julian_room: WITH FADE CONTINUE
+  - call panBackground:
+      time: 1000
+      x: "-100"    
+  - show julian: normal AT CENTER WITH FADE    
+  - julian says normal: I'm all about football! 
+  - julian says normal: Whether it's playing FIFA or on the school team.
+  - julian says normal: I avoid boredom at all costs and hate reading!
+  - hide julian: normal AT CENTER WITH FADE    
+  - show adrianna_room: WITH FADE CONTINUE
+  - call panBackground:
+      time: 1000
+      x: "+100"  
+  - show adrianna: normal AT CENTER WITH FADE   
+  - adrianna says normal: I love to dance and watch reality TV!
+  - adrianna says normal: I also have my very own self-care Finstagram page.
+  - adrianna says normal: I plan to start up a small business someday.
+  - hide adrianna: normal AT CENTER WITH FADE  
+  - show christian_room: WITH FADE CONTINUE
+  - call panBackground:
+      time: 1000
+      x: "-100"    
+  - show christian: normal AT CENTER WITH FADE    
+  - christian says normal: I like to play first-person shooter video games.   
+  - christian says normal: I keep to myself and I'm not very social outside of my immediate family.
+  - hide christian: normal AT CENTER WITH FADE 
+  - show patrick_room: WITH FADE CONTINUE
+  - call panBackground:
+      time: 1000
+      x: "+100"    
+  - show patrick: normal AT CENTER WITH FADE  
+  - patrick says normal: I love to play chess and other strategy games. 
+  - patrick says normal: I also like to learn about history, World War 1 & 2 in particular. 
+  - patrick says normal: I know you have to put in work to be successful ...
+  - patrick says normal: So I invest my time networking and looking for professional development resources 
+  - hide patrick: normal AT CENTER WITH FADE 
+  - show kadeem_room: WITH FADE CONTINUE
+  - call panBackground:
+      time: 1000
+      x: "-100"     
+  - show kadeem: normal AT CENTER WITH FADE
+  - kadeem says normal: I'm someone who loves to have fun.
+  - kadeem says normal: Playing pickup games with my friends. 
+  - kadeem says normal: School isn't too big of a concern at the moment.
+  - hide kadeem:  
+  - show maria_room: WITH FADE CONTINUE
+  - call panBackground:
+      time: 1000
+      x: "+100"
+  - show maria: normal AT CENTER WITH FADE   
+  - maria says normal: I love to run and have begun training for the track at school.
+  - maria says normal: I like listening to music while doing chores and spend a lot of time drawing.
+  - maria says normal: I don’t have much interest in 'traditional girl things' 
+  - hide maria: normal AT CENTER WITH FADE   
+  - stop Dub01: WITH FADE
+  - scene: chooseAvatar
+  
+chooseAvatar:  
+  - show questionBG:
+  - call storeLocal:
+      param1: "kadeem"
+      param2: "0"  
+  - call storeLocal:
+      param1: "maria"
+      param2: "0"         
+  
+  - text: Unfortunately only Kadeem ...
+  - show kadeem: normal AT LEFT WITH FADE
+  - text: And Maria ...
+  - show maria: normal AT RIGHT WITH FADE 
+  - text: Are available in this DEMO ... 
+  - text: So who do you identify with the most with?
+  - choice:
+    - Kadeem:
+      - show kadeem_room: WITH FADE CONTINUE
+      - var isKadeem: 1
+      - call storeLocal:
+          param1: "kadeem"
+          param2: "1"    
+      - hide maria: WITH FADE
+      - show kadeem: happy AT CENTER WITH MOVE  
+      - kadeem says happy: My time now!
+      - hide kadeem: WITH FADE 
+    - Maria:
+      - show maria_room: WITH FADE CONTINUE
+      - var isMaria: 1
+      - call storeLocal:
+          param1: "maria"
+          param2: "1" 
+      - hide kadeem: WITH FADE 
+      - show maria: happy AT CENTER WITH MOVE 
+      - maria says happy: Awesome!
+      - hide maria: WITH FADE 
+  - scene: scene0  
+  
+scene0:
+  - show stadiumBG: WITH FADE CONTINUE
+  - play cheer3:
+  - call panBackground:
+      time: 1000
+      x: "+100"  
+  - text: Today is the biggest event on the high school sporting and social calendar.  
+  - text: Students across the city are getting ready to attend the Edutrack Championship Games!
+  - text: Media houses have gathered from near & far.
+  - text: All to see which school will have the honour of producing a Champion! 
+  - scene: scene1
+  
+
+scene1:
+  - play Dub01:
+  - if ({isKadeem} == 1):
+    - show kadeem_room:
+    - show kadeem: normal AT CENTER WITH CUT   
+    - kadeem says happy:  Yes! Finally Edutrack reach! 
+    - kadeem says normal: Gonna see mi fren dem from other schools ... 
+    - show heart: AT 300,200 WITH CUT
+    - animate heart:
+      time: 500
+      alpha: 0
+      position: 350 150
+    - kadeem says normal: Especially Jamie, mi ah wait a whole year fi see har.   
+    - kadeem says angry: Tru mi cyaan text with people on social media without mi Modda ah pree me ... 
+    - kadeem says sad: She woudda murder mi if mi did set up a finsta.    
+    - play phoneNotification:
+    
+    - show phone_msg_mom_1: WITH CUT
+    - kadeem says normal: Wah Mommy saying now?
+    - hide phone_msg_mom_1: WITH CUT
+    - play phoneNotification:
+    - show phone_msg_mom_2: WITH CUT
+    - kadeem says sad: Cho man!
+    - hide phone_msg_mom_2: WITH CUT  
+    - kadeem says sad: Yaow,  mi ah big high schooler ... 
+    - kadeem says sad: Mi don't need adult supervision.   
+    - kadeem says sad: Mi can dress myself, SMH. 
+    - kadeem says sad: If mi follow dem mi affi go transfer schools to have any street cred ... 
+    - kadeem says sad: Soooooo not lit. SMH.
+    - kadeem says sad: So wah mi ah go do?
+    
+    - choice:
+      - Listen to Mom:
+        - kadeem says normal: You know what? I'm gonna just wear this. 
+        - kadeem says normal: It's not about how I look but how much fun I have ... 
+        - kadeem says normal: Or supm suh.    
+        - kadeem says happy: "* Takes Selfie *"
+        - play phoneFlash:
+        - show flash: WITH CUT 
+        - hide flash: WITH FADE
+        - kadeem says happy: I'll send this to her so she can sekkle herself. 
+      - Do your own thing:
+        - kadeem says normal: This ah MY time now!
+        - kadeem says angry: Mi can handle myself ... 
+        - kadeem says normal: So I'll just wear this like suh, take a selfie and send it to Mommy
+        - play phoneFlash:
+        - show flash: WITH CUT 
+        - hide flash: WITH FADE         
+        - kadeem says normal: "* Takes Selfie *"  
+        - kadeem says normal: Alright, time to sort myself out. 
+        - var isMessy: 1
+        - show kadeemMessy: normal AT CENTER WITH CUT 
+        - kadeem says normal: She'll never know ...
+    - hide kadeem: WITH CUT 
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT 
+  - if ({isMaria} == 1):
+    - show maria_room:
+    - show maria: normal AT CENTER WITH CUT   
+    - maria says happy:  Yes! Finally Edutrack reach! 
+    - maria says normal: Gonna see mi fren dem from other schools ... 
+    - show heart: AT 300,200 WITH CUT
+    - animate heart:
+      time: 500
+      alpha: 0
+      position: 350 150
+    - maria says normal: Especially Jordan, mi a wait a whole year fi see him.   
+    - maria says angry: Tru mi cyaan text with people on social media without mi Modda ah pree me ... 
+    - maria says sad: She woudda murder mi if mi did set up a finsta.    
+    - play phoneNotification:
+    
+    - show phone_msg_mom_1: WITH CUT
+    - maria says normal: Wah Mommy saying now?
+    - hide phone_msg_mom_1: WITH CUT
+    - play phoneNotification:
+    - show phone_msg_mom_2: WITH CUT
+    - maria says sad: Cho man!
+    - hide phone_msg_mom_2: WITH CUT  
+    - maria says sad: Yaow,  mi ah big high schooler ... 
+    - maria says sad: Mi don't need adult supervision.   
+    - maria says sad: Mi can dress myself, SMH. 
+    - maria says sad: If mi follow dem, mi affi go transfer schools to have any street cred ... 
+    - maria says sad: Soooooo not lit. SMH.
+    - maria says sad: So wah mi ah go do?
+    
+    - choice:
+      - Listen to Mom:
+        - maria says normal: You know what? I'm gonna just wear this. 
+        - maria says normal: It's not about how I look but how much fun I have ... 
+        - maria says normal: Or supm suh.    
+        - maria says happy: "* Takes Selfie *"
+        - play phoneFlash:
+        - show flash: WITH CUT 
+        - hide flash: WITH FADE
+        - maria says happy: I'll send this to her so she can sekkle herself. 
+      - Do your own thing:
+        - maria says normal: This ah MY time now!
+        - maria says angry: Mi can handle myself ... 
+        - maria says normal: So I'll just wear this like suh, take a selfie and send it to Mommy
+        - play phoneFlash:
+        - show flash: WITH CUT 
+        - hide flash: WITH FADE         
+        - maria says normal: "* Takes Selfie *"  
+        - maria says normal: Alright, time to sort myself out. 
+        - var isMessy: 1
+        - show mariaMessy: normal AT CENTER WITH CUT 
+        - maria says normal: She'll never know ...
+    - hide maria: WITH CUT 
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT   
+  - stop Dub01: WITH FADE  
+  - scene: scene2
+    
+scene2:
+  - play Dub01:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH CUT   
+  - chambers says normal: What's the best way to get ahead in life?
+  - choice:
+    - Focus on getting an education?:
+      - call getToken:
+      - chambers says happy: Very smart! You have a bright future a head of you.
+      - chambers says normal: But don't you think you might need some help along the way?
+    - Seek a Mentor to guide you?:
+      - call getToken:
+      - call getToken:
+      - chambers says happy: Excellent! Sounds like you're on the right path. 
+    - Deal with life, one day at a time?:
+      - chambers says sad: Remember those that fail to plan ...
+      - chambers says sad: Plan to fail!
+  - hide chambers: WITH FADE 
+  - stop Dub01: WITH FADE  
+  - scene: scene3
+
+scene3:
+  - play Dub01:
+  - play traffic:
+  - show busStopBG:
+  - if ({isKadeem} == 1):
+    - show kadeem: normal AT CENTER WITH CUT  
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT     
+    - kadeem says happy: Yo Leslie! Can you believe the big day's here, man?
+    - show kadeem: normal AT LEFT WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: AT LEFT WITH CUT     
+    - show leslie-m: normal AT RIGHT WITH CUT  
+    - leslie-m says normal: Ha! Tru, mi know you nah focus pon di race dem ...
+    - leslie-m says normal: Is Jamie you REALLY excited bout, don't?    
+    - kadeem says happy: Yeaaaaah.
+    - show heart: AT 100,200 WITH CUT
+    - animate heart:
+      time: 500
+      alpha: 0
+      position: 150 150    
+    - kadeem says happy: ... Wha? I mean ... Mi really excited to see mi fren dem.
+    - leslie-m says normal: Riiiight ... Man chat bout fren.
+    - leslie-m says normal: Whoi!   
+    - leslie-m says normal: Why all the bus dem full up or late? 
+    - leslie-m says normal: Cho! An di next one nah reach fi now ...
+    - kadeem says normal: Wait ... Nuh Dice dat? 
+    - kadeem says normal: From primary school, yuh nuh remember?   
+    - leslie-m says normal: Mi nuh really know him enuh. 
+    - leslie-m says normal: Ah nuh your cousin or supmn suh?
+    - leslie-m says normal: Mi nuh know where him pass fi high school ... 
+    - leslie-m says normal: But mi hear say, him drop out before him fi take CSEC.
+    - hide leslie-m: WITH CUT
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT       
+    - call panBackground:
+        time: 1000
+        x: "-100"
+    - stop Dub01: WITH FADE     
+    - play Dub01:
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Wah gwaan yutes! Where you heading?
+    - hide dice: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"     
+    - show kadeem: normal AT CENTER WITH CUT  
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT            
+    - kadeem says normal: Stadium. 
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT      
+    - call panBackground:
+        time: 1000
+        x: "-100"       
+    - dice says normal: Stadium?! 
+    - dice says normal: Don't tell me unuh get the day offa class ...
+    - dice says normal: And unuh ah go spen it at a BORING schoolaz sumting?
+    - hide dice: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"       
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT      
+    - kadeem says normal: It nah that bad at least wi nah inna class ...  
+    - kadeem says normal: And Mr. Chambers cool enuh ...
+    - kadeem says normal: Him mek mi see things different Nuff times. 
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT      
+    - call panBackground:
+        time: 1000
+        x: "-100"       
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Plus yuh neva know who yuh fi buck up.  
+    - leslie-m says normal: Wah yuh ah say?  Wah gwaan?   
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"       
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Pure excitement if yuh make a flex.    
+    - dice says normal: Listen nuh ... So what you planning fi do?
+    - hide dice: WITH CUT
+    - choice:
+      - Nuh inna dat:
+        - call panBackground:
+            time: 1000
+            x: "-100"  
+        - show kadeem: normal AT CENTER WITH CUT
+        - if ({isMessy} == 1):
+          - show kadeemMessy: WITH CUT          
+        - kadeem says sad: Pass on that Dice.
+        - kadeem says normal: Have tings to do and people to meet, yuh zeet.
+        - hide kadeem: WITH CUT
+        - if ({isMessy} == 1):
+          - hide kadeemMessy: WITH CUT          
+        - call panBackground:
+            time: 1000
+            x: "+100"        
+        - show dice: normal AT CENTER WITH CUT  
+        - dice says normal: Nuh seh ah word, yute. 
+        - hide dice: WITH CUT
+        - stop Dub01: WITH FADE  
+        - stop traffic:
+        - scene: scene4
+      - Mek we link up later:
+        - call panBackground:
+            time: 1000
+            x: "-100"  
+        - show kadeem: normal AT CENTER WITH CUT
+        - if ({isMessy} == 1):
+          - show kadeemMessy: WITH CUT          
+        - kadeem says happy: Alright. We're in.
+        - hide kadeem: WITH CUT
+        - if ({isMessy} == 1):
+          - hide kadeemMessy: WITH CUT          
+        - call panBackground:
+            time: 1000
+            x: "+100"        
+        - show dice: normal AT CENTER WITH CUT  
+        - dice says normal: Nuh worry about di fare. Give mi ah smalls fi set up di ting dem.
+        - hide dice: WITH CUT
+        - stop Dub01: WITH FADE      
+        - scene: scene10
+  - if ({isMaria} == 1):
+    - show maria: normal AT CENTER WITH CUT  
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT     
+    - maria says happy: Yo Leslie! Can you believe the big day's here, man?
+    - show maria: normal AT LEFT WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: AT LEFT WITH CUT        
+    - show leslie-f: normal AT RIGHT WITH CUT  
+    - leslie-f says normal: Ha! Tru, mi know you nah focus pon di race dem ...
+    - leslie-f says normal: Is Jordan you REALLY excited bout, don't?    
+    - maria says happy: Yeaaaaah.
+    - show heart: AT 100,200 WITH CUT
+    - animate heart:
+      time: 500
+      alpha: 0
+      position: 150 150    
+    - maria says happy: ... Wha? I mean ... Mi really excited to see mi fren dem.
+    - leslie-f says normal: Riiiight ... yuh chat bout fren.
+    - leslie-f says normal: Whoi!   
+    - leslie-f says normal: Why all the bus dem full up or late? 
+    - leslie-f says normal: Cho! An di next one nah reach fi now ...
+    - maria says normal: Wait ... Nuh Dice dat? 
+    - maria says normal: From primary school, yuh nuh remember?   
+    - leslie-f says normal: Mi nuh really know him enuh. 
+    - leslie-f says normal: Ah nuh your cousin or supmn suh?
+    - leslie-f says normal: Mi nuh know where him pass fi high school ... 
+    - leslie-f says normal: But mi hear say, him drop out before him fi take CSEC.
+    - hide leslie-f: WITH CUT
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT       
+    - call panBackground:
+        time: 1000
+        x: "-100"
+    - stop Dub01: WITH FADE     
+    - play Dub01:
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Wah gwaan yutes! Where you heading?
+    - hide dice: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"     
+    - show maria: normal AT CENTER WITH CUT  
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT            
+    - maria says normal: Stadium. 
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT      
+    - call panBackground:
+        time: 1000
+        x: "-100"       
+    - dice says normal: Stadium?! 
+    - dice says normal: Don't tell me unuh get the day offa class ...
+    - dice says normal: And unuh ah go spen it at a BORING schoolaz sumting?
+    - hide dice: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"       
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT      
+    - maria says normal: It nah that bad at least wi nah inna class ...  
+    - maria says normal: And Mr. Chambers cool enuh ...
+    - maria says normal: Him mek mi see things different Nuff times. 
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT      
+    - call panBackground:
+        time: 1000
+        x: "-100"       
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Plus yuh neva know who yuh fi buck up.  
+    - leslie-f says normal: Wah yuh ah say?  Wah gwaan?   
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"       
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Pure excitement if yuh make a flex.    
+    - dice says normal: Listen nuh ... So what you planning fi do?
+    - hide dice: WITH CUT
+    - choice:
+      - Nuh inna dat:
+        - call panBackground:
+            time: 1000
+            x: "-100"  
+        - show maria: normal AT CENTER WITH CUT
+        - if ({isMessy} == 1):
+          - show mariaMessy: WITH CUT          
+        - maria says sad: Pass on that Dice.
+        - maria says normal: Have tings to do and people to meet, yuh zeet.
+        - hide maria: WITH CUT
+        - if ({isMessy} == 1):
+          - hide mariaMessy: WITH CUT          
+        - call panBackground:
+            time: 1000
+            x: "+100"        
+        - show dice: normal AT CENTER WITH CUT  
+        - dice says normal: Nuh seh ah word, yute. 
+        - hide dice: WITH CUT
+        - stop Dub01: WITH FADE  
+        - stop traffic:
+        - scene: scene4
+      - Mek we link up later:
+        - call panBackground:
+            time: 1000
+            x: "-100"  
+        - show maria: normal AT CENTER WITH CUT
+        - if ({isMessy} == 1):
+          - show mariaMessy: WITH CUT          
+        - maria says happy: Alright. We're in.
+        - hide maria: WITH CUT
+        - if ({isMessy} == 1):
+          - hide mariaMessy: WITH CUT          
+        - call panBackground:
+            time: 1000
+            x: "+100"        
+        - show dice: normal AT CENTER WITH CUT  
+        - dice says normal: Nuh worry about di fare. Give mi ah smalls fi set up di ting dem.
+        - hide dice: WITH CUT
+        - stop Dub01: WITH FADE    
+        - scene: scene10  
+  - scene: scene4
+
+scene4:
+  - play Dub01:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH CUT   
+  - chambers says normal: Do You Consider the Consequences of Your Choices?
+  - choice:
+    - Yes:
+      - call getToken:
+      - chambers says happy: Excellent!
+      - chambers says happy: To get the results you want, you must be 100% responsible for yourself and the choices you make!
+    - No:
+      - chambers says sad: Remember, you will always reap the consequences of your choices! 
+      - chambers says sad: Our choices define us ...
+      - chambers says sad: To move closer to your dreams and desires, you have to make choices that will help get you there.
+  - hide chambers: WITH CUT
+  - stop Dub01: WITH FADE  
+  - scene: scene5
+  
+  
+scene5:
+  - play Dub01:
+  - show stadiumBG: WITH FADE CONTINUE
+  - if ({isKadeem} == 1):
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Yuh thinkin wha mi ah think?
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT      
+    - kadeem says normal: Right!?
+    - kadeem says normal: Yuh did see how criss Dice's car did look?  
+    - kadeem says normal: Wonda how it woudda feel fi drive round di place suh ... 
+    - kadeem says normal: Go weh mi wann go! No baddi could tell mi nuttin!
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT      
+    - call panBackground:
+        time: 1000
+        x: "-100"        
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Yuh pree di Clarks?
+    - leslie-m says normal: Mi ready fi mek mi owna money enuh.   
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT      
+    - kadeem says normal: Right? Mek wi find Mr. Chambers before him find us though ...
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT  
+  - if ({isMaria} == 1):
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Yuh thinkin wha mi ah think?
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT      
+    - maria says normal: Right!?
+    - maria says normal: Yuh did see how criss Dice's car did look?  
+    - maria says normal: Wonda how it woudda feel fi drive round di place suh ... 
+    - maria says normal: Go weh mi wann go! No baddi could tell mi nuttin!
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT      
+    - call panBackground:
+        time: 1000
+        x: "-100"        
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Yuh pree di Clarks?
+    - leslie-f says normal: Mi ready fi mek mi owna money enuh.   
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT      
+    - maria says normal: Right? Mek wi find Mr. Chambers before him find us though ...
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT      
+  - stop Dub01: WITH FADE  
+  - scene: scene6
+   
+   
+scene6:
+  - play Dub01:
+  - show stadiumSeatsBG: WITH FADE CONTINUE
+  - if ({isKadeem} == 1):  
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT      
+    - kadeem says normal: Alright, this ah di spot.  
+    - kadeem says normal: Mek wi mek ah pact. 
+    - kadeem says normal: No matter wah, wi watch each other's back.
+    - kadeem says normal: Hear? AND mek sure wi have the best time.
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Yeh man. Every time!
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "-100"    
+    - show chambers: normal AT CENTER WITH CUT   
+    - chambers says normal: Oh! Kadeem, Leslie. Glad to see you are finally here. 
+    - chambers says happy: Come on now join in with the cheering.
+    - hide chambers: WITH CUT
+    - play cheer3:
+    - show cheering0: WITH CUT 
+    - animate cheering0:
+      time: 2500
+      alpha: 0.7
+      position: 250 412  
+    - show cheering1: WITH CUT 
+    - hide cheering0: WITH CUT 
+    - animate cheering1:
+      time: 2500
+      alpha: 0.7
+      position: 350 412   
+    - show cheering2: WITH CUT
+    - hide cheering1: WITH CUT 
+    - animate cheering2:
+      time: 2500
+      alpha: 0.7
+      position: 250 412  
+    - show cheering3: WITH CUT  
+    - hide cheering2: WITH CUT 
+    - animate cheering3:
+      time: 2500
+      alpha: 0.7
+      position: 350 412  
+    - show cheering4: WITH CUT 
+    - hide cheering3: WITH CUT 
+    - animate cheering4:
+      time: 2500
+      alpha: 0
+      position: 250 412  
+  - if ({isMaria} == 1):  
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT      
+    - maria says normal: Alright, this ah di spot.  
+    - maria says normal: Mek wi mek ah pact. 
+    - maria says normal: No matter wah, wi watch each other's back.
+    - maria says normal: Hear? AND mek sure wi have the best time.
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Yeh man. Every time!
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "-100"    
+    - show chambers: normal AT CENTER WITH CUT   
+    - chambers says normal: Oh! Maria, Shelly. Glad to see you are finally here. 
+    - chambers says happy: Come on now join in with the cheering.
+    - hide chambers: WITH CUT
+    - play cheer3:
+    - show cheering0: WITH CUT 
+    - animate cheering0:
+      time: 2500
+      alpha: 0.7
+      position: 250 412  
+    - show cheering1: WITH CUT 
+    - hide cheering0: WITH CUT 
+    - animate cheering1:
+      time: 2500
+      alpha: 0.7
+      position: 350 412   
+    - show cheering2: WITH CUT
+    - hide cheering1: WITH CUT 
+    - animate cheering2:
+      time: 2500
+      alpha: 0.7
+      position: 250 412  
+    - show cheering3: WITH CUT  
+    - hide cheering2: WITH CUT 
+    - animate cheering3:
+      time: 2500
+      alpha: 0.7
+      position: 350 412  
+    - show cheering4: WITH CUT 
+    - hide cheering3: WITH CUT 
+    - animate cheering4:
+      time: 2500
+      alpha: 0
+      position: 250 412        
+  - stop Dub01: WITH CUT
+  - scene: scene7
+
+scene7:
+  - play Dub01:
+  - show stadiumSeatsBG: WITH FADE CONTINUE
+  - if ({isKadeem} == 1):  
+    - show chambers: normal AT CENTER WITH CUT   
+    - chambers says happy: Yes good work team! 
+    - chambers says happy: That will give us some more points!
+    - chambers says happy: Alright,  everyone!  Let's keep the vibes flowing so our athletes can feel the support.
+    - chambers says happy: Pressure! Pressure! 
+    - chambers says happy: Come on gentlemen ... Big up the team!
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - choice:
+      - Sit this one out:
+        - show kadeem: normal AT CENTER WITH CUT
+        - if ({isMessy} == 1):
+          - show kadeemMessy: WITH CUT  
+        - kadeem says sad: Mr Chambers cyaan really think mi fi get inna all this school spirit business. 
+        - kadeem says sad: Mi phone have nuff excitement fi mi.
+        - hide kadeem: WITH CUT
+        - if ({isMessy} == 1):
+          - hide kadeemMessy: WITH CUT         
+      - Give this a try:
+        - show kadeem: normal AT CENTER WITH CUT
+        - if ({isMessy} == 1):
+          - show kadeemMessy: WITH CUT  
+        - kadeem says normal: Yo! Pree dis yah style ... 
+        - hide kadeem: WITH CUT
+        - if ({isMessy} == 1):
+          - hide kadeemMessy: WITH CUT      
+    - call panBackground:
+        time: 1000
+        x: "-100"          
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: wait...look at the big screen, ah wi dat?
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT      
+    - kadeem says happy: A wi dat!	 Wi live pon TV worldwide...this is so kool!!
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "-100"      
+    - show chambers: happy AT CENTER WITH FADE   
+    - chambers says normal: Ha! Yes! Unuh International now!
+    - chambers says normal: Do you see how a little bit of extra effort makes you shine brighter than the next person?
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT
+    - play phoneNotification:
+    - show phone_msg_jamie_1: WITH CUT      
+    - kadeem says happy: LESLIE!!! Jamie ah text mi fi meet up!
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT         
+    - hide phone_msg_jamie_1: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "-100"    
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Nice! ... so what you gonna do?    
+    - choice:
+      - You stay here, man. I got this:
+        - leslie-m says normal: Gwaan through, man ... 
+        - leslie-m says normal: I'll tell you how wi do when you circle back.
+      - Fahwud nuh?:
+        - leslie-m says normal: Yuh ah move shakey, man!
+        - leslie-m says normal: Gwaan through, bossy!
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT  
+    - kadeem says sad: Him neva have to run mi suh ... 
+    - kadeem says normal: Alright
+    - kadeem says normal: "*HEM HEM*"
+    - kadeem says happy: Mr Chambers,  Permission to use the restroom? I'll be right back.
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT   
+    - call panBackground:
+        time: 1000
+        x: "-100"      
+    - show chambers: normal AT CENTER WITH CUT 
+    - chambers says normal: Sure. Just be safe and no idling.
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT      
+    - kadeem says happy: Get yuhself together! 
+    - kadeem says happy: This is mi chance fi show Jamie who I really am.  
+    - kadeem says normal: Who am I really tho?
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT     
+  - if ({isMaria} == 1):  
+    - show chambers: normal AT CENTER WITH CUT   
+    - chambers says happy: Yes good work team! 
+    - chambers says happy: That will give us some more points!
+    - chambers says happy: Alright,  everyone!  Let's keep the vibes flowing so our athletes can feel the support.
+    - chambers says happy: Pressure! Pressure! 
+    - chambers says happy: Come on gentlemen ... Big up the team!
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - choice:
+      - Sit this one out:
+        - show maria: normal AT CENTER WITH CUT
+        - if ({isMessy} == 1):
+          - show mariaMessy: WITH CUT  
+        - maria says sad: Mr Chambers cyaan really think mi fi get inna all this school spirit business. 
+        - maria says sad: Mi phone have nuff excitement fi mi.
+        - hide maria: WITH CUT
+        - if ({isMessy} == 1):
+          - hide mariaMessy: WITH CUT         
+      - Give this a try:
+        - show maria: normal AT CENTER WITH CUT
+        - if ({isMessy} == 1):
+          - show mariaMessy: WITH CUT  
+        - maria says normal: Yo! Pree dis yah style ... 
+        - hide maria: WITH CUT
+        - if ({isMessy} == 1):
+          - hide mariaMessy: WITH CUT      
+    - call panBackground:
+        time: 1000
+        x: "-100"          
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: wait...look at the big screen, ah wi dat?
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT      
+    - maria says happy: A wi dat!	 Wi live pon TV worldwide...this is so kool!!
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "-100"      
+    - show chambers: happy AT CENTER WITH FADE   
+    - chambers says normal: Ha! Yes! Unuh International now!
+    - chambers says normal: Do you see how a little bit of extra effort makes you shine brighter than the next person?
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT
+    - play phoneNotification:
+    - show phone_msg_jamie_2: WITH CUT      
+    - maria says happy: LESLIE!!! Jordan a text mi fi meet up!
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT         
+    - hide phone_msg_jamie_2: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "-100"    
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Nice! ... so what you gonna do?    
+    - choice:
+      - You stay here, man. I got this:
+        - leslie-f says normal: Gwaan nuh ... 
+        - leslie-f says normal: I'll tell you how wi do when you circle back.
+      - Fahwud nuh?:
+        - leslie-f says normal: Yuh a move shakey!
+        - leslie-f says normal: Gwaan nuh ... 
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT  
+    - maria says sad: She neva have to run mi suh ... 
+    - maria says normal: Alright
+    - maria says normal: "*HEM HEM*"
+    - maria says happy: Mr Chambers,  Permission to use the restroom? I'll be right back.
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT   
+    - call panBackground:
+        time: 1000
+        x: "-100"      
+    - show chambers: normal AT CENTER WITH CUT 
+    - chambers says normal: Sure. Just be safe and no idling.
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT      
+    - maria says happy: Get yuhself together! 
+    - maria says happy: This is mi chance fi show Jordan who I really am.  
+    - maria says normal: Who am I really tho?
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT        
+  - stop Dub01: WITH FADE
+  - scene: scene8
+    
+scene8:
+  - play Dub01:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH CUT   
+  - chambers says normal: What Am I Projecting About Myself?
+  - choice:
+    - My authentic self:
+      - call getToken:
+      - chambers says happy: Excellent! 
+      - chambers says happy: Being your true and natural self is always important
+      - chambers says happy: Loving and respecting yourself and others starts here.
+    - My (pretend) mature self:
+      - chambers says normal: While maturity is valuable ...
+      - chambers says sad: Remember that pretending to be more mature than you are can get you into trouble. 
+      - chambers says normal: Taking time to grow and develop at your own pace is vital!
+  - hide chambers: WITH CUT
+  - stop Dub01: WITH FADE
+  - scene: scene9
+
+scene9:
+  - play Dub01:
+  - show stadiumMeetBG: WITH FADE CONTINUE
+  - if ({isKadeem} == 1):  
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT        
+    - kadeem says happy: Still looking good ... Wah gwaan Jamie?   
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT   
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show jamie-f: normal AT CENTER WITH CUT
+    - jamie-f says normal: So we finally meet in person.  What's the plan?
+    - call getToken:
+    - call getToken:
+    - call getToken:
+    - show goodEnd: WITH FADE
+    - hide jamie-f:
+    - play success:
+  - if ({isMaria} == 1):  
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT        
+    - maria says happy: So ... uh ... Hi Jordan?   
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT   
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show jamie-m: normal AT CENTER WITH CUT
+    - jamie-m says normal: So we finally meet in person.  What's the plan?
+    - call getToken:
+    - call getToken:
+    - call getToken:
+    - show goodEnd: WITH FADE
+    - hide jamie-m:    
+    - play success:   
+  - stop Dub01: WITH FADE
+  - show questionBG:
+  - hide goodEnd: WITH FADE
+  - play Dub01:
+  
+  
+  - call storeLocal:
+      param1: "module1Complete"
+      param2: "1"  
+      
+  - show chambers: normal AT CENTER WITH CUT   
+  - chambers says happy: Well done!
+  - chambers says happy: Now remember ...
+  - chambers says happy: 1. We are 100% responsible for the results we get
+  - chambers says happy: 2. You will always reap the consequences of your choices
+  - chambers says happy: 3. Think carefully about the values that matter to you and ensure that your actions line up with them.
+  - chambers says happy: 4. Sacrificing your character for social acceptance will lead to disappointment
+  - chambers says happy: 5. Those who fail to plan, plan to fail!
+  - chambers says normal: I'm looking forward to how you'll do in future modules!
+  - chambers says happy: Remember to complete the SURVEY and to do the BRAWTA stuff for extra TOKENS!
+  - chambers says normal: See you soon ... 
+  - hide chambers: WITH FADE
+  - stop Dub01: WITH FADE
+  - scene: end
+ 
+scene10:
+  - play Dub01:
+  - show stadiumBG: WITH FADE CONTINUE
+  - if ({isKadeem} == 1):
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Yuh realize wi give Dice fi wi cash? 
+    - leslie-m says normal: Not even a bus fare mi have left. 
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT        
+    - kadeem says normal: Nuh fret,  him legit gonna hook wi up.
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "-100"       
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Him betta include some snacks  ...
+    - leslie-m says normal: cause him gone with mi patty money too!   
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"     
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT    
+    - kadeem says normal: Stop fret about the food. Dice will come through. 
+    - kadeem says happy: Let’s find Mr. Chambers and at least show our faces.  
+  - if ({isMaria} == 1):
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Yuh realize wi give Dice fi wi cash? 
+    - leslie-f says normal: Not even a bus fare mi have left. 
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT        
+    - maria says normal: Nuh fret,  him legit gonna hook wi up.
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "-100"       
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Him betta include some snacks  ...
+    - leslie-f says normal: cause him gone with mi patty money too!   
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"     
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT    
+    - maria says normal: Stop fret about the food. Dice will come through. 
+    - maria says happy: Let’s find Mr. Chambers and at least show our faces.      
+  - stop Dub01: WITH FADE
+  - scene: scene11  
+  
+scene11:  
+  - play Dub01:
+  - show stadiumSeatsBG: WITH FADE CONTINUE
+  - if ({isKadeem} == 1):  
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT      
+    - kadeem says normal: Alright, this ah di spot.  
+    - kadeem says normal: Mek wi mek ah pact. 
+    - kadeem says normal: No matter wah, wi watch each other's back.
+    - kadeem says normal: Hear? AND mek sure wi have the best time.
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Yuh done know. Every time!
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "-100"    
+    - show chambers: normal AT CENTER WITH CUT   
+    - chambers says normal: Oh! Kadeem, Leslie. Glad you are finally here.
+    - chambers says happy: Come on now join in with the cheering.
+    - hide chambers: WITH CUT
+
+    - play cheer3:
+    - show cheering0: WITH CUT 
+    - animate cheering0:
+      time: 2500
+      alpha: 0.7
+      position: 250 412  
+    - show cheering1: WITH CUT 
+    - hide cheering0: WITH CUT 
+    - animate cheering1:
+      time: 2500
+      alpha: 0.7
+      position: 350 412   
+    - show cheering2: WITH CUT
+    - hide cheering1: WITH CUT 
+    - animate cheering2:
+      time: 2500
+      alpha: 0.7
+      position: 250 412  
+    - show cheering3: WITH CUT  
+    - hide cheering2: WITH CUT 
+    - animate cheering3:
+      time: 2500
+      alpha: 0.7
+      position: 350 412  
+    - show cheering4: WITH CUT 
+    - hide cheering3: WITH CUT 
+    - animate cheering4:
+      time: 2500
+      alpha: 0
+      position: 250 412  
+  - if ({isMaria} == 1):  
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT      
+    - maria says normal: Alright, this ah di spot.  
+    - maria says normal: Mek wi mek ah pact. 
+    - maria says normal: No matter wah, wi watch each other's back.
+    - maria says normal: Hear? AND mek sure wi have the best time.
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Yuh done know. Every time!
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "-100"    
+    - show chambers: normal AT CENTER WITH CUT   
+    - chambers says normal: Oh! Maria, Leslie. Glad you are finally here. 
+    - chambers says happy: Come on now join in with the cheering.
+    - hide chambers: WITH CUT
+
+    - play cheer3:
+    - show cheering0: WITH CUT 
+    - animate cheering0:
+      time: 2500
+      alpha: 0.7
+      position: 250 412  
+    - show cheering1: WITH CUT 
+    - hide cheering0: WITH CUT 
+    - animate cheering1:
+      time: 2500
+      alpha: 0.7
+      position: 350 412   
+    - show cheering2: WITH CUT
+    - hide cheering1: WITH CUT 
+    - animate cheering2:
+      time: 2500
+      alpha: 0.7
+      position: 250 412  
+    - show cheering3: WITH CUT  
+    - hide cheering2: WITH CUT 
+    - animate cheering3:
+      time: 2500
+      alpha: 0.7
+      position: 350 412  
+    - show cheering4: WITH CUT 
+    - hide cheering3: WITH CUT 
+    - animate cheering4:
+      time: 2500
+      alpha: 0
+      position: 250 412        
+  - stop Dub01: WITH FADE  
+  - scene: scene12
+  
+scene12:
+  - play Dub01:
+  - show stadiumSeatsBG: WITH FADE CONTINUE
+  - if ({isKadeem} == 1):  
+    - show chambers: normal AT CENTER WITH CUT   
+    - chambers says happy: Yes good work team! 
+    - chambers says happy: That will give us some more points!
+    - chambers says happy: Alright,  everyone!  Let's keep the vibes flowing so our athletes can feel the support.
+    - chambers says happy: Pressure! Pressure! 
+    - chambers says happy: Come on gentlemen ... Big up the team!
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT  
+    - kadeem says sad: Have to keep a low profile until Dice messages us ...   
+    - kadeem says sad: Sorry, Mr Chambers I'm kinda tired ...
+    - play phoneNotification:
+    - show phone_msg_dice_1: WITH CUT      
+    - kadeem says happy: Finally, Dice ah answa mi. 
+    - kadeem says normal: Says to meet him at the back fence.  
+    - kadeem says normal: Him carry something fi wi. 
+    - hide phone_msg_dice_1: WITH CUT 
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "-100"         
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Ready!!!
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"       
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT      
+    - kadeem says happy: Yuh done know, this move wi inna big people tings.       
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT       
+    - call panBackground:
+        time: 1000
+        x: "-100"         
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Mi know any badness yuh keep at Edutrack fi get yuh suspended or dem tings deh ...
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"       
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT       
+    - kadeem says happy: Full steam ahead,  let's get this party started!
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT        
+  - if ({isMaria} == 1):  
+    - show chambers: normal AT CENTER WITH CUT   
+    - chambers says happy: Yes good work team! 
+    - chambers says happy: That will give us some more points!
+    - chambers says happy: Alright,  everyone!  Let's keep the vibes flowing so our athletes can feel the support.
+    - chambers says happy: Pressure! Pressure! 
+    - chambers says happy: Come on gentlemen ... Big up the team!
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"    
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT  
+    - maria says sad: Have to keep a low profile until Dice messages us ...   
+    - maria says sad: Sorry, Mr Chambers I'm kinda tired ...
+    - play phoneNotification:
+    - show phone_msg_dice_1: WITH CUT      
+    - maria says happy: Finally, Dice ah answa mi. 
+    - maria says normal: Says to meet him at the back fence.  
+    - maria says normal: Him carry something fi wi. 
+    - hide phone_msg_dice_1: WITH CUT 
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "-100"         
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Ready!!!
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"       
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT      
+    - maria says happy: Yuh done know, this move wi inna big people tings.       
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT       
+    - call panBackground:
+        time: 1000
+        x: "-100"         
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Mi know any badness yuh keep at Edutrack fi get yuh suspended or dem tings deh ...
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"       
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT       
+    - maria says happy: Full steam ahead,  let's get this party started!
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT        
+  - scene: scene13
+
+scene13:
+  - play Dub01:
+  - show stadiumMeetBG: WITH FADE CONTINUE
+  - if ({isKadeem} == 1):  
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Dump out yuh bokkle deh and pass it here.
+    - hide dice: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT     
+    - kadeem says normal: How yuh know about dis setup Dice?
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT 
+    - call panBackground:
+        time: 1000
+        x: "-100"        
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Nuh worry bout dat. Long time me run tings.  
+    - dice says normal: Just a tip of soda ...
+    - dice says normal: "*Dice mixes more alcohol than soda in the water bottle*"
+    - dice says normal: Aaah! yuh dun know.  This will put you in a party mood. 
+    - dice says normal: "*Dice passes the bottle back*"
+    - dice says normal: Try it nuh.
+    - hide dice: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: Alright, you are the mixmaster, fi real. 
+    - leslie-m says normal: "*SIPS*"
+    - leslie-m says normal: "*COUGHS*"
+    - leslie-m says normal: Ah suh it suppose to burn?
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "-100"      
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Ha ha! 
+    - dice says normal: Drink up yute! and hold dis. 
+    - dice says normal: Wait! 
+    - dice says normal: Nuh Old Man Chambers dat! Sorry yutes, have to bounce. 
+    - hide dice: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show chambers: normal AT CENTER WITH CUT   
+    - call haptic:  
+    - chambers says normal: Kadeem! Leslie!  
+    - chambers says normal: What do you think you're doing!
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "-100"      
+    - show leslie-m: normal AT CENTER WITH CUT
+    - leslie-m says normal: We're busted ...
+    - hide leslie-m: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show kadeem: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show kadeemMessy: WITH CUT   
+    - show badEnd: WITH FADE  
+    - kadeem says sad: Cho man! ... Mommy ah go murder mi!
+    - hide kadeem: WITH CUT
+    - if ({isMessy} == 1):
+      - hide kadeemMessy: WITH CUT    
+  - if ({isMaria} == 1):  
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Dump out yuh bokkle deh and pass it here.
+    - hide dice: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT     
+    - maria says normal: How yuh know about dis setup Dice?
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT 
+    - call panBackground:
+        time: 1000
+        x: "-100"        
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Nuh worry bout dat. Long time me run tings.  
+    - dice says normal: Just a tip of soda ...
+    - dice says normal: "*Dice mixes more alcohol than soda in the water bottle*"
+    - dice says normal: Aaah! yuh dun know.  This will put you in a party mood. 
+    - dice says normal: "*Dice passes the bottle back*"
+    - dice says normal: Try it nuh.
+    - hide dice: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: Alright, you are the mixmaster, fi real. 
+    - leslie-f says normal: "*SIPS*"
+    - leslie-f says normal: "*COUGHS*"
+    - leslie-f says normal: Ah suh it suppose to burn?
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "-100"      
+    - show dice: normal AT CENTER WITH CUT
+    - dice says normal: Ha ha! 
+    - dice says normal: Drink up yute! and hold dis. 
+    - dice says normal: Wait! 
+    - dice says normal: Nuh Old Man Chambers dat! Sorry yutes, have to bounce. 
+    - hide dice: WITH CUT    
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show chambers: normal AT CENTER WITH CUT   
+    - call haptic:    
+    - chambers says angry: Maria! Shelly!  
+    - chambers says angry: What do you think you're doing!
+    - hide chambers: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "-100"      
+    - show leslie-f: normal AT CENTER WITH CUT
+    - leslie-f says normal: We're busted ...
+    - hide leslie-f: WITH CUT
+    - call panBackground:
+        time: 1000
+        x: "+100"      
+    - show maria: normal AT CENTER WITH CUT
+    - if ({isMessy} == 1):
+      - show mariaMessy: WITH CUT    
+    - show badEnd: WITH FADE
+    - maria says normal: Cho man! ... Mommy ah go murder mi!
+    - hide maria: WITH CUT
+    - if ({isMessy} == 1):
+      - hide mariaMessy: WITH CUT         
+  - stop Dub01: WITH FADE  
+  - hide badEnd: WITH FADE
+  - scene: scene14
+  
+scene14:
+  - play Dub01:
+  - show questionBG:
+  - show chambers: normal AT CENTER WITH CUT  
+  - chambers says normal: Which matters more to me, living up to my values or fitting in? 
+  - choice:
+    - My values are important!:
+      - call getToken:
+      - chambers says happy: Excellent! 
+      - chambers says happy: Think carefully about the values that matter to you ... 
+      - chambers says normal: And take the time to ensure that your actions line up with them! 
+    - Fitting in is important!:
+      - chambers says normal: While social acceptance is important ... 
+      - chambers says sad: Sacrificing your character for social status ...
+      - chambers says sad: Is a path that leads to disappointment
+  - chambers says sad: Now, think carefully about your future and what you want to achieve!
+  - chambers says sad: Remember, if you want success ... you have to be 100% responsible for the choices you make
+  - chambers says normal: Let's try this once more ...
+  - chambers says happy: Shall we?
+  - hide chambers: WITH CUT
+  - stop Dub01: WITH FADE
+  - scene: scene3
+  
+    
+end: 
+  - text: Thanks for playing!
+  - call homeScreen:
+  - effect ROLLINGCREDITS:
+    endGame: true
+    text:
+      - Art and Programming by
+      - Spritewrench Studios
+      - null
+      - Music from
+      - DubLand by DuBoLoGy   
+      - null      
+      - Script by
+      - Michele Geister
+      - null
+      - Project Concept and Lead by
+      - Elizabeth Terry
+      - Limitless Transformation 
+      - Coaching & Training Services Ltd.
+      - null
+      - Project Funded by
+      - CB Facey Foundation   
