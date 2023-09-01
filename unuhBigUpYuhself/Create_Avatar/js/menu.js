@@ -151,7 +151,7 @@
         case 1:
           this.lock.alpha = 0;
           this.moduleText.text = "WHO AM I?"
-          this.moduleText1.text = "CREATE YOUR CHARACTER"
+          this.moduleText1.text = "TAP TO START"
           break;
         case 2:
           this.moduleText.text = "MODULE 2"

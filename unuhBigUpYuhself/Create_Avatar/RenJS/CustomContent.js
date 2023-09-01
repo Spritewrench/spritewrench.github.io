@@ -42,13 +42,26 @@ setName: function(params){
     showLoaderOnConfirm: true
   }).then((result) => {
     result.value = result.value.toUpperCase()
-    localStorage.setItem("playerName",result.value);
+    if (result.value.length > 8) {
 
-    var timerVal = 100;
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Player Name longer than 8 characters'
+      }).then((result) => {
+        RenJS.customContent.setName();
+      })   
+    } 
+    else{
+      localStorage.setItem("playerName",result.value);
 
-    setTimeout(function () {
-       window.location.replace("index2.html");//will redirect to your blog page (an ex: blog.html)
-    },timerVal);     
+      var timerVal = 100;
+
+      setTimeout(function () {
+        window.location.replace("index2.html");//will redirect to your blog page (an ex: blog.html)
+      },timerVal);     
+    }   
+
 
   })  
   RenJS.resolve();

@@ -20,23 +20,7 @@
       }
     </script>
 	</head>
-	<label class="switch">
-		<input type="checkbox" name="myCheckbox">
-		<span class="slider round">
-		</span>
-	</label>
-	<script type="text/javascript">
-		var _selector = document.querySelector("input[name=myCheckbox]");
-		_selector.addEventListener("change", function (event){
-			var message = _selector.checked
-				? "Toggle Switch is on"
-				: "Toggle Switch is off";
-			
-			if(messageHandler){
-				messageHandler.postMessage(message);
-			}
-		});
-	</script>	
+	
 	<body style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px;margin-right: 0px;">		
 	</body>
 	<script src="js/lib/sweetalert2.all.min.js?ver=0.2.0"></script>
