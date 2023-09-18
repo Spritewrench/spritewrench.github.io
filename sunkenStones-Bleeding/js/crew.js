@@ -79,7 +79,7 @@ crew[9].power = 0
 crew[9].origPower = crew[9].power
 crew[9].attackPattern = 1
 crew[9].type = 2 // 0- steel, 1 - salt, 2 -smoke
-crew[9].ability  = "POWER EQUAL TO NUMBER OF 'SMOKING' ENEMIES"  
+crew[9].ability  = "POWER EQUAL TO TWICE THE NUMBER OF 'SMOKING' ENEMIES"  
 
 crew[10] = new Object();
 crew[10].deployCost = 1;

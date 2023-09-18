@@ -577,7 +577,7 @@
                     }                        
                   }
                 }                    
-                this.crew[i].origPower = holder
+                this.crew[i].origPower = holder*2;
 
               }
 
