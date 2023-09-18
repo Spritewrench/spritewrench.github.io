@@ -52,7 +52,7 @@ crew[6].power = 2
 crew[6].origPower = crew[6].power
 crew[6].attackPattern = 1
 crew[6].type = 1 // 0- steel, 1 - salt, 2 -smoke
-crew[6].ability  = "ON REGROUP: GAIN EXTRA SAVVY EQUAL TO # OF SUBMERGED ENEMIES"  
+crew[6].ability  = "ON REGROUP: GAIN EXTRA SAVVY EQUAL TO # OF SUBMERGED ENEMIES "  
 
 crew[7] = new Object();
 crew[7].deployCost = 10;
