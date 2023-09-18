@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    function Game() {
+    function selectCrew() {
         this.player = null;
     }
-    Game.prototype = {
+    selectCrew.prototype = {
         create: function () {
 		
 		
@@ -12,7 +12,7 @@
             var x = 400
                 , y = 150;
           
-            this.game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
+            this.selectCrew.canvas.oncontextmenu = function (e) { e.preventDefault(); }
             
             this.level = parseInt(localStorage.getItem("level"));
             
@@ -25,111 +25,81 @@
 
            
             this.bg = this.add.sprite(0, 0, 'bg');
-            this.bg.width = this.game.width
-            this.bg.height = this.game.height
+            this.bg.width = this.selectCrew.width
+            this.bg.height = this.selectCrew.height
 
             this.bg2 = this.add.sprite(0, 0, 'ui_back');
-            this.bg2.width = this.game.width
-            this.bg2.height = this.game.height    
+            this.bg2.width = this.selectCrew.width
+            this.bg2.height = this.selectCrew.height    
 
             //this.combatOrder  = this.add.sprite(0, 0, 'combatOrder');
-            //this.combatOrder .width = this.game.width
-            //this.combatOrder .height = this.game.height              
+            //this.combatOrder .width = this.selectCrew.width
+            //this.combatOrder .height = this.selectCrew.height              
             
-            this.selectInfo = this.add.sprite(this.game.width, 0, 'selectInfoPanel');
-            this.selectInfo.width = this.game.width
-            this.selectInfo.height = this.game.height   
+            this.selectInfo = this.add.sprite(this.selectCrew.width, 0, 'selectInfoPanel');
+            this.selectInfo.width = this.selectCrew.width
+            this.selectInfo.height = this.selectCrew.height   
 
-            this.selectInfoDetail = this.add.sprite(this.game.width, 0, 'selectInfoPanel');
-            this.selectInfoDetail.width = this.game.width
-            this.selectInfoDetail.height = this.game.height               
+            this.selectInfoDetail = this.add.sprite(this.selectCrew.width, 0, 'selectInfoPanel');
+            this.selectInfoDetail.width = this.selectCrew.width
+            this.selectInfoDetail.height = this.selectCrew.height               
 
-            this.capKey = parseInt(localStorage.getItem("captain"));
-            this.capInfo = this.add.sprite(-this.game.width, 0, 'capInfoPanel'+(this.capKey));
-            this.capInfo.width = this.game.width
-            this.capInfo.height = this.game.height                  
+            this.capInfo = this.add.sprite(-this.selectCrew.width, 0, 'capInfoPanel0');
+            this.capInfo.width = this.selectCrew.width
+            this.capInfo.height = this.selectCrew.height                  
             
             //#7E615F
-            this.selectName = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-450, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
+            this.selectName = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.selectCrew.height-450, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
             //this.selectName.anchor.setTo(0.5, 0.5);    
 
-            this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-410, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 450  });
+            this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.selectCrew.height-410, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 450  });
             //this.selectStats.anchor.setTo(0.5, 0.5); 
 
-            this.selectAbility = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-370, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
+            this.selectAbility = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.selectCrew.height-370, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
             //this.selectAbility.anchor.setTo(0.5, 0.5); 
 
                            
             
-            this.cap_health = this.add.sprite(125, this.game.height-125, 'ui_cap_health');
+            this.cap_health = this.add.sprite(125, this.selectCrew.height-125, 'ui_cap_health');
             this.cap_health.anchor.setTo(0.5, 0.5);
             this.cap_healthText = this.add.text(this.cap_health.x,this.cap_health.y, '10', {font: '57px LondrinaSolid-Black',fill: '#fff', align: 'center'});
             this.cap_healthText.anchor.setTo(0.5, 0.5);
-
-            this.cap_healthText2 = this.add.text(this.cap_health.x,this.cap_health.y, '10', {font: '57px LondrinaSolid-Black',fill: '#fff', align: 'center'});
-            this.cap_healthText2.anchor.setTo(0.5, 0.5);
-            this.cap_healthText2.alpha = 0;
 
             this.cap_health.origWidth = this.cap_health.width
             this.cap_health.origHeight = this.cap_health.height
             this.cap_healthValue = 15;        
             
-            
+            this.capKey = parseInt(localStorage.getItem("captain"));
 
             this.cap_ultCost = 1;
 
-            this.deploy_pool = this.add.sprite(375, this.game.height-100, 'ui_deploy_pool');
+            this.deploy_pool = this.add.sprite(375, this.selectCrew.height-100, 'ui_deploy_pool');
             this.deploy_pool.anchor.setTo(0.5, 0.5);
             this.deploy_poolText = this.add.text(this.deploy_pool.x,this.deploy_pool.y+15, '3/3', {font: '57px LondrinaSolid-Black',fill: '#fff', align: 'center'});
             this.deploy_poolText.anchor.setTo(0.5, 0.5);   
             
             
-            //to be determined by selected ship(???)
-            
+            //to be determined by selected ship
             this.deploy_poolCurrent = 3;
             this.deploy_poolMax = this.deploy_poolCurrent 
 
-            this.clear_Button = this.add.sprite(this.game.width/2-415, this.game.height-200, 'ui_clear_button');            
+            this.clear_Button = this.add.sprite(this.selectCrew.width/2-415, this.selectCrew.height-200, 'ui_clear_button');            
             this.clear_Button.inputEnabled = true;
             this.clear_Button.anchor.setTo(0.5, 0.5);
             this.clear_Button.width = 100
             this.clear_Button.height = 100
             this.clear_Button.events.onInputDown.add(this.clearBoard, this);     
 
-            this.endTurn_Button = this.add.sprite(this.game.width-500, this.game.height-175, 'ui_endTurn_Button');            
+            this.endTurn_Button = this.add.sprite(this.selectCrew.width-500, this.selectCrew.height-175, 'ui_endTurn_Button');            
             this.endTurn_Button.inputEnabled = true;
             this.endTurn_Button.events.onInputDown.add(this.endDeployPhase, this);   
             
 
-            this.ult_text = this.add.text(70,this.game.height-400, 'BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 350  });
+            this.ult_text = this.add.text(70,this.selectCrew.height-400, 'BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 350  });
             this.ult_text.angle = -1
 
-            switch(this.capKey){
-              case 1:
-                this.ult_text.text = "BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1"
-                this.cap_healthValue = 15; 
-                this.deploy_poolCurrent = 3;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 1;
-                break;
-              case 2:
-                this.ult_text.text = "DEAL 2 DAMAGE TO TARGET ENEMY. APPLY 'SMOKING'"
-                this.cap_healthValue = 5; 
-                this.deploy_poolCurrent = 5;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 1;
-                break;  
-              case 3:
-                this.ult_text.text = "SUBMERGE ALL ENEMIES"
-                this.cap_healthValue = 10; 
-                this.deploy_poolCurrent = 2;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 4
-                break;                              
-            }
-
             /*
-            this.ult_pool = this.add.sprite(this.game.width-500, this.game.height-350, 'ui_deploy_pool');
+            this.ult_pool = this.add.sprite(this.selectCrew.width-500, this.selectCrew.height-350, 'ui_deploy_pool');
             this.ult_pool.anchor.setTo(0.5, 0.5);
             this.ult_pool.width = 100;
             this.ult_pool.height = 100;
@@ -137,7 +107,7 @@
             this.ult_poolText.anchor.setTo(0.5, 0.5);               
             */
 
-            this.ult_Button = this.add.sprite(this.game.width-500, this.game.height-350, 'ui_ult_buttonReady'); 
+            this.ult_Button = this.add.sprite(this.selectCrew.width-500, this.selectCrew.height-350, 'ui_ult_buttonReady'); 
             this.ult_Button.anchor.setTo(0.5, 0.5);           
             this.ult_Button.inputEnabled = true;
             this.ult_Button.events.onInputDown.add(this.captainUlt, this);   
@@ -154,7 +124,7 @@
             text = text.split("");
             var textKey = 0;
 
-            this.game.plugins.screenShake = this.game.plugins.add(Phaser.Plugin.ScreenShake);
+            this.selectCrew.plugins.screenShake = this.selectCrew.plugins.add(Phaser.Plugin.ScreenShake);
             this.input.onDown.add(this.onDown, this);
             this.tile = [];
             this.crewTile = [];
@@ -172,7 +142,7 @@
             this.monBaseCount = monBaseCount;
             this.deployCrewCount = 0;
             
-            x = (this.game.width/2)-((Math.floor(this.boardWidth/2)*this.size)+(this.size/2)-(this.spacing*this.boardWidth))
+            x = (this.selectCrew.width/2)-((Math.floor(this.boardWidth/2)*this.size)+(this.size/2)-(this.spacing*this.boardWidth))
 
           this.crewOrder = []
           this.placeOrderKey = 0;
@@ -184,7 +154,7 @@
 
           for(var i = 0; i < 5; i++){
 
-            this.crewOrder[i] = this.add.sprite(x+distX, this.game.height-240, 'blankCrew');
+            this.crewOrder[i] = this.add.sprite(x+distX, this.selectCrew.height-240, 'blankCrew');
             this.crewOrder[i].anchor.setTo(0.5, 0.5);
             this.crewOrder[i].width = 100;
             this.crewOrder[i].height = 100;
@@ -243,21 +213,6 @@
                 this.tile[''+j+i].events.onInputDown.add(this.placeCrew, this);                
 
 
-                this.tile[''+j+i].smoke = this.add.emitter(this.tile[''+j+i].x, this.tile[''+j+i].y, 200);
-                this.tile[''+j+i].smoke.makeParticles('smoke');
-                this.tile[''+j+i].smoke.width = 15;
-                this.tile[''+j+i].smoke.minParticleSpeed.set(0, 0);
-                this.tile[''+j+i].smoke.maxParticleSpeed.set(0, 0);
-                this.tile[''+j+i].smoke.setAlpha(0.8, 0, 2500);
-                this.tile[''+j+i].smoke.setScale(0.2, 1, 0.2, 1, 6000, Phaser.Easing.Quintic.Out);
-                this.tile[''+j+i].smoke.gravity = -100;          
-      
-                this.tile[''+j+i].smoke.start(false, 5000, 100);
-                this.tile[''+j+i].smoke.on = false;             
-                
-                this.tile[''+j+i].actionText = this.add.text(this.tile[''+j+i].x,this.tile[''+j+i].y, '', {font: '32px LondrinaSolid-Black',fill: '#fff', align: 'center'});
-                this.tile[''+j+i].actionText.anchor.setTo(0.5, 0.5);   
-                this.tile[''+j+i].actionText.alpha = 0;
 
 
                 distX += this.tile[''+j+i].width+this.spacing
@@ -275,7 +230,7 @@
           this.collectedTreasure = []
           this.collectedTreasureText = []
           for(var i = 1 ; i < 10; i++){
-            this.collectedTreasure[i] = this.add.sprite(((this.game.width/2)+420)+distX , 80, 'treasureUI_'+i);
+            this.collectedTreasure[i] = this.add.sprite(((this.selectCrew.width/2)+420)+distX , 80, 'treasureUI_'+i);
             this.collectedTreasure[i].anchor.setTo(0.5, 0.5);
             this.collectedTreasure[i].width = 75
             this.collectedTreasure[i].height = 75
@@ -305,7 +260,7 @@
           this.crewDeployed = []
 
           //free tile counter
-          this.freeCounter = this.add.sprite(x+distX, this.game.height-size+50, 'freeCounter');
+          this.freeCounter = this.add.sprite(x+distX, this.selectCrew.height-size+50, 'freeCounter');
           this.freeCounter.anchor.setTo(0.5, 0.5);
           this.freeCounter.width = size;
           this.freeCounter.height = size; 
@@ -315,17 +270,17 @@
           this.freeCounterNum = 5;      
 
 
-          this.crewCode =localStorage.getItem("crewCode")
-          var crewMates = this.crewCode.split("-");
+          this.crewCode ="12345"
+          var crewMates = this.crewCode.split("");
           for(var i = 1; i < 6; i++){
-            this.crewSelect[i] = this.add.sprite(x+distX, this.game.height-size+50, 'crewSelect');
+            this.crewSelect[i] = this.add.sprite(x+distX, this.selectCrew.height-size+50, 'crewSelect');
             this.crewSelect[i].anchor.setTo(0.5, 0.5);
             this.crewSelect[i].width = size;
             this.crewSelect[i].height = size;   
             this.crewSelect[i].alpha = 0;   
-            
+            this.crewSelect[i].id = i    
 
-            this.crew[i] = this.add.sprite(x+distX, this.game.height-size+50, 'crew-'+crewMates[i-1]);
+            this.crew[i] = this.add.sprite(x+distX, this.selectCrew.height-size+50, 'crew-'+crewMates[i-1]);
             this.crew[i].anchor.setTo(0.5, 0.5);
             this.crew[i].width = size;
             this.crew[i].height = size;    
@@ -334,7 +289,7 @@
             this.crew[i].origY = this.crew[i].y
             this.crew[i].isDeployed = false;
             this.crew[i].isSelected = false;
-            this.crew[i].arrayKey = i;
+
             this.crew[i].killCount = 0
 
             this.crew[i].deployText = this.add.text( this.crew[i].x-(size/2)+33,this.crew[i].y+(size/2)-3, '1', {font: '22px LondrinaSolid-Black',fill: '#232727', align: 'center'});
@@ -343,7 +298,7 @@
             this.crew[i].powerText = this.add.text(this.crew[i].x+(this.size/2)-8,this.crew[i].y+(size/2)-3, '1', {font: '22px LondrinaSolid-Black',fill: '#fff', align: 'center'});
             this.crew[i].powerText.anchor.setTo(0.5, 0.5);                
               
-            this.crewDeployed[i] = this.add.sprite(x+distX, this.game.height-size+50, 'crewDeployed');
+            this.crewDeployed[i] = this.add.sprite(x+distX, this.selectCrew.height-size+50, 'crewDeployed');
             this.crewDeployed[i].anchor.setTo(0.5, 0.5);
             this.crewDeployed[i].width = size;
             this.crewDeployed[i].height = size;   
@@ -368,18 +323,54 @@
 
             // 0 - boost strike, 10 - captain power boost
             this.crew[i].holderPower[10]  = 0
-
-            console.log(this.crew[i].id)
-            this.crew[i].deployCost = crew[this.crew[i].id].deployCost;
-            this.crew[i].origDeployCost = crew[this.crew[i].id].deployCost;
-            this.crew[i].name = crew[this.crew[i].id].name
-            this.crew[i].power = crew[this.crew[i].id].power
-            this.crew[i].origPower = crew[this.crew[i].id].power
-            this.crew[i].attackPattern = crew[this.crew[i].id].attackPattern
-            this.crew[i].type = crew[this.crew[i].id].type // 0- steel, 1 - salt, 2 -smoke
-            this.crew[i].ability  = crew[this.crew[i].id].ability
              
-
+            switch(this.crew[i].id){
+              case 1:
+                this.crew[i].deployCost = 1;
+                this.crew[i].name = ""
+                this.crew[i].power = 2
+                this.crew[i].origPower = this.crew[i].power
+                this.crew[i].attackPattern = 1
+                this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
+                this.crew[i].ability  = "ON COMBAT:\nADD YOUR POWER TO NEXT FIGHTING CREWMATE"
+                break;
+              case 2:
+                this.crew[i].deployCost = 4;
+                this.crew[i].name = ""
+                this.crew[i].power = 1
+                this.crew[i].origPower = this.crew[i].power
+                this.crew[i].attackPattern = 1
+                this.crew[i].type = 2 // 0- steel, 1 - salt, 2 -smoke
+                this.crew[i].ability  = "INCREASE POWER BY 1 FOR EACH ENEMY DEFEATED"                       
+                break;
+              case 3:
+                this.crew[i].deployCost = 2;
+                this.crew[i].name = ""
+                this.crew[i].power = 3
+                this.crew[i].origPower = this.crew[i].power
+                this.crew[i].attackPattern = 3
+                this.crew[i].type = 1 // 0- steel, 1 - salt, 2 -smoke
+                this.crew[i].ability  = "ON COMBAT:\nFIGHT ALL ENEMIES IN THE SAME ROW"                  
+                break;
+              case 4:
+                this.crew[i].deployCost = 2;
+                this.crew[i].name = ""
+                this.crew[i].power = 3
+                this.crew[i].origPower = this.crew[i].power
+                this.crew[i].attackPattern = 2
+                this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
+                this.crew[i].ability  = "ON COMBAT:\nFIGHT ALL ENEMIES IN THE SAME COLUMN"                   
+                break;  
+              case 5:
+                this.crew[i].deployCost = 0;
+                this.crew[i].name = ""
+                this.crew[i].power = 5
+                this.crew[i].origPower = this.crew[i].power
+                this.crew[i].attackPattern = 4
+                this.crew[i].type = 0 // 0- steel, 1 - salt, 2 -smoke
+                this.crew[i].ability  = "'OLD FAITHFUL. OLD RELIABLE.'"                         
+                break;                                                
+            }
             
 
             this.crew[i].deployText.text = this.crew[i].deployCost
@@ -403,16 +394,33 @@
           this.cursorSelect.anchor.setTo(0.5, 0.5);
           this.cursorSelect.alpha = 0
 
-                     
+          var key1 = this.selectCrew.input.keyboard.addKey(Phaser.Keyboard.UP);
+          key1.onDown.add(this.movePlayer, this);           
+          var key2 = this.selectCrew.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+          key2.onDown.add(this.movePlayer, this);          
+          var key3 = this.selectCrew.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+          key3.onDown.add(this.movePlayer, this);           
+          var key4 = this.selectCrew.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+          key4.onDown.add(this.movePlayer, this); 
+          var key5 = this.selectCrew.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+          key5.onDown.add(this.movePlayer, this);
+    
+          var key6 = this.selectCrew.input.keyboard.addKey(Phaser.Keyboard.P);
+          key6.onDown.add(this.movePlayer, this);      
+          
+          var key7 = this.selectCrew.input.keyboard.addKey(Phaser.Keyboard.Q);
+          key7.onDown.add(this.movePlayer, this);      
+          var key8 = this.selectCrew.input.keyboard.addKey(Phaser.Keyboard.E);
+          key8.onDown.add(this.movePlayer, this);                              
 
 
           this.chatTimer = 0;
-          this.game.input.mousePointer.rightButton.onDown.add(this.deselect, this)
+          this.selectCrew.input.mousePointer.rightButton.onDown.add(this.deselect, this)
 
-          this.turnMarker = this.add.sprite(this.game.width/2, this.game.height+this.game.height/2, 'turnMarker');
+          this.turnMarker = this.add.sprite(this.selectCrew.width/2, this.selectCrew.height+this.selectCrew.height/2, 'turnMarker');
           this.turnMarker.anchor.setTo(0.5, 0.5);   
-          this.turnMarker.width = this.game.width
-          this.turnMarker.height = this.game.height          
+          this.turnMarker.width = this.selectCrew.width
+          this.turnMarker.height = this.selectCrew.height          
 
           this.turnMarkerText = this.add.text(this.turnMarker.x-100,this.turnMarker.y, 'ENEMY TURN', {font: '120px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.turnMarkerText.anchor.setTo(0.5, 0.5);   
@@ -426,7 +434,7 @@
           this.ActionCounter = 0;;
           this.actionTimer = 0;
 
-          this.turnCountText = this.add.text(this.game.width/2+50,85, 'TURN #1 ', {font: '38px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.turnCountText = this.add.text(this.selectCrew.width/2+50,85, 'TURN #1 ', {font: '38px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.turnCountText.anchor.setTo(1, 0.5);  
           this.turnCountNum = 0 
           
@@ -439,7 +447,7 @@
           
 
           this.saltMeterBack = this.add.sprite(0, 0, 'saltMeterBack');
-          this.saltMeterBack.width = this.game.width
+          this.saltMeterBack.width = this.selectCrew.width
           this.saltMeter = this.add.sprite(0, 0, 'saltMeter');
           this.saltMeter.width = 0
 
@@ -448,12 +456,12 @@
           this.saltMeterUI.width = 50
           this.saltMeterUI.height = 50
 
-          this.chestUI = this.add.sprite(this.game.width-65, 30, 'chestUI');
+          this.chestUI = this.add.sprite(this.selectCrew.width-65, 30, 'chestUI');
           this.chestUI.anchor.setTo(0.5, 0.5);  
           this.chestUI.width = 100
           this.chestUI.height = 100      
           
-          this.monCountUI = this.add.sprite(this.game.width/2-30, 80, 'monCount');
+          this.monCountUI = this.add.sprite(this.selectCrew.width/2-30, 80, 'monCount');
           this.monCountUI.anchor.setTo(0.5, 0.5);  
           this.monCountUI.width = 100
           this.monCountUI.height = 100         
@@ -485,8 +493,8 @@
           
 
           this.overlay = this.add.sprite(0, 0, 'bgOverlay');
-          this.overlay.width = this.game.width
-          this.overlay.height = this.game.height      
+          this.overlay.width = this.selectCrew.width
+          this.overlay.height = this.selectCrew.height      
           this.overlay.alpha = 0;    
 
 
@@ -495,7 +503,7 @@
           spacing = 650;
           for(var i =0; i < 3; i++){
 
-            this.treasureOptions[i] = this.add.sprite(x+distX, this.game.height*10 , 'treasure_1');
+            this.treasureOptions[i] = this.add.sprite(x+distX, this.selectCrew.height*10 , 'treasure_1');
             this.treasureOptions[i].anchor.setTo(0.5, 0.5);
             this.treasureOptions[i].value = 1;
             this.treasureOptions[i].inputEnabled = true;
@@ -506,9 +514,9 @@
             distX += spacing
           }
 
-          this.transition = this.add.sprite(0, -this.game.height, 'winBG');
-          this.transition.width = this.game.width
-          this.transition.height = this.game.height      
+          this.transition = this.add.sprite(0, -this.selectCrew.height, 'winBG');
+          this.transition.width = this.selectCrew.width
+          this.transition.height = this.selectCrew.height      
 
           this.transTimer = -1
 
@@ -521,26 +529,10 @@
 
           this.surfaceCount = 0;
           this.surfaceCountTrigger = 0;
-          this.smoke = this.add.emitter(this.game.input.mousePointer.x, this.game.input.mousePointer.y, 200);
-          this.smoke.makeParticles('smoke');
-          this.smoke.width = 15;
-          this.smoke.minParticleSpeed.set(0, 0);
-          this.smoke.maxParticleSpeed.set(0, 0);
-          this.smoke.setAlpha(0.8, 0, 2500);
-          this.smoke.setScale(0.2, 1, 0.2, 1, 6000, Phaser.Easing.Quintic.Out);
-          this.smoke.gravity = -100;          
-
-          this.smoke.start(false, 5000, 100);
-          this.smoke.on = false;
 
         }
         , update: function () {
           
-          
-
-          this.smoke.x = this.game.input.mousePointer.x
-          this.smoke.y = this.game.input.mousePointer.y;
-
           if(this.chatTimer == 0){
 
 
@@ -548,45 +540,12 @@
             
             //bench UI
             for(var i =1; i< 6; i++){
-              
-
-              //ongoing crew ability
-              if(this.crew[i].id == 7){
-                var holder = 0
-
-                for(var k = 0; k< this.boardHeight; k++){
-                  for(var j = 0; j < this.boardWidth; j++){  
-                    if(this.tile[""+j+k].submerged){
-                      holder++
-                    }                        
-                  }
-                }                    
-                this.crew[i].deployCost = this.crew[i].origDeployCost - holder;
-                if(this.crew[i].deployCost < 0){
-                  this.crew[i].deployCost = 0;
-                }
-
-              }
-              if(this.crew[i].id == 9){
-                var holder = 0
-                this.crew[i].origPower = 0;
-                for(var k = 0; k< this.boardHeight; k++){
-                  for(var j = 0; j < this.boardWidth; j++){  
-                    if(this.tile[""+j+k].smoke.on){
-                      holder++
-                    }                        
-                  }
-                }                    
-                this.crew[i].origPower = holder
-
-              }
-
               this.crew[i].deployText.text = this.crew[i].deployCost
               this.crew[i].powerText.text = this.crew[i].origPower
                           
             }
             //salt meter
-           
+            //console.log("salt width "+(((this.saltCounter/this.saltCounterMax))*this.expWidth))
             this.saltMeter.width += ( (((this.saltCounter/this.saltCounterMax))*this.expWidth) - this.saltMeter.width) * 0.5;
              if(this.saltMeter.width > this.expWidth){
               this.saltMeter.width = this.expWidth
@@ -624,7 +583,7 @@
             for(var i =0; i < 3; i++){
               this.treasureOptions[i].alpha = 0;
               this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
-              this.treasureOptions[i].y += ( this.game.height*10 - this.treasureOptions[i].y) * 0.2;
+              this.treasureOptions[i].y += ( this.selectCrew.height*10 - this.treasureOptions[i].y) * 0.2;
 
               
               
@@ -667,90 +626,68 @@
                   this.placedCrewID[this.tile[""+m+l].placeOrder]= this.tile[""+m+l].crewID
                   //this.placedCrewKey++
                 }
+                if(this.tile[""+m+l].isCrewHere){
+                  //old order logic
+                  /*
+                  this.placedCrew[this.placedCrewKey] =this.tile[""+m+l].texture
+                  this.placedCrewID[this.placedCrewKey]= this.tile[""+m+l].crewID
+                  this.placedCrewKey++
+                  */
+                  //alert("!")
 
+                }
 
 
         
               }
-            }   
-                  
+            }            
             for(var i=0; i< 5; i++){
               
               
               if(this.placedCrewID[i] != -1 && this.placedCrewID[i] != 0){
                 //this.crewOrder[i].alpha = 1
-                //this.crewOrder[i].loadTexture(this.placedCrew[i])
+                this.crewOrder[i].loadTexture(this.placedCrew[i])
 
                 
                 //next up effects 
-                
-                for(var z = 1; z < 6; z++){
-                  if(this.crew[z].id == this.placedCrewID[i]){
-                    this.crew[z].power = this.crew[z].origPower  
-                    
-                  }
-                }                 
-                
+                this.crew[this.placedCrewID[i]].power = this.crew[this.placedCrewID[i]].origPower  
                 if(i > 0){
                   
                   //boost strike
                   if(this.placedCrewID[i-1] == 1 ){
-                    var boostHolder = 0;
-                    for(var z = 1; z < 6; z++){
-                      if(this.crew[z].id == this.placedCrewID[i-1]){
-                        boostHolder = this.crew[z].power
-                        
-                      }
-                    }       
-                    for(var x = 1; x < 6; x++){
-                      if(this.crew[x].id == this.placedCrewID[i]){
-                        this.crew[x].holderPower[0] = boostHolder
-                      }
-                    }                                 
                     
+                    this.crew[this.placedCrewID[i]].holderPower[0] = this.crew[this.placedCrewID[i-1]].power//this.crew[this.placedCrewID[i]].origPower+this.crew[this.placedCrewID[i-1]].power
                     
                   }
                   else{
-                    for(var z = 1; z < 6; z++){
-                      if(this.crew[z].id == this.placedCrewID[i]){
-                        this.crew[z].holderPower[0] = 0;
-                      }
-                    }                    
-                    
+                    this.crew[this.placedCrewID[i]].holderPower[0] = 0;
                   }
-                  for(var z = 1; z < 6; z++){
-                    if(this.crew[z].id == this.placedCrewID[i]){
-                      this.crew[z].power = this.crew[z].origPower + this.crew[z].holderPower[0] + this.crew[z].holderPower[10]
-                    }
-                  } 
 
-                  
+
+                  this.crew[this.placedCrewID[i]].power = this.crew[this.placedCrewID[i]].origPower + this.crew[this.placedCrewID[i]].holderPower[0] + this.crew[this.placedCrewID[i]].holderPower[10]
                   
                 }
                 else{
-                  for(var z = 1; z < 6; z++){
-                    if(this.crew[z].id == this.placedCrewID[i]){
-                      this.crew[z].power = this.crew[z].origPower + this.crew[z].holderPower[10]
-                    }
-                  }                   
-                  
+                  this.crew[this.placedCrewID[i]].power = this.crew[this.placedCrewID[i]].origPower + this.crew[this.placedCrewID[i]].holderPower[10]
                 }
 
                
                  //+ this.crew[this.placedCrewID[i]].holderPower[10]
                 this.crewOrder[i].healthText.x = this.crewOrder[i].x-(this.size/2)+23
                 
-                for(var z = 1; z < 6; z++){
-                  if(this.crew[z].id == this.placedCrewID[i]){
-                    this.crewOrder[i].healthText.text = this.crew[z].deployCost
-                    this.crewOrder[i].powerText.text = this.crew[z].power
-                  }
-                }                   
                 
+                this.crewOrder[i].healthText.text = this.crew[this.placedCrewID[i]].deployCost
                 this.crewOrder[i].powerText.x = this.crewOrder[i].x+(this.size/2)-22       
-                
+                this.crewOrder[i].powerText.text = this.crew[this.placedCrewID[i]].power
                 this.crewOrder[i].healthText.addColor("#232727", 0)
-                this.crewOrder[i].powerText.addColor("#FFF", 0)              
+                this.crewOrder[i].powerText.addColor("#FFF", 0)
+                if(parseInt(this.crew[this.placedCrewID[i]].origPower) > parseInt(this.crew[this.placedCrewID[i]].power)){
+                          
+                  this.crewOrder[i].powerText.addColor("#BA363B", 0)
+                }
+                if(parseInt(this.crew[this.placedCrewID[i]].origPower) < parseInt(this.crew[this.placedCrewID[i]].power)){
+                  this.crewOrder[i].powerText.addColor("#30B64A", 0)
+                }                  
 
                 this.crewOrder[i].width = 100;
                 this.crewOrder[i].height = 100; 
@@ -784,14 +721,14 @@
             //this.capEnergy >= 9 
             if(this.phaseCounter == 1 && this.deploy_poolCurrent >= this.cap_ultCost && !this.captainPowerActivated){
 
-              this.ult_Button.loadTexture('ui_ult_buttonReady'+this.capKey);
-              //this.ult_Button.y = this.game.height-280
-              //this.ult_pool.y = this.game.height-360              
+              this.ult_Button.loadTexture('ui_ult_buttonReady');
+              //this.ult_Button.y = this.selectCrew.height-280
+              //this.ult_pool.y = this.selectCrew.height-360              
             }
             else{
-              this.ult_Button.loadTexture('ui_ult_buttonNotReady'+this.capKey);
-              //this.ult_Button.y = this.game.height-280
-              //this.ult_pool.y = this.game.height-340
+              this.ult_Button.loadTexture('ui_ult_buttonNotReady');
+              //this.ult_Button.y = this.selectCrew.height-280
+              //this.ult_pool.y = this.selectCrew.height-340
             }
             this.ult_Button.x += ((this.capInfo.x+550) - this.ult_Button.x) * 0.2;
             this.ult_ButtonText.x = this.ult_Button.x+3//-(this.ult_Button.width/3)
@@ -804,7 +741,7 @@
 
             // select info panel
             if(this.selectedCrew == 0){
-              this.selectInfo.x += ( this.game.width - this.selectInfo.x) * 0.2;
+              this.selectInfo.x += ( this.selectCrew.width - this.selectInfo.x) * 0.2;
 
 
             }
@@ -931,18 +868,18 @@
             //button anim
             if(this.endbuttonTimer > 0 || !this.deployReady){
               this.endbuttonTimer--
-              this.endTurn_Button.y = this.game.height-175+35
+              this.endTurn_Button.y = this.selectCrew.height-175+35
             }
             else{
-              this.endTurn_Button.y = this.game.height-175
+              this.endTurn_Button.y = this.selectCrew.height-175
             }
 
             if(this.clearbuttonTimer > 0 || !this.deployReady){
               this.clearbuttonTimer--
-              this.clear_Button.y = this.game.height-150+35
+              this.clear_Button.y = this.selectCrew.height-150+35
             }
             else{
-              this.clear_Button.y = this.game.height-150
+              this.clear_Button.y = this.selectCrew.height-150
             }
 
             //check if win 
@@ -960,7 +897,7 @@
               else{
                 this.transition.y += ( 0 - this.transition.y) * 0.2;
                 if(this.transition.y>= -5){
-                  this.game.state.start('win');
+                  this.selectCrew.state.start('win');
                   var score = parseInt(sessionStorage.getItem("highScore"))
                   sessionStorage.setItem("currentScore",this.scoreCountNum)
                   if(this.scoreCountNum > score){
@@ -1003,11 +940,11 @@
               this.phaseStart = true;
               
               if(this.phaseCounter != 3){
-                this.turnMarker.y += ( this.game.height/2 - this.turnMarker.y) * 0.2;
+                this.turnMarker.y += ( this.selectCrew.height/2 - this.turnMarker.y) * 0.2;
               }
               
 
-              if(this.turnMarker.y - ( this.game.height/2)  < 10){
+              if(this.turnMarker.y - ( this.selectCrew.height/2)  < 10){
                 this.turnMarkerText.x++
                 //this.turnMarkerText.alpha = 1;
               }
@@ -1026,11 +963,11 @@
                                
               
             
-              this.turnMarker.y += ( this.game.height+this.game.height/2 - this.turnMarker.y) * 0.2;
+              this.turnMarker.y += ( this.selectCrew.height+this.selectCrew.height/2 - this.turnMarker.y) * 0.2;
 
 
               
-              var markerDiff = this.turnMarker.y - (this.game.height+this.game.height/2)
+              var markerDiff = this.turnMarker.y - (this.selectCrew.height+this.selectCrew.height/2)
               if(this.actionTimer > 0){
                 this.actionTimer--;
               }
@@ -1080,16 +1017,6 @@
 
             this.deploy_poolText.text = this.deploy_poolCurrent+"/"+this.deploy_poolMax
             this.cap_healthText.text = this.cap_healthValue
-
-            if(this.cap_healthText2.alpha > 0 ){
-              this.cap_healthText2.y--
-              this.cap_healthText2.alpha -= 0.01
-
-              if(this.cap_healthText2.alpha < 0){
-                this.cap_healthText2.alpha = 0;
-                
-              }
-            }
             
             ///this.cap_healthText.font.style.font.size = 100;
             this.cap_health.width += ( this.cap_health.origWidth - this.cap_health.width) * 0.5;
@@ -1161,8 +1088,8 @@
             else{
               this.cursorSelect.alpha = 0
             }
-            this.cursorSelect.x = this.game.input.mousePointer.x
-            this.cursorSelect.y = this.game.input.mousePointer.y
+            this.cursorSelect.x = this.selectCrew.input.mousePointer.x
+            this.cursorSelect.y = this.selectCrew.input.mousePointer.y
 
             this.freeCounter.x = this.crew[5].x+10
             this.freeCounter.y = this.crew[5].y-75
@@ -1242,83 +1169,66 @@
                       if(this.phaseCounter == 1 || this.phaseCounter ==2){
                         try{
                           //show attack pattern - red
-                          
-                          for(var z = 1; z < 6; z++){
-                            if(this.crew[z].id == this.tile[''+j+i].crewID){
-                              switch(parseInt(this.crew[z].attackPattern)){
-                                //normal
-                                case 1:
-                                    this.tintTile(this.tile[''+(j+1)+(i)],"0xFF0000")
-                                    this.tintTile(this.tile[''+(j-1)+(i)],"0xFF0000")
-                                    this.tintTile(this.tile[''+(j)+(i+1)],"0xFF0000")
-                                    this.tintTile(this.tile[''+(j)+(i-1)],"0xFF0000")                          
-                                  break;
-                                //col strike 
-                                case 2:
-                                  for(var l = 0; l < this.boardHeight; l++){
-                                    for(var m = 0; m < this.boardWidth; m++){
-                                      if(j == m){
-                                        this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
-                                      }
+                          switch(parseInt(this.crew[this.tile[''+j+i].crewID].attackPattern)){
+                            //normal
+                            case 1:
+                                this.tintTile(this.tile[''+(j+1)+(i)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j-1)+(i)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j)+(i+1)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j)+(i-1)],"0xFF0000")                          
+                              break;
+                            //col strike 
+                            case 2:
+                              for(var l = 0; l < this.boardHeight; l++){
+                                for(var m = 0; m < this.boardWidth; m++){
+                                  if(j == m){
+                                    this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
+                                  }
+                                }
+                              }  
+                              this.tile[""+j+i].tint = '0xFFFFFF'                           
+                              break;    
+                            //row strike 
+                            case 3:
+                              for(var l = 0; l < this.boardHeight; l++){
+                                for(var m = 0; m < this.boardWidth; m++){
+                                  if(i == l){
+                                    this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
+                                  }
+                                }
+                              }   
+                              this.tile[""+j+i].tint = '0xFFFFFF'                        
+                              break;
+                              //area     
+                              case 4:
+                                this.tintTile(this.tile[''+(j+1)+(i)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j-1)+(i)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j)+(i+1)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j)+(i-1)],"0xFF0000")       
+                                
+                                this.tintTile(this.tile[''+(j+1)+(i+1)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j-1)+(i-1)],"0xFF0000")   
+                                this.tintTile(this.tile[''+(j-1)+(i+1)],"0xFF0000")
+                                this.tintTile(this.tile[''+(j+1)+(i-1)],"0xFF0000")                                                           
+                              break;          
+                              case 5:
+                                for(var l = 0; l < this.boardHeight; l++){
+                                  for(var m = 0; m < this.boardWidth; m++){
+                                    if(j == m){
+                                      this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
                                     }
-                                  }  
-                                  this.tile[""+j+i].tint = '0xFFFFFF'                           
-                                  break;    
-                                //row strike 
-                                case 3:
-                                  for(var l = 0; l < this.boardHeight; l++){
-                                    for(var m = 0; m < this.boardWidth; m++){
-                                      if(i == l){
-                                        this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
-                                      }
+                                  }
+                                }       
+                                for(var l = 0; l < this.boardHeight; l++){
+                                  for(var m = 0; m < this.boardWidth; m++){
+                                    if(i == l){
+                                      this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
                                     }
-                                  }   
-                                  this.tile[""+j+i].tint = '0xFFFFFF'                        
-                                  break;
-                                  //area     
-                                  case 4:
-                                    this.tintTile(this.tile[''+(j+1)+(i)],"0xFF0000")
-                                    this.tintTile(this.tile[''+(j-1)+(i)],"0xFF0000")
-                                    this.tintTile(this.tile[''+(j)+(i+1)],"0xFF0000")
-                                    this.tintTile(this.tile[''+(j)+(i-1)],"0xFF0000")       
-                                    
-                                    this.tintTile(this.tile[''+(j+1)+(i+1)],"0xFF0000")
-                                    this.tintTile(this.tile[''+(j-1)+(i-1)],"0xFF0000")   
-                                    this.tintTile(this.tile[''+(j-1)+(i+1)],"0xFF0000")
-                                    this.tintTile(this.tile[''+(j+1)+(i-1)],"0xFF0000")                                                           
-                                  break;          
-                                  case 5:
-                                    for(var l = 0; l < this.boardHeight; l++){
-                                      for(var m = 0; m < this.boardWidth; m++){
-                                        if(j == m){
-                                          this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
-                                        }
-                                      }
-                                    }       
-                                    for(var l = 0; l < this.boardHeight; l++){
-                                      for(var m = 0; m < this.boardWidth; m++){
-                                        if(i == l){
-                                          this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
-                                        }
-                                      }
-                                    }                               
-                                    this.tile[""+j+i].tint = '0xFFFFFF'                                                          
-                                  break;  
-                                  case 6:
-                                    for(var l = 0; l < this.boardHeight; l++){
-                                      for(var m = 0; m < this.boardWidth; m++){
-                                        if(this.tile[''+(m)+(l)].smoke.on){
-                                          this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")          
-                                        }
-                                      }
-                                    }                                    
-                                    this.tile[""+j+i].tint = '0xFFFFFF'                                                          
-                                  break;                                                                                                                            
-                              }
-                            }
-
+                                  }
+                                }                               
+                                this.tile[""+j+i].tint = '0xFFFFFF'                                                          
+                              break;                                                                                         
                           }
-
 
                           //don't highlight crew
                           for(var l = 0; l < this.boardHeight; l++){
@@ -1337,26 +1247,21 @@
 
 
                        
-                      
+                      //console.log(this.tile[''+j+i].crewID)
                       try{
-                        for(var z = 1; z < 6; z++){
-                          if(this.crew[z].id == this.tile[''+j+i].crewID){
-                            this.tile[''+j+i].healthText.text =  this.crew[z].deployCost
-                            this.tile[''+j+i].powerText.text =  this.crew[z].power
-                            this.tile[''+j+i].healthText.x = this.tile[''+j+i].x-(this.size/2)+23
-                            this.tile[''+j+i].powerText.x = this.tile[''+j+i].x+(this.size/2)-22
-                            this.tile[''+j+i].healthText.addColor("#232727", 0)
-                            this.tile[''+j+i].powerText.addColor("#FFF", 0)
-                            if(parseInt(this.crew[z].origPower) > parseInt(this.crew[z].power)){
-                              
-                              this.tile[''+j+i].powerText.addColor("#BA363B", 0)
-                            }
-                            if(parseInt(this.crew[z].origPower) < parseInt(this.crew[z].power)){
-                              this.tile[''+j+i].powerText.addColor("#30B64A", 0)
-                            }                              
-                          }
-                        }                        
-
+                        this.tile[''+j+i].healthText.text =  this.crew[ this.tile[''+j+i].crewID].deployCost
+                        this.tile[''+j+i].powerText.text =  this.crew[ this.tile[''+j+i].crewID].power
+                        this.tile[''+j+i].healthText.x = this.tile[''+j+i].x-(this.size/2)+23
+                        this.tile[''+j+i].powerText.x = this.tile[''+j+i].x+(this.size/2)-22
+                        this.tile[''+j+i].healthText.addColor("#232727", 0)
+                        this.tile[''+j+i].powerText.addColor("#FFF", 0)
+                        if(parseInt(this.crew[ this.tile[''+j+i].crewID].origPower) > parseInt(this.crew[ this.tile[''+j+i].crewID].power)){
+                          
+                          this.tile[''+j+i].powerText.addColor("#BA363B", 0)
+                        }
+                        if(parseInt(this.crew[ this.tile[''+j+i].crewID].origPower) < parseInt(this.crew[ this.tile[''+j+i].crewID].power)){
+                          this.tile[''+j+i].powerText.addColor("#30B64A", 0)
+                        }  
 
                        
                       }
@@ -1399,21 +1304,11 @@
                     }
 
 
-
-
                     
                     //this.tile[""+j+i].width = this.size
                     //this.tile[""+j+i].height = this.size
                   } 
-                  // action text floats up
-                  if(this.tile[''+j+i].actionText.alpha > 0){
-                    this.tile[''+j+i].actionText.alpha-= 0.01
-                    this.tile[''+j+i].actionText.y--;
 
-                    if(this.tile[''+j+i].actionText.alpha < 0){
-                      this.tile[''+j+i].actionText.alpha = 0;
-                    }
-                  }
                   //clean up submerge and other effects
                   if(this.tile[""+j+i].monID == 0){
                     this.tile[""+j+i].submerged = false
@@ -1432,7 +1327,7 @@
                   }
 
                   if(this.tile[""+j+i].isSunk){
-                    this.tile[""+j+i].y += ((this.game.height+100) - this.tile[""+j+i].y) * 0.1;    
+                    this.tile[""+j+i].y += ((this.selectCrew.height+100) - this.tile[""+j+i].y) * 0.1;    
                     
                   }
                   else{
@@ -1468,7 +1363,7 @@
               for(var i =0; i < 3; i++){
                 this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
                 if(i ==0 || i == 2){
-                  this.treasureOptions[i].y += ( 150+this.game.height/3 - this.treasureOptions[i].y) * 0.2;
+                  this.treasureOptions[i].y += ( 150+this.selectCrew.height/3 - this.treasureOptions[i].y) * 0.2;
                 }
                 
                 
@@ -1479,7 +1374,7 @@
               for(var i =0; i < 3; i++){
                 this.treasureOptions[i].alpha = 1;
                 this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
-                this.treasureOptions[i].y += ( 150+this.game.height/3 - this.treasureOptions[i].y) * 0.2;
+                this.treasureOptions[i].y += ( 150+this.selectCrew.height/3 - this.treasureOptions[i].y) * 0.2;
                 this.treasureOptions[i].x = this.treasureOptions[i].origX
                 
               }                
@@ -1584,7 +1479,7 @@
                 sessionStorage.setItem("highScore",this.scoreCountNum)
               } 
               
-              this.game.state.start('win');
+              this.selectCrew.state.start('win');
               
                
               break;      
@@ -1597,7 +1492,6 @@
           
           this.chatTimer = 0;
         }
-        //captain's ultimate
         ,captainUlt: function (){
           if(this.deploy_poolCurrent >= this.cap_ultCost && this.phaseCounter == 1 && !this.captainPowerActivated){
             this.captainPowerActivated = true
@@ -1606,27 +1500,14 @@
 
             switch(this.capKey){
               //rally
-              case 1:
+              case 0:
                 
                 for(var i = 1; i < 6; i++){
-                  if(this.crew[i].type == 0){
+                  if(this.crew[i].type = 0){
                     this.crew[i].holderPower[10] = 1
                   }
                   
                 }                  
-                break;
-              case 2:
-              
-              this.smoke.on = true;                 
-              break;                
-              case 3:
-                for(var i = 0; i < this.boardHeight; i++){
-                  for(var j = 0; j < this.boardWidth; j++){  
-                    if(this.tile[''+j+i].isEnemyHere && !this.tile[''+j+i].submerged){
-                      this.tile[''+j+i].submerged = true;
-                    }
-                  }
-                }                
                 break;
             }
             /*
@@ -1665,12 +1546,7 @@
                 this.tile[''+j+i].hasActed = true;
                 this.tile[''+j+i].y  = 1000;
                 this.tile[''+j+i].loadTexture('tile');
-                for(var z = 1; z < 6; z++){
-                  if(this.crew[z].id == this.tile[''+j+i].crewID){
-                    this.deploy_poolCurrent += this.crew[z].deployCost
-                  }
-                }
-                
+                this.deploy_poolCurrent += this.crew[this.tile[''+j+i].crewID].deployCost
                 if(this.tile[''+j+i].crewID == 5){
                   this.freeCounterNum++;
                 }                 
@@ -1738,7 +1614,7 @@
 
 
 
-          
+          console.log(this.turnCountNum+" "+this.monCount)
           var dist = 0
           
           
@@ -1857,9 +1733,9 @@
                   
                   
                   textKey++;
-                  
+                  console.log("Mon Count "+this.monCount)
                   this.monCount--;
-                  
+                  console.log("Mon Count "+this.monCount)
                   this.tile[''+j+i].multiAttack = 0;
                   
                   
@@ -1869,7 +1745,7 @@
                   
                   
 
-                  
+                  //alert("surface count "+this.surfaceCount)
                   this.tile[""+j+i].submerged = submerged;
                   //chest never submerged
                   if(this.tile[''+j+i].monID == 99){
@@ -2014,8 +1890,7 @@
           //check how many crew deployed
           
           this.deployCrewCount = 0 ;
-          this.selectedCrew = 0     
-          this.deploy_poolCurrent = this.deploy_poolMax     
+          this.selectedCrew = 0          
           for(var i = 0; i < this.boardHeight; i++){
             for(var j = 0; j < this.boardWidth; j++){      
               if(this.tile[''+j+i].isCrewHere || this.tile[''+j+i].crewID != 0){
@@ -2032,7 +1907,7 @@
                 this.tile[''+j+i].hasActed = true;
                 
                 this.tile[''+j+i].loadTexture('tile');
-                
+
                
              
                 //this.deploy_poolCurrent += this.crew[this.tile[''+j+i].crewID].deployCost
@@ -2056,19 +1931,7 @@
                     break;  
                   case 5:
                     
-                    break; 
-                  case 6:
-                    var holder = 0;
-                    for(var m = 0; m < this.boardHeight; m++){
-                      for(var l = 0; l < this.boardWidth; l++){  
-                        if(this.tile[""+l+m].submerged){
-                          //this.spawnSalt(this.tile[""+l+m].x, this.tile[""+l+m].y)
-                          holder++;
-                        }                        
-                      }
-                    } 
-                    this.deploy_poolCurrent += holder;                   
-                    break;                                                                    
+                    break;                                                
                 }                
                 this.tile[''+j+i].crewID = 0
                 //this.tile[''+j+i].monID = 0
@@ -2094,7 +1957,7 @@
           }    
           this.removeTint();
           //next phase  
-          
+          this.deploy_poolCurrent = this.deploy_poolMax
             
 
 
@@ -2131,7 +1994,7 @@
             
             this.phaseStart = true;
             this.actionTimer = 50;
-            //this.game.time.events.add(5000, this.enemyFight());
+            //this.selectCrew.time.events.add(5000, this.enemyFight());
           } 
           */
                    
@@ -2174,7 +2037,7 @@
         }
         ,crewFight: function (tile) {
 
-          
+          ///alert(this.deployCrewCount)
 
           //crew attacks          
           for(var i = 0; i < this.boardHeight; i++){
@@ -2188,127 +2051,110 @@
                 this.tile[''+j+i].height += 100;
                 
                 
-                for(var z = 1; z < 6; z++){
-                  if(this.crew[z].id == this.tile[''+j+i].crewID){
-                    switch(parseInt(this.crew[z].attackPattern)){
-                      //normal
-                      case 1:
-                        this.crewAttackTile(this.tile[''+(j+1)+(i)],this.tile[''+j+i].crewID)
-                        this.crewAttackTile(this.tile[''+(j-1)+(i)],this.tile[''+j+i].crewID)
-                        this.crewAttackTile(this.tile[''+(j)+(i+1)],this.tile[''+j+i].crewID)
-                        this.crewAttackTile(this.tile[''+(j)+(i-1)],this.tile[''+j+i].crewID)                     
-                        break;
-                      //col strike 
-                      case 2:
-                        for(var l = 0; l < this.boardHeight; l++){
-                          for(var m = 0; m < this.boardWidth; m++){
-                            if(j == m){
-                              this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
-                            }
-                          }
-                        }                            
-                        break;    
-                      //row strike 
-                      case 3:
-                        for(var l = 0; l < this.boardHeight; l++){
-                          for(var m = 0; m < this.boardWidth; m++){
-                            if(i == l){
-                              this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
-                            }
-                          }
-                        }                       
-                        break;
-                        //area     
-                        case 4:
-                          this.crewAttackTile(this.tile[''+(j+1)+(i)],this.tile[''+j+i].crewID)
-                          this.crewAttackTile(this.tile[''+(j-1)+(i)],this.tile[''+j+i].crewID)
-                          this.crewAttackTile(this.tile[''+(j)+(i+1)],this.tile[''+j+i].crewID)
-                          this.crewAttackTile(this.tile[''+(j)+(i-1)],this.tile[''+j+i].crewID)       
-                          
-                          this.crewAttackTile(this.tile[''+(j+1)+(i+1)],this.tile[''+j+i].crewID)
-                          this.crewAttackTile(this.tile[''+(j-1)+(i-1)],this.tile[''+j+i].crewID)   
-                          this.crewAttackTile(this.tile[''+(j-1)+(i+1)],this.tile[''+j+i].crewID)
-                          this.crewAttackTile(this.tile[''+(j+1)+(i-1)],this.tile[''+j+i].crewID)                                                           
-                        break;    
-                        case 5:
-                          for(var l = 0; l < this.boardHeight; l++){
-                            for(var m = 0; m < this.boardWidth; m++){
-                              if(j == m){
-                                this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
-                              }
-                            }
-                          }                        
-                          for(var l = 0; l < this.boardHeight; l++){
-                            for(var m = 0; m < this.boardWidth; m++){
-                              if(i == l){
-                                this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
-                              }
-                            }
-                          }                                                            
-                        break; 
-                        case 6:
-                          for(var l = 0; l < this.boardHeight; l++){
-                            for(var m = 0; m < this.boardWidth; m++){
-                              if(this.tile[''+(m)+(l)].smoke.on){
-                                this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)              
-                              }
-                            }
-                          }                              
-                          break;
-                                                                                 
-                    }  
-                    
-                    //crew combat ability trigger
-                    switch(this.crew[z].id){
-                      case 1:
 
-                        break;
-                      case 2:
-                        //death blade
-                        /*
-                        this.knockBack(this.tile[''+(j+1)+(i)],this.tile[''+j+i])
-                        this.knockBack(this.tile[''+(j-1)+(i)],this.tile[''+j+i])
-                        this.knockBack(this.tile[''+(j)+(i+1)],this.tile[''+j+i])
-                        this.knockBack(this.tile[''+(j)+(i-1)],this.tile[''+j+i])       
-                        
-                        this.knockBack(this.tile[''+(j+1)+(i+1)],this.tile[''+j+i])
-                        this.knockBack(this.tile[''+(j-1)+(i-1)],this.tile[''+j+i])   
-                        this.knockBack(this.tile[''+(j-1)+(i+1)],this.tile[''+j+i])
-                        this.knockBack(this.tile[''+(j+1)+(i-1)],this.tile[''+j+i])  
-                        */
 
-                        
-                        break;
-                      case 3:             
-                        break;
-                      case 4:                
-                        break;  
-                      case 5:   
-                        //bomb explodes
-                        
-                        this.removeTint();
-                        this.tile[''+j+i].y  = 1000;
-                        this.tile[''+j+i].loadTexture('tile');                
-                        this.tile[''+j+i].crewID = 0
-                        //this.tile[''+j+i].monID = 0
-                        this.tile[''+j+i].isCrewHere = false;
-                        //this.tile[''+j+i].isEnemyHere = false;
-                        this.tile[''+j+i].healthText.text = "";
-                        this.tile[''+j+i].powerText.text = "";
-                        this.tile[''+j+i].healthText.alpha = 0
-                        this.tile[''+j+i].powerText.alpha = 0;
-                        
-                        //this.tile[''+j+i].isCrewHere = false;
-                        //this.tile[''+j+i].hasActed = false;                                       
-                        break;  
-                                                                      
-                    }                      
-                  }
+                switch(parseInt(this.crew[this.tile[''+j+i].crewID].attackPattern)){
+                  //normal
+                  case 1:
+                    this.crewAttackTile(this.tile[''+(j+1)+(i)],this.tile[''+j+i].crewID)
+                    this.crewAttackTile(this.tile[''+(j-1)+(i)],this.tile[''+j+i].crewID)
+                    this.crewAttackTile(this.tile[''+(j)+(i+1)],this.tile[''+j+i].crewID)
+                    this.crewAttackTile(this.tile[''+(j)+(i-1)],this.tile[''+j+i].crewID)                     
+                    break;
+                  //col strike 
+                  case 2:
+                    for(var l = 0; l < this.boardHeight; l++){
+                      for(var m = 0; m < this.boardWidth; m++){
+                        if(j == m){
+                          this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
+                        }
+                      }
+                    }                            
+                    break;    
+                  //row strike 
+                  case 3:
+                    for(var l = 0; l < this.boardHeight; l++){
+                      for(var m = 0; m < this.boardWidth; m++){
+                        if(i == l){
+                          this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
+                        }
+                      }
+                    }                       
+                    break;
+                    //area     
+                    case 4:
+                      this.crewAttackTile(this.tile[''+(j+1)+(i)],this.tile[''+j+i].crewID)
+                      this.crewAttackTile(this.tile[''+(j-1)+(i)],this.tile[''+j+i].crewID)
+                      this.crewAttackTile(this.tile[''+(j)+(i+1)],this.tile[''+j+i].crewID)
+                      this.crewAttackTile(this.tile[''+(j)+(i-1)],this.tile[''+j+i].crewID)       
+                      
+                      this.crewAttackTile(this.tile[''+(j+1)+(i+1)],this.tile[''+j+i].crewID)
+                      this.crewAttackTile(this.tile[''+(j-1)+(i-1)],this.tile[''+j+i].crewID)   
+                      this.crewAttackTile(this.tile[''+(j-1)+(i+1)],this.tile[''+j+i].crewID)
+                      this.crewAttackTile(this.tile[''+(j+1)+(i-1)],this.tile[''+j+i].crewID)                                                           
+                    break;    
+                    case 5:
+                      for(var l = 0; l < this.boardHeight; l++){
+                        for(var m = 0; m < this.boardWidth; m++){
+                          if(j == m){
+                            this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
+                          }
+                        }
+                      }                        
+                      for(var l = 0; l < this.boardHeight; l++){
+                        for(var m = 0; m < this.boardWidth; m++){
+                          if(i == l){
+                            this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)          
+                          }
+                        }
+                      }                                                            
+                    break;                                                                                     
                 }
 
+                //crew combat ability trigger
+                switch(this.tile[''+j+i].crewID){
+                  case 1:
 
+                    break;
+                  case 2:
+                    //death blade
+                    /*
+                    this.knockBack(this.tile[''+(j+1)+(i)],this.tile[''+j+i])
+                    this.knockBack(this.tile[''+(j-1)+(i)],this.tile[''+j+i])
+                    this.knockBack(this.tile[''+(j)+(i+1)],this.tile[''+j+i])
+                    this.knockBack(this.tile[''+(j)+(i-1)],this.tile[''+j+i])       
+                    
+                    this.knockBack(this.tile[''+(j+1)+(i+1)],this.tile[''+j+i])
+                    this.knockBack(this.tile[''+(j-1)+(i-1)],this.tile[''+j+i])   
+                    this.knockBack(this.tile[''+(j-1)+(i+1)],this.tile[''+j+i])
+                    this.knockBack(this.tile[''+(j+1)+(i-1)],this.tile[''+j+i])  
+                    */
 
-              
+                    
+                    break;
+                  case 3:             
+                    break;
+                  case 4:                
+                    break;  
+                  case 5:   
+                    //bomb explodes
+                    
+                    this.removeTint();
+                    this.tile[''+j+i].y  = 1000;
+                    this.tile[''+j+i].loadTexture('tile');                
+                    this.tile[''+j+i].crewID = 0
+                    //this.tile[''+j+i].monID = 0
+                    this.tile[''+j+i].isCrewHere = false;
+                    //this.tile[''+j+i].isEnemyHere = false;
+                    this.tile[''+j+i].healthText.text = "";
+                    this.tile[''+j+i].powerText.text = "";
+                    this.tile[''+j+i].healthText.alpha = 0
+                    this.tile[''+j+i].powerText.alpha = 0;
+                    
+                    //this.tile[''+j+i].isCrewHere = false;
+                    //this.tile[''+j+i].hasActed = false;                                       
+                    break;                                                
+                }                
 
                 j =  this.boardWidth
                 i = this.boardHeight
@@ -2319,7 +2165,7 @@
           }         
           this.ActionCounter++;  
 
-          
+          //alert("action COunter "+this.ActionCounter)
           if(this.ActionCounter >= this.deployCrewCount){
             //this.removeTint();
             this.phaseCounter++;
@@ -2343,7 +2189,7 @@
           else{
             this.phaseStart = true;
             this.actionTimer = 50;
-            //this.game.time.events.add(5000, this.enemyFight());
+            //this.selectCrew.time.events.add(5000, this.enemyFight());
           }          
         }  
         ,crewAttackTile: function (enemy,crewID) {   
@@ -2355,35 +2201,15 @@
               if(enemy.alpha == 1){
                 for(var i = 1; i < 6; i++){
                   if(this.crew[i].id == crewID){
-                    
+                    console.log("id "+i+" power "+this.crew[i].power)
                     enemy.hp -= this.crew[i].power
-                    this.setActionText(enemy,this.crew[i].power)
-                    if(crewID == 10){
-                      
-                      enemy.smoke.on = true;
-                      enemy.smoke.x = enemy.x
-                      enemy.smoke.y = enemy.y
-                    }
                   }
                 }
-                
-              }
-              else{
-                for(var i = 0; i < this.boardHeight; i++){
-                  for(var j = 0; j < this.boardWidth; j++){   
-                    if(this.tile[''+j+i].crewID == crewID){
-                      this.setActionText(this.tile[''+j+i],"MISSED")
-                    }
-                  }
-                }                    
-                       
                 
               }
               //enemy.spinSpeed = this.crew[crewID].power*10
               enemy.springX = 100;
               //enemy.springY = 100;
-
-             
 
               //enemy on hurt ability
               switch(enemy.monID){
@@ -2429,7 +2255,6 @@
         }
         ,enemyDie: function (enemy,crewID) {
           
-          enemy.smoke.on = false;
           enemy.isEnemyHere = false;
           enemy.submerged = false;
           enemy.loadTexture('tile');
@@ -2547,7 +2372,7 @@
               break;                                                               
           }       
           enemy.monID = 0;   
-          this.game.plugins.screenShake.shake(5); 
+          this.selectCrew.plugins.screenShake.shake(5); 
 
           //enemy.y = 1000;          
         }      
@@ -2642,7 +2467,7 @@
 
           }
 
-          this.game.plugins.screenShake.shake(5); 
+          this.selectCrew.plugins.screenShake.shake(5); 
 
           //enemy.y = 1000;          
         }                        
@@ -2674,23 +2499,8 @@
 
                 if(!this.tile[''+j+i].submerged){
                   this.tile[''+j+i].width  += 100;
-                  this.tile[''+j+i].height += 100;        
-                  
-                  //if smoking potentially miss (25% chance)
-                  if(this.tile[''+j+i].smoke.on){
-                    var missChance = Math.floor(Math.random() * 4);    
-                    if(missChance == 0){
-                      this.setActionText(this.tile[''+j+i],"MISSED")
-                    }
-                    else{
-                      this.damageCaptain(this.tile[''+j+i])
-                    }
-                  }
-                  else{
-                    this.damageCaptain(this.tile[''+j+i])
-             
-                  }
-                  
+                  this.tile[''+j+i].height += 100;                  
+                  this.cap_healthValue-= parseInt(this.tile[''+j+i].power);  
 
                   //enemy special combat ability
                   switch(this.tile[''+j+i].monID){
@@ -2712,7 +2522,7 @@
                         
                         if(!this.tile[''+(j+1)+(i)].isCrewHere && !this.tile[''+(j+1)+(i)].isEnemyHere){
                           var whichArm = Math.floor(Math.random() * 2);    
-                          
+                          //alert((j+1)+""+(i)+" "+this.tile[''+(j+1)+(i)].isEnemyHere)
                           if(whichArm == 0){
                             this.tile[''+(j+1)+(i)].hp = 3;
                             this.tile[''+(j+1)+(i)].power = 3;
@@ -2739,10 +2549,10 @@
                       }
 
                       try{
-                        
+                        console.log(this.tile[''+(j-1)+(i)])
                         if(!this.tile[''+(j-1)+(i)].isCrewHere && !this.tile[''+(j-1)+(i)].isEnemyHere){
                           var whichArm = Math.floor(Math.random() * 2);  
-                          
+                          console.log(" arm "+whichArm)
                           if(whichArm == 0){
                             this.tile[''+(j-1)+(i)].hp = 3;
                             this.tile[''+(j-1)+(i)].power = 3;
@@ -2761,7 +2571,7 @@
                             this.tile[''+(j-1)+(i)].submerged = false
                             this.tile[''+(j-1)+(i)].monID = 3
                           }
-                         
+                          console.log(this.tile[''+(j-1)+(i)])
                         }
                         
                       } 
@@ -2862,10 +2672,10 @@
                         }
                         break;                                    
                   } 
-                  this.game.plugins.screenShake.shake(5); 
+                  this.selectCrew.plugins.screenShake.shake(5); 
 
                   if(this.cap_healthValue <= 0){
-                    this.game.state.start('lose');
+                    this.selectCrew.state.start('lose');
                   }
                   j =  this.boardWidth
                   i = this.boardHeight
@@ -2929,21 +2739,19 @@
           else{
             this.phaseStart = true;
             this.actionTimer = 50;
-            //this.game.time.events.add(5000, this.enemyFight());
+            //this.selectCrew.time.events.add(5000, this.enemyFight());
           }
             
         }        
         ,placeCrew: function (tile) {
           
-          
           if(debug){
             alert("tile info \nIs Flipping? "+tile.isFlipping+"\nisEnemy? "+tile.isEnemyHere+"\nisSubmerged? "+tile.submerged+"\nmonID? "+tile.monID+"\nisCrew? "+tile.isCrewHere)
-            alert("tile info \ncrew ID? "+tile.crewID)
           }
           
           if(this.selectedCrew != 0 && (!tile.isEnemyHere || tile.submerged) && !tile.isCrewHere ){
             var remainingDeploy = this.deploy_poolCurrent - this.crew[this.selectedCrew].deployCost
-            
+            //alert(this.placeOrderTracker)
             tile.placeOrder = this.placeOrderTracker
             this.placeOrderTracker++
             if(remainingDeploy >= 0){
@@ -2955,8 +2763,7 @@
                 tile.width = this.size
                 tile.height = this.size
                 tile.isCrewHere = true
-
-                tile.crewID = this.crew[this.selectedCrew].id 
+                tile.crewID = this.selectedCrew 
                 this.crew[this.selectedCrew].isSelected = false;
                 
                 this.deploy_poolCurrent -= this.crew[this.selectedCrew].deployCost
@@ -2979,20 +2786,7 @@
 
           }
           else if(tile.isEnemyHere){
-            //
-            if(this.smoke.on){
-              this.smoke.on = false;
-
-              tile.smoke.on = true;
-              tile.smoke.x = tile.x
-              tile.smoke.y = tile.y
-              tile.hp -= 2;
-              tile.springX = 100;
-              if(tile.hp<= 0){
-                tile.hp = 0;
-                this.enemyDie(tile)
-              }              
-            }
+          
             this.selectedCrew = 100+tile.monID;
             if(tile.submerged){
               this.selectedCrew = 200;
@@ -3054,9 +2848,7 @@
               for(var i = 1; i < 6; i++){
                 this.crew[i].isSelected = false;
               }            
-              this.selectedCrew = crew.arrayKey//crew.id
-              
-              
+              this.selectedCrew = crew.id
               crew.isSelected = true;
             }
             else{
@@ -3068,22 +2860,9 @@
 
           
         }
-        , setActionText: function (tile,text) {
-          tile.actionText.alpha = 1;
-          tile.actionText.text = text;
+        , movePlayer: function (key) {
 
-          tile.actionText.x = tile.x
-          tile.actionText.y = tile.y
-          
                       
-          
-        }        
-        , damageCaptain: function (enemy) {
-            this.cap_healthText2.alpha = 1
-            this.cap_healthValue -= parseInt(enemy.power);  
-            this.cap_healthText2.text = enemy.power
-            this.cap_healthText2.y = this.cap_healthText.y
-                        
           
         }
         , monMove: function (){
@@ -3097,7 +2876,7 @@
 
         }     
         , springBody: function (degrade,tile){
-          
+          //console.log(tile.id+"  "+tile.springX)
           if(tile.springY != 0){
                   
             if(tile.springY > 0){
@@ -3128,7 +2907,7 @@
 
         if (user) {
         // User is signed in.
-        this.game.state.start('game');
+        this.selectCrew.state.start('selectCrew');
         } else {
         // No user is signed in.
         } */       
@@ -3138,5 +2917,5 @@
         
     };
     window['simplewar'] = window['simplewar'] || {};
-    window['simplewar'].Game = Game;
+    window['simplewar'].selectCrew = selectCrew;
 }());

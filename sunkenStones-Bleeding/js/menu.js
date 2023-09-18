@@ -80,7 +80,8 @@
     onDown: function () {
       localStorage.setItem("level","1")
       if(this.count >= 3){
-        this.game.state.start('game');
+       this.game.state.start('selectCap');
+       //this.game.state.start('game');
       }
 	    //
         /*var user = firebase.auth().currentUser;

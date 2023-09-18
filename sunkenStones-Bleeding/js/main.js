@@ -12,6 +12,8 @@ window.onload = function () {
   game.state.add('menu', ns.Menu); 
   game.state.add('game', ns.Game);
   game.state.add('win', ns.Win);
-  game.state.add('lose', ns.Lose);    
+  game.state.add('lose', ns.Lose);  
+  game.state.add('selectCap', ns.selectCap);   
+  game.state.add('selectCrew', ns.selectCrew);    
   game.state.start('boot');
 };
