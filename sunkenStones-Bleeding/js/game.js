@@ -2991,9 +2991,15 @@
               if(tile.hp<= 0){
                 tile.hp = 0;
                 this.enemyDie(tile)
-              }              
+              } 
+              else{
+                this.selectedCrew = 100+tile.monID;
+              }             
             }
-            this.selectedCrew = 100+tile.monID;
+            else{
+              this.selectedCrew = 100+tile.monID;
+            }
+            
             if(tile.submerged){
               this.selectedCrew = 200;
             }
