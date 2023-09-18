@@ -10,9 +10,9 @@ crew[1].type = 0 // 0- steel, 1 - salt, 2 -smoke
 crew[1].ability  = "ON COMBAT:\nADD YOUR POWER TO NEXT FIGHTING CREWMATE"
 
 crew[2] = new Object();
-crew[2].deployCost = 4;
+crew[2].deployCost = 3;
 crew[2].name = ""
-crew[2].power = 1
+crew[2].power = 2
 crew[2].origPower = crew[2].power
 crew[2].attackPattern = 1
 crew[2].type = 0 // 0- steel, 1 - salt, 2 -smoke
