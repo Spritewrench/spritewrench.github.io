@@ -55,18 +55,18 @@ crew[6].type = 1 // 0- steel, 1 - salt, 2 -smoke
 crew[6].ability  = "ON REGROUP: GAIN EXTRA SAVVY EQUAL TO # OF SUBMERGED ENEMIES "  
 
 crew[7] = new Object();
-crew[7].deployCost = 10;
+crew[7].deployCost = 6;
 crew[7].name = ""
-crew[7].power = 12
+crew[7].power = 15
 crew[7].origPower = crew[7].power
-crew[7].attackPattern = 1
+crew[7].attackPattern = 5
 crew[7].type = 1 // 0- steel, 1 - salt, 2 -smoke
-crew[7].ability  = "COST LESS FOR EACH SUBMERGED ENEMY"  
+crew[7].ability  = "COST LESS FOR EACH SUBMERGED ENEMY\nON COMBAT:\nFIGHT ALL ENEMIES IN THE SAME COLUMN & ROW"  
 
 crew[8] = new Object();
 crew[8].deployCost = 2;
 crew[8].name = ""
-crew[8].power = 2
+crew[8].power = 4
 crew[8].origPower = crew[8].power
 crew[8].attackPattern = 6
 crew[8].type = 2 // 0- steel, 1 - salt, 2 -smoke

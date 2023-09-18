@@ -750,7 +750,7 @@
           if(this.crewKey <= 4 && selectedCrew.unlocked && !selectedCrew.selected){
             this.selectedCrew = this.crewKey
             
-            crew.selected = true;
+            selectedCrew.selected = true;
             this.crew[this.crewKey].loadTexture("crew-"+selectedCrew.crewID)
             this.crew[this.crewKey].isBlank = false;
             this.crew[this.crewKey].id = selectedCrew.crewID
