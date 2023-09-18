@@ -1616,7 +1616,7 @@
                 }                  
                 break;
               case 2:
-              
+                this.captainPowerActivated = false;
               this.smoke.on = true;                 
               break;                
               case 3:

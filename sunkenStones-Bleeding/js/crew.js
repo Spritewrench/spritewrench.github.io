@@ -64,7 +64,7 @@ crew[7].type = 1 // 0- steel, 1 - salt, 2 -smoke
 crew[7].ability  = "COST LESS FOR EACH SUBMERGED ENEMY"  
 
 crew[8] = new Object();
-crew[8].deployCost = 3;
+crew[8].deployCost = 2;
 crew[8].name = ""
 crew[8].power = 2
 crew[8].origPower = crew[8].power
