@@ -99,17 +99,27 @@
             this.ult_text = this.add.text(70,this.game.height-400, 'BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 350  });
             this.ult_text.angle = -1
 
+
             switch(this.capKey){
               case 1:
                 this.ult_text.text = "BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1"
+                this.cap_healthValue = 15; 
+                this.deploy_poolCurrent = 3;
+                this.deploy_poolMax = this.deploy_poolCurrent                 
                 this.cap_ultCost = 1;
                 break;
               case 2:
                 this.ult_text.text = "DEAL 2 DAMAGE TO TARGET ENEMY. APPLY 'SMOKING'"
+                this.cap_healthValue = 5; 
+                this.deploy_poolCurrent = 5;
+                this.deploy_poolMax = this.deploy_poolCurrent                 
                 this.cap_ultCost = 1;
                 break;  
               case 3:
                 this.ult_text.text = "SUBMERGE ALL ENEMIES"
+                this.cap_healthValue = 10; 
+                this.deploy_poolCurrent = 2;
+                this.deploy_poolMax = this.deploy_poolCurrent                 
                 this.cap_ultCost = 4
                 break;                              
             }

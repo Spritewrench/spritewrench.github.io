@@ -1313,7 +1313,17 @@
                                       }
                                     }                                    
                                     this.tile[""+j+i].tint = '0xFFFFFF'                                                          
-                                  break;                                                                                                                            
+                                  break;   
+                                  case 7:
+                                    for(var l = 0; l < this.boardHeight; l++){
+                                      for(var m = 0; m < this.boardWidth; m++){
+                                        if(this.tile[''+(m)+(l)].submerged){
+                                          this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")                
+                                        }
+                                      }
+                                    }   
+                                    this.tile[""+j+i].tint = '0xFFFFFF'                            
+                                    break;                                                                                                                                                              
                               }
                             }
 
@@ -1697,10 +1707,7 @@
           
         }
         ,spawnMonsters: function (tile,submerged) {
-          //check if win
-          if(this.monCountValue <= 0){
-            this.chatTimer = 1;
-          }  
+
 
           this.spawnCount = 0;
           //if submerged undefined             
@@ -2058,16 +2065,7 @@
                     
                     break; 
                   case 6:
-                    var holder = 0;
-                    for(var m = 0; m < this.boardHeight; m++){
-                      for(var l = 0; l < this.boardWidth; l++){  
-                        if(this.tile[""+l+m].submerged){
-                          //this.spawnSalt(this.tile[""+l+m].x, this.tile[""+l+m].y)
-                          holder++;
-                        }                        
-                      }
-                    } 
-                    this.deploy_poolCurrent += holder;                   
+                   
                     break;                                                                    
                 }                
                 this.tile[''+j+i].crewID = 0
@@ -2255,6 +2253,15 @@
                             }
                           }                              
                           break;
+                        case 7:
+                          for(var l = 0; l < this.boardHeight; l++){
+                            for(var m = 0; m < this.boardWidth; m++){
+                              if(this.tile[''+(m)+(l)].submerged){
+                                this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)              
+                              }
+                            }
+                          }                              
+                          break;                          
                                                                                  
                     }  
                     
@@ -2300,7 +2307,8 @@
                         
                         //this.tile[''+j+i].isCrewHere = false;
                         //this.tile[''+j+i].hasActed = false;                                       
-                        break;  
+                        break;
+
                                                                       
                     }                      
                   }
@@ -2349,7 +2357,7 @@
         ,crewAttackTile: function (enemy,crewID) {   
           try{
            
-            if(enemy.isEnemyHere && !enemy.submerged){
+            if(enemy.isEnemyHere && ((!enemy.submerged && crewID != 6) || (enemy.submerged && crewID == 6))){
               
               //if intagible no damage
               if(enemy.alpha == 1){
@@ -2441,7 +2449,18 @@
           
           //check if win
           if(this.monCountValue <= 0){
-            this.chatTimer = 1;
+            var monsLeft = 0;
+            for(var m = 0; m < this.boardHeight; m++){
+              for(var l = 0; l < this.boardWidth; l++){  
+                if(this.tile[''+l+m].isEnemyHere){
+                  monsLeft++
+                }
+              }
+            }            
+            if(monsLeft <= 0){
+              this.chatTimer = 1;
+            }
+            
           }     
             
           // crew kill effects

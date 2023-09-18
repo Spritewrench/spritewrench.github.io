@@ -1,4 +1,4 @@
-const version = "0.0.5c"//pre 0.0.4
+const version = "0.0.5d"//pre 0.0.4
 const debug = false;
 
 const monBaseCount = 1
