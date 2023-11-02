@@ -22,6 +22,10 @@
         localStorage.setItem("score",0)
       }      
       var text = 
+
+      this.titleTxt = this.add.bitmapText(x, y-200, 'minecraftia', 'HIGHWAY DASH', 48); 
+      this.titleTxt.anchor.setTo(0.5, 0.5);
+
       this.startTxt = this.add.bitmapText(x, this.game.height-150, 'minecraftia', 'TAP TO START', 24); 
       this.startTxt.anchor.setTo(0.5, 0.5);
       

@@ -101,7 +101,7 @@
       this.input.onDown.add(this.onInputDown, this);      
       
       this.music = this.add.audio('KamKamGameMusic',1,true);
-      this.music.play();
+      //this.music.play();
       this.music.volume = 0.50;
       
       this.shieldDown = this.add.audio('shieldDown',1,false);
@@ -129,7 +129,7 @@
         place+=extra;
         var randomDeb = Math.floor((Math.random()*5)+1);
         this.debris[i] = this.add.sprite(val, place, 'debris'+randomDeb);
-        this.debris[i].spinSpeed = Math.floor((Math.random()*5)+1);
+        this.debris[i].spinSpeed = Math.floor((Math.random()*5)+10);
         
         
         val += this.game.width/3;
@@ -144,7 +144,7 @@
         place+=extra;        
         this.debris[i].width = 100;
         this.debris[i].height = 115;
-        
+        this.debris[i].origX = this.debris[i].x
         this.debris[i].scale.y *= -1;
         this.debris[i].anchor.setTo(0.5, 0.5);        
         this.speed[i] = this.baseSpeed;
@@ -229,7 +229,7 @@
       
       if(!this.music.isPlaying){   
         //console.log(1)
-        this.music.play();  
+        //this.music.play();  
       }
       
       this.scoreText.setText('SCORE: '+this.score+'');
@@ -273,7 +273,7 @@
         if(this.overTimer === 200){
           this.image.visible = true;
           //this.player.hp++;
-          this.shieldUp.play();
+          //this.shieldUp.play();
           this.warnText.alpha = 0;
         }
         else{
@@ -291,9 +291,16 @@
       //debris behaviour 
       for(var i=0; i < 3; i++){
         this.debris[i].body.velocity.y = -(this.speed[i]); //fly up
+        if(this.debris[i].crashed){
+          this.debris[i].angle += this.debris[i].spinSpeed;
+        }
         //this.debris[i].angle += this.debris[i].spinSpeed;
         
         if(this.debris[i].y < 0){
+          this.debris[i].crashed = false;
+          this.debris[i].body.velocity.x = 0
+          this.debris[i].x = this.debris[i].origX
+          this.debris[i].angle = 1;
           var extra = 0;
           var random = Math.floor((Math.random()*2)+1);
           if(random == 1){
@@ -359,8 +366,24 @@
       
       //this.speed = 150;
    
+
+        
+        obj2.crashed = true;
+        var ranDir = Math.floor((Math.random()*2))
+        obj2.spinSpeed = Math.floor((Math.random()*25)+25);
+        obj2.y = obj1.y-obj1.height/2
+        if(ranDir == 0){
+          
+          obj2.body.velocity.x = 500
+        } 
+        else{
+          //obj2.x-= 100
+          obj2.body.velocity.x = -500
+        }
+        
+
         obj1.body.velocity.y = 0; 
-        obj2.y = this.game.height*2;
+
         obj1.hp--;
         this.image.visible = false;
         //this.overTimer = 0;
@@ -373,7 +396,7 @@
           this.shieldUp.stop()
           this.game.state.start('menu');    
         }
-        this.shieldDown.play();
+       // this.shieldDown.play();
         // this.bg.alpha = 5;
         //this.game.state.start('menu');      
 
