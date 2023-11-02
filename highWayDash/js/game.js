@@ -372,6 +372,7 @@
         var ranDir = Math.floor((Math.random()*2))
         obj2.spinSpeed = Math.floor((Math.random()*25)+25);
         obj2.y = obj1.y-obj1.height/2
+        obj2.y = 0-obj2.width
         if(ranDir == 0){
           
           obj2.body.velocity.x = 500
