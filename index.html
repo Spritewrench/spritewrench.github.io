@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<script src="https://kit.fontawesome.com/b05150ce94.js" crossorigin="anonymous"></script>
 		<link rel="Shortcut Icon" href="images/favicon.ico">
 		
@@ -46,11 +47,6 @@
 									</ul>
                                     <h4 class="title"><br/><br/>For business inquiries / questions, shoot me an email: <br/> ghenry@spritewrench.com</h3>
 								</div>
-								<div class="center span-3-25">
-									<h2  id="logo" class="logo">CURRENTLY WORKING ON: <br/> <span id="logo-highlight" class="logo-highlight">ON THE PERIL OF PARROTS</span> </h2>
-                                   <h2 class="logo"><a href="https://store.steampowered.com/app/2137480/On_the_Peril_of_Parrots/?curator_clanid=4777282&utm_source=SteamDB"><img src="images/parrot.png" width="50%"/></a></h2>
-                                    <br/>
-								</div>                
 
                 </div>
                                 
@@ -76,6 +72,23 @@
 					target.innerHTML = txt;
 				}
 			</script>
-
+			<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+			<script>
+				Toastify({
+				  avatar: "images/ssIcon.jpg",	
+				  text: "Currently Working on Sunken Stones",
+				  duration: -1,
+				  destination: "https://store.steampowered.com/app/2601810/Sunken_Stones/",
+				  newWindow: true,
+				  close: false,
+				  gravity: "top", // `top` or `bottom`
+				  position: "center", // `left`, `center` or `right`
+				  stopOnFocus: true, // Prevents dismissing of toast on hover
+				  style: {
+					background: "linear-gradient(to right, #E12D6C, #E12D6C)",
+				  },
+				  onClick: function(){} // Callback after click
+				}).showToast();				
+							</script>
 	</body>
 </html>
