@@ -19,18 +19,33 @@
       this.load.image('player', 'assets/player.png');
       
       this.load.image('car1', 'assets/red_door_closed.png');
+      this.load.image('car2', 'assets/blue_door_closed.png');
       this.load.spritesheet('ship', 'assets/KamKam-spaceship.png',32,39);
       
       
       this.load.image('image', 'assets/afterImage.png');
       this.load.spritesheet('FF', 'assets/FF.png',32,39);
+
+      this.load.image('bg', 'assets/bg.png');
+
+      this.load.image('car1-side', 'assets/camry_red.png');
+      this.load.image('car2-side', 'assets/camry_blue.png');
+
+      this.load.image('player1', 'assets/player1.png');
+      this.load.image('stats1', 'assets/stats1.png');
+
+      this.load.image('player2', 'assets/player2.png');
+      this.load.image('stats2', 'assets/stats2.png');      
       
-      this.load.image('debris1', 'assets/green_door_closed.png');
-      this.load.image('debris2', 'assets/pink_door_closed.png');
-      this.load.image('debris3', 'assets/white_door_closed.png');
-      this.load.image('debris4', 'assets/yellow_door_closed.png');
-      this.load.image('debris5', 'assets/white_door_closed.png');
-      this.load.image('debris6', 'assets/white_door_closed.png');
+      this.load.image('debris1', 'assets/animal_cow.png');
+      this.load.image('debris2', 'assets/animal_cluck.png');
+      this.load.image('debris3', 'assets/animal_pig.png');
+      this.load.image('debris4', 'assets/animal_sheep.png');
+      this.load.image('debris5', 'assets/animal_frog.png');
+      this.load.image('debris6', 'assets/animal_group.png');
+
+      this.load.image('endFlag', 'assets/endFlag.png');
+      this.load.image('roadLine', 'assets/roadLine.png');
       
       this.load.image('fgLine', 'assets/fgLine.png');
       this.load.image('bgLine', 'assets/bgLine.png');
@@ -40,11 +55,13 @@
       this.load.image('bt', 'assets/bedTime.png');
       
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
-      this.load.audio('KamKamGameMusic', ['assets/KamKamGameMusic.ogg']); 
+      this.load.audio('bgMusic', ['assets/whip-110235.mp3']); 
       this.load.audio('KamKamScoreOutro(8Bit)', ['assets/KamKamScoreOutro(8Bit).ogg']); 
       
       this.load.audio('shieldDown', ['assets/62362__fons__zap-1.ogg']); 
       this.load.audio('shieldUp', ['assets/220173__gameaudio__spacey-1up-power-up.ogg']); 
+      this.load.audio('carHonk', ['assets/571348__99021905683__car-horn-honking.wav']); 
+      
       
       
       this.load.onFileComplete.add(this.fileComplete, this);

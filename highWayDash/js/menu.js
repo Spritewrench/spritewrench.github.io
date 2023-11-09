@@ -28,8 +28,16 @@
 
       this.startTxt = this.add.bitmapText(x, this.game.height-150, 'minecraftia', 'TAP TO START', 24); 
       this.startTxt.anchor.setTo(0.5, 0.5);
+
+      var time = parseInt(localStorage.getItem("score"))
+      let minutes = Math.floor((time / 60)/60);
+      let extraSeconds = Math.floor((time / 60)) % 60//this.score % 60;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
+
+
       
-      this.startTxt2 = this.add.bitmapText(x, this.startTxt.y+30, 'minecraftia', 'HIGH SCORE: '+parseInt(localStorage.getItem("score")), 18); 
+      this.startTxt2 = this.add.bitmapText(x, this.startTxt.y+30, 'minecraftia', 'BEST TIME: '+ minutes + " : " + extraSeconds, 18); 
       this.startTxt2.anchor.setTo(0.5, 0.5);      
 
       this.input.onDown.add(this.onDown, this);
@@ -55,7 +63,7 @@
       //this.music.stop();
       //this.music.play();
       //this.music.stop();
-      this.game.state.start('game');
+      this.game.state.start('driveSelect');
     }
   };
 
