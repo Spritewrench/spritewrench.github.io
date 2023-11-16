@@ -34,9 +34,9 @@
       this.physics.startSystem(Phaser.Physics.ARCADE);
       
 
-      this.baseSpeed = 100 //200
-      this.speedInc = 1 // 25
-      this.topSpeed = this.game.height*2;  //400    
+      this.baseSpeed = 500 //200
+      this.speedInc = 25 // 25
+      this.topSpeed = this.game.height*4;  //400    
 
       var x = this.game.width / 2
         , y = this.game.height / 2;
@@ -65,12 +65,7 @@
       
       this.carKey = parseInt(localStorage.getItem("carKey"))
       
-      this.player = this.add.sprite(x, -200, 'car'+this.carKey);
-      this.player.width = 100;
-      this.player.height = 115;
-      this.player.scale.y *= -1;
-      this.player.anchor.setTo(0.5, 0.5);
-      this.player.hp = 1;
+
 
             
       //this.player.loadTexture('ship');
@@ -106,14 +101,11 @@
       this.shieldDown = this.add.audio('shieldDown',1,false);
       this.shieldUp = this.add.audio('shieldUp',1,false);
    
-      
-      this.physics.enable(this.player, Phaser.Physics.ARCADE);
-      this.player.body.allowRotation = false;
-      this.player.body.immovable = true;      
-      //this.physics.enable(this.player,Phaser.Physics.Arcade);
+
       
       var val = this.target - this.game.width/3;
-      var place= this.game.height/2-100;
+      var dist = this.game.width/3
+      var place= this.game.height///2-100;
       this.debris = [3];
       this.speed= [3];
       for(var i = 0; i < 3; i++ ){
@@ -122,36 +114,37 @@
         var extra = 0;
         var random = Math.floor((Math.random()*3)+1);
         if(random == 1){
-          extra = 100;
+          extra = 200;
         }
         else if(random == 2){
-          extra = 200
+          extra = 400
         }
         else if(random == 3){
-          extra = 300
+          extra = 600
         }          
-
+        extra+=this.speed[i]*2
         var randomDeb = Math.floor((Math.random()*5)+1);
         place+=extra
         this.debris[i] = this.add.sprite(val, place, 'debris'+randomDeb);
+        val +=dist;
         this.debris[i].spinSpeed = Math.floor((Math.random()*5)+10);
         
         
 
-        this.debris[i].width = 64;
-        this.debris[i].height = 64;
+        this.debris[i].width =60;
+        this.debris[i].height = 100;
         this.debris[i].origX = this.debris[i].x
         this.speed[i] = this.baseSpeed;
         this.debris[i].waddleTimer = 100;
         this.debris[i].waddleKey = Math.floor((Math.random()*2));
         this.debris[i].startX = Math.floor((Math.random()*2));
         if(this.debris[i].startX == 0){
-          this.debris[i].x = 0 //cross road
+          //this.debris[i].x = 0 //cross road
         }
         else{
-          this.debris[i].x = this.game.width
+          //this.debris[i].x = this.game.width
         }        
-        //this.debris[i].scale.y *= -1;
+        this.debris[i].scale.y *= -1;
         this.debris[i].anchor.setTo(0.5, 0.5);        
         
         this.physics.enable(this.debris[i], Phaser.Physics.ARCADE);
@@ -159,7 +152,16 @@
        
       }
     
-      
+      this.player = this.add.sprite(x, -200, 'car'+this.carKey);
+      this.player.width = 60;
+      this.player.height = 100;
+      this.player.scale.y *= -1;
+      this.player.anchor.setTo(0.5, 0.5);
+      this.player.hp = 1;
+      this.physics.enable(this.player, Phaser.Physics.ARCADE);
+      this.player.body.allowRotation = false;
+      this.player.body.immovable = true;      
+      //this.physics.enable(this.player,Phaser.Physics.Arcade);      
       
       this.scoreText = this.add.text(x, this.game.height-50, 'CHOOSE', {font: '24px Kaph-Regular',fill: '#fff', align: 'center'});//this.startTxt = this.add.bitmapText(x, this.game.height-100, 'minecraftia', ''+this.score+'ft', 12);
       this.scoreText.anchor.setTo(0.5, 0.5);     
@@ -213,9 +215,9 @@
         this.player.y += ( 150 - this.player.y) * 0.1
 
         for(var i = 0; i < 10;i++){
-          this.roadlinespeed[i]+=0.1;
-          if(this.roadlinespeed[i] > 300){
-            this.roadlinespeed[i] = 300;
+          this.roadlinespeed[i]+=1;
+          if(this.roadlinespeed[i] > this.topSpeed/2){
+            this.roadlinespeed[i] = this.topSpeed/2;
           }
           this.roadLine[i].body.velocity.y = -(this.roadlinespeed[i]);
           if(this.roadLine[i].body.velocity.y > this.topSpeed){
@@ -326,38 +328,41 @@
       //debris behaviour 
       if(this.dist < this.game.width){
         for(var i=0; i < 3; i++){
+          
+
+
           this.debris[i].body.velocity.y = -(this.speed[i]); //fly up
           if(this.debris[i].y < (this.game.height-10)){
             if(this.debris[i].startX == 0){
-              this.debris[i].body.velocity.x = (this.speed[i]); //cross road
+              //this.debris[i].body.velocity.x = (this.speed[i]); //cross road
               
             }
             else{
-              this.debris[i].body.velocity.x = -(this.speed[i]); //cross road             
+              //this.debris[i].body.velocity.x = -(this.speed[i]); //cross road             
             }
             
 
             if(this.debris[i].startled ){
             
               if(this.debris[i].startX == 0){
-                this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road
+               // this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road
                 if(this.debris[i].x > this.player.x ){
-                  this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road
+                 // this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road
                 }
              
                 
               }
               else{
-                this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road      
+               // this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road      
                 if(this.debris[i].x < this.player.x ){
-                  this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road  
+                 // this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road  
                 }                             
               }            
             }            
           }
           
 
-
+          /*
           this.debris[i].waddleTimer-=(this.speed[i]/10)
           if(this.debris[i].waddleTimer <= 0){
             this.debris[i].waddleTimer = 100
@@ -368,28 +373,28 @@
               this.debris[i].waddleKey = 0;
             }
           }
-          
+          */
           if(this.debris[i].crashed){
             this.debris[i].angle += this.debris[i].spinSpeed;
             this.debris[i].width+=5;
             this.debris[i].height+=5
             if(this.debris[i].startX == 0){
-              this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road
+              //this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road
               
             }
             else{
-              this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road            
+              //this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road            
             }              
           }
           else if(this.debris[i].waddleKey == 0){
-            this.debris[i].angle = 10
+            //this.debris[i].angle = 10
           }
           else if(this.debris[i].waddleKey == 1){
-            this.debris[i].angle = -10
+            //this.debris[i].angle = -10
           }
 
-          this.debris[i].height  += ( 64 - this.debris[i].height) * 0.1
-          this.debris[i].width  += ( 64 - this.debris[i].width) * 0.1
+          this.debris[i].height  += ( 100 - this.debris[i].height) * 0.1
+          this.debris[i].width  += ( 60 - this.debris[i].width) * 0.1
           //this.debris[i].angle += this.debris[i].spinSpeed;
           
           if(this.debris[i].y < 0 || (this.debris[i].x > this.game.width && this.debris[i].startX == 0) || (this.debris[i].x < 0 && this.debris[i].startX == 1) || this.debris[i].width > 300){
@@ -398,31 +403,30 @@
             this.debris[i].body.velocity.x = 0
             this.debris[i].startX = Math.floor((Math.random()*2));
             if(this.debris[i].startX == 0){
-              this.debris[i].x = 0 //cross road
+              //this.debris[i].x = 0 //cross road
             }
             else{
-              this.debris[i].x = this.game.width
+              //this.debris[i].x = this.game.width
             }
             
-            //this.debris[i].x = 0//this.debris[i].origX
+            this.debris[i].x = this.debris[i].origX
             
             this.debris[i].angle = 1;
 
-            this.debris[i].width= 64;
-            this.debris[i].height = 64
 
             var extra = 0;
             var random = Math.floor((Math.random()*3)+1);
             if(random == 1){
-              extra = 100;
+              extra = 200;
             }
             else if(random == 2){
-              extra = 200
+              extra = 400
             }
             else if(random == 3){
-              extra = 300
-            }          
-            this.debris[i].y = (this.game.height/2-100) + extra;//(this.game.height/2)+extra;
+              extra = 600
+            }      
+            extra+=this.speed[i]*2
+            this.debris[i].y = (this.game.height) + extra;//(this.game.height/2)+extra;
             var randomDeb = Math.floor((Math.random()*5)+1);
             this.debris[i].loadTexture('debris'+randomDeb); 
             this.debris[i].spinSpeed = Math.floor((Math.random()*5)+1);
@@ -445,15 +449,20 @@
       else{
         for(var i=0; i < 3; i++){
           
-          this.debris[i].body.velocity.y = 0
+          //this.debris[i].body.velocity.y = 0
+          if(!this.debris[i].crashed){
+            this.game.plugins.screenShake.shake(15); 
+            this.debris[i].crashed = true;
+          }
+
           if(this.debris[i].crashed){
-            this.debris[i].body.y = -100;
+            //this.debris[i].body.y = -100;
           }
           if(this.debris[i].startX == 0){
-            this.debris[i].body.velocity.x = -(this.speed[i])*5; //cross road
+            //this.debris[i].body.velocity.x = -(this.speed[i])*5; //cross road
           }
           else{
-            this.debris[i].body.velocity.x = (this.speed[i])*5; //cross road
+            //this.debris[i].body.velocity.x = (this.speed[i])*5; //cross road
           }
         }
       }

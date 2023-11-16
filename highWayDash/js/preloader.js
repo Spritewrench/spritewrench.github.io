@@ -37,12 +37,12 @@
       this.load.image('player2', 'assets/player2.png');
       this.load.image('stats2', 'assets/stats2.png');      
       
-      this.load.image('debris1', 'assets/animal_cow.png');
-      this.load.image('debris2', 'assets/animal_cluck.png');
-      this.load.image('debris3', 'assets/animal_pig.png');
-      this.load.image('debris4', 'assets/animal_sheep.png');
-      this.load.image('debris5', 'assets/animal_frog.png');
-      this.load.image('debris6', 'assets/animal_group.png');
+      this.load.image('debris1', 'assets/pink_door_closed.png');
+      this.load.image('debris2', 'assets/white_door_closed.png');
+      this.load.image('debris3', 'assets/yellow_door_closed.png');
+      this.load.image('debris4', 'assets/green_door_closed.png');
+      this.load.image('debris5', 'assets/pink_door_closed.png');
+      this.load.image('debris6', 'assets/yellow_door_closed.png');
 
       this.load.image('endFlag', 'assets/endFlag.png');
       this.load.image('roadLine', 'assets/roadLine.png');
