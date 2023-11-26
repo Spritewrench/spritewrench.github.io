@@ -26,7 +26,6 @@
       this.load.image('image', 'assets/afterImage.png');
       this.load.spritesheet('FF', 'assets/FF.png',32,39);
 
-      this.load.image('bg', 'assets/bg.png');
 
       this.load.image('car1-side', 'assets/camry_red.png');
       this.load.image('car2-side', 'assets/camry_blue.png');
@@ -51,16 +50,14 @@
       this.load.image('bgLine', 'assets/bgLine.png');
       
       this.load.image('bg', 'assets/TitleScreen_WithLogo.png');
-      this.load.image('gamebg', 'assets/Game_Background_2.png');
+      this.load.image('gamebg', 'assets/simpleBG.png');
       this.load.image('bt', 'assets/bedTime.png');
       
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
       this.load.audio('bgMusic', ['assets/whip-110235.mp3']); 
-      this.load.audio('KamKamScoreOutro(8Bit)', ['assets/KamKamScoreOutro(8Bit).ogg']); 
-      
-      this.load.audio('shieldDown', ['assets/62362__fons__zap-1.ogg']); 
-      this.load.audio('shieldUp', ['assets/220173__gameaudio__spacey-1up-power-up.ogg']); 
       this.load.audio('carHonk', ['assets/571348__99021905683__car-horn-honking.wav']); 
+      this.load.audio('carRev', ['assets/rev.wav']); 
+      this.load.audio('carRevLong', ['assets/revLong.wav']); 
       
       
       

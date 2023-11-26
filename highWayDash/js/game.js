@@ -42,9 +42,9 @@
         , y = this.game.height / 2;
       this.target = x;
       
-      this.bg = this.add.sprite(0, 0, 'bg');
-      this.bg.width = this.game.width
-      this.bg.height = this.game.height
+      //this.bg = this.add.sprite(0, 0, 'bg');
+      //this.bg.width = this.game.width
+      //this.bg.height = this.game.height
       
       this.overTimer = 200;
 
@@ -117,12 +117,12 @@
           extra = 200;
         }
         else if(random == 2){
-          extra = 400
+          extra = 300
         }
         else if(random == 3){
-          extra = 600
+          extra = 400
         }          
-        extra+=this.speed[i]*2
+        //extra+=this.speed[i]*2
         var randomDeb = Math.floor((Math.random()*5)+1);
         place+=extra
         this.debris[i] = this.add.sprite(val, place, 'debris'+randomDeb);
@@ -240,10 +240,11 @@
         if(this.player.y > this.game.height){
           this.music.fadeOut(1000);
           if(this.music.volume <= 0){
+            localStorage.setItem("currentScore",this.score)  
             if(parseInt(localStorage.getItem("score")) > this.score || parseInt(localStorage.getItem("score")) == 0){
               localStorage.setItem("score",this.score)  
             }            
-            this.game.state.start('menu');  
+            this.game.state.start('win');  
           }
            
         }
@@ -420,12 +421,12 @@
               extra = 200;
             }
             else if(random == 2){
-              extra = 400
+              extra = 300
             }
             else if(random == 3){
-              extra = 600
+              extra = 500
             }      
-            extra+=this.speed[i]*2
+            //extra+=this.speed[i]*2
             this.debris[i].y = (this.game.height) + extra;//(this.game.height/2)+extra;
             var randomDeb = Math.floor((Math.random()*5)+1);
             this.debris[i].loadTexture('debris'+randomDeb); 
