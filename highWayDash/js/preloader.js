@@ -20,6 +20,8 @@
       
       this.load.image('car1', 'assets/red_door_closed.png');
       this.load.image('car2', 'assets/blue_door_closed.png');
+      this.load.image('car1_ready', 'assets/red_door_closed_ready.png');
+      this.load.image('car2_ready', 'assets/blue_door_closed_ready.png');      
       this.load.spritesheet('ship', 'assets/KamKam-spaceship.png',32,39);
       
       
@@ -38,10 +40,10 @@
       
       this.load.image('debris1', 'assets/pink_door_closed.png');
       this.load.image('debris2', 'assets/white_door_closed.png');
-      this.load.image('debris3', 'assets/yellow_door_closed.png');
+      this.load.image('debris3', 'assets/green_door_closed.png');
       this.load.image('debris4', 'assets/green_door_closed.png');
       this.load.image('debris5', 'assets/pink_door_closed.png');
-      this.load.image('debris6', 'assets/yellow_door_closed.png');
+      this.load.image('debris6', 'assets/pink_door_closed.png');
 
       this.load.image('endFlag', 'assets/endFlag.png');
       this.load.image('roadLine', 'assets/roadLine.png');
@@ -79,9 +81,7 @@
 
     onDown: function () {
       if(this.ready){
-        this.music = this.add.audio('KamKamScoreOutro(8Bit)',1,true);
-        this.music.play();
-        this.music.stop();
+
         this.game.state.start('menu');         
       }
       //this.music.stop();

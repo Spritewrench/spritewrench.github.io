@@ -36,7 +36,7 @@
 
       this.baseSpeed = 500 //200
       this.speedInc = 25 // 25
-      this.topSpeed = this.game.height*4;  //400    
+      this.topSpeed = this.game.height*1.5;  //400    
 
       var x = this.game.width / 2
         , y = this.game.height / 2;
@@ -117,10 +117,10 @@
           extra = 200;
         }
         else if(random == 2){
-          extra = 300
+          extra = 350
         }
         else if(random == 3){
-          extra = 400
+          extra = 500
         }          
         //extra+=this.speed[i]*2
         var randomDeb = Math.floor((Math.random()*5)+1);
@@ -194,9 +194,27 @@
       this.dist = 0;
 
       this.game.plugins.screenShake = this.game.plugins.add(Phaser.Plugin.ScreenShake);
+      this.hornReady = false;
+      this.hornReadyTimer = 0;
+      this.hornReadycoolDown = 100
     },
 
     update: function () {
+
+
+      if(this.hornReady){
+        this.player.loadTexture('car'+this.carKey+"_ready")
+      }
+      else{
+        this.hornReadyTimer++
+        if(this.hornReadyTimer >= this.hornReadycoolDown){
+          this.hornReadyTimer = 0
+          this.hornReady = true;
+        }        
+        this.player.loadTexture('car'+this.carKey+"")
+      }
+
+      
 
       if(this.warnText.alpha > 0){
         this.warnText.y--
@@ -421,7 +439,7 @@
               extra = 200;
             }
             else if(random == 2){
-              extra = 300
+              extra = 350
             }
             else if(random == 3){
               extra = 500
@@ -431,6 +449,7 @@
             var randomDeb = Math.floor((Math.random()*5)+1);
             this.debris[i].loadTexture('debris'+randomDeb); 
             this.debris[i].spinSpeed = Math.floor((Math.random()*5)+1);
+
             this.speed[i] += this.speedInc;
             if(this.speed[i] > this.topSpeed){
               this.speed[i] = this.topSpeed;
@@ -548,15 +567,34 @@
         this.target -= this.game.width/3;
       }
       
-      if(Math.abs(this.player.x-x)<= dist && Math.abs(this.player.y-y)<= dist){
+      if(Math.abs(this.player.x-x)<= dist && Math.abs(this.player.y-y)<= dist && this.hornReady ){
         console.log("HONK!")
         this.carHonk.play();
+        this.hornReady = false;
+        this.hornReadycoolDown+= 50;
         for(var i=0; i < 3; i++){
           if(this.debris[i].y < (this.game.height-10)){
-            this.debris[i].startled = true
-            this.debris[i].height += 50;
-            this.debris[i].width -= 50;
-        
+            
+            //this.debris[i].height += 50;
+            //this.debris[i].width -= 50;
+            
+            var drebisDistX = Math.abs(this.debris[i].x - this.player.x)
+            var drebisDistY = Math.abs(this.debris[i].y - this.player.y)
+            if(drebisDistX < 25 && drebisDistY < 400 && !this.debris[i].startled){
+              this.debris[i].startled = true
+              var random = Math.floor((Math.random()*2));
+              if(random == 0){
+                this.debris[i].body.velocity.x = -500
+                this.debris[i].angle = -10;
+              }
+              else{
+                this.debris[i].body.velocity.x = 500
+                this.debris[i].angle = 10;
+              }
+
+              this.debris[i].height += 50;
+              this.debris[i].width -= 50;              
+            }
           }
           
 
