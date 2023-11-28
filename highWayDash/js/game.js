@@ -199,10 +199,10 @@
       this.hornReadycoolDown = 100
 
 
-      if(localStorage.getItem("tutorial") == null){
+      if(localStorage.getItem("tutorial") == null|| true ){
         Swal.fire({
           title: 'TUTORIAL',
-          html: "Tap left or right to avoid oncoming traffic and reach the destination with the lowest score possible. Each collision will add 1:00 minute to your time. Your car will have an outline when your horn is ready. Tap your car to use your horn and prompt incoming cars to move out of the way.",
+          html: "Tap left or right to avoid oncoming traffic and reach the destination with the lowest score possible. <br/><br/>Each collision will add 1:00 minute to your time. <br/><br/>Your car will have an outline when your horn is ready. Tap your car to use your horn and prompt incoming cars to move out of the way.",
         }).then((result) => {
           localStorage.setItem("tutorial", 0 )                     
         })    
