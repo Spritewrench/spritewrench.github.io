@@ -197,295 +197,310 @@
       this.hornReady = false;
       this.hornReadyTimer = 0;
       this.hornReadycoolDown = 100
+
+
+      if(localStorage.getItem("tutorial") == null){
+        Swal.fire({
+          title: 'TUTORIAL',
+          html: "Tap left or right to avoid oncoming traffic and reach the destination with the lowest score possible. Each collision will add 1:00 minute to your time. Your car will have an outline when your horn is ready. Tap your car to use your horn and prompt incoming cars to move out of the way.",
+        }).then((result) => {
+          localStorage.setItem("tutorial", 0 )                     
+        })    
+        
+      }      
+  
+
     },
 
     update: function () {
 
-
-      if(this.hornReady){
-        this.player.loadTexture('car'+this.carKey+"_ready")
-      }
-      else{
-        this.hornReadyTimer++
-        if(this.hornReadyTimer >= this.hornReadycoolDown){
-          this.hornReadyTimer = 0
-          this.hornReady = true;
-        }        
-        this.player.loadTexture('car'+this.carKey+"")
-      }
-
-      
-
-      if(this.warnText.alpha > 0){
-        this.warnText.y--
-        this.warnText.alpha -=0.01
-        if(this.warnText.alpha <= 0){
-          this.warnText.alpha =0;
-          this.warnText.y = this.scoreText.y
-        }
-        
-      }
-      this.player.hp = 1000
-      //console.log(this.music.isPlaying)
-      //this.bg.alpha += (1 - this.bg.alpha)*0.05;
-      if(this.dist < this.game.width){
-       
-        this.player.y += ( 150 - this.player.y) * 0.1
-
-        for(var i = 0; i < 10;i++){
-          this.roadlinespeed[i]+=1;
-          if(this.roadlinespeed[i] > this.topSpeed/2){
-            this.roadlinespeed[i] = this.topSpeed/2;
-          }
-          this.roadLine[i].body.velocity.y = -(this.roadlinespeed[i]);
-          if(this.roadLine[i].body.velocity.y > this.topSpeed){
-            this.roadLine[i].body.velocity.y = -(this.topSpeed)
-          }
-          
-          if(this.roadLine[i].y < -50){
-            this.roadLine[i].y = this.game.height+100;
-            
-            /*this.roadlinespeed[i]+= this.speedInc*2;
-            if(this.roadlinespeed[i] > this.topSpeed*5){
-              this.roadlinespeed[i] = this.topSpeed*5;
-            }   
-            */       
-          }        
-        }        
-      }
-      else{
-        this.player.y+=10;
-        if(this.player.y > this.game.height){
-          this.music.fadeOut(1000);
-          if(this.music.volume <= 0){
-            localStorage.setItem("currentScore",this.score)  
-            if(parseInt(localStorage.getItem("score")) > this.score || parseInt(localStorage.getItem("score")) == 0){
-              localStorage.setItem("score",this.score)  
-            }            
-            this.game.state.start('win');  
-          }
-           
-        }
-        for(var i = 0; i < 10;i++){
-          this.roadLine[i].body.velocity.y = 0
-        }
-      }
-
-      
-
-     
-      
-      if(!this.music.isPlaying){   
-        //console.log(1)
-        //this.music.play();  
-      }
-      this.score++;
-      let minutes = Math.floor((this.score / 60)/60);
-      let extraSeconds = Math.floor((this.score / 60)) % 60//this.score % 60;
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
-
-      this.scoreText.setText('TIME: '+ minutes + " : " + extraSeconds +'');
-
-      
-      this.dist += 0.1//Math.floor(((this.speed[0]+this.speed[1]+this.speed[2])/3)/100)/25
-      this.distTrav.width=this.dist
-      //this.score = 999999
-      if(this.score > 999999){
-        this.score = 999999 
-      }
-      this.player.x += (this.target - this.player.x)*this.dodgeSpeed;
-      var playDist = this.target -this.player.x 
-      if(playDist > 10 ){
-        this.player.angle-= 2;
-      }
-      if(playDist < -10){
-        this.player.angle += 2;
-      } 
-      if(playDist <= 10 && playDist >= -10){
-        this.player.angle += (1 - this.player.angle)*this.dodgeSpeed; //= 1
-      }            
-      
-      //image follow
-      this.image.x += (this.player.x - this.image.x)*0.5;
-      this.image.y += (this.player.y - this.image.y)*0.5;
-      
-      //beat twitching
-      this.image.width += (36 - this.image.width)*0.1;
-      //this.player.width += (32 - this.player.width)*0.1;
-      //this.player.height = this.player.width+7;
-      this.image.height = this.image.width+7;
-      //this.player.height += (32 - this.player.width)*0.1;
-      
-      if(32-this.player.width <= 1){
-        //this.player.width = 30;
-        
-        //alert('test');
-      }
-
-      //regen shield
-      if(this.overTimer < 200){
-        this.overTimer++;
-        if(this.overTimer === 200){
-          this.image.visible = true;
-          //this.player.hp++;
-          //this.shieldUp.play();
-          this.warnText.alpha = 0;
+      if(parseInt(localStorage.getItem("tutorial")) == 0){
+        if(this.hornReady){
+          this.player.loadTexture('car'+this.carKey+"_ready")
         }
         else{
-          this.warnText.alpha += (1 - this.warnText.alpha)*0.05;
-          if(this.warnText.alpha > 0.8){
-             this.warnText.alpha = 0;
+          this.hornReadyTimer++
+          if(this.hornReadyTimer >= this.hornReadycoolDown){
+            this.hornReadyTimer = 0
+            this.hornReady = true;
+          }        
+          this.player.loadTexture('car'+this.carKey+"")
+        }
+
+        
+
+        if(this.warnText.alpha > 0){
+          this.warnText.y--
+          this.warnText.alpha -=0.01
+          if(this.warnText.alpha <= 0){
+            this.warnText.alpha =0;
+            this.warnText.y = this.scoreText.y
+          }
+          
+        }
+        this.player.hp = 1000
+        //console.log(this.music.isPlaying)
+        //this.bg.alpha += (1 - this.bg.alpha)*0.05;
+        if(this.dist < this.game.width){
+        
+          this.player.y += ( 150 - this.player.y) * 0.1
+
+          for(var i = 0; i < 10;i++){
+            this.roadlinespeed[i]+=1;
+            if(this.roadlinespeed[i] > this.topSpeed/2){
+              this.roadlinespeed[i] = this.topSpeed/2;
+            }
+            this.roadLine[i].body.velocity.y = -(this.roadlinespeed[i]);
+            if(this.roadLine[i].body.velocity.y > this.topSpeed){
+              this.roadLine[i].body.velocity.y = -(this.topSpeed)
+            }
+            
+            if(this.roadLine[i].y < -50){
+              this.roadLine[i].y = this.game.height+100;
+              
+              /*this.roadlinespeed[i]+= this.speedInc*2;
+              if(this.roadlinespeed[i] > this.topSpeed*5){
+                this.roadlinespeed[i] = this.topSpeed*5;
+              }   
+              */       
+            }        
+          }        
+        }
+        else{
+          this.player.y+=10;
+          if(this.player.y > this.game.height){
+            this.music.fadeOut(1000);
+            if(this.music.volume <= 0){
+              localStorage.setItem("currentScore",this.score)  
+              if(parseInt(localStorage.getItem("score")) > this.score || parseInt(localStorage.getItem("score")) == 0){
+                localStorage.setItem("score",this.score)  
+              }            
+              this.game.state.start('win');  
+            }
+            
+          }
+          for(var i = 0; i < 10;i++){
+            this.roadLine[i].body.velocity.y = 0
           }
         }
-      }
-      
-      
 
-      //tweak player height
-      //Math.round(this.player.y);
-      //debris behaviour 
-      if(this.dist < this.game.width){
-        for(var i=0; i < 3; i++){
+        
+
+      
+        
+        if(!this.music.isPlaying){   
+          //console.log(1)
+          //this.music.play();  
+        }
+        this.score++;
+        let minutes = Math.floor((this.score / 60)/60);
+        let extraSeconds = Math.floor((this.score / 60)) % 60//this.score % 60;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
+
+        this.scoreText.setText('TIME: '+ minutes + " : " + extraSeconds +'');
+
+        
+        this.dist += 0.1//Math.floor(((this.speed[0]+this.speed[1]+this.speed[2])/3)/100)/25
+        this.distTrav.width=this.dist
+        //this.score = 999999
+        if(this.score > 999999){
+          this.score = 999999 
+        }
+        this.player.x += (this.target - this.player.x)*this.dodgeSpeed;
+        var playDist = this.target -this.player.x 
+        if(playDist > 10 ){
+          this.player.angle-= 2;
+        }
+        if(playDist < -10){
+          this.player.angle += 2;
+        } 
+        if(playDist <= 10 && playDist >= -10){
+          this.player.angle += (1 - this.player.angle)*this.dodgeSpeed; //= 1
+        }            
+        
+        //image follow
+        this.image.x += (this.player.x - this.image.x)*0.5;
+        this.image.y += (this.player.y - this.image.y)*0.5;
+        
+        //beat twitching
+        this.image.width += (36 - this.image.width)*0.1;
+        //this.player.width += (32 - this.player.width)*0.1;
+        //this.player.height = this.player.width+7;
+        this.image.height = this.image.width+7;
+        //this.player.height += (32 - this.player.width)*0.1;
+        
+        if(32-this.player.width <= 1){
+          //this.player.width = 30;
           
+          //alert('test');
+        }
 
+        //regen shield
+        if(this.overTimer < 200){
+          this.overTimer++;
+          if(this.overTimer === 200){
+            this.image.visible = true;
+            //this.player.hp++;
+            //this.shieldUp.play();
+            this.warnText.alpha = 0;
+          }
+          else{
+            this.warnText.alpha += (1 - this.warnText.alpha)*0.05;
+            if(this.warnText.alpha > 0.8){
+              this.warnText.alpha = 0;
+            }
+          }
+        }
+        
+        
 
-          this.debris[i].body.velocity.y = -(this.speed[i]); //fly up
-          if(this.debris[i].y < (this.game.height-10)){
-            if(this.debris[i].startX == 0){
-              //this.debris[i].body.velocity.x = (this.speed[i]); //cross road
-              
-            }
-            else{
-              //this.debris[i].body.velocity.x = -(this.speed[i]); //cross road             
-            }
+        //tweak player height
+        //Math.round(this.player.y);
+        //debris behaviour 
+        if(this.dist < this.game.width){
+          for(var i=0; i < 3; i++){
             
 
-            if(this.debris[i].startled ){
-            
+
+            this.debris[i].body.velocity.y = -(this.speed[i]); //fly up
+            if(this.debris[i].y < (this.game.height-10)){
               if(this.debris[i].startX == 0){
-               // this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road
-                if(this.debris[i].x > this.player.x ){
-                 // this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road
-                }
-             
+                //this.debris[i].body.velocity.x = (this.speed[i]); //cross road
                 
               }
               else{
-               // this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road      
-                if(this.debris[i].x < this.player.x ){
-                 // this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road  
-                }                             
-              }            
-            }            
-          }
-          
-
-          /*
-          this.debris[i].waddleTimer-=(this.speed[i]/10)
-          if(this.debris[i].waddleTimer <= 0){
-            this.debris[i].waddleTimer = 100
-            if(this.debris[i].waddleKey == 0){
-              this.debris[i].waddleKey = 1;
-            }
-            else{
-              this.debris[i].waddleKey = 0;
-            }
-          }
-          */
-          if(this.debris[i].crashed){
-            this.debris[i].angle += this.debris[i].spinSpeed;
-            this.debris[i].width+=5;
-            this.debris[i].height+=5
-            if(this.debris[i].startX == 0){
-              //this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road
+                //this.debris[i].body.velocity.x = -(this.speed[i]); //cross road             
+              }
               
-            }
-            else{
-              //this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road            
-            }              
-          }
-          else if(this.debris[i].waddleKey == 0){
-            //this.debris[i].angle = 10
-          }
-          else if(this.debris[i].waddleKey == 1){
-            //this.debris[i].angle = -10
-          }
 
-          this.debris[i].height  += ( 100 - this.debris[i].height) * 0.1
-          this.debris[i].width  += ( 60 - this.debris[i].width) * 0.1
-          //this.debris[i].angle += this.debris[i].spinSpeed;
-          
-          if(this.debris[i].y < 0 || (this.debris[i].x > this.game.width && this.debris[i].startX == 0) || (this.debris[i].x < 0 && this.debris[i].startX == 1) || this.debris[i].width > 300){
-            this.debris[i].crashed = false;
-            this.debris[i].startled = false;
-            this.debris[i].body.velocity.x = 0
-            this.debris[i].startX = Math.floor((Math.random()*2));
+              if(this.debris[i].startled ){
+              
+                if(this.debris[i].startX == 0){
+                // this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road
+                  if(this.debris[i].x > this.player.x ){
+                  // this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road
+                  }
+              
+                  
+                }
+                else{
+                // this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road      
+                  if(this.debris[i].x < this.player.x ){
+                  // this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road  
+                  }                             
+                }            
+              }            
+            }
+            
+
+            /*
+            this.debris[i].waddleTimer-=(this.speed[i]/10)
+            if(this.debris[i].waddleTimer <= 0){
+              this.debris[i].waddleTimer = 100
+              if(this.debris[i].waddleKey == 0){
+                this.debris[i].waddleKey = 1;
+              }
+              else{
+                this.debris[i].waddleKey = 0;
+              }
+            }
+            */
+            if(this.debris[i].crashed){
+              this.debris[i].angle += this.debris[i].spinSpeed;
+              this.debris[i].width+=5;
+              this.debris[i].height+=5
+              if(this.debris[i].startX == 0){
+                //this.debris[i].body.velocity.x = -(this.speed[i]*5); //cross road
+                
+              }
+              else{
+                //this.debris[i].body.velocity.x = (this.speed[i]*5); //cross road            
+              }              
+            }
+            else if(this.debris[i].waddleKey == 0){
+              //this.debris[i].angle = 10
+            }
+            else if(this.debris[i].waddleKey == 1){
+              //this.debris[i].angle = -10
+            }
+
+            this.debris[i].height  += ( 100 - this.debris[i].height) * 0.1
+            this.debris[i].width  += ( 60 - this.debris[i].width) * 0.1
+            //this.debris[i].angle += this.debris[i].spinSpeed;
+            
+            if(this.debris[i].y < 0 || (this.debris[i].x > this.game.width && this.debris[i].startX == 0) || (this.debris[i].x < 0 && this.debris[i].startX == 1) || this.debris[i].width > 300){
+              this.debris[i].crashed = false;
+              this.debris[i].startled = false;
+              this.debris[i].body.velocity.x = 0
+              this.debris[i].startX = Math.floor((Math.random()*2));
+              if(this.debris[i].startX == 0){
+                //this.debris[i].x = 0 //cross road
+              }
+              else{
+                //this.debris[i].x = this.game.width
+              }
+              
+              this.debris[i].x = this.debris[i].origX
+              
+              this.debris[i].angle = 1;
+
+
+              var extra = 0;
+              var random = Math.floor((Math.random()*3)+1);
+              if(random == 1){
+                extra = 200;
+              }
+              else if(random == 2){
+                extra = 350
+              }
+              else if(random == 3){
+                extra = 500
+              }      
+              //extra+=this.speed[i]*2
+              this.debris[i].y = (this.game.height) + extra;//(this.game.height/2)+extra;
+              var randomDeb = Math.floor((Math.random()*5)+1);
+              this.debris[i].loadTexture('debris'+randomDeb); 
+              this.debris[i].spinSpeed = Math.floor((Math.random()*5)+1);
+
+              this.speed[i] += this.speedInc;
+              if(this.speed[i] > this.topSpeed){
+                this.speed[i] = this.topSpeed;
+              }
+
+            }
+
+
+
+
+            //collision
+            //this.physics.arcade.enable([this.player, this.debris[i]]);
+            //this.player.body.createBodyCallback(this.debris[i], this.collisionHandler, this);
+            this.physics.arcade.collide(this.player, this.debris[i], this.collisionHandler, null, this);        
+          }
+        }
+        else{
+          for(var i=0; i < 3; i++){
+            
+            //this.debris[i].body.velocity.y = 0
+            if(!this.debris[i].crashed){
+              this.game.plugins.screenShake.shake(15); 
+              this.debris[i].crashed = true;
+            }
+
+            if(this.debris[i].crashed){
+              //this.debris[i].body.y = -100;
+            }
             if(this.debris[i].startX == 0){
-              //this.debris[i].x = 0 //cross road
+              //this.debris[i].body.velocity.x = -(this.speed[i])*5; //cross road
             }
             else{
-              //this.debris[i].x = this.game.width
+              //this.debris[i].body.velocity.x = (this.speed[i])*5; //cross road
             }
-            
-            this.debris[i].x = this.debris[i].origX
-            
-            this.debris[i].angle = 1;
-
-
-            var extra = 0;
-            var random = Math.floor((Math.random()*3)+1);
-            if(random == 1){
-              extra = 200;
-            }
-            else if(random == 2){
-              extra = 350
-            }
-            else if(random == 3){
-              extra = 500
-            }      
-            //extra+=this.speed[i]*2
-            this.debris[i].y = (this.game.height) + extra;//(this.game.height/2)+extra;
-            var randomDeb = Math.floor((Math.random()*5)+1);
-            this.debris[i].loadTexture('debris'+randomDeb); 
-            this.debris[i].spinSpeed = Math.floor((Math.random()*5)+1);
-
-            this.speed[i] += this.speedInc;
-            if(this.speed[i] > this.topSpeed){
-              this.speed[i] = this.topSpeed;
-            }
-
-          }
-
-
-
-
-          //collision
-          //this.physics.arcade.enable([this.player, this.debris[i]]);
-          //this.player.body.createBodyCallback(this.debris[i], this.collisionHandler, this);
-          this.physics.arcade.collide(this.player, this.debris[i], this.collisionHandler, null, this);        
-        }
-      }
-      else{
-        for(var i=0; i < 3; i++){
-          
-          //this.debris[i].body.velocity.y = 0
-          if(!this.debris[i].crashed){
-            this.game.plugins.screenShake.shake(15); 
-            this.debris[i].crashed = true;
-          }
-
-          if(this.debris[i].crashed){
-            //this.debris[i].body.y = -100;
-          }
-          if(this.debris[i].startX == 0){
-            //this.debris[i].body.velocity.x = -(this.speed[i])*5; //cross road
-          }
-          else{
-            //this.debris[i].body.velocity.x = (this.speed[i])*5; //cross road
           }
         }
       }
+
 
 
       
@@ -580,7 +595,7 @@
             
             var drebisDistX = Math.abs(this.debris[i].x - this.player.x)
             var drebisDistY = Math.abs(this.debris[i].y - this.player.y)
-            if(drebisDistX < 25 && drebisDistY < 400 && !this.debris[i].startled){
+            if(drebisDistX < 25 && drebisDistY < 1000 && !this.debris[i].startled){
               this.debris[i].startled = true
               var random = Math.floor((Math.random()*2));
               if(random == 0){
