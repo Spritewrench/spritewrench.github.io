@@ -22,11 +22,11 @@
       this.load.image('car2', 'assets/blue_door_closed.png');
       this.load.image('car1_ready', 'assets/red_door_closed_ready.png');
       this.load.image('car2_ready', 'assets/blue_door_closed_ready.png');      
-      this.load.spritesheet('ship', 'assets/KamKam-spaceship.png',32,39);
+
       
       
       this.load.image('image', 'assets/afterImage.png');
-      this.load.spritesheet('FF', 'assets/FF.png',32,39);
+
 
 
       this.load.image('car1-side', 'assets/camry_red.png');
@@ -53,7 +53,6 @@
       
       this.load.image('bg', 'assets/TitleScreen_WithLogo.png');
       this.load.image('gamebg', 'assets/simpleBG.png');
-      this.load.image('bt', 'assets/bedTime.png');
       
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
       this.load.audio('bgMusic', ['assets/whip-110235.mp3']); 

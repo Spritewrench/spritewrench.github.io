@@ -46,7 +46,7 @@
       this.player = this.add.sprite(25, y+40, 'player');
 
 
-      this.stats = this.add.sprite(x+10, y+40, 'stats');
+      this.stats = this.add.sprite(x+10, y+40, 'stats1');
  
 
       this.carKey = 1;

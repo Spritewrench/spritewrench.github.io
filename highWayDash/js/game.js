@@ -33,10 +33,21 @@
       
       this.physics.startSystem(Phaser.Physics.ARCADE);
       
+      this.carKey = parseInt(localStorage.getItem("carKey"))
 
-      this.baseSpeed = 500 //200
-      this.speedInc = 25 // 25
-      this.topSpeed = this.game.height*1.5;  //400    
+      if(this.carKey == 1){
+        this.baseSpeed = 500 //200
+        this.speedInc = 25 // 25
+        this.topSpeed = this.game.height*1.5;  //400    
+        this.hornReadycoolDownInc = 50
+      }
+      else{
+        this.baseSpeed = 400 //200
+        this.speedInc = 20 // 25
+        this.topSpeed = this.game.height;  //400    
+        this.hornReadycoolDownInc = 25;
+      }
+
 
       var x = this.game.width / 2
         , y = this.game.height / 2;
@@ -63,7 +74,7 @@
         distY+=spacer
       }      
       
-      this.carKey = parseInt(localStorage.getItem("carKey"))
+      
       
 
 
@@ -199,9 +210,10 @@
       this.hornReadycoolDown = 100
 
 
-      if(localStorage.getItem("tutorial") == null|| true ){
+      if(localStorage.getItem("tutorial") == null ){
         Swal.fire({
           title: 'TUTORIAL',
+          width: 700,
           html: "Tap left or right to avoid oncoming traffic and reach the destination with the lowest score possible. <br/><br/>Each collision will add 1:00 minute to your time. <br/><br/>Your car will have an outline when your horn is ready. Tap your car to use your horn and prompt incoming cars to move out of the way.",
         }).then((result) => {
           localStorage.setItem("tutorial", 0 )                     
@@ -586,7 +598,7 @@
         console.log("HONK!")
         this.carHonk.play();
         this.hornReady = false;
-        this.hornReadycoolDown+= 50;
+        this.hornReadycoolDown+= this.hornReadycoolDownInc;
         for(var i=0; i < 3; i++){
           if(this.debris[i].y < (this.game.height-10)){
             
