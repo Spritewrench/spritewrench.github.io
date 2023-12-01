@@ -1,0 +1,161 @@
+backgrounds:
+  avatarBedroom: assets/backgrounds/avatarBedroom_B.png
+  schoolExt: assets/backgrounds/bg4.png
+  schoolHallway: assets/backgrounds/bg3.png
+  sbHomeStudio: assets/backgrounds/bg5.png
+  dArtStudio: assets/backgrounds/bg6.png
+  busStop: assets/backgrounds/bg7.png
+  DowntownJamStreet: assets/backgrounds/bg8.png
+  kadeem_room: assets/backgrounds/BG4.webp
+  julian_room: assets/backgrounds/BG0.webp
+  patrick_room: assets/backgrounds/BG5.webp
+  christian_room: assets/backgrounds/BG3.webp
+  maria_room: assets/backgrounds/BG1.webp
+  adrianna_room: assets/backgrounds/BG2.webp
+  stadiumBG: assets/backgrounds/stadiumBG.webp
+  stadiumSeatsBG: assets/backgrounds/stadiumSeatsBG.webp
+  stadiumMeetBG: assets/backgrounds/stadiumMeet.webp
+  questionBG: assets/backgrounds/questionBG.webp
+  busStopBG: assets/backgrounds/busStop.webp
+  
+  
+characters:
+
+  sanka:
+    displayName: Sanka
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/sanka.png
+
+  avatar:
+    displayName: Avatar
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char1_A.png 
+  dice:
+    displayName: Dice
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/dice.webp        
+  starboy:
+    displayName: Starbwoy
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/starboy.png   
+  dymond:
+    displayName: Dymond
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/dymond.png         
+
+
+
+            
+
+cgs:
+  sbBusinessCard: assets/cg/sbBusinessCard.png 
+
+  splash-init: assets/gui/loaderasset1.png
+  flash: assets/backgrounds/flash.webp
+  heart: assets/characters/heart.webp
+  cheering0: assets/backgrounds/cheer0.webp
+  cheering1: assets/backgrounds/cheer1.webp
+  cheering2: assets/backgrounds/cheer2.webp
+  cheering3: assets/backgrounds/cheer3.webp
+  cheering4: assets/backgrounds/cheer4.webp
+  token: assets/gui/token.webp
+  
+  phone_sb_fakeInsta: assets/cg/sbFakeInsta.png
+  phone_sb_fakeInsta2: assets/cg/sbFakeInsta.png
+  phone_d_fakeInsta: assets/cg/dFakeInsta.png
+  phone_d_fakeInsta2: assets/cg/dFakeInsta2.png
+  phone_d_fakeInsta3: assets/cg/dFakeInsta3.png
+
+  phone_msg_mom_1: assets/cg/phone_msg_mom_1.webp
+  phone_msg_mom_2: assets/cg/phone_msg_mom_2.webp
+  
+  phone_msg_jamie_1: assets/cg/phone_msg_jamie_1.webp
+  phone_msg_jamie_2: assets/cg/phone_msg_jamie_2.webp
+  
+  phone_msg_dice_1: assets/cg/phone_msg_dice_1.webp
+  
+  badEnd: assets/cg/badEnd.webp
+  goodEnd: assets/cg/goodEnd.webp
+  
+  b1: assets/gui/b1.png
+  b2: assets/gui/b2.png
+  b3: assets/gui/b3.png
+  b4: assets/gui/b4.png
+  b5: assets/gui/b5.png
+  b6: assets/gui/b6.png  
+
+  selectChar: assets/gui/selectChar.png  
+
+  leftarrow: assets/gui/leftArrow.webp
+  rightarrow: assets/gui/rightArrow.webp
+  
+
+sfx:
+  siren:  assets/audio/effects/70938__guitarguy1985__police2.wav
+  phoneNotification:  assets/audio/effects/PhoneNotification.mp3
+  phoneFlash:  assets/audio/effects/PhoneFlash.wav
+  cheer2: assets/audio/effects/Cheer2.mp3
+  cheer3: assets/audio/effects/Cheer3.wav
+  traffic: assets/audio/effects/traffic.wav
+  collectCoin: assets/audio/effects/collectCoin.wav
+  success: assets/audio/effects/success.wav
+
+
+
+
+  
+  
+
+
+  
+
+
+
+music:
+  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg
+  rollingCredits: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg
+
+  reactToChallenges: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM.ogg
+  reactToChallenges2: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-2.ogg
+  reactToChallenges3: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-3.ogg
+  reactToChallenges4: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-4.ogg  
+
+  yourChoices: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM.ogg
+  yourChoices2: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM-2.ogg
+  yourChoices3: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM-3.ogg
+
+  aboutMyself: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM.ogg
+  aboutMyself-2: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM-2.ogg
+  aboutMyself-3: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM-3.ogg
+
+  wantToBe: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM.ogg
+  wantToBe-2: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM-2.ogg
+  wantToBe-3: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM-3.ogg
+
+  fromHere: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM.ogg
+  fromHere2: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM-2.ogg
+  fromHere3: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM-3.ogg
+
+
+  toLMS: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM.ogg
+  toLMS2: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-2.ogg
+  toLMS3: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-3.ogg
+  toLMS4: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-4.ogg
+
+  welcomeBack: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited.ogg
+  welcomeBack-2: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-2.ogg
+  welcomeBack-3: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-3.ogg
+  welcomeBack-4: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-4.ogg
+
+
+  response:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM.ogg
+  response-2:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-2.ogg  
+  response-3:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-3.ogg
+  response-4:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-4.ogg   
+  response-5:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-5.ogg
+ 

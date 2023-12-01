@@ -1,0 +1,428 @@
+start:
+  - play Dub01:
+  - show questionBG:
+  - show char1: normal AT CENTER WITH FADE  
+  - char1 says normal: Select the character who best represents YOU!  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char1: WITH FADE
+      - scene: char6Scene
+    - rightarrow AT 360,450:
+      - hide char1: WITH FADE
+      - scene: char2Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "1_A"  
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"              
+      - call setName:   
+    - shuffleColor AT 210,770:
+      - hide char1: WITH FADE
+      - scene: char1_BScene     
+
+char1_BScene:
+  - show char2: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char2: WITH FADE
+      - scene: char6Scene
+    - rightarrow AT 360,450:
+      - hide char2: WITH FADE
+      - scene: char2Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "1_B"  
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"              
+      - call setName:     
+    - shuffleColor AT 210,770:
+      - hide char2: WITH FADE
+      - scene: char1_CScene      
+
+char1_CScene:
+  - show char3: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char3: WITH FADE
+      - scene: char6Scene
+    - rightarrow AT 360,450:
+      - hide char3: WITH FADE
+      - scene: char2Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "1_C"  
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"              
+      - call setName:     
+    - shuffleColor AT 210,770:
+      - hide char3: WITH FADE
+      - scene: start
+
+char2Scene:
+  - show char4: normal AT CENTER WITH FADE   
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char4: WITH FADE
+      - scene: start
+    - rightarrow AT 360,450:
+      - hide char4: WITH FADE
+      - scene: char3Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "2_A"   
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"              
+      - call setName:   
+    - shuffleColor AT 210,770:
+      - hide char4: WITH FADE
+      - scene: char2_BScene   
+
+char2_BScene:
+  - show char5: normal AT CENTER WITH FADE   
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char5: WITH FADE
+      - scene: start
+    - rightarrow AT 360,450:
+      - hide char5: WITH FADE
+      - scene: char3Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "2_B"   
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"              
+      - call setName:    
+    - shuffleColor AT 210,770:
+      - hide char5: WITH FADE
+      - scene: char2_CScene        
+
+char2_CScene:
+  - show char6: normal AT CENTER WITH FADE   
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char6: WITH FADE
+      - scene: start
+    - rightarrow AT 360,450:
+      - hide char6: WITH FADE
+      - scene: char3Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "2_C"   
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"              
+      - call setName:  
+    - shuffleColor AT 210,770:
+      - hide char6: WITH FADE
+      - scene: char2Scene                   
+
+
+      
+            
+
+char3Scene:
+  - show char7: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450: 
+      - hide char7: WITH FADE
+      - scene: char2Scene
+    - rightarrow AT 360,450:
+      - hide char7: WITH FADE
+      - scene: char4Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "3_A"  
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"                
+      - call setName: 
+    - shuffleColor AT 210,770:
+      - hide char7: WITH FADE
+      - scene: char3_BScene        
+
+
+char3_BScene: 
+  - show char8: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450: 
+      - hide char8: WITH FADE
+      - scene: char4Scene
+    - rightarrow AT 360,450:
+      - hide char8: WITH FADE
+      - scene: char4Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "3_B"  
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"                
+      - call setName: 
+    - shuffleColor AT 210,770:
+      - hide char8: WITH FADE
+      - scene: char3_CScene   
+
+char3_CScene:            
+  - show char9: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450: 
+      - hide char9: WITH FADE
+      - scene: char4Scene
+    - rightarrow AT 360,450:
+      - hide char9: WITH FADE
+      - scene: char4Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "3_C"  
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"                
+      - call setName: 
+    - shuffleColor AT 210,770:
+      - hide char9: WITH FADE
+      - scene: char3Scene   
+
+char4Scene:
+  - show char10: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char10: WITH FADE
+      - scene: char3Scene
+    - rightarrow AT 360,450:
+      - hide char10: WITH FADE
+      - scene: char5Scene   
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "4_A"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"                
+      - call setName:       
+    - shuffleColor AT 210,770:
+      - hide char10: WITH FADE
+      - scene: char4_BScene        
+
+char4_BScene:
+  - show char11: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char11: WITH FADE
+      - scene: char3Scene
+    - rightarrow AT 360,450:
+      - hide char11: WITH FADE
+      - scene: char5Scene   
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "4_B"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"                
+      - call setName:       
+    - shuffleColor AT 210,770:
+      - hide char11: WITH FADE
+      - scene: char4_CScene   
+
+char4_CScene: 
+  - show char12: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char12: WITH FADE
+      - scene: char3Scene
+    - rightarrow AT 360,450:
+      - hide char12: WITH FADE
+      - scene: char5Scene   
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "4_C"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "A"                
+      - call setName:       
+    - shuffleColor AT 210,770:
+      - hide char12: WITH FADE
+      - scene: char4Scene   
+
+char5Scene:
+  - show char13: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char13: WITH FADE
+      - scene: char4Scene
+    - rightarrow AT 360,450:
+      - hide char13: WITH FADE
+      - scene: char6Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "5_A"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"             
+      - call setName:  
+    - shuffleColor AT 210,770:
+      - hide char13: WITH FADE
+      - scene: char5_BScene                
+
+char5_BScene:
+  - show char14: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char14: WITH FADE
+      - scene: char4Scene
+    - rightarrow AT 360,450:
+      - hide char14: WITH FADE
+      - scene: char6Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "5_B"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"             
+      - call setName:  
+    - shuffleColor AT 210,770:
+      - hide char14: WITH FADE
+      - scene: char5_CScene   
+
+char5_CScene:  
+  - show char15: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char15: WITH FADE
+      - scene: char4Scene
+    - rightarrow AT 360,450:
+      - hide char15: WITH FADE
+      - scene: char6Scene  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "5_C"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"             
+      - call setName:  
+    - shuffleColor AT 210,770:
+      - hide char15: WITH FADE
+      - scene: char5Scene   
+
+
+char6Scene:
+  - show char16: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char16: WITH FADE
+      - scene: char5Scene
+    - rightarrow AT 360,450:
+      - hide char16: WITH FADE
+      - scene: start  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "6_A"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"             
+      - call setName: 
+    - shuffleColor AT 210,770:
+      - hide char16: WITH FADE
+      - scene: char6_BScene   
+
+
+char6_BScene:
+  - show char17: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char17: WITH FADE
+      - scene: char5Scene
+    - rightarrow AT 360,450:
+      - hide char17: WITH FADE
+      - scene: start  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "6_B"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"             
+      - call setName: 
+    - shuffleColor AT 210,770:
+      - hide char17: WITH FADE
+      - scene: char6_CScene   
+
+char6_CScene:          
+  - show char18: normal AT CENTER WITH FADE  
+  - visualchoice:
+    - leftarrow AT 50,450:
+      - hide char18: WITH FADE
+      - scene: char5Scene
+    - rightarrow AT 360,450:
+      - hide char18: WITH FADE
+      - scene: start  
+    - selectChar AT 210,700:
+      - call storeLocal:
+          param1: "avatar"
+          param2: "6_C"    
+      - call storeLocal:
+          param1: "gender"
+          param2: "B"             
+      - call setName: 
+    - shuffleColor AT 210,770:
+      - hide char18: WITH FADE
+      - scene: char6Scene                   
+  
+next:  
+  - show questionBG: WITH CUT
+  - visualchoice:
+    - b1 AT 100,250:
+      - scene: kadeemIntro
+    - b2 AT 310,250:
+      - scene: mariaIntro      
+    - b3 AT 100,475:
+      - scene: adriannaIntro
+    - b4 AT 310,475:
+      - scene: julianIntro 
+    - b5 AT 100,700:
+      - scene: christianIntro
+    - b6 AT 310,700:
+      - scene: patrickIntro
+  - scene: avatarList  
+
+end: 
+  - text: Thanks for playing!
+  - call homeScreen:
+  - effect ROLLINGCREDITS:
+    endGame: true
+    text:
+      - Art and Programming by
+      - Spritewrench Studios
+      - null
+      - Music from
+      - DubLand by DuBoLoGy   
+      - null      
+      - Script by
+      - Michele Geister
+      - null
+      - Project Concept and Lead by
+      - Elizabeth Terry
+      - Limitless Transformation 
+      - Coaching & Training Services Ltd.
+      - null
+      - Project Funded by
+      - CB Facey Foundation   
+
