@@ -210,7 +210,7 @@
       this.hornReadycoolDown = 100
 
 
-      if(localStorage.getItem("tutorial") == null ){
+      if(localStorage.getItem("tutorial") == null || true ){
         Swal.fire({
           title: 'TUTORIAL',
           width: 700,
