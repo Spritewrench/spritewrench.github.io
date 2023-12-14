@@ -23,18 +23,31 @@
                   message = ""            
             
 
-           
             this.bg = this.add.sprite(0, 0, 'bg');
             this.bg.width = this.game.width
             this.bg.height = this.game.height
 
-            this.bg2 = this.add.sprite(0, 0, 'ui_back');
-            this.bg2.width = this.game.width
-            this.bg2.height = this.game.height    
 
+          
+
+            this.video = this.add.video('seaBG');
+
+                          
+            this.video.play(true);
+                       
+            this.videoImage = this.video.addToWorld(0, 0);
+            var videoScale =(Math.min(this.game.width / this.video.width)*1, (this.game.height / this.video.height)*1);
+            this.videoTimer = 100;
+            this.video.volume = 0;
+            this.videoImage.scale.set(videoScale);            
+          
             //this.combatOrder  = this.add.sprite(0, 0, 'combatOrder');
             //this.combatOrder .width = this.game.width
             //this.combatOrder .height = this.game.height              
+
+            this.bg2 = this.add.sprite(0, 0, 'ui_back');
+            this.bg2.width = this.game.width
+            this.bg2.height = this.game.height                
             
             this.selectInfo = this.add.sprite(this.game.width, 0, 'selectInfoPanel');
             this.selectInfo.width = this.game.width
@@ -55,6 +68,10 @@
 
             this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-410, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 450  });
             //this.selectStats.anchor.setTo(0.5, 0.5); 
+            this.selectStats.inputEnabled = true;
+            this.selectStats.events.onInputOver.add(this.updatetoolTip, this);            
+
+
 
             this.selectAbility = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-370, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
             //this.selectAbility.anchor.setTo(0.5, 0.5); 
@@ -80,7 +97,7 @@
 
             this.deploy_pool = this.add.sprite(375, this.game.height-100, 'ui_deploy_pool');
             this.deploy_pool.anchor.setTo(0.5, 0.5);
-            this.deploy_poolText = this.add.text(this.deploy_pool.x,this.deploy_pool.y+15, '3/3', {font: '57px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+            this.deploy_poolText = this.add.text(this.deploy_pool.x,this.deploy_pool.y+15, '', {font: '57px LondrinaSolid-Black',fill: '#fff', align: 'center'});
             this.deploy_poolText.anchor.setTo(0.5, 0.5);   
             
             
@@ -101,32 +118,16 @@
             this.endTurn_Button.events.onInputDown.add(this.endDeployPhase, this);   
             
 
-            this.ult_text = this.add.text(70,this.game.height-400, 'BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 350  });
+            this.ult_text = this.add.text(-this.game.width,this.game.height-400, 'BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 350  });
             this.ult_text.angle = -1
 
-            switch(this.capKey){
-              case 1:
-                this.ult_text.text = "BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1"
-                this.cap_healthValue = 15; 
-                this.deploy_poolCurrent = 3;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 1;
-                break;
-              case 2:
-                this.ult_text.text = "DEAL 2 DAMAGE TO TARGET ENEMY. APPLY 'SMOKING'"
-                this.cap_healthValue = 5; 
-                this.deploy_poolCurrent = 5;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 1;
-                break;  
-              case 3:
-                this.ult_text.text = "SUBMERGE ALL ENEMIES"
-                this.cap_healthValue = 10; 
-                this.deploy_poolCurrent = 2;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 4
-                break;                              
-            }
+            this.ult_text.text = captain[this.capKey].ult_text
+            this.cap_healthValue = captain[this.capKey].cap_healthValue
+            this.deploy_poolCurrent = captain[this.capKey].deploy_poolCurrent
+            this.deploy_poolMax = this.deploy_poolCurrent                 
+            this.cap_ultCost = captain[this.capKey].cap_ultCost
+
+
 
             /*
             this.ult_pool = this.add.sprite(this.game.width-500, this.game.height-350, 'ui_deploy_pool');
@@ -137,14 +138,14 @@
             this.ult_poolText.anchor.setTo(0.5, 0.5);               
             */
 
-            this.ult_Button = this.add.sprite(this.game.width-500, this.game.height-350, 'ui_ult_buttonReady'); 
+            this.ult_Button = this.add.sprite(-this.game.width, this.game.height-350, 'ui_ult_buttonReady1'); 
             this.ult_Button.anchor.setTo(0.5, 0.5);           
             this.ult_Button.inputEnabled = true;
             this.ult_Button.events.onInputDown.add(this.captainUlt, this);   
             //this.ult_Button.width =500/1.5
             //this.ult_Button.height = 200/1.5    
 
-            this.ult_ButtonText = this.add.text(this.ult_Button.x,this.ult_Button.y+55, '3/3', {font: '32px LondrinaSolid-Black',fill: '#232727', align: 'center'});
+            this.ult_ButtonText = this.add.text(this.ult_Button.x,this.ult_Button.y+55, '', {font: '32px LondrinaSolid-Black',fill: '#232727', align: 'center'});
             this.ult_ButtonText.anchor.setTo(0.5, 0.5);              
             
             this.bountytext = this.add.text(this.capInfo.x,this.capInfo.y+220, 'REWARD', {font: '64px LondrinaSolid-Black',fill: '#000', align: 'center'});
@@ -156,6 +157,7 @@
 
             this.game.plugins.screenShake = this.game.plugins.add(Phaser.Plugin.ScreenShake);
             this.input.onDown.add(this.onDown, this);
+            this.tileHolder = [];
             this.tile = [];
             this.crewTile = [];
             this.enemyTile = [];
@@ -193,10 +195,10 @@
 
             this.crewOrder[i]
 
-            this.crewOrder[i].healthText = this.add.text(this.crewOrder[i].x-(this.size/2),this.crewOrder[i].y+(this.size/2)-16, '1', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+            this.crewOrder[i].healthText = this.add.text(this.crewOrder[i].x-(this.size/2),this.crewOrder[i].y+(this.size/2)-16, '', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
             this.crewOrder[i].healthText.anchor.setTo(0.5, 0.5); 
 
-            this.crewOrder[i].powerText = this.add.text(this.crewOrder[i].x-(this.size/2),this.crewOrder[i].y+(this.size/2)-16, '1', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+            this.crewOrder[i].powerText = this.add.text(this.crewOrder[i].x-(this.size/2),this.crewOrder[i].y+(this.size/2)-16, '', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
             this.crewOrder[i].powerText.anchor.setTo(0.5, 0.5);             
           }
 
@@ -208,13 +210,18 @@
                 this.tile[''+j+i] = this.add.sprite(x+distX, y+distY+25, 'tile');
                 this.tile[''+j+i].origX = this.tile[''+j+i].x;
                 this.tile[''+j+i].origY = this.tile[''+j+i].y;
-                this.tile[''+j+i].y = 1000;
+                this.tile[''+j+i].origX2 = this.tile[''+j+i].x;
+                this.tile[''+j+i].origY2 = this.tile[''+j+i].y;    
+                
+                this.tile[''+j+i].waveRan = Math.floor(Math.random() * 5);
+
+                //this.tile[''+j+i].y = 1000;
               
-                this.tile[''+j+i].loadSpeed =  0.2//(Math.random() * 0.3)+0.1;
+                this.tile[''+j+i].loadSpeed =  (Math.random() * 0.3)+0.1;
                 this.tile[''+j+i].anchor.setTo(0.5, 0.5);
                 this.tile[''+j+i].width = this.size;
                 this.tile[''+j+i].height = this.size;      
-                this.tile[''+j+i].id = ''+i+j;
+                this.tile[''+j+i].id = ''+j+i;
                 this.tile[''+j+i].isCrewHere = false
                 this.tile[''+j+i].crewID = 0
                 this.tile[''+j+i].isEnemyHere = false
@@ -226,11 +233,11 @@
 
                 this.tile[''+j+i].hp = 0
 
-                this.tile[''+j+i].healthText = this.add.text(this.tile[''+j+i].x-(this.size/2),this.tile[''+j+i].y+(this.size/2)-3, '1', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+                this.tile[''+j+i].healthText = this.add.text(this.tile[''+j+i].x-(this.size/2),this.tile[''+j+i].y+(this.size/2)-3, '', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
                 this.tile[''+j+i].healthText.anchor.setTo(0.5, 0.5); 
 
                 this.tile[''+j+i].power = 0
-                this.tile[''+j+i].powerText = this.add.text(this.tile[''+j+i].x-(this.size/2),this.tile[''+j+i].y+(this.size/2)-3, '1', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+                this.tile[''+j+i].powerText = this.add.text(this.tile[''+j+i].x-(this.size/2),this.tile[''+j+i].y+(this.size/2)-3, '', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
                 this.tile[''+j+i].powerText.anchor.setTo(0.5, 0.5);                 
 
                 this.tile[''+j+i].spinSpeed = 0;
@@ -269,6 +276,73 @@
               }
 
           }
+          distX = 0;
+          distY = 0;          
+          for(var i = 0; i < this.boardHeight; i++){
+            for(var j = 0; j < this.boardWidth; j++){
+              
+              this.tileHolder[''+j+i] = this.add.sprite(x+distX, y+distY+25, 'tile');
+              this.tileHolder[''+j+i].alpha = 0;
+              this.tileHolder[''+j+i].origX = this.tileHolder[''+j+i].x;
+              this.tileHolder[''+j+i].origY = this.tileHolder[''+j+i].y;
+              this.tileHolder[''+j+i].y = 1000;
+            
+              this.tileHolder[''+j+i].loadSpeed =  0.2//(Math.random() * 0.3)+0.1;
+              this.tileHolder[''+j+i].anchor.setTo(0.5, 0.5);
+              this.tileHolder[''+j+i].width = this.size;
+              this.tileHolder[''+j+i].height = this.size;      
+              this.tileHolder[''+j+i].id = ''+i+j;
+              this.tileHolder[''+j+i].isCrewHere = false
+              this.tileHolder[''+j+i].crewID = 0
+              this.tileHolder[''+j+i].isEnemyHere = false
+              this.tileHolder[''+j+i].monID = 0
+              this.tileHolder[''+j+i].isFlipping = false;
+
+              this.tileHolder[''+j+i].posX = j
+              this.tileHolder[''+j+i].posY = i
+
+              this.tileHolder[''+j+i].hp = 0
+
+              this.tileHolder[''+j+i].healthText = this.add.text(this.tileHolder[''+j+i].x-(this.size/2),this.tileHolder[''+j+i].y+(this.size/2)-3, '', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+              this.tileHolder[''+j+i].healthText.anchor.setTo(0.5, 0.5); 
+
+              this.tileHolder[''+j+i].power = 0
+              this.tileHolder[''+j+i].powerText = this.add.text(this.tileHolder[''+j+i].x-(this.size/2),this.tileHolder[''+j+i].y+(this.size/2)-3, '', {font: '20px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+              this.tileHolder[''+j+i].powerText.anchor.setTo(0.5, 0.5);                 
+
+              this.tileHolder[''+j+i].spinSpeed = 0;
+              this.tileHolder[''+j+i].springX = 0;
+              this.tileHolder[''+j+i].springY = 0;
+
+              this.tileHolder[''+j+i].submerged = false;         
+
+
+              this.tileHolder[''+j+i].smoke = this.add.emitter(this.tileHolder[''+j+i].x, this.tileHolder[''+j+i].y, 200);
+              this.tileHolder[''+j+i].smoke.makeParticles('smoke');
+              this.tileHolder[''+j+i].smoke.width = 15;
+              this.tileHolder[''+j+i].smoke.minParticleSpeed.set(0, 0);
+              this.tileHolder[''+j+i].smoke.maxParticleSpeed.set(0, 0);
+              this.tileHolder[''+j+i].smoke.setAlpha(0.8, 0, 2500);
+              this.tileHolder[''+j+i].smoke.setScale(0.2, 1, 0.2, 1, 6000, Phaser.Easing.Quintic.Out);
+              this.tileHolder[''+j+i].smoke.gravity = -100;          
+    
+              this.tileHolder[''+j+i].smoke.start(false, 5000, 100);
+              this.tileHolder[''+j+i].smoke.on = false;             
+              
+              this.tileHolder[''+j+i].actionText = this.add.text(this.tileHolder[''+j+i].x,this.tileHolder[''+j+i].y, '', {font: '32px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+              this.tileHolder[''+j+i].actionText.anchor.setTo(0.5, 0.5);   
+              this.tileHolder[''+j+i].actionText.alpha = 0;
+
+
+              distX += this.tileHolder[''+j+i].width+this.spacing
+              if(distX > this.size*this.boardWidth){
+                distX = 0;
+                distY += this.tileHolder[''+j+i].height+this.spacing
+              }                  
+              
+            }
+
+        }          
           //treasure UI
           var distX = 0
           var spacing = 60
@@ -312,7 +386,16 @@
           
           this.freeCounterText = this.add.text(this.freeCounter.x,this.freeCounter.y-10, 'x10', {font: '32px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.freeCounterText.anchor.setTo(0.5, 0.5);       
-          this.freeCounterNum = 5;      
+          this.freeCounterText2 = this.add.text(this.freeCounter.x,this.freeCounter.y-10, 'x10', {font: '32px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.freeCounterText2.anchor.setTo(0.5, 0.5); 
+          this.freeCounterText2.alpha = 0;          
+          
+          if(parseInt(localStorage.getItem("intro")) == 1 || onboardingDebug){
+            this.freeCounterNum = 0 
+          } 
+          else{
+            this.freeCounterNum = startingBombCount
+          }     
 
 
           this.crewCode =localStorage.getItem("crewCode")
@@ -336,6 +419,17 @@
             this.crew[i].isSelected = false;
             this.crew[i].arrayKey = i;
             this.crew[i].killCount = 0
+
+
+            this.crew[i].speechBubble = this.add.sprite(this.crew[i].x, this.crew[i].y-75, 'speechBubble');
+            this.crew[i].speechBubble.anchor.setTo(0.5, 0.5); 
+            this.crew[i].speechBubble.alpha = 0
+            this.crew[i].speechBubble.origY = this.crew[i].speechBubble.y
+            this.crew[i].speechBubbleText = this.add.text(this.crew[i].speechBubble.x-5,this.crew[i].speechBubble.y-80, 'Yo Ho', {font: '22px LondrinaSolid-Black',fill: '#232727', align: 'center',  wordWrap: true, wordWrapWidth: 250});
+            this.crew[i].speechBubbleText.anchor.setTo(0.5, 0.5); 
+            this.crew[i].speechBubbleText.alpha = 0;
+            this.crew[i].isTalking = false
+            this.crew[i].speechTimer = 0;
 
             this.crew[i].deployText = this.add.text( this.crew[i].x-(size/2)+33,this.crew[i].y+(size/2)-3, '1', {font: '22px LondrinaSolid-Black',fill: '#232727', align: 'center'});
             this.crew[i].deployText.anchor.setTo(0.5, 0.5); 
@@ -369,7 +463,7 @@
             // 0 - boost strike, 10 - captain power boost
             this.crew[i].holderPower[10]  = 0
 
-            console.log(this.crew[i].id)
+
             this.crew[i].deployCost = crew[this.crew[i].id].deployCost;
             this.crew[i].origDeployCost = crew[this.crew[i].id].deployCost;
             this.crew[i].name = crew[this.crew[i].id].name
@@ -387,6 +481,7 @@
             
             this.crew[i].inputEnabled = true;
             this.crew[i].events.onInputDown.add(this.crewSelected, this);
+            this.crew[i].events.onInputOver.add(this.showInfo, this);
 
             distX += (size+space)
           }
@@ -395,7 +490,10 @@
           this.freeCounter.y = this.crew[5].y-50
           this.freeCounterText.x = this.freeCounter.x-5
           this.freeCounterText.y = this.freeCounter.y-25
+          this.freeCounterText2.x = this.freeCounter.x-5
+          //this.freeCounterText2.y = this.freeCounter.y-25          
           this.freeCounterText.angle = -15
+          this.freeCounterText2.angle = -15
 
           this.selectedCrew = 0;
           //selected crew
@@ -417,7 +515,7 @@
           this.turnMarkerText = this.add.text(this.turnMarker.x-100,this.turnMarker.y, 'ENEMY TURN', {font: '120px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.turnMarkerText.anchor.setTo(0.5, 0.5);   
 
-          this.turnCounter = 75;
+          this.turnCounter = turnCounterBase;
           
           this.turnCounterStart = this.turnCounter
           this.phaseCounter = 0;
@@ -426,7 +524,7 @@
           this.ActionCounter = 0;;
           this.actionTimer = 0;
 
-          this.turnCountText = this.add.text(this.game.width/2+50,85, 'TURN #1 ', {font: '38px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.turnCountText = this.add.text(this.game.width/2+50,85, '', {font: '38px LondrinaSolid-Black',fill: '#fff', align: 'center'});
           this.turnCountText.anchor.setTo(1, 0.5);  
           this.turnCountNum = 0 
           
@@ -456,8 +554,14 @@
           this.monCountUI = this.add.sprite(this.game.width/2-30, 80, 'monCount');
           this.monCountUI.anchor.setTo(0.5, 0.5);  
           this.monCountUI.width = 100
-          this.monCountUI.height = 100         
-          this.monCountValue = monPoolValue
+          this.monCountUI.height = 100    
+          if(parseInt(localStorage.getItem("intro")) == 1){
+            this.monCountValue = 20
+          } 
+          else{
+            this.monCountValue = monPoolValue
+          }    
+          
 
           this.expWidth = this.chestUI.x - this.saltMeterUI.x
           this.saltMeterBack.width = this.expWidth
@@ -484,11 +588,14 @@
           }          
           
 
-          this.overlay = this.add.sprite(0, 0, 'bgOverlay');
-          this.overlay.width = this.game.width
-          this.overlay.height = this.game.height      
+          this.overlay = this.add.sprite(0, 0, 'bgOverlay1');
+          //this.overlay.width = this.game.width
+          //this.overlay.height = this.game.height      
           this.overlay.alpha = 0;    
 
+          this.overlayText = this.add.text(this.game.width/2,100, 'CHOOSE', {font: '64px Kaph-Regular',fill: '#fff', align: 'center'});
+          this.overlayText.anchor.setTo(0.5, 0.5);     
+          this.overlayText.alpha = 0;      
 
           this.treasureOptions = []
           distX = -450
@@ -498,11 +605,17 @@
             this.treasureOptions[i] = this.add.sprite(x+distX, this.game.height*10 , 'treasure_1');
             this.treasureOptions[i].anchor.setTo(0.5, 0.5);
             this.treasureOptions[i].value = 1;
-            this.treasureOptions[i].inputEnabled = true;
-            this.treasureOptions[i].events.onInputDown.add(this.selectTreasue, this);            
+           
             this.treasureOptions[i].alpha = 0;
             this.treasureOptions[i].origX = this.treasureOptions[i].x
             this.treasureOptions[i].origY = this.treasureOptions[i].y
+            this.treasureOptions[i].targetY = 150+this.game.height/3
+            this.treasureOptions[i].origtargetY = 150+this.game.height/3
+
+            this.treasureOptions[i].inputEnabled = true;
+            this.treasureOptions[i].events.onInputDown.add(this.selectTreasue, this); 
+            this.treasureOptions[i].events.onInputOver.add(this.animateHover, this);
+            this.treasureOptions[i].events.onInputOut.add(this.returnOrig, this);                         
             distX += spacing
           }
 
@@ -533,9 +646,132 @@
           this.smoke.start(false, 5000, 100);
           this.smoke.on = false;
 
+          this.bgSound = this.add.audio('pugnacityPortroyal');
+          this.bgSound.loop = true;
+          this.bgSound.play();
+          this.bgSound.volume = parseInt(localStorage.getItem("bgVol"))* 0.1        
+          
+          
+          this.deployReady = false;
+          this.noPickUp = true;
+
+          this.freeCounterText2.y = this.crew[5].y-75 
+
+          this.waveTimer = 20;
+          this.waveTimerStart = this.waveTimer
+
+          this.timer = 0
+          this.tips = new Phasetips(this.game, {
+            targetObject:  this.selectStats,
+            context: "",
+            fontSize: 14,
+            strokeWeight: 3,
+            roundedCornersRadius: 10,            
+            position: "top",
+            positionOffset: 0,
+            padding: 75,
+            x: this.game.width/2,
+            y: this.game.height/2+100,        
+            animation: "fade"
+          });           
+          
+
+          this.transWave = this.add.sprite(0, -this.game.height, 'transitionWave');
+          this.transWave.width = this.game.width
+          //this.transWave.height = this.game.height         
+          this.transWaveKey  = 0;  
+          
+          this.wavSnd = []
+          this.wavSnd[1] = this.add.audio('wavSnd-1');
+          this.wavSnd[1].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1 
+          this.wavSnd[2] = this.add.audio('wavSnd-2');
+          this.wavSnd[2].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+          this.wavSnd[3] = this.add.audio('wavSnd-3');
+          this.wavSnd[3].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1     
+          
+          var ran = Math.floor(Math.random() * 3)+1;
+          this.wavSnd[ran].play()   
+          
+          this.transTar = 'win'
+          
+          if(parseInt(localStorage.getItem("intro")) == 1 || onboardingDebug ){
+            this.tutorialPause = true;
+            this.chatTimer = 1;
+          }
+          else{
+            this.tutorialPause = false;
+            this.chatTimer = 0;
+          }
+          
+          this.squawk = this.add.audio('parrotSquawk');
+          this.squawk.volume = (parseInt(localStorage.getItem("sfxVol"))* 0.1)*2     
+
+          this.deploy_poolText.text = this.deploy_poolCurrent+"/"+this.deploy_poolMax
+
+
+          this.chatTimerCount = -1
+
+          this.captainHurt = false
+
+          this.escapeKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
+          this.escapeKey.onDown.add(this.showOptions, this);               
         }
         , update: function () {
-          
+
+
+          this.bgSound.volume = parseInt(localStorage.getItem("bgVol"))* 0.1  
+
+          this.wavSnd[1].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+          this.wavSnd[2].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+          this.wavSnd[3].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+                    
+          if(this.transWave.y <= this.game.height&& this.transWaveKey == 0){
+            this.transWave.y += transSpeed
+    
+            if(this.transWave.y >= this.game.height&& this.transWaveKey == 0){
+              if (parseInt(localStorage.getItem("intro")) == 1 || onboardingDebug ) {
+                localStorage.setItem("intro",2);
+                this.squawk.play();
+                Swal.fire({
+                  title: 'Set Sail!',
+                  text: "In order to complete your voyage you need to kill "+monPoolValue+" creeps.",
+                  imageUrl: 'assets/mascot.png',
+                  imageWidth: 200,
+                  imageHeight: 200,
+    
+                }).then((result) => {
+                  this.chatTimer = 0;
+                  this.tutorialPause = false;                    
+
+                })               
+              }
+            }
+          }
+    
+          if(this.transWaveKey == 1){
+            this.transWave.y -= transSpeed//+= (-this.game.height - this.transWave.y) * 0.05
+            if(this.transWave.y <= (-this.game.height+50)){
+              this.game.state.start(this.transTar);
+            }
+          } 
+
+          this.checkKeywords(this.selectStats)
+
+          this.timer++
+          if(this.timer > 5000){
+            this.timer = 0
+          }
+
+          for(var m = 0; m < this.boardHeight; m++){
+            for(var l = 0; l < this.boardWidth; l++){  
+
+
+
+              
+              
+              
+            }
+          }            
           
 
           this.smoke.x = this.game.input.mousePointer.x
@@ -543,30 +779,33 @@
 
           if(this.chatTimer == 0){
 
+            if(this.chatTimerCount > 0){
+              this.chatTimerCount--
+              if(this.chatTimerCount == -0){
+                this.chatTimer = 1;
+                this.chatTimerCount = -1
+              }
+              
+            }
+
+            this.overlayText.alpha = 0; 
 
             //UI 
-            
+                  //ammo text floats up
+                  if(this.freeCounterText2.alpha > 0){
+                    this.freeCounterText2.alpha -= 0.01
+                    this.freeCounterText2.y--;
+
+                    if(this.freeCounterText2.alpha < 0){
+                      this.freeCounterText2.alpha = 0;
+                      this.freeCounterText2.y = this.freeCounter.y-25  
+                    }
+                  }                
             //bench UI
             for(var i =1; i< 6; i++){
               
 
               //ongoing crew ability
-              if(this.crew[i].id == 7){
-                var holder = 0
-
-                for(var k = 0; k< this.boardHeight; k++){
-                  for(var j = 0; j < this.boardWidth; j++){  
-                    if(this.tile[""+j+k].submerged){
-                      holder++
-                    }                        
-                  }
-                }                    
-                this.crew[i].deployCost = this.crew[i].origDeployCost - holder;
-                if(this.crew[i].deployCost < 0){
-                  this.crew[i].deployCost = 0;
-                }
-
-              }
               if(this.crew[i].id == 9){
                 var holder = 0
                 this.crew[i].origPower = 0;
@@ -625,6 +864,7 @@
               this.treasureOptions[i].alpha = 0;
               this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
               this.treasureOptions[i].y += ( this.game.height*10 - this.treasureOptions[i].y) * 0.2;
+              this.returnOrig(this.treasureOptions[i])
 
               
               
@@ -774,28 +1014,48 @@
             //cap info panel
             this.capInfo.x += (0 - this.capInfo.x) * 0.2;
             //show bounty 
-            if(this.bounty > 0){
-              this.capInfo.loadTexture('capInfoPanel'+this.capKey+"-wanted") 
-              this.bountytext.text = "$"+this.bounty+" REWARD"         
-              this.bountytext.x = this.capInfo.x +320;   
-              
-
-            }               
+    
+            if(this.captainHurt){
+              this.capInfo.loadTexture('capInfoPanel'+this.capKey+"_hurt") 
+              if(this.bounty > 0){
+                this.capInfo.loadTexture('capInfoPanel'+this.capKey+"-wanted_hurt") 
+                this.bountytext.text = "$"+this.bounty+" REWARD"         
+                this.bountytext.x = this.capInfo.x +320;   
+                
+  
+              }  
+            }
+            else{
+              this.capInfo.loadTexture('capInfoPanel'+this.capKey+"") 
+              if(this.bounty > 0){
+                this.capInfo.loadTexture('capInfoPanel'+this.capKey+"-wanted") 
+                this.bountytext.text = "$"+this.bounty+" REWARD"         
+                this.bountytext.x = this.capInfo.x +320;   
+                
+  
+              }  
+            }                     
             //this.capEnergy >= 9 
-            if(this.phaseCounter == 1 && this.deploy_poolCurrent >= this.cap_ultCost && !this.captainPowerActivated){
+            if((this.deployReady && this.deploy_poolCurrent >= this.cap_ultCost && !this.captainPowerActivated)){
 
               this.ult_Button.loadTexture('ui_ult_buttonReady'+this.capKey);
               //this.ult_Button.y = this.game.height-280
-              //this.ult_pool.y = this.game.height-360              
+              //this.ult_pool.y = this.game.height-360       
+              if(this.capKey == 2 && this.freeCounterNum <= 0){
+                this.ult_Button.loadTexture('ui_ult_buttonNotReady'+this.capKey);
+              }                     
             }
             else{
               this.ult_Button.loadTexture('ui_ult_buttonNotReady'+this.capKey);
               //this.ult_Button.y = this.game.height-280
               //this.ult_pool.y = this.game.height-340
             }
+
+
             this.ult_Button.x += ((this.capInfo.x+550) - this.ult_Button.x) * 0.2;
             this.ult_ButtonText.x = this.ult_Button.x+3//-(this.ult_Button.width/3)
-            this.ult_ButtonText.text = this.cap_ultCost            
+            this.ult_ButtonText.text = this.cap_ultCost         
+            this.ult_text.x =   this.capInfo.x+70; 
             //this.ult_pool.x = this.ult_Button.x+100
             //this.ult_poolText.y = this.ult_pool.y+10
             //this.ult_poolText.x = this.ult_pool.x
@@ -828,42 +1088,42 @@
                     break;
                   case 3:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: ATTACKS TWICE!"
+                    this.selectStats.text = "ATTACKS TWICE!"
                     this.selectAbility.text = ""                       
                     break;
                   case 4:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: SPAWN TENTACLES ON COMBAT"
+                    this.selectStats.text = "SPAWN TENTACLES ON COMBAT"
                     this.selectAbility.text = ""                       
                     break;
                   case 5:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: +1 POWER WHEN HURT"
+                    this.selectStats.text = "+1 POWER WHEN HURT"
                     this.selectAbility.text = ""                      
                     break;
                   case 6:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: +1 POWER WHEN HURT"
+                    this.selectStats.text = "+1 POWER WHEN HURT"
                     this.selectAbility.text = ""                       
                     break;
                   case 7:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: +5 POWER WHEN HURT"
+                    this.selectStats.text = "+5 POWER WHEN HURT"
                     this.selectAbility.text = ""                       
                     break;
                   case 8:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: SHIFTS TO INTAGBILE AFTER ATTACK" //"ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
+                    this.selectStats.text = "BECOMES INTANGIBLE AFTER ATTACKING" //"IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                     
                     break;  
                   case 9:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: SHIFTS TO INTAGBILE AFTER ATTACK" //"ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
+                    this.selectStats.text = "BECOMES INTANGIBLE AFTER ATTACKING" //"IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                        
                     break;
                   case 10:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: SHIFTS TO INTAGBILE AFTER ATTACK" //"ABILITY: IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
+                    this.selectStats.text = "BECOMES INTANGIBLE AFTER ATTACKING" //"IMMUNE TO DAMAGE FROM ABOVE AND BELOW"
                     this.selectAbility.text = ""                        
                     break;
                   case 99:
@@ -873,7 +1133,7 @@
                     break; 
                   case 101:
                     this.selectName.text = ""
-                    this.selectStats.text = "ABILITY: POWER EQUAL TO YOUR CURRENT BOUNTY"
+                    this.selectStats.text = "POWER EQUAL TO YOUR CURRENT BOUNTY"
                     this.selectAbility.text = ""                        
                     break;                                                                                                                                                                                    
 
@@ -901,19 +1161,35 @@
 
               }
               else{
-                
-                this.selectName.text = ""+this.crew[this.selectedCrew].name
-                this.selectStats.text = ""+this.crew[this.selectedCrew].ability
-                if(this.crew[this.selectedCrew].id == 2){
-                  this.selectStats.text += " (+"+this.crew[this.selectedCrew].killCount+")"
-                }
-                this.selectAbility.text = ""
-                
+                  /*
+                for(var z = 1; z < 6; z++){
+                  if(this.crew[z].id == this.selectedCrew){
+                    this.selectName.text = ""+this.crew[z].name
+                    this.selectStats.text = ""+this.crew[z].ability
+                    if(this.crew[z].id == 2){
+                      this.selectStats.text += " (+"+this.crew[z].killCount+")"
+                    }
+                    this.selectAbility.text = ""
+                    
+  
+                    this.selectInfoDetail.loadTexture("selectInfoPanel-"+(this.crew[z].id-1))
+                    
+                  }
+                }                   
+                  */
+                 
+                  this.selectName.text = ""+this.crew[this.selectedCrew].name
+                  this.selectStats.text = ""+this.crew[this.selectedCrew].ability
+                  if(this.crew[this.selectedCrew].id == 2){
+                    this.selectStats.text += " (+"+this.crew[this.selectedCrew].killCount+")"
+                  }
+                  this.selectAbility.text = ""
+                  
 
-                this.selectInfoDetail.loadTexture("selectInfoPanel-"+(this.crew[this.selectedCrew].id-1))
+                  this.selectInfoDetail.loadTexture("selectInfoPanel-"+(this.crew[this.selectedCrew].id-1))
 
               }
-              this.selectInfo.x += ( 0 - this.selectInfo.x) * 0.2;
+              this.selectInfo.x += ( 0 - this.selectInfo.x) * 0.2
               this.selectName.angle = 2;
               this.selectStats.angle = 2;
               this.selectAbility.angle = 2;
@@ -961,14 +1237,14 @@
                 this.transition.y += ( 0 - this.transition.y) * 0.2;
                 if(this.transition.y>= -5){
                   this.game.state.start('win');
-                  var score = parseInt(sessionStorage.getItem("highScore"))
-                  sessionStorage.setItem("currentScore",this.scoreCountNum)
+                  var score = parseInt(localStorage.getItem("highScore"))
+                  localStorage.setItem("currentScore",this.scoreCountNum)
                   if(this.scoreCountNum > score){
-                    sessionStorage.setItem("highScore",this.scoreCountNum)
+                    localStorage.setItem("highScore",this.scoreCountNum)
                   }       
                   
                   for(var i = 1 ; i < 10; i++){
-                    sessionStorage.setItem("collectedTreasure"+i,this.collectedTreasure[i].count  )   
+                    localStorage.setItem("collectedTreasure"+i,this.collectedTreasure[i].count  )   
                   }                  
                 }
               }
@@ -991,13 +1267,15 @@
                 else{
                   this.turnCounter = this.turnCounterStart;
                 }
-                
+                if(this.phaseCounter == 2){
+                  this.turnCounter = 25;
+                }
               }
             } 
             else{
               
             } 
-
+            console.log(this.turnCounter+" "+this.actionTimer)
             if(this.turnCounter > 0 ){
               this.turnCounter--;
               this.phaseStart = true;
@@ -1030,24 +1308,134 @@
 
 
               
-              var markerDiff = this.turnMarker.y - (this.game.height+this.game.height/2)
+              var markerDiff =  Math.abs(this.turnMarker.y - (this.game.height+this.game.height/2))
+              
               if(this.actionTimer > 0){
                 this.actionTimer--;
               }
-              if(( markerDiff <= 5 && this.actionTimer == 0)&& this.phaseCounter == 1 && this.phaseStart ){
+
+              
+              if(( markerDiff <= diffBase   && this.actionTimer == 0)&& this.phaseCounter == 1 && this.phaseStart ){
                 
                 if(!this.deployReady){
                   this.returnCrew();
                   
                 }
-                this.deployReady = true;  
+              
+                if(!this.deployReady){
+
+
+                  this.cap_healthValueHolder = this.cap_healthValue
+                  for(var m = 0; m < this.boardHeight; m++){
+                    for(var l = 0; l < this.boardWidth; l++){  
+                      this.tileHolder[''+l+m].loadTexture(this.tile[''+l+m].texture)
+                      this.tileHolder[''+l+m].isCrewHere = this.tile[''+l+m].isCrewHere 
+                      this.tileHolder[''+l+m].crewID = this.tile[''+l+m].crewID
+                      this.tileHolder[''+l+m].isEnemyHere = this.tile[''+l+m].isEnemyHere
+                      this.tileHolder[''+l+m].monID = this.tile[''+l+m].monID
+                      this.tileHolder[''+l+m].isFlipping = this.tile[''+l+m].isFlipping
+
+                      this.tileHolder[''+l+m].hp = this.tile[''+l+m].hp
+                      this.tileHolder[''+l+m].power = this.tile[''+l+m].power
+
+                      this.tileHolder[''+l+m].submerged = this.tile[''+l+m].submerged
+
+                      this.tileHolder[''+l+m].smoke.on = this.tile[''+l+m].smoke.on
+
+
+
+
+
+
+                      if(this.tile[''+l+m].submerged){
+                   
+                      }                        
+                    }
+                  }                     
+                }
+                if (parseInt(localStorage.getItem("intro")) == 2) {
+                  localStorage.setItem("intro",3);
+                  this.tutorialPause = true;
+                  this.chatTimer = 1;        
+                  //this.overlay.loadTexture('bgOverlay_board')              
+                  Swal.fire({
+                    title: 'Get that Treasure!',
+                    text: "Deploy your crew so that the chest is completely surrounded, then start combat",
+                    imageUrl: 'assets/tut_combat.png',
+                    backdrop: false,
+                    imageWidth: 200,
+                    imageHeight: 200,
+               
+                  }).then((result) => {
+                    
+                    this.chatTimer = 0;
+                    this.tutorialPause = false;          
+                    for(var k = 1; k < 6; k++){
+                      if(this.crew[k].id == 1){
+                        this.crewSpeak(k,"I'm ready Cap'n!")
+                      }
+                    }                                          
+                  })            
+                }
+
+              
                 
+               
+               /* if (true) {
+                  Swal.fire({
+                    title: 'Tutorial (2/5)',
+                    text: "To do this, during your turn deploy crew tiles to surround and attack creeps.",
+                    imageUrl: 'assets/tut_combat.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+               
+                  }).then((result) => {
+                    
+                    this.overlay.loadTexture('bgOverlay_savvy')   
+                    
+                    Swal.fire({
+                      title: 'Tutorial (3/5)',
+                      text: "Using your captain's ability & deploying crew tiles costs SAVVY. Pay attention to your captain's total when planning out your turns. End Turn to commence with combat.",
+                      imageUrl: 'assets/tut_savvy.png',
+                      backdrop: false,
+                      imageWidth: 200,
+                      imageHeight: 200,
+  
+                    }).then((result) => {
+                      this.chatTimer = 0;
+                      this.tutorialPause = false;                      
+                    })                
+                  })               
+                }*/
+                
+                this.deployReady = true;  
+                if (parseInt(localStorage.getItem("intro")) == 10 && this.captainHurt ) {
+                  localStorage.setItem("intro",11);
+                  for(var k = 1; k < 6; k++){
+                    if(this.crew[k].id == 1 ){
+                      this.crewSpeak(k,"Captain Rose!")
+                      this.crew[k].speechTimer = 50
+  
+                    }   
+                    if(this.crew[k].id == 3 ){
+                      this.crewSpeak(k,"Defend the Captain!")
+                      this.crew[k].speechTimer = 60
+  
+                    }                    
+                  }                      
+            
+                }                
+                this.captainHurt = false;
+             
               
                 
     
     
               }
-              if(( markerDiff <= 5 && this.actionTimer == 0)&& this.phaseCounter != 1 && this.phaseStart ){
+              if( markerDiff <= diffBase   && this.phaseCounter == 2 && this.phaseStart ){
+                //this.deployReady = true;  
+              }
+              if(( markerDiff <= diffBase  && this.actionTimer == 0)&& this.phaseCounter != 1 && this.phaseStart ){
                 //phase actions
                 this.phaseStart = false;
                 if(this.phaseCounter == 0 ){
@@ -1081,12 +1469,22 @@
             this.deploy_poolText.text = this.deploy_poolCurrent+"/"+this.deploy_poolMax
             this.cap_healthText.text = this.cap_healthValue
 
+
+
             if(this.cap_healthText2.alpha > 0 ){
               this.cap_healthText2.y--
               this.cap_healthText2.alpha -= 0.01
 
+              if(this.cap_healthText2.alpha < 0.5){
+                
+              
+
+              }
+
               if(this.cap_healthText2.alpha < 0){
                 this.cap_healthText2.alpha = 0;
+
+                      
                 
               }
             }
@@ -1124,6 +1522,102 @@
                 }
               }              
 
+              //crew speech
+
+              //crew speech timer
+              if(this.crew[i].speechTimer > 0){
+                this.crew[i].speechTimer--
+                if(this.crew[i].speechTimer == 0){
+                  this.crew[i].isTalking = false;
+                  //chained speech for tutorial
+                  /*
+                  for(var k = 1; k < 6; k++){
+                    if(this.crew[k].id == 3 && (parseInt(localStorage.getItem("intro")) == 8)){
+                      this.crewSpeak(k,"I'm best suited for the next challenge")
+                      this.crew[k].speechTimer = 50;
+                      localStorage.setItem("intro",9);
+                    }  
+                  
+                  } */
+
+                  if(this.crew[i].id == 1 && parseInt(localStorage.getItem("intro")) == 8 && this.crew[i].speechTimer == 0){
+                    this.chatTimer = 1;
+                    this.tutorialPause = true;       
+                    this.overlay.loadTexture('bgOverlay_board')                   
+                    Swal.fire({
+                      title: 'Stay on your toes!',
+                      text: "Creeps can appear SUBMERGED and surface on their next turn. BLOCK this by deploying crew on the space",
+                      imageUrl: 'assets/tut_block.png',
+                      backdrop: false,
+                      imageWidth: 300,
+                      imageHeight: 300,
+                    }).then((result) => {
+                      localStorage.setItem("intro",9);
+                      this.chatTimer = 0;
+                      this.tutorialPause = false;  
+                      for(var k = 1; k < 6; k++){
+                        if(this.crew[k].id == 3 ){
+                          this.crewSpeak(k,"My blade is ready, Captain!")
+  
+                        }   
+                      }                            
+                                       
+                    })     
+                  }  
+                  
+                  if(this.crew[i].id == 3 && parseInt(localStorage.getItem("intro")) == 11 && this.crew[i].speechTimer == 0){
+                    localStorage.setItem("intro",12);
+                    this.chatTimer = 1;
+                    this.tutorialPause = true;   
+                    this.overlay.loadTexture('bgOverlay_heart')                          
+                    Swal.fire({
+                      title: 'Ouch!',
+                      text: "Creeps only attack your captain. If your captain's health reaches zero, your voyage ends.",
+                      imageUrl: 'assets/tut_heart.png',
+                      backdrop: false,
+                      imageWidth: 200,
+                      imageHeight: 200,
+                    }).then((result) => {
+                      this.overlay.loadTexture('bgOverlay1')      
+                      this.freeCounterNum = startingBombCount       
+                      Swal.fire({
+                        title: 'Bombs Away!',
+                        text: "And finally, here are a few bombs. These deal damagae to all creeps in an area. Use sparingly as your ammo is limited.",
+                        imageUrl: 'assets/tut_bomb.png',
+                        backdrop: true,
+                        imageWidth: 200,
+                        imageHeight: 200,
+                      }).then((result) => {
+                        this.chatTimer = 0;
+                        this.tutorialPause = false;                          
+                      })                                       
+                    })                    
+                  }
+                }
+              }
+
+              if(this.crew[i].isTalking ){
+                this.crew[i].speechBubble.alpha += ( 1 - this.crew[i].speechBubble.alpha) * 0.2;
+              }
+              else{
+                this.crew[i].speechBubble.alpha += ( 0 - this.crew[i].speechBubble.alpha) * 0.2;
+              }
+
+              
+
+              if( this.crew[i].speechBubble.alpha > 0){
+                this.crew[i].speechBubble.y += ( this.crew[i].speechBubble.origY - this.crew[i].speechBubble.y) * 0.5;
+                //hide text
+                if(this.crew[i].speechBubble.alpha > 0.7){
+                  this.crew[i].speechBubbleText.alpha = this.crew[i].speechBubble.alpha
+                }
+                else{
+                  this.crew[i].speechBubbleText.alpha = 0
+                }                
+              }
+              else{
+                this.crew[i].speechBubble.y += ( (this.crew[i].speechBubble.origY+100) - this.crew[i].speechBubble.y) * 0.5;
+              }
 
               //crew deployed
               if((i == 5 && this.freeCounterNum <= 0)){
@@ -1154,7 +1648,7 @@
             }
 
             
-            if(this.selectedCrew > 0 && this.selectedCrew <= 100){
+            if(this.selectedCrew > 0 && this.selectedCrew <= 100 && !this.noPickUp){
               this.cursorSelect.alpha = 0.3
               this.cursorSelect.loadTexture(this.crew[this.selectedCrew].texture)
             }
@@ -1168,7 +1662,10 @@
             this.freeCounter.y = this.crew[5].y-75
             this.freeCounterText.x = this.freeCounter.x-5
             this.freeCounterText.y = this.freeCounter.y-25
+            this.freeCounterText2.x = this.freeCounter.x-5
+            //this.freeCounterText2.y = this.freeCounter.y-25            
             this.freeCounterText.angle = -15  
+            this.freeCounterText2.angle = -15  
 
          
             
@@ -1182,7 +1679,24 @@
             for(var i = 0; i < this.boardHeight; i++){
                 for(var j = 0; j < this.boardWidth; j++){
 
-
+                  //wave movement
+                  if(this.waveTimer == 0 && false){
+                    this.waveBump = 5
+                    if(this.tile[''+j+i].origY == this.tile[''+j+i].origY2-this.waveBump){
+                      
+                      this.tile[''+j+i].origY = this.tile[''+j+i].origY2+this.waveBump
+                      
+                    }
+                    else if(this.tile[''+j+i].origY == this.tile[''+j+i].origY2+this.waveBump){
+                     
+                      this.tile[''+j+i].origY = this.tile[''+j+i].origY2
+                    }
+                    else{
+                      
+                      this.tile[''+j+i].origY = this.tile[''+j+i].origY2-this.waveBump
+                    }
+                    this.tile[''+j+i].waveRan = Math.floor(Math.random() * this.waveBump);
+                  }
                   
                   //return to size
                   
@@ -1194,7 +1708,7 @@
                       this.tile[''+j+i].isFlipping = false
                     }
                     else{
-                      this.tile[""+j+i].width += ( 0 - this.tile[""+j+i].width) * 0.1;
+                      this.tile[""+j+i].width += ( 0 - this.tile[""+j+i].width) * 0.4;
                     }
                     
                   }
@@ -1323,7 +1837,17 @@
                                       }
                                     }   
                                     this.tile[""+j+i].tint = '0xFFFFFF'                            
-                                    break;                                                                                                                                                              
+                                    break;        
+                                  case 8:
+                                    for(var l = 0; l < this.boardHeight; l++){
+                                      for(var m = 0; m < this.boardWidth; m++){
+                                        if(!this.tile[''+(m)+(l)].submerged && this.tile[''+(m)+(l)].isEnemyHere){
+                                          this.tintTile(this.tile[''+(m)+(l)],"0xFF0000")                
+                                        }
+                                      }
+                                    }   
+                                    this.tile[""+j+i].tint = '0xFFFFFF'                            
+                                    break;                                                                                                                                                                                              
                               }
                             }
 
@@ -1415,6 +1939,7 @@
                     //this.tile[""+j+i].width = this.size
                     //this.tile[""+j+i].height = this.size
                   } 
+              
                   // action text floats up
                   if(this.tile[''+j+i].actionText.alpha > 0){
                     this.tile[''+j+i].actionText.alpha-= 0.01
@@ -1447,6 +1972,26 @@
                   }
                   else{
                     this.tile[""+j+i].y += ( (this.tile[""+j+i].origY+this.tile[""+j+i].springY) - this.tile[""+j+i].y) * this.tile[""+j+i].loadSpeed;   
+                    var dist =  Math.abs(this.tile[""+j+i].y - this.tile[""+j+i].origY )
+                    /*if(dist <= 10 && dist >= 0 && this.tile[""+j+i].submerged){
+                      if (parseInt(localStorage.getItem("intro")) == 2) {
+                        this.chatTimer = 1;
+                        this.tutorialPause = true;       
+                        this.overlay.loadTexture('bgOverlay_board')                   
+                        Swal.fire({
+                          title: 'Tutorial (4/5)',
+                          text: "Sea Creeps can spawn SUBMERGED. They surface on their next turn. You can BLOCK this by placing a crew on the space",
+                          position: "center-end",
+                          imageUrl: 'assets/tut_block.png',
+                          imageWidth: 300,
+                          imageHeight: 300,
+                        }).then((result) => {
+                          localStorage.setItem("intro",3);
+                          this.chatTimer = 0;
+                          this.tutorialPause = false;                         
+                        })            
+                      }                      
+                    }*/                    
 
                     restart += 1; 
                   }     
@@ -1456,43 +2001,93 @@
                                              
                 }
 
-            }                                      
+            }          
+            
+            //wave timer tracker
+            if(this.waveTimer > 0){
+              this.waveTimer--;
+            }            
+            else{
+              this.waveTimer = this.waveTimerStart
+            }
 
 
           }
           else{
-            this.overlay.alpha = 1;        
-            if(this.monCountValue <= 0){
-              this.overlay.loadTexture('bgOverlay2')
-              this.treasureOptions[0].alpha = 1;
-              this.treasureOptions[0].value= 200
-              this.treasureOptions[0].x = this.treasureOptions[0].origX+200
+            this.overlay.alpha = 1;     
 
-              this.treasureOptions[1].alpha = 0;
+            var monsLeft = 0;
+            for(var m = 0; m < this.boardHeight; m++){
+              for(var l = 0; l < this.boardWidth; l++){  
+                if(this.tile[''+l+m].isEnemyHere){
+                  monsLeft++
+                }
+              }
+            }            
 
-              this.treasureOptions[2].alpha = 1;
-              this.treasureOptions[2].value= 201
-              this.treasureOptions[2].x = this.treasureOptions[2].origX-200
+
+            if(this.tutorialPause){
+              
+              if(parseInt(localStorage.getItem("intro")) == 3){
+                //this.overlay.loadTexture('bgOverlay_savvy')
+              }
+              else{
+                //this.overlay.loadTexture('bgOverlay1')
+              }
+            }   
+            else if(this.monCountValue == 0 && monsLeft <= 0){
+              this.overlay.loadTexture('bgOverlay1')
+              this.overlayText.alpha = 1 
+              if(disableLoop){
+                this.overlayText.text = " WHAT A HAUL! "
+                this.treasureOptions[0].alpha = 1;
+                this.treasureOptions[0].value= 200
+                this.treasureOptions[0].x = this.game.width/2
+  
+                this.treasureOptions[1].alpha = 0;
+                this.treasureOptions[2].alpha = 0;
+  
+
+              }
+              else{
+                this.overlayText.text = " CHOOSE YOUR FATE"
+                this.treasureOptions[0].alpha = 1;
+                this.treasureOptions[0].value= 200
+                this.treasureOptions[0].x = this.treasureOptions[0].origX+200
+  
+                this.treasureOptions[1].alpha = 0;
+  
+                this.treasureOptions[2].alpha = 1;
+                this.treasureOptions[2].value= 201
+                this.treasureOptions[2].x = this.treasureOptions[2].origX-200
+              }
+
 
 
               for(var i =0; i < 3; i++){
                 this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
                 if(i ==0 || i == 2){
-                  this.treasureOptions[i].y += ( 150+this.game.height/3 - this.treasureOptions[i].y) * 0.2;
+                  this.treasureOptions[i].y += ( this.treasureOptions[i].targetY - this.treasureOptions[i].y) * 0.2;
                 }
                 
                 
               }               
             }  
             else{
-              this.overlay.loadTexture('bgOverlay')
+              this.overlay.loadTexture('bgOverlay1')
+              this.overlayText.alpha = 1; 
+              this.overlayText.text = " CHOOSE YOUR BOOTY"
               for(var i =0; i < 3; i++){
                 this.treasureOptions[i].alpha = 1;
                 this.treasureOptions[i].loadTexture("treasure_"+this.treasureOptions[i].value)
-                this.treasureOptions[i].y += ( 150+this.game.height/3 - this.treasureOptions[i].y) * 0.2;
+                this.treasureOptions[i].y += ( this.treasureOptions[i].targetY - this.treasureOptions[i].y) * 0.2;
                 this.treasureOptions[i].x = this.treasureOptions[i].origX
                 
-              }                
+              } 
+              if (parseInt(localStorage.getItem("intro")) == 7 ) {
+                this.treasureOptions[0].alpha = 0;
+                this.treasureOptions[2].alpha = 0;
+              }               
             }                
             
                     
@@ -1521,95 +2116,104 @@
           }          
         }
         ,selectTreasue: function(treasure){
-          try{
-            this.collectedTreasure[treasure.value].count++
-          }
-          catch(e){
+          if(treasure.alpha == 1){
+            try{
+              this.collectedTreasure[treasure.value].count++
+            }
+            catch(e){
 
-          }
-          ;
-          //this.scoreCountNum += 100*treasure.value;
-          //in case you want to balance score/gold individually
-          switch(treasure.value){
-            case 1:
-              this.cap_healthValue += 5
-              break;
-            case 2:
-              this.cap_healthValue += 10
-              break;
-            case 3:
-              //steel bonus - 0- steel, 1 - salt, 2 -smoke
-              for(var j=1; j< 6; j++){
-                if(this.crew[j].type == 0){
-                  this.crew[j].origPower += 1
-                  this.crew[j].power = this.crew[j].origPower
-                  this.crew[j].powerText.text = this.crew[j].power
-                }
-              } 
-              break;
-            case 4:
-              this.deploy_poolMax += 1
-              break;           
-            case 5:
-              this.deploy_poolMax += 2
-              break;
-            case 6:
-              //salt bonus - 0- steel, 1 - salt, 2 -smoke
-              for(var j=1; j< 6; j++){
-                if(this.crew[j].type == 1){
-                  this.crew[j].origPower += 1
-                  this.crew[j].power = this.crew[j].origPower
-                  this.crew[j].powerText.text = this.crew[j].power
-                }
-              }              
-              break;
-            case 7:
-              this.freeCounterNum += 1
-              break;
-            case 8:
-              this.freeCounterNum += 2
-              break;        
-            case 9:
-              //smoke bonus - 0- steel, 1 - salt, 2 -smoke
-              for(var j=1; j< 6; j++){
-                if(this.crew[j].type == 2){
-                  this.crew[j].origPower += 1
-                  this.crew[j].power = this.crew[j].origPower
-                  this.crew[j].powerText.text = this.crew[j].power
-                }
-              }               
-              break;    
-            case 10:
-              break; 
-            case 200:
-              this.scoreCountNum = 0;
-              for(var i = 1 ; i < 10; i++){
-                this.scoreCountNum += this.collectedTreasure[i].count*(i*55)
-                sessionStorage.setItem("collectedTreasure"+i,this.collectedTreasure[i].count  )   
-              }               
-              
-              var score = parseInt(sessionStorage.getItem("highScore"))
-              sessionStorage.setItem("currentScore",this.scoreCountNum)
-              if(this.scoreCountNum > score){
-                sessionStorage.setItem("highScore",this.scoreCountNum)
-              } 
-              
-              this.game.state.start('win');
-              
-               
-              break;      
-            case 201:
-              this.monCountValue = monPoolValue
-              this.bounty += 10
-              break;                                                                    
+            }
+            ;
+            //this.scoreCountNum += 100*treasure.value;
+            //in case you want to balance score/gold individually
+            switch(treasure.value){
+              case 1:
+                this.cap_healthValue += 5
+                break;
+              case 2:
+                this.cap_healthValue += 10
+                break;
+              case 3:
+                //steel bonus - 0- steel, 1 - salt, 2 -smoke
+                for(var j=1; j< 6; j++){
+                  if(this.crew[j].type == 0){
+                    this.crew[j].origPower += 1
+                    this.crew[j].power = this.crew[j].origPower
+                    this.crew[j].powerText.text = this.crew[j].power
+                  }
+                } 
+                break;
+              case 4:
+                this.deploy_poolMax += 1
+                break;           
+              case 5:
+                this.deploy_poolMax += 2
+                break;
+              case 6:
+                //salt bonus - 0- steel, 1 - salt, 2 -smoke
+                for(var j=1; j< 6; j++){
+                  if(this.crew[j].type == 1){
+                    this.crew[j].origPower += 1
+                    this.crew[j].power = this.crew[j].origPower
+                    this.crew[j].powerText.text = this.crew[j].power
+                  }
+                }              
+                break;
+              case 7:
+                this.freeCounterNum += 1
+                this.freeCounterText2.alpha = 1
+                this.freeCounterText2.text = "+1"               
+                break;
+              case 8:
+                this.freeCounterNum += 2
+                this.freeCounterText2.alpha = 1
+                this.freeCounterText2.text = "+2"                    
+                break;        
+              case 9:
+                //smoke bonus - 0- steel, 1 - salt, 2 -smoke
+                for(var j=1; j< 6; j++){
+                  if(this.crew[j].type == 2){
+                    this.crew[j].origPower += 1
+                    this.crew[j].power = this.crew[j].origPower
+                    this.crew[j].powerText.text = this.crew[j].power
+                  }
+                }               
+                break;    
+              case 10:
+                break; 
+              case 200:
+                this.scoreCountNum = 0;
+                for(var i = 1 ; i < 10; i++){
+                  this.scoreCountNum += this.collectedTreasure[i].count*(i*55)
+                  localStorage.setItem("collectedTreasure"+i,this.collectedTreasure[i].count  )   
+                }               
+                
+                var score = parseInt(localStorage.getItem("highScore"))
+                localStorage.setItem("currentScore",this.scoreCountNum)
+                if(this.scoreCountNum > score){
+                  localStorage.setItem("highScore",this.scoreCountNum)
+                } 
+                this.bgSound.stop();
+                this.transWaveKey = 1
+                this.transTar = 'win'              
+                //this.game.state.start('win');
+                
+                
+                break;      
+              case 201:
+                this.monCountValue = monPoolValue
+                this.bounty += 10
+                break;                                                                    
 
+            }
+            
+            this.chatTimer = 0;
           }
-          
-          this.chatTimer = 0;
+
         }
         //captain's ultimate
         ,captainUlt: function (){
-          if(this.deploy_poolCurrent >= this.cap_ultCost && this.phaseCounter == 1 && !this.captainPowerActivated){
+          if(this.deploy_poolCurrent >= this.cap_ultCost && this.phaseCounter == 1 && !this.captainPowerActivated && (this.capKey == 2 && this.freeCounterNum > 0)){
             this.captainPowerActivated = true
             this.deploy_poolCurrent -= this.cap_ultCost
             //this.cap_ultCost += 2;
@@ -1626,14 +2230,38 @@
                 }                  
                 break;
               case 2:
-                this.captainPowerActivated = false;
-              this.smoke.on = true;                 
+                if((this.freeCounterNum-1 >= 0)){
+                  this.freeCounterNum--
+                  this.freeCounterText2.alpha = 1
+                  this.freeCounterText2.text = "-1" 
+
+                  for(var i = 0; i < this.boardHeight; i++){
+                    for(var j = 0; j < this.boardWidth; j++){  
+                      if(this.tile[''+j+i].isEnemyHere && !this.tile[''+j+i].submerged && this.tile[''+j+i].alpha >= 1){
+                        this.tile[''+j+i].smoke.on = true;
+                        this.tile[''+j+i].smoke.x = this.tile[''+j+i].x
+                        this.tile[''+j+i].smoke.y = this.tile[''+j+i].y
+                      }
+                    }
+                  } 
+                }
+                
+                //this.smoke.on = true;                 
               break;                
               case 3:
+                
+                this.cap_healthText2.alpha = 1
+                this.cap_healthValue -= 1;  
+                this.cap_healthText2.text = 1
+                this.cap_healthText2.y = this.cap_healthText.y
+                
                 for(var i = 0; i < this.boardHeight; i++){
                   for(var j = 0; j < this.boardWidth; j++){  
                     if(this.tile[''+j+i].isEnemyHere && !this.tile[''+j+i].submerged){
                       this.tile[''+j+i].submerged = true;
+                      if(this.tile[''+j+i].smoke.on){
+                        this.tile[''+j+i].smoke.on = false;
+                      }                      
                     }
                   }
                 }                
@@ -1657,53 +2285,90 @@
      
         }
         ,clearBoard: function () {
-          this.clearbuttonTimer = 10
-          this.placeOrderTracker = 0;
-          //check how many crew deployed
-          for(var i = 0; i < this.boardHeight; i++){
-            for(var j = 0; j < this.boardWidth; j++){      
-              if(this.tile[''+j+i].isCrewHere || this.tile[''+j+i].crewID != 0){
-                
-                this.deployCrewCount++
-              }
-            }
-          }
-          //crew returns          
-          for(var i = 0; i < this.boardHeight; i++){
-            for(var j = 0; j < this.boardWidth; j++){      
-              if(this.tile[''+j+i].isCrewHere){
-                this.tile[''+j+i].hasActed = true;
-                this.tile[''+j+i].y  = 1000;
-                this.tile[''+j+i].loadTexture('tile');
-                for(var z = 1; z < 6; z++){
-                  if(this.crew[z].id == this.tile[''+j+i].crewID){
-                    this.deploy_poolCurrent += this.crew[z].deployCost
-                  }
+          if(this.deployReady){
+            this.clearbuttonTimer = 10
+            this.placeOrderTracker = 0;
+            //check how many crew deployed
+            for(var i = 0; i < this.boardHeight; i++){
+              for(var j = 0; j < this.boardWidth; j++){      
+                if(this.tile[''+j+i].isCrewHere || this.tile[''+j+i].crewID != 0){
+                  
+                  this.deployCrewCount++
                 }
-                
-                if(this.tile[''+j+i].crewID == 5){
-                  this.freeCounterNum++;
-                }                 
-                this.tile[''+j+i].crewID = 0
-                //this.tile[''+j+i].monID = 0
-                this.tile[''+j+i].isCrewHere = false;
-                //this.tile[''+j+i].isEnemyHere = false;
-                //this.tile[''+j+i].healthText.text = "";
-                //this.tile[''+j+i].powerText.text = "";
-                //this.tile[''+j+i].healthText.alpha = 0
-                //this.tile[''+j+i].powerText.alpha = 0;   
-                this.tile[''+j+i].hasActed = false;
-                this.tile[''+j+i].placeOrder = -1;                                 
-                //break;
               }
-
             }
-          }  
-          for(var i = 1; i < 6; i++){
-            this.crew[i].isSelected = false;
-            this.crew[i].isDeployed = false
-          }   
-          this.removeTint();
+            //crew returns          
+            for(var i = 0; i < this.boardHeight; i++){
+              for(var j = 0; j < this.boardWidth; j++){      
+                if(this.tile[''+j+i].isCrewHere){
+                  this.tile[''+j+i].hasActed = true;
+                  this.tile[''+j+i].y  = 1000;
+                  this.tile[''+j+i].loadTexture('tile');
+                  for(var z = 1; z < 6; z++){
+                    if(this.crew[z].id == this.tile[''+j+i].crewID){
+                      this.deploy_poolCurrent += this.crew[z].deployCost
+                    }
+                  }
+                  
+                  if(this.tile[''+j+i].crewID == 5){
+                    this.freeCounterNum++;
+                  }                 
+                  this.tile[''+j+i].crewID = 0
+                  //this.tile[''+j+i].monID = 0
+                  this.tile[''+j+i].isCrewHere = false;
+                  //this.tile[''+j+i].isEnemyHere = false;
+                  //this.tile[''+j+i].healthText.text = "";
+                  //this.tile[''+j+i].powerText.text = "";
+                  //this.tile[''+j+i].healthText.alpha = 0
+                  //this.tile[''+j+i].powerText.alpha = 0;   
+                  this.tile[''+j+i].hasActed = false;
+                  this.tile[''+j+i].placeOrder = -1;                                 
+                  //break;
+                }
+
+              }
+            }  
+            for(var i = 1; i < 6; i++){
+              this.crew[i].isSelected = false;
+              this.crew[i].isDeployed = false
+            } 
+            //undo steel type power 
+            for(var i = 1; i < 6; i++){
+              if(this.crew[i].type == 0){
+                this.crew[i].holderPower[10] = 0
+              }
+              
+            }      
+            //undo captain health       
+            this.cap_healthValue = this.cap_healthValueHolder
+            // reset captain savvy
+            this.deploy_poolCurrent = this.deploy_poolMax;
+            this.captainPowerActivated = false;
+            //reset board state
+            for(var m = 0; m < this.boardHeight; m++){
+              for(var l = 0; l < this.boardWidth; l++){  
+                this.tile[''+l+m].loadTexture(this.tileHolder[''+l+m].texture)
+                this.tile[''+l+m].isCrewHere = this.tileHolder[''+l+m].isCrewHere 
+                this.tile[''+l+m].crewID = this.tileHolder[''+l+m].crewID
+                this.tile[''+l+m].isEnemyHere = this.tileHolder[''+l+m].isEnemyHere
+                this.tile[''+l+m].monID = this.tileHolder[''+l+m].monID
+                this.tile[''+l+m].isFlipping = this.tileHolder[''+l+m].isFlipping
+                
+                this.tile[''+l+m].hp = this.tileHolder[''+l+m].hp
+                this.tile[''+l+m].power = this.tileHolder[''+l+m].power
+                
+                this.tile[''+l+m].submerged = this.tileHolder[''+l+m].submerged
+                
+                this.tile[''+l+m].smoke.on = this.tileHolder[''+l+m].smoke.on              
+
+                
+                
+                
+              }
+            }          
+            this.removeTint();
+          }
+
           
         }
         ,spawnMonsters: function (tile,submerged) {
@@ -1736,7 +2401,7 @@
             this.monCount = 1
           }
           else{
-            this.monCount = this.monBaseCount+this.turnCountNum
+            this.monCount = this.monBaseCount+(this.turnCountNum*monscaleNum)
             // treasures add to moncount
             for(var i = 1 ; i < 10; i++){
               this.monCount += this.collectedTreasure[i].count      
@@ -1753,13 +2418,26 @@
           var text = waves[this.turnCountNum]				
           //text = text.split("");
           var textKey = 0
-          for(var i = 0; i < this.boardHeight; i++){
-              for(var j = 0; j < this.boardWidth; j++){      
+          var ranStartY = Math.floor(Math.random() * this.boardHeight/2);
+          var ranStartX = Math.floor(Math.random() * this.boardWidth/2);
+          
+          for(var i = ranStartY; i < this.boardHeight; i++){
+              for(var j = ranStartX; j < this.boardWidth; j++){      
                 //reset stats
                 this.tile[''+j+i].hasAttacked = false;
                 //place mon
-                var placeMonHere =Math.floor(Math.random() * 2);
+                var placeMonHere = Math.floor(Math.random() * 2);
                 //this.monCount = 100;
+
+                if(this.monCount > this.monCountValue){
+                  this.monCount = this.monCountValue
+                }
+
+                if(this.monCount <= 3){
+                  placeMonHere = 0
+                }
+
+                
                 if(placeMonHere == 0 && this.monCount > 0 && !this.tile[''+j+i].isEnemyHere && !this.tile[''+j+i].isCrewHere && this.monCountValue > 0){
                   
                   dist += 1000;
@@ -1883,7 +2561,10 @@
                     this.tile[""+j+i].submerged = false;
                   }
                   //always spawn submerged after quota
-                  if(this.spawnCount > 3){
+                  if(this.spawnCount > monEmergecut){
+
+
+
                     this.tile[""+j+i].submerged = true
                   }
 
@@ -1923,7 +2604,7 @@
                       this.tile[''+j+i].isEnemyHere = true
                       break;
                     case 6:
-                      this.tile[''+j+i].hp = 5;
+                      this.tile[''+j+i].hp = 6;
                       this.tile[''+j+i].power = 2;
                       this.tile[''+j+i].tier = 1
                       this.tile[''+j+i].isEnemyHere = true
@@ -1973,6 +2654,11 @@
                 }
                 //multi attacks
                 this.tile[''+j+i].origmultiAttack = this.tile[''+j+i].multiAttack
+                
+                if(parseInt(localStorage.getItem("intro")) == 7 && !this.tile[""+j+i].submerged ){
+                  this.tile[''+j+i].hp = 5
+                  
+                }
 
                 distX += this.tile[''+j+i].width+this.spacing
                 if(distX > this.size*this.boardWidth){
@@ -1991,7 +2677,8 @@
           this.turnMarkerText.text = "YOUR TURN"
           this.turnMarker.alpha = 1;       
           
-          this.turnWait = 100;
+          this.turnWait = turnWaitBase;
+          
           this.phaseCounter++  
           if(this.turnCountNum > 0){
             //this.monCountValue--;
@@ -2029,6 +2716,7 @@
                 
                 this.deployCrewCount++
               }
+                     
             }
           }
           
@@ -2089,6 +2777,13 @@
           for(var i = 1; i < 6; i++){
             this.crew[i].isSelected = false;
             this.crew[i].isDeployed = false
+            for(var k = 1; k < 6; k++){
+              if(this.crew[k].id == 1 && (parseInt(localStorage.getItem("intro")) == 7)){
+                this.crewSpeak(k,"Back on the bench!")
+                this.crew[k].speechTimer = 50
+                localStorage.setItem("intro",8);
+              }            
+            }             
           }    
           this.removeTint();
           //next phase  
@@ -2104,6 +2799,9 @@
               this.tile[''+j+i].isCrewHere = false;
               this.tile[''+j+i].hasActed = false;
               this.tile[''+j+i].hasAttacked = false;
+
+
+             
             }
           }  
           /*        
@@ -2128,46 +2826,71 @@
           else{
             
             this.phaseStart = true;
-            this.actionTimer = 50;
+            this.actionTimer = actionTimerBase 
             //this.game.time.events.add(5000, this.enemyFight());
           } 
           */
                    
         }
         ,endDeployPhase: function (tile) {
-          if(this.deployReady){
-            this.placeOrderTracker = 0;
+          if(parseInt(localStorage.getItem("intro")) < 7){
+            for(var k = 1; k < 6; k++){
+              if(this.crew[k].id == 1 && parseInt(localStorage.getItem("intro")) == 3){
+                this.crewSpeak(k,"Let's get that treasure.\nDeploy me")
+              }
+              if(this.crew[k].id == 2 && parseInt(localStorage.getItem("intro")) == 4){
+                this.crewSpeak(k,"Don't forget to deploy me!")
+              }    
+              if(this.crew[k].id == 3 && parseInt(localStorage.getItem("intro")) == 9){
+                this.crewSpeak(k,"You forget me, Captain!")
+              }                            
+            }           
+          }
+          else if(parseInt(localStorage.getItem("intro")) == 9){
+            for(var k = 1; k < 6; k++){ 
+              if(this.crew[k].id == 3 ){
+                this.crewSpeak(k,"You forget me, Captain!")
+              }                            
+            }           
+          }          
+          else{
+            if(this.deployReady){
+              
+              this.actionTimer = 0;
+              this.placeOrderTracker = 0;
 
-            this.endbuttonTimer = 10
-            this.turnWait = 1;
-            this.phaseCounter++        
-            this.turnMarkerText.text = ""
-            this.turnMarker.alpha = 0;
+              this.endbuttonTimer = 10
+              this.turnWait = 1;
+              this.phaseCounter++        
+              this.turnMarkerText.text = ""
+              this.turnMarker.alpha = 0;
 
-            this.deployReady = false;  
-            //savvy turns to salt
-            for(var i = 0; i< this.deploy_poolCurrent; i++){
-              //this.spawnSalt(this.deploy_pool.x, this.deploy_pool.y)
-            }
-            
-            this.deploy_poolCurrent = 0;
+              this.deployReady = false;  
+              //savvy turns to salt
+              for(var i = 0; i< this.deploy_poolCurrent; i++){
+                //this.spawnSalt(this.deploy_pool.x, this.deploy_pool.y)
+              }
+              
+              this.deploy_poolCurrent = 0;
 
-            //this.capEnergy += this.deploy_poolCurrent
-            //this.deploy_poolCurrent -= this.deploy_poolCurrent
+              //this.capEnergy += this.deploy_poolCurrent
+              //this.deploy_poolCurrent -= this.deploy_poolCurrent
 
-            this.deployCrewCount = 0 ;
-            //check how many crew deployed
-            for(var i = 0; i < this.boardHeight; i++){
-              for(var j = 0; j < this.boardWidth; j++){      
-                if(this.tile[''+j+i].isCrewHere ){
-                  this.deployCrewCount++
+              this.deployCrewCount = 0 ;
+              //check how many crew deployed
+              for(var i = 0; i < this.boardHeight; i++){
+                for(var j = 0; j < this.boardWidth; j++){      
+                  if(this.tile[''+j+i].isCrewHere ){
+                    this.deployCrewCount++
+                  }
                 }
               }
+
+
+
             }
-
-
-
           }
+
    
         }
         ,crewFight: function (tile) {
@@ -2185,9 +2908,14 @@
                 this.tile[''+j+i].width  += 100;
                 this.tile[''+j+i].height += 100;
                 
+            
                 
                 for(var z = 1; z < 6; z++){
                   if(this.crew[z].id == this.tile[''+j+i].crewID){
+
+                    this.selectedCrew = this.crew[z].arrayKey
+                    this.noPickUp = true;    
+
                     switch(parseInt(this.crew[z].attackPattern)){
                       //normal
                       case 1:
@@ -2261,7 +2989,16 @@
                               }
                             }
                           }                              
-                          break;                          
+                          break;          
+                        case 8:
+                          for(var l = 0; l < this.boardHeight; l++){
+                            for(var m = 0; m < this.boardWidth; m++){
+                              if(!this.tile[''+(m)+(l)].submerged && this.tile[''+(m)+(l)].isEnemyHere){
+                                this.crewAttackTile(this.tile[''+(m)+(l)],this.tile[''+j+i].crewID)              
+                              }
+                            }
+                          }                              
+                          break;                                             
                                                                                  
                     }  
                     
@@ -2308,6 +3045,15 @@
                         //this.tile[''+j+i].isCrewHere = false;
                         //this.tile[''+j+i].hasActed = false;                                       
                         break;
+                        case 10:           
+                        var makeAmmoChance = Math.floor(Math.random() * 4);    
+                        if(makeAmmoChance  == 0 ){
+                          this.freeCounterNum++;
+                          this.freeCounterText2.alpha = 1
+                          this.freeCounterText2.text = "+1"                           
+                          this.setActionText(this.tile[''+j+i],"+1💣")
+                        }                             
+                        break;                          
 
                                                                       
                     }                      
@@ -2336,7 +3082,7 @@
             this.turnMarker.alpha = 1;                
             this.phaseCounter++;  
             
-            this.turnWait = 25;
+            this.turnWait = turnWaitBase;
             this.ActionCounter = 0;
             this.placeOrderTracker = 0;
             this.placeOrderKey = 0;
@@ -2350,15 +3096,21 @@
           }
           else{
             this.phaseStart = true;
-            this.actionTimer = 50;
+            this.actionTimer = actionTimerBase 
             //this.game.time.events.add(5000, this.enemyFight());
           }          
         }  
         ,crewAttackTile: function (enemy,crewID) {   
           try{
-           
-            if(enemy.isEnemyHere && ((!enemy.submerged && crewID != 6) || (enemy.submerged && crewID == 6))){
-              
+           // if(enemy.isEnemyHere && ((!enemy.submerged) || (enemy.submerged && crewID == 6))){
+            if(enemy.isEnemyHere && ((!enemy.submerged))){
+              /*
+              if(crewID == 6 && enemy.submerged){
+                enemy.isFlipping = true;
+                enemy.oldTexture = enemy.texture;   
+                enemy.submerged = false; 
+              }
+              */
               //if intagible no damage
               if(enemy.alpha == 1){
                 for(var i = 1; i < 6; i++){
@@ -2366,12 +3118,8 @@
                     
                     enemy.hp -= this.crew[i].power
                     this.setActionText(enemy,this.crew[i].power)
-                    if(crewID == 10){
-                      
-                      enemy.smoke.on = true;
-                      enemy.smoke.x = enemy.x
-                      enemy.smoke.y = enemy.y
-                    }
+                    
+
                   }
                 }
                 
@@ -2481,7 +3229,11 @@
           for(var i = 0; i < enemy.tier; i++){
             this.spawnSalt(enemy.x, enemy.y)
           }     
-
+          if(localStorage.getItem("NumMon"+enemy.monID+"Killed") === null){
+            localStorage.setItem("NumMon"+enemy.monID+"Killed",0)
+          }
+          var currentCount = parseInt(localStorage.getItem("NumMon"+enemy.monID+"Killed"))
+          localStorage.setItem("NumMon"+enemy.monID+"Killed",currentCount+1)
           
           switch(enemy.monID){
             case 1:
@@ -2520,7 +3272,7 @@
               break;             
             case 99:
               
-              this.chatTimer = 1;
+              this.chatTimerCount = chatTimerBase;
 
               this.treasureOptions[0].value = 1//Math.floor(Math.random() * 2)+1;
               
@@ -2568,7 +3320,7 @@
           enemy.monID = 0;   
           this.game.plugins.screenShake.shake(5); 
 
-          //enemy.y = 1000;          
+          enemy.y = 1000;          
         }      
         ,knockBack: function (enemy,crew) {
           try{
@@ -2687,26 +3439,65 @@
                 //this.tile[''+j+i].alpha = 1;
                 this.tile[''+j+i].hasAttacked = true;
                 //this.placeCrew(this.tile[''+j+i])
-
+                
+                this.selectedCrew = 100+this.tile[''+j+i].monID;
+                this.noPickUp = true; 
                 
 
 
-                if(!this.tile[''+j+i].submerged){
+                if(!this.tile[''+j+i].submerged && this.tile[''+j+i].power > 0){
                   this.tile[''+j+i].width  += 100;
                   this.tile[''+j+i].height += 100;        
                   
-                  //if smoking potentially miss (25% chance)
+                  //if smoking potentially miss (50% chance)
                   if(this.tile[''+j+i].smoke.on){
                     var missChance = Math.floor(Math.random() * 4);    
-                    if(missChance == 0){
+                    if(missChance == 0 || missChance == 1){
                       this.setActionText(this.tile[''+j+i],"MISSED")
                     }
                     else{
-                      this.damageCaptain(this.tile[''+j+i])
+                     /* if (parseInt(localStorage.getItem("intro")) == 3 ) {
+                        localStorage.setItem("intro",4);
+                        this.chatTimer = 1;
+                        this.tutorialPause = true;   
+                        this.overlay.loadTexture('bgOverlay_heart')                          
+                        Swal.fire({
+                          title: 'Tutorial (5/5)',
+                          text: "Sea Creeps ONLY attack your captain regardless off their position on the board. If your captain's health reaches zero you'll have to abandon your voyage and lose all the treasure you've gathered.",
+                          imageUrl: 'assets/tut_heart.png',
+                          imageWidth: 200,
+                          imageHeight: 200,
+                        }).then((result) => {
+                          this.chatTimer = 0;
+                          this.tutorialPause = false;                              
+                        })            
+                      }  */                    
+                      if(this.tile[''+j+i].power > 0){
+                        this.damageCaptain(this.tile[''+j+i])
+                      } 
                     }
                   }
                   else{
-                    this.damageCaptain(this.tile[''+j+i])
+                   /* if (parseInt(localStorage.getItem("intro")) == 3 ) {
+                      localStorage.setItem("intro",4);
+                      this.chatTimer = 1;
+                      this.tutorialPause = true;           
+                      this.overlay.loadTexture('bgOverlay_heart')                 
+                      Swal.fire({
+                        title: 'Tutorial (5/5)',
+                        text: "Sea Creeps ONLY attack your captain regardless off their position on the board. If your captain's health reaches zero you'll have to abandon your voyage and lose all the treasure you've gathered.",
+                        imageUrl: 'assets/tut_heart.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                      }).then((result) => {
+                        this.chatTimer = 0;
+                        this.tutorialPause = false;                              
+                      })            
+                    }    */       
+                    if(this.tile[''+j+i].power > 0){
+                      this.damageCaptain(this.tile[''+j+i])
+                    }               
+                    
              
                   }
                   
@@ -2875,6 +3666,9 @@
                         
                         if(this.tile[''+j+i].alpha == 1){
                           this.tile[''+j+i].alpha = 0.5
+                          if(this.tile[''+j+i].smoke.on){
+                            this.tile[''+j+i].smoke.on = false;
+                          }
                         }
                         else{
                           this.tile[''+j+i].alpha = 1;
@@ -2884,7 +3678,10 @@
                   this.game.plugins.screenShake.shake(5); 
 
                   if(this.cap_healthValue <= 0){
-                    this.game.state.start('lose');
+                    this.bgSound.stop();
+                    this.transWaveKey = 1
+                    this.transTar = 'lose'                          
+                    //this.game.state.start('lose');
                   }
                   j =  this.boardWidth
                   i = this.boardHeight
@@ -2893,6 +3690,37 @@
                 else{
                   if(this.tile[''+j+i].isCrewHere){
                     this.tile[''+j+i].y -= 50;
+                    //crew On Block effect
+                    switch(this.tile[''+j+i].crewID){
+                      case 6:       
+                        for(var z = 1; z < 6; z++){
+                          if(this.crew[z].id == this.tile[''+j+i].crewID){
+                            
+                            this.cap_healthText2.alpha = 1
+                            this.cap_healthValue += this.crew[z].power
+                            this.cap_healthText2.text = this.crew[z].power
+                            this.cap_healthText2.y = this.cap_healthText.y      
+
+                            
+                          }
+                        }                                        
+                  
+                        break;
+                      case 7:
+                        
+                        for(var z = 1; z < 6; z++){
+                          if(this.crew[z].id == this.tile[''+j+i].crewID){
+                            
+                            this.crew[z].power = this.crew[z].power*2;
+                            this.crew[z].origPower = this.crew[z].power
+                            this.tile[''+j+i].powerText.text = this.crew[z].power
+
+                            
+                          }
+                        }                        
+
+                        break;                        
+                    }
                   }
                   else{
                     this.tile[''+j+i].submerged = false;
@@ -2920,7 +3748,7 @@
           if(this.ActionCounter >= this.monCount){
             //this.turnMarkerText.text = "ENEMY TURN"               
             this.phaseCounter = 0;
-            this.turnWait = 25;
+            this.turnWait = turnWaitBase;
             this.ActionCounter = 0;
             for(var i = 0; i < this.boardHeight; i++){
               for(var j = 0; j < this.boardWidth; j++){   
@@ -2947,7 +3775,7 @@
           }
           else{
             this.phaseStart = true;
-            this.actionTimer = 50;
+            this.actionTimer = actionTimerBase 
             //this.game.time.events.add(5000, this.enemyFight());
           }
             
@@ -2958,14 +3786,55 @@
           if(debug){
             alert("tile info \nIs Flipping? "+tile.isFlipping+"\nisEnemy? "+tile.isEnemyHere+"\nisSubmerged? "+tile.submerged+"\nmonID? "+tile.monID+"\nisCrew? "+tile.isCrewHere)
             alert("tile info \ncrew ID? "+tile.crewID)
+            alert("selected Crew? "+this.selectedCrew+"\nselected crew ID? "+this.crew[this.selectedCrew].id )
           }
           
-          if(this.selectedCrew != 0 && (!tile.isEnemyHere || tile.submerged) && !tile.isCrewHere ){
+          if(this.selectedCrew != 0 && (!tile.isEnemyHere || tile.submerged) && !tile.isCrewHere && !this.noPickUp){
             var remainingDeploy = this.deploy_poolCurrent - this.crew[this.selectedCrew].deployCost
+
             
+            
+            this.noPickUp = true;
+
             tile.placeOrder = this.placeOrderTracker
             this.placeOrderTracker++
             if(remainingDeploy >= 0){
+              //crew guiding placement
+              if(parseInt(localStorage.getItem("intro")) == 3 || onboardingDebug ){
+                
+                for(var k = 1; k < 6; k++){
+                  if(this.crew[k].id == 2 && this.crew[this.selectedCrew].id != 2 && parseInt(localStorage.getItem("intro")) == 3){
+                    this.crewSpeak(k,"Put me in as well, Cap'n!")
+                    localStorage.setItem("intro",4);
+                  }
+                }  
+              }
+              if(this.crew[this.selectedCrew].id == 2 && parseInt(localStorage.getItem("intro")) == 4){
+                localStorage.setItem("intro",6);
+              }
+              if(parseInt(localStorage.getItem("intro")) == 9 && this.crew[this.selectedCrew].id == 3){
+                localStorage.setItem("intro",10);
+              }                
+
+              if (parseInt(localStorage.getItem("intro")) == 6 ) {
+                this.tutorialPause = true;
+                this.chatTimer = 1;                  
+                this.overlay.loadTexture('bgOverlay_savvy')   
+                Swal.fire({
+                  title: 'Pay Attention!',
+                  text: "Deploying crew and Using your captain's ability costs SAVVY.",
+                  imageUrl: 'assets/tut_savvy.png',
+                  backdrop: false,
+                  imageWidth: 200,
+                  imageHeight: 200,
+             
+                }).then((result) => {
+                  localStorage.setItem("intro",7);
+                  this.chatTimer = 0;
+                  this.tutorialPause = false;                         
+                })            
+              } 
+                            
               try{
 
                 this.crew[this.selectedCrew].posX = tile.posX
@@ -2974,6 +3843,7 @@
                 tile.width = this.size
                 tile.height = this.size
                 tile.isCrewHere = true
+                
 
                 tile.crewID = this.crew[this.selectedCrew].id 
                 this.crew[this.selectedCrew].isSelected = false;
@@ -2981,6 +3851,8 @@
                 this.deploy_poolCurrent -= this.crew[this.selectedCrew].deployCost
                 if(this.selectedCrew == 5){
                   this.freeCounterNum--;
+                  this.freeCounterText2.alpha = 1
+                  this.freeCounterText2.text = "-1"                   
                 }
                 else{
                   this.crew[this.selectedCrew].isDeployed = true
@@ -2997,11 +3869,21 @@
             }
 
           }
+          else if(tile.isCrewHere){
+            for(var z = 1; z < 6; z++){
+              if(this.crew[z].id == tile.crewID){
+                this.selectedCrew = this.crew[z].arrayKey
+              }
+            }            
+            
+            this.noPickUp = true;
+
+          }          
           else if(tile.isEnemyHere){
             //
-            if(this.smoke.on){
+            if(this.smoke.on && !tile.smoke.on){
               this.smoke.on = false;
-
+              this.captainPowerActivated = false;
               tile.smoke.on = true;
               tile.smoke.x = tile.x
               tile.smoke.y = tile.y
@@ -3072,27 +3954,95 @@
           
         }        
         ,crewSelected: function (crew) {
-          
+          this.noPickUp = false;
           //only during deployment phase
           if(this.deployReady){
             if(!crew.isDeployed){
-              for(var i = 1; i < 6; i++){
-                this.crew[i].isSelected = false;
-              }            
-              this.selectedCrew = crew.arrayKey//crew.id
-              
-              
-              crew.isSelected = true;
-            }
-            else{
 
+              
+
+              if(!crew.isSelected){
+                for(var i = 1; i < 6; i++){
+                  this.crew[i].isSelected = false;
+                }            
+                crew.speechTimer = 1;                
+                crew.isSelected = true;
+                this.selectedCrew = crew.arrayKey//crew.id
+              }
+              else{
+                crew.isSelected = false;
+                this.selectedCrew = 0
+                this.noPickUp = true;
+              }
+              
             }
+
+            if(parseInt(localStorage.getItem("intro")) == 3 && crew.id != 1){
+              crew.isSelected = false;
+              this.selectedCrew = 0
+              this.noPickUp = true;              
+              for(var k = 1; k < 6; k++){
+                if(this.crew[k].id == 1){
+                  this.crewSpeak(k,"Deployment order matters!\nPut me in first")
+                }
+              }              
+            }
+
+            if(parseInt(localStorage.getItem("intro")) == 9 && crew.id != 3){
+              crew.isSelected = false;
+              this.selectedCrew = 0
+              this.noPickUp = true;              
+              for(var k = 1; k < 6; k++){
+                if(this.crew[k].id == 3){
+                  this.crewSpeak(k,"Let me have the honour, Captain")
+                }
+              }              
+            }            
+
+            
+
+
           }
 
           
 
           
         }
+        , showInfo: function (crew) {
+          if(this.noPickUp){
+            this.selectedCrew = crew.arrayKey
+            //this.noPickUp = true;
+          }
+
+          
+        }   
+        , updatetoolTip: function (text) {
+          this.tips.updateContent("Plus Ultra")
+          this.tips.hideTooltip()
+          var words = text.text.split(" ");
+          var content = ""
+          for(var i = 0; i < words.length; i++){
+            for(var k = 0; k < keyword.length; k++){
+              if(words[i].toUpperCase() === keyword[k].word.toUpperCase()){
+                
+                if(keyword[k].description.length > 0){
+                  this.tips.showTooltip()  
+                  if(keyword[k].description.length > 0){
+                    content += keyword[k].description+"\n\n"
+                  } 
+                  this.tips.updateContent(content)
+                  //k = keyword.length
+                  //i = words.length
+                }
+
+              }
+              else{
+              }
+
+            }
+          }          
+        }                  
+
         , setActionText: function (tile,text) {
           tile.actionText.alpha = 1;
           tile.actionText.text = text;
@@ -3104,6 +4054,8 @@
           
         }        
         , damageCaptain: function (enemy) {
+            this.captainHurt = true;
+            this.game.plugins.screenShake.shake(5); 
             this.cap_healthText2.alpha = 1
             this.cap_healthValue -= parseInt(enemy.power);  
             this.cap_healthText2.text = enemy.power
@@ -3111,6 +4063,13 @@
                         
           
         }
+        , animateHover: function (item){
+          
+          item.targetY = item.origtargetY-50;
+        }
+        , returnOrig: function (item){
+          item.targetY = item.origtargetY
+        }                
         , monMove: function (){
 
         }
@@ -3121,6 +4080,100 @@
 
 
         }     
+        , showOptions: function () {
+          if(true){
+            this.tutorialPause = true;
+            this.chatTimer = 1;                
+            var ran = Math.floor(Math.random() * 3)+1;
+            Swal.fire({
+              title: 'OPTIONS',
+              html: '<span onclick=\'const electron = require("electron");const ipc = electron.ipcRenderer;ipc.send("toggle-maximize-window");\'>TOGGLE FULL SCREEN</span><br/><br/><div class="slidecontainer" > MUSIC VOLUME: <span id="mVol">'+parseInt(localStorage.getItem("bgVol"))+'</span><br/><input oninput=\'document.getElementById("mVol").innerHTML = this.value\' type="range" min="0" max="10" value="'+parseInt(localStorage.getItem("bgVol"))+'" class="slider" id="volRange"> </div><br/><div class="slidecontainer"> SFX VOLUME: <span id="sfxVol">'+parseInt(localStorage.getItem("sfxVol"))+'</span><br/><input oninput=\'document.getElementById("sfxVol").innerHTML = this.value\' type="range" min="0" max="10" value="'+parseInt(localStorage.getItem("sfxVol"))+'" class="slider" id="sfxRange"> </div>',
+            }).then((result) => {
+              var bgVol = document.getElementById("volRange");
+              var sfxVol = document.getElementById("sfxRange");
+    
+              localStorage.setItem("bgVol",bgVol.value)
+              localStorage.setItem("sfxVol",sfxVol.value)
+              //alert(bgVol.value)
+
+              this.tutorialPause = false;
+              this.chatTimer = 0;                  
+           
+            })            
+          }      
+        }      
+        , crewSpeak: function (key,words){
+          this.crew[key].speechBubble.alpha = 0;
+          this.crew[key].isTalking = true;
+          this.crew[key].speechBubbleText.text = words
+          this.crew[key].speechTimer = speechTimerBase
+          //this.showInfo(this.crew[key])
+
+
+        }   
+        , crewShutup: function (key){
+          this.crew[key].isTalking = false;
+
+        }                   
+        , checkKeywords: function (text){
+          // detect emoji /\p{Extended_Pictographic}/u.test('flowers 123')
+          // first be able to detect multiple key words
+          text.clearColors()
+          var words = text.text.split(" ");
+          var lengthBeforeKey = 0;
+          var lengthAfterKey = 0;
+          var keywordLength = 0;
+          
+          var lengthCounter = [];
+          var lengthKey = 0;
+          lengthCounter[lengthKey] = 0;
+
+          var keyWordCounter = [];
+          var keyWordKey = 0;
+          
+
+          for(var i = 0; i < words.length; i++){
+            lengthCounter[lengthKey] += words[i].length+1
+            for(var k = 0; k < keyword.length; k++){
+             
+              if(words[i].toUpperCase() === keyword[k].word.toUpperCase()){
+                keyWordCounter[lengthKey] = k
+                //keyWordCounter[lengthKey] = keyword[k].word.length
+                lengthCounter[lengthKey] -= keyword[k].word.length+1;
+                lengthKey++
+                lengthCounter[lengthKey] = lengthCounter[lengthKey-1]+keyword[k].word.length+1
+                /*
+                k = keyword.length
+                i = words.length
+                */                
+              }
+              else{
+                
+                //lengthBeforeKey += words[i].length+1
+               
+              }
+
+            }
+          }
+          
+          
+
+          
+          text.addColor("white", 0);
+          for(var j = 0; j < lengthCounter.length;j++){
+            try{
+              text.addColor(keyword[keyWordCounter[j]].color, lengthCounter[j]); 
+              text.addColor("white", (lengthCounter[j]+keyword[keyWordCounter[j]].word.length));
+            }
+            catch(e){
+
+            }
+
+          }
+          text.updateText()
+          
+
+        }         
         , springBody: function (degrade,tile){
           
           if(tile.springY != 0){

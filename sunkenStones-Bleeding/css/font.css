@@ -47,6 +47,16 @@
 }
 
 @font-face {
+  font-family: 'Kaph-Regular';
+  src: url('Kaph-Regular.ttf');
+  src: url('Kaph-Regular.ttf').format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+@font-face {
     font-family: 'LondrinaSolid-Black';
     src: url('fontsLondrinaSolid-Black.ttf');
     src: url('fontsLondrinaSolid-Black.ttf').format('truetype');

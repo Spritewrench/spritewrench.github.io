@@ -1,3 +1,4 @@
+
 (function () {
   'use strict';
 
@@ -7,6 +8,7 @@
     
     preload: function () {
       this.load.image('preloader', 'assets/preloader.gif');
+      this.game.load.video('seaBG', 'assets/video/Sunken Stones Animated BG Loop.mp4');
     },
 
     create: function () {

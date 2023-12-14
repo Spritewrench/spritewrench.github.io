@@ -15,7 +15,7 @@
       image-rendering: -webkit-optimize-contrast;
     }
     body{
-      font-family: 'LondrinaSolid-Black';
+      font-family: 'Kaph-Regular';
     }
 
   </style>   
@@ -30,12 +30,19 @@
   <!-- /build -->
 
   <!-- build:js main.min.js -->
+    <script type="module" src="js/lib/firebase.js"></script>  
+    <script src="js/lib/sweetalert2.all.min.js?ver=0.2.0"></script>
+    <script src="js/config.js"></script>
+
     <script src="js/lib/phaser.min.js"></script>
+
     <script src="js/lib/ScreenShake.js"></script>
     <script src="js/lib/ntc.js"></script>
+    <script src="js/lib/easing.js"></script>
+    <script src="js/lib/Phasetips.js"></script>    
     <script src="js/boot.js"></script>
     <script src="js/preloader.js"></script>
-    <script src="js/menu.js"></script>
+    <script type="module" src="js/menu.js"></script>
     <script src="js/win.js"></script>    
     <script src="js/lose.js"></script>    
     <script src="js/game.js"></script>
@@ -43,15 +50,29 @@
     <script src="js/selectCap.js"></script>
     <script src="js/selectCrew.js"></script>
     <script src="js/waves.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/lib/sweetalert2.all.min.js?ver=0.2.0"></script>
     <script src="js/crew.js"></script>
+    <script src="js/captains.js"></script>
+    <script src="js/keywords.js"></script>
+    <script src="js/lib/webfont.js"></script>
+
+   
 
   <!-- /build -->
 
 </body>
 
 <script>
+  
+      //create unique userID 
+    if(localStorage.getItem("sunkenStones-userID") === null ){
+      var id = crypto.randomUUID();
+      console.log(id)
+      localStorage.setItem("sunkenStones-userID",id)
+    }  
+    else{
+      
+    }
+  
     // Initialize Firebase
    /* var config = {
     apiKey: "AIzaSyDLavESdxZeNSEcFKFYVF1riDoNzR72gPU",
@@ -81,7 +102,32 @@
       // ...
     });    
     */
+    WebFontConfig = {
+      custom: {
+        families: ['Fredoka One', 'Muli', 'Berkshire Swash', 'LondrinaSolid-Black', 'monsterhunter','Kaph-Regular']
+      }
+    };
 
-</script>    
+    WebFont.load(WebFontConfig);  
+</script>   
+
+<script>
+  const steamworks = require('steamworks.js')
+
+  // You can pass an appId, or don't pass anything and use a steam_appid.txt file
+  // to be updated with live coe on launch 
+  const client = steamworks.init(2672720)
+
+  console.log(client.localplayer.getName())
+
+
+  
+    
+    
+  
+  
+
+</script>     
+
 </html>
 

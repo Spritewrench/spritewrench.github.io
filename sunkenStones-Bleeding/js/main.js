@@ -1,6 +1,6 @@
 window.onload = function () {
   'use strict';
-
+  
   var game
     , ns = window['simplewar'];
 

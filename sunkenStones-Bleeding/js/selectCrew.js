@@ -19,8 +19,8 @@
             var text = ""
             var message = ""
             
-                  text = "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-                  message = ""            
+            text = "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+            message = ""            
             
 
            
@@ -28,21 +28,42 @@
             this.bg.width = this.game.width
             this.bg.height = this.game.height
 
+            this.video = this.add.video('seaBG');
+
+                          
+            this.video.play(true);
+                       
+            this.videoImage = this.video.addToWorld(0, 0);
+            var videoScale =(Math.min(this.game.width / this.video.width)*1, (this.game.height / this.video.height)*1);
+            this.videoTimer = 100;
+            this.video.volume = 0;
+            this.videoImage.scale.set(videoScale);          
+      
+
+
             this.bg2 = this.add.sprite(0, 0, 'ui_back');
             this.bg2.width = this.game.width
             this.bg2.height = this.game.height    
 
             //this.combatOrder  = this.add.sprite(0, 0, 'combatOrder');
-            //this.combatOrder .width = this.game.width
+            //this.combatOrder .width = this.game.width 
             //this.combatOrder .height = this.game.height              
             
             this.selectInfo = this.add.sprite(this.game.width, 0, 'selectInfoPanel');
             this.selectInfo.width = this.game.width
             this.selectInfo.height = this.game.height   
 
+        
+
             this.selectInfoDetail = this.add.sprite(this.game.width, 0, 'selectInfoPanel');
             this.selectInfoDetail.width = this.game.width
             this.selectInfoDetail.height = this.game.height
+
+            this.selectInfoNotBought = this.add.sprite(this.game.width, 0, 'selectInfoPanel-notBought');
+            this.selectInfoNotBought.width = this.game.width
+            this.selectInfoNotBought.height = this.game.height   
+            this.selectInfoNotBought.alpha = 0;    
+
 
             this.capKey = parseInt(localStorage.getItem("captain"));
             this.capInfo = this.add.sprite(-this.game.width, 0, 'capInfoPanel'+this.capKey);
@@ -53,8 +74,10 @@
             this.selectName = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-450, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
             //this.selectName.anchor.setTo(0.5, 0.5);    
 
-            this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-410, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 450  });
+            this.selectStats = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-410, '10', {font: '22px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 450  });
             //this.selectStats.anchor.setTo(0.5, 0.5); 
+            this.selectStats.inputEnabled = true;
+            this.selectStats.events.onInputOver.add(this.updatetoolTip, this);                
 
             this.selectAbility = this.add.text(this.selectInfo.x+this.selectInfo.width-600,this.game.height-370, '10', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
             //this.selectAbility.anchor.setTo(0.5, 0.5); 
@@ -84,12 +107,19 @@
             this.deploy_poolCurrent = 3;
             this.deploy_poolMax = this.deploy_poolCurrent 
 
+            this.back_Button = this.add.sprite(35, 35, 'back_button');             
+            this.back_Button.inputEnabled = true;
+            this.back_Button.anchor.setTo(0.5, 0.5);
+            this.back_Button.width = 50
+            this.back_Button.height = 50
+            this.back_Button.events.onInputDown.add(this.back, this);  
+            
             this.clear_Button = this.add.sprite(this.game.width/2-415, this.game.height-200, 'ui_clear_button');            
             this.clear_Button.inputEnabled = true;
             this.clear_Button.anchor.setTo(0.5, 0.5);
             this.clear_Button.width = 100
             this.clear_Button.height = 100
-            this.clear_Button.events.onInputDown.add(this.clear, this);     
+            this.clear_Button.events.onInputDown.add(this.clear, this);              
 
             this.endTurn_Button = this.add.sprite(this.game.width-500, this.game.height-175, 'ui_disembark_Button');            
             this.endTurn_Button.inputEnabled = true;
@@ -99,30 +129,14 @@
             this.ult_text = this.add.text(70,this.game.height-400, 'BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left', wordWrap: true, wordWrapWidth: 350  });
             this.ult_text.angle = -1
 
+            this.ult_text.text = captain[this.capKey].ult_text
+            this.checkKeywords(this.ult_text)
 
-            switch(this.capKey){
-              case 1:
-                this.ult_text.text = "BOOST THE POWER OF ALL STEEL-TYPE CREW BY +1"
-                this.cap_healthValue = 15; 
-                this.deploy_poolCurrent = 3;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 1;
-                break;
-              case 2:
-                this.ult_text.text = "DEAL 2 DAMAGE TO TARGET ENEMY. APPLY 'SMOKING'"
-                this.cap_healthValue = 5; 
-                this.deploy_poolCurrent = 5;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 1;
-                break;  
-              case 3:
-                this.ult_text.text = "SUBMERGE ALL ENEMIES"
-                this.cap_healthValue = 10; 
-                this.deploy_poolCurrent = 2;
-                this.deploy_poolMax = this.deploy_poolCurrent                 
-                this.cap_ultCost = 4
-                break;                              
-            }
+            this.cap_healthValue = captain[this.capKey].cap_healthValue
+            this.deploy_poolCurrent = captain[this.capKey].deploy_poolCurrent
+            this.deploy_poolMax = this.deploy_poolCurrent                 
+            this.cap_ultCost = captain[this.capKey].cap_ultCost
+
             /*
             this.ult_pool = this.add.sprite(this.game.width-500, this.game.height-350, 'ui_deploy_pool');
             this.ult_pool.anchor.setTo(0.5, 0.5);
@@ -152,6 +166,8 @@
             this.game.plugins.screenShake = this.game.plugins.add(Phaser.Plugin.ScreenShake);
             //this.input.onDown.add(this.onDown, this);
             this.tile = [];
+            this.tileOverlay = [];
+            this.crewPrice = [];
             this.crewTile = [];
             this.enemyTile = [];
 
@@ -206,12 +222,33 @@
                 } 
 
                 this.tile[''+j+i] = this.add.sprite(x+distX, y+distY+25, 'crew-'+(counter));
+                this.tileOverlay[''+j+i] = this.add.sprite(x+distX, y+distY+25, 'crew_locked_overlay');
+                this.crewPrice[''+j+i] = this.add.text(this.tile[''+j+i].x+5,this.tile[''+j+i].y-35, '', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
+                this.tileOverlay[''+j+i].alpha = 0;
                 this.tile[''+j+i].unlocked = true
                
-                if(counter > 10){
-                    this.tile[''+j+i].loadTexture("crew_locked")
+                if(counter > crewCount){
+                    this.tile[''+j+i].loadTexture("crew_notAvail")
                     this.tile[''+j+i].unlocked = false
                 }
+                else{
+                  if(!crew[counter].unlockStart && parseInt(localStorage.getItem("crew"+counter+"unlocked")) == 1){
+                    this.tile[''+j+i].bought = true;
+                  }
+                  else if(crew[counter].unlockStart){
+                    this.tile[''+j+i].bought = true;
+                  }                  
+                  else{
+                    this.tile[''+j+i].bought = false;
+                    this.tileOverlay[''+j+i].alpha = 1;
+                    this.crewPrice[''+j+i].text = crew[counter].unlockPrice// = this.add.text(this.tile[''+j+i].x+5,this.tile[''+j+i].y-35, , {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'left'});
+                    this.crewPrice[''+j+i].anchor.setTo(0.5, 0.5);
+                    //this.tile[''+j+i].unlocked = false
+                  }
+                }
+
+
+
                 this.tile[''+j+i].origX = this.tile[''+j+i].x;
                 this.tile[''+j+i].origY = this.tile[''+j+i].y;
                 this.tile[''+j+i].y = 1000;
@@ -219,8 +256,13 @@
                 this.tile[''+j+i].loadSpeed =  0.2//(Math.random() * 0.3)+0.1;
                 this.tile[''+j+i].anchor.setTo(0.5, 0.5);
                 this.tile[''+j+i].width = this.size;
-                this.tile[''+j+i].height = this.size;      
-                this.tile[''+j+i].id = ''+i+j;
+                this.tile[''+j+i].height = this.size;     
+                
+                this.tileOverlay[''+j+i].anchor.setTo(0.5, 0.5);
+                this.tileOverlay[''+j+i].width = this.size;
+                this.tileOverlay[''+j+i].height = this.size; 
+
+                this.tile[''+j+i].id = ''+j+i;
                 this.tile[''+j+i].isCrewHere = false
                 this.tile[''+j+i].crewID = 0
                 this.tile[''+j+i].isEnemyHere = false
@@ -248,7 +290,8 @@
                 this.tile[''+j+i].selected = false;
 
                 this.tile[''+j+i].inputEnabled = true;
-                this.tile[''+j+i].events.onInputDown.add(this.select, this);                
+                this.tile[''+j+i].events.onInputDown.add(this.select, this);    
+                this.tile[''+j+i].events.onInputOver.add(this.showInfo, this);            
                 
 
 
@@ -397,12 +440,138 @@
 
           this.crewKey = 1;
           this.crewCode =""
+          this.tips = new Phasetips(this.game, {
+            targetObject:  this.selectStats,
+            context: "",
+            fontSize: 14,
+            strokeWeight: 3,
+            roundedCornersRadius: 10,            
+            position: "top",
+            positionOffset: 0,
+            padding: 75,
+            x: this.game.width/2,
+            y: this.game.height/2+100,        
+            animation: "fade"
+          }); 
+
+          this.titleTxt2 = this.add.text(75,50, '', {font: '24px Kaph-Regular',fill: '#fff', align: 'center'});
+          this.titleTxt2.anchor.setTo(0.5, 0.5);      
+
+          this.goldCountUI = this.add.sprite(200,50, 'coinCount');
+          this.goldCountUI.anchor.setTo(0.5, 0.5);  
+          this.goldCountValue = parseInt(localStorage.getItem("goldCount"))
+          this.goldCount = this.add.text(this.goldCountUI.x,this.goldCountUI.y, this.goldCountValue, {font: '32px Kaph-Regular',fill: '#fff', align: 'left'});
+          this.goldCount.anchor.setTo(0.5, 0.5);        
+
+
+          this.transWave = this.add.sprite(0, -this.game.height, 'transitionWave');
+          this.transWave.width = this.game.width
+          //this.transWave.height = this.game.height         
+          this.transWaveKey  = 0;  
+          
+          this.wavSnd = []
+          this.wavSnd[1] = this.add.audio('wavSnd-1');
+          this.wavSnd[1].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1 
+          this.wavSnd[2] = this.add.audio('wavSnd-2');
+          this.wavSnd[2].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1 
+          this.wavSnd[3] = this.add.audio('wavSnd-3');
+          this.wavSnd[3].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1   
+          
+          var ran = Math.floor(Math.random() * 3)+1;
+          this.wavSnd[ran].play()           
+          
+          this.transTar = 'game'
+          this.squawk = this.add.audio('parrotSquawk2');
+          this.squawk.volume = (parseInt(localStorage.getItem("sfxVol"))* 0.1)*2              
+
+
+          this.jingleSnd = []
+          this.jingleSnd[1] = this.add.audio('coinJingle-1');
+          this.jingleSnd[1].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1  
+          this.jingleSnd[2] = this.add.audio('coinJingle-2');
+          this.jingleSnd[2].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1  
+          this.jingleSnd[3] = this.add.audio('coinJingle-3');
+          this.jingleSnd[3].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1      
+
+          this.bgSound = this.add.audio('LuckDontLiveOutHere');
+          this.bgSound.loop = true;
+          this.bgSound.play();
+          this.bgSound.volume = parseInt(localStorage.getItem("bgVol"))* 0.1 
+
+          this.escapeKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
+          this.escapeKey.onDown.add(this.showOptions, this);              
 
         }
         , update: function () {
+          this.bgSound.volume = parseInt(localStorage.getItem("bgVol"))* 0.1  
+
+          this.jingleSnd[1].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+          this.jingleSnd[2].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+          this.jingleSnd[3].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+    
+          this.wavSnd[1].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+          this.wavSnd[2].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+          this.wavSnd[3].volume = parseInt(localStorage.getItem("sfxVol"))* 0.1
+    
+    
+
+          var crewArray = this.crewCode.split("-");
+          //var sum = +parseInt(crewArray[1])+parseInt(crewArray[2])+parseInt(crewArray[3])+parseInt(crewArray[4])
+          
+          if((parseInt(crewArray[0]) != 0 && parseInt(crewArray[1]) != 0 && parseInt(crewArray[2]) != 0 && parseInt(crewArray[3]) != 0 && parseInt(crewArray[4]) != 0) && this.crewKey > 4){
+            this.endTurn_Button.loadTexture("ui_disembark_Button-Highlight")
+          }
+          else{
+            this.endTurn_Button.loadTexture("ui_disembark_Button")
+          }
+
+          if(this.transWave.y <= this.game.height&& this.transWaveKey == 0){
+            this.transWave.y += transSpeed
+    
+            if(this.transWave.y >= this.game.height&& this.transWaveKey == 0){
+              if (parseInt(localStorage.getItem("intro")) == 0 || onboardingDebug ) {
+                localStorage.setItem("intro",1);
+                this.squawk.play();
+                /*for(var i = 0; i < this.boardHeight; i++){
+                  for(var j = 0; j < this.boardWidth; j++){
+                    if(this.crewKey <= 4){
+                      this.select(this.tile[''+j+i])
+                    }
+                  }
+                }*/         
+                Swal.fire({
+                  title: 'Shiver Me Timbers!',
+                  html: "Now select your crew and shove off when you are ready.",
+                  imageUrl: 'assets/mascot.png',
+                  imageWidth: 200,
+                  imageHeight: 200,
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                 
+                  }
+                })  
+                      
+              }	 
+            }
+          }
+    
+          if(this.transWaveKey == 1){
+            this.transWave.y -= transSpeed//+= (-this.game.height - this.transWave.y) * 0.05
+            if(this.transWave.y <= (-this.game.height+50)){
+              this.game.state.start(this.transTar);
+            }
+          }  
+
+          this.checkKeywords(this.selectStats)
             this.crewCode =""
             for(var i=1; i< 6; i++){
-              this.crewCode+=this.crew[i].id+'-'
+              
+              if(i == 5){
+                this.crewCode+='5'
+              }
+              else{
+                this.crewCode+=this.crew[i].id+'-'
+              }
             }
             for(var i=0; i< 5; i++){
               
@@ -513,6 +682,7 @@
               // select info panel
             if(this.selectedCrew == 0){
                 this.selectInfo.x += ( this.game.width - this.selectInfo.x) * 0.2;
+                this.selectInfoNotBought.x = this.selectInfo.x
   
   
               }
@@ -612,6 +782,7 @@
                   
                   this.selectName.text = ""+this.crew[this.selectedCrew].name
                   this.selectStats.text = ""+this.crew[this.selectedCrew].ability
+                  
                   if(this.crew[this.selectedCrew].id == 2){
                     this.selectStats.text += " (+"+this.crew[this.selectedCrew].killCount+")"
                   }
@@ -623,6 +794,7 @@
   
                 }
                 this.selectInfo.x += ( 0 - this.selectInfo.x) * 0.2;
+                this.selectInfoNotBought.x = this.selectInfo.x
                 this.selectName.angle = 2;
                 this.selectStats.angle = 2;
                 this.selectAbility.angle = 2;
@@ -757,7 +929,7 @@
         },
         select: function (selectedCrew) {
           
-          if(this.crewKey <= 4 && selectedCrew.unlocked && !selectedCrew.selected){
+          if(this.crewKey <= 4 && selectedCrew.unlocked && !selectedCrew.selected && selectedCrew.bought){
             this.selectedCrew = this.crewKey
             
             selectedCrew.selected = true;
@@ -769,7 +941,48 @@
             this.crew[this.crewKey].ability = crew[selectedCrew.crewID].ability
             //alert(selectedCrew.crewID)
             this.crewKey++;
+            var ran = Math.floor(Math.random() * 3)+1;
+            this.jingleSnd[ran].play();                     
           }  
+
+          if(!selectedCrew.bought && selectedCrew.unlocked){
+
+            Swal.fire({
+              title: 'Unlock?',
+              text: "Do you want to unlock this crewmate?",
+              imageUrl: 'assets/mascot.png',
+              imageWidth: 200,
+              imageHeight: 200,
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes',  
+              cancelButtonText: 'No'              
+            }).then((result) => {
+              if (result.isConfirmed) {
+                if(this.goldCountValue >= crew[selectedCrew.crewID].unlockPrice){
+                  this.goldCountValue -= crew[selectedCrew.crewID].unlockPrice
+                  localStorage.setItem("goldCount",this.goldCountValue)
+                  this.goldCount.text = this.goldCountValue;
+                  localStorage.setItem("crew"+selectedCrew.crewID+"unlocked",1)
+                  selectedCrew.bought = true;
+                  this.tileOverlay[''+selectedCrew.id].alpha = 0;
+                  this.crewPrice[''+selectedCrew.id].alpha = 0;
+
+                }
+                else{
+
+                  Swal.fire({
+                    title: 'Sorry',
+                    text: "Polly wants more Gold",
+                    imageUrl: 'assets/mascot.png',
+                    imageWidth: 200,
+                    imageHeight: 200          
+                  });                  
+                }
+              }
+            })
+          }
 
 
         },            
@@ -789,19 +1002,162 @@
             }
           }           
 
-        },            
+        },  
+        showOptions: function () {
+          if(true){
+            var ran = Math.floor(Math.random() * 3)+1;
+            this.jingleSnd[ran].play();
+            Swal.fire({
+              title: 'OPTIONS',
+              html: '<span onclick=\'const electron = require("electron");const ipc = electron.ipcRenderer;ipc.send("toggle-maximize-window");\'>TOGGLE FULL SCREEN</span><br/><br/><div class="slidecontainer" > MUSIC VOLUME: <span id="mVol">'+parseInt(localStorage.getItem("bgVol"))+'</span><br/><input oninput=\'document.getElementById("mVol").innerHTML = this.value\' type="range" min="0" max="10" value="'+parseInt(localStorage.getItem("bgVol"))+'" class="slider" id="volRange"> </div><br/><div class="slidecontainer"> SFX VOLUME: <span id="sfxVol">'+parseInt(localStorage.getItem("sfxVol"))+'</span><br/><input oninput=\'document.getElementById("sfxVol").innerHTML = this.value\' type="range" min="0" max="10" value="'+parseInt(localStorage.getItem("sfxVol"))+'" class="slider" id="sfxRange"> </div>',
+            }).then((result) => {
+              var bgVol = document.getElementById("volRange");
+              var sfxVol = document.getElementById("sfxRange");
+    
+              localStorage.setItem("bgVol",bgVol.value)
+              localStorage.setItem("sfxVol",sfxVol.value)
+              //alert(bgVol.value)
+           
+            })            
+          }      
+        },             
+        buy: function () {
+
+
+        },              
+        showInfo: function (hoveredCrew) {
+          
+          if(hoveredCrew.unlocked){
+            this.selectedCrew = this.crewKey
+            this.crew[this.crewKey].id = hoveredCrew.crewID     
+            this.crew[this.crewKey].ability = crew[hoveredCrew.crewID].ability       
+            //this.noPickUp = true;
+          }
+          else{
+            this.selectedCrew = 0;
+
+          }
+
+
+
+          
+        },   
+        checkKeywords: function (text){
+          // detect emoji /\p{Extended_Pictographic}/u.test('flowers 123')
+          // first be able to detect multiple key words
+          text.clearColors()
+          var words = text.text.split(" ");
+          var lengthBeforeKey = 0;
+          var lengthAfterKey = 0;
+          var keywordLength = 0;
+          
+          var lengthCounter = [];
+          var lengthKey = 0;
+          lengthCounter[lengthKey] = 0;
+
+          var keyWordCounter = [];
+          var keyWordKey = 0;
+          
+
+          for(var i = 0; i < words.length; i++){
+            lengthCounter[lengthKey] += words[i].length+1
+            for(var k = 0; k < keyword.length; k++){
+             
+              if(words[i].toUpperCase() === keyword[k].word.toUpperCase()){
+                keyWordCounter[lengthKey] = k
+                //keyWordCounter[lengthKey] = keyword[k].word.length
+                lengthCounter[lengthKey] -= keyword[k].word.length+1;
+                lengthKey++
+                lengthCounter[lengthKey] = lengthCounter[lengthKey-1]+keyword[k].word.length+1
+                /*
+                k = keyword.length
+                i = words.length
+                */                
+              }
+              else{
+                
+                //lengthBeforeKey += words[i].length+1
+                //console.log(words[i]+" "+words[i].length)
+              }
+
+            }
+          }
+          //console.log("length before keyword: "+lengthBeforeKey+"\nKeyword length: "+keywordLength )
+          
+
+          
+          text.addColor("white", 0);
+          for(var j = 0; j < lengthCounter.length;j++){
+            try{
+              text.addColor(keyword[keyWordCounter[j]].color, lengthCounter[j]); 
+              text.addColor("white", (lengthCounter[j]+keyword[keyWordCounter[j]].word.length));
+            }
+            catch(e){
+
+            }
+
+          }
+          text.updateText()
+          
+
+        },    
+        updatetoolTip: function (text) {
+          this.tips.updateContent("Plus Ultra")
+          this.tips.hideTooltip()
+          var words = text.text.split(" ");
+          var content = ""
+          for(var i = 0; i < words.length; i++){
+            for(var k = 0; k < keyword.length; k++){
+              if(words[i].toUpperCase() === keyword[k].word.toUpperCase()){
+                
+                if(keyword[k].description.length > 0){
+                  this.tips.showTooltip()  
+                 
+                  
+                  if(keyword[k].description.length > 0){
+                    content += keyword[k].description+"\n\n"
+                  } 
+                  this.tips.updateContent(content)
+                  //k = keyword.length
+                  //i = words.length
+                }
+
+              }
+              else{
+              }
+
+            }
+          }          
+        },  
+        back: function () {
+          this.bgSound.stop();
+          this.transWaveKey = 1;
+          var ran = Math.floor(Math.random() * 3)+1;
+          this.wavSnd[ran].play() 
+          this.transTar = 'selectCap'
+        },                                  
         onDown: function () {
            //alert(this.crewCode)
            var crewArray = this.crewCode.split("-");
            //var sum = +parseInt(crewArray[1])+parseInt(crewArray[2])+parseInt(crewArray[3])+parseInt(crewArray[4])
           
-           if((parseInt(crewArray[0]) != 0 && parseInt(crewArray[1]) != 0 && parseInt(crewArray[2]) != 0 && parseInt(crewArray[3]) != 0 && parseInt(crewArray[4]) != 0)){
+           if((parseInt(crewArray[0]) != 0 && parseInt(crewArray[1]) != 0 && parseInt(crewArray[2]) != 0 && parseInt(crewArray[3]) != 0 && parseInt(crewArray[4]) != 0) && this.crewKey > 4){
             //alert(sum)
             localStorage.setItem("crewCode",this.crewCode)
-            this.game.state.start('game');
+            var ran = Math.floor(Math.random() * 3)+1;
+            this.wavSnd[ran].play()  
+            this.bgSound.stop();          
+            this.transWaveKey = 1;
+            //this.game.state.start('game');
            }
            else{
-            alert("select more crew")
+            Swal.fire({
+              title: 'Wait!',
+              text: "Select more crew before you shove off!",
+              imageUrl: 'assets/mascot.png',
+              imageWidth: 200,
+              imageHeight: 200,
+            })
            }
 
            
