@@ -145,13 +145,13 @@ cgs:
 
 sfx:
   phoneNotification:  assets/audio/effects/PhoneNotification.mp3
-  phoneFlash:  assets/audio/effects/PhoneFlash.wav
+  phoneFlash:  assets/audio/effects/PhoneFlash.mp3
   cheer2: assets/audio/effects/Cheer2.mp3
-  cheer3: assets/audio/effects/Cheer3.wav
-  traffic: assets/audio/effects/traffic.wav
-  collectCoin: assets/audio/effects/collectCoin.wav
-  success: assets/audio/effects/success.wav
+  cheer3: assets/audio/effects/Cheer3.mp3
+  traffic: assets/audio/effects/traffic.mp3
+  collectCoin: assets/audio/effects/collectCoin.mp3
+  success: assets/audio/effects/success.mp3
 
 music:
-  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg
-  rollingCredits: assets/audio/DuBoLoGy_-_08_-_Swan_Lake_Dub.ogg
+  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
+  rollingCredits: assets/audio/DuBoLoGy_-_08_-_Swan_Lake_Dub.mp3

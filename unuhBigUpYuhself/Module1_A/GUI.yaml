@@ -334,11 +334,11 @@ assets:
       name: PatrickHand-Regular
   audio:
     audioDuBoLoGy_-_01_-_Dub_Atao:
-      fileName: DuBoLoGy_-_01_-_Dub_Atao.ogg
+      fileName: DuBoLoGy_-_01_-_Dub_Atao.mp3
       name: DuBoLoGy_-_01_-_Dub_Atao
       type: music
     ping:
-      fileName: ping.ogg
+      fileName: ping.mp3
       name: ping
       type: sfx      
 madeWithRenJSBuilder: true

@@ -96,14 +96,14 @@ cgs:
   
 
 sfx:
-  siren:  assets/audio/effects/70938__guitarguy1985__police2.wav
+  siren:  assets/audio/effects/70938__guitarguy1985__police2.mp3
   phoneNotification:  assets/audio/effects/PhoneNotification.mp3
-  phoneFlash:  assets/audio/effects/PhoneFlash.wav
+  phoneFlash:  assets/audio/effects/PhoneFlash.mp3
   cheer2: assets/audio/effects/Cheer2.mp3
-  cheer3: assets/audio/effects/Cheer3.wav
-  traffic: assets/audio/effects/traffic.wav
-  collectCoin: assets/audio/effects/collectCoin.wav
-  success: assets/audio/effects/success.wav
+  cheer3: assets/audio/effects/Cheer3.mp3
+  traffic: assets/audio/effects/traffic.mp3
+  collectCoin: assets/audio/effects/collectCoin.mp3
+  success: assets/audio/effects/success.mp3
 
 
 
@@ -117,45 +117,45 @@ sfx:
 
 
 music:
-  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg
-  rollingCredits: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.ogg
+  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
+  rollingCredits: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
 
-  reactToChallenges: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM.ogg
-  reactToChallenges2: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-2.ogg
-  reactToChallenges3: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-3.ogg
-  reactToChallenges4: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-4.ogg  
+  reactToChallenges: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM.mp3
+  reactToChallenges2: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-2.mp3
+  reactToChallenges3: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-3.mp3
+  reactToChallenges4: assets/audio/VO/Token Award Question_What is the best way to react Challenges - 2023-08-23, 5.02 PM-4.mp3  
 
-  yourChoices: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM.ogg
-  yourChoices2: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM-2.ogg
-  yourChoices3: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM-3.ogg
+  yourChoices: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM.mp3
+  yourChoices2: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM-2.mp3
+  yourChoices3: assets/audio/VO/Token Award_Do you consider the consequences of your choices - 2023-08-23, 5.07 PM-3.mp3
 
-  aboutMyself: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM.ogg
-  aboutMyself-2: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM-2.ogg
-  aboutMyself-3: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM-3.ogg
+  aboutMyself: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM.mp3
+  aboutMyself-2: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM-2.mp3
+  aboutMyself-3: assets/audio/VO/Token Award_What am i projecting about myslef - 2023-08-23, 5.13 PM-3.mp3
 
-  wantToBe: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM.ogg
-  wantToBe-2: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM-2.ogg
-  wantToBe-3: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM-3.ogg
+  wantToBe: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM.mp3
+  wantToBe-2: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM-2.mp3
+  wantToBe-3: assets/audio/VO/Token Award_Who do I want to be - 2023-08-23, 5.26 PM-3.mp3
 
-  fromHere: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM.ogg
-  fromHere2: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM-2.ogg
-  fromHere3: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM-3.ogg
-
-
-  toLMS: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM.ogg
-  toLMS2: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-2.ogg
-  toLMS3: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-3.ogg
-  toLMS4: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-4.ogg
-
-  welcomeBack: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited.ogg
-  welcomeBack-2: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-2.ogg
-  welcomeBack-3: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-3.ogg
-  welcomeBack-4: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-4.ogg
+  fromHere: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM.mp3
+  fromHere2: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM-2.mp3
+  fromHere3: assets/audio/VO/Token Award_Where do I go from here - 2023-08-23, 5.30 PM-3.mp3
 
 
-  response:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM.ogg
-  response-2:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-2.ogg  
-  response-3:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-3.ogg
-  response-4:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-4.ogg   
-  response-5:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-5.ogg
+  toLMS: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM.mp3
+  toLMS2: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-2.mp3
+  toLMS3: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-3.mp3
+  toLMS4: assets/audio/VO/Sanka Prompt to LMS - 2023-08-23, 4.47 PM-4.mp3
+
+  welcomeBack: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited.mp3
+  welcomeBack-2: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-2.mp3
+  welcomeBack-3: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-3.mp3
+  welcomeBack-4: assets/audio/VO/Sanka Prompt to Game Place Pt2_Pilot Branch 2 continued - 2023-08-25, 11.38 AM_edited-4.mp3
+
+
+  response:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM.mp3
+  response-2:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-2.mp3  
+  response-3:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-3.mp3
+  response-4:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-4.mp3   
+  response-5:  assets/audio/VO/Module one game play responses - 2023-09-26, 1.45 PM-5.mp3
  
