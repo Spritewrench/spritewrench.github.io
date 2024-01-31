@@ -1,0 +1,180 @@
+backgrounds:
+  avatarBedroom: assets/backgrounds/avatarBedroom_B.png
+  schoolExt: assets/backgrounds/bg4.png
+  schoolHallway: assets/backgrounds/bg3.png
+  sbHomeStudio: assets/backgrounds/bg5.png
+  dArtStudio: assets/backgrounds/bg6.png
+  busStop: assets/backgrounds/bg7.png
+  DowntownJamStreet: assets/backgrounds/bg8.png
+  questionBG: assets/backgrounds/questionBG.webp
+  boxingGymBG: assets/backgrounds/Boxinggym.png
+  bpoExtBG: assets/backgrounds/Bpoext.png
+  bpoIntBG: assets/backgrounds/Bpoint.png
+  communityCentreBG: assets/backgrounds/Communitycentre.png
+  hackersLairBG: assets/backgrounds/Hacker’sLair.png
+  jamaicanStreetBG: assets/backgrounds/Jamaicanstreet.png
+  musicFestBG: assets/backgrounds/Musicfest.png
+  nationalParkBG: assets/backgrounds/Nationalpark.png
+  plazaBG: assets/backgrounds/Plaza.png
+  recordingStudioBG: assets/backgrounds/Recordingstudio.png
+  uptwonBG: assets/backgrounds/Uptown.png  
+  
+  
+characters:
+
+  sanka:
+    displayName: Sanka
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/sanka.png
+
+  avatar:
+    displayName: Avatar
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char1_A.png 
+  dice:
+    displayName: Dice
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/dice.webp        
+  starboy:
+    displayName: Starbwoy
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/starboy.png   
+  dymond:
+    displayName: Dymond
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/dymond.png         
+  roje:
+    displayName: Coach
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/roje.png      
+  ace:
+    displayName: Ace
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/ace.png      
+  lackresha:
+    displayName: Lackresha
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/lackresha.png        
+  kalisha:
+    displayName: Kalisha
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/kalisha.png               
+
+
+
+            
+
+cgs:
+  sbBusinessCard: assets/cg/sbBusinessCard.png 
+
+  splash-init: assets/gui/loaderasset1.png
+  flash: assets/backgrounds/flash.webp
+  heart: assets/characters/heart.webp
+  token: assets/gui/token.webp
+  
+  phone_sb_fakeInsta: assets/cg/sbFakeInsta.png
+  phone_sb_fakeInsta2: assets/cg/sbFakeInsta.png
+  phone_d_fakeInsta: assets/cg/dFakeInsta.png
+  phone_d_fakeInsta2: assets/cg/dFakeInsta2.png
+  phone_d_fakeInsta3: assets/cg/dFakeInsta3.png
+
+  phone_d_fakeInsta2_1: assets/cg/dFakeInsta-2_1.png
+  phone_d_fakeInsta2_2: assets/cg/dFakeInsta-2_2.png
+  phone_d_fakeInsta2_3: assets/cg/dFakeInsta-2_3.png
+  phone_d_fakeInsta2_4: assets/cg/dFakeInsta-2_4.png
+
+  phone_sb_fakeInsta2_1: assets/cg/sbFakeInsta-2_1.png
+  
+
+  phone_msg_mom_1: assets/cg/phone_msg_mom_1.webp
+  phone_msg_mom_2: assets/cg/phone_msg_mom_2.webp
+  
+  phone_msg_jamie_1: assets/cg/phone_msg_jamie_1.webp
+  phone_msg_jamie_2: assets/cg/phone_msg_jamie_2.webp
+  
+  phone_msg_dice_1: assets/cg/phone_msg_dice_1.webp
+  
+  badEnd: assets/cg/badEnd.webp
+  goodEnd: assets/cg/goodEnd.webp
+  
+  b1: assets/gui/b1.png
+  b2: assets/gui/b2.png
+  b3: assets/gui/b3.png
+  b4: assets/gui/b4.png
+  b5: assets/gui/b5.png
+  b6: assets/gui/b6.png  
+
+  selectChar: assets/gui/selectChar.png  
+
+  leftarrow: assets/gui/leftArrow.webp
+  rightarrow: assets/gui/rightArrow.webp
+  
+
+sfx:
+  siren:  assets/audio/effects/70938__guitarguy1985__police2.mp3
+  phoneNotification:  assets/audio/effects/PhoneNotification.mp3
+  phoneFlash:  assets/audio/effects/PhoneFlash.mp3
+  traffic: assets/audio/effects/traffic.mp3
+  collectCoin: assets/audio/effects/collectCoin.mp3
+  success: assets/audio/effects/success.mp3
+
+
+
+
+  
+  
+
+
+  
+
+
+
+music:
+  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
+  rollingCredits: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
+
+  reactToChallenges: assets/audio/VO/2. Voiceover Script Module 2 Gameplay - TOKEN Q_NEW THINGS.mp3
+  response: assets/audio/VO/3. Voiceover Script Module 2 Gameplay - TOKEN NEW TINGS_A1.mp3
+  response-2: assets/audio/VO/4. Voiceover Script Module 2 Gameplay - TOKEN_NEW TINGS_A2.mp3
+  response-3: assets/audio/VO/5. Voiceover Script Module 2 Gameplay - TOKEN NEW TINGS_A3.mp3
+
+  reactToChallenges2: assets/audio/VO/6. Voiceover Script Module 2 Gameplay - TOKEN Q_DECISIONS VALUES.mp3
+  response2: assets/audio/VO/7. Voiceover Script Module 2 Gameplay - TOKEN Q_DECISIONS VALUES_A1.mp3
+  response2-2: assets/audio/VO/8. Voiceover Script Module 2 Gameplay - TOKEN Q_DECISIONS VALUES_A2.mp3
+  response2-2-1: assets/audio/VO/8. Voiceover Script Module 2 Gameplay - TOKEN Q_DECISIONS VALUES_A2-2.mp3
+  response2-3-1: assets/audio/VO/9. Voiceover Script Module 2 Gameplay - TOKEN Q_DECISIONS VALUES_A3.mp3
+  response2-3: assets/audio/VO/9. Voiceover Script Module 2 Gameplay - TOKEN Q_DECISIONS VALUES_A3-2.mp3
+
+  reactToChallenges3: assets/audio/VO/10. Voiceover Script Module 2 Gameplay - TOKEN Q_OPPORTUNITIES.mp3
+  response3: assets/audio/VO/11. Voiceover Script Module 2 Gameplay - TOKEN Q_OPPORTUNITIES_A1.mp3
+  response3-1-1: assets/audio/VO/11. Voiceover Script Module 2 Gameplay - TOKEN Q_OPPORTUNITIES_A1-2.mp3
+  response3-2: assets/audio/VO/12. Voiceover Script Module 2 Gameplay - TOKEN Q_OPPORTUNITIES_A2.mp3
+  response3-2-1: assets/audio/VO/12. Voiceover Script Module 2 Gameplay - TOKEN Q_OPPORTUNITIES_A2-2.mp3
+
+
+  reactToChallenges4: assets/audio/VO/13. Voiceover Script Module 2 Gameplay - TOKEN Q_SETTING GOALS.mp3
+  response4: assets/audio/VO/14. Voiceover Script Module 2 Gameplay - TOKEN Q_SETTING GOALS_A1.mp3
+  response4-1: assets/audio/VO/15. Voiceover Script Module 2 Gameplay - TOKEN Q_SETTING GOALS_A2.mp3
+  response4-1-1: assets/audio/VO/15. Voiceover Script Module 2 Gameplay - TOKEN Q_SETTING GOALS_A2-2.mp3
+  response4-2: assets/audio/VO/16. Voiceover Script Module 2 Gameplay - TOKEN Q_SETTING GOALS_A3.mp3
+  response4-2-1: assets/audio/VO/16. Voiceover Script Module 2 Gameplay - TOKEN Q_SETTING GOALS_A3-2.mp3
+
+  reactToChallenges5: assets/audio/VO/23. Voiceover Script Module 2 Gameplay - TOKEN Q_DISCIPLINE.mp3
+  response5: assets/audio/VO/24. Voiceover Script Module 2 Gameplay - TOKEN Q_DISCIPLINE_A1.mp3
+  response5-1: assets/audio/VO/25. Voiceover Script Module 2 Gameplay - TOKEN Q_DISCIPLINE_A2.mp3
+  response5-1-1: assets/audio/VO/25. Voiceover Script Module 2 Gameplay - TOKEN Q_DISCIPLINE_A2-2.mp3
+  response5-2: assets/audio/VO/26. Voiceover Script Module 2 Gameplay - TOKEN Q_DISCIPLINE_A3.mp3
+
+  returnLMS1: assets/audio/VO/17. Voiceover Script Module 2 Gameplay - SANKA PROMPT TO LMS.mp3
+  returnLMS2: assets/audio/VO/17. Voiceover Script Module 2 Gameplay - SANKA PROMPT TO LMS-2.mp3
+     
+   
