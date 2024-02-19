@@ -1,13 +1,13 @@
 start:
   - show questionBG:
   - call setToken:
-  - play welcomeBack:
+  - play welcomeBack: WITH CUT
   - sanka says normal: It’s good to learn that we can set goals that match our values ...
   - stop bgm: WITH CUT
-  - play welcomeBack2:
+  - play welcomeBack2: WITH CUT
   - sanka says normal: And also that there is power in being prepared to handle any challenges along the way. 
   - stop bgm: WITH CUT
-  - play welcomeBack3:  
+  - play welcomeBack3: WITH CUT  
   - sanka says normal: Let’s get back into the game.
   - stop bgm: WITH CUT
   - hide sanka: WITH FADE 
@@ -81,24 +81,24 @@ part_good_two:
   - stop bgm: WITH CUT
   - hide avatar: WITH CUT
   - show questionBG:
-  - play reactToChallenges6:
+  - play reactToChallenges6: WITH CUT
   - sanka says normal: What is resilience?
   - stop bgm: WITH CUT
   - choice:  
     - A) Resilience is di ability fi bounce back:
       - call getToken:
-      - play response6:
+      - play response6: WITH CUT
       - sanka says normal: YES! It a key quality that can lead to personal growth and success
       - stop bgm: WITH CUT
     - B) Resilience feel like constant struggle:  
-      - play response6-2:
+      - play response6-2: WITH CUT
       - sanka says normal: I believe in you my friend. Though times can be tough, you got this.
       - stop bgm: WITH CUT
     - C) Resilience is just a part of di journey:  
-      - play response6-3:
+      - play response6-3: WITH CUT
       - sanka says normal: Resilience doesn't just happen. You have to developing your mental muscles for an Upfull mindset ...
       - stop bgm: WITH CUT
-      - play response6-3-1:       
+      - play response6-3-1: WITH CUT       
       - sanka says normal: So you can recognize the gift in any situation and grow from it.               
       - stop bgm: WITH CUT          
   - scene: end
@@ -169,24 +169,24 @@ bad_part_two:
   - stop bgm: WITH CUT
   - hide avatar: WITH CUT
   - show questionBG:
-  - play reactToChallenges7:
+  - play reactToChallenges7: WITH CUT
   - sanka says normal: Your values are an important part of making good decisions about your life and achieving your goals.
   - stop bgm: WITH CUT
   - choice:  
     - A) Ah action mi a deal wid, nuh values:
-      - play response7:
+      - play response7: WITH CUT
       - sanka says normal: Movement without intent based on your UpFull values is just a waste of time
       - stop bgm: WITH CUT
     - B) Yeah man, values crucial to reach di top:  
       - call getToken:    
-      - play response7-2:
+      - play response7-2: WITH CUT
       - sanka says normal: Indeed. Great success needs UpFull intention, consistent with your values.
       - stop bgm: WITH CUT
     - C) Caan say values nah matta, but still ...:  
-      - play response7-3:
+      - play response7-3: WITH CUT
       - sanka says normal: Don’t get it twisted. 
       - stop bgm: WITH CUT
-      - play response6-7-1:       
+      - play response7-3-1: WITH CUT      
       - sanka says normal: Your values inform your priorities and help guide your path to your best life.            
       - stop bgm: WITH CUT 
   - hide sanka: WITH FADE

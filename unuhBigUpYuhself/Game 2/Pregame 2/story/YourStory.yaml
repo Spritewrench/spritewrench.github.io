@@ -23,7 +23,7 @@ start:
   - choice:  
     - Not so hundred about Coach’s chat …:  
       - avatar says normal: Mi deyah jus so mi can punch tings without getting in problems.
-    - Working on my fitness and my headspace?:  
+    - Yes, working on my fitness and my headspace:  
       - avatar says normal: Dat sound good …
     - No sah, this sound like way too much effort …: 
       - avatar says normal: KMT … Mi coulda be watching TikToks.
@@ -35,14 +35,14 @@ start:
   - stop bgm: WITH CUT
   - choice:  
     - A) Gi it a try, yuh know!:  
-      - play response:
+      - play response: WITH CUT 
       - sanka says normal: No harm in spreading your wings and catching new vibes.
     - B) Mi haffi tink bout it some more…:  
       - call getToken:
-      - play response-2:
+      - play response-2: WITH CUT
       - sanka says normal: Take your time and while you do, consider all the pros and cons.
     - C) Stick to di usual, nuh bother wid dat: 
-      - play response-3:  
+      - play response-3: WITH CUT 
       - sanka says normal: Take a chance, you might surprise yourself.
   - stop bgm: WITH CUT
   - play Dub01: LOOP
@@ -74,25 +74,25 @@ part_two:
   - hide avatar: WITH FADE
   - show questionBG:
   - stop bgm: WITH CUT
-  - play reactToChallenges2:
+  - play reactToChallenges2: WITH CUT
   - sanka says normal: Do you make decisions according to your values? 
   - stop bgm: WITH CUT
   - choice:  
     - A) Mi have di freedom fi choose:
-      - play response2:
+      - play response2: WITH CUT
       - sanka says normal: To be in control, means to be responsible for yourself & the consequences for your actions.
     - B) Outside factors mash up mi plans:  
       - call getToken:
-      - play response2-2:
+      - play response2-2-1: WITH CUT
       - sanka says normal: Use your UpFull Mindset and use the tools ... 
       - stop bgm: WITH CUT
-      - play response2-2-1:
+      - play response2-2: WITH CUT
       - sanka says normal: To help you manage the pressure so you can make good decisions.
     - C) Mi jus' fling a coin an' watch weh it drop: 
-      - play response2-3:  
+      - play response2-3:  WITH CUT
       - sanka says normal: If you live like “any number can play” ...
       - stop bgm: WITH CUT
-      - play response2-3-1:      
+      - play response2-3-1: WITH CUT     
       - sanka says normal: You will never be in control of your life and the results that you get.
   - stop bgm: WITH CUT
   - play Dub01: LOOP
@@ -130,23 +130,23 @@ part_three:
   - hide avatar: WITH FADE
   - show questionBG:
   - stop bgm: WITH CUT
-  - play reactToChallenges3:
+  - play reactToChallenges3: WITH CUT
   - sanka says normal: Do you make recognize there are opportunities in any situation? 
   - stop bgm: WITH CUT
   - choice:  
     - A) No, if it bad, it bad:
-      - play response3:
+      - play response3: WITH CUT
       - sanka says normal: If that’s what you believe to be true ... 
       - stop bgm: WITH CUT
-      - play response3-1-1:
+      - play response3-1-1: WITH CUT
       - sanka says normal: Then that’s exactly how it’s going to be for you
       - stop bgm: WITH CUT
     - B) Yes even though things fall through:  
       - call getToken:
-      - play response3-2:
+      - play response3-2: WITH CUT
       - sanka says normal: Excellent. If you look for the gift ...  
       - stop bgm: WITH CUT
-      - play response3-2-1: 
+      - play response3-2-1: WITH CUT
       - sanka says normal: You will gain knowledge that can inspire you in the future.      
   - stop bgm: WITH CUT
   - play Dub01: LOOP
@@ -190,27 +190,27 @@ part_good:
   - hide avatar: WITH CUT
   - show questionBG:
   - stop bgm: WITH CUT
-  - play reactToChallenges4:
+  - play reactToChallenges4: WITH CUT
   - sanka says normal: Do you think about setting goals in your life so you can achieve them?
   - stop bgm: WITH CUT
   - choice:  
     - A) Mi always a set goals fi achieve inna mi life:
       - call getToken:
-      - play response4:
+      - play response4: WITH CUT
       - sanka says normal: YES!! It's crucial to set achievable goals to keep everything in check and move forward
       - stop bgm: WITH CUT
     - B) Mi too busy to tink about settin goals:  
-      - play response4-1:
+      - play response4-1: WITH CUT
       - sanka says normal: Even though you may have a lot on your plate ...
       - stop bgm: WITH CUT 
-      - play response4-1-1:      
+      - play response4-1-1: WITH CUT      
       - sanka says normal: it's important to carve out time and set your direction to get to a better place. 
       - stop bgm: WITH CUT
     - C) Work with what you have ...:
-      - play response4-2:
+      - play response4-2: WITH CUT
       - sanka says normal: True, but you can grow where you're planted. Many successful people start with nothing. 
       - stop bgm: WITH CUT 
-      - play response4-2-1:
+      - play response4-2-1: WITH CUT
       - sanka says normal: Use your Upfull mind to set goals, and, one step at a time you turn your dreams into reality.
       - stop bgm: WITH CUT  
   - hide sanka: WITH FADE
@@ -266,24 +266,24 @@ part_good_3:
   - hide roje: WITH CUT
   - show questionBG:
   - stop bgm: WITH CUT
-  - play reactToChallenges5:
+  - play reactToChallenges5: WITH CUT
   - sanka says normal: How important do you think discipline is in achieving your goals?
   - stop bgm: WITH CUT
   - choice:  
     - A) Discipline, a di foundation fi reach any goal.:
       - call getToken:
-      - play response5:
+      - play response5: WITH CUT
       - sanka says normal: You are so right.  Consistency is key, my friend.
       - stop bgm: WITH CUT
     - B) Discipline hard to maintain, yuh know:  
-      - play response5-1:
+      - play response5-1: WITH CUT
       - sanka says normal: Sometimes it’s hard but as you work your muscles they get stronger ...  
       - stop bgm: WITH CUT 
-      - play response5-1-1:      
+      - play response5-1-1:  WITH CUT     
       - sanka says normal: It becomes a habit and then its easier to maintain.
       - stop bgm: WITH CUT
     - C) Work with the cards yuh get!:
-      - play response5-2:
+      - play response5-2: WITH CUT
       - sanka says normal: If you don’t invest in yourself don’t expect to achieve the success you want. 
       - stop bgm: WITH CUT  
   - call storeLocal:
@@ -324,7 +324,7 @@ part_bad:
 return_to_LMS:
   - show questionBG:
   - stop bgm: WITH CUT
-  - play returnLMS1:
+  - play returnLMS1: WITH CUT
   - sanka says normal: UNUH game play will continue after you explore how knowing your values ...
   - stop bgm: WITH CUT
   - play returnLMS2:
