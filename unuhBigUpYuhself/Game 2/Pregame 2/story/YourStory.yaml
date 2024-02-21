@@ -58,7 +58,7 @@ part_two:
   - hide avatar: WITH CUT
   - dice says normal: Yuh right fi true. 
   - dice says normal: She always a spree fi brand name tings. 
-  - dice says normal: Yuh right fi true.Mi hear sey she have a wok at di Call Centre.
+  - dice says normal: Yuh right fi true.Mi hear sey she have a wuk at di Call Centre.
   - hide dice: WITH CUT
   - avatar says normal: Mi neva know call centre pays big stacks?
   - show phone_sb_fakeInsta2_1: WITH CUT 
@@ -211,7 +211,7 @@ part_good:
       - sanka says normal: True, but you can grow where you're planted. Many successful people start with nothing. 
       - stop bgm: WITH CUT 
       - play response4-2-1: WITH CUT
-      - sanka says normal: Use your Upfull mind to set goals, and, one step at a time you turn your dreams into reality.
+      - sanka says normal: Use your UpFull mind to set goals, and, one step at a time you turn your dreams into reality.
       - stop bgm: WITH CUT  
   - hide sanka: WITH FADE
   - play Dub01: LOOP  
@@ -280,7 +280,7 @@ part_good_3:
       - sanka says normal: Sometimes it’s hard but as you work your muscles they get stronger ...  
       - stop bgm: WITH CUT 
       - play response5-1-1:  WITH CUT     
-      - sanka says normal: It becomes a habit and then its easier to maintain.
+      - sanka says normal: It becomes a habit and then it's easier to maintain.
       - stop bgm: WITH CUT
     - C) Work with the cards yuh get!:
       - play response5-2: WITH CUT
@@ -327,7 +327,7 @@ return_to_LMS:
   - play returnLMS1: WITH CUT
   - sanka says normal: UNUH game play will continue after you explore how knowing your values ...
   - stop bgm: WITH CUT
-  - play returnLMS2:
+  - play returnLMS2: WITH CUT
   - sanka says normal: And setting your goals will move you towards achieving your dreams  
   - scene: end
 

@@ -96,7 +96,7 @@ part_good_two:
       - stop bgm: WITH CUT
     - C) Resilience is just a part of di journey:  
       - play response6-3: WITH CUT
-      - sanka says normal: Resilience doesn't just happen. You have to developing your mental muscles for an Upfull mindset ...
+      - sanka says normal: Resilience doesn't just happen. You have to developing your mental muscles for an UpFull mindset ...
       - stop bgm: WITH CUT
       - play response6-3-1: WITH CUT       
       - sanka says normal: So you can recognize the gift in any situation and grow from it.               
@@ -144,7 +144,7 @@ bad_part_two:
   - avatar says normal: Mi neva expect dis when mi sign up. 
   - avatar says normal: Mi jus' waan learn di ting, and get paid, not get caught up inna dis kinda mess.
   - hide avatar: WITH CUT     
-  - ace says normal: uh inna di mess now, an' di only way out a through us. 
+  - ace says normal: Yuh inna di mess now, an' di only way out a through us. 
   - ace says normal: We run tings 'round here, yuh hear?
   - hide ace: WITH CUT   
   - kalisha says normal: Yuh bettah wise up. 
