@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="main.css"> 
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+  </head>
+
+  <body>
+    <p>Click the button to fill form fields in an existing PDF document with <code>pdf-lib</code></p>
+    <p>FIRST NAME:</p><input type="text" id="fname">
+    <br/>
+    <p> CORE BUSINESS OF THE COMPANY:</p><textarea  id="biz"></textarea>
+    <br/>    
+    <button onclick="fillForm()">Fill PDF</button>
+    <p class="small">(Your browser will download the resulting file)</p>
+  </body>
+
+  <script>
+
+    const { PDFDocument,PDFName, PDFBool } = PDFLib
+
+    async function fillForm() {
+        
+    	// Fetch the PDF with form fields
+      const formUrl = 'FORM_1A_11012024.pdf'
+      const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer())
+
+      // Load a PDF with form fields
+      const pdfDoc = await PDFDocument.load(formPdfBytes)
+
+      // Get the form containing all the fields
+      const form = pdfDoc.getForm()
+        
+        
+        const nameField = form.getTextField('Text2')
+        const bizField = form.getTextField('Text Field2')
+        var fname = document.getElementById('fname').value;
+        var biz = document.getElementById('biz').value;
+        //console.log(name)
+        nameField.setText(fname)   
+        bizField.setText(biz)        
+
+
+        // Serialize the PDFDocument to bytes (a Uint8Array)
+        const pdfBytes = await pdfDoc.saveAsBase64({ updateFieldAppearances: true, dataUri: true });
+
+        
+       download(pdfBytes, "pdf-lib_form_creation_example.pdf", "application/pdf");
+    }
+  </script>
+</html>
