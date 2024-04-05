@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+  
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+		<meta http-equiv="Content-Security-Policy" content="default-src * gap://ready data: 'unsafe-eval'; img-src * data: gap://ready; frame-src *; connect-src * ; style-src * 'self' 'unsafe-inline' 'unsafe-eval'; media-src *; script-src * data: 'self' 'unsafe-inline' 'unsafe-eval' gap://ready; ">
+	   
+		<title> Lifeapps™ Unuh™ </title>
+		<script type="text/javascript" src="libs/phaser.min.js"></script>
+		<script type="text/javascript" src="config.js"></script>     
+		<script type="text/javascript" src="RenJS/RenJSBootstrap.js"></script>     
+    <script>
+      for(let i=0; i<localStorage.length; i++) {
+        let key = localStorage.key(i);
+        //alert(`${key}: ${localStorage.getItem(key)}`);
+        localStorage.setItem(localStorage.getItem(key),0);
+      }
+    </script>
+	<style>
+    #ck-button {
+      margin:4px;
+      overflow:hidden;
+      float:left;
+      position: absolute;
+      top: 5px; /* Adjust the top position as needed */
+      left: -12%; /* Adjust the left position as needed */
+      padding: 5px;
+      z-index: 2; /* Place the div above the canvas */	
+      transform: rotate(45deg);
+      font-size: 45px;
+      font-weight: 600;		
+    }
+	
+		#ck-button label {
+			float:left;
+			width:4.0em;
+		}
+	
+		#ck-button label span {
+			text-align:center;
+			padding:3px 0px;
+			display:block;
+		}
+	
+		#ck-button label input {
+			position:absolute;
+			top:-20px;
+		}
+	
+		#ck-button input:checked + span {
+			transform: rotate(45deg);
+			
+		}	
+		</style>		
+	</head>
+	<div id="ck-button">
+		<label class="switch">
+			<input type="checkbox" name="myCheckbox">
+			<span class="slider round">
+				+
+			</span>
+		</label>		
+	</div>
+
+	<script type="text/javascript">
+		var _selector = document.querySelector("input[name=myCheckbox]");
+		if (localStorage.getItem("tokenCount") === null) {
+			localStorage.setItem("tokenCount",0);
+		}		
+		
+		_selector.addEventListener("change", function (event) {
+			if (messageHandler && localStorage.getItem("moduleComplete_3A") === null) {
+				messageHandler.postMessage(
+				JSON.stringify({
+					tokenValue: localStorage.getItem("tokenCount"),
+					gameEnd: false,
+				})
+				);
+				
+			}
+			else if (messageHandler && parseInt(localStorage.getItem("moduleComplete_3A")) == 1) {
+				messageHandler.postMessage(
+				JSON.stringify({
+					tokenValue: localStorage.getItem("tokenCount"),
+					gameEnd: true,
+				})
+				);				
+			}
+
+		});
+	  </script>
+	<body style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px;margin-right: 0px;">		
+	</body>
+
+</html>

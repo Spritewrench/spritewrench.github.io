@@ -1,0 +1,237 @@
+backgrounds:
+  avatarBedroom: assets/backgrounds/avatarBedroom_B.png
+  schoolExt: assets/backgrounds/bg4.png
+  schoolHallway: assets/backgrounds/bg3.png
+  sbHomeStudio: assets/backgrounds/bg5.png
+  dArtStudio: assets/backgrounds/bg6.png
+  busStop: assets/backgrounds/bg7.png
+  DowntownJamStreet: assets/backgrounds/bg8.png
+  questionBG: assets/backgrounds/questionBG.webp
+  boxingGymBG: assets/backgrounds/Boxinggym.png
+  bpoExtBG: assets/backgrounds/Bpoext.png
+  bpoIntBG: assets/backgrounds/Bpoint.png
+  communityCentreBG: assets/backgrounds/Communitycentre.png
+  hackersLairBG: assets/backgrounds/Hacker’sLair.png
+  jamaicanStreetBG: assets/backgrounds/Jamaicanstreet.png
+  musicFestBG: assets/backgrounds/Musicfest.png
+  nationalParkBG: assets/backgrounds/Nationalpark.png
+  plazaBG: assets/backgrounds/Plaza.png
+  recordingStudioBG: assets/backgrounds/Recordingstudio.png
+  uptwonBG: assets/backgrounds/Uptown.png  
+  
+  
+characters:
+
+  sanka:
+    displayName: Sanka
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/sanka.png
+
+  avatar:
+    displayName: Avatar
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char1_A.png 
+  friend:
+    displayName: Friend
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/char1_A.png       
+  dice:
+    displayName: Dice
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/dice.webp        
+  starboy:
+    displayName: Starbwoy
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/starboy.png   
+  dymond:
+    displayName: Dymond
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/dymond.png         
+  roje:
+    displayName: Coach
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/roje.png      
+  ace:
+    displayName: Ace
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/ace.png      
+  lackresha:
+    displayName: Lackresha
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/lackresha.png        
+  kalisha:
+    displayName: Kalisha
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/kalisha.png  
+  brianna:
+    displayName: Brianna
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/brianna.png 
+  stewart:
+    displayName: Stewart
+    speechColour: "#000"
+    looks:
+      normal: assets/characters/stewart.png                           
+
+
+
+            
+
+cgs:
+  sbBusinessCard: assets/cg/sbBusinessCard.png 
+
+  splash-init: assets/gui/loaderasset1.png
+  flash: assets/backgrounds/flash.webp
+  heart: assets/characters/heart.webp
+  token: assets/gui/token.webp
+  
+  phone_sb_fakeInsta: assets/cg/sbFakeInsta.png
+  phone_sb_fakeInsta2: assets/cg/sbFakeInsta.png
+  phone_d_fakeInsta: assets/cg/dFakeInsta.png
+  phone_d_fakeInsta2: assets/cg/dFakeInsta2.png
+  phone_d_fakeInsta3: assets/cg/dFakeInsta3.png
+
+  phone_d_fakeInsta2_1: assets/cg/dFakeInsta-2_1.png
+  phone_d_fakeInsta2_2: assets/cg/dFakeInsta-2_2.png
+  phone_d_fakeInsta2_3: assets/cg/dFakeInsta-2_3.png
+  phone_d_fakeInsta2_4: assets/cg/dFakeInsta-2_4.png
+
+  phone_d_fakeInsta3_1: assets/cg/dFakeInsta-3_1.png
+  phone_d_fakeInsta3_2: assets/cg/dFakeInsta-3_2.png
+  phone_d_fakeInsta3_3: assets/cg/dFakeInsta-3_3.png
+  phone_d_fakeInsta3_4: assets/cg/dFakeInsta-3_4.png
+  phone_d_fakeInsta3_5: assets/cg/dFakeInsta-3_5.png
+  phone_d_fakeInsta3_6: assets/cg/dFakeInsta-3_6.png
+
+  phone_sb_fakeInsta2_1: assets/cg/sbFakeInsta-2_1.png
+  
+
+  phone_msg_mom_1: assets/cg/phone_msg_mom_1.webp
+  phone_msg_mom_2: assets/cg/phone_msg_mom_2.webp
+  
+  phone_msg_jamie_1: assets/cg/phone_msg_jamie_1.webp
+  phone_msg_jamie_2: assets/cg/phone_msg_jamie_2.webp
+  
+  phone_msg_dice_1: assets/cg/phone_msg_dice_1.webp
+  
+  badEnd: assets/cg/badEnd.webp
+  goodEnd: assets/cg/goodEnd.webp
+  
+  b1: assets/gui/b1.png
+  b2: assets/gui/b2.png
+  b3: assets/gui/b3.png
+  b4: assets/gui/b4.png
+  b5: assets/gui/b5.png
+  b6: assets/gui/b6.png  
+
+  selectChar: assets/gui/selectChar.png  
+
+  leftarrow: assets/gui/leftArrow.webp
+  rightarrow: assets/gui/rightArrow.webp
+  
+
+sfx:
+  siren:  assets/audio/effects/70938__guitarguy1985__police2.mp3
+  phoneNotification:  assets/audio/effects/PhoneNotification.mp3
+  phoneFlash:  assets/audio/effects/PhoneFlash.mp3
+  traffic: assets/audio/effects/traffic.mp3
+  collectCoin: assets/audio/effects/collectCoin.mp3
+  success: assets/audio/effects/success.mp3
+
+
+
+
+  
+  
+
+
+  
+
+
+
+music:
+  Dub01: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
+  rollingCredits: assets/audio/DuBoLoGy_-_01_-_Dub_Atao.mp3
+
+  welcomeBack: assets/audio/VO/1_SankaIntro1 - 2024-03-04, 3.04 PM.mp3
+  welcomeBack2: assets/audio/VO/1_SankaIntro1 - 2024-03-04, 3.04 PM-2.mp3
+
+  returnLMS1: assets/audio/VO/14 Sanka_Link to LMS - 2024-03-04, 3.35 PM.mp3
+  returnLMS1-2: assets/audio/VO/14 Sanka_Link to LMS - 2024-03-04, 3.35 PM-2.mp3
+
+  culture: assets/audio/VO/2_TOKEN_CULTURE.mp3
+  cultureResponse1: assets/audio/VO/3_RESPONSE.mp3
+  cultureResponse1-2: assets/audio/VO/3_RESPONSE-2.mp3
+  cultureResponse2: assets/audio/VO/4_RESPONSE.mp3
+  cultureResponse3: assets/audio/VO/5_RESPONSE.mp3
+  cultureResponse3-2: assets/audio/VO/5_RESPONSE-2.mp3
+
+  communication: assets/audio/VO/6_TOKEN_COMMUNICATE.mp3
+  communicationResponse1: assets/audio/VO/7_RESPONSE.mp3
+  communicationResponse1-2: assets/audio/VO/7_RESPONSE-2.mp3
+  communicationResponse2: assets/audio/VO/8_RESPONSE.mp3
+  communicationResponse2-2: assets/audio/VO/8_RESPONSE-2.mp3  
+  communicationResponse3: assets/audio/VO/9_RESPONSE.mp3
+  communicationResponse3-2: assets/audio/VO/9_RESPONSE-2.mp3    
+
+  trust: assets/audio/VO/10_TOKEN_TRUST.mp3
+  trustResponse1: assets/audio/VO/11_RESPONSE.mp3
+  trustResponse1-2: assets/audio/VO/11_RESPONSE-2.mp3
+  trustResponse2: assets/audio/VO/12_RESPONSE.mp3
+  trustResponse2-2: assets/audio/VO/12_RESPONSE-2.mp3  
+  trustResponse3: assets/audio/VO/13_RESPONSE.mp3
+  trustResponse3-2: assets/audio/VO/13_RESPONSE-2.mp3 
+     
+  trigger: assets/audio/VO/19_TOKEN TRIGGERS.mp3
+  triggerResponse1: assets/audio/VO/20_RESPONSE.mp3
+  triggerResponse1-2: assets/audio/VO/20_RESPONSE-2.mp3
+  triggerResponse2: assets/audio/VO/21_RESPONSE.mp3
+  triggerResponse2-2: assets/audio/VO/21_RESPONSE-2.mp3  
+  triggerResponse3: assets/audio/VO/22_RESPONSE.mp3
+
+  distraction: assets/audio/VO/15_TOKEN_DISTRACTIONS.mp3
+  distractionResponse1: assets/audio/VO/16_RESPONSE.mp3
+  distractionResponse1-2: assets/audio/VO/16_RESPONSE-2.mp3
+  distractionResponse1-3: assets/audio/VO/16_RESPONSE-3.mp3
+  distractionResponse2: assets/audio/VO/17_RESPONSE.mp3
+  distractionResponse2-2: assets/audio/VO/17_RESPONSE-2.mp3  
+  distractionResponse3: assets/audio/VO/18_RESPONSE.mp3
+  distractionResponse3-2: assets/audio/VO/18_RESPONSE.mp3
+  distractionResponse3-3: assets/audio/VO/18_RESPONSE.mp3
+
+  teamPlayer: assets/audio/VO/25_TOKEN_TEAM PLAYER.mp3
+  teamPlayerResponse1: assets/audio/VO/26_RESPONSE.mp3
+  teamPlayerResponse1-2: assets/audio/VO/26_RESPONSE-2.mp3
+  teamPlayerResponse2: assets/audio/VO/27_RESPONSE.mp3
+  teamPlayerResponse2-2: assets/audio/VO/27_RESPONSE-2.mp3  
+  teamPlayerResponse2-3: assets/audio/VO/27_RESPONSE-3.mp3  
+  teamPlayerResponse3: assets/audio/VO/28_RESPONSE.mp3
+  teamPlayerResponse3-2: assets/audio/VO/28_RESPONSE-2.mp3
+  teamPlayerResponse3-3: assets/audio/VO/28_RESPONSE-3.mp3
+  teamPlayerResponse3-4: assets/audio/VO/28_RESPONSE-4.mp3
+
+  kind: assets/audio/VO/29_TOKEN_ KIND TO OTHERS.mp3
+  kindResponse1: assets/audio/VO/30_RESPONSE.mp3
+  kindResponse1-2: assets/audio/VO/30_RESPONSE-2.mp3
+  kindResponse2: assets/audio/VO/31_RESPONSE.mp3
+  kindResponse2-2: assets/audio/VO/31_RESPONSE-2.mp3  
+  kindResponse2-3: assets/audio/VO/31_RESPONSE-3.mp3  
+  kindResponse3: assets/audio/VO/32_RESPONSE.mp3
+  kindResponse3-2: assets/audio/VO/32_RESPONSE-2.mp3
+
+  exit: assets/audio/VO/33_SANKA EXTRO.mp3
+  exit2: assets/audio/VO/33_SANKA EXTRO-2.mp3
+  exit3: assets/audio/VO/33_SANKA EXTRO-3.mp3
+  exit4: assets/audio/VO/33_SANKA EXTRO-4.mp3
+  exit5: assets/audio/VO/33_SANKA EXTRO-5.mp3
