@@ -1,12 +1,15 @@
 start:
   - show questionBG:
   - call setToken:
-  - play returnLMS1: WITH CUT     
-  - sanka says normal: Let’s learn more about our emotional intelligence ... 
-  - stop bgm: WITH CUT
-  - play returnLMS1-2: WITH CUT
-  - sanka says normal: And communication skills to have better relationships with friends and our wider communities.
+  - play fromLMS1: WITH CUT     
+  - sanka says normal: It’s good to learn tools and methods ...
   - stop bgm: WITH CUT  
+  - play fromLMS2: WITH CUT  
+  - sanka says normal: To continue to improve how we interact with the world.  
+  - stop bgm: WITH CUT  
+  - play fromLMS3: WITH CUT  
+  - sanka says normal: Let’s return to the game and stack more tokens.
+  - stop bgm: WITH CUT
   - hide sanka: WITH FADE 
   - play Dub01: LOOP
   - var ENDING: "localStorage.getItem('M3_ENDING')"
@@ -67,9 +70,14 @@ good_part:
   - scene: part_good_two 
 
 part_good_two:
+  - show afewWeeksLater: WITH CUT   
+  - avatar says normal: The day finally reach!
+  - avatar says normal: Mi nervous differently still ...
+  - hide avatar: WITH CUT   
+  - hide afewWeeksLater: WITH CUT  
   - show musicFestBG:
   - var NAME: "localStorage.getItem('playerName')"
-  - brianna says normal: An di finalist fi di music contest a di one an only {NAME}!
+  - brianna says normal: An di las finalist fi di music contest a di one an only {NAME}!
   - hide brianna: WITH CUT
   - avatar says normal: Wait!  Is my name dem call!  Mi neva expect dis. 
   - avatar says normal: Big up to all who believe inna mi. 
@@ -116,7 +124,7 @@ part_good_two:
   - hide stewart: WITH CUT
   - avatar says normal: Wait ...  Dat sounds like mi!!!!  
   - avatar says normal: My song !!!  
-  - avatar says normal: Yo!   Brittany calling me fi come collect the trophy.   
+  - avatar says normal: Yo! Brianna calling me fi come collect the trophy.   
   - avatar says normal: Dis is a dream in real life!!!!  
   - avatar says normal: Jeez all eye wata a flow mi so happy!
   - hide avatar: WITH CUT 
@@ -143,23 +151,23 @@ part_good_two:
       - play teamPlayerResponse2: WITH CUT
       - sanka says normal: Sometimes, we just can't go it alone.
       - stop bgm: WITH CUT 
-      - play teamPlayerResponse2-1: WITH CUT
+      - play teamPlayerResponse2-2: WITH CUT
       - sanka says normal:  It's cool to rely on each other when we need to. 
       - stop bgm: WITH CUT
-      - play teamPlayerResponse2-2: WITH CUT
+      - play teamPlayerResponse2-3: WITH CUT
       - sanka says normal:  Teamwork makes the dream work, right?
       - stop bgm: WITH CUT
     - C) Team player? Mi nuh really into all dat:
       - play teamPlayerResponse3: WITH CUT      
       - sanka says normal: If we don’t help each other ...  
       - stop bgm: WITH CUT
-      - play teamPlayerResponse3-1: WITH CUT
+      - play teamPlayerResponse3-2: WITH CUT
       - sanka says normal: Who will help us when we are in need.  
       - stop bgm: WITH CUT
-      - play teamPlayerResponse3-2: WITH CUT
+      - play teamPlayerResponse3-3: WITH CUT
       - sanka says normal: When people come together with good hearts ...
       - stop bgm: WITH CUT
-      - play teamPlayerResponse3-3: WITH CUT
+      - play teamPlayerResponse3-4: WITH CUT
       - sanka says normal: And everyone pulls their weight, the possibilities are endless.
       - stop bgm: WITH CUT
   - stop bgm: WITH CUT
@@ -180,9 +188,9 @@ part_good_three:
   - avatar says normal: Grateful mi get a weekend group pass as part of my prize ...
   - avatar says normal: And can give back and share with unuh.    
   - avatar says normal: Mi a realize too since the clean up ...
-  - avatar says normal: Wi need fi apprec-love nature a whole heap more.   
+  - avatar says normal: Wi need fi appreci-love nature a whole heap more.   
   - hide avatar: WITH CUT
-  - roje says normal: Yes immersing in Mother Nature is it’s own kind of meditation and healing.  
+  - roje says normal: Yes immersing in Mother Nature is its own kind of meditation and healing.  
   - roje says normal: Learning that might be one of the biggest prizes in our life.   
   - roje says normal: Ok let’s do this.    
   - roje says normal: We are still going to train ...

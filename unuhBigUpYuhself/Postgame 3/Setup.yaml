@@ -115,6 +115,8 @@ cgs:
   phone_d_fakeInsta3_6: assets/cg/dFakeInsta-3_6.png
 
   phone_sb_fakeInsta2_1: assets/cg/sbFakeInsta-2_1.png
+
+  afewWeeksLater: assets/cg/fewWeeksSlide.png
   
 
   phone_msg_mom_1: assets/cg/phone_msg_mom_1.webp
@@ -166,6 +168,10 @@ music:
 
   welcomeBack: assets/audio/VO/1_SankaIntro1 - 2024-03-04, 3.04 PM.mp3
   welcomeBack2: assets/audio/VO/1_SankaIntro1 - 2024-03-04, 3.04 PM-2.mp3
+
+  fromLMS1: assets/audio/VO/24_Sanka_After Game Plot A_Intro - 2024-03-04, 4.51 PM.mp3
+  fromLMS2: assets/audio/VO/24_Sanka_After Game Plot A_Intro - 2024-03-04, 4.51 PM-2.mp3
+  fromLMS3: assets/audio/VO/24_Sanka_After Game Plot A_Intro - 2024-03-04, 4.51 PM-3.mp3
 
   returnLMS1: assets/audio/VO/14 Sanka_Link to LMS - 2024-03-04, 3.35 PM.mp3
   returnLMS1-2: assets/audio/VO/14 Sanka_Link to LMS - 2024-03-04, 3.35 PM-2.mp3
