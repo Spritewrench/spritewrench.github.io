@@ -12,68 +12,68 @@ start:
   - show schoolExt:
   - play Dub01: LOOP  
   - avatar says normal: Yo, Dice, weh di plan fi today?
-  - hide avatar: WITH CUT 
-  - dice says normal: Same as always, tryna hustle an mek ends meet. 
-  - dice says normal: Yu haffi stay sharp, bredda
-  - hide dice: WITH CUT 
-  - avatar says normal: Mi see people from all walks a life comin' togedda fi  di clean up. 
-  - avatar says normal: It's like di whole community a rally 'round di cause. 
+  - hide avatar: WITH CUT
+  - dice says normal: Same as always, tryna hustle an mek ends meet.
+  - dice says normal: Yuh haffi stay sharp, bredda.
+  - hide dice: WITH CUT
+  - avatar says normal: Mi see people from all walks a life comin' togedda fi di clean up.
+  - avatar says normal: It's like di whole community a rally 'round di cause.
   - avatar says normal: Yuh gonna help?
-  - hide avatar: WITH CUT 
+  - hide avatar: WITH CUT
   - dice says normal: Yuh mad?   Bigger endz mi on.
-  - hide dice: WITH CUT 
-  - avatar says normal: Yuh Baddaz yuh–cho Dice!   Mek we watch and see.
-  - show avatar: WITH CUT 
+  - hide dice: WITH CUT
+  - avatar says normal: Yuh Baddaz yuh–cho Dice!   Mek wi watch and see.
+  - show avatar: WITH CUT
   - choice:  
     - Mi have time for this?:  
-      - avatar says normal: The place is really dutty doh. 
-      - avatar says normal:  Mi nah waste mi time
+      - avatar says normal: The place is really dutty doh.
+      - avatar says normal:  Mi nuh waste mi time.
     - It feels good to help tidy up the place:  
       - avatar says normal:  Plus it’s much healthier fi wi
       - avatar says normal:  Everything–the vibes just feel betta with the clean up.
     - Dice is right:
-      - avatar says normal: Why mi should clean up nasty people’s mess? 
-      - avatar says normal: Anybody want something different ... mek them do it
-  - hide avatar: WITH CUT 
-  - roje says normal: Alright, team, today wi a mek wi community cleaner an greener. 
+      - avatar says normal: Why mi should clean up nasty people’s mess?
+      - avatar says normal: Anybody want someting different ... mek them do it
+  - hide avatar: WITH CUT
+  - roje says normal: Alright, team, today wi a mek wi community cleaner an greener.
   - roje says normal: Let's show some love to Mother Earth!
-  - hide roje: WITH CUT 
-  - avatar says normal: Coach, why we haffi do dis?
-  - hide avatar: WITH CUT 
-  - roje says normal: It's about pride inna wi community, bredda. 
-  - roje says normal: Every likkle bit counts. 
-  - roje says normal: We nah just clean di place, we showin' we care.
   - hide roje: WITH CUT
-  - avatar says normal: Yuh right, Coach. 
-  - avatar says normal: We showin' di world we can make a difference, one piece a trash at a time.
-  - avatar says normal: Yo, dis feel good, y'know? 
+  - avatar says normal: Coach, why wi haffi do dis?
+  - hide avatar: WITH CUT
+  - roje says normal: It's about pride inna wi community, bredda.
+  - roje says normal: Every likkle bit counts.
+  - roje says normal: Wi nuh just clean di place, wi showin' wi care.
+  - hide roje: WITH CUT
+  - avatar says normal: Yuh right, Coach.
+  - avatar says normal: Wi showin' di world wi can make a difference, one piece a trash at a time.
+  - avatar says normal: Yo, dis feel good, y'know?
   - avatar says normal: Like we're part a someting bigga dan ourselves.
   - hide avatar: WITH CUT
-  - roje says normal: Mi proud a yuh, mi youth. 
-  - roje says normal: Dis di kinda unity we need fi see more often.
+  - roje says normal: Mi proud a yuh, mi youth.
+  - roje says normal: Dis di kinda unity wi need fi see more often.
   - hide roje: WITH CUT
-  - avatar says normal: Respect, Coach. 
+  - avatar says normal: Respect, Coach.
   - avatar says normal: Wi a go continue fi do wi part fi wi community.
   - hide avatar: WITH CUT
-  - show phone_d_fakeInsta3_1: WITH CUT 
+  - show phone_d_fakeInsta3_1: WITH CUT
   - play phoneNotification:  
   - avatar says normal: Dymond on point—respect is key.
-  - hide phone_d_fakeInsta3_1: WITH CUT   
+  - hide phone_d_fakeInsta3_1: WITH CUT  
   - hide avatar: WITH CUT
   - show jamaicanStreetBG:
-  - stewart says normal: Ladies an gentlemen thanks for your support in the clean up.  
-  - stewart says normal: Next event, in collaboration wid EcoHarmony, we launchin...
+  - stewart says normal: Ladies an gentlemen thanks fi yuh support in the clean up.  
+  - stewart says normal: Next event, in collaboration wid EcoHarmony, wi launchin...
   - stewart says normal: A nationwide music contest with performance at our festival in the National Park!
   - hide stewart: WITH CUT
   - starboy says normal: Big up, Jamaica! Dis a yuh chance fi shine. Let's hear dem vibes!
   - hide starboy: WITH CUT
-  - avatar says normal: Yo, StarBwoy, dis a big ting yuh bring to di community. 
-  - avatar says normal: We grateful fi di opportunity.
+  - avatar says normal: Yo, StarBwoy, dis a big ting yuh bring to di community.
+  - avatar says normal: Wi grateful fi di opportunity.
   - hide avatar: WITH CUT
-  - starboy says normal: Nuff respect, mi people. Di talent inna dis island endless. 
+  - starboy says normal: Nuff respect, mi people. Di talent inna dis island endless.
   - starboy says normal: Wi a go mek di world know di real Jamaica sound.
   - hide starboy: WITH CUT
-  - roje says normal: Dis a di kinda ting we need fi uplift di youth dem. 
+  - roje says normal: Dis a di kinda ting wi need fi uplift di youth dem.
   - roje says normal: Give dem a platform fi show dem talent.
   - hide roje: WITH CUT
   - stewart says normal: Exactly,  Coach. Wi a pave di way fi di next generation ah artists fi shine bright.
@@ -83,13 +83,13 @@ start:
   - hide starboy: WITH CUT
   - avatar says normal: So, wi haffi come up wid di sickest song fi dis ting?
   - hide avatar: WITH CUT
-  - stewart says normal: Yes, mi bredda! 
-  - stewart says normal: Wi want fi hear di most innovative, di most autentic, di most irie chune dis island ever seen! 
+  - stewart says normal: Yes, mi bredda!
+  - stewart says normal: Wi want fi hear di most innovative, di most authentic, di most irie chune dis island ever seen!
   - hide stewart: WITH CUT
   - starboy says normal: An' remember, it's not just 'bout di riddim ...
   - starboy says normal: It's 'bout di vibe, di lyrics, di energy, di whole package! Wi a look fi di full experience!
   - hide starboy: WITH CUT
-  - stewart says normal: So, get dem creative juices flowin', mi people! 
+  - stewart says normal: So, get dem creative juices flowin', mi people!
   - stewart says normal: Show di world di essence of Jamaican music – di heartbeat of di island!
   - hide stewart: WITH CUT
   - brianna says normal: The best part is the big prize is a home studio setup.  
@@ -101,19 +101,19 @@ start:
   - sanka says normal:  How Important is Your Culture to You?
   - stop bgm: WITH CUT
   - choice:  
-    - A) My culture means everything to me:
+    - A) Mi culture means everyting to mi:
       - call getToken:
       - play cultureResponse1: WITH CUT
-      - sanka says normal: Your words ring true. 
+      - sanka says normal: Your words ring true.
       - stop bgm: WITH CUT
       - play cultureResponse1-2: WITH CUT
       - sanka says normal: Embracing our culture keeps us grounded and proud. Keep shining with that cultural pride.
       - stop bgm: WITH CUT
-    - B) I feel connected to my culture occasionally:
+    - B) Mi feel connected to mi culture sometimes:
       - play cultureResponse2: WITH CUT
       - sanka says normal: Our culture is complex, but exploring it is a journey worth taking.
       - stop bgm: WITH CUT
-    - C) My culture doesn't mean much to me:      
+    - C) Mi culture nuh sey nuttin much to mi:      
       - play cultureResponse3: WITH CUT
       - sanka says normal: Ignoring your culture is missing out ...
       - stop bgm: WITH CUT
@@ -123,11 +123,12 @@ start:
   - stop bgm: WITH CUT
   - play Dub01: LOOP
   - hide sanka: WITH FADE
-  - scene: part_two       
+  - scene: part_two      
+
 
 part_two:
   - show schoolExt:
-  - avatar says normal: (whispering to a friend) Pssst…A weh dem uptown people come from? 
+  - avatar says normal: (whispering to a friend) Pssst…A weh dem uptown people come from?
   - avatar says normal: Dem tink dem can just barge in yah so an save di day?
   - hide avatar: WITH CUT
   - friend says normal: Mi nuh know, bredda. But dem help clean up the place ...
@@ -135,30 +136,30 @@ part_two:
   - hide friend: WITH CUT
   - avatar says normal: (skeptical) Yeah, but mi a wonder a wah dem really up to?
   - play phoneNotification:  
-  - show phone_d_fakeInsta3_2: WITH CUT   
+  - show phone_d_fakeInsta3_2: WITH CUT  
   - avatar says normal: Dymond always dropping knowledge.
-  - hide phone_d_fakeInsta3_2: WITH CUT     
+  - hide phone_d_fakeInsta3_2: WITH CUT    
   - hide avatar: WITH CUT
-  - stewart says normal: Hey deh! Tanks fi yuh help today. Wi really appreciate di support. 
+  - stewart says normal: Hey deh! Tanks fi yuh help today. Wi really appreciate di support.
   - hide stewart: WITH CUT
-  - avatar says normal: (mumbling) Yeah, sure. Whateva.
+  - avatar says normal: (mumbling) Yeah, sure. Wateva.
   - hide avatar: WITH CUT
-  - brianna says normal: Everything alright? Yuh seem kinda hesitant.
+  - brianna says normal: Everyting alright? Yuh seem kinda hesitant.
   - hide brianna: WITH CUT
-  - avatar says normal: Nah, a nutten. Jus nuh used to all dis help, yuh zimi?
+  - avatar says normal: Nuh, a nutten. Jus nuh used to all dis help, yuh zimi?
   - hide avatar: WITH CUT
   - stewart says normal: Well, wi deh yah fi support unuh inna any way wi can. Wi believe in gi everybody a fair chance.
   - hide stewart: WITH CUT
   - show avatar: WITH CUT
   - choice:  
     - Seriously, who are dese people?:
-      - avatar says normal:   Mi nah know dem. Betta we hold our own corners.
+      - avatar says normal:   Mi nuh know dem. Betta wi hold our own corner.
     - Stewart and Brianna seem article:
-      - avatar says normal: Maybe mi can make some new friends, expand my horizons
+      - avatar says normal: Maybe mi can make some new friends, expand mi horizons
       - avatar says normal: Being open to new tings is a good look.
     - Too many strangers deh bout:      
       - avatar says normal: Dis is not mi scene. Mek mi tek wey miself
-      - avatar says normal: Mi gud, right mi one.
+      - avatar says normal: Mi gud, mi one.
   - hide avatar: WITH CUT
   - show questionBG:
   - stop bgm: WITH CUT
@@ -166,64 +167,65 @@ part_two:
   - sanka says normal:  Do you think about how you communicate with others?
   - stop bgm: WITH CUT
   - choice:  
-    - A) Always mindful o' how I connect wid others:
+    - A) Always mindful o' how mi connect wid others:
       - call getToken:
       - play communicationResponse1: WITH CUT
       - sanka says normal: Absolutely! Communication is more than words ...
       - stop bgm: WITH CUT
       - play communicationResponse1-2: WITH CUT
-      - sanka says normal: It's about the vibes we share. Being mindful helps us connect deeply. 
+      - sanka says normal: It's about the vibes we share. Being mindful helps us connect deeply.
       - stop bgm: WITH CUT
     - B) Depends on di situation, yuh know?:
       - play communicationResponse2: WITH CUT
-      - sanka says normal: Communication can be like sailing – smooth at times, rough at others. 
+      - sanka says normal: Communication can be like sailing – smooth at times, rough at others.
       - stop bgm: WITH CUT
       - play communicationResponse2-2: WITH CUT
-      - sanka says normal: Mindfulness can guide us
+      - sanka says normal: Mindfulness can guide us.
       - stop bgm: WITH CUT
-    - C) Me jus' talk how mi feel like:      
+    - C) Mi jus' talk how mi feel like:      
       - play communicationResponse3: WITH CUT
-      - sanka says normal:  Easy now. Communication's a two-way street. 
+      - sanka says normal:  Easy now. Communication's a two-way street.
       - stop bgm: WITH CUT
       - play communicationResponse3-2: WITH CUT
       - sanka says normal: Understanding each other matters, even in choppy waters.
       - stop bgm: WITH CUT
-  - hide sanka: WITH CUT     
-  - scene: part_three   
+  - hide sanka: WITH CUT    
+  - scene: part_three  
+
 
 part_three:
-  - play Dub01: LOOP     
+  - play Dub01: LOOP    
   - show avatarBedroom:
-  - avatar says normal: Mi waan enter di contest, but mi nah got no equipment.
-  - avatar says normal: Bwoy sometimes mi really feel di battle in my head.  
-  - avatar says normal: Those baddaz thoughts–Telling mi, mi nah good enuff and don’t bodda even try ...
+  - avatar says normal: Mi waan enter di contest, but mi nuh got no equipment.
+  - avatar says normal: Bwoi sometimes mi really feel di battle in mi head.  
+  - avatar says normal: Those Baddaz thoughts–Telling mi, mi nuh good enuff and don’t bodda even try ...
   - avatar says normal: But then if mi tek time ...
-  - avatar says normal: Mi UpFull self always come through an’ remind mi to at least try and do my best.
+  - avatar says normal: Mi UpFull self always come through an’ remind mi to at least try and do mi best.
   - play phoneNotification:  
-  - show phone_d_fakeInsta3_3: WITH CUT   
-  - avatar says normal: Mi hear Dymond but it nah easy.
-  - hide phone_d_fakeInsta3_3: WITH CUT   
+  - show phone_d_fakeInsta3_3: WITH CUT  
+  - avatar says normal: Mi hear Dymond but it nuh easy.
+  - hide phone_d_fakeInsta3_3: WITH CUT  
   - avatar says normal: If mi get a chance mi can show mi have potential ...
-  - avatar says normal: But suppose mi skill level nah good enough. Better to not even try ...
-  - avatar says normal: Nah ... I need to believe inna myself. I got di talent, jus need fi let it shine ...
+  - avatar says normal: But suppose mi skill level nuh good enough. Better to not even try ...
+  - avatar says normal: Nuh ... I need to believe inna miself. I got di talent, jus need fi let it shine ...
   - avatar says normal: Boi it's like mi up against di odds, yuh zimi? ...
-  - avatar says normal: Yeah, di odds against me too high. Might as well give up now ...
-  - avatar says normal: But dem seh every journey have rough patches ... 
-  - avatar says normal: And dat's di beauty a it – di challenge an di triumph ... 
+  - avatar says normal: Yeah, di odds against mi too high. Might as well give up now ...
+  - avatar says normal: But dem seh every journey have rough patches ...
+  - avatar says normal: And dat's di beauty a it – di challenge an di triumph ...
   - avatar says normal: Mi haffi dig deep an find di strength fi mek dis happen. UpFull vibes.
-  - avatar says normal: Right! Stop the Baddaz talk. 
-  - avatar says normal: Wi a go mek dis dream a reality, one step at a time. 
-  - avatar says normal: Dis contest mean more dan jus' winnin'. 
+  - avatar says normal: Right! Stop the Baddaz talk.
+  - avatar says normal: Wi a go mek dis dream a reality, one step at a time.
+  - avatar says normal: Dis contest mean more dan jus' winnin'.
   - avatar says normal: It's about chasin' dreams, showin' di youth dem what's possible.
-  - avatar says normal: Mi a show dem dat no matta wah yuh face inna life, yu can rise above it, yu zimi?
+  - avatar says normal: Mi a show dem dat no matta wah yuh face inna life, yuh can rise above it, yuh zimi?
   - avatar says normal: But ... suppose wi game di ting? Tip tings inna mi favor?
   - avatar says normal: No! ...
   - avatar says normal: No! Stop with di badness.
   - avatar says normal: Wat Starbwoy did sey?    
-  - avatar says normal: Values, roots–dem a di foundation pon which wi stand. 
-  - avatar says normal: Caan let nobody shake that. Got to stay true to miself and I can conquer anything.
-  - avatar says normal: Mek me do some Medz Gym, calm mi nerves ...
-  - avatar says normal: And think pon how mi can mek diss music.
+  - avatar says normal: Values, roots–dem a di foundation pon which wi stand.
+  - avatar says normal: Cyaan let nobody shake that. Got to stay true to miself and mi can conquer anything.
+  - avatar says normal: Mek mi do some Medz Gym, calm mi nerves ...
+  - avatar says normal: And think pon how mi can mek dis music.
   - avatar says normal: Mi wonder if StarBwoy might help mi with some studio time? ...
   - hide avatar: WITH CUT
   - show questionBG:
@@ -247,56 +249,56 @@ part_three:
       - play trustResponse2-2: WITH CUT
       - sanka says normal: But it's also smart to be cautious about who we trust.
       - stop bgm: WITH CUT
-    - C) People always let yuh down:     
-      - play trustResponse3: WITH CUT 
+    - C) People always let yuh down:    
+      - play trustResponse3: WITH CUT
       - sanka says normal: It's true, trust and honesty can feel risky at times ...
       - stop bgm: WITH CUT
       - play trustResponse3-2: WITH CUT
       - sanka says normal: However, embracing trust and honesty can lead to remarkable growth and deeper connections.
       - stop bgm: WITH CUT
   - hide sanka: WITH CUT
-  - play Dub01: LOOP 
+  - play Dub01: LOOP
   - show avatarBedroom:
-  - avatar says normal: What mi gon do?
+  - avatar says normal: Wah mi a go do?
   - choice:  
     - Nuh worry miself:  
-      - avatar says normal: Mi nah make lack a gear stop mi. Mi can get creative wit' wah mi got.
-      - avatar says normal: Focus, use wey mi got and see what can happen.
+      - avatar says normal: Mi nuh make lack a gear stop mi. Mi can get creative wit' wah mi got.
+      - avatar says normal: Focus, use wey mi got and see wah can happen.
       - hide avatar: WITH CUT
       - scene: part_good
     - Nah, mi nah got di strength fi dis:
-      - avatar says normal: Should just give up the idea now before I embarrass miself ...  
+      - avatar says normal: Should just give up the idea now before mi embarrass miself ...  
       - avatar says normal: Mek mi jus watch some Youtube.
       - hide avatar: WITH CUT
       - scene: part_good
     - Mi can think and mek a plan:
-      - avatar says normal: Figure out how to hack dis ...
-      - avatar says normal: There mus be a way to game dis ting. 
-      - hide avatar: WITH CUT 
+      - avatar says normal: Figure out how fi hack dis ...
+      - avatar says normal: There mus be a way to game dis ting.
+      - hide avatar: WITH CUT
       - scene: part_bad
-  
-  
+ 
+ 
 part_good:
   - show boxingGymBG:
-  - roje says normal: So, I see you’re not afraid of hard work ...
-  - roje says normal: Training, part time job and your music.   
-  - roje says normal: How’s your entry coming for the contest?
+  - roje says normal: So, mi see yuh nuh ‘fraid of hard work ...
+  - roje says normal: Training, part time job and yuh music.  
+  - roje says normal: How yuh entry coming fi di contest?
   - hide roje: WITH CUT
-  - avatar says normal: Mi nuh know. It harder dan mi tink. 
+  - avatar says normal: Mi nuh know. It harder dan mi tink.
   - avatar says normal: Maybe mi just tek di easy road an submit someting basic.
   - hide avatar: WITH CUT
-  - roje says normal: Why sell yourself short?
+  - roje says normal: Why sell yuhself short?
   - hide roje: WITH CUT
   - avatar says normal: Mi nuh si nuh odda options.  
   - avatar says normal: Mi don’t have the equipment fi do di real professional recording.
   - hide avatar: WITH CUT
-  - roje says normal:  Have you asked for support? You never know what can come from networking.   
-  - roje says normal: I think you have seen this already. 
+  - roje says normal:  Have yuh asked fi support? Yuh never know wah can come from networking.  
+  - roje says normal: Mi tink yuh have seen dis already.
   - roje says normal: Don’t rush to conclusions without studying any situation.
   - hide roje: WITH CUT
-  - avatar says normal: What yuh mean Coach.  You have a next music link too? 
+  - avatar says normal: Wah yuh mean Coach.  Yuh have a nex music link too?
   - hide avatar: WITH CUT
-  - roje says normal: Let me show you something.
+  - roje says normal: Mek mi show yuh someting.
   - hide roje: WITH CUT
   - show questionBG:
   - stop bgm: WITH CUT
@@ -304,71 +306,71 @@ part_good:
   - sanka says normal: Are you aware of your triggers that can lead to conflicts?
   - stop bgm: WITH CUT
   - choice:  
-    - A) Sometimes I notice them:
+    - A) Sometimes mi notice dem:
       - play triggerResponse1: WITH CUT
-      - sanka says normal: Understanding our triggers is like exploring uncharted territory. 
+      - sanka says normal: Understanding our triggers is like exploring uncharted territory.
       - stop bgm: WITH CUT
       - play triggerResponse1-2: WITH CUT
       - sanka says normal: It's neither good nor bad, but a necessary journey to greater self-awareness and better relationshps
       - stop bgm: WITH CUT
-    - B) I always keep an eye out for those triggers:
+    - B) Mi always keep an eye out fi dose triggers:
       - call getToken:
       - play triggerResponse2: WITH CUT
-      - sanka says normal: Knowing our triggers is like holding the map to our own inner kingdom. 
+      - sanka says normal: Knowing our triggers is like holding the map to our own inner kingdom.
       - stop bgm: WITH CUT
       - play triggerResponse2-2: WITH CUT
       - sanka says normal: It's the key steering our ship through rough seas, towards calmer shores.
       - stop bgm: WITH CUT
-    - C) Me kinda like start up drama, yuh know?:   
-      - play triggerResponse3: WITH CUT   
+    - C) Mi kinda like start up drama, yuh know?:  
+      - play triggerResponse3: WITH CUT  
       - sanka says normal:  If you scorch everything in your path, you will end up getting burned yourself.
       - stop bgm: WITH CUT
   - call storeLocal:
       param1: "M3_ENDING"
       param2: "0"      
-  - scene: return_to_LMS   
+  - scene: return_to_LMS  
  
 part_bad:
   - show jamaicanStreetBG:
-  - dice says normal:  Yo, mi got a quick hustle weh can get yu di cash fi di gear.
+  - dice says normal:  Yo, mi got a quick hustle wah can get yuh di cash fi di gear.
   - hide dice: WITH CUT
-  - avatar says normal: Nah, man. Mi naa deal wid dat life nuh more. 
+  - avatar says normal: Nuh, man. Mi nuh deal wid dat life nuh more.
   - avatar says normal: Mi haffi do dis di right way.
   - hide avatar: WITH CUT
-  - dice says normal:  But dis a golden opportunity. 
-  - dice says normal: Yu cya make it big time if yu don't take chances.
+  - dice says normal:  But dis a golden opportunity.
+  - dice says normal: Yuh cyaan make it big time if yuh don't take chances.
   - hide dice: WITH CUT
-  - avatar says normal: Mi know, but mi nah jeopardize mi integrity fi no quick cash. 
+  - avatar says normal: Mi know, but mi nuh jeopardize mi integrity fi no quick cash.
   - avatar says normal: Mi ah go hustle di honest way.
   - hide avatar: WITH CUT
-  - dice says normal: Yu too uptight, bredda. 
-  - dice says normal: Sometimes yu haffi bend di rules fi mek it inna dis world.
+  - dice says normal: Yuh too uptight, bredda.
+  - dice says normal: Sometimes yuh haffi bend di rules fi mek it inna dis world.
   - hide dice: WITH CUT
   - avatar says normal: Mi nuh know, Dice. Di temptation deh strong ...
-  - avatar says normal: But mi mind a tell mi fi stay true to myself.
+  - avatar says normal: But mi mind a tell mi fi stay true to miself.
   - hide avatar: WITH CUT
-  - dice says normal: Afta all di struggles we been through ...
-  - dice says normal: Yu still a play di good side? Yu cya let go a dat dream?
+  - dice says normal: Afta all di struggles wi been through ...
+  - dice says normal: Yuh still a play di good side? Yuh cyaan let go a dat dream?
   - hide dice: WITH CUT
-  - avatar says normal: Mi dream nah worth it if mi sell out mi values. Mi cya live wid dat guilt.
+  - avatar says normal: Mi dream nuh worth it if mi sell out mi values. Mi cyaan live wid dat guilt.
   - hide avatar: WITH CUT
-  - dice says normal: But yu see di opportunity weh passin' yu by? 
-  - dice says normal: Yu a go regret it.
+  - dice says normal: But yuh see di opportunity weh passin' yuh by?
+  - dice says normal: Yuh a go regret it.
   - hide dice: WITH CUT
   - avatar says normal: Maybe, but mi rather regret doin' di right ting ...
   - avatar says normal: Dan live wid di consequences a bad choices.
   - hide avatar: WITH CUT
-  - dice says normal: Suit yuself. But when yu still strugglin' fi mek ends meet ...
-  - dice says normal: Don't come cryin' to me.
+  - dice says normal: Suit yuhself. But when yuh still strugglin' fi mek ends meet ...
+  - dice says normal: Nuh come cryin' to mi.
   - hide dice: WITH CUT
-  - avatar says normal: Mi nah beg nobody fi handouts. 
+  - avatar says normal: Mi nuh beg nobody fi handouts.
   - avatar says normal: Mi a go work fi wah mi want, an when mi achieve it ...
   - avatar says normal: It a go mean so much more. Stop bex mi now!
-  - show phone_d_fakeInsta3_4: WITH CUT 
+  - show phone_d_fakeInsta3_4: WITH CUT
   - play phoneNotification:  
   - avatar says normal: Dymond always on point enuh.
   - hide phone_d_fakeInsta3_4: WITH CUT    
-  - hide avatar: WITH CUT 
+  - hide avatar: WITH CUT
   - show questionBG:
   - stop bgm: WITH CUT
   - play distraction: WITH CUT
@@ -378,63 +380,64 @@ part_bad:
     - A) Mi set specific times and tek breaks:
       - call getToken:
       - play distractionResponse1: WITH CUT
-      - sanka says normal: You got this! 
+      - sanka says normal: You got this!
       - stop bgm: WITH CUT
       - play distractionResponse1-2: WITH CUT
-      - sanka says normal: Keep sailing towards your goals, like a captain guiding a ship through rough waters. 
+      - sanka says normal: Keep sailing towards your goals, like a captain guiding a ship through rough waters.
       - stop bgm: WITH CUT
       - play distractionResponse1-3: WITH CUT
       - sanka says normal: Your focus will steer you away from distractions, leading you to success.
       - stop bgm: WITH CUT
-    - B) I end up spendin too much time on mi phone:
+    - B) Mi end up spendin too much time on mi phone:
       - play distractionResponse2: WITH CUT
-      - sanka says normal: Figure out what works best for you, like exploring a new path in a crowded market. 
+      - sanka says normal: Figure out what works best for you, like exploring a new path in a crowded market.
       - stop bgm: WITH CUT
       - play distractionResponse2-2: WITH CUT
       - sanka says normal: Trust yourself to find the right direction amidst the distractions
       - stop bgm: WITH CUT
-    - C) Mi just try fi deal wid it when it come: 
-      - play distractionResponse3: WITH CUT     
-      - sanka says normal: Don't worry if you're feeling lost in the chaos. 
+    - C) Mi just try fi deal wid it when it come:
+      - play distractionResponse3: WITH CUT    
+      - sanka says normal: Don't worry if you're feeling lost in the chaos.
       - stop bgm: WITH CUT
       - play distractionResponse3-2: WITH CUT
       - sanka says normal: Just like a tree withstands a storm, you can overcome distractions ...
       - stop bgm: WITH CUT
       - play distractionResponse3-3: WITH CUT
-      - sanka says normal: And grow stronger if you make a plan for how you going to handle them. 
+      - sanka says normal: And grow stronger if you make a plan for how you are going to handle them.
       - stop bgm: WITH CUT
   - hide sanka: WITH CUT
   - stop bgm: WITH CUT
-  - play Dub01: LOOP 
+  - play Dub01: LOOP
   - show jamaicanStreetBG:
   - avatar says normal: What mi gon do?
   - choice:  
     - Cho! Dice could be right?:  
-      - avatar says normal: Maybe there is there an easy way fi get the studio time mi need?
-      - avatar says normal: Mek me see...
-      - hide avatar: WITH CUT 
+      - avatar says normal: Maybe there is an easy way fi get the studio time mi need?
+      - avatar says normal: Mek mi see...
+      - hide avatar: WITH CUT
       - call storeLocal:
           param1: "M3_ENDING"
           param2: "1"          
       - scene: return_to_LMS  
     - No sah.  Mi movin’ straight:
-      - avatar says normal: Let me think who else might be able fi help mi
-      - avatar says normal: It caan hurt to make a plan. 
-      - hide avatar: WITH CUT 
+      - avatar says normal: Let mi tink who else might be able fi help mi
+      - avatar says normal: It cyaan hurt to make a plan.
+      - hide avatar: WITH CUT
       - scene: part_good
     - Dis is too much stress:
       - avatar says normal: Mi head and mi heart a hurt mi ...
       - avatar says normal: Mi dun
-      - hide avatar: WITH CUT 
+      - hide avatar: WITH CUT
       - call storeLocal:
           param1: "M3_ENDING"
           param2: "1"          
       - scene: return_to_LMS  
 
+
 return_to_LMS:
   - show questionBG:
-  - play returnLMS1: WITH CUT     
-  - sanka says normal: Let’s learn more about our emotional intelligence ... 
+  - play returnLMS1: WITH CUT    
+  - sanka says normal: Let’s learn more about our emotional intelligence ...
   - stop bgm: WITH CUT
   - play returnLMS1-2: WITH CUT
   - sanka says normal: And communication skills to have better relationships with friends and our wider communities.
@@ -442,16 +445,22 @@ return_to_LMS:
   - scene: end
 
 
-end: 
+
+
+end:
   - call homeScreen:
   - effect ROLLINGCREDITS:
     endGame: true
     text:
       - And now for
-      - A small break
+      - A small break.
       - null
-      - Let's return to the LMS 
+      - Let's return to the LMS
       - to continue our studies
-      - and see if we can 
-      - apply what we've 
-      - learned so far      
+      - and see if we can
+      - apply what we've
+      - learned so far.     
+
+
+
+
