@@ -5,10 +5,10 @@ start:
   - sanka says normal: It’s good to learn tools and methods ...
   - stop bgm: WITH CUT  
   - play fromLMS2: WITH CUT  
-  - sanka says normal: To continue to improve how wi interact wid di world.  
+  - sanka says normal: To continue to improve how we interact with the world.  
   - stop bgm: WITH CUT  
   - play fromLMS3: WITH CUT  
-  - sanka says normal: Let’s return to di game and stack more tokens.
+  - sanka says normal: Let’s return to the game and stack more tokens.
   - stop bgm: WITH CUT
   - hide sanka: WITH FADE
   - play Dub01: LOOP
@@ -17,6 +17,8 @@ start:
     - scene: bad_part
   - else:
     - scene: good_part
+
+
 
 
 good_part:
@@ -71,6 +73,8 @@ good_part:
   - scene: part_good_two
 
 
+
+
 part_good_two:
   - show afewWeeksLater: WITH CUT  
   - avatar says normal: Di day finally reach!
@@ -113,14 +117,14 @@ part_good_two:
   - hide avatar: WITH CUT
   - starboy says normal: Yuh ready fi dis, mi bredda. Just let di music flow from di heart.
   - hide starboy: WITH CUT  
-  - stewart says normal: It’s time fi wi to announce di winner.
+  - stewart says normal: It’s time fi announce di winner.
   - hide stewart: WITH CUT
   - brianna says normal: From wi link back at di community clean up drive.  
   - brianna says normal: Wi just kno dere was something special about dis individual.  
-  - brianna says normal: Their music is just as giving as their heart in giving back to their community.  
+  - brianna says normal: Dem music is just as giving as dem heart in giving back to di community.  
   - hide brianna: WITH CUT
-  - stewart says normal: Straight facts. In fact giving community service ...
-  - stewart says normal: Is just how our winner got di studio time to create their winning track ...
+  - stewart says normal: Straight facts. Fi real giving community service ...
+  - stewart says normal: Is just how our winner got di studio time fi create di winning track ...
   - stewart says normal: Which is so fire, by di way.
   - stewart says normal: Selecta Starbwoy–run di winning chune!!!
   - hide stewart: WITH CUT
@@ -138,7 +142,7 @@ part_good_two:
   - show questionBG:
   - stop bgm: WITH CUT
   - play teamPlayer: WITH CUT
-  - sanka says normal: How important is being a team player to yuh?
+  - sanka says normal: How important is being a team player to you?
   - stop bgm: WITH CUT
   - choice:  
     - A) Being a team player is everyting to mi!:
@@ -147,30 +151,30 @@ part_good_two:
       - sanka says normal: It's about lifting each other up, sharing goals ...
       - stop bgm: WITH CUT
       - play teamPlayerResponse1-2: WITH CUT
-      - sanka says normal: And celebrating victories together. Together, wi achieve more.
+      - sanka says normal: And celebrating victories together. Together, we achieve more.
       - stop bgm: WITH CUT
     - B) Eh, being a team player is alright:
       - play teamPlayerResponse2: WITH CUT
-      - sanka says normal: Sometimes, wi just cyaan go it alone.
+      - sanka says normal: Sometimes, we just can’t go it alone.
       - stop bgm: WITH CUT
       - play teamPlayerResponse2-2: WITH CUT
-      - sanka says normal:  It's cool to rely on each other when wi need to.
+      - sanka says normal:  It's cool to rely on each other when we need to.
       - stop bgm: WITH CUT
       - play teamPlayerResponse2-3: WITH CUT
-      - sanka says normal:  Teamwork makes di dream work, right?
+      - sanka says normal:  Teamwork makes the dream work, right?
       - stop bgm: WITH CUT
     - C) Team player? Mi nuh really into all dat:
       - play teamPlayerResponse3: WITH CUT      
-      - sanka says normal: If wi don’t help each other ...  
+      - sanka says normal: If we don't help each other ...  
       - stop bgm: WITH CUT
       - play teamPlayerResponse3-2: WITH CUT
-      - sanka says normal: Who will help us when wi are in need.  
+      - sanka says normal: Who will help us when we are in need.  
       - stop bgm: WITH CUT
       - play teamPlayerResponse3-3: WITH CUT
-      - sanka says normal: When people come together wid good hearts ...
+      - sanka says normal: When people come together with good hearts ...
       - stop bgm: WITH CUT
       - play teamPlayerResponse3-4: WITH CUT
-      - sanka says normal: And everyone pulls their weight, di possibilities are endless.
+      - sanka says normal: And everyone pulls their weight, the possibilities are endless.
       - stop bgm: WITH CUT
   - stop bgm: WITH CUT
   - play Dub01: LOOP
@@ -181,6 +185,8 @@ part_good_two:
   - avatar says normal: Mi will continue to work on being and doing mi best.
   - avatar says normal: Give it mi bes shot, Sanka. Mi ah go do it.  
   - scene: part_good_three
+
+
 
 
 part_good_three:
@@ -197,12 +203,14 @@ part_good_three:
   - roje says normal: Learning dat might be one of di biggest prizes inna life.  
   - roje says normal: Ok let’s do dis.    
   - roje says normal: Wi are still going to train ...
-  - roje says normal: This mountain air is real nice fi our fitness.
+  - roje says normal: This mountain air is real nice fi wi fitness.
   - hide roje: WITH CUT
   - avatar says normal: Coach yuh not easy ...
   - avatar says normal: Let’s do dis.
   - stop bgm: WITH CUT  
   - scene: end
+
+
 
 
 bad_part:
@@ -229,7 +237,7 @@ bad_part:
   - dice says normal: But yuh haffi do sometin fi mi first.
   - hide dice: WITH CUT
   - avatar says normal: Mi willing fi do anyting fi get ahead.
-  - avatar says normal: Just tell me wah yuh need.
+  - avatar says normal: Just tell mi wah yuh need.
   - hide avatar: WITH CUT
   - show recordingStudioBG:
   - dice says normal: See di studio here ...
@@ -240,7 +248,7 @@ bad_part:
   - avatar says normal: Mi feel like dis di only chance mi got.
   - avatar says normal: Mi haffi tek it.
   - hide avatar: WITH CUT
-  - dice says normal: Whether yuh mek it or not yuh owi mi.  
+  - dice says normal: Whether yuh mek it or not yuh owe mi.  
   - dice says normal: Tell di engineer wah yuh want.
   - hide dice: WITH CUT
   - avatar says normal: So wat mi ah go do?
@@ -256,7 +264,7 @@ bad_part:
     - Betta mi hold mi corner:  
       - avatar says normal: And stay out of di Dice mix-up
       - avatar says normal: Yeah, mi really know betta than dis.  
-      - avatar says normal: Learnt mi lesson already.  
+      - avatar says normal: Learnt mi lesson longtime.  
       - avatar says normal: There’s always another way.
       - scene: good_part
   - show afewWeeksLater: WITH CUT  
@@ -284,7 +292,7 @@ bad_part:
   - avatar says normal: But dis is mi dream!
   - avatar says normal: Mi werk so hard fi dis moment!
   - hide avatar: WITH CUT
-  - starboy says normal: Mi thought yuh was di real deal.
+  - starboy says normal: Mi did tink yuh was di real deal.
   - starboy says normal: But now mi see yuh not ready at all.
   - hide starboy: WITH CUT
   - avatar says normal: Please, give mi a chance fi mek it right!
@@ -314,7 +322,7 @@ bad_part:
   - avatar says normal: Please, mi will do anyting fi mek it right.
   - hide avatar: WITH CUT
   - ace says normal: Apologies nuh mean nuttin now.
-  - ace says normal: Yuh owi wi big time, an wi nuh move till yuh settle yuh debt.
+  - ace says normal: Yuh owe wi big time, an wi nuh move till yuh settle yuh debt.
   - hide ace: WITH CUT  
   - kalisha says normal: Nuff ting yuh fi do fi wi now.
   - hide kalisha: WITH CUT
@@ -354,11 +362,11 @@ bad_part:
   - avatar says normal: Mi fi find a way fi mek things right, nuh matter what.
   - hide avatar: WITH CUT
   - roje says normal: Proud of yuh.
-  - roje says normal: Entire team and school is well proud of yuh ...
+  - roje says normal: If yuh can do dat di team and school will be well proud of yuh ...
   - roje says normal: No matter how yuh finish.
   - hide roje: WITH CUT
   - show nationalParkBG:
-  - brianna says normal: Thanks fi agreeing to take a walk wid us.
+  - brianna says normal: Thanks fi agreeing fi  walk wid us.
   - hide brianna: WITH CUT
   - stewart says normal: Sorry fi hear about di choices yuh made.  
   - stewart says normal: Wi know dat hard times can lead to bad decisions.
@@ -369,23 +377,23 @@ bad_part:
   - brianna says normal: That’s how karma works.    
   - brianna says normal: But di authorities, mi fadda is a security consultant to dem ...
   - brianna says normal: Told us dat yuh let dem know dat di scammers would be here.    
-  - brianna says normal: That took a lot of courage.
+  - brianna says normal: That took a whole heap of courage.
   - hide brianna: WITH CUT
   - avatar says normal: Mi did haffi find a way to get away ...
-  - avatar says normal: Put dem away mek sure dem caan prey on yute like mi.
+  - avatar says normal: Put dem away mek sure dem cyaan prey on yute like mi.
   - hide avatar: WITH CUT
-  - stewart says normal: Yuh are brave to do that.  
+  - stewart says normal: Yuh are brave fi do that.  
   - stewart says normal: Wi want to give yuh some support.  
   - stewart says normal: Wi will be starting UNUH self development classes at di community centre ...
   - stewart says normal: And yuh are a hard worker!  
-  - stewart says normal: Coach has told us how yuh aren’t afraid to put in di hours...
+  - stewart says normal: Coach has told us how yuh aren’t afraid fi put in di hours...
   - stewart says normal: Our foundation through di community centre will sponsor yuh ...
-  - stewart says normal: To help yuh to help yuhself improve yuh situation in life.  
+  - stewart says normal: Fi help yuh fi help yuhself improve yuh situation in life.  
   - hide stewart: WITH CUT
   - brianna says normal: Wi see a future Yute Hero in yuh.
   - hide brianna: WITH CUT
   - avatar says normal:  Fi real.  Give thanks!  
-  - avatar says normal: Grateful to have met unno and mi ready to show yuh what mi can really do.  
+  - avatar says normal: Grateful fi meet unno and mi ready to show yuh what mi can really do.  
   - avatar says normal: Mi hope other youths can get di classes too.  
   - avatar says normal: Nuff of wi just need a likkle boost.
   - hide avatar: WITH CUT
@@ -393,12 +401,12 @@ bad_part:
   - hide stewart: WITH CUT
   - show questionBG:
   - play kind: WITH CUT  
-  - sanka says normal: Are yuh kind to others?
+  - sanka says normal: Are you kind to others?
   - stop bgm: WITH CUT
   - choice:  
     - A) Mi jus' look out fi miself:
       - play kindResponse1: WITH CUT  
-      - sanka says normal: Kindness could be di bandage dat heals unseen wounds.
+      - sanka says normal: Kindness could be the bandage that heals unseen wounds.
       - stop bgm: WITH CUT
       - play kindResponse1-2: WITH CUT  
       - sanka says normal: Let's aim to mend, not to cause more pain.
@@ -406,40 +414,37 @@ bad_part:
     - B) When mi kind di world just feel right:  
       - call getToken:
       - play kindResponse2: WITH CUT  
-      - sanka says normal: Consider di impact of your actions on others.
+      - sanka says normal: Consider the impact of your actions on others.
       - stop bgm: WITH CUT
       - play kindResponse2-2: WITH CUT  
-      - sanka says normal: Kindness is not weakness; it's a strength dat builds bridges and fosters unity.  
+      - sanka says normal: Kindness is not weakness; it's a strength that builds bridges and fosters unity.  
       - stop bgm: WITH CUT
       - play kindResponse2-3: WITH CUT  
-      - sanka says normal: Spread it, and watch di world change.
+      - sanka says normal: Spread it, and watch the world change.
       - stop bgm: WITH CUT
     - C) More time, mi jus' need fi focus on me:  
       - play kindResponse3: WITH CUT  
       - sanka says normal: Give kindness a shot.
       - stop bgm: WITH CUT
       - play kindResponse3-2: WITH CUT  
-      - sanka says normal: Yuh might be surprised at di good it brings.      
+      - sanka says normal: You might be surprised at the good it brings.      
       - stop bgm: WITH CUT
   - play exit: WITH CUT    
-  - sanka says normal: Friends wi have reached di end of dis game but di start of your own amazing journey.  
+  - sanka says normal: Friends we have reached the end of this game but the start of your own amazing journey.  
   - stop bgm: WITH CUT
   - play exit2: WITH CUT    
-  - sanka says normal: Remember yuh can go back and replay and review as much as yuh want.  
+  - sanka says normal: Remember you can go back and replay and review as much as you want.  
   - stop bgm: WITH CUT
   - play exit3: WITH CUT    
-  - sanka says normal: Take advantage of di things yuh have learned and train yourself to be your best self.  
+  - sanka says normal: Take advantage of the things you have learned and train yourself to be your best self.  
   - stop bgm: WITH CUT
   - play exit4: WITH CUT    
-  - sanka says normal: Di journey to success is not always easy but it’s di trials dat shape our character.  
+  - sanka says normal: The journey to success is not always easy but it’s the trials that shape our character.  
   - stop bgm: WITH CUT
   - play exit5: WITH CUT    
-  - sanka says normal: Yuh can rise above when yuh choose to do so.
+  - sanka says normal: You can rise above when you choose to do so.
   - stop bgm: WITH CUT
   - scene: end
-
-
-
 
 end:
   - call homeScreen:
@@ -451,6 +456,16 @@ end:
       - Well done.
       - Let's Return to di LMS
       - and continue our studies.
+
+
+
+
+
+
+
+
+
+
 
 
 

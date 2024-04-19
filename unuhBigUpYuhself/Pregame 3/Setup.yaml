@@ -207,8 +207,8 @@ music:
   distractionResponse2: assets/audio/VO/17_RESPONSE.mp3
   distractionResponse2-2: assets/audio/VO/17_RESPONSE-2.mp3  
   distractionResponse3: assets/audio/VO/18_RESPONSE.mp3
-  distractionResponse3-2: assets/audio/VO/18_RESPONSE.mp3
-  distractionResponse3-3: assets/audio/VO/18_RESPONSE.mp3
+  distractionResponse3-2: assets/audio/VO/18_RESPONSE-2.mp3
+  distractionResponse3-3: assets/audio/VO/18_RESPONSE-3.mp3
 
   teamPlayer: assets/audio/VO/25_TOKEN_TEAM PLAYER.mp3
   teamPlayerResponse1: assets/audio/VO/26_RESPONSE.mp3

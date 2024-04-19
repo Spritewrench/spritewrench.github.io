@@ -25,15 +25,15 @@ start:
   - avatar says normal: Yuh Baddaz yuh–cho Dice!   Mek wi watch and see.
   - show avatar: WITH CUT
   - choice:  
-    - Mi have time for this?:  
-      - avatar says normal: The place is really dutty doh.
+    - Mi have time fi dis?:  
+      - avatar says normal: Di place is really dutty doh.
       - avatar says normal:  Mi nuh waste mi time.
-    - It feels good to help tidy up the place:  
+    - It feels good to help tidy up di place:  
       - avatar says normal:  Plus it’s much healthier fi wi
-      - avatar says normal:  Everything–the vibes just feel betta with the clean up.
+      - avatar says normal:  Everything–di vibes just feel betta wid di clean up.
     - Dice is right:
       - avatar says normal: Why mi should clean up nasty people’s mess?
-      - avatar says normal: Anybody want someting different ... mek them do it
+      - avatar says normal: Anybody want someting different ... mek dem do it
   - hide avatar: WITH CUT
   - roje says normal: Alright, team, today wi a mek wi community cleaner an greener.
   - roje says normal: Let's show some love to Mother Earth!
@@ -45,11 +45,11 @@ start:
   - roje says normal: Wi nuh just clean di place, wi showin' wi care.
   - hide roje: WITH CUT
   - avatar says normal: Yuh right, Coach.
-  - avatar says normal: Wi showin' di world wi can make a difference, one piece a trash at a time.
+  - avatar says normal: Wi showin' di world wi can mek a difference, one piece a trash at a time.
   - avatar says normal: Yo, dis feel good, y'know?
   - avatar says normal: Like we're part a someting bigga dan ourselves.
   - hide avatar: WITH CUT
-  - roje says normal: Mi proud a yuh, mi youth.
+  - roje says normal: Mi proud a yuh, mi yute.
   - roje says normal: Dis di kinda unity wi need fi see more often.
   - hide roje: WITH CUT
   - avatar says normal: Respect, Coach.
@@ -61,9 +61,9 @@ start:
   - hide phone_d_fakeInsta3_1: WITH CUT  
   - hide avatar: WITH CUT
   - show jamaicanStreetBG:
-  - stewart says normal: Ladies an gentlemen thanks fi yuh support in the clean up.  
+  - stewart says normal: Ladies an gentlemen thanks fi yuh support in di clean up.  
   - stewart says normal: Next event, in collaboration wid EcoHarmony, wi launchin...
-  - stewart says normal: A nationwide music contest with performance at our festival in the National Park!
+  - stewart says normal: A nationwide music contest wid performance at our festival in di National Park!
   - hide stewart: WITH CUT
   - starboy says normal: Big up, Jamaica! Dis a yuh chance fi shine. Let's hear dem vibes!
   - hide starboy: WITH CUT
@@ -73,7 +73,7 @@ start:
   - starboy says normal: Nuff respect, mi people. Di talent inna dis island endless.
   - starboy says normal: Wi a go mek di world know di real Jamaica sound.
   - hide starboy: WITH CUT
-  - roje says normal: Dis a di kinda ting wi need fi uplift di youth dem.
+  - roje says normal: Dis a di kinda ting wi need fi uplift di yute dem.
   - roje says normal: Give dem a platform fi show dem talent.
   - hide roje: WITH CUT
   - stewart says normal: Exactly,  Coach. Wi a pave di way fi di next generation ah artists fi shine bright.
@@ -84,7 +84,7 @@ start:
   - avatar says normal: So, wi haffi come up wid di sickest song fi dis ting?
   - hide avatar: WITH CUT
   - stewart says normal: Yes, mi bredda!
-  - stewart says normal: Wi want fi hear di most innovative, di most authentic, di most irie chune dis island ever seen!
+  - stewart says normal: Wi want fi hear di most innovative, di most authentic, di most irie chune dis island eva seen!
   - hide stewart: WITH CUT
   - starboy says normal: An' remember, it's not just 'bout di riddim ...
   - starboy says normal: It's 'bout di vibe, di lyrics, di energy, di whole package! Wi a look fi di full experience!
@@ -92,13 +92,13 @@ start:
   - stewart says normal: So, get dem creative juices flowin', mi people!
   - stewart says normal: Show di world di essence of Jamaican music – di heartbeat of di island!
   - hide stewart: WITH CUT
-  - brianna says normal: The best part is the big prize is a home studio setup.  
-  - brianna says normal: Yes it is.  And a group weekend get away at the National Park.
+  - brianna says normal: Di best part is di big prize is a home studio setup.  
+  - brianna says normal: Yes it is.  And a group weekend get away at di National Park.
   - hide brianna: WITH CUT
   - show questionBG:
   - stop bgm: WITH CUT
   - play culture: WITH CUT
-  - sanka says normal:  How Important is Your Culture to You?
+  - sanka says normal:  How Important is Your Culture to Yuh?
   - stop bgm: WITH CUT
   - choice:  
     - A) Mi culture means everyting to mi:
@@ -126,12 +126,14 @@ start:
   - scene: part_two      
 
 
+
+
 part_two:
   - show schoolExt:
   - avatar says normal: (whispering to a friend) Pssst…A weh dem uptown people come from?
   - avatar says normal: Dem tink dem can just barge in yah so an save di day?
   - hide avatar: WITH CUT
-  - friend says normal: Mi nuh know, bredda. But dem help clean up the place ...
+  - friend says normal: Mi nuh know, bredda. But dem help clean up di place ...
   - friend says normal: And a di one weh get wi inna dis nationwide music contest.
   - hide friend: WITH CUT
   - avatar says normal: (skeptical) Yeah, but mi a wonder a wah dem really up to?
@@ -155,7 +157,7 @@ part_two:
     - Seriously, who are dese people?:
       - avatar says normal:   Mi nuh know dem. Betta wi hold our own corner.
     - Stewart and Brianna seem article:
-      - avatar says normal: Maybe mi can make some new friends, expand mi horizons
+      - avatar says normal: Maybe mi can mek some new friends, expand mi horizons
       - avatar says normal: Being open to new tings is a good look.
     - Too many strangers deh bout:      
       - avatar says normal: Dis is not mi scene. Mek mi tek wey miself
@@ -193,6 +195,8 @@ part_two:
   - scene: part_three  
 
 
+
+
 part_three:
   - play Dub01: LOOP    
   - show avatarBedroom:
@@ -207,26 +211,26 @@ part_three:
   - hide phone_d_fakeInsta3_3: WITH CUT  
   - avatar says normal: If mi get a chance mi can show mi have potential ...
   - avatar says normal: But suppose mi skill level nuh good enough. Better to not even try ...
-  - avatar says normal: Nuh ... I need to believe inna miself. I got di talent, jus need fi let it shine ...
+  - avatar says normal: Nuh ... Mi need fi believe inna miself. Mi got di talent, jus need fi let it shine ...
   - avatar says normal: Boi it's like mi up against di odds, yuh zimi? ...
   - avatar says normal: Yeah, di odds against mi too high. Might as well give up now ...
   - avatar says normal: But dem seh every journey have rough patches ...
   - avatar says normal: And dat's di beauty a it – di challenge an di triumph ...
   - avatar says normal: Mi haffi dig deep an find di strength fi mek dis happen. UpFull vibes.
-  - avatar says normal: Right! Stop the Baddaz talk.
+  - avatar says normal: Right! Stop di Baddaz talk.
   - avatar says normal: Wi a go mek dis dream a reality, one step at a time.
   - avatar says normal: Dis contest mean more dan jus' winnin'.
-  - avatar says normal: It's about chasin' dreams, showin' di youth dem what's possible.
+  - avatar says normal: It's about chasin' dreams, showin' di yute dem what's possible.
   - avatar says normal: Mi a show dem dat no matta wah yuh face inna life, yuh can rise above it, yuh zimi?
   - avatar says normal: But ... suppose wi game di ting? Tip tings inna mi favor?
   - avatar says normal: No! ...
-  - avatar says normal: No! Stop with di badness.
-  - avatar says normal: Wat Starbwoy did sey?    
+  - avatar says normal: No! Stop wid di badness.
+  - avatar says normal: Wat Starbwoy did seh?    
   - avatar says normal: Values, roots–dem a di foundation pon which wi stand.
   - avatar says normal: Cyaan let nobody shake that. Got to stay true to miself and mi can conquer anything.
   - avatar says normal: Mek mi do some Medz Gym, calm mi nerves ...
   - avatar says normal: And think pon how mi can mek dis music.
-  - avatar says normal: Mi wonder if StarBwoy might help mi with some studio time? ...
+  - avatar says normal: Mi wonder if StarBwoy might help mi wid some studio time? ...
   - hide avatar: WITH CUT
   - show questionBG:
   - stop bgm: WITH CUT
@@ -262,16 +266,16 @@ part_three:
   - avatar says normal: Wah mi a go do?
   - choice:  
     - Nuh worry miself:  
-      - avatar says normal: Mi nuh make lack a gear stop mi. Mi can get creative wit' wah mi got.
+      - avatar says normal: Mi nuh mek lack a gear stop mi. Mi can get creative wit' wah mi got.
       - avatar says normal: Focus, use wey mi got and see wah can happen.
       - hide avatar: WITH CUT
       - scene: part_good
-    - Nah, mi nah got di strength fi dis:
-      - avatar says normal: Should just give up the idea now before mi embarrass miself ...  
+    - Nah, mi nuh got di strength fi dis:
+      - avatar says normal: Should just give up di idea now before mi embarrass miself ...  
       - avatar says normal: Mek mi jus watch some Youtube.
       - hide avatar: WITH CUT
       - scene: part_good
-    - Mi can think and mek a plan:
+    - Mi can tink and mek a plan:
       - avatar says normal: Figure out how fi hack dis ...
       - avatar says normal: There mus be a way to game dis ting.
       - hide avatar: WITH CUT
@@ -290,9 +294,9 @@ part_good:
   - roje says normal: Why sell yuhself short?
   - hide roje: WITH CUT
   - avatar says normal: Mi nuh si nuh odda options.  
-  - avatar says normal: Mi don’t have the equipment fi do di real professional recording.
+  - avatar says normal: Mi don’t have di equipment fi do di real professional recording.
   - hide avatar: WITH CUT
-  - roje says normal:  Have yuh asked fi support? Yuh never know wah can come from networking.  
+  - roje says normal:  Have yuh asked fi support? Yuh neva know wah can come from networking.  
   - roje says normal: Mi tink yuh have seen dis already.
   - roje says normal: Don’t rush to conclusions without studying any situation.
   - hide roje: WITH CUT
@@ -338,7 +342,7 @@ part_bad:
   - avatar says normal: Mi haffi do dis di right way.
   - hide avatar: WITH CUT
   - dice says normal:  But dis a golden opportunity.
-  - dice says normal: Yuh cyaan make it big time if yuh don't take chances.
+  - dice says normal: Yuh cyaan mek it big time if yuh don't take chances.
   - hide dice: WITH CUT
   - avatar says normal: Mi know, but mi nuh jeopardize mi integrity fi no quick cash.
   - avatar says normal: Mi ah go hustle di honest way.
@@ -386,7 +390,7 @@ part_bad:
       - sanka says normal: Keep sailing towards your goals, like a captain guiding a ship through rough waters.
       - stop bgm: WITH CUT
       - play distractionResponse1-3: WITH CUT
-      - sanka says normal: Your focus will steer you away from distractions, leading you to success.
+      - sanka says normal: Your focus will steer yuh away from distractions, leading yuh to success.
       - stop bgm: WITH CUT
     - B) Mi end up spendin too much time on mi phone:
       - play distractionResponse2: WITH CUT
@@ -412,7 +416,7 @@ part_bad:
   - avatar says normal: What mi gon do?
   - choice:  
     - Cho! Dice could be right?:  
-      - avatar says normal: Maybe there is an easy way fi get the studio time mi need?
+      - avatar says normal: Maybe there is an easy way fi get di studio time mi need?
       - avatar says normal: Mek mi see...
       - hide avatar: WITH CUT
       - call storeLocal:
@@ -421,7 +425,7 @@ part_bad:
       - scene: return_to_LMS  
     - No sah.  Mi movin’ straight:
       - avatar says normal: Let mi tink who else might be able fi help mi
-      - avatar says normal: It cyaan hurt to make a plan.
+      - avatar says normal: It cyaan hurt to mek a plan.
       - hide avatar: WITH CUT
       - scene: part_good
     - Dis is too much stress:
@@ -434,6 +438,8 @@ part_bad:
       - scene: return_to_LMS  
 
 
+
+
 return_to_LMS:
   - show questionBG:
   - play returnLMS1: WITH CUT    
@@ -443,6 +449,10 @@ return_to_LMS:
   - sanka says normal: And communication skills to have better relationships with friends and our wider communities.
   - stop bgm: WITH CUT  
   - scene: end
+
+
+
+
 
 
 
@@ -459,7 +469,15 @@ end:
       - to continue our studies
       - and see if we can
       - apply what we've
-      - learned so far.     
+      - learned so far.    
+
+
+
+
+
+
+
+
 
 
 
