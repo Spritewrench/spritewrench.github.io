@@ -11,7 +11,7 @@ start:
   - hide sanka: WITH FADE
   - show schoolExt:
   - play Dub01: LOOP  
-  - avatar says normal: Yo, Dice, weh di plan fi today?
+  - avatar says normal: Yo, Dice, wah di plan fi today?
   - hide avatar: WITH CUT
   - dice says normal: Same as always, tryna hustle an mek ends meet.
   - dice says normal: Yuh haffi stay sharp, bredda.
@@ -30,13 +30,13 @@ start:
       - avatar says normal:  Mi nuh waste mi time.
     - It feels good to help tidy up di place:  
       - avatar says normal:  Plus it’s much healthier fi wi
-      - avatar says normal:  Everything–di vibes just feel betta wid di clean up.
+      - avatar says normal:  Everyting–di vibes just feel betta wid di clean up.
     - Dice is right:
       - avatar says normal: Why mi should clean up nasty people’s mess?
       - avatar says normal: Anybody want someting different ... mek dem do it
   - hide avatar: WITH CUT
   - roje says normal: Alright, team, today wi a mek wi community cleaner an greener.
-  - roje says normal: Let's show some love to Mother Earth!
+  - roje says normal: Let's show some love to Madda Nature!
   - hide roje: WITH CUT
   - avatar says normal: Coach, why wi haffi do dis?
   - hide avatar: WITH CUT
@@ -89,7 +89,7 @@ start:
   - starboy says normal: An' remember, it's not just 'bout di riddim ...
   - starboy says normal: It's 'bout di vibe, di lyrics, di energy, di whole package! Wi a look fi di full experience!
   - hide starboy: WITH CUT
-  - stewart says normal: So, get dem creative juices flowin', mi people!
+  - stewart says normal: So, get dem creative juices flowin’, mi people!
   - stewart says normal: Show di world di essence of Jamaican music – di heartbeat of di island!
   - hide stewart: WITH CUT
   - brianna says normal: Di best part is di big prize is a home studio setup.  
@@ -98,7 +98,7 @@ start:
   - show questionBG:
   - stop bgm: WITH CUT
   - play culture: WITH CUT
-  - sanka says normal:  How Important is Your Culture to Yuh?
+  - sanka says normal:  How Important is Your Culture to You?
   - stop bgm: WITH CUT
   - choice:  
     - A) Mi culture means everyting to mi:
@@ -155,7 +155,7 @@ part_two:
   - show avatar: WITH CUT
   - choice:  
     - Seriously, who are dese people?:
-      - avatar says normal:   Mi nuh know dem. Betta wi hold our own corner.
+      - avatar says normal:   Mi nuh know dem. Betta wi hold our own corna.
     - Stewart and Brianna seem article:
       - avatar says normal: Maybe mi can mek some new friends, expand mi horizons
       - avatar says normal: Being open to new tings is a good look.
@@ -204,15 +204,15 @@ part_three:
   - avatar says normal: Bwoi sometimes mi really feel di battle in mi head.  
   - avatar says normal: Those Baddaz thoughts–Telling mi, mi nuh good enuff and don’t bodda even try ...
   - avatar says normal: But then if mi tek time ...
-  - avatar says normal: Mi UpFull self always come through an’ remind mi to at least try and do mi best.
+  - avatar says normal: Mi UpFull self always come through an’ remind mi fi at least try and do mi best.
   - play phoneNotification:  
   - show phone_d_fakeInsta3_3: WITH CUT  
   - avatar says normal: Mi hear Dymond but it nuh easy.
   - hide phone_d_fakeInsta3_3: WITH CUT  
   - avatar says normal: If mi get a chance mi can show mi have potential ...
-  - avatar says normal: But suppose mi skill level nuh good enough. Better to not even try ...
+  - avatar says normal: But suppose mi skill level nuh good enough. Better fi not even try ...
   - avatar says normal: Nuh ... Mi need fi believe inna miself. Mi got di talent, jus need fi let it shine ...
-  - avatar says normal: Boi it's like mi up against di odds, yuh zimi? ...
+  - avatar says normal: Bwoi it's like mi up against di odds, yuh zimi? ...
   - avatar says normal: Yeah, di odds against mi too high. Might as well give up now ...
   - avatar says normal: But dem seh every journey have rough patches ...
   - avatar says normal: And dat's di beauty a it – di challenge an di triumph ...
@@ -227,9 +227,9 @@ part_three:
   - avatar says normal: No! Stop wid di badness.
   - avatar says normal: Wat Starbwoy did seh?    
   - avatar says normal: Values, roots–dem a di foundation pon which wi stand.
-  - avatar says normal: Cyaan let nobody shake that. Got to stay true to miself and mi can conquer anything.
+  - avatar says normal: Cyaan let nobody shake that. Got fi stay true to miself an mi can conquer anything.
   - avatar says normal: Mek mi do some Medz Gym, calm mi nerves ...
-  - avatar says normal: And think pon how mi can mek dis music.
+  - avatar says normal: An think pon how mi can mek dis music.
   - avatar says normal: Mi wonder if StarBwoy might help mi wid some studio time? ...
   - hide avatar: WITH CUT
   - show questionBG:
@@ -267,7 +267,7 @@ part_three:
   - choice:  
     - Nuh worry miself:  
       - avatar says normal: Mi nuh mek lack a gear stop mi. Mi can get creative wit' wah mi got.
-      - avatar says normal: Focus, use wey mi got and see wah can happen.
+      - avatar says normal: Focus, use wah mi got and see wah can happen.
       - hide avatar: WITH CUT
       - scene: part_good
     - Nah, mi nuh got di strength fi dis:
@@ -277,14 +277,14 @@ part_three:
       - scene: part_good
     - Mi can tink and mek a plan:
       - avatar says normal: Figure out how fi hack dis ...
-      - avatar says normal: There mus be a way to game dis ting.
+      - avatar says normal: There mus be a way fi game dis ting.
       - hide avatar: WITH CUT
       - scene: part_bad
  
  
 part_good:
   - show boxingGymBG:
-  - roje says normal: So, mi see yuh nuh ‘fraid of hard work ...
+  - roje says normal: So, mi see yuh nuh ‘fraid of hard werk ...
   - roje says normal: Training, part time job and yuh music.  
   - roje says normal: How yuh entry coming fi di contest?
   - hide roje: WITH CUT
@@ -298,7 +298,7 @@ part_good:
   - hide avatar: WITH CUT
   - roje says normal:  Have yuh asked fi support? Yuh neva know wah can come from networking.  
   - roje says normal: Mi tink yuh have seen dis already.
-  - roje says normal: Don’t rush to conclusions without studying any situation.
+  - roje says normal: Don’t rush fi conclusions without studying di situation.
   - hide roje: WITH CUT
   - avatar says normal: Wah yuh mean Coach.  Yuh have a nex music link too?
   - hide avatar: WITH CUT
@@ -315,7 +315,7 @@ part_good:
       - sanka says normal: Understanding our triggers is like exploring uncharted territory.
       - stop bgm: WITH CUT
       - play triggerResponse1-2: WITH CUT
-      - sanka says normal: It's neither good nor bad, but a necessary journey to greater self-awareness and better relationshps
+      - sanka says normal: It's neither good nor bad, but a necessary journey to greater self-awareness and better relationships.
       - stop bgm: WITH CUT
     - B) Mi always keep an eye out fi dose triggers:
       - call getToken:
@@ -342,7 +342,7 @@ part_bad:
   - avatar says normal: Mi haffi do dis di right way.
   - hide avatar: WITH CUT
   - dice says normal:  But dis a golden opportunity.
-  - dice says normal: Yuh cyaan mek it big time if yuh don't take chances.
+  - dice says normal: Yuh cyaan mek it big time if yuh don't tek chances.
   - hide dice: WITH CUT
   - avatar says normal: Mi know, but mi nuh jeopardize mi integrity fi no quick cash.
   - avatar says normal: Mi ah go hustle di honest way.
@@ -353,7 +353,7 @@ part_bad:
   - avatar says normal: Mi nuh know, Dice. Di temptation deh strong ...
   - avatar says normal: But mi mind a tell mi fi stay true to miself.
   - hide avatar: WITH CUT
-  - dice says normal: Afta all di struggles wi been through ...
+  - dice says normal: Afta all di struggles wi been thru ...
   - dice says normal: Yuh still a play di good side? Yuh cyaan let go a dat dream?
   - hide dice: WITH CUT
   - avatar says normal: Mi dream nuh worth it if mi sell out mi values. Mi cyaan live wid dat guilt.
@@ -390,7 +390,7 @@ part_bad:
       - sanka says normal: Keep sailing towards your goals, like a captain guiding a ship through rough waters.
       - stop bgm: WITH CUT
       - play distractionResponse1-3: WITH CUT
-      - sanka says normal: Your focus will steer yuh away from distractions, leading yuh to success.
+      - sanka says normal: Your focus will steer yuh away from distractions, leading you to success.
       - stop bgm: WITH CUT
     - B) Mi end up spendin too much time on mi phone:
       - play distractionResponse2: WITH CUT
@@ -413,7 +413,7 @@ part_bad:
   - stop bgm: WITH CUT
   - play Dub01: LOOP
   - show jamaicanStreetBG:
-  - avatar says normal: What mi gon do?
+  - avatar says normal: Wah mi gon do?
   - choice:  
     - Cho! Dice could be right?:  
       - avatar says normal: Maybe there is an easy way fi get di studio time mi need?

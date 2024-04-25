@@ -26,9 +26,9 @@ good_part:
   - show recordingStudioBG:
   - avatar says normal: Bwoi mi grateful fi Coach and his contacts.  
   - avatar says normal: Mi neva know di community centre and Starbwoy have dis legit music making set up.  
-  - avatar says normal: After mi put in di work volunteering some community hours...
+  - avatar says normal: After mi put in di werk volunteering some community hours...
   - avatar says normal: To di centre mi get some studio hours in return.  
-  - avatar says normal: Just need di music fi come...  Don’t know why mi cyaan get dis beat fi come together.
+  - avatar says normal: Just need di music fi come...  Don’t know why mi cyaan get dis beat fi come togedda.
   - avatar says normal: It's like mi stuck inna one place, an mi nuh know wah fi do.
   - hide avatar: WITH CUT
   - starboy says normal: Wah gwaan? Glad fi di volunteer hours yuh give di centre.  
@@ -46,13 +46,13 @@ good_part:
   - hide avatar: WITH CUT
   - starboy says normal: Dat’s di spirit! Yuh a di voice of di streets ...
   - starboy says normal: An yuh music a go reach far an wide. Yuh just haffi dig deep  ...
-  - starboy says normal: Find dat fire inside yuh, an let it guide yuh through di music
+  - starboy says normal: Find dat fire inside yuh, an let it guide yuh through di music.
   - hide starboy: WITH CUT  
   - avatar says normal: Tanks, mi bredrin. Yuh always know di right ting fi seh.
-  - avatar says normal: Mi a go tek yuh advice an mek dis beat speak di truth of our reality.
+  - avatar says normal: Mi a go tek yuh advice an mek dis beat speak di truth fi wi reality.
   - hide avatar: WITH CUT
   - starboy says normal: Dat's di way. Keep di faith, keep di passion burning bright in all tings yuh do–not just di music ting.  
-  - starboy says normal: Put positive energy out into di world, your community and see it come back to yuh.
+  - starboy says normal: Put positive energy out into di world, yuh community and see it come back to yuh.
   - hide starboy: WITH CUT  
   - avatar says normal: Hmmmm ...
   - choice:  
@@ -63,8 +63,8 @@ good_part:
       - avatar says normal: Him get everyting handed to him ...
       - avatar says normal: Salt, mi born salt.
     - Is there an easier way?:      
-      - avatar says normal: What was dat way Dice did a chat bout?
-      - avatar says normal: Whatever it takes, mi will do it.  
+      - avatar says normal: Wah way did Dice a chat bout?
+      - avatar says normal: Wateva it takes, mi mus do it.  
   - play phoneNotification:  
   - show phone_d_fakeInsta3_5: WITH CUT  
   - avatar says normal: Yes mi Dymond. Legacy sounds good!      
@@ -87,9 +87,9 @@ part_good_two:
   - hide brianna: WITH CUT
   - avatar says normal: Wait!  Is mi name dem call!  Mi neva expect dis.
   - avatar says normal: Big up to all who believe inna mi.
-  - avatar says normal: Coach mi grateful fi all di ways yuh support me.
+  - avatar says normal: Coach mi grateful fi all di ways yuh support mi.
   - hide avatar: WITH CUT
-  - roje says normal: That’s mi work.
+  - roje says normal: That’s mi werk.
   - roje says normal: Help show yuh how fi achieve on many levels.  
   - roje says normal: Proud of yuh, entire team and school is well proud of yuh no matter how yuh finish.
   - hide roje: WITH CUT  
@@ -120,7 +120,7 @@ part_good_two:
   - stewart says normal: It’s time fi announce di winner.
   - hide stewart: WITH CUT
   - brianna says normal: From wi link back at di community clean up drive.  
-  - brianna says normal: Wi just kno dere was something special about dis individual.  
+  - brianna says normal: Wi just know dere was someting special about dis individual.  
   - brianna says normal: Dem music is just as giving as dem heart in giving back to di community.  
   - hide brianna: WITH CUT
   - stewart says normal: Straight facts. Fi real giving community service ...
@@ -137,7 +137,7 @@ part_good_two:
   - roje says normal: Yuh did it! Wi always knew yuh had it in yuh.
   - hide roje: WITH CUT
   - avatar says normal: Mi cyaan believe it! Big up to di whole community.
-  - avatar says normal: Wi stronger together!
+  - avatar says normal: Wi stronger togedda!
   - hide avatar: WITH CUT
   - show questionBG:
   - stop bgm: WITH CUT
@@ -183,7 +183,7 @@ part_good_two:
   - avatar says normal: Mi feel di energy, Sanka.
   - avatar says normal: But mi still have doubts ...
   - avatar says normal: Mi will continue to work on being and doing mi best.
-  - avatar says normal: Give it mi bes shot, Sanka. Mi ah go do it.  
+  - avatar says normal: Give it mi best shot, Sanka. Mi ah go do it.  
   - scene: part_good_three
 
 
@@ -234,7 +234,7 @@ bad_part:
   - avatar says normal: An mi nuh have nuttin.
   - hide avatar: WITH CUT
   - dice says normal: Yuh know, mi might know someone who can help yuh out.
-  - dice says normal: But yuh haffi do sometin fi mi first.
+  - dice says normal: But yuh haffi do someting fi mi first.
   - hide dice: WITH CUT
   - avatar says normal: Mi willing fi do anyting fi get ahead.
   - avatar says normal: Just tell mi wah yuh need.
@@ -251,21 +251,21 @@ bad_part:
   - dice says normal: Whether yuh mek it or not yuh owe mi.  
   - dice says normal: Tell di engineer wah yuh want.
   - hide dice: WITH CUT
-  - avatar says normal: So wat mi ah go do?
+  - avatar says normal: So wah mi ah go do?
   - choice:  
     - Yuh only get one chance in life:
       - avatar says normal:  Haffi tek it
       - avatar says normal:  Got to do wah mi haffi do.
       - hide avatar: WITH CUT
-    - Mi nuh have more links:
-      - avatar says normal: Cyaan mek di moves I need to mek
+    - Mi nuh have a next link:
+      - avatar says normal: Cyaan mek di moves mi need fi mek
       - avatar says normal: Wish mi did come into dis world on di uptown side of tings
       - hide avatar: WITH CUT
     - Betta mi hold mi corner:  
       - avatar says normal: And stay out of di Dice mix-up
       - avatar says normal: Yeah, mi really know betta than dis.  
-      - avatar says normal: Learnt mi lesson longtime.  
-      - avatar says normal: There’s always another way.
+      - avatar says normal: Learn mi lesson longtime.  
+      - avatar says normal: There’s always anodda way.
       - scene: good_part
   - show afewWeeksLater: WITH CUT  
   - avatar says normal: Di day finally reach!
@@ -306,13 +306,13 @@ bad_part:
   - avatar says normal: Mi didn't mean fi hurt nobody.
   - hide avatar: WITH CUT
   - ace says normal: Well, well, well, look who it is ...
-  - ace says normal: Trying to mek a quick buck off someone else's work.
+  - ace says normal: Trying to mek a quick buck off someone else's werk.
   - hide ace: WITH CUT
   - kalisha says normal: Yeah, yuh tink yuh could ginal us?
   - hide kalisha: WITH CUT
   - avatar says normal: Ace, mi neva mean fi any of dis fi happen.  
   - avatar says normal: Mi did need funds fi di studio time fi di song ...
-  - avatar says normal: And “borrowing” seemed even easier.
+  - avatar says normal: And a “borrows” seemed even easier.
   - hide avatar: WITH CUT
   - ace says normal: Sorry ain't gonna cut it.
   - ace says normal: Yuh messed wid di wrong crew.
@@ -322,7 +322,7 @@ bad_part:
   - avatar says normal: Please, mi will do anyting fi mek it right.
   - hide avatar: WITH CUT
   - ace says normal: Apologies nuh mean nuttin now.
-  - ace says normal: Yuh owe wi big time, an wi nuh move till yuh settle yuh debt.
+  - ace says normal: Yuh owe wi big time, an wi nuh move till yuh sekkle yuh debt.
   - hide ace: WITH CUT  
   - kalisha says normal: Nuff ting yuh fi do fi wi now.
   - hide kalisha: WITH CUT
@@ -340,10 +340,10 @@ bad_part:
   - choice:  
     - Mi can get back into Coach’s good graces?:  
       - avatar says normal: Mi must try and talk to him.  
-      - avatar says normal: Dis time mi need fi really hear what him a seh.
+      - avatar says normal: Dis time mi need fi really hear wah him a seh.
     - All dis effort and mi still wey mi started:  
-      - avatar says normal:  Mek mi work on myself ...
-      - avatar says normal:  Mi have di ability to improve mi life and move in better ways.
+      - avatar says normal:  Mek mi werk on miself ...
+      - avatar says normal:  Mi have di ability to improve mi life and move in betta ways.
     - Game over:
       - avatar says normal: Mi caan show mi face again.
   - hide avatar: WITH CUT
@@ -361,28 +361,28 @@ bad_part:
   - avatar says normal: Mi cyaan let dis define me.
   - avatar says normal: Mi fi find a way fi mek things right, nuh matter what.
   - hide avatar: WITH CUT
-  - roje says normal: Proud of yuh.
+  - roje says normal: Proud of yuh attitude change.
   - roje says normal: If yuh can do dat di team and school will be well proud of yuh ...
   - roje says normal: No matter how yuh finish.
   - hide roje: WITH CUT
   - show nationalParkBG:
-  - brianna says normal: Thanks fi agreeing fi  walk wid us.
+  - brianna says normal: Thanks fi agreeing fi  walk wid wi.
   - hide brianna: WITH CUT
   - stewart says normal: Sorry fi hear about di choices yuh made.  
   - stewart says normal: Wi know dat hard times can lead to bad decisions.
   - hide stewart: WITH CUT
-  - avatar says normal: Mi nuh proud about what mi did do wid di music.
+  - avatar says normal: Mi nuh proud about wah mi did do wid di music.
   - hide avatar: WITH CUT
   - brianna says normal: Yeah stealing is neva a good look and it will always come back on yuh.
-  - brianna says normal: That’s how karma works.    
+  - brianna says normal: That’s how karma werks.    
   - brianna says normal: But di authorities, mi fadda is a security consultant to dem ...
-  - brianna says normal: Told us dat yuh let dem know dat di scammers would be here.    
+  - brianna says normal: Told us dat yuh let dem know dat di scammers would be deh ya.    
   - brianna says normal: That took a whole heap of courage.
   - hide brianna: WITH CUT
-  - avatar says normal: Mi did haffi find a way to get away ...
+  - avatar says normal: Mi did haffi find a way fi get away ...
   - avatar says normal: Put dem away mek sure dem cyaan prey on yute like mi.
   - hide avatar: WITH CUT
-  - stewart says normal: Yuh are brave fi do that.  
+  - stewart says normal: Yuh are brave fi do dat.  
   - stewart says normal: Wi want to give yuh some support.  
   - stewart says normal: Wi will be starting UNUH self development classes at di community centre ...
   - stewart says normal: And yuh are a hard worker!  
@@ -393,8 +393,8 @@ bad_part:
   - brianna says normal: Wi see a future Yute Hero in yuh.
   - hide brianna: WITH CUT
   - avatar says normal:  Fi real.  Give thanks!  
-  - avatar says normal: Grateful fi meet unno and mi ready to show yuh what mi can really do.  
-  - avatar says normal: Mi hope other youths can get di classes too.  
+  - avatar says normal: Grateful fi meet unuh and mi ready to show yuh what mi can really do.  
+  - avatar says normal: Mi hope di other youths can get di classes too.  
   - avatar says normal: Nuff of wi just need a likkle boost.
   - hide avatar: WITH CUT
   - stewart says normal: Wi got yuh friend.
@@ -422,7 +422,7 @@ bad_part:
       - play kindResponse2-3: WITH CUT  
       - sanka says normal: Spread it, and watch the world change.
       - stop bgm: WITH CUT
-    - C) More time, mi jus' need fi focus on me:  
+    - C) More time, mi jus' need fi focus on mi:  
       - play kindResponse3: WITH CUT  
       - sanka says normal: Give kindness a shot.
       - stop bgm: WITH CUT
@@ -446,6 +446,13 @@ bad_part:
   - stop bgm: WITH CUT
   - scene: end
 
+
+
+
+
+
+
+
 end:
   - call homeScreen:
   - effect ROLLINGCREDITS:
@@ -454,7 +461,7 @@ end:
       - You've Completed Postgame 3!
       - null
       - Well done.
-      - Let's Return to di LMS
+      - Let's Return to the LMS
       - and continue our studies.
 
 
