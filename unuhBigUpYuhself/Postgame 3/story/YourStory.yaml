@@ -39,10 +39,13 @@ good_part:
   - avatar says normal: But now it feel like mi message get lost inna di mix.
   - hide avatar: WITH CUT
   - starboy says normal: Mi hear yuh, but yuh cyaan lose sight of di reason yuh start dis journey.
-  - starboy says normal: Yuh passion, yuh purpose, it still deh inside yuh, waiting fi buss out an touch di hearts a di people.
+  - starboy says normal: Yuh passion, yuh purpose, it still deh inside yuh ...
+  - starboy says normal: Waiting fi buss out an touch di hearts a di people.
   - hide starboy: WITH CUT
   - avatar says normal: Yuh right. Mi cyaan forget why mi start dis ting inna di first place.
-  - avatar says normal: Mi want di world fi hear our stories, our struggles, an di strength of wi people.
+  - avatar says normal: Mi want di world fi hear our stories ...
+  - avatar says normal: Our struggles ...
+  - avatar says normal: An di strength of wi people.
   - hide avatar: WITH CUT
   - starboy says normal: Dat’s di spirit! Yuh a di voice of di streets ...
   - starboy says normal: An yuh music a go reach far an wide. Yuh just haffi dig deep  ...
@@ -52,7 +55,8 @@ good_part:
   - avatar says normal: Mi a go tek yuh advice an mek dis beat speak di truth fi wi reality.
   - hide avatar: WITH CUT
   - starboy says normal: Dat's di way. Keep di faith, keep di passion burning bright in all tings yuh do–not just di music ting.  
-  - starboy says normal: Put positive energy out into di world, yuh community and see it come back to yuh.
+  - starboy says normal: Put positive energy out into di world, yuh community ...
+  - starboy says normal: And see it come back to yuh.
   - hide starboy: WITH CUT  
   - avatar says normal: Hmmmm ...
   - choice:  
@@ -105,7 +109,7 @@ part_good_two:
       - avatar says normal: Mi alright anyway at least mi reach finals.
   - avatar says normal: Mi grateful fi di support, Coach and everyone.  Wi in dis togedda.
   - hide avatar: WITH CUT
-  - starboy says normal: Big up to Player, di real star of di show!
+  - starboy says normal: Big up to {NAME}, di real star of di show!
   - hide starboy: WITH CUT  
   - avatar says normal: Steps onto di stage, feeling a mix of nerves and excitement.
   - hide avatar: WITH CUT
@@ -358,7 +362,7 @@ bad_part:
   - roje says normal: Nothing is eva worth yuh integrity, eva.
   - hide roje: WITH CUT
   - avatar says normal: Believe mi Coach.  
-  - avatar says normal: Mi cyaan let dis define me.
+  - avatar says normal: Mi cyaan let dis define mi.
   - avatar says normal: Mi fi find a way fi mek things right, nuh matter what.
   - hide avatar: WITH CUT
   - roje says normal: Proud of yuh attitude change.
