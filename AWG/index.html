@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <title>AWG</title>
+
+  <!-- build:css main.min.css -->
+  <link rel="stylesheet" href="css/main.css"> 
+  <link rel="stylesheet" href="css/font.css"> 
+  <link rel="stylesheet" href="css/sweetalert2.min.css">  
+  <link rel="stylesheet" type="text/css" href="css/notyf.min.css">
+  <!-- /build -->
+  <style>
+    /* Optional: Makes the sample page fill the window. */
+    canvas {
+      image-rendering: -webkit-optimize-contrast;
+    }
+    body{
+      font-family: 'Kaph-Regular';
+    }
+    .notyf__toast {
+      max-width: 50em !important;
+    }    
+  </style>   
+</head>
+
+<body id="fullpage" onmouseover="onHoverFocus()">
+  
+  <div id="TCP" class="game"></div>
+
+  <!-- build:remove -->
+
+  <!-- /build -->
+
+  <!-- build:js main.min.js -->
+    
+    <script type="module" src="js/lib/firebase.js"></script>  
+    <script src="js/lib/sweetalert2.all.min.js?ver=0.2.0"></script>
+    <script src="js/config.js"></script>
+    <script src="js/keywords.js"></script>
+    <script src="js/menuConfig.js"></script>
+    <script src="js/lib/stats.min.js"></script>
+    <script src="js/lib/phaser.2.20.2.min.js"></script>
+    <script src="js/lib/ScreenShake.js"></script>
+    <script src="js/lib/notyf.min.js"></script>
+    <script src="js/lib/ntc.js"></script>
+    <script src="js/lib/easing.js"></script>
+     
+    <script src="js/lib/phaser-kinetic-scrolling-plugin.min.js"></script>   
+    
+    <script src="js/lib/webfont.js"></script>
+    <script src="js/boot.js"></script>
+    <script src="js/preloader.js"></script>
+    <script type="module" src="js/menu.js"></script>
+    <script src="js/loadSave.js"></script> 
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="js/lib/Gray.js"></script>
+    <script src="js/lib/glow.js"></script>
+    <script src="js/lib/Phasetips.js"></script>  
+
+
+   
+
+  <!-- /build -->
+
+</body>
+
+<script>
+      //eliminate data persist
+      
+      if(!dataPersist && localStorage.getItem("version") !== version){
+        localStorage.clear();
+        localStorage.setItem('version',version);
+      }
+
+  
+      //create unique userID 
+    if(localStorage.getItem("AWG-userID") === null ){
+      var id = crypto.randomUUID();
+      console.log(id)
+      localStorage.setItem("AWG-userID",id)
+    }  
+    else{
+      
+    }
+  
+    // Initialize Firebase
+   /* var config = {
+    apiKey: "AIzaSyDLavESdxZeNSEcFKFYVF1riDoNzR72gPU",
+    authDomain: "hedhnt.firebaseapp.com",
+    databaseURL: "https://hedhnt.firebaseio.com",
+    storageBucket: "hedhnt.appspot.com",
+    messagingSenderId: "412595932285"
+    };
+    firebase.initializeApp(config);
+    
+    
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });    
+    */
+    WebFontConfig = {
+      custom: {
+        families: ['Fredoka One', 'Muli', 'Berkshire Swash', 'LondrinaSolid-Black','Kaph-Regular']
+      }
+    };
+
+    WebFont.load(WebFontConfig);  
+</script>   
+
+<script>
+  const steamworks = require('steamworks.js')
+
+  // You can pass an appId, or don't pass anything and use a steam_appid.txt file
+  // to be updated with live coe on launch 
+  const client = steamworks.init(2672720)
+
+  console.log(client.localplayer.getName())
+
+  function onHoverFocus(){
+    //console.log("WOW!")
+    document.getElementById("fullpage").click();
+  }
+  
+
+  
+    
+    
+  
+  
+
+</script>     
+
+</html>
+

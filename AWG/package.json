@@ -1,0 +1,16 @@
+{
+    "name": "SunkenStones",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-packager . --overwrite"
+    },
+    "devDependencies": {
+        "electron": "^20.1.3",
+        "electron-packager": "16.0.0"
+    },
+    "dependencies": {
+        "steamworks.js": "0.0.26"
+    }
+}
