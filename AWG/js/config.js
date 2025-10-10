@@ -2,7 +2,8 @@ const version = "0.0.1a(DEMO)" //next 0.0.1bk
 const dataPersist = false 
 
 
-
+const startingBGVol = 0
+const startingSFXVol = 0
 
 
 //sound volume
