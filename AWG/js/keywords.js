@@ -1,12 +1,12 @@
 const keyword = []
 
 keyword[0] = new Object();
-keyword[0].word = "HALFWAY MARKET";
+keyword[0].word = "WINGED RABBIT";
 keyword[0].color = "#FFA000";
 keyword[0].description = ""
 
 keyword[1] = new Object();
-keyword[1].word = "MURDER";
+keyword[1].word = "TALKING BOABAB";
 keyword[1].color = "#FFA000";
 keyword[1].description = ""
 

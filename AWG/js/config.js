@@ -5,6 +5,7 @@ const dataPersist = false
 const startingBGVol = 0
 const startingSFXVol = 0
 
+const sceneCount = 11
 
 //sound volume
 if (localStorage.getItem("bgVol") === null) {

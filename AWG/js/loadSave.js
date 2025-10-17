@@ -32,6 +32,7 @@
         this.slot[i].anchor.setTo(0.5, 0.5);
         this.slot[i].origWidth = this.slot[i].width
         this.slot[i].origHeight = this.slot[i].height
+        this.slot[i].id = i+1  
         distX+=spaceX
 
         this.slot[i].inputEnabled = true;
@@ -39,8 +40,15 @@
         this.slot[i].events.onInputOut.add(this.unhighLight, this);   
         this.slot[i].events.onInputDown.add(this.onClick, this);        
 
-        this.slotText[i] = this.add.text(this.slot[i].x,this.slot[i].y, 'SLOT '+(i+1), {font: '36px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+        this.slotText[i] = this.add.text(this.slot[i].x,this.slot[i].y, 'SLOT '+(i+1)+"\nNEW GAME", {font: '36px LondrinaSolid-Black',fill: '#fff', align: 'center'});
         this.slotText[i].anchor.setTo(0.5, 0.5);  
+
+        if (localStorage.getItem("s"+(i+1)) === null) {
+          localStorage.setItem("sg"+(i+1),0) 
+        }
+        else{
+          this.slotText[i].text = 'SLOT '+(i+1)+"\n"+(Math.floor((parseInt(localStorage.getItem("s"+(i+1)))/sceneCount)*100))+"%\nCONTINUE"
+        }         
       }
 
     },
@@ -63,9 +71,8 @@
         tweenWidth.start();
         tweenHeight.start();      
     },           
-    onClick: function () {
-     
-
+    onClick: function (slot) {
+      localStorage.setItem("saveKey",slot.id) 
       this.game.state.start('game');
 
     }

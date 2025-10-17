@@ -30,12 +30,26 @@
             this.load.image('bg2', 'assets/bg2.png');
             this.load.image('bg3', 'assets/bg3.png');
 
+            this.load.image('night_transition', 'assets/night_transition.png');
+
             this.load.image('saveSlot', 'assets/saveSlot.png');
+
+            this.load.image('cursor_0', 'assets/hand_point.png');
+            
+            this.load.image('knife', 'assets/knife.png');
+            this.load.image('feather', 'assets/feather.png');
+
+            this.load.image('chatbox', 'assets/chatBox.png');
+            this.load.image('chatName', 'assets/chatName.png');
+            this.load.image('chibi-yara-happy', 'assets/yara_neutral.png');
 
             for(var i = 1; i <= 11; i++){
                 this.load.image('scene'+i, 'assets/S-'+i+'.png');
             }
 
+            this.load.image('inventory_0', 'assets/inventory_0.png');
+            this.load.image('inventory_1', 'assets/inventory_1.png');
+            this.load.image('inventory_2', 'assets/inventory_2.png');
 
           
         }
