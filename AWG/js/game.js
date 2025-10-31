@@ -34,6 +34,103 @@
         this.invCode = localStorage.getItem(this.saveKey+"_invCode")
         
         
+
+
+        this.cutscene 
+        //load objects for scene
+        switch(this.sceneNum){
+          case 1:
+            this.knife = this.add.sprite(this.game.width/2, this.game.height/2, 'knife');
+            this.knife.anchor.setTo(0.5, 0.5);  
+            this.knife.inputEnabled = true;
+            this.knife.id = 1
+            this.knife.events.onInputDown.add(this.pickUp, this);         
+
+            this.s1o1= this.add.sprite(this.game.width/2+328, this.game.height+5, 's1o1');
+            this.s1o1.anchor.setTo(0.5, 1);       
+            this.s1o1.inputEnabled = true;
+            this.s1o1.id = 5
+            this.s1o1.events.onInputDown.add(this.inspect, this);   
+            
+            this.s1o2= this.add.sprite(0, 0, 's1o2');     
+            this.s1o2.inputEnabled = true;
+            this.s1o2.id = 6
+            this.s1o2.events.onInputDown.add(this.inspect, this);
+            
+            this.s1o3= this.add.sprite(this.game.width,0, 's1o3');
+            this.s1o3.anchor.setTo(1, 0);       
+            this.s1o3.inputEnabled = true;
+            this.s1o3.id = 7
+            this.s1o3.scene = true
+            this.s1o3.events.onInputDown.add(this.inspect, this);               
+            
+            break;
+          case 2:
+            this.feather = this.add.sprite(100, this.game.height-200, 'feather');
+            this.feather.anchor.setTo(0.5, 0.5);  
+            this.feather.inputEnabled = true;
+            this.feather.id = 2
+            this.feather.scale.x = 0.2;
+            this.feather.scale.y = 0.2;             
+            this.feather.events.onInputDown.add(this.pickUp, this);              
+            break;
+          case 4:
+            this.s4o1 = this.add.sprite(this.game.width/2,this.game.height/2, 's4o1');
+            this.s4o1.anchor.setTo(0.5, 0.5);  
+            this.s4o1.inputEnabled = true;
+            this.s4o1.id = 26      
+            this.s4o1.events.onInputDown.add(this.inspect, this);              
+            break;   
+            
+          case 5:
+            this.birdCount = 3;
+
+            this.birdLight1 = this.add.sprite(0,0, 'birdLight1');
+            this.birdLight1.width = this.game.width
+            this.birdLight1.height = this.game.height
+            this.birdLight2 = this.add.sprite(0,10, 'birdLight2');
+            this.birdLight2.width = this.game.width
+            this.birdLight2.height = this.game.height
+            this.birdLight3 = this.add.sprite(0,0, 'birdLight3');
+            this.birdLight3.width = this.game.width
+            this.birdLight3.height = this.game.height                        
+
+            this.rabbit = this.add.sprite(0,0, 'rabbit');
+            this.rabbit.width = this.game.width
+            this.rabbit.height = this.game.height            
+            
+            this.s5o1 = this.add.sprite(this.game.width-300,this.game.height/2-150, 's5o1');
+            this.s5o1.anchor.setTo(0.5, 0.5);  
+            this.s5o1.inputEnabled = true;
+            this.s5o1.id = 35      
+            this.s5o1.birdNum =1  
+            this.s5o1.events.onInputDown.add(this.inspect, this);     
+            
+            this.s5o2 = this.add.sprite(150,this.game.height/2-120, 's5o2');
+            this.s5o2.anchor.setTo(0.5, 0.5);  
+            this.s5o2.inputEnabled = true;
+            this.s5o2.id = 35  
+            this.s5o2.birdNum =2    
+            this.s5o2.events.onInputDown.add(this.inspect, this);     
+            
+            this.s5o3 = this.add.sprite(this.game.width/2+200,this.game.height/2-400, 's5o3');
+            this.s5o3.anchor.setTo(0.5, 0.5);  
+            this.s5o3.inputEnabled = true;
+            this.s5o3.id = 35   
+            this.s5o3.birdNum =3       
+            this.s5o3.events.onInputDown.add(this.inspect, this);                 
+            break;               
+        }
+
+        this.modal = this.add.sprite(0, 0, 'modal');
+        this.modal.width = this.game.width
+        this.modal.height = this.game.height  
+        this.modal.alpha = 0;
+
+        this.sceneImage = this.add.sprite(-this.game.width, -this.game.height, 'modal');
+        this.sceneImage.anchor.setTo(0.5, 0.5); 
+     
+
         var distX = this.game.width/2-(100*((this.invCount-1)/2))
         var spaceX = 100
         this.inv = []
@@ -54,28 +151,7 @@
           this.inv[i].events.onInputDown.add(this.useInv, this);   
 
           distX+=spaceX        
-        }
-
-        //load objects for scene
-        switch(this.sceneNum){
-          case 1:
-            this.knife = this.add.sprite(this.game.width/2, this.game.height/2, 'knife');
-            this.knife.anchor.setTo(0.5, 0.5);  
-            this.knife.inputEnabled = true;
-            this.knife.id = 1
-            this.knife.events.onInputDown.add(this.pickUp, this);              
-            break;
-          case 2:
-            this.feather = this.add.sprite(100, this.game.height-200, 'feather');
-            this.feather.anchor.setTo(0.5, 0.5);  
-            this.feather.inputEnabled = true;
-            this.feather.id = 2
-            this.feather.scale.x = 0.2;
-            this.feather.scale.y = 0.2;             
-            this.feather.events.onInputDown.add(this.pickUp, this);              
-            break;            
-        }
-
+        }        
 
 
         this.chatNameBox = this.add.sprite(this.game.width/2, this.game.height*5, 'chatName');
@@ -120,8 +196,17 @@
             //scene specific dailog
             switch(this.sceneNum){
               case 2:
-                this.startChat()
+                this.startChat(10)
                 break;
+              case 3:
+                this.startChat(19)
+                break; 
+              case 4:
+                this.startChat(23)
+                break;
+              case 5:
+                this.startChat(29)
+                break;                                                
             }
           }, this);        
           transitionTween.start()          
@@ -217,12 +302,23 @@
           
         } 
       },  
-      startChat: function(){
-          this.dialogCounter = 0;
-          if(localStorage.getItem(this.saveKey+"_dialogCounter") !== null){
-            this.dialogCounter = parseInt(localStorage.getItem(this.saveKey+"_dialogCounter")) 
-          }                      
-          var chatTween = this.add.tween(this.chatBox).to( { y: this.game.height/2 }, 500, Phaser.Easing.Cubic.Out);
+      startChat: function(key,chatYPos){
+
+        if(chatYPos == undefined ){
+          chatYPos = this.game.height/2;
+        }
+          if(key == undefined){
+            this.dialogCounter = 0;
+
+            if(localStorage.getItem(this.saveKey+"_dialogCounter") !== null){
+              this.dialogCounter = parseInt(localStorage.getItem(this.saveKey+"_dialogCounter")) 
+            }     
+          }
+          else{
+            this.dialogCounter = key;
+          }
+                 
+          var chatTween = this.add.tween(this.chatBox).to( { y: chatYPos }, 500, Phaser.Easing.Cubic.Out);
           chatTween.onComplete.addOnce(function(){
               this.showChat()
           }, this);  
@@ -303,15 +399,25 @@
 
           }
           else{
-
-              this.closeChat();
+              var currentCounter = parseInt(localStorage.getItem(this.saveKey+"_dialogCounter")) 
+              if(this.birdCount <= 0 && currentCounter == 36){
+                this.startChat(36)
+              }
+              else{
+                this.closeChat();
+              }
+              
           }
         }
 
       },  
       closeChat: function (location) {
           console.log("CLOSING CHAAAAAAAAAAAAAAAAAT")
-       
+
+          this.modal.alpha = 0
+          this.sceneImage.x = -this.game.width
+          this.sceneImage.y = -this.game.height
+          
           var chatTween = this.add.tween(this.chatBox).to( { y: this.game.height*5}, 500, Phaser.Easing.Cubic.Out);
           chatTween.onComplete.addOnce(function(){
             if(this.goToNextScene){
@@ -378,6 +484,58 @@
           tweenWidth.start();
           tweenHeight.start();      
       },  
+      inspect: function (item) {
+        
+        if(item.scene != undefined){
+          this.modal.alpha = 1;
+          this.sceneImage.loadTexture('sceneImage'+this.s1o3.id)
+          this.sceneImage.x = this.game.width/2
+          this.sceneImage.y = this.game.height/2-200
+          this.startChat(item.id,this.game.height/2+200)
+          
+        }
+        else{
+          switch(item.id){
+            default:
+              this.startChat(item.id)
+              break;
+            case 25:
+              if(this.cursorKey == 1){
+                this.startChat(item.id)
+              }
+              else{
+                this.startChat(23)
+              }              
+              break;
+            case 35:
+              if(this.cursorKey == 1){
+                if(item.birdNum == 1){
+                  this.s5o1.y = -this.game.height
+                  this.birdLight1.alpha = 0;
+                  this.birdCount--
+                }
+                if(item.birdNum == 2){
+                  this.s5o2.y = -this.game.height
+                  this.birdLight2.alpha = 0;
+                  this.birdCount--
+                  
+                }        
+                if(item.birdNum == 3){
+                  this.s5o3.y = -this.game.height
+                  this.birdLight3.alpha = 0;
+                  this.birdCount--
+
+                }                        
+                this.startChat(item.id)
+              }
+              else{
+                this.startChat(34)
+              }              
+              break;              
+          }
+          
+        }
+      },
       pickUp: function (item){
           var tweenPick = this.add.tween(item).to( { x: this.inv[this.invKey].x, y: this.inv[this.invKey].y}, 250, Phaser.Easing.Cubic.Out);                    
           tweenPick.onComplete.addOnce(function(){
@@ -391,10 +549,10 @@
               //follow up action depending on scene
               switch(this.sceneNum){
                 case 1:
-                  this.startChat();
+                  this.startChat(8);
                   break;
                 case 2:
-                  this.startChat();
+                  this.startChat(16);
                   break;                  
               }
 
