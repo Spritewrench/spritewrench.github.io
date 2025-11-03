@@ -6,7 +6,12 @@
     }
     Game.prototype = {
       create: function () {
+       //plugins' 
+        this.game.plugins.screenShake = this.game.plugins.add(Phaser.Plugin.ScreenShake);        
         this.goToNextScene = false;
+
+
+
         //scene number
         this.saveKey =parseInt(localStorage.getItem("saveKey"))
         if (localStorage.getItem(this.saveKey+"_sceneNum") === null) {
@@ -74,11 +79,18 @@
             this.feather.scale.y = 0.2;             
             this.feather.events.onInputDown.add(this.pickUp, this);              
             break;
-          case 4:
+          case 4:  
+          case 6:
+            this.bg.loadTexture('scene4')
+            this.bg.width = this.game.width
+            this.bg.height = this.game.height              
             this.s4o1 = this.add.sprite(this.game.width/2,this.game.height/2, 's4o1');
             this.s4o1.anchor.setTo(0.5, 0.5);  
             this.s4o1.inputEnabled = true;
-            this.s4o1.id = 26      
+            this.s4o1.id = 25
+            if(this.sceneNum == 6){
+              this.s4o1.id = 40
+            }      
             this.s4o1.events.onInputDown.add(this.inspect, this);              
             break;   
             
@@ -119,7 +131,60 @@
             this.s5o3.id = 35   
             this.s5o3.birdNum =3       
             this.s5o3.events.onInputDown.add(this.inspect, this);                 
-            break;               
+            break;    
+          case 7:          
+            this.bugCount = 0
+            this.bugsFed = 0;
+            this.s7o1 = this.add.sprite(this.game.width/2,this.game.height/2, 's7o1');
+            this.s7o1.anchor.setTo(0.5, 0.5);  
+            this.s7o1.inputEnabled = true;
+            this.s7o1.id = 73     
+            this.s7o1.events.onInputDown.add(this.pickUp, this);
+            
+            this.s7o2 = this.add.sprite(this.game.width/2,this.game.height/2, 's7o2');
+            this.s7o2.anchor.setTo(0.5, 0.5);  
+            this.s7o2.inputEnabled = true;
+            this.s7o2.id = 69  
+            this.s7o2.events.onInputDown.add(this.inspect, this);            
+
+            this.s7o3 = this.add.sprite(this.game.width/2,this.game.height/2, 's7o3');
+            this.s7o3.anchor.setTo(0.5, 0.5);  
+            this.s7o3.inputEnabled = true;
+            this.s7o3.id = 63    
+            this.s7o3.events.onInputDown.add(this.inspect, this);    
+            
+            this.s7o4 = this.add.sprite(50,this.game.height-100, 's7o4');
+            this.s7o4.anchor.setTo(0.5, 0.5);  
+            this.s7o4.inputEnabled = true;
+            this.s7o4.id = 64   
+            this.s7o4.events.onInputDown.add(this.pickUp, this);  
+            
+            this.s7o5 = this.add.sprite(this.game.width-50,this.game.height-100, 's7o4');
+            this.s7o5.anchor.setTo(0.5, 0.5);  
+            this.s7o5.angle = 25
+            this.s7o5.inputEnabled = true;
+            this.s7o5.id = 64    
+            this.s7o5.events.onInputDown.add(this.pickUp, this);  
+            
+            this.s7o6 = this.add.sprite(350,this.game.height-250, 's7o4');
+            this.s7o6.anchor.setTo(0.5, 0.5);  
+            this.s7o6.angle = -100
+            this.s7o6.inputEnabled = true;
+            this.s7o6.id = 64   
+            this.s7o6.events.onInputDown.add(this.pickUp, this); 
+            
+            this.s7o7 = this.add.sprite(this.game.width-400,this.game.height-50, 's7o4');
+            this.s7o7.anchor.setTo(0.5, 0.5);  
+            this.s7o7.angle = 90
+            this.s7o7.inputEnabled = true;
+            this.s7o7.id = 64  
+            this.s7o7.events.onInputDown.add(this.pickUp, this);             
+            break;    
+          case 8:
+            this.bg.id = 84  
+            this.bg.inputEnabled = true;
+            this.bg.events.onInputDown.add(this.inspect, this);               
+            break;                   
         }
 
         this.modal = this.add.sprite(0, 0, 'modal');
@@ -206,14 +271,25 @@
                 break;
               case 5:
                 this.startChat(29)
-                break;                                                
+                break;    
+              case 6:
+                this.startChat(39)
+                break;         
+              case 7:
+                this.startChat(49)
+                break; 
+              case 8:
+                this.startChat(75)
+                break;                                                                                            
             }
           }, this);        
           transitionTween.start()          
         }
 
         this.cursorKey = 0;
-
+        document.body.style = 'cursor: url(../assets/hand_point.png), default;'        
+        
+        this.flashOn = false;
         //manipu
         //document.body.style = 'cursor: url(../assets/hand_point.png), default;'
         //document.body.style = 'cursor: url(../assets/hand_point2.png), default;'
@@ -333,6 +409,24 @@
           if(this.dialogCounter < dialog.length){
               
             
+              if(this.flashOn){
+                  this.modal.loadTexture('modal_white')
+                  this.modal.alpha = 0;
+                  var flashTween = this.add.tween(this.modal).to( { alpha: 1}, 1000, Phaser.Easing.Cubic.In);
+                  flashTween.onComplete.addOnce(function(){
+                    this.timer = this.game.time.create(true);
+                    this.timer.add(1000, function(){
+                      this.modal.loadTexture('modal')
+                      this.modal.alpha =0;
+                      this.bg.loadTexture('scene-8-2')  
+                    }, this);
+                    this.timer.start();                      
+                    
+                  }, this);          
+                  flashTween.start()   
+                  
+                  this.flashOn = false
+              }            
 
               this.chatBoxText.y = this.chatBox.y
               
@@ -342,7 +436,8 @@
               this.chatName.x = this.chatNameBox.x   
 
               this.chatEmotion.x = this.chatBox.x-this.chatBox.width/2+50
-              this.chatEmotion.y = this.chatBox.y-this.chatBox.height/2                
+              this.chatEmotion.y = this.chatBox.y-this.chatBox.height/2           
+                  
 
 
 
@@ -363,10 +458,6 @@
               //trigger screenshake
               if(emotion[1].includes("!")){
               emotion[1] = emotion[1].substring(0, emotion[1].length - 1);
-
-                     
-              
-
               this.timer = this.game.time.create(true);
               this.timer.add(100, function(){
                   this.game.plugins.screenShake.shake(30);  
@@ -377,7 +468,16 @@
               if(chat[2] !== undefined){
                 if(chat[2].includes("SAVE")){
                   
-                }      
+                }    
+                else if(chat[2].includes("SETFLAG") && chat[3] !== undefined && chat[4] !== undefined){
+                  localStorage.setItem(chat[3], chat[4])
+
+                }                
+                else if(chat[2].includes("FLASH")){
+                  this.flashOn = true;
+             
+
+                }                     
                 else if(chat[2].includes("NEXTSCENE")){
                   console.log("NEXT SCENE")
                   localStorage.setItem(this.saveKey+"_dialogCounter",this.dialogCounter+1)
@@ -394,12 +494,42 @@
    
               this.chatEmotion.loadTexture('chibi-'+this.talkingTo+'-'+emotion[1])
 
+              if(this.talkingTo.includes('boabab')){
+                this.chatBox.loadTexture('chatbox_spirit')
+                this.chatBox.anchor.setTo(0.5, 0.5);  
+                this.chatBox.height = this.game.height
+                this.chatBox.width = this.game.width
+                this.chatNameBox.y = this.game.height/2-170
+                this.chatNameBox.x = this.game.width/2-350
+                this.chatName.y = this.chatNameBox.y-10
+                this.chatName.x = this.chatNameBox.x   
+
+                this.chatEmotion.x = this.chatNameBox.x-200
+                this.chatEmotion.y = this.chatNameBox.y                    
+              }
+              else{
+                this.chatBox.loadTexture('chatbox')             
+                this.chatBox.anchor.setTo(0.5, 0.5);  
+                this.chatBox.scale.x = 0.65;
+                this.chatBox.scale.y = 0.65;       
+                this.chatNameBox.y = this.chatBox.y-this.chatBox.height/2
+                this.chatNameBox.x = this.chatBox.x-this.chatBox.width/2+this.chatNameBox.width/2+25
+                this.chatName.y = this.chatNameBox.y-10
+                this.chatName.x = this.chatNameBox.x   
+
+                this.chatEmotion.x = this.chatBox.x-this.chatBox.width/2+50
+                this.chatEmotion.y = this.chatBox.y-this.chatBox.height/2                    
+              }
+
               this.chatBoxText.text = chat[1]
               this.dialogCounter++
 
           }
           else{
               var currentCounter = parseInt(localStorage.getItem(this.saveKey+"_dialogCounter")) 
+
+
+
               if(this.birdCount <= 0 && currentCounter == 36){
                 this.startChat(36)
               }
@@ -424,7 +554,7 @@
               this.next();
             }
           }, this);          
-      chatTween.start()
+        chatTween.start()
         
       //this.dialogCounter = parseInt(localStorage.getItem("alibiCounter"+this.nightCountNum))
       this.chatNameBox.y = this.game.height*2
@@ -501,10 +631,10 @@
               break;
             case 25:
               if(this.cursorKey == 1){
-                this.startChat(item.id)
+                this.startChat(26)
               }
               else{
-                this.startChat(23)
+                this.startChat(25)
               }              
               break;
             case 35:
@@ -531,17 +661,88 @@
               else{
                 this.startChat(34)
               }              
-              break;              
+              break;  
+            case 40:
+              if(this.cursorKey == 1){                       
+                this.startChat(40)
+              }
+              else{
+                var rabbitInstruct = parseInt(localStorage.getItem('rabbitInstruct'))
+                if(rabbitInstruct == 1){
+                  this.s4o1.y = -this.game.height
+                }
+
+                this.startChat(47)
+              }              
+              break;     
+            case 63:
+              if(this.cursorKey == 64){        
+                  this.cursorKey = 0
+                  document.body.style = 'cursor: url(../assets/hand_point.png), default;'
+
+                  this.inv[this.cursorId].invID = 0           
+                  this.inv[this.cursorId].loadTexture('inventory_0')   
+
+                  this.updateInv()    
+
+                  this.bugsFed++                   
+                if(this.bugsFed < 4){
+                  this.startChat(66)
+                }               
+                else{
+                  this.startChat(67)
+                  item.alpha = 0;
+                  item.y = -this.game.height                  
+                }
+                
+              }
+              else if(this.cursorKey == 1){        
+                this.startChat(68)
+              }              
+              else{
+                this.startChat(65)
+              }              
+              break;    
+            case 69:
+              if(this.cursorKey == 1){  
+                this.startChat(69)
+              }
+              else{
+                item.alpha = 0;
+                item.y = -this.game.height                   
+                this.startChat(71)
+              }
+              
+              break;  
+            case 84:
+              if(this.cursorKey == 73){  
+                  document.body.style = 'cursor: url(../assets/hand_point.png), default;'
+
+                  this.inv[this.cursorId].invID = 0           
+                  this.inv[this.cursorId].loadTexture('inventory_0')   
+                  this.updateInv()                   
+                  this.startChat(86)
+              }
+              else if(this.cursorKey == 1){
+                this.startChat(84)
+              }
+              else{            
+                this.startChat(85)
+              }
+              
+              break;                                                 
           }
           
         }
       },
       pickUp: function (item){
+          
           var tweenPick = this.add.tween(item).to( { x: this.inv[this.invKey].x, y: this.inv[this.invKey].y}, 250, Phaser.Easing.Cubic.Out);                    
           tweenPick.onComplete.addOnce(function(){
               this.inv[this.invKey].invID = item.id
+              
               this.inv[this.invKey].loadTexture('inventory_'+item.id)
-              this.invKey++;
+              this.updateInv()
               item.alpha = 0;
               item.y = this.game.height*5
 
@@ -553,11 +754,17 @@
                   break;
                 case 2:
                   this.startChat(16);
-                  break;                  
+                  break;
+              }
+              switch(item.id){
+                case 73:
+                  this.startChat(73);
+                  break;                                                      
               }
 
           }, this);  
-          tweenPick.start();  
+          tweenPick.start(); 
+ 
       },      
       useInv: function (inv){
         inv.y = inv.origY
@@ -574,12 +781,35 @@
           switch(inv.invID){
             case 1:
               this.cursorKey = inv.invID
+              this.cursorId = inv.id
               document.body.style = 'cursor: url(../assets/hand_point2.png), default;'
               break;
+            case 64:
+              this.cursorKey = inv.invID
+              this.cursorId = inv.id
+              document.body.style = 'cursor: url(../assets/hand_point64.png), default;'
+              break;      
+            case 73:
+              this.cursorKey = inv.invID
+              this.cursorId = inv.id
+              document.body.style = 'cursor: url(../assets/hand_point73.png), default;'
+              break;                            
           }
         }
 
-      }             
+      },      
+      updateInv: function(){
+        this.invKey = 0
+        for(var i = 0; i < this.invCount; i++){
+          console.log(this.inv[i].invID)
+          if(this.inv[i].invID == 0){
+            this.invKey = i
+            break;
+          }
+        }
+        console.log("inventory key "+this.invKey)   
+      } 
+         
         
     };
     window['simplewar'] = window['simplewar'] || {};

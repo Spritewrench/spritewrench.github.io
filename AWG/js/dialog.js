@@ -29,7 +29,7 @@ function loadScript(){
     dialog[22] = "yara(happy)-Maybe I need to reach it first?-NEXTSCENE"
 
     dialog[23] = "yara(happy)-This swamp is so dense ..."
-    dialog[24] = "yara(happy)-And those creepy birs are also everywhere..."
+    dialog[24] = "yara(happy)-And those creepy birds are also everywhere..."
     dialog[25] = "yara(happy)-Maybe if I use my knife I can cut my way through?-END"
     dialog[26] = "yara(happy)-No matter how much I cut the vines keep growing back"
     dialog[27] = "???(happy)-LEAVE ME ALONE!!!!!!!"
@@ -46,7 +46,67 @@ function loadScript(){
     dialog[36] = "rabbit(happy)-THANK YOU! THANK YOU! THANK YOU!"
     dialog[37] = "yara(happy)-No worries...\nI was sent to find you..."
     dialog[38] = "rabbit(happy)-Yes!\nI'm to be your guide.-NEXTSCENE"
+
+    dialog[39] = "yara(happy)-Okay we're back on the path to the Boabab...-END"
+    dialog[40] = "yara(happy)-SIGH\nNo matter how much I cut the vines keep growing back"
+    dialog[41] = "rabbit(happy)-That's because the swamp is ALIVE!"
+    dialog[42] = "yara(happy)-I know ... these are living plants after all..."
+    dialog[43] = "rabbit(happy)-No.\nI mean alive in the sense that it has a spirit"
+    dialog[44] = "rabbit(happy)-One that demands respect\nOne that responds to your aggressive energy"
+    dialog[45] = "yara(happy)-Okay. You've lost me ...-SETFLAG-rabbitInstruct-1"
+    dialog[46] = "rabbit(happy)-Use your hand, Yara.\nPush the vines aside with your HANDS.-END"
+
+    var rabbitInstruct = parseInt(localStorage.getItem('rabbitInstruct'))
+    if(rabbitInstruct == 1){
+        dialog[47] = "yara(happy)-Well I'll be ...\nYou were right, Rabbit!"
+        dialog[48] = "rabbit(happy)-Of course!\nI know what I'm talking about-NEXTSCENE"
+    }
+    else{
+        dialog[47] = "yara(happy)-SIGH\nTime to use my trusty Knife ... again-END"
+    }
+
+   dialog[49] = "rabbit(happy)-Before we meet the Boabab we need to find an appropriate gift."
+   dialog[50] = "yara(happy)-A gift?"
+   dialog[51] = "rabbit(happy)-Yes. The Great Boabab has been ... differnt lately."
+   dialog[52] = "rabbit(happy)-Maybe a gift can remind itself of it's duties"
+   dialog[53] = "spinetail(happy)-hun...gry....so ...."
+   dialog[54] = "yara(happy)-Wait. Did you hear that?"
+   dialog[55] = "rabbit(happy)-I think it's that spinetail in front of those Lumina plants"
+   dialog[56] = "rabbit(happy)-Actually a Lumina might make the perfect gift"
+   dialog[57] = "spinetail(happy)-so ... very ... hun...gry....so ...."
+   dialog[58] = "yara(happy)-Well I can't reach it without disturbing Mr. Spinetail here."
+   dialog[59] = "spinetail(happy)-I'll move if you help me..."
+   dialog[60] = "spinetail(happy)-Collect those bugs and feed me ..."
+   dialog[61] = "spinetail(happy)-I would do it my self but I'm so .... weak"
+   dialog[62] = "yara(happy)-Okay. Let's feed Mr. Spinetail and harvest a Lumina Plant"
+   dialog[63] = "rabbit(happy)-Sounds like a plan-END"
+   dialog[64] = "yara(happy)-Got a creepy crawly-END"
+   dialog[65] = "spinetail(happy)-So weak ... So hungry-END"
+   dialog[66] = "spinetail(happy)-Yummy! I feel my strength returning-END"
+   dialog[67] = "spinetail(happy)-Thanks for the Grub Bub!\nSee ya!-END"
+   dialog[68] = "spinetail(happy)-Put that away!\nDon't threaten me!-END"
+   dialog[69] = "rabbit(happy)-Remember Yara.\m Use your hands to move the plants"
+   dialog[70] = "yara(happy)-Right-END"
+   dialog[71] = "rabbit(happy)-Now you can gently harvest the Lumina plant, Yara"
+   dialog[72] = "yara(happy)-Okay. Here we go...-END"
+   dialog[73] = "yara(happy)-Got it!"
+   dialog[74] = "rabbit(happy)-Excellent!\nNow let's continue making our way to the Great Boabab-NEXTSCENE"
     
+   dialog[75] = "yara(happy)-Wow. The Boabad truly is massive ..."
+   dialog[76] = "yara(happy)-But look at all the wires ...\nI didn't know they reached this far into the swamp?"
+   dialog[77] = "boabab(happy!)-.... Who approaches? ...." 
+   dialog[78] = "yara(happy)-Oh it does talk!"
+   dialog[79] = "boabab(happy!)-... Leave ... Me ...."
+   dialog[80] = "yara(happy)-But we need your help. I was told you could help us remember."
+   dialog[81] = "rabbit(happy)-I was worried about this ...\nThe Great Boabab has forgotten itself"
+   dialog[82] = "rabbit(happy)-It has forgotten that it is growth manifest"
+   dialog[83] = "rabbit(happy)-Yara! You must present your gift\nRemind the Great Boabab what it stands for!-END"
+   dialog[84] = "boabab(happy!)-.... You dare to threaten ME? ...."
+   dialog[85] = "rabbit(happy)-No Yara!\nThe  gift! The Lumina plant-END"
+   dialog[86] = "boabab(happy!)-.... I REMEMBER...! ....-FLASH"
+   dialog[87] = "boabab(happy!)-.... Thank...you ....-END"
+   
+
 
 
 }

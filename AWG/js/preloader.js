@@ -41,19 +41,25 @@
             this.load.image('feather', 'assets/feather.png');
 
             this.load.image('chatbox', 'assets/chatBox.png');
+            this.load.image('chatbox_spirit', 'assets/chatBox_spirit.png');
             this.load.image('chatName', 'assets/chatName.png');
             this.load.image('chibi-yara-happy', 'assets/yara_neutral.png');
 
             this.load.image('chibi-rabbit-happy', 'assets/rabbit_neutral.png');
+            this.load.image('chibi-spinetail-happy', 'assets/spinetail_neutral.png');
             this.load.image('chibi-???-happy', 'assets/unknown_neutral.png');
+            this.load.image('chibi-boabab-happy', 'assets/boabab_neutral.png');
 
             for(var i = 1; i <= 11; i++){
                 this.load.image('scene'+i, 'assets/S-'+i+'.png');
             }
+            this.load.image('scene-8-2', 'assets/S-8-2.png');
 
             this.load.image('inventory_0', 'assets/inventory_0.png');
             this.load.image('inventory_1', 'assets/inventory_1.png');
             this.load.image('inventory_2', 'assets/inventory_2.png');
+            this.load.image('inventory_64', 'assets/inventory_3.png');
+            this.load.image('inventory_73', 'assets/inventory_4.png');
 
 
             this.load.image('s1o1', 'assets/s1_o1.png');
@@ -64,6 +70,11 @@
             this.load.image('s1o3_clicked', 'assets/s1_o3_clicked.png');                        
 
             this.load.image('s4o1', 'assets/s4_o1.png');
+            
+            this.load.image('s7o1', 'assets/s7_o1.png');
+            this.load.image('s7o2', 'assets/s7_o2.png');
+            this.load.image('s7o3', 'assets/s7_o3.png');
+            this.load.image('s7o4', 'assets/s7_o4.png');
 
 
             this.load.image('birdLight1', 'assets/birdLight1.png');
@@ -79,6 +90,8 @@
 
             this.load.image('sceneImage7', 'assets/outsideScene.png');
             this.load.image('modal', 'assets/modal.png');
+            this.load.image('modal_white', 'assets/modal-white.png');
+
 
             this.load.image('node', 'assets/node.png');
             this.load.image('node_clicked', 'assets/node_clicked.png');
