@@ -21,9 +21,14 @@ keyword[3].color = "#FFA000";
 keyword[3].description = ""
 
 keyword[4] = new Object();
-keyword[4].word = "KNIFED";
+keyword[4].word = "KNIFE";
 keyword[4].color = "#FFA000";
 keyword[4].description = ""
+
+keyword[5] = new Object();
+keyword[5].word = "QUEEN";
+keyword[5].color = "#FFA000";
+keyword[5].description = ""
 
 
 

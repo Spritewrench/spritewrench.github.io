@@ -49,6 +49,7 @@
             this.load.image('chibi-spinetail-happy', 'assets/spinetail_neutral.png');
             this.load.image('chibi-???-happy', 'assets/unknown_neutral.png');
             this.load.image('chibi-boabab-happy', 'assets/boabab_neutral.png');
+            this.load.image('chibi-villager-happy', 'assets/villager_neutral.png');
 
             for(var i = 1; i <= 11; i++){
                 this.load.image('scene'+i, 'assets/S-'+i+'.png');
@@ -70,12 +71,6 @@
             this.load.image('s1o3_clicked', 'assets/s1_o3_clicked.png');                        
 
             this.load.image('s4o1', 'assets/s4_o1.png');
-            
-            this.load.image('s7o1', 'assets/s7_o1.png');
-            this.load.image('s7o2', 'assets/s7_o2.png');
-            this.load.image('s7o3', 'assets/s7_o3.png');
-            this.load.image('s7o4', 'assets/s7_o4.png');
-
 
             this.load.image('birdLight1', 'assets/birdLight1.png');
             this.load.image('birdLight2', 'assets/birdLight2.png');
@@ -83,10 +78,22 @@
 
             this.load.image('s5o1', 'assets/bird1.png');
             this.load.image('s5o2', 'assets/bird2.png');
-            this.load.image('s5o3', 'assets/bird3.png');
+            this.load.image('s5o3', 'assets/bird3.png');            
+            
+            this.load.image('s7o1', 'assets/s7_o1.png');
+            this.load.image('s7o2', 'assets/s7_o2.png');
+            this.load.image('s7o3', 'assets/s7_o3.png');
+            this.load.image('s7o4', 'assets/s7_o4.png');
+
+            this.load.image('s9o1', 'assets/s9_o1.png');
+            this.load.image('s9o2', 'assets/s9_o2.png');
+            this.load.image('s9o3', 'assets/s9_o3.png');            
+
+
 
 
             this.load.image('rabbit', 'assets/rabbit.png');
+            this.load.image('rabbit_fly', 'assets/rabbit_fly.png');
 
             this.load.image('sceneImage7', 'assets/outsideScene.png');
             this.load.image('modal', 'assets/modal.png');

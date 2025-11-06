@@ -184,7 +184,40 @@
             this.bg.id = 84  
             this.bg.inputEnabled = true;
             this.bg.events.onInputDown.add(this.inspect, this);               
-            break;                   
+            break;     
+          case 9:
+            this.s9o1 = this.add.sprite(this.game.width/2-450,this.game.height/2-50, 's9o1');
+            this.s9o1.anchor.setTo(0.5, 0.5);  
+            this.s9o1.inputEnabled = true;
+            this.s9o1.id = 73     
+            this.s9o1.events.onInputDown.add(this.pickUp, this);    
+            
+            this.s9o2 = this.add.sprite(this.game.width/2-75,this.game.height/2-125, 's9o2');
+            this.s9o2.anchor.setTo(0.5, 0.5);  
+            this.s9o2.inputEnabled = true;
+            this.s9o2.id = 73     
+            this.s9o2.events.onInputDown.add(this.pickUp, this);  
+            
+            //grabber birds
+            this.s9o3 = this.add.sprite(100,this.game.height-125, 's9o3');
+            this.s9o3.anchor.setTo(0.5, 0.5);  
+            this.s9o3.inputEnabled = true;
+            this.s9o3.id = 102     
+            this.s9o3.events.onInputDown.add(this.inspect, this);  
+            
+            this.s9o4 = this.add.sprite(this.game.width-200,this.game.height-300, 's9o3');
+            this.s9o4.anchor.setTo(0.5, 0.5);  
+            this.s9o4.inputEnabled = true;
+            this.s9o4.id = 103    
+            this.s9o4.events.onInputDown.add(this.inspect, this);       
+            
+            this.s9o5 = this.add.sprite(this.game.width/2+170,this.game.height/2+150, 's9o3');
+            this.s9o5.anchor.setTo(0.5, 0.5);  
+            this.s9o5.inputEnabled = true;
+            this.s9o5.id = 104    
+            this.s9o5.scale.x = -1
+            this.s9o5.events.onInputDown.add(this.inspect, this);             
+            break;                            
         }
 
         this.modal = this.add.sprite(0, 0, 'modal');
@@ -280,19 +313,22 @@
                 break; 
               case 8:
                 this.startChat(75)
-                break;                                                                                            
+                break;  
+              case 9:
+                this.startChat(93)
+                break;                                                                                                            
             }
           }, this);        
           transitionTween.start()          
         }
 
         this.cursorKey = 0;
-        document.body.style = 'cursor: url(../assets/hand_point.png), default;'        
+        document.body.style = 'cursor: url(assets/hand_point.png), default;'        
         
         this.flashOn = false;
         //manipu
-        //document.body.style = 'cursor: url(../assets/hand_point.png), default;'
-        //document.body.style = 'cursor: url(../assets/hand_point2.png), default;'
+        //document.body.style = 'cursor: url(assets/hand_point.png), default;'
+        //document.body.style = 'cursor: url(assets/hand_point2.png), default;'
         
 
       },
@@ -477,7 +513,25 @@
                   this.flashOn = true;
              
 
-                }                     
+                } 
+                else if(chat[2].includes("RABBITFLY")){
+                  this.rabbit.loadTexture('rabbit_fly')
+                  var rabbitTween = this.add.tween(this.rabbit).to( { y: -500}, 2000, Phaser.Easing.Elastic.Out);
+                  rabbitTween.onComplete.addOnce(function(){
+                    this.timer = this.game.time.create(true);
+                    this.timer.add(500, function(){
+                      var rabbitTween2 = this.add.tween(this.rabbit).to( { y: 0}, 1000, Phaser.Easing.Elastic.Out);
+                      rabbitTween2.onComplete.addOnce(function(){
+                        this.rabbit.loadTexture('rabbit')
+                      }, this);          
+                      rabbitTween2.start() 
+                    }, this);
+                    this.timer.start();  
+                  }, this);          
+                  rabbitTween.start()                  
+             
+
+                }                                     
                 else if(chat[2].includes("NEXTSCENE")){
                   console.log("NEXT SCENE")
                   localStorage.setItem(this.saveKey+"_dialogCounter",this.dialogCounter+1)
@@ -532,6 +586,9 @@
 
               if(this.birdCount <= 0 && currentCounter == 36){
                 this.startChat(36)
+              }
+              else if( ( currentCounter == 102 ||  currentCounter == 103||  currentCounter == 104) && this.s9o3.y == -this.game.height && this.s9o4.y == -this.game.height  && this.s9o5.y == -this.game.height ){
+                this.startChat(107)
               }
               else{
                 this.closeChat();
@@ -678,7 +735,7 @@
             case 63:
               if(this.cursorKey == 64){        
                   this.cursorKey = 0
-                  document.body.style = 'cursor: url(../assets/hand_point.png), default;'
+                  document.body.style = 'cursor: url(assets/hand_point.png), default;'
 
                   this.inv[this.cursorId].invID = 0           
                   this.inv[this.cursorId].loadTexture('inventory_0')   
@@ -715,22 +772,47 @@
               
               break;  
             case 84:
-              if(this.cursorKey == 73){  
-                  document.body.style = 'cursor: url(../assets/hand_point.png), default;'
+              var treeInstruct = parseInt(localStorage.getItem('treeInstruct'))
+              if(treeInstruct == 1){
+                this.startChat(90)
+              }
+              else{
+                if(this.cursorKey == 73){  
+                    document.body.style = 'cursor: url(assets/hand_point.png), default;'
 
-                  this.inv[this.cursorId].invID = 0           
-                  this.inv[this.cursorId].loadTexture('inventory_0')   
-                  this.updateInv()                   
-                  this.startChat(86)
-              }
-              else if(this.cursorKey == 1){
-                this.startChat(84)
-              }
-              else{            
-                this.startChat(85)
-              }
-              
-              break;                                                 
+                    this.inv[this.cursorId].invID = 0           
+                    this.inv[this.cursorId].loadTexture('inventory_0')   
+                    this.updateInv()                   
+                    this.startChat(86)
+                }
+                else if(this.cursorKey == 1){
+                  this.startChat(84)
+                }
+                else{            
+                  this.startChat(85)
+                }
+              }              
+              break;         
+            case 102:
+            case 103:
+            case 104:
+                if(this.cursorKey == 1){
+                  this.startChat(item.id)
+                  if(item.id == 102){
+                    this.s9o3.y = -this.game.height 
+                  }
+                  if(item.id == 103){
+                    this.s9o4.y = -this.game.height 
+                  }          
+                  if(item.id == 104){
+                    this.s9o5.y = -this.game.height 
+                  }                          
+                            
+                }
+                else{            
+                  this.startChat(105)
+                }              
+              break;                                        
           }
           
         }
@@ -775,24 +857,24 @@
         console.log(inv.invID)
         if(this.cursorKey == inv.invID){
           this.cursorKey = 0
-          document.body.style = 'cursor: url(../assets/hand_point.png), default;'
+          document.body.style = 'cursor: url(assets/hand_point.png), default;'
         }
         else{
           switch(inv.invID){
             case 1:
               this.cursorKey = inv.invID
               this.cursorId = inv.id
-              document.body.style = 'cursor: url(../assets/hand_point2.png), default;'
+              document.body.style = 'cursor: url(assets/hand_point2.png), default;'
               break;
             case 64:
               this.cursorKey = inv.invID
               this.cursorId = inv.id
-              document.body.style = 'cursor: url(../assets/hand_point64.png), default;'
+              document.body.style = 'cursor: url(assets/hand_point64.png), default;'
               break;      
             case 73:
               this.cursorKey = inv.invID
               this.cursorId = inv.id
-              document.body.style = 'cursor: url(../assets/hand_point73.png), default;'
+              document.body.style = 'cursor: url(assets/hand_point73.png), default;'
               break;                            
           }
         }
