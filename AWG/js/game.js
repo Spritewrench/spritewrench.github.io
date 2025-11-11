@@ -53,7 +53,7 @@
           case 1:
             Swal.fire({
               title: 'The Quest Begins!',          
-              html: 'Yara has been tasked by her Elders to go on a Quest.<br/>She must find her three guides:<br/>the Flying Rabbit,<br/>the Talking Boabab<br/>and the Queen.<br/><br/>Understanably Yara is very skeptical ....',
+              html: 'Yara has been tasked by their Elders to go on a Quest.<br/>She must find their three guides:<br/>the Flying Rabbit,<br/>the Talking Boabab<br/>and the Queen.<br/><br/>Understanably Yara is very skeptical ....',
               imageWidth: 400,
               imageHeight: 500,
               allowOutsideClick: false,
@@ -810,7 +810,7 @@
                 else if(chat[2].includes("FINAL")){
                   Swal.fire({
                     title: 'Quest Complte?',          
-                    html: 'Yara has faced many challenges and grown her wisdom.<br/>However, what new adventures await Yara and Rabbit as they make their way into the forest?',
+                    html: 'Yara has faced many challenges and grown their wisdom.<br/>However, what new adventures await Yara and Rabbit as they make their way into the forest?',
                     imageWidth: 400,
                     imageHeight: 500,
                     allowOutsideClick: false,
