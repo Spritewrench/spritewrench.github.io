@@ -10,6 +10,10 @@
         this.game.plugins.screenShake = this.game.plugins.add(Phaser.Plugin.ScreenShake);        
         this.goToNextScene = false;
 
+        this.back_layer = this.add.group();
+        this.mid_layer = this.add.group();
+        this.ui_layer = this.add.group();
+        this.front_layer = this.add.group()        
 
 
         //scene number
@@ -24,7 +28,9 @@
 
         this.bg = this.add.sprite(0, 0, 'scene'+this.sceneNum);
         this.bg.width = this.game.width
-        this.bg.height = this.game.height  
+        this.bg.height = this.game.height
+
+        this.back_layer.add(this.bg)
         //this.bg.inputEnabled = true;
         //this.bg.events.onInputDown.add(this.onClick, this);    
 
@@ -45,22 +51,36 @@
         //load objects for scene
         switch(this.sceneNum){
           case 1:
+            Swal.fire({
+              title: 'The Quest Begins!',          
+              html: 'Yara has been tasked by her Elders to go on a Quest.<br/>She must find her three guides:<br/>the Flying Rabbit,<br/>the Talking Boabab<br/>and the Queen.<br/><br/>Understanably Yara is very skeptical ....',
+              imageWidth: 400,
+              imageHeight: 500,
+              allowOutsideClick: false,
+              allowEscapeKey: false
+            }).then((result) => {
+
+            })  
+
             this.knife = this.add.sprite(this.game.width/2, this.game.height/2, 'knife');
             this.knife.anchor.setTo(0.5, 0.5);  
             this.knife.inputEnabled = true;
             this.knife.id = 1
             this.knife.events.onInputDown.add(this.pickUp, this);         
+            this.mid_layer.add(this.knife)
 
             this.s1o1= this.add.sprite(this.game.width/2+328, this.game.height+5, 's1o1');
             this.s1o1.anchor.setTo(0.5, 1);       
             this.s1o1.inputEnabled = true;
             this.s1o1.id = 5
             this.s1o1.events.onInputDown.add(this.inspect, this);   
+            this.mid_layer.add(this.s1o1)
             
             this.s1o2= this.add.sprite(0, 0, 's1o2');     
             this.s1o2.inputEnabled = true;
             this.s1o2.id = 6
             this.s1o2.events.onInputDown.add(this.inspect, this);
+            this.mid_layer.add(this.s1o2)
             
             this.s1o3= this.add.sprite(this.game.width,0, 's1o3');
             this.s1o3.anchor.setTo(1, 0);       
@@ -68,7 +88,8 @@
             this.s1o3.id = 7
             this.s1o3.scene = true
             this.s1o3.events.onInputDown.add(this.inspect, this);               
-            
+            this.mid_layer.add(this.s1o3)
+
             break;
           case 2:
             this.feather = this.add.sprite(100, this.game.height-200, 'feather');
@@ -77,7 +98,8 @@
             this.feather.id = 2
             this.feather.scale.x = 0.2;
             this.feather.scale.y = 0.2;             
-            this.feather.events.onInputDown.add(this.pickUp, this);              
+            this.feather.events.onInputDown.add(this.pickUp, this);         
+            this.mid_layer.add(this.feather)     
             break;
           case 4:  
           case 6:
@@ -92,6 +114,7 @@
               this.s4o1.id = 40
             }      
             this.s4o1.events.onInputDown.add(this.inspect, this);              
+            this.mid_layer.add(this.s4o1)
             break;   
             
           case 5:
@@ -105,11 +128,15 @@
             this.birdLight2.height = this.game.height
             this.birdLight3 = this.add.sprite(0,0, 'birdLight3');
             this.birdLight3.width = this.game.width
-            this.birdLight3.height = this.game.height                        
+            this.birdLight3.height = this.game.height     
+            this.mid_layer.add(this.birdLight1)
+            this.mid_layer.add(this.birdLight2)
+            this.mid_layer.add(this.birdLight3)                   
 
             this.rabbit = this.add.sprite(0,0, 'rabbit');
             this.rabbit.width = this.game.width
-            this.rabbit.height = this.game.height            
+            this.rabbit.height = this.game.height
+            this.mid_layer.add(this.rabbit)            
             
             this.s5o1 = this.add.sprite(this.game.width-300,this.game.height/2-150, 's5o1');
             this.s5o1.anchor.setTo(0.5, 0.5);  
@@ -117,6 +144,7 @@
             this.s5o1.id = 35      
             this.s5o1.birdNum =1  
             this.s5o1.events.onInputDown.add(this.inspect, this);     
+            this.mid_layer.add(this.s5o1)
             
             this.s5o2 = this.add.sprite(150,this.game.height/2-120, 's5o2');
             this.s5o2.anchor.setTo(0.5, 0.5);  
@@ -124,6 +152,7 @@
             this.s5o2.id = 35  
             this.s5o2.birdNum =2    
             this.s5o2.events.onInputDown.add(this.inspect, this);     
+            this.mid_layer.add(this.s5o2)
             
             this.s5o3 = this.add.sprite(this.game.width/2+200,this.game.height/2-400, 's5o3');
             this.s5o3.anchor.setTo(0.5, 0.5);  
@@ -131,6 +160,7 @@
             this.s5o3.id = 35   
             this.s5o3.birdNum =3       
             this.s5o3.events.onInputDown.add(this.inspect, this);                 
+            this.mid_layer.add(this.s5o3)
             break;    
           case 7:          
             this.bugCount = 0
@@ -140,24 +170,28 @@
             this.s7o1.inputEnabled = true;
             this.s7o1.id = 73     
             this.s7o1.events.onInputDown.add(this.pickUp, this);
+            this.mid_layer.add(this.s7o1)
             
             this.s7o2 = this.add.sprite(this.game.width/2,this.game.height/2, 's7o2');
             this.s7o2.anchor.setTo(0.5, 0.5);  
             this.s7o2.inputEnabled = true;
             this.s7o2.id = 69  
-            this.s7o2.events.onInputDown.add(this.inspect, this);            
+            this.s7o2.events.onInputDown.add(this.inspect, this);  
+            this.mid_layer.add(this.s7o2)          
 
             this.s7o3 = this.add.sprite(this.game.width/2,this.game.height/2, 's7o3');
             this.s7o3.anchor.setTo(0.5, 0.5);  
             this.s7o3.inputEnabled = true;
             this.s7o3.id = 63    
             this.s7o3.events.onInputDown.add(this.inspect, this);    
+            this.mid_layer.add(this.s7o3)
             
             this.s7o4 = this.add.sprite(50,this.game.height-100, 's7o4');
             this.s7o4.anchor.setTo(0.5, 0.5);  
             this.s7o4.inputEnabled = true;
             this.s7o4.id = 64   
             this.s7o4.events.onInputDown.add(this.pickUp, this);  
+            this.mid_layer.add(this.s7o4)
             
             this.s7o5 = this.add.sprite(this.game.width-50,this.game.height-100, 's7o4');
             this.s7o5.anchor.setTo(0.5, 0.5);  
@@ -165,6 +199,7 @@
             this.s7o5.inputEnabled = true;
             this.s7o5.id = 64    
             this.s7o5.events.onInputDown.add(this.pickUp, this);  
+            this.mid_layer.add(this.s7o5)
             
             this.s7o6 = this.add.sprite(350,this.game.height-250, 's7o4');
             this.s7o6.anchor.setTo(0.5, 0.5);  
@@ -172,13 +207,15 @@
             this.s7o6.inputEnabled = true;
             this.s7o6.id = 64   
             this.s7o6.events.onInputDown.add(this.pickUp, this); 
+            this.mid_layer.add(this.s7o6)
             
             this.s7o7 = this.add.sprite(this.game.width-400,this.game.height-50, 's7o4');
             this.s7o7.anchor.setTo(0.5, 0.5);  
             this.s7o7.angle = 90
             this.s7o7.inputEnabled = true;
             this.s7o7.id = 64  
-            this.s7o7.events.onInputDown.add(this.pickUp, this);             
+            this.s7o7.events.onInputDown.add(this.pickUp, this);   
+            this.mid_layer.add(this.s7o7)          
             break;    
           case 8:
             this.bg.id = 84  
@@ -189,14 +226,13 @@
             this.s9o1 = this.add.sprite(this.game.width/2-450,this.game.height/2-50, 's9o1');
             this.s9o1.anchor.setTo(0.5, 0.5);  
             this.s9o1.inputEnabled = true;
-            this.s9o1.id = 73     
-            this.s9o1.events.onInputDown.add(this.pickUp, this);    
+            this.s9o1.id = 112   
+            this.s9o1.events.onInputDown.add(this.inspect, this);    
+            this.mid_layer.add(this.s9o1)
             
             this.s9o2 = this.add.sprite(this.game.width/2-75,this.game.height/2-125, 's9o2');
             this.s9o2.anchor.setTo(0.5, 0.5);  
-            this.s9o2.inputEnabled = true;
-            this.s9o2.id = 73     
-            this.s9o2.events.onInputDown.add(this.pickUp, this);  
+            this.mid_layer.add(this.s9o2) 
             
             //grabber birds
             this.s9o3 = this.add.sprite(100,this.game.height-125, 's9o3');
@@ -204,29 +240,98 @@
             this.s9o3.inputEnabled = true;
             this.s9o3.id = 102     
             this.s9o3.events.onInputDown.add(this.inspect, this);  
+            this.mid_layer.add(this.s9o3)
             
             this.s9o4 = this.add.sprite(this.game.width-200,this.game.height-300, 's9o3');
             this.s9o4.anchor.setTo(0.5, 0.5);  
             this.s9o4.inputEnabled = true;
             this.s9o4.id = 103    
             this.s9o4.events.onInputDown.add(this.inspect, this);       
+            this.mid_layer.add(this.s9o4)
             
             this.s9o5 = this.add.sprite(this.game.width/2+170,this.game.height/2+150, 's9o3');
             this.s9o5.anchor.setTo(0.5, 0.5);  
             this.s9o5.inputEnabled = true;
             this.s9o5.id = 104    
             this.s9o5.scale.x = -1
-            this.s9o5.events.onInputDown.add(this.inspect, this);             
-            break;                            
+            this.s9o5.events.onInputDown.add(this.inspect, this);    
+            this.mid_layer.add(this.s9o5)         
+
+            this.seedsPlanted = 0
+            this.seedsWatered = 0;
+
+            this.bg.id = 110
+            this.bg.inputEnabled = true;
+            this.bg.events.onInputDown.add(this.inspect, this);                 
+            break; 
+            case 11:
+              this.s11o1 = this.add.sprite(this.game.width/2,this.game.height/2, 's11o1');
+              this.s11o1.anchor.setTo(0.5, 0.5);   
+              this.s11o1.alpha = 0
+              this.mid_layer.add(this.s11o1)              
+              break;   
+            case 13:
+              this.mortar = ""
+              this.s13o1 = this.add.sprite(this.game.width/2,this.game.height/2, 's13o1');
+              this.s13o1.anchor.setTo(0.5, 0.5);   
+              this.s13o1.inputEnabled = true;
+              this.s13o1.id = 150    
+              this.s13o1.events.onInputDown.add(this.inspect, this);                     
+              this.mid_layer.add(this.s13o1)   
+              
+              this.s13o4 = this.add.sprite(this.game.width/2,this.game.height/2, 's13o4');
+              this.s13o4.anchor.setTo(0.5, 0.5);     
+              this.s13o4.alpha = 0                  
+              this.mid_layer.add(this.s13o4)  
+              
+              this.s13o3 = this.add.sprite(this.game.width/2,this.game.height/2, 's13o3');
+              this.s13o3.anchor.setTo(0.5, 0.5);     
+              this.s13o3.alpha = 0                  
+              this.mid_layer.add(this.s13o3)                
+
+              this.s13o2 = this.add.sprite(this.game.width/2,this.game.height/2, 's13o2');
+              this.s13o2.anchor.setTo(0.5, 0.5);     
+              this.s13o2.alpha = 0                  
+              this.mid_layer.add(this.s13o2)  
+              
+              this.s13o5 = this.add.sprite(this.game.width/2,this.game.height/2, 's13o5');
+              this.s13o5.anchor.setTo(0.5, 0.5);     
+              this.s13o5.alpha = 0                  
+              this.mid_layer.add(this.s13o5)                
+              break;     
+            case 14:
+              this.mortar = ""
+              this.s14o1 = this.add.sprite(this.game.width/2,this.game.height/2, 's14o1');
+              this.s14o1.anchor.setTo(0.5, 0.5);           
+              this.mid_layer.add(this.s14o1)          
+
+              this.s14o2 = this.add.sprite(this.game.width/2,this.game.height/2, 's14o2');
+              this.s14o2.anchor.setTo(0.5, 0.5);     
+              this.s14o2.inputEnabled = true;
+              this.s14o2.id = 166   
+              this.s14o2.alpha = 0;
+              this.s14o2.events.onInputDown.add(this.inspect, this);                   
+              this.mid_layer.add(this.s14o2)  
+
+              this.s14o3 = this.add.sprite(this.game.width/2,this.game.height/2, 's14o3');
+              this.s14o3.anchor.setTo(0.5, 0.5);     
+              this.s14o3.id = 166   
+              this.s14o3.alpha = 0;             
+              this.mid_layer.add(this.s14o3)                
+              
+          
+              break;                                                               
         }
 
         this.modal = this.add.sprite(0, 0, 'modal');
         this.modal.width = this.game.width
         this.modal.height = this.game.height  
         this.modal.alpha = 0;
+        this.mid_layer.add(this.modal)   
 
         this.sceneImage = this.add.sprite(-this.game.width, -this.game.height, 'modal');
         this.sceneImage.anchor.setTo(0.5, 0.5); 
+        this.mid_layer.add(this.sceneImage)  
      
 
         var distX = this.game.width/2-(100*((this.invCount-1)/2))
@@ -242,20 +347,52 @@
           this.inv[i].origY = this.inv[i].y          
           this.inv[i].id = i 
           this.inv[i].invID = parseInt(invIDs[i])
+          this.ui_layer.add(this.inv[i])
 
           this.inv[i].inputEnabled = true;
           this.inv[i].events.onInputOver.add(this.highLight, this);  
           this.inv[i].events.onInputOut.add(this.unhighLight, this);           
           this.inv[i].events.onInputDown.add(this.useInv, this);   
 
+          this.inv[i].text = this.add.text(this.inv[i].x+this.inv[i].width/2-10,this.inv[i].y+this.inv[i].height/2-10, '0', {font: '22px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.inv[i].text.anchor.setTo(0.5, 0.5); 
+          
+          if(localStorage.getItem(this.saveKey+"inv"+i+"Count") === null) {
+            localStorage.setItem(this.saveKey+"inv"+i+"Count",0) 
+          }                
+          this.inv[i].count = parseInt(localStorage.getItem(this.saveKey+"inv"+i+"Count"));
+          this.inv[i].text.text = this.inv[i].count;
+          this.ui_layer.add(this.inv[i].text)
+
           distX+=spaceX        
         }        
+
+        this.button = []
+        for(var i = 0; i < 2; i++){
+          this.button[i] = this.add.sprite(this.game.width/2, this.game.height*5, 'button');
+          this.button[i].anchor.setTo(0.5, 0.5);  
+          this.button[i].scale.x = 0.25;
+          this.button[i].scale.y = 0.25;
+          this.button[i].origWidth = this.button[i].width
+          this.button[i].origHeight = this.button[i].height
+          this.button[i].inputEnabled = true;
+          this.button[i].events.onInputOver.add(this.highLight, this);  
+          this.button[i].events.onInputOut.add(this.unhighLight, this);          
+          this.button[i].events.onInputDown.add(this.buttonSelect, this);     
+          this.ui_layer.add(this.button[i])
+
+          this.button[i].text = this.add.text(this.button[i].x-this.button[i].width/2,this.button[i].y-this.button[i].height/2, 'TASHIA', {font: '24px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+          this.button[i].text.anchor.setTo(0.5, 0.5);            
+          this.ui_layer.add( this.button[i].text)              
+        }
+
 
 
         this.chatNameBox = this.add.sprite(this.game.width/2, this.game.height*5, 'chatName');
         this.chatNameBox.anchor.setTo(0.5, 0.5);  
         this.chatNameBox.scale.x = 0.25;
         this.chatNameBox.scale.y = 0.25;   
+        this.ui_layer.add(this.chatNameBox)
 
         this.chatBox = this.add.sprite(this.game.width/2, this.game.height*5, 'chatbox');
         this.chatBox.anchor.setTo(0.5, 0.5);  
@@ -263,18 +400,22 @@
         this.chatBox.scale.y = 0.65;
         this.chatBox.inputEnabled = true;
         this.chatBox.events.onInputDown.add(this.showChat, this);     
+        this.ui_layer.add(this.chatBox)
 
         this.chatEmotion = this.add.sprite(this.game.width/2, this.game.height*5, 'chibi-yara-happy');
         this.chatEmotion.anchor.setTo(0.5, 0.5);  
         this.chatEmotion.scale.x = 0.5;
         this.chatEmotion.scale.y = 0.5; 
+        this.ui_layer.add(this.chatEmotion)
         
 
         this.chatBoxText = this.add.text(this.chatBox.x,this.chatBox.y, 'THIS IS A TEST', {font: '48px LondrinaSolid-Black',fill: '#000', align: 'center'});
-        this.chatBoxText.anchor.setTo(0.5, 0.5);     
+        this.chatBoxText.anchor.setTo(0.5, 0.5); 
+        this.ui_layer.add(this.chatBoxText)    
 
         this.chatName = this.add.text(this.chatBox.x-this.chatBox.width/2,this.chatBox.y-this.chatBox.height/2, 'TASHIA', {font: '48px LondrinaSolid-Black',fill: '#fff', align: 'left'});
-        this.chatName.anchor.setTo(0.5, 0.5);            
+        this.chatName.anchor.setTo(0.5, 0.5);        
+        this.ui_layer.add(this.chatName)    
         
         
         //scene specific dialog trigger
@@ -285,7 +426,8 @@
         }
 
         this.transition = this.add.sprite(-this.game.width*2, 0, 'night_transition');
-        this.transition.width = this.game.width*2        
+        this.transition.width = this.game.width*2    
+        this.front_layer.add(this.transition)    
 
         if(this.sceneNum > 1){
           this.transition.x = 0
@@ -316,7 +458,22 @@
                 break;  
               case 9:
                 this.startChat(93)
-                break;                                                                                                            
+                break;    
+              case 10:
+                this.startChat(114)
+                break; 
+              case 11:
+                this.startChat(124)
+                break;     
+              case 12:
+                this.startChat(136)
+                break;    
+              case 13:
+                this.startChat(147)
+                break;  
+              case 14:
+                this.startChat(160,300)
+                break;                                                                                                                                                                                            
             }
           }, this);        
           transitionTween.start()          
@@ -330,6 +487,10 @@
         //document.body.style = 'cursor: url(assets/hand_point.png), default;'
         //document.body.style = 'cursor: url(assets/hand_point2.png), default;'
         
+        this.seed = []
+        this.seedKey = 0;
+
+
 
       },
   
@@ -438,6 +599,17 @@
       },
       showChat: function () {
         loadScript();       
+
+        this.chatBoxText.y = this.chatBox.y
+        
+        this.chatNameBox.y = this.chatBox.y-this.chatBox.height/2
+        this.chatNameBox.x = this.chatBox.x-this.chatBox.width/2+this.chatNameBox.width/2+25
+        this.chatName.y = this.chatNameBox.y-10
+        this.chatName.x = this.chatNameBox.x   
+
+        this.chatEmotion.x = this.chatBox.x-this.chatBox.width/2+50
+        this.chatEmotion.y = this.chatBox.y-this.chatBox.height/2             
+
         if(!this.chatWait ){
           
 
@@ -506,7 +678,7 @@
                   
                 }    
                 else if(chat[2].includes("SETFLAG") && chat[3] !== undefined && chat[4] !== undefined){
-                  localStorage.setItem(chat[3], chat[4])
+                  localStorage.setItem(this.saveKey+chat[3], chat[4])
 
                 }                
                 else if(chat[2].includes("FLASH")){
@@ -531,7 +703,124 @@
                   rabbitTween.start()                  
              
 
-                }                                     
+                }         
+                else if(chat[2].includes("GIVESEED")){
+                  this.inv[this.invKey].invID = 109
+                  this.inv[this.invKey].count = 12;                    
+                  this.inv[this.invKey].loadTexture('inventory_109')
+                  this.updateInv()                  
+                  console.log("END NOW")
+                  localStorage.setItem(this.saveKey+"_dialogCounter",this.dialogCounter+1)
+                  this.dialogCounter = dialog.length   
+                }                                      
+                else if(chat[2].includes("GIVEBUCKET")){
+                  this.inv[this.invKey].invID = 110
+                  this.inv[this.invKey].count = 1;                    
+                  this.inv[this.invKey].loadTexture('inventory_110')
+                  this.updateInv()                  
+                  console.log("END NOW")
+                  localStorage.setItem(this.saveKey+"_dialogCounter",this.dialogCounter+1)
+                  this.dialogCounter = dialog.length   
+                }   
+                else if(chat[2].includes("GIVESHEA")){
+                  this.inv[this.invKey].invID = 114
+                  this.inv[this.invKey].count = 1;                    
+                  this.inv[this.invKey].loadTexture('inventory_114')
+                  this.updateInv()                  
+                  console.log("END NOW")
+                  localStorage.setItem(this.saveKey+"_dialogCounter",this.dialogCounter+1)
+                  this.dialogCounter = dialog.length   
+                }                 
+                else if(chat[2].includes("GIVENEEM")){
+                  this.inv[this.invKey].invID = 113
+                  this.inv[this.invKey].count = 1;                    
+                  this.inv[this.invKey].loadTexture('inventory_113')
+                  this.updateInv()                  
+                  console.log("NEXT SCENE")
+                  localStorage.setItem(this.saveKey+"_dialogCounter",this.dialogCounter+1)
+                  this.dialogCounter = dialog.length   
+                  this.goToNextScene = true;
+                }                   
+                else if(chat[2].includes("SHOW")  && chat[3] !== undefined){
+                  this.chatBox.y = 300;
+
+                  this.chatBoxText.y = this.chatBox.y
+                  
+                  this.chatNameBox.y = this.chatBox.y-this.chatBox.height/2
+                  this.chatNameBox.x = this.chatBox.x-this.chatBox.width/2+this.chatNameBox.width/2+25
+                  this.chatName.y = this.chatNameBox.y-10
+                  this.chatName.x = this.chatNameBox.x   
+
+                  this.chatEmotion.x = this.chatBox.x-this.chatBox.width/2+50
+                  this.chatEmotion.y = this.chatBox.y-this.chatBox.height/2                     
+
+                  this.fadeinAssetKey = chat[3]
+                  var fadeTween = this.add.tween(this[this.fadeinAssetKey]).to( { alpha: 1}, 2000, Phaser.Easing.Cubic.Out);
+                  fadeTween.onComplete.addOnce(function(){
+
+                  }, this);  
+                  fadeTween.start();                  
+
+                  
+                }  
+                else if(chat[2].includes("CHOICE")){
+                  this.button[0].text.text = chat[3]
+                  this.button[0].id = chat[4]
+
+                  this.button[1].text.text = chat[5]
+                  this.button[1].id = chat[6]    
+                  
+                  this.button[0].y = this.game.height/2
+                  this.button[0].text.y = this.game.height/2
+                  this.button[0].text.x = this.button[0].x
+
+                  
+                  this.button[1].y = this.game.height/2+200
+                  this.button[1].text.y = this.game.height/2+200 
+                  this.button[1].text.x = this.button[1].x                 
+
+                  
+                }      
+                else if(chat[2].includes("GRIND")){
+                  this.chatBox.y = 300;
+                  this.chatBoxText.y = this.chatBox.y
+                  
+                  this.chatNameBox.y = this.chatBox.y-this.chatBox.height/2
+                  this.chatNameBox.x = this.chatBox.x-this.chatBox.width/2+this.chatNameBox.width/2+25
+                  this.chatName.y = this.chatNameBox.y-10
+                  this.chatName.x = this.chatNameBox.x   
+
+                  this.chatEmotion.x = this.chatBox.x-this.chatBox.width/2+50
+                  this.chatEmotion.y = this.chatBox.y-this.chatBox.height/2                       
+
+                  this.s13o2.alpha = 0
+                  this.s13o3.alpha = 0
+                  this.s13o4.alpha = 0
+
+                  this.s13o5.alpha = 1
+                }     
+                else if(chat[2].includes("HIDE")){
+                  this.fadeinAssetKey = chat[3]
+                  var fadeTween = this.add.tween(this[this.fadeinAssetKey]).to( { alpha: 0}, 2000, Phaser.Easing.Cubic.Out);
+                  fadeTween.onComplete.addOnce(function(){
+
+                  }, this);  
+                  fadeTween.start();                        
+                }      
+                else if(chat[2].includes("FINAL")){
+                  Swal.fire({
+                    title: 'Quest Complte?',          
+                    html: 'Yara has faced many challenges and grown her wisdom.<br/>However, what new adventures await Yara and Rabbit as they make their way into the forest?',
+                    imageWidth: 400,
+                    imageHeight: 500,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      this.game.state.start('menu');
+                    }
+                  })                   
+                }                                                     
                 else if(chat[2].includes("NEXTSCENE")){
                   console.log("NEXT SCENE")
                   localStorage.setItem(this.saveKey+"_dialogCounter",this.dialogCounter+1)
@@ -617,6 +906,7 @@
       this.chatNameBox.y = this.game.height*2
       this.chatName.y = this.game.height*2  
       this.chatEmotion.y = this.game.height*2
+      
     
       this.chatBoxText.text =""
             
@@ -624,7 +914,31 @@
           
 
 
-      },        
+      }, 
+      highLight: function (item) {
+
+          var tweenWidth = this.add.tween(item).to( { width: item.origWidth+100 }, 500, Phaser.Easing.Cubic.Out);                    
+          var tweenHeight = this.add.tween(item).to( { height: item.origHeight+100 }, 500, Phaser.Easing.Cubic.Out);      
+          
+          tweenWidth.start();
+          tweenHeight.start();        
+      },   
+      unhighLight: function (item) {
+          var tweenWidth = this.add.tween(item).to( { width: item.origWidth }, 500, Phaser.Easing.Cubic.Out);                    
+          var tweenHeight = this.add.tween(item).to( { height: item.origHeight }, 500, Phaser.Easing.Cubic.Out);      
+          
+          tweenWidth.start();
+          tweenHeight.start();      
+      },       
+      buttonSelect: function(button){
+
+        this.startChat(button.id, 300)
+        this.button[0].y = 5*this.game.height
+        this.button[0].text.y = 5*this.game.height
+        
+        this.button[1].y = 5*this.game.height
+        this.button[1].text.y = 5*this.game.height        
+      },       
       next: function () {
         console.log("Next!")
         var transitionTween = this.add.tween(this.transition).to( { x: 0 }, 2000,Phaser.Easing.Power2);
@@ -632,6 +946,7 @@
 
         this.invCode = ""
         for(var i = 0; i < this.invCount; i++){
+          localStorage.setItem(this.saveKey+"inv"+i+"Count",this.inv[i].count) 
           this.invCode += this.inv[i].invID
           if(i < this.invCount-1){
             this.invCode += "-"
@@ -724,7 +1039,7 @@
                 this.startChat(40)
               }
               else{
-                var rabbitInstruct = parseInt(localStorage.getItem('rabbitInstruct'))
+                var rabbitInstruct = parseInt(localStorage.getItem(this.saveKey+'rabbitInstruct'))
                 if(rabbitInstruct == 1){
                   this.s4o1.y = -this.game.height
                 }
@@ -734,11 +1049,7 @@
               break;     
             case 63:
               if(this.cursorKey == 64){        
-                  this.cursorKey = 0
-                  document.body.style = 'cursor: url(assets/hand_point.png), default;'
-
-                  this.inv[this.cursorId].invID = 0           
-                  this.inv[this.cursorId].loadTexture('inventory_0')   
+                  this.removeInv()
 
                   this.updateInv()    
 
@@ -772,16 +1083,13 @@
               
               break;  
             case 84:
-              var treeInstruct = parseInt(localStorage.getItem('treeInstruct'))
+              var treeInstruct = parseInt(localStorage.getItem(this.saveKey+'treeInstruct'))
               if(treeInstruct == 1){
                 this.startChat(90)
               }
               else{
                 if(this.cursorKey == 73){  
-                    document.body.style = 'cursor: url(assets/hand_point.png), default;'
-
-                    this.inv[this.cursorId].invID = 0           
-                    this.inv[this.cursorId].loadTexture('inventory_0')   
+                    this.removeInv()
                     this.updateInv()                   
                     this.startChat(86)
                 }
@@ -812,23 +1120,109 @@
                 else{            
                   this.startChat(105)
                 }              
-              break;                                        
+              break;     
+            case 110:
+              
+              if(this.cursorKey == 109 && this.game.input.mousePointer.y >= this.game.height/2){
+                
+                
+                this.inv[this.cursorId].count--
+                
+                this.seed[this.seedKey] = this.add.sprite(this.game.input.mousePointer.x+10,this.game.input.mousePointer.y+10, 'seed');
+                this.seed[this.seedKey].anchor.setTo(0.5, 0.5);      
+                this.seed[this.seedKey].id = 113
+                this.seed[this.seedKey].inputEnabled = true
+                this.seed[this.seedKey].events.onInputDown.add(this.inspect, this);           
+                this.mid_layer.add(this.seed[this.seedKey])                                    
+                this.seedKey++
+                if(this.inv[this.cursorId].count <= 0){
+                  this.removeInv()
+                  
+                }       
+                this.updateInv()
+                this.seedsPlanted++
+                if(this.seedsPlanted >= 12){
+                  this.bg.inputEnabled = false;
+                  this.startChat(110)
+                }
+              }
+              break;  
+            case 112:
+              if(this.cursorKey == 110){  
+                document.body.style = 'cursor: url(assets/hand_point111.png), default;'
+
+                this.inv[this.cursorId].invID = 112 
+                this.inv[this.cursorId].count = 1   
+                this.cursorKey = 112        
+                this.inv[this.cursorId].loadTexture('inventory_111')                  
+                this.startChat(112)
+              }
+              break;     
+            case 113:
+              if(this.cursorKey == 112){  
+                this.seedsWatered++
+                item.loadTexture('plant')
+                if(this.seedsWatered == this.seedsPlanted){
+                  this.startChat(113)
+                }
+                //his.startChat(112)
+              }
+              break;   
+            case 150:
+              if(this.s13o5.alpha == 0){
+                if(this.cursorKey == 112){  
+                  this.removeInv()   
+                  this.updateInv()
+                  this.s13o2.alpha = 1
+                  this.mortar += "1"
+                }
+                if(this.cursorKey == 113){  
+                  this.removeInv()   
+                  this.updateInv()
+                  this.s13o4.alpha = 1
+                  this.mortar += "2"
+                }
+                if(this.cursorKey == 114){  
+                  this.removeInv()   
+                  this.updateInv()
+                  this.s13o3.alpha = 1
+                  this.mortar += "3"
+                }         
+                if(this.mortar.includes("1") && this.mortar.includes("2") && this.mortar.includes("3")){
+                  this.startChat(151)
+                }      
+              }
+           
+                
+              
+              break;             
+            case 166:
+              if(this.cursorKey == 1 && item.alpha == 1){  
+                  this.startChat(164,300)
+                  item.alpha = 0;
+                  item.y = -this.game.height  
+              }
+
+              break;                     
+                                                          
           }
           
         }
+      },
+      removeInv: function (){
+        
+        document.body.style = 'cursor: url(assets/hand_point.png), default;'
+
+        this.inv[this.cursorId].invID = 0 
+        this.inv[this.cursorId].count = 0           
+        this.inv[this.cursorId].loadTexture('inventory_0')  
+        this.cursorKey = 0 
       },
       pickUp: function (item){
           
           var tweenPick = this.add.tween(item).to( { x: this.inv[this.invKey].x, y: this.inv[this.invKey].y}, 250, Phaser.Easing.Cubic.Out);                    
           tweenPick.onComplete.addOnce(function(){
-              this.inv[this.invKey].invID = item.id
-              
-              this.inv[this.invKey].loadTexture('inventory_'+item.id)
-              this.updateInv()
-              item.alpha = 0;
-              item.y = this.game.height*5
 
-              console.log("play new scene "+this.sceneNum)
               //follow up action depending on scene
               switch(this.sceneNum){
                 case 1:
@@ -841,8 +1235,19 @@
               switch(item.id){
                 case 73:
                   this.startChat(73);
+                  
                   break;                                                      
               }
+
+              this.inv[this.invKey].invID = item.id
+              this.inv[this.invKey].count++
+              this.inv[this.invKey].loadTexture('inventory_'+item.id)
+              this.updateInv()
+              item.alpha = 0;
+              item.y = this.game.height*5
+
+              console.log("play new scene "+this.sceneNum)
+
 
           }, this);  
           tweenPick.start(); 
@@ -866,6 +1271,11 @@
               this.cursorId = inv.id
               document.body.style = 'cursor: url(assets/hand_point2.png), default;'
               break;
+            case 2:
+              this.cursorKey = inv.invID
+              this.cursorId = inv.id
+              document.body.style = 'cursor: url(assets/hand_point3.png), default;'
+              break;              
             case 64:
               this.cursorKey = inv.invID
               this.cursorId = inv.id
@@ -875,7 +1285,32 @@
               this.cursorKey = inv.invID
               this.cursorId = inv.id
               document.body.style = 'cursor: url(assets/hand_point73.png), default;'
-              break;                            
+              break;   
+            case 109:
+              this.cursorKey = inv.invID
+              this.cursorId = inv.id
+              document.body.style = 'cursor: url(assets/hand_point109.png), default;'
+              break;    
+            case 110:       
+              this.cursorKey = inv.invID
+              this.cursorId = inv.id
+              document.body.style = 'cursor: url(assets/hand_point110.png), default;'
+              break; 
+            case 112:          
+              this.cursorKey = inv.invID
+              this.cursorId = inv.id
+              document.body.style = 'cursor: url(assets/hand_point111.png), default;'
+              break;                       
+            case 113:
+              this.cursorKey = inv.invID
+              this.cursorId = inv.id
+              document.body.style = 'cursor: url(assets/hand_point112.png), default;'
+              break; 
+            case 114:
+              this.cursorKey = inv.invID
+              this.cursorId = inv.id
+              document.body.style = 'cursor: url(assets/hand_point113.png), default;'
+              break;                                                                                    
           }
         }
 
@@ -890,6 +1325,12 @@
           }
         }
         console.log("inventory key "+this.invKey)   
+        for(var i = 0; i < this.invCount; i++){
+          if(this.inv[i].invID == 0){
+            this.inv[i].count = 0;
+          }
+          this.inv[i].text.text = this.inv[i].count;
+        }        
       } 
          
         

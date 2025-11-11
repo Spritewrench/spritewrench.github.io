@@ -29,10 +29,14 @@
       this.bg.events.onInputDown.add(this.onClick, this);       
 
       this.menuText = this.add.text(this.game.width/2,this.game.height/2, "Adventures of a Witch's Garden", {font: '100px LondrinaSolid-Black',fill: '#fff', align: 'center'});
+      this.menuText.stroke = '#232727';
+      this.menuText.strokeThickness = 10;       
       this.menuText.anchor.setTo(0.5, 0.5);    
       
       this.menuText2 = this.add.text(this.game.width/2,this.game.height/2+100, "Click to Start", {font: '48px LondrinaSolid-Black',fill: '#fff', align: 'center'});
-      this.menuText2.anchor.setTo(0.5, 0.5);          
+      this.menuText2.anchor.setTo(0.5, 0.5);     
+      this.menuText2.stroke = '#232727';
+      this.menuText2.strokeThickness = 10;              
 
     },
 
