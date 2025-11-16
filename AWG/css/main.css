@@ -84,5 +84,5 @@ body{
   background-image:url('../assets/playLandscape.png');
   background-repeat:no-repeat;
   background-position: center center;
-  display:none;
+  display:block;
 }

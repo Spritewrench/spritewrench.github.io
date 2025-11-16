@@ -138,7 +138,11 @@
     document.getElementById("fullpage").click();
   }
   
-
+  if(window.innerHeight < window.innerWidth){
+    //console.log("Please use Landscape!");
+    document.getElementById("turn").style.display="none";
+    
+  }
     let portrait = window.matchMedia("(orientation: landscape)");
 
     portrait.addEventListener("change", function(e) {
