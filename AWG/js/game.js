@@ -490,7 +490,43 @@
         this.seed = []
         this.seedKey = 0;
 
+        var bgKey = 1
+        if(this.sceneNum < 3){
+          bgKey = 1
+        }
+        else if(this.sceneNum >= 3 && this.sceneNum < 9 ){
+          bgKey = 2
+        }
+        else{
+          bgKey = 3;
+        }
+          this.bgSound = this.add.audio('bg'+bgKey);
+          this.bgSound.loop = true;          
+          
+          this.bgSound.play()
+          this.bgSound.volume = 0
+          var soundTween= this.add.tween(this.bgSound).to( { volume: 0.2 }, 2000, Phaser.Easing.Default);                              
+          soundTween.start();         
+          
+          this.flySound = this.add.audio('flyAway');
+          this.flySound.volume = 0.5
 
+          this.fillWaterSound = this.add.audio('fillWater');
+          this.fillWaterSound.volume = 0.5          
+
+          this.crunchSnd = []
+          for(var i = 1; i <= 3; i++){
+            this.crunchSnd[i] = this.add.audio('crunch'+i);
+            this.crunchSnd[i].volume = 0.2
+          }
+
+
+          this.waterSnd = []
+          for(var i = 1; i <= 3; i++){
+            this.waterSnd[i] = this.add.audio('waterBloop'+i);
+            this.waterSnd[i].volume = 0.2
+          }          
+    
 
       },
   
@@ -942,6 +978,7 @@
       next: function () {
         console.log("Next!")
         var transitionTween = this.add.tween(this.transition).to( { x: 0 }, 2000,Phaser.Easing.Power2);
+        this.bgSound.fadeOut(2000)
         transitionTween.onComplete.addOnce(function(){
 
         this.invCode = ""
@@ -1012,17 +1049,20 @@
             case 35:
               if(this.cursorKey == 1){
                 if(item.birdNum == 1){
+                  this.flySound.play()
                   this.s5o1.y = -this.game.height
                   this.birdLight1.alpha = 0;
                   this.birdCount--
                 }
                 if(item.birdNum == 2){
+                  this.flySound.play()
                   this.s5o2.y = -this.game.height
                   this.birdLight2.alpha = 0;
                   this.birdCount--
                   
                 }        
                 if(item.birdNum == 3){
+                  this.flySound.play()
                   this.s5o3.y = -this.game.height
                   this.birdLight3.alpha = 0;
                   this.birdCount--
@@ -1053,7 +1093,11 @@
 
                   this.updateInv()    
 
-                  this.bugsFed++                   
+                  this.bugsFed++
+
+                  var ran = Math.floor(Math.random() * 4)+1;
+                  this.crunchSnd[ran].play()        
+
                 if(this.bugsFed < 4){
                   this.startChat(66)
                 }               
@@ -1106,6 +1150,7 @@
             case 104:
                 if(this.cursorKey == 1){
                   this.startChat(item.id)
+                  this.flySound.play()
                   if(item.id == 102){
                     this.s9o3.y = -this.game.height 
                   }
@@ -1126,6 +1171,8 @@
               if(this.cursorKey == 109 && this.game.input.mousePointer.y >= this.game.height/2){
                 
                 
+   
+
                 this.inv[this.cursorId].count--
                 
                 this.seed[this.seedKey] = this.add.sprite(this.game.input.mousePointer.x+10,this.game.input.mousePointer.y+10, 'seed');
@@ -1149,6 +1196,7 @@
               break;  
             case 112:
               if(this.cursorKey == 110){  
+                this.fillWaterSound.play()
                 document.body.style = 'cursor: url(assets/hand_point111.png), default;'
 
                 this.inv[this.cursorId].invID = 112 
@@ -1160,6 +1208,10 @@
               break;     
             case 113:
               if(this.cursorKey == 112){  
+
+                var ran = Math.floor(Math.random() * 3)+1;
+                this.waterSnd[ran].play()     
+
                 this.seedsWatered++
                 item.loadTexture('plant')
                 if(this.seedsWatered == this.seedsPlanted){
@@ -1200,6 +1252,7 @@
               if(this.cursorKey == 1 && item.alpha == 1){  
                   this.startChat(164,300)
                   item.alpha = 0;
+                  this.flySound.play()
                   item.y = -this.game.height  
               }
 

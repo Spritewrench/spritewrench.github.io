@@ -35,7 +35,7 @@
             this.load.image('saveSlot', 'assets/saveSlot.png');
 
             this.load.image('cursor_0', 'assets/hand_point.png');
-            this.load.image('seed', 'assets/hand_point109.png');
+            this.load.image('seed', 'assets/seed.png');
             this.load.image('plant', 'assets/plant.png');
             
             //inventory
@@ -128,6 +128,24 @@
 
             this.load.image('node', 'assets/node.png');
             this.load.image('node_clicked', 'assets/node_clicked.png');
+
+
+            this.load.audio('crunch1', ['assets/audio/crunch1.ogg'])
+            this.load.audio('crunch2', ['assets/audio/crunch2.ogg'])
+            this.load.audio('crunch3', ['assets/audio/crunch3.ogg'])
+            this.load.audio('crunch4', ['assets/audio/crunch4.ogg'])
+
+            this.load.audio('waterBloop1', ['assets/audio/waterBloop1.ogg'])
+            this.load.audio('waterBloop2', ['assets/audio/waterBloop2.ogg'])
+            this.load.audio('waterBloop3', ['assets/audio/waterBloop3.ogg'])
+
+            this.load.audio('fillWater', ['assets/audio/fillWater.ogg'])
+
+            this.load.audio('flyAway', ['assets/audio/flyAway.ogg'])
+
+            this.load.audio('bg1', ['assets/audio/vibes-afro-pop-music-416178.ogg'])
+            this.load.audio('bg2', ['assets/audio/african-delta-140627.ogg'])
+            this.load.audio('bg3', ['assets/audio/afrikana-marimba-rythms-130598.ogg'])
           
         }
         , create: function () {

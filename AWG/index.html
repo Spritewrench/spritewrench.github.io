@@ -24,7 +24,7 @@
     }    
   </style>   
 </head>
-
+<div id = "turn"></div>
 <body id="fullpage" onmouseover="onHoverFocus()">
   
   <div id="TCP" class="game"></div>
@@ -131,13 +131,7 @@
 </script>   
 
 <script>
-  const steamworks = require('steamworks.js')
 
-  // You can pass an appId, or don't pass anything and use a steam_appid.txt file
-  // to be updated with live coe on launch 
-  const client = steamworks.init(2672720)
-
-  console.log(client.localplayer.getName())
 
   function onHoverFocus(){
     //console.log("WOW!")
@@ -145,7 +139,20 @@
   }
   
 
-  
+    let portrait = window.matchMedia("(orientation: landscape)");
+
+    portrait.addEventListener("change", function(e) {
+    if(e.matches) {
+      console.log("p")
+      document.getElementById("turn").style.display="none";
+        // Portrait mode
+    } else {
+        console.log("l")
+        document.getElementById("turn").style.display="block";
+
+        // Landscape
+    }    
+  }); 
     
     
   
