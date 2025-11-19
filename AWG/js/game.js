@@ -367,6 +367,11 @@
           distX+=spaceX        
         }        
 
+        this.invHighlight = this.add.sprite(this.inv[0].x ,this.inv[0].y, 'inventory_highlight');
+        this.invHighlight.anchor.setTo(0.5, 0.5);
+        this.invHighlight.alpha = 0;
+        this.ui_layer.add(this.invHighlight)
+
         this.button = []
         for(var i = 0; i < 2; i++){
           this.button[i] = this.add.sprite(this.game.width/2, this.game.height*5, 'button');
@@ -515,16 +520,16 @@
           this.fillWaterSound.volume = 0.5          
 
           this.crunchSnd = []
-          for(var i = 1; i <= 3; i++){
+          for(var i = 1; i <= 4; i++){
             this.crunchSnd[i] = this.add.audio('crunch'+i);
-            this.crunchSnd[i].volume = 0.2
+            this.crunchSnd[i].volume = 1
           }
 
 
           this.waterSnd = []
           for(var i = 1; i <= 3; i++){
             this.waterSnd[i] = this.add.audio('waterBloop'+i);
-            this.waterSnd[i].volume = 0.2
+            this.waterSnd[i].volume = 0.4
           }          
     
 
@@ -1270,6 +1275,7 @@
         this.inv[this.cursorId].count = 0           
         this.inv[this.cursorId].loadTexture('inventory_0')  
         this.cursorKey = 0 
+        this.invHighlight.alpha = 0;
       },
       pickUp: function (item){
           
@@ -1311,15 +1317,21 @@
         var tweenY = this.add.tween(inv).to( { y: inv.origY }, 500, Phaser.Easing.Elastic.InOut);                         
         
         tweenY.start();
+              this.invHighlight.alpha = 1;
+              this.invHighlight.x = inv.x
+              this.invHighlight.y = inv.y        
       
         console.log(inv.invID)
         if(this.cursorKey == inv.invID){
           this.cursorKey = 0
           document.body.style = 'cursor: url(assets/hand_point.png), default;'
+          this.invHighlight.alpha = 0;
         }
         else{
           switch(inv.invID){
             case 1:
+
+
               this.cursorKey = inv.invID
               this.cursorId = inv.id
               document.body.style = 'cursor: url(assets/hand_point2.png), default;'

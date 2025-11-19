@@ -64,6 +64,7 @@
             }
             this.load.image('scene-8-2', 'assets/S-8-2.png');
 
+            this.load.image('inventory_highlight', 'assets/inventory_highlight.png');
             this.load.image('inventory_0', 'assets/inventory_0.png');
             this.load.image('inventory_1', 'assets/inventory_1.png');
             this.load.image('inventory_2', 'assets/inventory_2.png');
@@ -130,22 +131,22 @@
             this.load.image('node_clicked', 'assets/node_clicked.png');
 
 
-            this.load.audio('crunch1', ['assets/audio/crunch1.ogg'])
-            this.load.audio('crunch2', ['assets/audio/crunch2.ogg'])
-            this.load.audio('crunch3', ['assets/audio/crunch3.ogg'])
-            this.load.audio('crunch4', ['assets/audio/crunch4.ogg'])
+            this.load.audio('crunch1', ['assets/audio/crunch1.wav'])
+            this.load.audio('crunch2', ['assets/audio/crunch2.wav'])
+            this.load.audio('crunch3', ['assets/audio/crunch3.wav'])
+            this.load.audio('crunch4', ['assets/audio/crunch4.wav'])
 
-            this.load.audio('waterBloop1', ['assets/audio/waterBloop1.ogg'])
-            this.load.audio('waterBloop2', ['assets/audio/waterBloop2.ogg'])
-            this.load.audio('waterBloop3', ['assets/audio/waterBloop3.ogg'])
+            this.load.audio('waterBloop1', ['assets/audio/waterBloop1.wav'])
+            this.load.audio('waterBloop2', ['assets/audio/waterBloop2.wav'])
+            this.load.audio('waterBloop3', ['assets/audio/waterBloop3.wav'])
 
-            this.load.audio('fillWater', ['assets/audio/fillWater.ogg'])
+            this.load.audio('fillWater', ['assets/audio/fillWater.wav'])
 
-            this.load.audio('flyAway', ['assets/audio/flyAway.ogg'])
+            this.load.audio('flyAway', ['assets/audio/flyAway.wav'])
 
-            this.load.audio('bg1', ['assets/audio/vibes-afro-pop-music-416178.ogg'])
-            this.load.audio('bg2', ['assets/audio/african-delta-140627.ogg'])
-            this.load.audio('bg3', ['assets/audio/afrikana-marimba-rythms-130598.ogg'])
+            this.load.audio('bg1', ['assets/audio/african-whistle-398936.wav'])
+            this.load.audio('bg2', ['assets/audio/african-delta-140627.wav'])
+            this.load.audio('bg3', ['assets/audio/afrikana-marimba-rythms-130598.wav'])
           
         }
         , create: function () {
