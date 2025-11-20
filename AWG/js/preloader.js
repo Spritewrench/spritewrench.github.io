@@ -64,7 +64,7 @@
             }
             this.load.image('scene-8-2', 'assets/S-8-2.png');
 
-            this.load.image('inventory_highlight', 'assets/inventory_highlight.png');
+            this.load.image('inventory_highlight', 'assets/inventory_Highlight.png');
             this.load.image('inventory_0', 'assets/inventory_0.png');
             this.load.image('inventory_1', 'assets/inventory_1.png');
             this.load.image('inventory_2', 'assets/inventory_2.png');

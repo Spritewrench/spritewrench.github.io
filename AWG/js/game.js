@@ -1173,14 +1173,14 @@
               break;     
             case 110:
               
-              if(this.cursorKey == 109 && this.game.input.mousePointer.y >= this.game.height/2){
+              if(this.cursorKey == 109 && this.game.input.y >= this.game.height/2){
                 
                 
    
 
                 this.inv[this.cursorId].count--
                 
-                this.seed[this.seedKey] = this.add.sprite(this.game.input.mousePointer.x+10,this.game.input.mousePointer.y+10, 'seed');
+                this.seed[this.seedKey] = this.add.sprite(this.game.input.x+10,this.game.input.y+10, 'seed');
                 this.seed[this.seedKey].anchor.setTo(0.5, 0.5);      
                 this.seed[this.seedKey].id = 113
                 this.seed[this.seedKey].inputEnabled = true
