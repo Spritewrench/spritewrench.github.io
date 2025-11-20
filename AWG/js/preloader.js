@@ -131,22 +131,22 @@
             this.load.image('node_clicked', 'assets/node_clicked.png');
 
 
-            this.load.audio('crunch1', ['assets/audio/crunch1.wav'])
-            this.load.audio('crunch2', ['assets/audio/crunch2.wav'])
-            this.load.audio('crunch3', ['assets/audio/crunch3.wav'])
-            this.load.audio('crunch4', ['assets/audio/crunch4.wav'])
+            this.load.audio('crunch1', ['assets/audio/crunch1.m4a'])
+            this.load.audio('crunch2', ['assets/audio/crunch2.m4a'])
+            this.load.audio('crunch3', ['assets/audio/crunch3.m4a'])
+            this.load.audio('crunch4', ['assets/audio/crunch4.m4a'])
 
-            this.load.audio('waterBloop1', ['assets/audio/waterBloop1.wav'])
-            this.load.audio('waterBloop2', ['assets/audio/waterBloop2.wav'])
-            this.load.audio('waterBloop3', ['assets/audio/waterBloop3.wav'])
+            this.load.audio('waterBloop1', ['assets/audio/waterBloop1.m4a'])
+            this.load.audio('waterBloop2', ['assets/audio/waterBloop2.m4a'])
+            this.load.audio('waterBloop3', ['assets/audio/waterBloop3.m4a'])
 
-            this.load.audio('fillWater', ['assets/audio/fillWater.wav'])
+            this.load.audio('fillWater', ['assets/audio/fillWater.m4a'])
 
-            this.load.audio('flyAway', ['assets/audio/flyAway.wav'])
+            this.load.audio('flyAway', ['assets/audio/flyAway.m4a'])
 
-            this.load.audio('bg1', ['assets/audio/african-whistle-398936.wav'])
-            this.load.audio('bg2', ['assets/audio/african-delta-140627.wav'])
-            this.load.audio('bg3', ['assets/audio/afrikana-marimba-rythms-130598.wav'])
+            this.load.audio('bg1', ['assets/audio/african-whistle-398936.m4a'])
+            this.load.audio('bg2', ['assets/audio/african-delta-140627.m4a'])
+            this.load.audio('bg3', ['assets/audio/afrikana-marimba-rythms-130598.m4a'])
           
         }
         , create: function () {
